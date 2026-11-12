@@ -19,6 +19,9 @@ def run(command, root, run_id):
     api=YouTube(os.environ.get('YOUTUBE_API_KEY'),state)
     if command=='seed':
         rows,unique=seed_watchlist(root/'sources/channel_watchlist.csv')
+        for channel in channels:
+            if channel['name'] in unique:
+                unique[channel['name']].update({'verification':'verified','channel_id':channel['channel_id'],'evidence_urls':channel.get('evidence_urls',[])})
         result['details']={'category_entries':len(rows),'distinct_names':len(unique),'verified_channels':len(channels)}
         (root/'state/watchlist_progress.json').write_text(json.dumps(unique,indent=2)+'\n')
     elif command=='monitor':
