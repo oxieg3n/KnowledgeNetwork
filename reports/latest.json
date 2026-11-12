@@ -1,10 +1,26 @@
 {
-  "command": "archive",
-  "run_id": "43318113760-1",
-  "checked_at": "2026-11-12T22:14:55.381478+00:00",
-  "status": "PASS",
+  "command": "report",
+  "run_id": "43318666876-1",
+  "checked_at": "2026-11-12T22:18:53.196418+00:00",
+  "status": "BLOCKED",
   "details": {
-    "candidates": 30
+    "queues": {
+      "BLOG_VIDEO": 29,
+      "DAILY_TECH_RECAP": 0,
+      "EVERGREEN_TOP10": 30,
+      "FRESH_UPLOAD": 70
+    },
+    "verified_sources": 10,
+    "publication_count": 0,
+    "pending_alerts": 70,
+    "control": {
+      "production_host_verified": false,
+      "publication_paused": true
+    }
   },
-  "blockers": []
+  "blockers": [
+    "YouTube uploader OAuth not configured",
+    "Operational email destination/route unconfirmed",
+    "Persistent production runner not verified"
+  ]
 }
