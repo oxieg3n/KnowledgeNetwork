@@ -1,18 +1,18 @@
 {
   "command": "report",
-  "run_id": "43320379532-1",
-  "checked_at": "2026-11-12T22:29:45.402285+00:00",
+  "run_id": "43326120082-1",
+  "checked_at": "2026-11-12T23:07:40.354925+00:00",
   "status": "BLOCKED",
   "details": {
     "queues": {
       "BLOG_VIDEO": 29,
-      "DAILY_TECH_RECAP": 0,
+      "DAILY_TECH_RECAP": 1,
       "EVERGREEN_TOP10": 30,
-      "FRESH_UPLOAD": 70
+      "FRESH_UPLOAD": 125
     },
     "verified_sources": 10,
     "publication_count": 0,
-    "pending_alerts": 70,
+    "pending_alerts": 125,
     "control": {
       "production_host_verified": false,
       "publication_paused": true
