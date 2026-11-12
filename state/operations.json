@@ -561,7 +561,23 @@
       "video_id": "y9jP_T-BO8g"
     }
   },
-  "archive_progress": {},
+  "archive_progress": {
+    "UCK8sQmJBp8GCxrOtXWBpyEA": {
+      "checked_at": "2026-11-12T22:14:56.131938+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    },
+    "UCP7jMXSY2xbc3KCAE0MHQ-A": {
+      "checked_at": "2026-11-12T22:14:56.599402+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    },
+    "UCXZCJLdBC09xxGZ6gcdrc6A": {
+      "checked_at": "2026-11-12T22:14:55.785729+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    }
+  },
   "blog_versions": {
     "https://poweredby.oxieg3n.com/blog/ai-memory-correction-test/": "accb85819d8cab6394ed45eb5fdce153be778476c64ff728a1e62c12ec0fc71d",
     "https://poweredby.oxieg3n.com/blog/aws-emulator-local-testing/": "d39c278549b5c9945a9fed511bf180da2e8b22dde3bc618b8b5df3faf83eba55",
@@ -1264,7 +1280,578 @@
       }
     },
     "DAILY_TECH_RECAP": {},
-    "EVERGREEN_TOP10": {},
+    "EVERGREEN_TOP10": {
+      "1QNsdr-Qx_I": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785701+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785704+00:00",
+        "id": "1QNsdr-Qx_I",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing GPT-6 Astra: the most intelligent and aligned model in the world.",
+        "url": "https://www.youtube.com/watch?v=1QNsdr-Qx_I",
+        "video_id": "1QNsdr-Qx_I",
+        "view_count": 3791489
+      },
+      "3KtWfp0UopM": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131839+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131864+00:00",
+        "id": "3KtWfp0UopM",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google \u2014 25 Years in Search: The Most Searched",
+        "url": "https://www.youtube.com/watch?v=3KtWfp0UopM",
+        "video_id": "3KtWfp0UopM",
+        "view_count": 357367059
+      },
+      "4WXs3sKu41I": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131872+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131876+00:00",
+        "id": "4WXs3sKu41I",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2022 \u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=4WXs3sKu41I",
+        "video_id": "4WXs3sKu41I",
+        "view_count": 297922930
+      },
+      "4_P7R8Fjrg8": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785677+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785681+00:00",
+        "id": "4_P7R8Fjrg8",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What Codex Unlocks for Ryan Hendler, dev at me&u",
+        "url": "https://www.youtube.com/watch?v=4_P7R8Fjrg8",
+        "video_id": "4_P7R8Fjrg8",
+        "view_count": 15987425
+      },
+      "4lSQnrMC6nY": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599385+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599387+00:00",
+        "id": "4lSQnrMC6nY",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+        "url": "https://www.youtube.com/watch?v=4lSQnrMC6nY",
+        "video_id": "4lSQnrMC6nY",
+        "view_count": 6024377
+      },
+      "6aFdEhEZQjE": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131910+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131913+00:00",
+        "id": "6aFdEhEZQjE",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2018\u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=6aFdEhEZQjE",
+        "video_id": "6aFdEhEZQjE",
+        "view_count": 117145680
+      },
+      "AIZ_v_Xfb2k": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785627+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785650+00:00",
+        "id": "AIZ_v_Xfb2k",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What Codex Unlocks for Braintrust",
+        "url": "https://www.youtube.com/watch?v=AIZ_v_Xfb2k",
+        "video_id": "AIZ_v_Xfb2k",
+        "view_count": 40072267
+      },
+      "DQacCB9tDaw": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785685+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785688+00:00",
+        "id": "DQacCB9tDaw",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing GPT-4o",
+        "url": "https://www.youtube.com/watch?v=DQacCB9tDaw",
+        "video_id": "DQacCB9tDaw",
+        "view_count": 4926107
+      },
+      "EqboAI-Vk-U": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131888+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131891+00:00",
+        "id": "EqboAI-Vk-U",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2021 \u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=EqboAI-Vk-U",
+        "video_id": "EqboAI-Vk-U",
+        "view_count": 241029312
+      },
+      "FL6mI_Br-mc": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599381+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599383+00:00",
+        "id": "FL6mI_Br-mc",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Create your own voices with Gemini 3.8 text-to-speech",
+        "url": "https://www.youtube.com/watch?v=FL6mI_Br-mc",
+        "video_id": "FL6mI_Br-mc",
+        "view_count": 6069679
+      },
+      "H104L-steDs": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785669+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785673+00:00",
+        "id": "H104L-steDs",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What Codex Unlocks for Wasmer",
+        "url": "https://www.youtube.com/watch?v=H104L-steDs",
+        "video_id": "H104L-steDs",
+        "view_count": 28462563
+      },
+      "HK6y8DAPN_0": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785692+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785695+00:00",
+        "id": "HK6y8DAPN_0",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing Sora \u2014 OpenAI\u2019s text-to-video model",
+        "url": "https://www.youtube.com/watch?v=HK6y8DAPN_0",
+        "video_id": "HK6y8DAPN_0",
+        "view_count": 4224331
+      },
+      "PqVbypvxDto": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599372+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599374+00:00",
+        "id": "PqVbypvxDto",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The future of intelligence | Demis Hassabis (Co-founder and CEO of DeepMind)",
+        "url": "https://www.youtube.com/watch?v=PqVbypvxDto",
+        "video_id": "PqVbypvxDto",
+        "view_count": 10711300
+      },
+      "Qyiautg41h8": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131917+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131920+00:00",
+        "id": "Qyiautg41h8",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The Most Searched: A Celebration of Black History Makers",
+        "url": "https://www.youtube.com/watch?v=Qyiautg41h8",
+        "video_id": "Qyiautg41h8",
+        "view_count": 73058538
+      },
+      "TnhKznlJfTM": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131931+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131933+00:00",
+        "id": "TnhKznlJfTM",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Google keeps you safe on Search",
+        "url": "https://www.youtube.com/watch?v=TnhKznlJfTM",
+        "video_id": "TnhKznlJfTM",
+        "view_count": 39162396
+      },
+      "TryfaGZwvIE": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785715+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785718+00:00",
+        "id": "TryfaGZwvIE",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How to Turn a Forecast Spreadsheet Into an Interactive Planning Tool With ChatGPT Work",
+        "url": "https://www.youtube.com/watch?v=TryfaGZwvIE",
+        "video_id": "TryfaGZwvIE",
+        "view_count": 2822356
+      },
+      "U0aToL5C-bQ": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599390+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599392+00:00",
+        "id": "U0aToL5C-bQ",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "AlphaGenome Atlas: Understanding the human genome",
+        "url": "https://www.youtube.com/watch?v=U0aToL5C-bQ",
+        "video_id": "U0aToL5C-bQ",
+        "view_count": 4929548
+      },
+      "U9mJuUkhUzk": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785722+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785725+00:00",
+        "id": "U9mJuUkhUzk",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "OpenAI DevDay: Opening Keynote",
+        "url": "https://www.youtube.com/watch?v=U9mJuUkhUzk",
+        "video_id": "U9mJuUkhUzk",
+        "view_count": 2715662
+      },
+      "WXuK6gekU1Y": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599368+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599370+00:00",
+        "id": "WXuK6gekU1Y",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "AlphaGo - The Movie | Full award-winning documentary",
+        "url": "https://www.youtube.com/watch?v=WXuK6gekU1Y",
+        "video_id": "WXuK6gekU1Y",
+        "view_count": 38559227
+      },
+      "ZRCdORJiUgU": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131895+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131898+00:00",
+        "id": "ZRCdORJiUgU",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2019 \u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=ZRCdORJiUgU",
+        "video_id": "ZRCdORJiUgU",
+        "view_count": 156806741
+      },
+      "_fuimO6ErKI": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131923+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131927+00:00",
+        "id": "_fuimO6ErKI",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google \u2013 Welcome to the Gemini era",
+        "url": "https://www.youtube.com/watch?v=_fuimO6ErKI",
+        "video_id": "_fuimO6ErKI",
+        "view_count": 55662517
+      },
+      "aSY_vFFmkW0": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599377+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599379+00:00",
+        "id": "aSY_vFFmkW0",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Generating novel scientific hypotheses with Co-Scientist",
+        "url": "https://www.youtube.com/watch?v=aSY_vFFmkW0",
+        "video_id": "aSY_vFFmkW0",
+        "view_count": 6295157
+      },
+      "b9qPMHpyZ5Q": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131903+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131906+00:00",
+        "id": "b9qPMHpyZ5Q",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google Gemini: Mr. Fuzzy\u2019s Big Adventure",
+        "url": "https://www.youtube.com/watch?v=b9qPMHpyZ5Q",
+        "video_id": "b9qPMHpyZ5Q",
+        "view_count": 118909253
+      },
+      "bxJkxBUFeEE": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785659+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785664+00:00",
+        "id": "bxJkxBUFeEE",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What Codex Unlocks for Notion",
+        "url": "https://www.youtube.com/watch?v=bxJkxBUFeEE",
+        "video_id": "bxJkxBUFeEE",
+        "view_count": 37229967
+      },
+      "cUTMhmVh1qs": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599398+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599400+00:00",
+        "id": "cUTMhmVh1qs",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "DeepMind StarCraft II Demonstration",
+        "url": "https://www.youtube.com/watch?v=cUTMhmVh1qs",
+        "video_id": "cUTMhmVh1qs",
+        "view_count": 2628684
+      },
+      "d95J8yzvjbQ": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599338+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599359+00:00",
+        "id": "d95J8yzvjbQ",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The Thinking Game | Full documentary | Tribeca Film Festival official selection",
+        "url": "https://www.youtube.com/watch?v=d95J8yzvjbQ",
+        "video_id": "d95J8yzvjbQ",
+        "view_count": 442891458
+      },
+      "meUr8fjy8lQ": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599363+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599365+00:00",
+        "id": "meUr8fjy8lQ",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Vibe Coding with Gemini 3 in Google AI Studio",
+        "url": "https://www.youtube.com/watch?v=meUr8fjy8lQ",
+        "video_id": "meUr8fjy8lQ",
+        "view_count": 174767199
+      },
+      "rokGy0huYEA": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-12T22:14:56.131880+00:00",
+        "discovered_at": "2026-11-12T22:14:56.131884+00:00",
+        "id": "rokGy0huYEA",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2020 \u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=rokGy0huYEA",
+        "video_id": "rokGy0huYEA",
+        "view_count": 244432667
+      },
+      "vFr3K2DORc8": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "collected_at": "2026-11-12T22:14:56.599394+00:00",
+        "discovered_at": "2026-11-12T22:14:56.599396+00:00",
+        "id": "vFr3K2DORc8",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Match 1 - Google DeepMind Challenge Match: Lee Sedol vs AlphaGo",
+        "url": "https://www.youtube.com/watch?v=vFr3K2DORc8",
+        "video_id": "vFr3K2DORc8",
+        "view_count": 3138561
+      },
+      "yyvVUEPSCu0": {
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "collected_at": "2026-11-12T22:14:55.785708+00:00",
+        "discovered_at": "2026-11-12T22:14:55.785711+00:00",
+        "id": "yyvVUEPSCu0",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing workspace agents in ChatGPT",
+        "url": "https://www.youtube.com/watch?v=yyvVUEPSCu0",
+        "video_id": "yyvVUEPSCu0",
+        "view_count": 3490274
+      }
+    },
     "FRESH_UPLOAD": {
       "-9ffzWW-jhg": {
         "api_verification": "pending",
@@ -2725,12 +3312,12 @@
   },
   "quota": {
     "2026-11-12": {
-      "general": 6,
-      "search": 0,
+      "general": 9,
+      "search": 3,
       "upload": 0
     }
   },
-  "revision": 63,
+  "revision": 70,
   "rights_ledger": {},
   "runs": [
     {
@@ -2959,6 +3546,16 @@
       },
       "run_id": "43317989328-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-12T22:14:55.381478+00:00",
+      "command": "archive",
+      "details": {
+        "candidates": 30
+      },
+      "run_id": "43318113760-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
