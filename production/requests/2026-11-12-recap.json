@@ -1,0 +1,581 @@
+{
+  "schema_version": 1,
+  "queue": "DAILY_TECH_RECAP",
+  "item_id": "2026-11-12",
+  "production_key": "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559",
+  "rights_path": "original",
+  "primary_sources": [
+    "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+    "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm",
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+    "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+    "https://openai.com/",
+    "https://openai.com/cyber-at-the-frontier/",
+    "https://openai.com/daybreak/defense-factory/",
+    "https://openai.com/daybreak/red-team/",
+    "https://developers.cloudflare.com/changelog/post/2026-11-12-kitesurf-open-source/",
+    "https://developers.cloudflare.com/changelog/post/2026-11-12-d1-data-source/",
+    "https://developers.cloudflare.com/changelog/product/tunnel/",
+    "https://developers.cloudflare.com/changelog/post/2026-11-12-cloudflared-matrix-path-parameters/",
+    "https://github.blog/changelog/2026-11-12-secret-scanning-adds-a-detector-for-cloudflare/",
+    "https://github.blog/changelog/2026-11-12-public-monitoring-alerts-now-have-direct-links/",
+    "https://github.blog/changelog/2026-10-20-updates-to-github-secret-scanning/",
+    "https://blog.playstation.com/2026/11/12/vindictus-defying-fate-comes-to-ps5-next-year/",
+    "https://www.aboutamazon.com/news/workplace/amazon-future-of-work-skills-jobs-training",
+    "https://www.aboutamazon.com/amazon-news-today"
+  ],
+  "distinct_value": "Ten distinct dated primary-source developments with availability and rollout limits, practical implications, and original subject-specific explanatory diagrams; not copied source footage or narration.",
+  "script": {
+    "format": "landscape",
+    "technical_test": false,
+    "title": "10 Tech Stories Worth Knowing | November 12, 2026",
+    "editorial_date": "2026-11-12",
+    "sources": [
+      "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+      "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "https://openai.com/",
+      "https://openai.com/cyber-at-the-frontier/",
+      "https://openai.com/daybreak/defense-factory/",
+      "https://openai.com/daybreak/red-team/",
+      "https://developers.cloudflare.com/changelog/post/2026-11-12-kitesurf-open-source/",
+      "https://developers.cloudflare.com/changelog/post/2026-11-12-d1-data-source/",
+      "https://developers.cloudflare.com/changelog/product/tunnel/",
+      "https://developers.cloudflare.com/changelog/post/2026-11-12-cloudflared-matrix-path-parameters/",
+      "https://github.blog/changelog/2026-11-12-secret-scanning-adds-a-detector-for-cloudflare/",
+      "https://github.blog/changelog/2026-11-12-public-monitoring-alerts-now-have-direct-links/",
+      "https://github.blog/changelog/2026-10-20-updates-to-github-secret-scanning/",
+      "https://blog.playstation.com/2026/11/12/vindictus-defying-fate-comes-to-ps5-next-year/",
+      "https://www.aboutamazon.com/news/workplace/amazon-future-of-work-skills-jobs-training",
+      "https://www.aboutamazon.com/amazon-news-today"
+    ],
+    "scenes": [
+      {
+        "title": "10 tech stories worth knowing",
+        "narration": "A leadership change at NVIDIA, new Google AI tools and eyewear, and practical updates for developers. This is the Powered by Oxieg3n Technology Recap for November twelfth, twenty twenty-six. These are ten stories selected for their significance and usefulness, with primary sources linked below. Announcements, previews and products you can actually use are identified separately.",
+        "caption": "November 12, 2026 \u2022 Eastern time | Original source-based recap",
+        "graphic": {
+          "kind": "comparison",
+          "items": [
+            {
+              "label": "Industry",
+              "detail": "Leadership and consumer devices"
+            },
+            {
+              "label": "Builders",
+              "detail": "AI tools, security and development"
+            },
+            {
+              "label": "People",
+              "detail": "Gaming and skills"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "01. NVIDIA announces a leadership transition",
+        "narration": "NVIDIA announced a major leadership change today. Jensen Huang has resigned as president, chief executive and a director. Finance chief Colette Kress is serving as interim chief executive while keeping her existing role, and the board is searching for a permanent successor.",
+        "caption": "Source: NVIDIA / SEC | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "Nov 11",
+              "detail": "Board accepts resignation"
+            },
+            {
+              "label": "Nov 12",
+              "detail": "NVIDIA announces transition"
+            },
+            {
+              "label": "Ongoing",
+              "detail": "Permanent CEO search"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "01. NVIDIA announces a leadership transition",
+        "narration": "Harvey Jones becomes board chair. There is an important date distinction: the company announced the transition on November twelfth, while its regulatory filing says the board accepted the resignation on November eleventh. NVIDIA says it expects operations and its product roadmap to continue without interruption. That is the company's expectation, not an independently verified outcome.",
+        "caption": "Source: NVIDIA / SEC | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "Nov 11",
+              "detail": "Board accepts resignation"
+            },
+            {
+              "label": "Nov 12",
+              "detail": "NVIDIA announces transition"
+            },
+            {
+              "label": "Ongoing",
+              "detail": "Permanent CEO search"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "02. Google introduces Gemini 4 Hydrogen",
+        "narration": "Google introduced Gemini 4 Hydrogen today, positioning it as a faster execution model for coding and agent workflows. It is available through AI Studio and the Gemini API, with a one million token context window. Published API pricing is one dollar fifty per million input tokens and seven dollars fifty per million output tokens.",
+        "caption": "Source: Google | Original explanatory graphic",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "Complex reasoning",
+              "detail": "Choose a suitable model"
+            },
+            {
+              "label": "Routine execution",
+              "detail": "Gemini 4 Hydrogen"
+            },
+            {
+              "label": "Measure",
+              "detail": "Quality, latency and cost"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "02. Google introduces Gemini 4 Hydrogen",
+        "narration": "Google also introduced Orchestrator in Antigravity, which can switch models within a session. The practical question is whether splitting difficult reasoning from routine execution lowers your own costs without losing quality. Google's benchmark results suggest that direction, but we have not independently tested those performance claims.",
+        "caption": "Source: Google | Original explanatory graphic",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "Complex reasoning",
+              "detail": "Choose a suitable model"
+            },
+            {
+              "label": "Routine execution",
+              "detail": "Gemini 4 Hydrogen"
+            },
+            {
+              "label": "Measure",
+              "detail": "Quality, latency and cost"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "03. Google intelligent eyewear opens for preorder",
+        "narration": "Google's new intelligent eyewear collections opened for preorder today. The frames were developed with Gentle Monster, Warby Parker and Samsung, and put hands-free Gemini assistance alongside a camera and open-ear audio. Warby Parker styles start at three hundred ninety-five dollars; Gentle Monster's collection starts at four hundred forty-nine.",
+        "caption": "Source: Google | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "Nov 12",
+              "detail": "Preorders open"
+            },
+            {
+              "label": "From $395 / $449",
+              "detail": "Warby Parker / Gentle Monster"
+            },
+            {
+              "label": "Dec 10",
+              "detail": "Scheduled retail availability"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "03. Google intelligent eyewear opens for preorder",
+        "narration": "Retail availability is scheduled for December tenth, so this is a preorder story, not a shipping-day review. Google's eligibility rules include supported phones and adult Google accounts from the United States or South Korea. Before buying, check the exact frame, prescription options and phone compatibility. We have not tested the glasses.",
+        "caption": "Source: Google | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "Nov 12",
+              "detail": "Preorders open"
+            },
+            {
+              "label": "From $395 / $449",
+              "detail": "Warby Parker / Gentle Monster"
+            },
+            {
+              "label": "Dec 10",
+              "detail": "Scheduled retail availability"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "04. OpenAI presents Daybreak defense tools",
+        "narration": "OpenAI's Daybreak announcements focus on moving from security findings to fixes. Defense Factory uses agents to investigate reported vulnerabilities and prepare patches, with engineers reviewing and testing before a merge. Daybreak Red Team is presented as an early-access service for testing web applications, confirming vulnerabilities and checking whether a patch blocks an exploit.",
+        "caption": "Source: OpenAI | Original explanatory graphic",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "Investigate",
+              "detail": "Assess a reported vulnerability"
+            },
+            {
+              "label": "Prepare",
+              "detail": "Generate a proposed patch"
+            },
+            {
+              "label": "Review + test",
+              "detail": "Engineers decide before merge"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "04. OpenAI presents Daybreak defense tools",
+        "narration": "OpenAI describes scope controls and isolated environments for those assessments. Finding suspicious code is not the same as proving a vulnerability, and generating a patch is not proof that it is safe. These are vendor-described tools for authorized security work, not a replacement for review.",
+        "caption": "Source: OpenAI | Original explanatory graphic",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "Investigate",
+              "detail": "Assess a reported vulnerability"
+            },
+            {
+              "label": "Prepare",
+              "detail": "Generate a proposed patch"
+            },
+            {
+              "label": "Review + test",
+              "detail": "Engineers decide before merge"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "05. Cloudflare open-sources Kitesurf",
+        "narration": "Cloudflare made Kitesurf open source today under the Apache two point zero license. It is a browser engine aimed at AI agents that runs on Workers, handling HTML, CSS and page JavaScript without a browser container. Support for the Chrome DevTools Protocol lets clients such as Puppeteer connect.",
+        "caption": "Source: Cloudflare | Original explanatory graphic",
+        "graphic": {
+          "kind": "comparison",
+          "items": [
+            {
+              "label": "Open source",
+              "detail": "Apache 2.0 browser engine"
+            },
+            {
+              "label": "Experimental",
+              "detail": "Compatibility still improving"
+            },
+            {
+              "label": "Hosting",
+              "detail": "Paid Workers; add authentication"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "05. Cloudflare open-sources Kitesurf",
+        "narration": "That makes it interesting for developers exploring agent browsing, but there are important limits. Cloudflare calls Kitesurf experimental and says standards support and rendering fidelity are still being improved. Hosting it on Cloudflare requires a paid Workers plan, and deployments need their own authentication layer. Open source does not mean production-ready or free hosting.",
+        "caption": "Source: Cloudflare | Original explanatory graphic",
+        "graphic": {
+          "kind": "comparison",
+          "items": [
+            {
+              "label": "Open source",
+              "detail": "Apache 2.0 browser engine"
+            },
+            {
+              "label": "Experimental",
+              "detail": "Compatibility still improving"
+            },
+            {
+              "label": "Hosting",
+              "detail": "Paid Workers; add authentication"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "06. Cloudflare AI Search adds D1 beta support",
+        "narration": "Cloudflare AI Search can now use D1 databases as a source, in beta. Developers provide a read-only query, and the service turns each returned row into a separate indexed document. Scheduled synchronization tracks added, changed and removed rows.",
+        "caption": "Source: Cloudflare | Original explanatory graphic",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "D1 query",
+              "detail": "Read-only source rows"
+            },
+            {
+              "label": "Index",
+              "detail": "One document for each row"
+            },
+            {
+              "label": "Sync",
+              "detail": "Scheduled changes; beta"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "06. Cloudflare AI Search adds D1 beta support",
+        "narration": "Instances can be created through the dashboard, REST API or Workers binding. For a site with articles or help content already stored in D1, that could reduce the work of building a separate search ingestion pipeline. That is a possible use case, not a tested result here. The feature is beta, and scheduled synchronization should not be confused with instant updates.",
+        "caption": "Source: Cloudflare | Original explanatory graphic",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "D1 query",
+              "detail": "Read-only source rows"
+            },
+            {
+              "label": "Index",
+              "detail": "One document for each row"
+            },
+            {
+              "label": "Sync",
+              "detail": "Scheduled changes; beta"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "07. Cloudflare changes Tunnel URL normalization",
+        "narration": "Cloudflare has a concrete testing task for Tunnel administrators. Version twenty twenty-six point eleven extends URL normalization to semicolon-delimited path parameters before ingress rules are matched. The change concerns tunnels with rules requiring Cloudflare Access validation; the path forwarded to the origin stays unchanged.",
+        "caption": "Source: Cloudflare | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "2026.11.0",
+              "detail": "Expanded URL normalization"
+            },
+            {
+              "label": "Test now",
+              "detail": "Check Access ingress matching"
+            },
+            {
+              "label": "Feb 8, 2027",
+              "detail": "Planned new-release default"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "07. Cloudflare changes Tunnel URL normalization",
+        "narration": "Normalization is currently off by default. Cloudflare now plans to enable it by default in new releases starting February eighth, twenty twenty-seven, later than its previously announced date. The useful next step is to test path-based routing before that deadline, especially semicolon-containing paths. Do not assume your application routes are unaffected or change a production configuration without testing.",
+        "caption": "Source: Cloudflare | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "2026.11.0",
+              "detail": "Expanded URL normalization"
+            },
+            {
+              "label": "Test now",
+              "detail": "Check Access ingress matching"
+            },
+            {
+              "label": "Feb 8, 2027",
+              "detail": "Planned new-release default"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "08. GitHub strengthens secret-scanning workflows",
+        "narration": "GitHub's security updates today include detection for Cloudflare Access service tokens and direct links to individual public-monitoring alerts. Those links can help eligible enterprise teams share a finding without making colleagues hunt through a list. Public monitoring requires GitHub Enterprise Cloud with Secret Protection or Advanced Security.",
+        "caption": "Source: GitHub | Original explanatory graphic",
+        "graphic": {
+          "kind": "comparison",
+          "items": [
+            {
+              "label": "Detect",
+              "detail": "Cloudflare Access service tokens"
+            },
+            {
+              "label": "Share",
+              "detail": "Direct links for eligible alerts"
+            },
+            {
+              "label": "Migrate",
+              "detail": "Audit field: name to slug"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "08. GitHub strengthens secret-scanning workflows",
+        "narration": "There is also a migration taking effect today that was announced earlier: certain secret-scanning audit events change their business field from the enterprise display name to its slug. Integrations filtering on the old name need attention; GitHub recommends accepting both formats or using the unchanged numeric business identifier. Detection still does not replace credential rotation.",
+        "caption": "Source: GitHub | Original explanatory graphic",
+        "graphic": {
+          "kind": "comparison",
+          "items": [
+            {
+              "label": "Detect",
+              "detail": "Cloudflare Access service tokens"
+            },
+            {
+              "label": "Share",
+              "detail": "Direct links for eligible alerts"
+            },
+            {
+              "label": "Migrate",
+              "detail": "Audit field: name to slug"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "09. Vindictus: Defying Fate announced for PS5",
+        "narration": "For gaming, Nexon announced today that Vindictus: Defying Fate is coming to PlayStation Five next year. The action role-playing game takes place in a fantasy world inspired by Celtic mythology and gives different heroes distinct combat styles. The developer describes dodging, shield counters and timing-heavy encounters rather than one identical moveset for every character.",
+        "caption": "Source: Nexon / PlayStation | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "Nov 12",
+              "detail": "PS5 platform announcement"
+            },
+            {
+              "label": "Now",
+              "detail": "Wishlist available"
+            },
+            {
+              "label": "2027",
+              "detail": "Planned release year"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "09. Vindictus: Defying Fate announced for PS5",
+        "narration": "Its PlayStation Store wishlist page is live. This is a platform announcement for twenty twenty-seven, not a release today. The team also says it is preparing multiplayer content, but that should not be treated as a confirmed launch feature or a promise of a particular release date.",
+        "caption": "Source: Nexon / PlayStation | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "Nov 12",
+              "detail": "PS5 platform announcement"
+            },
+            {
+              "label": "Now",
+              "detail": "Wishlist available"
+            },
+            {
+              "label": "2027",
+              "detail": "Planned release year"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "10. Amazon updates Future Ready training plans",
+        "narration": "Amazon published a one-year update on its Future Ready twenty thirty training initiative today. This is not a newly announced two point five billion dollar fund: the company introduced that commitment in twenty twenty-five. Today's update describes education pathways in areas including cybersecurity, manufacturing and semiconductors, plus professional credentials with university partners.",
+        "caption": "Source: Amazon | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "2025",
+              "detail": "Future Ready commitment begins"
+            },
+            {
+              "label": "Nov 12, 2026",
+              "detail": "One-year program update"
+            },
+            {
+              "label": "Next step",
+              "detail": "Check course and benefit eligibility"
+            }
+          ],
+          "emphasis": 0
+        }
+      },
+      {
+        "title": "10. Amazon updates Future Ready training plans",
+        "narration": "Amazon says Career Choice has had more than five hundred thousand participants since twenty twelve. For people considering a career change, the useful part is checking which specific courses and benefits they qualify for. Company participation figures are not evidence that every participant obtained a new job or higher pay.",
+        "caption": "Source: Amazon | Original explanatory graphic",
+        "graphic": {
+          "kind": "timeline",
+          "items": [
+            {
+              "label": "2025",
+              "detail": "Future Ready commitment begins"
+            },
+            {
+              "label": "Nov 12, 2026",
+              "detail": "One-year program update"
+            },
+            {
+              "label": "Next step",
+              "detail": "Check course and benefit eligibility"
+            }
+          ],
+          "emphasis": 2
+        }
+      },
+      {
+        "title": "What to do with the news",
+        "narration": "For developers, check the GitHub audit changes and test Tunnel routing before the new default arrives. Evaluate experimental AI tools on your own tasks before committing production workloads. And if the glasses or new games caught your eye, separate a preorder or announcement from something shipping today. The description contains the original sources and chapter links. This recap uses an original script and explanatory graphics with licensed synthetic narration; it does not contain product testing or borrowed video footage.",
+        "caption": "Primary sources and chapters in the description | AI narration disclosed",
+        "graphic": {
+          "kind": "flow",
+          "items": [
+            {
+              "label": "Check",
+              "detail": "Dates, access and eligibility"
+            },
+            {
+              "label": "Test",
+              "detail": "Your own tasks and routing"
+            },
+            {
+              "label": "Decide",
+              "detail": "Based on verified results"
+            }
+          ],
+          "emphasis": 2
+        }
+      }
+    ]
+  },
+  "reviewed_script_sha256": "9b7b102e0e5d4a6ca31e7dd213214eb919b98f689ccfc6a45750dcc0a273aa0b",
+  "editorial": {
+    "facts": {
+      "status": "pass",
+      "evidence": "Primary-source researcher reviewed exact scene claims and qualitative graphics against full original sources on November12; reviewed date/availability caveats and word budgets. Coordinator applied two reviewer-requested wording corrections without changing facts. See production/research/2026-11-12.json and production/reviews/2026-11-12.json."
+    },
+    "sources": {
+      "status": "pass",
+      "evidence": "Primary-source researcher reviewed exact scene claims and qualitative graphics against full original sources on November12; reviewed date/availability caveats and word budgets. Coordinator applied two reviewer-requested wording corrections without changing facts. See production/research/2026-11-12.json and production/reviews/2026-11-12.json."
+    },
+    "originality": {
+      "status": "pass",
+      "evidence": "Primary-source researcher reviewed exact scene claims and qualitative graphics against full original sources on November12; reviewed date/availability caveats and word budgets. Coordinator applied two reviewer-requested wording corrections without changing facts. See production/research/2026-11-12.json and production/reviews/2026-11-12.json."
+    },
+    "usefulness": {
+      "status": "pass",
+      "evidence": "Primary-source researcher reviewed exact scene claims and qualitative graphics against full original sources on November12; reviewed date/availability caveats and word budgets. Coordinator applied two reviewer-requested wording corrections without changing facts. See production/research/2026-11-12.json and production/reviews/2026-11-12.json."
+    }
+  }
+}

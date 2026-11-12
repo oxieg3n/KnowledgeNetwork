@@ -1,0 +1,43 @@
+{
+  "reviewed_at": "2026-11-12T22:31:14.545750+00:00",
+  "artifact": "script.json",
+  "sha256": "42841e4cf2e6669254ffdf1ca4d777c31bb8fdc8c8518bea584fa7f15d334324",
+  "scope": "Text, source attribution, factual accuracy, original paraphrase, practical usefulness, and qualitative graphic labels only. No audio, pixel rendering, licensing-artifact or publication QA.",
+  "checks": {
+    "factual_accuracy": "PASS: story facts match research primary sources; prices, dates, access limitations and platform plan accurate.",
+    "source_attribution": "PASS: all ten story sources represented. NVIDIA Nov11 action / Nov12 announcement distinction preserved. Amazon 2025 commitment / today update preserved.",
+    "originality": "PASS: original concise paraphrases, no quotes or borrowed video represented. No fabricated testing or experiences.",
+    "usefulness": "PASS: specific routing/audit tasks, eligibility checks and experimental-tool caveats. Three Cloudflare stories are substantively distinct.",
+    "graphic_claims": "PASS: diagrams qualitative, no fabricated measurements; pricing, future dates and paid-plan limits supported.",
+    "source_word_budget": "PASS: conservative full per-story counts including repeated titles/captions/graphic labels are 153,156,161,156,152,157,158,158,155,164. Intro/outro brief references keep each individual source under200derivedwords; GitHub/OpenAI multi-source bundles even lower perindividualsource."
+  },
+  "advisory_polish": [
+    {
+      "scene": 0,
+      "current": "Original reporting summary",
+      "suggested": "Original source-based recap",
+      "reason": "Avoid implying firsthand reporting or product testing."
+    },
+    {
+      "scenes": [
+        1,
+        2
+      ],
+      "current": "Next / Permanent CEO search",
+      "suggested": "Ongoing / Permanent CEO search",
+      "reason": "NVIDIA says board is initiating search; ongoing is more precise than a future-stage implication."
+    }
+  ],
+  "separate_release_gates": [
+    "Description must actually contain primary source URLs and chapter links before spoken outro claim becomes true.",
+    "Synthetic narration license must be checked by asset owner; this review has not independently inspected its license.",
+    "Audio review and final visual QA remain separate; no hearing/listening claim made."
+  ],
+  "coordinator_final_script_sha256": "9b7b102e0e5d4a6ca31e7dd213214eb919b98f689ccfc6a45750dcc0a273aa0b",
+  "coordinator_corrections": [
+    "Original source-based recap label",
+    "NVIDIA search label Ongoing"
+  ],
+  "publication_eligible": false,
+  "audio_review": "pending_owner_listening"
+}

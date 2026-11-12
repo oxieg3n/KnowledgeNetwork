@@ -1279,7 +1279,20 @@
         "title": "Contract automation: keep approval attached to the right document"
       }
     },
-    "DAILY_TECH_RECAP": {},
+    "DAILY_TECH_RECAP": {
+      "2026-11-12": {
+        "attempts": 0,
+        "date": "2026-11-12",
+        "discovered_at": "2026-11-12T22:29:29Z",
+        "id": "2026-11-12",
+        "owner_audio_review_required": true,
+        "publication_eligible": false,
+        "request": "production/requests/2026-11-12-recap.json",
+        "source_identity": "daily-tech-recap:2026-11-12",
+        "status": "ready",
+        "story_count": 10
+      }
+    },
     "EVERGREEN_TOP10": {
       "1QNsdr-Qx_I": {
         "attempts": 0,
@@ -3328,7 +3341,7 @@
       "upload": 0
     }
   },
-  "revision": 94,
+  "revision": 95,
   "rights_ledger": {},
   "runs": [
     {
