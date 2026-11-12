@@ -1729,7 +1729,7 @@
         "publication_eligible": false,
         "request": "production/requests/2026-11-12-recap.json",
         "source_identity": "daily-tech-recap:2026-11-12",
-        "status": "rendered_pending_review",
+        "status": "awaiting_owner_audio_review",
         "story_count": 10
       }
     },
@@ -4914,17 +4914,26 @@
   "render_jobs": {
     "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c": {
       "completed_at": "2026-11-12T23:12:08.219171+00:00",
+      "duration_seconds": 486.714648,
       "execution_started_at": "2026-11-12T23:08:50.110928+00:00",
       "executor": "dot-cloud-bounded",
+      "final_audio_loudness": {
+        "integrated_lufs": -16.2,
+        "range_lu": 2.7,
+        "true_peak_dbfs": -1.8
+      },
       "item_id": "2026-11-12",
       "media_handoff": "pending",
+      "owner_review_copy_saved": true,
+      "pre_normalization_sha256": "b524d2c5c38241ed696e56f7110158e4355e981cfcd9b208d22f6c464dbe4f91",
       "production_key": "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c",
       "publication_eligible": false,
       "queue": "DAILY_TECH_RECAP",
-      "render_sha256": "b524d2c5c38241ed696e56f7110158e4355e981cfcd9b208d22f6c464dbe4f91",
+      "render_sha256": "275ef0f358771cc6d1ec98f6b58b058faa1fe1e7d859fb87639238c8e60991d3",
       "request_sha256": "14372a79d6bd79a55762d4b55d3cce1c9bfeac5d031f081b1a071fb16d989f5e",
+      "review_record": "production/reviews/2026-11-12-final.json",
       "started_at": "2026-11-12T23:07:42.986931+00:00",
-      "status": "rendered_pending_review"
+      "status": "awaiting_owner_audio_review"
     },
     "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559": {
       "execution_started_at": "2026-11-12T23:02:13.549318+00:00",
@@ -4940,7 +4949,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 113,
+  "revision": 114,
   "rights_ledger": {},
   "runs": [
     {

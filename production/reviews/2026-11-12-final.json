@@ -1,0 +1,40 @@
+{
+  "render_sha256": "275ef0f358771cc6d1ec98f6b58b058faa1fe1e7d859fb87639238c8e60991d3",
+  "duration_seconds": 486.714648,
+  "technical_checks": {
+    "checks": {
+      "h264": true,
+      "pixel_format": true,
+      "dimensions": true,
+      "fps_30": true,
+      "aac_audio": true,
+      "duration": true
+    },
+    "passed": true,
+    "duration_seconds": 486.724674,
+    "black_segments": 0,
+    "long_silences": 0,
+    "manual_checks": {
+      "facts": "pending",
+      "rights": "pending",
+      "pronunciation": "pending",
+      "mobile_readability": "pending",
+      "caption_sync": "pending",
+      "distinct_editorial_value": "pending"
+    }
+  },
+  "visual_review": "22 actual final-video frames inspected across every scene, captions present and safe margins; full-size eyewear scene inspected; no visible clipping or overlap in inspected samples. Not full playback/listening.",
+  "facts": "Primary-source exact-script review passed; two documented wording corrections applied.",
+  "rights": "Original programmatic diagrams and original script; DejaVu font; Piper LJ Speech model provenance in manifest; no borrowed audiovisual footage or music.",
+  "audio_review": "pending James listening; cannot claim pronunciation/prosody or full AV-sync acceptance",
+  "publication_eligible": false,
+  "owner_review_version": "v2 telemetry-disabled recovery",
+  "public_status": "not_uploaded",
+  "pre_normalization_sha256": "b524d2c5c38241ed696e56f7110158e4355e981cfcd9b208d22f6c464dbe4f91",
+  "final_audio_processing": "Measured two-pass loudness normalization; source video stream exacthash preserved; AAC192kbps48kHz",
+  "loudness": {
+    "integrated_lufs": -16.2,
+    "true_peak_dbfs": -1.8,
+    "range_lu": 2.7
+  }
+}
