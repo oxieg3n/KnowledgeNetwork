@@ -12,6 +12,8 @@ def validate_licensed(spec):
     clips = [s for s in spec.get('scenes', []) if 'licensed_excerpt' in s]
     if spec.get('format') != 'short' or len(clips) != 1 or len(spec['scenes']) < 3:
         raise ValueError('One excerpt and at least two original commentary scenes required')
+    if 'licensed_excerpt' in spec['scenes'][0] or 'licensed_excerpt' in spec['scenes'][-1]:
+        raise ValueError('Original introduction and subsequent commentary required')
     if len(assets) != 1: raise ValueError('Exactly one reviewed source asset required')
     for asset_id, a in assets.items():
         if not re.fullmatch(r'[a-z0-9-]{1,64}', asset_id): raise ValueError('Invalid asset ID')
