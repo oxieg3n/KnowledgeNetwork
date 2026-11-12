@@ -52,3 +52,23 @@ The module refuses to overwrite an existing output directory. Do not commit medi
 - Four actual frames across all three scenes inspected at mobile scale: at most two lines, no clipping/overlap, readable safe margins, technical-test label visible. Full audio listening and playback acceptance remain pending.
 - Exact MP4 SHA-256: `ead66581c634caac022bc9167072a208c913858afa17e105b27fa89796113d8c`.
 - `publication_eligible` remains false. No upload or public publication performed.
+
+## Subject-specific landscape scene preparation
+
+Landscape supports 1920 × 1080, up to 30 scenes. Split each story across multiple scenes when narration exceeds 600 characters. No duration is padded to meet a target. Actual synthesized narration determines runtime; editorial review must enforce the requested duration.
+
+A scene can add `graphic = {kind, items, emphasis}` in JSON form. `kind` is `flow`, `comparison`, or `timeline`. `items` is an ordered list of two to four objects, each with `label` (1–45 characters) and `detail` (1–100 characters). Optional `emphasis` is a zero-based item index. Example:
+
+```json
+{"title":"How this process works","narration":"Approved narration goes here.","caption":"Original explanatory diagram.","graphic":{"kind":"flow","items":[{"label":"Source","detail":"Read original documentation"},{"label":"Evidence","detail":"Verify the specific claim"}],"emphasis":1}}
+```
+
+These are qualitative diagrams, not measured charts. Relationships, dates, descriptions and emphasis must be justified by the actual story and verified sources. Timeline spacing does not represent elapsed duration. Text is checked for overflow and fails rather than clipping. These layouts currently support landscape only. Static diagrams do not satisfy a purposeful-motion requirement by themselves: the final production treatment must still be reviewed for scene-specific visual explanation and pacing.
+
+This tool cannot substitute for listening review. A November 12 capability test extracted and emitted a 12-second WAV; the model interface returned "audio content omitted because you do not support audio input". Do not mark pronunciation or auditory/prosody checks passed based on FFmpeg statistics, a waveform, captions, or ASR alone. An audio-capable reviewer or owner must listen to the final narration and review playback synchronization.
+
+### Deliberate visual sequencing
+
+Each scene has a brief 180 ms maximum artwork fade-in and a thin elapsed-narration progress bar in 60 increments. The bar uses the measured synthesized duration, not text-length estimates. Captions are applied last and remain opaque: no zoom, cropping or caption fade is used. The separate bottom episode-position indicator remains static per scene. Neither progress indicator claims to measure a news subject.
+
+For narration-linked emphasis, split a story into consecutive scenes with the same verified graphic items, changing `emphasis` to the item actually discussed in each scene's narration. The transition occurs at that scene's measured audio boundary. Do not rotate highlights arbitrarily or imply a causal flow not supported by the story. These subtle effects support a deliberate explanatory sequence; they do not independently establish editorial distinctness or satisfy listening/playback review.

@@ -64,3 +64,38 @@ class CaptionTests(unittest.TestCase):
             self.assertIn('Dialogue: 0,0:00:00.00,0:00:03.00',content)
 
 if __name__=='__main__': unittest.main()
+
+class SubjectGraphicsTests(unittest.TestCase):
+    def test_graphic_validation(self):
+        from youtube_ops.render import validate_graphic
+        base={'kind':'flow','items':[{'label':'Input','detail':'Verified source'},{'label':'Review','detail':'Evidence checked'}]}
+        validate_graphic(base)
+        for bad in [dict(base,kind='numeric-chart'),dict(base,emphasis=2),dict(base,emphasis=True),dict(base,items=[]),dict(base,items=[{'label':'','detail':'a'},{'label':'b','detail':'c'}])]:
+            with self.assertRaises(ValueError): validate_graphic(bad)
+    @unittest.skipUnless(importlib.util.find_spec('PIL'), 'optional render dependencies absent')
+    def test_landscape_graphic_modes_and_overflow(self):
+        from youtube_ops.render import card
+        font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        with tempfile.TemporaryDirectory() as tmp:
+            for kind in ['flow','comparison','timeline']:
+                scene={'title':'A technical schematic, not a news report','caption':'Original diagram for layout validation.','graphic':{'kind':kind,'items':[{'label':'Source','detail':'Read the primary document'},{'label':'Evidence','detail':'Check the actual claim'},{'label':'Review','detail':'Inspect final output'}],'emphasis':1}}
+                card(scene,Path(tmp)/f'{kind}.png',(1920,1080),0,1,technical_test=True,font_path=font)
+                self.assertTrue((Path(tmp)/f'{kind}.png').exists())
+            scene['graphic']['items'][0]['label']='W'*45
+            with self.assertRaises(ValueError):
+                card(scene,Path(tmp)/'overflow.png',(1920,1080),0,1,technical_test=True,font_path=font)
+
+class SceneMotionTests(unittest.TestCase):
+    def test_duration_bound_progress_and_caption_safety(self):
+        from youtube_ops.render import scene_video_filter
+        result=scene_video_filter(30,(1920,1080),'scene-03.ass')
+        self.assertTrue(result.startswith('fade=t=in:st=0:d=0.180000'))
+        self.assertTrue(result.endswith('ass=scene-03.ass'))
+        self.assertEqual(result.count('enable='),60)
+        self.assertIn("gte(t,0.500000)",result)
+        self.assertIn("gte(t,30.000000)",result)
+        self.assertNotIn('crop',result)
+        self.assertNotIn('zoom',result)
+        for duration in [0,-1,float('inf'),float('nan')]:
+            with self.assertRaises(ValueError): scene_video_filter(duration,(1920,1080),'scene-03.ass')
+        with self.assertRaises(ValueError): scene_video_filter(30,(1920,1080),'bad;filter.ass')
