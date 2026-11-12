@@ -1,61 +1,62 @@
 {
   "title": "10 Tech Stories Worth Knowing | November 12, 2026",
-  "description": "Ten source-checked technology stories for November 12, 2026, selected for developers and curious tech readers. Includes announcements, early access, beta features and rollout deadlines. This is an editorial selection, not an objective global ranking.\n\nCHAPTERS\n00:00 10 tech stories worth knowing\n00:24 01. NVIDIA announces a leadership transition\n01:04 02. Google introduces Gemini 4 Hydrogen\n01:46 03. Google intelligent eyewear opens for preorder\n02:27 04. OpenAI presents Daybreak defense tools\n03:12 05. Cloudflare open-sources Kitesurf\n03:55 06. Cloudflare AI Search adds D1 beta support\n04:33 07. Cloudflare changes Tunnel URL normalization\n05:21 08. GitHub strengthens secret-scanning workflows\n06:08 09. Vindictus: Defying Fate announced for PS5\n06:49 10. Amazon updates Future Ready training plans\n07:33 What to do with the news\n\nPRIMARY SOURCES\n\n1. NVIDIA announces a leadership transition\nhttps://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition\nhttps://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm\n\n2. Google introduces Gemini 4 Hydrogen\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/\n\n3. Google intelligent eyewear opens for preorder\nhttps://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/\n\n4. OpenAI presents Daybreak defense tools\nhttps://openai.com/\nhttps://openai.com/cyber-at-the-frontier/\nhttps://openai.com/daybreak/defense-factory/\nhttps://openai.com/daybreak/red-team/\n\n5. Cloudflare open-sources Kitesurf\nhttps://developers.cloudflare.com/changelog/post/2026-11-12-kitesurf-open-source/\n\n6. Cloudflare AI Search adds D1 beta support\nhttps://developers.cloudflare.com/changelog/post/2026-11-12-d1-data-source/\n\n7. Cloudflare changes Tunnel URL normalization\nhttps://developers.cloudflare.com/changelog/product/tunnel/\nhttps://developers.cloudflare.com/changelog/post/2026-11-12-cloudflared-matrix-path-parameters/\n\n8. GitHub strengthens secret-scanning workflows\nhttps://github.blog/changelog/2026-11-12-secret-scanning-adds-a-detector-for-cloudflare/\nhttps://github.blog/changelog/2026-11-12-public-monitoring-alerts-now-have-direct-links/\nhttps://github.blog/changelog/2026-10-20-updates-to-github-secret-scanning/\n\n9. Vindictus: Defying Fate announced for PS5\nhttps://blog.playstation.com/2026/11/12/vindictus-defying-fate-comes-to-ps5-next-year/\n\n10. Amazon updates Future Ready training plans\nhttps://www.aboutamazon.com/news/workplace/amazon-future-of-work-skills-jobs-training\nhttps://www.aboutamazon.com/amazon-news-today\n\nOriginal script and explanatory graphics, with licensed AI-generated narration. Diagrams are conceptual, not product screenshots or benchmark measurements. We have not independently tested vendor performance claims. No third-party video footage or music is reused.\n\nPowered By Oxieg3n Knowledge Network\nhttps://poweredby.oxieg3n.com/blog/\n",
+  "description": "Ten source-checked technology stories for November 12, 2026, selected for developers and curious tech readers. Includes announcements, early access, beta features and rollout deadlines. This is an editorial selection, not an objective global ranking.\n\nCHAPTERS\n00:00 10 tech stories worth knowing\n00:23 01. NVIDIA announces a leadership transition\n01:03 02. Google introduces Gemini 4 Hydrogen\n01:46 03. Google intelligent eyewear opens for preorder\n02:27 04. OpenAI presents Daybreak defense tools\n03:11 05. Cloudflare open-sources Kitesurf\n03:55 06. Cloudflare AI Search adds D1 beta support\n04:33 07. Cloudflare changes Tunnel URL normalization\n05:21 08. GitHub strengthens secret-scanning workflows\n06:07 09. Vindictus: Defying Fate announced for PS5\n06:48 10. Amazon updates Future Ready training plans\n07:33 What to do with the news\n\nPRIMARY SOURCES\n\n1. NVIDIA announces a leadership transition\nhttps://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition\nhttps://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm\n\n2. Google introduces Gemini 4 Hydrogen\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/\n\n3. Google intelligent eyewear opens for preorder\nhttps://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/\n\n4. OpenAI presents Daybreak defense tools\nhttps://openai.com/\nhttps://openai.com/cyber-at-the-frontier/\nhttps://openai.com/daybreak/defense-factory/\nhttps://openai.com/daybreak/red-team/\n\n5. Cloudflare open-sources Kitesurf\nhttps://developers.cloudflare.com/changelog/post/2026-11-12-kitesurf-open-source/\n\n6. Cloudflare AI Search adds D1 beta support\nhttps://developers.cloudflare.com/changelog/post/2026-11-12-d1-data-source/\n\n7. Cloudflare changes Tunnel URL normalization\nhttps://developers.cloudflare.com/changelog/product/tunnel/\nhttps://developers.cloudflare.com/changelog/post/2026-11-12-cloudflared-matrix-path-parameters/\n\n8. GitHub strengthens secret-scanning workflows\nhttps://github.blog/changelog/2026-11-12-secret-scanning-adds-a-detector-for-cloudflare/\nhttps://github.blog/changelog/2026-11-12-public-monitoring-alerts-now-have-direct-links/\nhttps://github.blog/changelog/2026-10-20-updates-to-github-secret-scanning/\n\n9. Vindictus: Defying Fate announced for PS5\nhttps://blog.playstation.com/2026/11/12/vindictus-defying-fate-comes-to-ps5-next-year/\n\n10. Amazon updates Future Ready training plans\nhttps://www.aboutamazon.com/news/workplace/amazon-future-of-work-skills-jobs-training\nhttps://www.aboutamazon.com/amazon-news-today\n\nOriginal script and explanatory graphics, with licensed AI-generated narration. Diagrams are conceptual, not product screenshots or benchmark measurements. We have not independently tested vendor performance claims. No third-party video footage or music is reused.\n\nPowered By Oxieg3n Knowledge Network\nhttps://poweredby.oxieg3n.com/blog/\n",
   "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
   "requested_visibility": "public",
   "actual_visibility": "not_uploaded",
   "made_for_kids": false,
   "synthetic_narration_disclosed": true,
-  "publication_status": "awaiting_owner_audio_review",
+  "publication_status": "awaiting_corrected_audio_review",
   "chapters": [
     {
       "offset_seconds": 0,
       "title": "10 tech stories worth knowing"
     },
     {
-      "offset_seconds": 24.404,
+      "offset_seconds": 23.94,
       "title": "01. NVIDIA announces a leadership transition"
     },
     {
-      "offset_seconds": 64.337333,
+      "offset_seconds": 63.873333,
       "title": "02. Google introduces Gemini 4 Hydrogen"
     },
     {
-      "offset_seconds": 106.744666,
+      "offset_seconds": 106.280666,
       "title": "03. Google intelligent eyewear opens for preorder"
     },
     {
-      "offset_seconds": 147.800333,
+      "offset_seconds": 147.336333,
       "title": "04. OpenAI presents Daybreak defense tools"
     },
     {
-      "offset_seconds": 192.18533299999999,
+      "offset_seconds": 191.721333,
       "title": "05. Cloudflare open-sources Kitesurf"
     },
     {
-      "offset_seconds": 235.68533299999999,
+      "offset_seconds": 235.221333,
       "title": "06. Cloudflare AI Search adds D1 beta support"
     },
     {
-      "offset_seconds": 273.93166599999995,
+      "offset_seconds": 273.46766599999995,
       "title": "07. Cloudflare changes Tunnel URL normalization"
     },
     {
-      "offset_seconds": 321.84566599999994,
+      "offset_seconds": 321.38166599999994,
       "title": "08. GitHub strengthens secret-scanning workflows"
     },
     {
-      "offset_seconds": 368.11866599999996,
+      "offset_seconds": 367.65466599999996,
       "title": "09. Vindictus: Defying Fate announced for PS5"
     },
     {
-      "offset_seconds": 409.085333,
+      "offset_seconds": 408.621333,
       "title": "10. Amazon updates Future Ready training plans"
     },
     {
-      "offset_seconds": 453.981333,
+      "offset_seconds": 453.517333,
       "title": "What to do with the news"
     }
   ],
-  "render_sha256": "275ef0f358771cc6d1ec98f6b58b058faa1fe1e7d859fb87639238c8e60991d3"
+  "render_sha256": "275ef0f358771cc6d1ec98f6b58b058faa1fe1e7d859fb87639238c8e60991d3",
+  "master_sha256": "dfe0adc4c234a031fcb3a9327def7f41be09d546b1c1939a7830f3e5e9c39fdd"
 }

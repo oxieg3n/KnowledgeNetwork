@@ -1,0 +1,25 @@
+{
+  "master_sha256": "dfe0adc4c234a031fcb3a9327def7f41be09d546b1c1939a7830f3e5e9c39fdd",
+  "review_sha256": "8088b3e6a0b55ed9a6a82f3a31eb8ea199bb9e985a32d772eb8c9e91ade82400",
+  "audio_stream_hash": "SHA256=e1354175196d324550094a35e5b098ccaabaf9915f042be595db8f935e32bc24",
+  "audio_bitstream_identical": true,
+  "review_bytes": 14168998,
+  "qc": {
+    "checks": {
+      "h264": true,
+      "pixel_format": true,
+      "dimensions": true,
+      "fps_30": true,
+      "aac_audio": true,
+      "duration": true
+    },
+    "passed": true,
+    "duration_seconds": 486.250651
+  },
+  "pronunciation_input": "ox-ee-jin",
+  "display_spelling": "Oxieg3n",
+  "approval": "pending corrected audio review",
+  "publication_eligible": false,
+  "status": "not_uploaded",
+  "new_intro_seconds": 23.94
+}
