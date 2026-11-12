@@ -28,3 +28,12 @@ Publication stays paused. The remaining daily recap/blog adaptation/source Short
 ## Caption follow-up
 
 A second local technical render measured 34.986 seconds with 19 burned-in phrase captions timed from actual synthesized PCM. Four mobile-scale frames inspected with no clipping or overlap; 38 total tests pass locally. This remains NOT FOR PUBLICATION until listening/prosody and editorial review. Exact hash: `ead66581c634caac022bc9167072a208c913858afa17e105b27fa89796113d8c`.
+
+## API and production integration follow-up
+
+The owner subsequently configured a restricted metadata API key. It was tested functionally without displaying the credential:
+
+- https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43317989328 : `api_enabled=true`, two channels API-reconciled and four new leads. Rotating-batch coverage remains partial.
+- https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43318113760 : archival ranking PASS, 30 `best_available` candidates saved. Durable state `c90d199` read back.
+
+The earlier missing-API-key blocker is resolved. **OAuth upload/subscription authorization is still separate and unverified.** The official upload adapter remains disabled pending OAuth, exact reviewed package/render checks and a trusted durable checkpoint integration. Bounded render reservations and recurrence instructions are implemented, but schedule creation and actual scheduled rendering must be verified separately by the root coordinator. No publication, email or subscription is claimed.

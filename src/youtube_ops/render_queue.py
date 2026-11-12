@@ -52,7 +52,7 @@ def reserve_render(state: State, request: dict, *, executor: str) -> dict:
     jobs=state.data.setdefault('render_jobs',{})
     key=request['production_key']
     if key in jobs: raise RuntimeError('Existing render needs reconciliation; do not start another')
-    if any(j['status']=='rendering' for j in jobs.values()):
+    if any(j['status'] in ('rendering','execution_started') for j in jobs.values()):
         raise RuntimeError('A render is already reserved; reconcile before starting')
     record={'production_key':key,'request_sha256':request_digest(request),
             'queue':request['queue'],'item_id':request['item_id'],'executor':executor,
@@ -64,7 +64,7 @@ def reserve_render(state: State, request: dict, *, executor: str) -> dict:
 
 def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
                      voice_metadata: dict, commit_sha: str, readback_revision: int,
-                     expected_request_sha256: str, renderer=None) -> dict:
+                     expected_request_sha256: str, readback_sha256: str, durable_checkpoint, renderer=None) -> dict:
     """One bounded render after a real remote reservation readback.
 
     commit_sha/readback_revision are supplied by the trusted coordinator after
@@ -76,6 +76,19 @@ def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
     if record['request_sha256']!=request_digest(request) or expected_request_sha256!=record['request_sha256']:
         raise ValueError('Request changed after reservation')
     validate_durable_checkpoint(state,state.data['revision'],commit_sha,readback_revision)
+    if readback_sha256!=hashlib.sha256(state.original).hexdigest():
+        raise ValueError('Exact remote state bytes do not match')
+    if not callable(durable_checkpoint):raise ValueError('Durable execution checkpoint callback required')
+    # A failed/aborted encode cannot reuse a reserved invocation. Persist an
+    # execution-start intent before running it, then require outcome reconciliation.
+    record.update(status='execution_started',execution_started_at=now())
+    state.save()
+    def persist_remote():
+        proof=durable_checkpoint(state)
+        validate_durable_checkpoint(state,state.data['revision'],proof.get('commit_sha',''),proof.get('readback_revision',-1))
+        if proof.get('readback_sha256')!=hashlib.sha256(state.original).hexdigest():
+            raise ValueError('Execution checkpoint bytes do not match')
+    persist_remote()
     if renderer is None:
         from .render import render
         renderer=render
@@ -87,6 +100,7 @@ def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
                   completed_at=now(),media_handoff='pending',publication_eligible=False)
     state.data['queues'][request['queue']][request['item_id']]['status']='rendered_pending_review'
     state.save()
+    persist_remote()
     return result
 
 def record_handoff(state: State, production_key: str, *, public_reference: str,

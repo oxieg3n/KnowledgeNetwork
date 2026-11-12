@@ -10,6 +10,7 @@ in public state/logs: they can carry upload authority.
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import tempfile
 import time
@@ -54,6 +55,23 @@ def official_media(stream):
 
 def production_marker(production_key: str, digest: str) -> str:
     return 'kn-' + hashlib.sha256((production_key + '\0' + digest).encode()).hexdigest()
+
+
+def reviewed_package_digest(item: dict) -> str:
+    """Canonical review identity for the entire publication package.
+
+    Reviewers must record this digest AFTER final metadata/rights/editorial review.
+    Computing it alone grants no approval. All fields (including checks, source
+    evidence, render, channel, cadence identity and API metadata) are bound except
+    the digest itself. Any edit requires a fresh genuine review and attestation.
+    """
+    package = {k: v for k, v in item.items() if k != 'reviewed_package_sha256'}
+    try:
+        encoded = json.dumps(package, sort_keys=True, separators=(',', ':'),
+                             ensure_ascii=False, allow_nan=False).encode('utf-8')
+    except (TypeError, ValueError):
+        raise UploadBlocked('Publication package is not canonical JSON') from None
+    return hashlib.sha256(encoded).hexdigest()
 
 
 class Uploader:
@@ -116,6 +134,8 @@ class Uploader:
             raise UploadBlocked('Description is missing or exceeds YouTube limits')
         if any(c in title for c in '<>\x00\r\n') or '\x00' in description:
             raise UploadBlocked('Unsupported metadata characters')
+        if item.get('reviewed_package_sha256') != reviewed_package_digest(item):
+            raise UploadBlocked('Exact publication package review missing or changed')
         if item.get('publish_at'):
             raise UploadBlocked('Scheduled publication is not implemented by this adapter')
 
@@ -174,6 +194,7 @@ class Uploader:
                max_chunks: int = 128, max_seconds: int = 900) -> dict:
         """One attempt only. A rerun always reconciles instead of inserting again."""
         self._validate(state, item)
+        reviewed_digest = item['reviewed_package_sha256']
         if not 1 <= max_chunks <= 128 or not 1 <= max_seconds <= 1800:
             raise ValueError('Bounded chunk/time limits required')
         production_key, digest = item['production_key'], item['render_sha256']
@@ -216,11 +237,14 @@ class Uploader:
                           source_identity=item['source_identity'], attempt_ny_date=ny_day,
                           insert_quota_pt_date=pt_day)
             if item['publication_format']=='daily_recap': record['recap_date']=item['recap_date']
+            record['reviewed_package_sha256'] = reviewed_digest
             record['metadata_sha256'] = hashlib.sha256(
                 __import__('json').dumps(body, sort_keys=True).encode()).hexdigest()
             state.save()
             self._durable(state)  # Must precede videos.insert or any next_chunk.
             self._validate(state, item)  # Honor a stop observed during remote checkpoint.
+            if item['reviewed_package_sha256'] != reviewed_digest:
+                raise UploadBlocked('Publication package changed during upload preparation')
             if self._budget_days() != (ny_day, pt_day):
                 raise UploadBlocked('Date boundary crossed after reservation; reconcile before sending')
             response = None

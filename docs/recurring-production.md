@@ -24,7 +24,7 @@ No OAuth-dependent step is activated by this schedule. Do not publish, subscribe
 
 - Read the remote file SHA, commit the reservation with compare-and-swap, and read back the exact bytes/revision.
 - On conflict, fetch the latest state and reapply only its scoped reservation to that state. Never force-push or replace newer Actions discoveries.
-- Supply the actual remote commit and readback proof to `execute_reserved`; do not invent attestations.
+- Supply the actual remote commit and exact state-byte SHA-256 readback proof to `execute_reserved`; do not invent attestations. A trusted durable-checkpoint callback must persist/read back its execution-start intent before encoding. An `execution_started` record cannot be re-executed without explicit outcome reconciliation, including after an encoder crash.
 - Preserve a started lease across interruption. Expiry/time passing alone is not proof the old worker stopped. Verify termination/output before retrying.
 - Persist the result and exact output hash, with `rendered_pending_review`, never `published` or automatically eligible.
 - Arrange a supported approved media handoff with hash readback. Local cloud paths are not a durable artifact. The plan approves bounded public Actions artifacts, not arbitrary new storage. If handoff is unavailable, retain the script and record media as volatile/unavailable; do not repeat rendering every run.

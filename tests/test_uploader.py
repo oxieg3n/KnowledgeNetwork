@@ -5,7 +5,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from youtube_ops.state import State
 from youtube_ops.policy import REQUIRED_CHECKS
-from youtube_ops.uploader import Uploader, UploadBlocked, production_marker
+from youtube_ops.uploader import Uploader, UploadBlocked, production_marker, reviewed_package_digest
 
 CID='UCAaukaaw1tGA1-pP_JdkU7Q'
 VID='abcdefghijk'
@@ -50,6 +50,7 @@ class UploadTests(unittest.TestCase):
   self.events=[];self.client=FakeClient(self.events)
   self.config={'destination_channel_id':CID,'upload_enabled':True,'oauth_verified':True,'publication_paused':False}
   self.item={'production_key':'story:v1:short','destination_channel_id':CID,'render_sha256':self.digest,'reviewed_render_sha256':self.digest,'rights_path':'original','assets':[{'sha256':self.digest,'rights_holder':'Owner','license':'original','evidence':'reviewed source'}],'primary_sources':['https://example.org/source'],'checks':{k:{'status':'pass','evidence':'reviewed exact render'} for k in REQUIRED_CHECKS},'distinct_value':'Original sourced explanation','visibility':'public','made_for_kids':False,'contains_synthetic_media':True,'title':'Original explanation','description':'Sources and truthful disclosure','publication_eligible':True,'publication_format':'short','source_identity':'story:v1'}
+  self.item['reviewed_package_sha256']=reviewed_package_digest(self.item)
   self.u=Uploader(self.client,self.config,self.checkpoint,media_factory=lambda f:f.read(),utcnow=lambda:datetime(2026,11,12,22,tzinfo=timezone.utc))
  def checkpoint(self,state):
   self.events.append(('checkpoint',state.data['revision'],dict(state.data['publications'].get(self.item['production_key'],{}))))
@@ -148,10 +149,12 @@ class UploadTests(unittest.TestCase):
  def test_recaps_one_per_editorial_date_including_uncertain(self):
   self.reserve('prior',fmt='daily_recap',status='in_flight',recap_date='2026-11-11')
   self.item.update(publication_format='daily_recap',recap_date='2026-11-11')
+  self.item['reviewed_package_sha256']=reviewed_package_digest(self.item)
   with self.assertRaisesRegex(UploadBlocked,'recap date already'):self.u.upload(self.state,self.item,self.path)
   self.assertEqual(self.client.insert_count,0)
  def test_recap_requires_real_nonfuture_date(self):
   self.item.update(publication_format='daily_recap',recap_date='2026-11-13')
+  self.item['reviewed_package_sha256']=reviewed_package_digest(self.item)
   with self.assertRaisesRegex(UploadBlocked,'future'):self.u.upload(self.state,self.item,self.path)
   self.assertEqual(self.client.insert_count,0)
  def test_formats_and_source_identity_are_mandatory(self):
@@ -163,11 +166,13 @@ class UploadTests(unittest.TestCase):
  def test_source_version_cannot_get_second_output_same_format(self):
   self.reserve('previous',fmt='blog_video',source='article:v1',status='verification_pending')
   self.item.update(publication_format='blog_video',source_identity='article:v1')
+  self.item['reviewed_package_sha256']=reviewed_package_digest(self.item)
   with self.assertRaisesRegex(UploadBlocked,'Source identity'):self.u.upload(self.state,self.item,self.path)
   self.assertEqual(self.client.insert_count,0)
  def test_quota_exhaustion_blocks_before_any_insert(self):
   self.state.data['quota']['2026-11-12']={'upload':80}
   self.item['publication_format']='blog_video'
+  self.item['reviewed_package_sha256']=reviewed_package_digest(self.item)
   with self.assertRaisesRegex(UploadBlocked,'quota exhausted'):self.u.upload(self.state,self.item,self.path)
   self.assertEqual(self.client.insert_count,0);self.assertNotIn('channels.list',self.events)
  def test_uncertain_attempt_keeps_quota_reserved(self):
@@ -191,6 +196,33 @@ class UploadTests(unittest.TestCase):
   self.state.data['publications']['legacy']={'channel_id':CID,'status':'in_flight'}
   with self.assertRaisesRegex(UploadBlocked,'Legacy'):self.u.upload(self.state,self.item,self.path)
   self.assertEqual(self.client.insert_count,0)
+ def test_changed_package_fields_require_fresh_review(self):
+  changes={'title':'Changed title','description':'Changed disclosure','visibility':'private',
+   'made_for_kids':True,'contains_synthetic_media':False,'publication_format':'blog_video',
+   'source_identity':'another-story','recap_date':'2026-11-11','category_id':'20',
+   'primary_sources':['https://example.org/other'],'distinct_value':'Changed explanation',
+   'production_key':'different-output','artifact_id':'different-artifact'}
+  for field,value in changes.items():
+   with self.subTest(field=field):
+    changed=dict(self.item);changed[field]=value
+    with self.assertRaisesRegex(UploadBlocked,'package review'):self.u.upload(self.state,changed,self.path)
+  self.assertEqual(self.client.insert_count,0);self.assertNotIn('channels.list',self.events)
+ def test_missing_package_attestation_blocks(self):
+  self.item.pop('reviewed_package_sha256')
+  with self.assertRaisesRegex(UploadBlocked,'package review'):self.u.upload(self.state,self.item,self.path)
+  self.assertEqual(self.client.insert_count,0)
+ def test_package_changed_during_checkpoint_blocks_even_if_rehashed(self):
+  def checkpoint(state):
+   self.item['title']='Changed while preparing'
+   self.item['reviewed_package_sha256']=reviewed_package_digest(self.item)
+   return self.checkpoint(state)
+  self.u.checkpoint=checkpoint
+  with self.assertRaisesRegex(UploadBlocked,'changed during'):self.u.upload(self.state,self.item,self.path)
+  self.assertEqual(self.client.insert_count,0)
+ def test_canonical_digest_ignores_key_order_not_content(self):
+  self.assertEqual(reviewed_package_digest(self.item),reviewed_package_digest(dict(reversed(list(self.item.items())))))
+  changed=dict(self.item);changed['category_id']='28'
+  self.assertNotEqual(reviewed_package_digest(self.item),reviewed_package_digest(changed))
  def test_marker_binds_key_and_digest(self):
   self.assertNotEqual(production_marker('a','1'),production_marker('a','2'))
   self.assertNotEqual(production_marker('a','1'),production_marker('b','1'))
