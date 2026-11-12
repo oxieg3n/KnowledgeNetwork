@@ -29,9 +29,9 @@ Piper software licensing is distinct from model/data licensing. The installed pi
 
 ## Output and review
 
-Ephemeral output contains scene WAV/PNG/MP4 files, final MP4, exact script hash, model provenance/hash, encoding checks, scan logs, and segment-aligned transcript timestamps. Technical checks cover H.264, yuv420p, expected dimensions, 30 fps, AAC, Short duration, black segments and long silence. FFmpeg records loudness analysis. Human listening, pronunciation and measured loudness acceptance remain pending; a codec pass is not a sound-quality pass.
+Ephemeral output contains scene WAV/PNG/MP4 files, final MP4, exact script hash, model provenance/hash, encoding checks, scan logs, and phrase-aligned transcript timestamps and burned-in subtitles. Technical checks cover H.264, yuv420p, expected dimensions, 30 fps, AAC, Short duration, black segments and long silence. FFmpeg records loudness analysis. Human listening, pronunciation and measured loudness acceptance remain pending; a codec pass is not a sound-quality pass.
 
-Current captions are a transcript sidecar with scene boundaries, not word-synchronized accessible burned-in captions. The visible short text is a diagram caption, not a verbatim transcript. Caption chunking/timing plus actual mobile and audio review is a publication blocker, not silently marked passed. Never label a generated or schematic image as product evidence.
+Narration is split into short clauses with at most ten words and two rendered lines. Each phrase is synthesized separately, and its actual PCM sample count supplies the start/end times; no word-count timing estimate is used. Phrase WAVs are joined without inserting gaps. Captions are burned in through libass inside reserved safe margins and retained in `captions.json` with global offsets based on actual muxed scene duration. ASS sidecars retain per-scene timings. Text that could introduce ASS override syntax is rejected. The diagram caption remains distinct from the verbatim narration captions. This is phrase synchronization, not word highlighting or forced-aligned recognition. Full listening, pronunciation, prosody and mobile playback review remain publication gates. Never label a generated or schematic image as product evidence.
 
 The module refuses to overwrite an existing output directory. Do not commit media, models, or logs. Delete recovery media only under the publication/retention protocol after durable receipts are recorded.
 
@@ -44,3 +44,11 @@ The module refuses to overwrite an existing output directory. Do not commit medi
 - Final MP4 SHA-256: `8bd59a4bd689a85e50870811e8f04d6e17b1c81ca056eb2949595afd9d4ba9bc`.
 - Evaluated model SHA-256: `6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22`.
 - Final MP4 is ephemeral and not committed, uploaded or published.
+
+### Caption improvement smoke result (2026-11-12)
+
+- Eight focused tests passed, including exact PCM timing, phrase preservation, markup rejection, safe positioning and centisecond rollover.
+- Actual local Short: 34.986333 seconds, 1080 × 1920, 30 fps, H.264/yuv420p, AAC. 19 burned-in phrase cues; no configured black/silence detections.
+- Four actual frames across all three scenes inspected at mobile scale: at most two lines, no clipping/overlap, readable safe margins, technical-test label visible. Full audio listening and playback acceptance remain pending.
+- Exact MP4 SHA-256: `ead66581c634caac022bc9167072a208c913858afa17e105b27fa89796113d8c`.
+- `publication_eligible` remains false. No upload or public publication performed.
