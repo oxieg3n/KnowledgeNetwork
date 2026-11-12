@@ -24,7 +24,11 @@ def seed_watchlist(path):
 
 def monitor_rss(state, channel, raw, instant):
     root = ET.fromstring(raw)
-    if root.findtext('yt:channelId', namespaces=NS) != channel['channel_id']:
+    root_id=root.findtext('yt:channelId', namespaces=NS)
+    canonical='https://www.youtube.com/channel/'+channel['channel_id']
+    canonical_match=any(x.get('href')==canonical for x in root.findall('a:link',NS))
+    # Official feeds sometimes omit UC on the root ID; entries retain it.
+    if root_id != channel['channel_id'] and not (root_id==channel['channel_id'][2:] and canonical_match):
         raise ValueError('RSS channel identity mismatch')
     count = 0
     for entry in root.findall('a:entry', NS):
@@ -67,7 +71,16 @@ def monitor_api(state, channel, api, instant):
             if s['channelId'] != channel['channel_id'] or v['status'].get('privacyStatus')!='public':continue
             item={'video_id':vid,'channel_id':channel['channel_id'],'channel_name':channel['name'],'url':'https://www.youtube.com/watch?v='+vid,'title':s['title'],'published_at':s['publishedAt'],'categories':channel['categories'],'metadata_source':'youtube_data_api','api_verification':'verified','live_state':s.get('liveBroadcastContent'),'rights_path':'original_required','primary_sources':[]}
             if s.get('liveBroadcastContent') in ('live','upcoming'): item['status']='wait_for_completed_video'
-            if state.enqueue('FRESH_UPLOAD',vid,item):
+            existing=state.data['queues']['FRESH_UPLOAD'].get(vid)
+            if existing:
+                # Refresh verified metadata without replacing editorial/recovery state.
+                for field in ('title','published_at','api_verification','metadata_source','live_state'):
+                    existing[field]=item.get(field)
+                if existing.get('status')=='wait_for_completed_video' and s.get('liveBroadcastContent')=='none':
+                    existing['status']='needs_editorial_review'
+                elif s.get('liveBroadcastContent') in ('live','upcoming') and existing.get('status')=='needs_editorial_review':
+                    existing['status']='wait_for_completed_video'
+            elif state.enqueue('FRESH_UPLOAD',vid,item):
                 count+=1;state.alert('video:'+vid,{'kind':'new_video','video_id':vid,'url':item['url'],'title':item['title']})
     state.data['channels'][channel['channel_id']]={**channel,'uploads_playlist_id':playlist,'last_monitored_at':now(),'monitor_method':'youtube_data_api','pagination_remaining':bool(token)}
     return count

@@ -1,10 +1,15 @@
 {
-  "command": "archive",
-  "run_id": "local",
-  "checked_at": "2026-11-12T21:53:19.007073+00:00",
+  "command": "monitor",
+  "run_id": "local-integration-2",
+  "checked_at": "2026-11-12T21:57:00.227584+00:00",
   "status": "BLOCKED",
-  "details": {},
+  "details": {
+    "channels_registered": 10,
+    "channels_attempted": 10,
+    "new_leads": 66,
+    "api_enabled": false
+  },
   "blockers": [
-    "YOUTUBE_API_KEY missing; ranking not run"
+    "YOUTUBE_API_KEY missing; official RSS discovery only, uploads playlist reconciliation pending"
   ]
 }

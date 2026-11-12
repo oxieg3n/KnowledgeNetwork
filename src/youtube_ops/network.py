@@ -16,12 +16,13 @@ def validate_url(url):
     if p.scheme != 'https' or p.hostname not in ALLOWED or p.port not in (None,443) or p.username or p.password:
         raise ValueError('Unapproved URL')
 
-def get(url, *, limit=4_000_000, headers=None):
+def get(url, *, limit=4_000_000, headers=None, before_attempt=None):
     validate_url(url)
     req = urllib.request.Request(url, headers={'User-Agent':'KnowledgeNetworkMetadata/0.1', **(headers or {})})
     for attempt in range(3):
+        if before_attempt: before_attempt()
         try:
-            with urllib.request.build_opener(SafeRedirect()).open(req, timeout=25) as response:
+            with urllib.request.build_opener(SafeRedirect()).open(req, timeout=8) as response:
                 raw = response.read(limit+1)
                 if len(raw)>limit: raise ValueError('Response exceeds limit')
                 return raw
@@ -42,7 +43,9 @@ class YouTube:
         day = datetime.now(ZoneInfo('America/Los_Angeles')).date().isoformat()
         bucket = 'search' if resource=='search' else 'general'
         counter = self.state.data['quota'].setdefault(day, {'general':0,'search':0,'upload':0})
-        if counter[bucket]+1>self.limits[bucket]: raise RuntimeError('Local API budget exhausted')
-        counter[bucket]+=1
         if not self.api_key: raise RuntimeError('YOUTUBE_API_KEY missing')
-        return json.loads(get('https://www.googleapis.com/youtube/v3/'+resource+'?'+urlencode({**params,'key':self.api_key})))
+        def charge():
+            if counter[bucket]+1>self.limits[bucket]: raise RuntimeError('Local API budget exhausted')
+            counter[bucket]+=1
+            self.state.save()
+        return json.loads(get('https://www.googleapis.com/youtube/v3/'+resource+'?'+urlencode({**params,'key':self.api_key}), before_attempt=charge))

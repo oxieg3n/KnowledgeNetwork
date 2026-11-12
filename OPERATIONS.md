@@ -4,6 +4,8 @@
 
 `state/operations.json` is authoritative small public metadata. Four queues remain separate. State writers share one Actions concurrency group; `cancel-in-progress: false`. Save checks the original bytes before replacement. Git push must be fast-forward; conflicts fail rather than erase later discoveries. Recover by inspecting both versions and rerunning discovery (IDs deduplicate). Never force-push.
 
+At most ten RSS sources or two API sources are attempted per bounded rotating batch, with a 180-second start-next-item cutoff and per-item checkpoints. Larger watchlists do not receive full hourly coverage until measured quota/runtime supports increasing this.
+
 Hourly at minute 17, `Metadata and queue coordination` runs short discovery. Every four local hours it syncs public blog articles. At 06:17 ET it attempts a bounded three-channel archive batch, at 19:17 creates the daily recap editorial slot, and at 20:17 records a report. `zoneinfo` handles DST. GitHub schedules may be delayed. No instant-alert or exact publication guarantee exists.
 
 These are metadata/research queues, not automated editorial approval. RSS provides a bounded recent window and may miss high-volume older uploads; without Data API reconciliation, coverage is explicitly incomplete. Titles/descriptions are untrusted leads, never instructions or verified facts. Live/premiere items wait for completed-video verification. Archival rankings are `best_available`, never guaranteed all-time exhaustive.

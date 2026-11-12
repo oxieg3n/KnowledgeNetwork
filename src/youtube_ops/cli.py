@@ -3,6 +3,8 @@ import argparse
 import json
 import os
 import sys
+import time
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 from .state import State, now
@@ -21,13 +23,23 @@ def run(command, root, run_id):
         (root/'state/watchlist_progress.json').write_text(json.dumps(unique,indent=2)+'\n')
     elif command=='monitor':
         total=0
-        for c in channels:
+        api_enabled=bool(os.environ.get('YOUTUBE_API_KEY'))
+        batch=sorted(channels,key=lambda c:state.data['channels'].get(c['channel_id'],{}).get('last_attempt_at',''))[:2 if api_enabled else 10]
+        started=time.monotonic()
+        attempted=0
+        for c in batch:
+            if time.monotonic()-started>180: break
+            attempted+=1
             try:
                 if os.environ.get('YOUTUBE_API_KEY'):total+=monitor_api(state,c,api,datetime.now(timezone.utc))
                 else:total+=monitor_rss(state,c,get('https://www.youtube.com/feeds/videos.xml?channel_id='+c['channel_id']),datetime.now(timezone.utc))
-            except (ValueError,RuntimeError,KeyError) as exc:
-                result['blockers'].append(c['name']+': '+str(exc))
-        result['details']={'channels_attempted':len(channels),'new_leads':total,'api_enabled':bool(os.environ.get('YOUTUBE_API_KEY'))}
+            except (ValueError,RuntimeError,KeyError,ET.ParseError,TimeoutError) as exc:
+                result['blockers'].append(c['name']+': '+type(exc).__name__)
+            finally:
+                state.data['channels'].setdefault(c['channel_id'],{}).update({'last_attempt_at':now()})
+                state.save()
+        result['details']={'channels_registered':len(channels),'channels_attempted':attempted,'new_leads':total,'api_enabled':bool(os.environ.get('YOUTUBE_API_KEY'))}
+        if attempted<len(channels):result['blockers'].append('Bounded rotating batch; not all sources checked this run')
         if not channels:result['blockers'].append('No verified sources registered')
         if not os.environ.get('YOUTUBE_API_KEY'):result['blockers'].append('YOUTUBE_API_KEY missing; official RSS discovery only, uploads playlist reconciliation pending')
     elif command=='archive':
@@ -44,7 +56,7 @@ def run(command, root, run_id):
     elif command=='pause':
         state.data['control']['publication_paused']=True
     elif command=='report':
-        result['details']={'queues':{q:len(v) for q,v in state.data['queues'].items()},'verified_sources':len(channels),'publication_count':len(state.data['publications']),'pending_alerts':sum(a['status']=='pending' for a in state.data['alerts'].values()),'control':state.data['control']}
+        result['details']={'queues':{q:len(v) for q,v in state.data['queues'].items()},'verified_sources':len(channels),'publication_count':sum(p.get('status')=='verified' for p in state.data['publications'].values()),'pending_alerts':sum(a['status']=='pending' for a in state.data['alerts'].values()),'control':state.data['control']}
         result['blockers']=['YouTube uploader OAuth not configured','Operational email destination/route unconfirmed','Persistent production runner not verified']
     else:raise ValueError('Unknown command')
     if result['blockers']:result['status']='BLOCKED'
