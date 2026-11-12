@@ -128,21 +128,42 @@
     "categories": [
       "Gaming"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+    "evidence_urls": [
+      "https://www.nintendo.com/us/",
+      "https://www.youtube.com/nintendo",
+      "https://www.youtube.com/@NintendoAmerica",
+      "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
+    ]
   },
   "PlayStation": {
     "name": "PlayStation",
     "categories": [
       "Gaming"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+    "evidence_urls": [
+      "https://www.playstation.com/en-us/",
+      "https://www.youtube.com/user/playstation",
+      "https://www.youtube.com/@PlayStation",
+      "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
+    ]
   },
   "Xbox": {
     "name": "Xbox",
     "categories": [
       "Gaming"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+    "evidence_urls": [
+      "https://www.xbox.com/en-US/",
+      "https://www.youtube.com/user/xbox",
+      "https://www.youtube.com/@Xbox",
+      "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
+    ]
   },
   "Matt Wolfe": {
     "name": "Matt Wolfe",
@@ -322,7 +343,14 @@
     "categories": [
       "Website Design"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+    "evidence_urls": [
+      "https://webflow.com/",
+      "https://www.youtube.com/@Webflow",
+      "https://www.youtube.com/@Webflow",
+      "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
+    ]
   },
   "Figma": {
     "name": "Figma",
@@ -336,7 +364,14 @@
     "categories": [
       "Website Design"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+    "evidence_urls": [
+      "https://www.framer.com/",
+      "https://www.youtube.com/@Framer",
+      "https://www.youtube.com/@Framer",
+      "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
+    ]
   },
   "The Futur": {
     "name": "The Futur",
@@ -692,7 +727,14 @@
       "Codex",
       "ChatGPT"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+    "evidence_urls": [
+      "https://openai.com/",
+      "https://www.youtube.com/OpenAI",
+      "https://www.youtube.com/@OpenAI",
+      "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
+    ]
   },
   "Google DeepMind": {
     "name": "Google DeepMind",
@@ -700,7 +742,14 @@
       "AI Models",
       "Google Gemini"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+    "evidence_urls": [
+      "https://deepmind.google",
+      "https://www.youtube.com/@googledeepmind",
+      "https://www.youtube.com/@GoogleDeepMind",
+      "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
+    ]
   },
   "Anthropic": {
     "name": "Anthropic",
@@ -722,7 +771,14 @@
     "categories": [
       "AI Models"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+    "evidence_urls": [
+      "https://www.nvidia.com/en-us/",
+      "https://www.youtube.com/user/nvidia",
+      "https://www.youtube.com/@NVIDIA",
+      "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
+    ]
   },
   "DeepLearningAI": {
     "name": "DeepLearningAI",
@@ -845,14 +901,28 @@
     "categories": [
       "Google Gemini"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+    "evidence_urls": [
+      "https://blog.google/",
+      "https://www.youtube.com/google",
+      "https://www.youtube.com/@Google",
+      "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
+    ]
   },
   "Google for Developers": {
     "name": "Google for Developers",
     "categories": [
       "Google Gemini"
     ],
-    "verification": "pending"
+    "verification": "verified",
+    "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "evidence_urls": [
+      "https://developers.google.com/",
+      "https://www.youtube.com/user/GoogleDevelopers",
+      "https://www.youtube.com/@GoogleDevelopers",
+      "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
+    ]
   },
   "Google Cloud Tech": {
     "name": "Google Cloud Tech",

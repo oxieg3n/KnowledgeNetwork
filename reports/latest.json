@@ -1,15 +1,26 @@
 {
-  "command": "monitor",
-  "run_id": "local-integration-2",
-  "checked_at": "2026-11-12T21:57:00.227584+00:00",
+  "command": "report",
+  "run_id": "43315644697-1",
+  "checked_at": "2026-11-12T21:59:51.053070+00:00",
   "status": "BLOCKED",
   "details": {
-    "channels_registered": 10,
-    "channels_attempted": 10,
-    "new_leads": 66,
-    "api_enabled": false
+    "queues": {
+      "BLOG_VIDEO": 29,
+      "DAILY_TECH_RECAP": 0,
+      "EVERGREEN_TOP10": 0,
+      "FRESH_UPLOAD": 66
+    },
+    "verified_sources": 10,
+    "publication_count": 0,
+    "pending_alerts": 66,
+    "control": {
+      "production_host_verified": false,
+      "publication_paused": true
+    }
   },
   "blockers": [
-    "YOUTUBE_API_KEY missing; official RSS discovery only, uploads playlist reconciliation pending"
+    "YouTube uploader OAuth not configured",
+    "Operational email destination/route unconfirmed",
+    "Persistent production runner not verified"
   ]
 }
