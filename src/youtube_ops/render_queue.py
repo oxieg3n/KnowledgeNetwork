@@ -25,8 +25,13 @@ def validate_request(request: dict, state: State) -> None:
         raise ValueError('Existing durable queue item required')
     if not re.fullmatch(r'[a-f0-9]{64}',request.get('production_key','')):
         raise ValueError('Stable SHA-256 production key required')
-    if request.get('rights_path')!='original':
-        raise ValueError('This bounded renderer supports original graphics only')
+    if request.get('rights_path') not in ('original','licensed_cc_by_excerpt'):
+        raise ValueError('Unsupported rights path')
+    if request['rights_path']=='licensed_cc_by_excerpt':
+        from .licensed import validate_licensed
+        validate_licensed(request['script'])
+    elif request.get('script',{}).get('licensed_assets') or any('licensed_excerpt' in s for s in request.get('script',{}).get('scenes',[])):
+        raise ValueError('Licensed footage cannot use original rights path')
     if request.get('script',{}).get('technical_test',False):
         raise ValueError('Technical tests must not enter production queues')
     if not request.get('primary_sources') or not request.get('distinct_value'):
@@ -64,7 +69,7 @@ def reserve_render(state: State, request: dict, *, executor: str) -> dict:
 
 def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
                      voice_metadata: dict, commit_sha: str, readback_revision: int,
-                     expected_request_sha256: str, readback_sha256: str, durable_checkpoint, renderer=None) -> dict:
+                     expected_request_sha256: str, readback_sha256: str, durable_checkpoint, renderer=None, local_assets=None) -> dict:
     """One bounded render after a real remote reservation readback.
 
     commit_sha/readback_revision are supplied by the trusted coordinator after
@@ -92,7 +97,10 @@ def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
     if renderer is None:
         from .render import render
         renderer=render
-    result=renderer(request['script'],output,voice,voice_metadata)
+    if request['rights_path']=='licensed_cc_by_excerpt':
+        result=renderer(request['script'],output,voice,voice_metadata,local_assets=local_assets)
+    else:
+        result=renderer(request['script'],output,voice,voice_metadata)
     digest=result.get('sha256')
     if not re.fullmatch(r'[a-f0-9]{64}',digest or '') or result.get('publication_eligible') is not False:
         raise ValueError('Invalid or improperly approved render result')
