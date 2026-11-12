@@ -88,6 +88,14 @@
       "url": "https://www.youtube.com/watch?v=CrrpfvbNyMw",
       "video_id": "CrrpfvbNyMw"
     },
+    "video:FNTz0CdqL6g": {
+      "created_at": "2026-11-12T22:14:07.369806+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Kuken Industries searches 70 years of drawings in minutes",
+      "url": "https://www.youtube.com/watch?v=FNTz0CdqL6g",
+      "video_id": "FNTz0CdqL6g"
+    },
     "video:FOqxuzEr4R4": {
       "created_at": "2026-11-12T21:57:26.204168+00:00",
       "kind": "new_video",
@@ -256,6 +264,14 @@
       "url": "https://www.youtube.com/watch?v=Z9k5oI3Paoc",
       "video_id": "Z9k5oI3Paoc"
     },
+    "video:ZTxzWJeGFAA": {
+      "created_at": "2026-11-12T22:14:07.369799+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How CodeRabbit uses OpenAI to review AI-generated code",
+      "url": "https://www.youtube.com/watch?v=ZTxzWJeGFAA",
+      "video_id": "ZTxzWJeGFAA"
+    },
     "video:_eST776E7Vo": {
       "created_at": "2026-11-12T21:57:18.619690+00:00",
       "kind": "new_video",
@@ -319,6 +335,14 @@
       "title": "Resident Evil makes a home delivery on Sony Pictures Core",
       "url": "https://www.youtube.com/watch?v=gaF0dsDkiLc",
       "video_id": "gaF0dsDkiLc"
+    },
+    "video:hJOwOkLHRN0": {
+      "created_at": "2026-11-12T22:14:07.369812+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "LifeVal: Measuring AI progress on the tasks that matter in everyday life.",
+      "url": "https://www.youtube.com/watch?v=hJOwOkLHRN0",
+      "video_id": "hJOwOkLHRN0"
     },
     "video:hUhr0JiVZZs": {
       "created_at": "2026-11-12T21:57:04.667531+00:00",
@@ -495,6 +519,14 @@
       "title": "How to enable PR security reviews with Codex Security",
       "url": "https://www.youtube.com/watch?v=vdBDMj2UhDg",
       "video_id": "vdBDMj2UhDg"
+    },
+    "video:vdEGZYIvFiI": {
+      "created_at": "2026-11-12T22:14:07.369790+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Greg Brockman on how OpenAI uses frontier models for cyber defense",
+      "url": "https://www.youtube.com/watch?v=vdEGZYIvFiI",
+      "video_id": "vdEGZYIvFiI"
     },
     "video:vu3YlUMkvyg": {
       "created_at": "2026-11-12T21:57:04.667456+00:00",
@@ -679,19 +711,19 @@
         "Google Gemini"
       ],
       "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
-      "coverage": "feed_window_only; API reconciliation pending",
       "evidence_urls": [
         "https://blog.google/",
         "https://www.youtube.com/google",
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-12T22:05:49.722236+00:00",
-      "last_monitored_at": "2026-11-12T22:05:49.722192+00:00",
+      "last_attempt_at": "2026-11-12T22:14:07.791541+00:00",
+      "last_monitored_at": "2026-11-12T22:14:07.791390+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
-      "monitor_method": "official_atom_feed",
+      "monitor_method": "youtube_data_api",
       "name": "Google",
       "observed_title": "Google",
+      "pagination_remaining": true,
       "playlist_observed_title": "Uploads from Google",
       "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCK8sQmJBp8GCxrOtXWBpyEA",
       "subscription_status": "pending_oauth",
@@ -766,19 +798,19 @@
         "ChatGPT"
       ],
       "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
-      "coverage": "feed_window_only; API reconciliation pending",
       "evidence_urls": [
         "https://openai.com/",
         "https://www.youtube.com/OpenAI",
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-12T22:05:49.678348+00:00",
-      "last_monitored_at": "2026-11-12T22:05:49.678294+00:00",
+      "last_attempt_at": "2026-11-12T22:14:07.369924+00:00",
+      "last_monitored_at": "2026-11-12T22:14:07.369832+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
-      "monitor_method": "official_atom_feed",
+      "monitor_method": "youtube_data_api",
       "name": "OpenAI",
       "observed_title": "OpenAI",
+      "pagination_remaining": true,
       "playlist_observed_title": "Uploads from OpenAI",
       "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A",
       "subscription_status": "pending_oauth",
@@ -1275,7 +1307,7 @@
         "video_id": "5RUWvmy01rk"
       },
       "5YXlrzC_RYE": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1286,9 +1318,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667643+00:00",
         "id": "5YXlrzC_RYE",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-10T21:10:08+00:00",
+        "published_at": "2026-11-10T21:10:08Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -1437,7 +1470,7 @@
         "video_id": "B_bw2zq6nEU"
       },
       "CrrpfvbNyMw": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1448,15 +1481,38 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667519+00:00",
         "id": "CrrpfvbNyMw",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T21:10:10+00:00",
+        "published_at": "2026-11-11T21:10:10Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
         "title": "ChatGPT Images: Three Ways to Get Started",
         "url": "https://www.youtube.com/watch?v=CrrpfvbNyMw",
         "video_id": "CrrpfvbNyMw"
+      },
+      "FNTz0CdqL6g": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T22:14:07.369803+00:00",
+        "id": "FNTz0CdqL6g",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-10T02:41:23Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Kuken Industries searches 70 years of drawings in minutes",
+        "url": "https://www.youtube.com/watch?v=FNTz0CdqL6g",
+        "video_id": "FNTz0CdqL6g"
       },
       "FOqxuzEr4R4": {
         "api_verification": "pending",
@@ -1599,7 +1655,7 @@
         "video_id": "N5YLi8Ar3Wg"
       },
       "NS220dAaRMo": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1610,9 +1666,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667492+00:00",
         "id": "NS220dAaRMo",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T21:10:28+00:00",
+        "published_at": "2026-11-11T21:10:28Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -1661,7 +1718,7 @@
         "video_id": "OZ5KXB6kHUg"
       },
       "QRm7VNMnurA": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1672,9 +1729,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667577+00:00",
         "id": "QRm7VNMnurA",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:07+00:00",
+        "published_at": "2026-11-11T01:24:07Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -1743,7 +1801,7 @@
         "video_id": "R4Ql9j5O858"
       },
       "U1IVZy9FhVQ": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1754,9 +1812,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667587+00:00",
         "id": "U1IVZy9FhVQ",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:07+00:00",
+        "published_at": "2026-11-11T01:24:07Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -1865,7 +1924,7 @@
         "video_id": "YsdViJ1v1fc"
       },
       "Z9k5oI3Paoc": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1876,15 +1935,38 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667653+00:00",
         "id": "Z9k5oI3Paoc",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-10T18:07:12+00:00",
+        "published_at": "2026-11-10T18:07:12Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
         "title": "Introducing Businesses in ChatGPT in beta",
         "url": "https://www.youtube.com/watch?v=Z9k5oI3Paoc",
         "video_id": "Z9k5oI3Paoc"
+      },
+      "ZTxzWJeGFAA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T22:14:07.369796+00:00",
+        "id": "ZTxzWJeGFAA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-10T15:05:40Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How CodeRabbit uses OpenAI to review AI-generated code",
+        "url": "https://www.youtube.com/watch?v=ZTxzWJeGFAA",
+        "video_id": "ZTxzWJeGFAA"
       },
       "_eST776E7Vo": {
         "api_verification": "pending",
@@ -1907,7 +1989,7 @@
         "video_id": "_eST776E7Vo"
       },
       "b7l_Dhe1h8M": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -1918,9 +2000,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667611+00:00",
         "id": "b7l_Dhe1h8M",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:07+00:00",
+        "published_at": "2026-11-11T01:24:07Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2009,7 +2092,7 @@
         "video_id": "gSMS9m0k_nI"
       },
       "gUQN7juxvVI": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2020,9 +2103,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667622+00:00",
         "id": "gUQN7juxvVI",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:07+00:00",
+        "published_at": "2026-11-11T01:24:07Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2050,8 +2134,30 @@
         "url": "https://www.youtube.com/watch?v=gaF0dsDkiLc",
         "video_id": "gaF0dsDkiLc"
       },
+      "hJOwOkLHRN0": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T22:14:07.369810+00:00",
+        "id": "hJOwOkLHRN0",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-06T21:11:34Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "LifeVal: Measuring AI progress on the tasks that matter in everyday life.",
+        "url": "https://www.youtube.com/watch?v=hJOwOkLHRN0",
+        "video_id": "hJOwOkLHRN0"
+      },
       "hUhr0JiVZZs": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2062,9 +2168,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667530+00:00",
         "id": "hUhr0JiVZZs",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T21:10:05+00:00",
+        "published_at": "2026-11-11T21:10:05Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2093,7 +2200,7 @@
         "video_id": "iNYtvpobCPU"
       },
       "jDxKzlGLCas": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2104,9 +2211,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667540+00:00",
         "id": "jDxKzlGLCas",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:08+00:00",
+        "published_at": "2026-11-11T01:24:08Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2175,7 +2283,7 @@
         "video_id": "lggz1NlytE0"
       },
       "mdSB_Fizm0A": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Google Gemini"
@@ -2184,9 +2292,10 @@
         "channel_name": "Google",
         "discovered_at": "2026-11-12T21:57:07.518741+00:00",
         "id": "mdSB_Fizm0A",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-06T15:16:04+00:00",
+        "published_at": "2026-11-06T15:16:04Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2195,7 +2304,7 @@
         "video_id": "mdSB_Fizm0A"
       },
       "nAubbmlhPfI": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2206,9 +2315,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667633+00:00",
         "id": "nAubbmlhPfI",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:07+00:00",
+        "published_at": "2026-11-11T01:24:07Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2217,7 +2327,7 @@
         "video_id": "nAubbmlhPfI"
       },
       "pIW_8VyvCuQ": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2228,9 +2338,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667566+00:00",
         "id": "pIW_8VyvCuQ",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T01:24:08+00:00",
+        "published_at": "2026-11-11T01:24:08Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2359,7 +2470,7 @@
         "video_id": "sEQOI49VJlA"
       },
       "sSyzj08Cy2U": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2370,9 +2481,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667678+00:00",
         "id": "sSyzj08Cy2U",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-10T16:07:53+00:00",
+        "published_at": "2026-11-10T16:07:53Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2482,7 +2594,7 @@
         "video_id": "vLAegkGGWrM"
       },
       "vdBDMj2UhDg": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2493,9 +2605,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667507+00:00",
         "id": "vdBDMj2UhDg",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T21:10:24+00:00",
+        "published_at": "2026-11-11T21:10:24Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2503,8 +2616,30 @@
         "url": "https://www.youtube.com/watch?v=vdBDMj2UhDg",
         "video_id": "vdBDMj2UhDg"
       },
+      "vdEGZYIvFiI": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T22:14:07.369771+00:00",
+        "id": "vdEGZYIvFiI",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-10T16:02:15Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Greg Brockman on how OpenAI uses frontier models for cyber defense",
+        "url": "https://www.youtube.com/watch?v=vdEGZYIvFiI",
+        "video_id": "vdEGZYIvFiI"
+      },
       "vu3YlUMkvyg": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "AI Models",
@@ -2515,9 +2650,10 @@
         "channel_name": "OpenAI",
         "discovered_at": "2026-11-12T21:57:04.667438+00:00",
         "id": "vu3YlUMkvyg",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-12T09:45:17+00:00",
+        "published_at": "2026-11-12T09:45:17Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2587,8 +2723,14 @@
       }
     }
   },
-  "quota": {},
-  "revision": 54,
+  "quota": {
+    "2026-11-12": {
+      "general": 6,
+      "search": 0,
+      "upload": 0
+    }
+  },
+  "revision": 63,
   "rights_ledger": {},
   "runs": [
     {
@@ -2801,6 +2943,21 @@
         "verified_sources": 10
       },
       "run_id": "43316644532-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-12T22:14:06.859048+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 4
+      },
+      "run_id": "43317989328-1",
       "status": "BLOCKED"
     }
   ],

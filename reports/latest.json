@@ -1,26 +1,15 @@
 {
-  "command": "report",
-  "run_id": "43316644532-1",
-  "checked_at": "2026-11-12T22:05:54.566684+00:00",
+  "command": "monitor",
+  "run_id": "43317989328-1",
+  "checked_at": "2026-11-12T22:14:06.859048+00:00",
   "status": "BLOCKED",
   "details": {
-    "queues": {
-      "BLOG_VIDEO": 29,
-      "DAILY_TECH_RECAP": 0,
-      "EVERGREEN_TOP10": 0,
-      "FRESH_UPLOAD": 66
-    },
-    "verified_sources": 10,
-    "publication_count": 0,
-    "pending_alerts": 66,
-    "control": {
-      "production_host_verified": false,
-      "publication_paused": true
-    }
+    "channels_registered": 10,
+    "channels_attempted": 2,
+    "new_leads": 4,
+    "api_enabled": true
   },
   "blockers": [
-    "YouTube uploader OAuth not configured",
-    "Operational email destination/route unconfirmed",
-    "Persistent production runner not verified"
+    "Bounded rotating batch; not all sources checked this run"
   ]
 }
