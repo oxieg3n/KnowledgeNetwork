@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 from .state import State, now
-from .network import get, YouTube
+from .network import get, YouTube, FetchError
 from .discovery import seed_watchlist, monitor_rss, monitor_api, archive_channel, blog_sync
 from .policy import local_date
 
@@ -37,7 +37,7 @@ def run(command, root, run_id):
                 if os.environ.get('YOUTUBE_API_KEY'):total+=monitor_api(state,c,api,datetime.now(timezone.utc))
                 else:total+=monitor_rss(state,c,get('https://www.youtube.com/feeds/videos.xml?channel_id='+c['channel_id']),datetime.now(timezone.utc))
             except (ValueError,RuntimeError,KeyError,ET.ParseError,TimeoutError) as exc:
-                result['blockers'].append(c['name']+': '+type(exc).__name__)
+                result['blockers'].append(c['name']+': '+(str(exc) if isinstance(exc,FetchError) else type(exc).__name__))
             finally:
                 state.data['channels'].setdefault(c['channel_id'],{}).update({'last_attempt_at':now()})
                 state.save()
