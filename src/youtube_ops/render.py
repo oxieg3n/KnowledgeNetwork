@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import re
 import subprocess
 import wave
@@ -303,6 +304,10 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
            font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf') -> dict:
     validate_spec(spec)
     verify_voice(model, voice_metadata)
+    # Official native ONNX builds can initialize telemetry during import.
+    # Refuse to import Piper/ONNX unless process startup explicitly opted out.
+    if os.environ.get("ORT_DISABLE_TELEMETRY") != "1":
+        raise ValueError("Start Python with ORT_DISABLE_TELEMETRY=1 before loading Piper/ONNX")
     from piper import PiperVoice
     from PIL import __version__ as pillow_version
     if output.exists():
