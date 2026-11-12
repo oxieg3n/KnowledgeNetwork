@@ -643,19 +643,19 @@
         "Website Design"
       ],
       "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
-      "coverage": "feed_window_only; API reconciliation pending",
       "evidence_urls": [
         "https://webflow.com/",
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-12T22:05:50.137911+00:00",
-      "last_monitored_at": "2026-11-12T22:05:50.137829+00:00",
+      "last_attempt_at": "2026-11-12T22:29:39.521459+00:00",
+      "last_monitored_at": "2026-11-12T22:29:39.521340+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
-      "monitor_method": "official_atom_feed",
+      "monitor_method": "youtube_data_api",
       "name": "Webflow",
       "observed_title": "Webflow",
+      "pagination_remaining": true,
       "playlist_observed_title": "Uploads from Webflow",
       "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCELSb-IYi_d5rYFOxWeOz5g",
       "subscription_status": "pending_oauth",
@@ -784,19 +784,19 @@
         "Website Design"
       ],
       "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
-      "coverage": "feed_window_only; API reconciliation pending",
       "evidence_urls": [
         "https://www.framer.com/",
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-12T22:05:50.178380+00:00",
-      "last_monitored_at": "2026-11-12T22:05:50.178335+00:00",
+      "last_attempt_at": "2026-11-12T22:29:40.147891+00:00",
+      "last_monitored_at": "2026-11-12T22:29:40.147769+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
-      "monitor_method": "official_atom_feed",
+      "monitor_method": "youtube_data_api",
       "name": "Framer",
       "observed_title": "Framer",
+      "pagination_remaining": true,
       "playlist_observed_title": "Uploads from Framer",
       "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCW5gUZ7lKGrAbLOkHv2xfbw",
       "subscription_status": "pending_oauth",
@@ -1938,7 +1938,7 @@
         "video_id": "784YQBiZArk"
       },
       "9YLbugt3RxE": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -1947,9 +1947,10 @@
         "channel_name": "Webflow",
         "discovered_at": "2026-11-12T21:57:16.149707+00:00",
         "id": "9YLbugt3RxE",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-06T18:13:14+00:00",
+        "published_at": "2026-11-06T18:13:14Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2143,7 +2144,7 @@
         "video_id": "Fupb0CeuPoc"
       },
       "G9O1Ex3EXno": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -2152,9 +2153,10 @@
         "channel_name": "Framer",
         "discovered_at": "2026-11-12T21:57:18.619656+00:00",
         "id": "G9O1Ex3EXno",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-12T16:02:42+00:00",
+        "published_at": "2026-11-12T16:02:42Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2559,7 +2561,7 @@
         "video_id": "ZTxzWJeGFAA"
       },
       "_eST776E7Vo": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -2568,9 +2570,10 @@
         "channel_name": "Framer",
         "discovered_at": "2026-11-12T21:57:18.619687+00:00",
         "id": "_eST776E7Vo",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-09T12:27:43+00:00",
+        "published_at": "2026-11-09T12:27:43Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2833,7 +2836,7 @@
         "video_id": "jp0cNm3xpcs"
       },
       "ketIuVCUI8k": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -2842,9 +2845,10 @@
         "channel_name": "Webflow",
         "discovered_at": "2026-11-12T21:57:16.149602+00:00",
         "id": "ketIuVCUI8k",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-10T23:00:03+00:00",
+        "published_at": "2026-11-10T23:00:03Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2853,7 +2857,7 @@
         "video_id": "ketIuVCUI8k"
       },
       "lggz1NlytE0": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -2862,9 +2866,10 @@
         "channel_name": "Webflow",
         "discovered_at": "2026-11-12T21:57:16.149558+00:00",
         "id": "lggz1NlytE0",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T06:03:20+00:00",
+        "published_at": "2026-11-11T06:03:20Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2940,7 +2945,7 @@
         "video_id": "pIW_8VyvCuQ"
       },
       "q1f-O-IS_VI": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -2949,9 +2954,10 @@
         "channel_name": "Webflow",
         "discovered_at": "2026-11-12T21:57:16.149717+00:00",
         "id": "q1f-O-IS_VI",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-06T15:05:11+00:00",
+        "published_at": "2026-11-06T15:05:11Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -3293,7 +3299,7 @@
         "video_id": "wvs2M144Y5g"
       },
       "y9jP_T-BO8g": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Website Design"
@@ -3302,9 +3308,10 @@
         "channel_name": "Webflow",
         "discovered_at": "2026-11-12T21:57:16.149695+00:00",
         "id": "y9jP_T-BO8g",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-10T14:57:15+00:00",
+        "published_at": "2026-11-10T14:57:15Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -3316,12 +3323,12 @@
   },
   "quota": {
     "2026-11-12": {
-      "general": 15,
+      "general": 21,
       "search": 3,
       "upload": 0
     }
   },
-  "revision": 82,
+  "revision": 94,
   "rights_ledger": {},
   "runs": [
     {
@@ -3622,6 +3629,69 @@
         "verified_sources": 10
       },
       "run_id": "43318666876-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-12T22:29:38.953785+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "43320379532-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-12T22:29:38.970244+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "43320379532-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-12T22:29:40.156651+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 0
+      },
+      "run_id": "43320379532-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YouTube uploader OAuth not configured",
+        "Operational email destination/route unconfirmed",
+        "Persistent production runner not verified"
+      ],
+      "checked_at": "2026-11-12T22:29:45.402285+00:00",
+      "command": "report",
+      "details": {
+        "control": {
+          "production_host_verified": false,
+          "publication_paused": true
+        },
+        "pending_alerts": 70,
+        "publication_count": 0,
+        "queues": {
+          "BLOG_VIDEO": 29,
+          "DAILY_TECH_RECAP": 0,
+          "EVERGREEN_TOP10": 30,
+          "FRESH_UPLOAD": 70
+        },
+        "verified_sources": 10
+      },
+      "run_id": "43320379532-1",
       "status": "BLOCKED"
     }
   ],
