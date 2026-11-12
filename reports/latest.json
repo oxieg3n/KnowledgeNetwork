@@ -1,15 +1,10 @@
 {
-  "command": "monitor",
-  "run_id": "43315945986-1",
-  "checked_at": "2026-11-12T22:01:35.663094+00:00",
+  "command": "archive",
+  "run_id": "43316065348-1",
+  "checked_at": "2026-11-12T22:02:19.222757+00:00",
   "status": "BLOCKED",
-  "details": {
-    "channels_registered": 10,
-    "channels_attempted": 10,
-    "new_leads": 0,
-    "api_enabled": false
-  },
+  "details": {},
   "blockers": [
-    "YOUTUBE_API_KEY missing; official RSS discovery only, uploads playlist reconciliation pending"
+    "YOUTUBE_API_KEY missing; ranking not run"
   ]
 }

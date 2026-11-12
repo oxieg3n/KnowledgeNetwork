@@ -2588,7 +2588,7 @@
     }
   },
   "quota": {},
-  "revision": 39,
+  "revision": 40,
   "rights_ledger": {},
   "runs": [
     {
@@ -2728,6 +2728,16 @@
         "new_leads": 0
       },
       "run_id": "43315945986-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "YOUTUBE_API_KEY missing; ranking not run"
+      ],
+      "checked_at": "2026-11-12T22:02:19.222757+00:00",
+      "command": "archive",
+      "details": {},
+      "run_id": "43316065348-1",
       "status": "BLOCKED"
     }
   ],
