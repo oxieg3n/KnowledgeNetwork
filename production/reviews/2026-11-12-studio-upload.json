@@ -1,10 +1,14 @@
 {
-  "status": "upload_intent_recorded_not_yet_attempted",
+  "status": "uploaded_private_processing",
   "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
   "master_sha256": "dfe0adc4c234a031fcb3a9327def7f41be09d546b1c1939a7830f3e5e9c39fdd",
   "owner_approval": "James reviewed corrected pronunciation and said: Perfect. Post it.",
   "method": "one-off authorized YouTube Studio browser upload",
   "requested_visibility": "public",
   "automatic_publication_pause_preserved": true,
-  "retry_policy": "Do not blindly retry upload; persist assigned video ID and reconcile uncertainty"
+  "retry_policy": "Do not blindly retry upload; persist assigned video ID and reconcile uncertainty",
+  "video_id": "-ixuctbWUVw",
+  "observed_link": "https://youtu.be/-ixuctbWUVw",
+  "observed_visibility": "Saved as private",
+  "upload_complete": true
 }
