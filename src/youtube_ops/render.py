@@ -15,8 +15,8 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def run(args: list[str], *, timeout: int = 600) -> subprocess.CompletedProcess:
-    return subprocess.run(args, check=True, capture_output=True, text=True, timeout=timeout)
+def run(args: list[str], *, timeout: int = 600, cwd: Path | None = None) -> subprocess.CompletedProcess:
+    return subprocess.run(args, check=True, capture_output=True, text=True, timeout=timeout, cwd=cwd)
 
 
 def validate_spec(spec: dict) -> None:
@@ -66,6 +66,95 @@ def wrap(draw: Any, text: str, font: Any, width: int) -> list[str]:
     return lines
 
 
+def caption_phrases(text: str, *, font_path: str, width: int, px: int,
+                    max_words: int = 10) -> list[str]:
+    """Split spoken text into readable clauses; timing comes from actual PCM below."""
+    from PIL import Image, ImageDraw, ImageFont
+    draw = ImageDraw.Draw(Image.new('RGB', (width, 100)))
+    font = ImageFont.truetype(font_path, px)
+    # ASS syntax is never accepted as narration markup.
+    if any(c in text for c in ('{', '}', '\\')):
+        raise ValueError('caption text must be plain speech without ASS control syntax')
+    phrases, current = [], []
+    for word in text.split():
+        candidate = ' '.join(current + [word])
+        if current and (len(current) >= max_words or len(wrap(draw, candidate, font, width)) > 2):
+            phrases.append(' '.join(current))
+            current = []
+        current.append(word)
+        if len(wrap(draw, ' '.join(current), font, width)) > 2:
+            raise ValueError('caption phrase exceeds two lines')
+        if re.search(r'[.!?;:,]$', word):
+            phrases.append(' '.join(current))
+            current = []
+    if current:
+        phrases.append(' '.join(current))
+    return phrases
+
+
+def synthesize_phrases(voice: Any, phrases: list[str], wav: Path) -> list[dict]:
+    """Synthesize each phrase, join PCM, and retain exact sample-based boundaries."""
+    import io
+    pcm, captions, sample_count, params = [], [], 0, None
+    for text in phrases:
+        buf = io.BytesIO()
+        with wave.open(buf, 'wb') as stream:
+            voice.synthesize_wav(text, stream)
+        with wave.open(io.BytesIO(buf.getvalue()), 'rb') as stream:
+            actual = (stream.getnchannels(), stream.getsampwidth(), stream.getframerate())
+            if params is not None and params != actual:
+                raise ValueError('inconsistent synthesis PCM format')
+            params = actual
+            frames = stream.getnframes()
+            start = sample_count / actual[2]
+            pcm.append(stream.readframes(frames))
+            sample_count += frames
+            captions.append({'start': start, 'end': sample_count / actual[2], 'text': text})
+    if not params or not sample_count:
+        raise ValueError('empty synthesized audio')
+    with wave.open(str(wav), 'wb') as stream:
+        stream.setnchannels(params[0]); stream.setsampwidth(params[1]); stream.setframerate(params[2])
+        stream.writeframes(b''.join(pcm))
+    return captions
+
+
+def ass_time(seconds: float) -> str:
+    ticks = round(seconds * 100)
+    return f'{ticks // 360000}:{ticks // 6000 % 60:02}:{ticks // 100 % 60:02}.{ticks % 100:02}'
+
+
+def write_captions(path: Path, captions: list[dict], size: tuple[int, int], font_path: str) -> None:
+    from PIL import Image, ImageDraw, ImageFont
+    w, h = size
+    px = 48 if w < h else 44
+    width = w - (220 if w < h else 300)
+    font = ImageFont.truetype(font_path, px)
+    draw = ImageDraw.Draw(Image.new('RGB', size))
+    y = h - (365 if w < h else 205)
+    header = f"""[Script Info]
+ScriptType: v4.00+
+PlayResX: {w}
+PlayResY: {h}
+WrapStyle: 2
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,{px},&H00FFFFFF,&H00FFFFFF,&H00121C2A,&H00121C2A,0,0,0,0,100,100,0,0,3,12,0,5,110,110,100,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    rows = []
+    for cue in captions:
+        if any(c in cue['text'] for c in ('{', '}', '\\', '\n', '\r')):
+            raise ValueError('caption text must be plain single-line speech')
+        lines = wrap(draw, cue['text'], font, width)
+        if len(lines) > 2:
+            raise ValueError('caption has more than two lines')
+        text = r'\N'.join(lines)
+        position = '{' + rf'\an5\pos({w//2},{y})' + '}'
+        rows.append(f"Dialogue: 0,{ass_time(cue['start'])},{ass_time(cue['end'])},Default,,0,0,0,,{position}{text}")
+    path.write_text(header + '\n'.join(rows) + '\n')
+
+
 def card(scene: dict, path: Path, size: tuple[int, int], index: int, total: int,
          *, technical_test: bool, font_path: str) -> None:
     from PIL import Image, ImageDraw, ImageFont
@@ -96,7 +185,7 @@ def card(scene: dict, path: Path, size: tuple[int, int], index: int, total: int,
     for j, cx in enumerate(centers):
         d.ellipse((cx-radius, cy-radius, cx+radius, cy+radius), fill='#172e42', outline='#7dd3fc', width=4)
         d.text((cx-12, cy-20), str(j+1), font=ImageFont.truetype(font_path, 32), fill='#ffffff')
-    textblock(scene['caption'], cy + 140, 44 if w < h else 42, '#d9e5ef', h-200)
+    textblock(scene['caption'], cy + 140, 44 if w < h else 42, '#d9e5ef', h-(520 if w < h else 280))
     label = 'TECHNICAL TEST • NOT FOR PUBLICATION' if technical_test else 'Original explanatory graphic • AI narration'
     d.text((margin, h-120), label, font=ImageFont.truetype(font_path, 22), fill='#9fb3c8')
     d.rectangle((margin, h-65, margin + int((w-2*margin)*(index+1)/total), h-57), fill='#7dd3fc')
@@ -133,26 +222,32 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
     if output.exists():
         raise FileExistsError('choose a new output directory; never overwrite recovery media')
     output.mkdir(parents=True)
+    output = output.resolve()
     size = (1080, 1920) if spec['format']=='short' else (1920,1080)
     voice = PiperVoice.load(str(model))
     segments, durations, captions = [], [], []
     elapsed = 0.0
     for i, scene in enumerate(spec['scenes']):
         wav = output / f'scene-{i:02}.wav'
-        with wave.open(str(wav), 'wb') as file:
-            voice.synthesize_wav(scene['narration'], file)
-        with wave.open(str(wav), 'rb') as file:
-            duration = file.getnframes() / file.getframerate()
+        phrases = caption_phrases(scene['narration'], font_path=font_path,
+                                  width=size[0]-(220 if size[0]<size[1] else 300),
+                                  px=48 if size[0]<size[1] else 44)
+        cues = synthesize_phrases(voice, phrases, wav)
+        duration = cues[-1]['end']
+        ass = output / f'scene-{i:02}.ass'
+        write_captions(ass, cues, size, font_path)
         png = output / f'scene-{i:02}.png'
         card(scene, png, size, i, len(spec['scenes']), technical_test=spec.get('technical_test',False), font_path=font_path)
         mp4 = output / f'scene-{i:02}.mp4'
         run(['ffmpeg','-hide_banner','-loglevel','error','-loop','1','-i',str(png),'-i',str(wav),
              '-t',str(duration),'-r','30','-c:v','libx264','-preset','ultrafast','-crf','22','-pix_fmt','yuv420p',
-             '-c:a','aac','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11','-threads','2',str(mp4)])
+             '-vf',f'ass={ass.name}', '-c:a','aac','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11','-threads','2',str(mp4)], cwd=output)
         segments.append(mp4)
         durations.append(duration)
-        captions.append({'start':round(elapsed,3),'end':round(elapsed+duration,3),'text':scene['narration']})
-        elapsed += duration
+        for cue in cues:
+            captions.append({'start':round(elapsed+cue['start'],3), 'end':round(elapsed+cue['end'],3), 'text':cue['text'], 'scene':i})
+        # Muxed scene duration includes codec/frame padding; use it for later scene offsets.
+        elapsed += float(probe(mp4)['format']['duration'])
     concat = output / 'segments.txt'
     # Generated safe basenames only; no untrusted strings in concat input.
     concat.write_text(''.join(f"file '{p.name}'\n" for p in segments))
@@ -174,7 +269,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         'sha256':sha256(final),'format':spec['format'],'sources':spec.get('sources',[]),
         'script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
         'voice':voice_metadata,'graphics':{'origin':'original programmatic schematic','font':'DejaVu Sans (Bitstream Vera / DejaVu license)'},
-        'captions':'segment-aligned transcript; requires manual timing/readability review before publication',
+        'captions':'burned-in phrase captions and JSON sidecar; exact synthesized PCM phrase timing with muxed scene offsets; manual listening/sync review still required',
         'pillow_version':pillow_version,'qc':qc,
     }
     (output/'manifest.json').write_text(json.dumps(manifest,indent=2))
