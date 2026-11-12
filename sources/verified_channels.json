@@ -1,0 +1,245 @@
+[
+  {
+    "name": "OpenAI",
+    "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+    "url": "https://www.youtube.com/@OpenAI",
+    "uploads_playlist_id": "UUXZCJLdBC09xxGZ6gcdrc6A",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A",
+    "categories": [
+      "AI Models",
+      "Codex",
+      "ChatGPT"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:43.134366+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://openai.com/",
+      "https://www.youtube.com/OpenAI",
+      "https://www.youtube.com/@OpenAI",
+      "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
+    ],
+    "observed_title": "OpenAI",
+    "playlist_observed_title": "Uploads from OpenAI",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Google",
+    "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+    "url": "https://www.youtube.com/@Google",
+    "uploads_playlist_id": "UUK8sQmJBp8GCxrOtXWBpyEA",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCK8sQmJBp8GCxrOtXWBpyEA",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:43.511214+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://blog.google/",
+      "https://www.youtube.com/google",
+      "https://www.youtube.com/@Google",
+      "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
+    ],
+    "observed_title": "Google",
+    "playlist_observed_title": "Uploads from Google",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Google DeepMind",
+    "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+    "url": "https://www.youtube.com/@GoogleDeepMind",
+    "uploads_playlist_id": "UUP7jMXSY2xbc3KCAE0MHQ-A",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A",
+    "categories": [
+      "AI Models",
+      "Google Gemini"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:43.189255+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://deepmind.google",
+      "https://www.youtube.com/@googledeepmind",
+      "https://www.youtube.com/@GoogleDeepMind",
+      "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
+    ],
+    "observed_title": "Google DeepMind",
+    "playlist_observed_title": "Uploads from Google DeepMind",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "NVIDIA",
+    "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+    "url": "https://www.youtube.com/@NVIDIA",
+    "uploads_playlist_id": "UUHuiy8bXnmK5nisYHUd1J5g",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCHuiy8bXnmK5nisYHUd1J5g",
+    "categories": [
+      "AI Models"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:51.890005+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://www.nvidia.com/en-us/",
+      "https://www.youtube.com/user/nvidia",
+      "https://www.youtube.com/@NVIDIA",
+      "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
+    ],
+    "observed_title": "NVIDIA",
+    "playlist_observed_title": "Uploads from NVIDIA",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Webflow",
+    "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+    "url": "https://www.youtube.com/@Webflow",
+    "uploads_playlist_id": "UUELSb-IYi_d5rYFOxWeOz5g",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCELSb-IYi_d5rYFOxWeOz5g",
+    "categories": [
+      "Website Design"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:51.684727+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://webflow.com/",
+      "https://www.youtube.com/@Webflow",
+      "https://www.youtube.com/@Webflow",
+      "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
+    ],
+    "observed_title": "Webflow",
+    "playlist_observed_title": "Uploads from Webflow",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Framer",
+    "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+    "url": "https://www.youtube.com/@Framer",
+    "uploads_playlist_id": "UUW5gUZ7lKGrAbLOkHv2xfbw",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCW5gUZ7lKGrAbLOkHv2xfbw",
+    "categories": [
+      "Website Design"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:56.524532+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://www.framer.com/",
+      "https://www.youtube.com/@Framer",
+      "https://www.youtube.com/@Framer",
+      "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
+    ],
+    "observed_title": "Framer",
+    "playlist_observed_title": "Uploads from Framer",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "PlayStation",
+    "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+    "url": "https://www.youtube.com/@PlayStation",
+    "uploads_playlist_id": "UU-2Y8dQb0S6DtpxNgAKoJKA",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC-2Y8dQb0S6DtpxNgAKoJKA",
+    "categories": [
+      "Gaming"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:50:59.495306+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://www.playstation.com/en-us/",
+      "https://www.youtube.com/user/playstation",
+      "https://www.youtube.com/@PlayStation",
+      "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
+    ],
+    "observed_title": "PlayStation",
+    "playlist_observed_title": "Uploads from PlayStation",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Xbox",
+    "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+    "url": "https://www.youtube.com/@Xbox",
+    "uploads_playlist_id": "UUjBp_7RuDBUYbd1LegWEJ8g",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCjBp_7RuDBUYbd1LegWEJ8g",
+    "categories": [
+      "Gaming"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:51:01.900067+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://www.xbox.com/en-US/",
+      "https://www.youtube.com/user/xbox",
+      "https://www.youtube.com/@Xbox",
+      "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
+    ],
+    "observed_title": "XBOX",
+    "playlist_observed_title": "Uploads from XBOX",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Nintendo of America",
+    "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+    "url": "https://www.youtube.com/@NintendoAmerica",
+    "uploads_playlist_id": "UUGIY_O-8vW4rfX98KlMkvRg",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCGIY_O-8vW4rfX98KlMkvRg",
+    "categories": [
+      "Gaming"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:51:04.612977+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://www.nintendo.com/us/",
+      "https://www.youtube.com/nintendo",
+      "https://www.youtube.com/@NintendoAmerica",
+      "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
+    ],
+    "observed_title": "Nintendo of America",
+    "playlist_observed_title": "Uploads from Nintendo of America",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  },
+  {
+    "name": "Google for Developers",
+    "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "url": "https://www.youtube.com/@GoogleDevelopers",
+    "uploads_playlist_id": "UU_x5XG1OV2P6uZZ5FSM9Ttw",
+    "uploads_playlist_url": "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw",
+    "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification_status": "verified",
+    "verified_at": "2026-11-12T21:51:07.353605+00:00",
+    "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+    "evidence_urls": [
+      "https://developers.google.com/",
+      "https://www.youtube.com/user/GoogleDevelopers",
+      "https://www.youtube.com/@GoogleDevelopers",
+      "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
+    ],
+    "observed_title": "Google for Developers",
+    "playlist_observed_title": "Uploads from Google for Developers",
+    "subscription_status": "pending_oauth",
+    "media_reuse_rights": "research only; not a license to download or republish"
+  }
+]

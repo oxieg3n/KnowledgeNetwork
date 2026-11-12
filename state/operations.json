@@ -1,0 +1,2249 @@
+{
+  "alerts": {
+    "video:-9ffzWW-jhg": {
+      "created_at": "2026-11-12T21:57:21.142809+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Barbie Rewind - Launch Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=-9ffzWW-jhg",
+      "video_id": "-9ffzWW-jhg"
+    },
+    "video:5RUWvmy01rk": {
+      "created_at": "2026-11-12T21:57:23.629945+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Warhammer Survivors Launch Trailer",
+      "url": "https://www.youtube.com/watch?v=5RUWvmy01rk",
+      "video_id": "5RUWvmy01rk"
+    },
+    "video:5YXlrzC_RYE": {
+      "created_at": "2026-11-12T21:57:04.667645+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Answering your questions about GPT-Live",
+      "url": "https://www.youtube.com/watch?v=5YXlrzC_RYE",
+      "video_id": "5YXlrzC_RYE"
+    },
+    "video:784YQBiZArk": {
+      "created_at": "2026-11-12T21:57:13.626770+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Siemens Plans Production in Minutes With NVIDIA AI",
+      "url": "https://www.youtube.com/watch?v=784YQBiZArk",
+      "video_id": "784YQBiZArk"
+    },
+    "video:9YLbugt3RxE": {
+      "created_at": "2026-11-12T21:57:16.149708+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Component properties, variants, and slots in Webflow",
+      "url": "https://www.youtube.com/watch?v=9YLbugt3RxE",
+      "video_id": "9YLbugt3RxE"
+    },
+    "video:AFclxMTQ2hI": {
+      "created_at": "2026-11-12T21:57:26.204238+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Just Dance: Decades of Hits \u2013 Every Era One Floor Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=AFclxMTQ2hI",
+      "video_id": "AFclxMTQ2hI"
+    },
+    "video:AQc8khSSd-4": {
+      "created_at": "2026-11-12T21:57:23.629956+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Hope in the City Out Now!",
+      "url": "https://www.youtube.com/watch?v=AQc8khSSd-4",
+      "video_id": "AQc8khSSd-4"
+    },
+    "video:B07PpsJGZEg": {
+      "created_at": "2026-11-12T21:57:23.629924+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The Grinch 2: Saving Christmas | Grinchy Gadgets | US | ESRB",
+      "url": "https://www.youtube.com/watch?v=B07PpsJGZEg",
+      "video_id": "B07PpsJGZEg"
+    },
+    "video:BUT-8qn-jtg": {
+      "created_at": "2026-11-12T21:57:23.630009+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Clive Barker's Hellraiser: Revival - Demo Trailer",
+      "url": "https://www.youtube.com/watch?v=BUT-8qn-jtg",
+      "video_id": "BUT-8qn-jtg"
+    },
+    "video:B_bw2zq6nEU": {
+      "created_at": "2026-11-12T21:57:26.204198+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "MARVEL Cosmic Invasion: The Siege of Castle Doom \u2013 DLC Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=B_bw2zq6nEU",
+      "video_id": "B_bw2zq6nEU"
+    },
+    "video:CrrpfvbNyMw": {
+      "created_at": "2026-11-12T21:57:04.667521+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "ChatGPT Images: Three Ways to Get Started",
+      "url": "https://www.youtube.com/watch?v=CrrpfvbNyMw",
+      "video_id": "CrrpfvbNyMw"
+    },
+    "video:FOqxuzEr4R4": {
+      "created_at": "2026-11-12T21:57:26.204168+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Pikmin 4 \u2013 Nintendo Switch 2 Edition + Dandori Academy \u2013 Overview Trailer",
+      "url": "https://www.youtube.com/watch?v=FOqxuzEr4R4",
+      "video_id": "FOqxuzEr4R4"
+    },
+    "video:Fupb0CeuPoc": {
+      "created_at": "2026-11-12T21:57:26.204249+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The Legend of Zelda: Ocarina of Time | Timeless Memories",
+      "url": "https://www.youtube.com/watch?v=Fupb0CeuPoc",
+      "video_id": "Fupb0CeuPoc"
+    },
+    "video:G9O1Ex3EXno": {
+      "created_at": "2026-11-12T21:57:18.619674+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Introducing image and shader generation in Framer",
+      "url": "https://www.youtube.com/watch?v=G9O1Ex3EXno",
+      "video_id": "G9O1Ex3EXno"
+    },
+    "video:GX-hxto7Q0A": {
+      "created_at": "2026-11-12T21:57:21.142789+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Hazard Levels - Launch Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=GX-hxto7Q0A",
+      "video_id": "GX-hxto7Q0A"
+    },
+    "video:Gzk-oWaAgIw": {
+      "created_at": "2026-11-12T21:57:21.142769+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Supermarket Simulator - Launch Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=Gzk-oWaAgIw",
+      "video_id": "Gzk-oWaAgIw"
+    },
+    "video:LduxuM387hc": {
+      "created_at": "2026-11-12T21:57:23.629967+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The Road of Dust and Sorrow | Official New Release Date Announcement",
+      "url": "https://www.youtube.com/watch?v=LduxuM387hc",
+      "video_id": "LduxuM387hc"
+    },
+    "video:N5YLi8Ar3Wg": {
+      "created_at": "2026-11-12T21:57:13.626744+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Meet the Startup: Aegiq, A Full-Stack Photonic Quantum Computing Company",
+      "url": "https://www.youtube.com/watch?v=N5YLi8Ar3Wg",
+      "video_id": "N5YLi8Ar3Wg"
+    },
+    "video:NS220dAaRMo": {
+      "created_at": "2026-11-12T21:57:04.667495+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How to request and enable Daybreak Blue",
+      "url": "https://www.youtube.com/watch?v=NS220dAaRMo",
+      "video_id": "NS220dAaRMo"
+    },
+    "video:O5CPlL-1rYg": {
+      "created_at": "2026-11-12T21:57:21.142779+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Bus Simulator 27 - BYD Bus Pack Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=O5CPlL-1rYg",
+      "video_id": "O5CPlL-1rYg"
+    },
+    "video:OZ5KXB6kHUg": {
+      "created_at": "2026-11-12T21:57:13.626758+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "NVIDIA Alpamayo 2 Edge is here, bringing adaptive AI reasoning in real-time to the vehicle. \ud83d\ude98",
+      "url": "https://www.youtube.com/watch?v=OZ5KXB6kHUg",
+      "video_id": "OZ5KXB6kHUg"
+    },
+    "video:QRm7VNMnurA": {
+      "created_at": "2026-11-12T21:57:04.667579+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Sites and the Next Generation of Web Apps | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=QRm7VNMnurA",
+      "video_id": "QRm7VNMnurA"
+    },
+    "video:Qk4R02ZS1BQ": {
+      "created_at": "2026-11-12T21:57:23.629846+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Grand Theft Auto VI: Pre-Load Now",
+      "url": "https://www.youtube.com/watch?v=Qk4R02ZS1BQ",
+      "video_id": "Qk4R02ZS1BQ"
+    },
+    "video:QsIDIiED5kc": {
+      "created_at": "2026-11-12T21:57:26.204259+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Stellar Blade Complete Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=QsIDIiED5kc",
+      "video_id": "QsIDIiED5kc"
+    },
+    "video:R4Ql9j5O858": {
+      "created_at": "2026-11-12T21:57:21.142839+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Vindictus: Defying Fate - Game Overview Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=R4Ql9j5O858",
+      "video_id": "R4Ql9j5O858"
+    },
+    "video:U1IVZy9FhVQ": {
+      "created_at": "2026-11-12T21:57:04.667602+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "What Will You Build With Coding Agents That Don\u2019t Quit? | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=U1IVZy9FhVQ",
+      "video_id": "U1IVZy9FhVQ"
+    },
+    "video:VQjDInADRMM": {
+      "created_at": "2026-11-12T21:57:21.142819+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "I Am Security - Launch Trailer | PS VR2 Games",
+      "url": "https://www.youtube.com/watch?v=VQjDInADRMM",
+      "video_id": "VQjDInADRMM"
+    },
+    "video:W2DPDjuL7Do": {
+      "created_at": "2026-11-12T21:57:21.142717+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Microsoft Flight Simulator 2024 - The Airbus A380 | PS5 & PS VR2 Games",
+      "url": "https://www.youtube.com/watch?v=W2DPDjuL7Do",
+      "video_id": "W2DPDjuL7Do"
+    },
+    "video:W_Wjpk-oUbc": {
+      "created_at": "2026-11-12T21:57:21.142742+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Phoenix Cyclops knows how to strike a pose, even mid-battle in MARVEL Tokon: Fighting Souls.",
+      "url": "https://www.youtube.com/watch?v=W_Wjpk-oUbc",
+      "video_id": "W_Wjpk-oUbc"
+    },
+    "video:Ys5914f54mY": {
+      "created_at": "2026-11-12T21:57:21.142640+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Dragonkin: The Banished - The Harrower Update Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=Ys5914f54mY",
+      "video_id": "Ys5914f54mY"
+    },
+    "video:YsdViJ1v1fc": {
+      "created_at": "2026-11-12T21:57:21.142799+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Edge of Memories - Animated Opening | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=YsdViJ1v1fc",
+      "video_id": "YsdViJ1v1fc"
+    },
+    "video:Z9k5oI3Paoc": {
+      "created_at": "2026-11-12T21:57:04.667656+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Introducing Businesses in ChatGPT in beta",
+      "url": "https://www.youtube.com/watch?v=Z9k5oI3Paoc",
+      "video_id": "Z9k5oI3Paoc"
+    },
+    "video:_eST776E7Vo": {
+      "created_at": "2026-11-12T21:57:18.619690+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How to connect Notion to Framer with the Framer MCP",
+      "url": "https://www.youtube.com/watch?v=_eST776E7Vo",
+      "video_id": "_eST776E7Vo"
+    },
+    "video:b7l_Dhe1h8M": {
+      "created_at": "2026-11-12T21:57:04.667613+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Harness-as-a-Service: Building with the Agents API | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=b7l_Dhe1h8M",
+      "video_id": "b7l_Dhe1h8M"
+    },
+    "video:e2IY4_8WUuQ": {
+      "created_at": "2026-11-12T21:57:21.142859+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Test Drive Unlimited Solar Crown - Initial D Collaboration Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=e2IY4_8WUuQ",
+      "video_id": "e2IY4_8WUuQ"
+    },
+    "video:enGnEY2-YTQ": {
+      "created_at": "2026-11-12T21:57:21.142751+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Ball x Pit - Risen Ballbylon Launch Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=enGnEY2-YTQ",
+      "video_id": "enGnEY2-YTQ"
+    },
+    "video:enLchT36ens": {
+      "created_at": "2026-11-12T21:57:23.629988+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Rayman Legends Retold - Vortex Outfit Trailer (XBOX-Exclusive)",
+      "url": "https://www.youtube.com/watch?v=enLchT36ens",
+      "video_id": "enLchT36ens"
+    },
+    "video:gSMS9m0k_nI": {
+      "created_at": "2026-11-12T21:57:23.629685+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "9 Kings - 1.0 Launch Trailer",
+      "url": "https://www.youtube.com/watch?v=gSMS9m0k_nI",
+      "video_id": "gSMS9m0k_nI"
+    },
+    "video:gUQN7juxvVI": {
+      "created_at": "2026-11-12T21:57:04.667624+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Codex Security: From Vulnerability to Verified Fix | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=gUQN7juxvVI",
+      "video_id": "gUQN7juxvVI"
+    },
+    "video:gaF0dsDkiLc": {
+      "created_at": "2026-11-12T21:57:21.142731+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Resident Evil makes a home delivery on Sony Pictures Core",
+      "url": "https://www.youtube.com/watch?v=gaF0dsDkiLc",
+      "video_id": "gaF0dsDkiLc"
+    },
+    "video:hUhr0JiVZZs": {
+      "created_at": "2026-11-12T21:57:04.667531+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How to run your first Codex Security scan",
+      "url": "https://www.youtube.com/watch?v=hUhr0JiVZZs",
+      "video_id": "hUhr0JiVZZs"
+    },
+    "video:iNYtvpobCPU": {
+      "created_at": "2026-11-12T21:57:23.629914+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Edge of Memories | Official Animated Opening",
+      "url": "https://www.youtube.com/watch?v=iNYtvpobCPU",
+      "video_id": "iNYtvpobCPU"
+    },
+    "video:jDxKzlGLCas": {
+      "created_at": "2026-11-12T21:57:04.667542+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Building with GPT-Live and Image Generation | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=jDxKzlGLCas",
+      "video_id": "jDxKzlGLCas"
+    },
+    "video:jp0cNm3xpcs": {
+      "created_at": "2026-11-12T21:57:23.629978+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Exterminauts | Wishlist Trailer",
+      "url": "https://www.youtube.com/watch?v=jp0cNm3xpcs",
+      "video_id": "jp0cNm3xpcs"
+    },
+    "video:ketIuVCUI8k": {
+      "created_at": "2026-11-12T21:57:16.149605+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Intro to Popovers & Modals \u2014 Webflow Tutorial",
+      "url": "https://www.youtube.com/watch?v=ketIuVCUI8k",
+      "video_id": "ketIuVCUI8k"
+    },
+    "video:lggz1NlytE0": {
+      "created_at": "2026-11-12T21:57:16.149577+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "View Source: Building Webflow's Merch Store",
+      "url": "https://www.youtube.com/watch?v=lggz1NlytE0",
+      "video_id": "lggz1NlytE0"
+    },
+    "video:mdSB_Fizm0A": {
+      "created_at": "2026-11-12T21:57:07.518758+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Google Search Task: Stargazing Edition",
+      "url": "https://www.youtube.com/watch?v=mdSB_Fizm0A",
+      "video_id": "mdSB_Fizm0A"
+    },
+    "video:nAubbmlhPfI": {
+      "created_at": "2026-11-12T21:57:04.667634+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "What Comes After Loops?: Deep Dive Into Agentic Architecture | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=nAubbmlhPfI",
+      "video_id": "nAubbmlhPfI"
+    },
+    "video:pIW_8VyvCuQ": {
+      "created_at": "2026-11-12T21:57:04.667568+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Build What\u2019s Next on the ChatGPT Platform with Plugins | DevDay 2026",
+      "url": "https://www.youtube.com/watch?v=pIW_8VyvCuQ",
+      "video_id": "pIW_8VyvCuQ"
+    },
+    "video:q1f-O-IS_VI": {
+      "created_at": "2026-11-12T21:57:16.149719+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Add components to CMS rich text",
+      "url": "https://www.youtube.com/watch?v=q1f-O-IS_VI",
+      "video_id": "q1f-O-IS_VI"
+    },
+    "video:qLUWYcbddJA": {
+      "created_at": "2026-11-12T21:57:21.142829+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "World War Z - Viral State Launch Trailer | PS5 & PS4 Games",
+      "url": "https://www.youtube.com/watch?v=qLUWYcbddJA",
+      "video_id": "qLUWYcbddJA"
+    },
+    "video:qOFd1pHYTmc": {
+      "created_at": "2026-11-12T21:57:26.204209+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Hello! Pikmin \u2013 #03 Bowling \u2013 Nintendo",
+      "url": "https://www.youtube.com/watch?v=qOFd1pHYTmc",
+      "video_id": "qOFd1pHYTmc"
+    },
+    "video:qiZEzSyw6fo": {
+      "created_at": "2026-11-12T21:57:23.629858+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "BALL x PIT: Risen Ballbylon | Launch Trailer",
+      "url": "https://www.youtube.com/watch?v=qiZEzSyw6fo",
+      "video_id": "qiZEzSyw6fo"
+    },
+    "video:sDLjFDQpy_o": {
+      "created_at": "2026-11-12T21:57:26.204186+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Castlebound \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=sDLjFDQpy_o",
+      "video_id": "sDLjFDQpy_o"
+    },
+    "video:sEQOI49VJlA": {
+      "created_at": "2026-11-12T21:57:23.629904+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "\ud83d\udc2a Kingdom Two Crowns: Pharaoh Lands | Launching December 1st, 2026! \u2600\ufe0f",
+      "url": "https://www.youtube.com/watch?v=sEQOI49VJlA",
+      "video_id": "sEQOI49VJlA"
+    },
+    "video:sSyzj08Cy2U": {
+      "created_at": "2026-11-12T21:57:04.667693+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Greg Brockman on how OpenAI uses frontier models for cyber defense",
+      "url": "https://www.youtube.com/watch?v=sSyzj08Cy2U",
+      "video_id": "sSyzj08Cy2U"
+    },
+    "video:sv1pTURzX_c": {
+      "created_at": "2026-11-12T21:57:23.629934+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Microsoft Flight Simulator | The D77-TC Pelican",
+      "url": "https://www.youtube.com/watch?v=sv1pTURzX_c",
+      "video_id": "sv1pTURzX_c"
+    },
+    "video:uND6iY2qp_c": {
+      "created_at": "2026-11-12T21:57:11.050584+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "AlphaGenome 2: Teaching AI to read the entire human genome",
+      "url": "https://www.youtube.com/watch?v=uND6iY2qp_c",
+      "video_id": "uND6iY2qp_c"
+    },
+    "video:uRjiHf8OKb0": {
+      "created_at": "2026-11-12T21:57:23.629998+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Thronefall - Launch Trailer",
+      "url": "https://www.youtube.com/watch?v=uRjiHf8OKb0",
+      "video_id": "uRjiHf8OKb0"
+    },
+    "video:umQBBI0374A": {
+      "created_at": "2026-11-12T21:57:23.630019+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Mistfall Hunter Season 2: Fires of the Past is LIVE!",
+      "url": "https://www.youtube.com/watch?v=umQBBI0374A",
+      "video_id": "umQBBI0374A"
+    },
+    "video:vLAegkGGWrM": {
+      "created_at": "2026-11-12T21:57:28.675268+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Building with Gemini in Google Antigravity",
+      "url": "https://www.youtube.com/watch?v=vLAegkGGWrM",
+      "video_id": "vLAegkGGWrM"
+    },
+    "video:vdBDMj2UhDg": {
+      "created_at": "2026-11-12T21:57:04.667509+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How to enable PR security reviews with Codex Security",
+      "url": "https://www.youtube.com/watch?v=vdBDMj2UhDg",
+      "video_id": "vdBDMj2UhDg"
+    },
+    "video:vu3YlUMkvyg": {
+      "created_at": "2026-11-12T21:57:04.667456+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "What Codex Unlocks for Holiday Extras",
+      "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
+      "video_id": "vu3YlUMkvyg"
+    },
+    "video:witRjoQP16I": {
+      "created_at": "2026-11-12T21:57:21.142849+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Rooftops & Alleys: The Parkour Game - Modding Update | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=witRjoQP16I",
+      "video_id": "witRjoQP16I"
+    },
+    "video:wvs2M144Y5g": {
+      "created_at": "2026-11-12T21:57:26.204228+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Marvel's Guardians of the Galaxy: Encore Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=wvs2M144Y5g",
+      "video_id": "wvs2M144Y5g"
+    },
+    "video:y9jP_T-BO8g": {
+      "created_at": "2026-11-12T21:57:16.149697+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Create a static page template",
+      "url": "https://www.youtube.com/watch?v=y9jP_T-BO8g",
+      "video_id": "y9jP_T-BO8g"
+    }
+  },
+  "archive_progress": {},
+  "blog_versions": {},
+  "channels": {
+    "UC-2Y8dQb0S6DtpxNgAKoJKA": {
+      "categories": [
+        "Gaming"
+      ],
+      "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://www.playstation.com/en-us/",
+        "https://www.youtube.com/user/playstation",
+        "https://www.youtube.com/@PlayStation",
+        "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:21.142915+00:00",
+      "last_monitored_at": "2026-11-12T21:57:21.142886+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "PlayStation",
+      "observed_title": "PlayStation",
+      "playlist_observed_title": "Uploads from PlayStation",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC-2Y8dQb0S6DtpxNgAKoJKA",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UU-2Y8dQb0S6DtpxNgAKoJKA",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA",
+      "url": "https://www.youtube.com/@PlayStation",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:59.495306+00:00"
+    },
+    "UCELSb-IYi_d5rYFOxWeOz5g": {
+      "categories": [
+        "Website Design"
+      ],
+      "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://webflow.com/",
+        "https://www.youtube.com/@Webflow",
+        "https://www.youtube.com/@Webflow",
+        "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:16.149834+00:00",
+      "last_monitored_at": "2026-11-12T21:57:16.149771+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Webflow",
+      "observed_title": "Webflow",
+      "playlist_observed_title": "Uploads from Webflow",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCELSb-IYi_d5rYFOxWeOz5g",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUELSb-IYi_d5rYFOxWeOz5g",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g",
+      "url": "https://www.youtube.com/@Webflow",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:51.684727+00:00"
+    },
+    "UCGIY_O-8vW4rfX98KlMkvRg": {
+      "categories": [
+        "Gaming"
+      ],
+      "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://www.nintendo.com/us/",
+        "https://www.youtube.com/nintendo",
+        "https://www.youtube.com/@NintendoAmerica",
+        "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:26.204328+00:00",
+      "last_monitored_at": "2026-11-12T21:57:26.204294+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Nintendo of America",
+      "observed_title": "Nintendo of America",
+      "playlist_observed_title": "Uploads from Nintendo of America",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCGIY_O-8vW4rfX98KlMkvRg",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUGIY_O-8vW4rfX98KlMkvRg",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg",
+      "url": "https://www.youtube.com/@NintendoAmerica",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:51:04.612977+00:00"
+    },
+    "UCHuiy8bXnmK5nisYHUd1J5g": {
+      "categories": [
+        "AI Models"
+      ],
+      "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://www.nvidia.com/en-us/",
+        "https://www.youtube.com/user/nvidia",
+        "https://www.youtube.com/@NVIDIA",
+        "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:13.626855+00:00",
+      "last_monitored_at": "2026-11-12T21:57:13.626829+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "NVIDIA",
+      "observed_title": "NVIDIA",
+      "playlist_observed_title": "Uploads from NVIDIA",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCHuiy8bXnmK5nisYHUd1J5g",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUHuiy8bXnmK5nisYHUd1J5g",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g",
+      "url": "https://www.youtube.com/@NVIDIA",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:51.890005+00:00"
+    },
+    "UCK8sQmJBp8GCxrOtXWBpyEA": {
+      "categories": [
+        "Google Gemini"
+      ],
+      "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://blog.google/",
+        "https://www.youtube.com/google",
+        "https://www.youtube.com/@Google",
+        "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:07.518880+00:00",
+      "last_monitored_at": "2026-11-12T21:57:07.518832+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Google",
+      "observed_title": "Google",
+      "playlist_observed_title": "Uploads from Google",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCK8sQmJBp8GCxrOtXWBpyEA",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUK8sQmJBp8GCxrOtXWBpyEA",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA",
+      "url": "https://www.youtube.com/@Google",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:43.511214+00:00"
+    },
+    "UCP7jMXSY2xbc3KCAE0MHQ-A": {
+      "categories": [
+        "AI Models",
+        "Google Gemini"
+      ],
+      "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://deepmind.google",
+        "https://www.youtube.com/@googledeepmind",
+        "https://www.youtube.com/@GoogleDeepMind",
+        "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:11.050691+00:00",
+      "last_monitored_at": "2026-11-12T21:57:11.050659+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Google DeepMind",
+      "observed_title": "Google DeepMind",
+      "playlist_observed_title": "Uploads from Google DeepMind",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCP7jMXSY2xbc3KCAE0MHQ-A",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUP7jMXSY2xbc3KCAE0MHQ-A",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A",
+      "url": "https://www.youtube.com/@GoogleDeepMind",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:43.189255+00:00"
+    },
+    "UCW5gUZ7lKGrAbLOkHv2xfbw": {
+      "categories": [
+        "Website Design"
+      ],
+      "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://www.framer.com/",
+        "https://www.youtube.com/@Framer",
+        "https://www.youtube.com/@Framer",
+        "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:18.619853+00:00",
+      "last_monitored_at": "2026-11-12T21:57:18.619820+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Framer",
+      "observed_title": "Framer",
+      "playlist_observed_title": "Uploads from Framer",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCW5gUZ7lKGrAbLOkHv2xfbw",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUW5gUZ7lKGrAbLOkHv2xfbw",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw",
+      "url": "https://www.youtube.com/@Framer",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:56.524532+00:00"
+    },
+    "UCXZCJLdBC09xxGZ6gcdrc6A": {
+      "categories": [
+        "AI Models",
+        "Codex",
+        "ChatGPT"
+      ],
+      "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://openai.com/",
+        "https://www.youtube.com/OpenAI",
+        "https://www.youtube.com/@OpenAI",
+        "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:04.667738+00:00",
+      "last_monitored_at": "2026-11-12T21:57:04.667695+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "OpenAI",
+      "observed_title": "OpenAI",
+      "playlist_observed_title": "Uploads from OpenAI",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUXZCJLdBC09xxGZ6gcdrc6A",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A",
+      "url": "https://www.youtube.com/@OpenAI",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:50:43.134366+00:00"
+    },
+    "UC_x5XG1OV2P6uZZ5FSM9Ttw": {
+      "categories": [
+        "Google Gemini"
+      ],
+      "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://developers.google.com/",
+        "https://www.youtube.com/user/GoogleDevelopers",
+        "https://www.youtube.com/@GoogleDevelopers",
+        "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:28.675411+00:00",
+      "last_monitored_at": "2026-11-12T21:57:28.675343+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Google for Developers",
+      "observed_title": "Google for Developers",
+      "playlist_observed_title": "Uploads from Google for Developers",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UU_x5XG1OV2P6uZZ5FSM9Ttw",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw",
+      "url": "https://www.youtube.com/@GoogleDevelopers",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:51:07.353605+00:00"
+    },
+    "UCjBp_7RuDBUYbd1LegWEJ8g": {
+      "categories": [
+        "Gaming"
+      ],
+      "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+      "coverage": "feed_window_only; API reconciliation pending",
+      "evidence_urls": [
+        "https://www.xbox.com/en-US/",
+        "https://www.youtube.com/user/xbox",
+        "https://www.youtube.com/@Xbox",
+        "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
+      ],
+      "last_attempt_at": "2026-11-12T21:57:23.630059+00:00",
+      "last_monitored_at": "2026-11-12T21:57:23.630021+00:00",
+      "media_reuse_rights": "research only; not a license to download or republish",
+      "monitor_method": "official_atom_feed",
+      "name": "Xbox",
+      "observed_title": "XBOX",
+      "playlist_observed_title": "Uploads from XBOX",
+      "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCjBp_7RuDBUYbd1LegWEJ8g",
+      "subscription_status": "pending_oauth",
+      "uploads_playlist_id": "UUjBp_7RuDBUYbd1LegWEJ8g",
+      "uploads_playlist_url": "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g",
+      "url": "https://www.youtube.com/@Xbox",
+      "verification_method": "Official organization website links to channel; live YouTube canonical metadata resolves immutable ID; public uploads playlist header and owner browseId match that ID. Not a Data API channels.list result.",
+      "verification_status": "verified",
+      "verified_at": "2026-11-12T21:51:01.900067+00:00"
+    }
+  },
+  "control": {
+    "production_host_verified": false,
+    "publication_paused": true
+  },
+  "publications": {},
+  "queues": {
+    "BLOG_VIDEO": {},
+    "DAILY_TECH_RECAP": {},
+    "EVERGREEN_TOP10": {},
+    "FRESH_UPLOAD": {
+      "-9ffzWW-jhg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142808+00:00",
+        "id": "-9ffzWW-jhg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T14:13:43+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Barbie Rewind - Launch Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=-9ffzWW-jhg",
+        "video_id": "-9ffzWW-jhg"
+      },
+      "5RUWvmy01rk": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629943+00:00",
+        "id": "5RUWvmy01rk",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T23:58:41+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Warhammer Survivors Launch Trailer",
+        "url": "https://www.youtube.com/watch?v=5RUWvmy01rk",
+        "video_id": "5RUWvmy01rk"
+      },
+      "5YXlrzC_RYE": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667643+00:00",
+        "id": "5YXlrzC_RYE",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T21:10:08+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Answering your questions about GPT-Live",
+        "url": "https://www.youtube.com/watch?v=5YXlrzC_RYE",
+        "video_id": "5YXlrzC_RYE"
+      },
+      "784YQBiZArk": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-12T21:57:13.626768+00:00",
+        "id": "784YQBiZArk",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-06T23:10:49+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "How Siemens Plans Production in Minutes With NVIDIA AI",
+        "url": "https://www.youtube.com/watch?v=784YQBiZArk",
+        "video_id": "784YQBiZArk"
+      },
+      "9YLbugt3RxE": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-12T21:57:16.149707+00:00",
+        "id": "9YLbugt3RxE",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-06T18:13:14+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Component properties, variants, and slots in Webflow",
+        "url": "https://www.youtube.com/watch?v=9YLbugt3RxE",
+        "video_id": "9YLbugt3RxE"
+      },
+      "AFclxMTQ2hI": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204237+00:00",
+        "id": "AFclxMTQ2hI",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T18:00:34+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Just Dance: Decades of Hits \u2013 Every Era One Floor Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=AFclxMTQ2hI",
+        "video_id": "AFclxMTQ2hI"
+      },
+      "AQc8khSSd-4": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629955+00:00",
+        "id": "AQc8khSSd-4",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T21:00:30+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Hope in the City Out Now!",
+        "url": "https://www.youtube.com/watch?v=AQc8khSSd-4",
+        "video_id": "AQc8khSSd-4"
+      },
+      "B07PpsJGZEg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629922+00:00",
+        "id": "B07PpsJGZEg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T14:00:20+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "The Grinch 2: Saving Christmas | Grinchy Gadgets | US | ESRB",
+        "url": "https://www.youtube.com/watch?v=B07PpsJGZEg",
+        "video_id": "B07PpsJGZEg"
+      },
+      "BUT-8qn-jtg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.630007+00:00",
+        "id": "BUT-8qn-jtg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T13:00:35+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Clive Barker's Hellraiser: Revival - Demo Trailer",
+        "url": "https://www.youtube.com/watch?v=BUT-8qn-jtg",
+        "video_id": "BUT-8qn-jtg"
+      },
+      "B_bw2zq6nEU": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204196+00:00",
+        "id": "B_bw2zq6nEU",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T17:00:21+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "MARVEL Cosmic Invasion: The Siege of Castle Doom \u2013 DLC Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=B_bw2zq6nEU",
+        "video_id": "B_bw2zq6nEU"
+      },
+      "CrrpfvbNyMw": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667519+00:00",
+        "id": "CrrpfvbNyMw",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T21:10:10+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "ChatGPT Images: Three Ways to Get Started",
+        "url": "https://www.youtube.com/watch?v=CrrpfvbNyMw",
+        "video_id": "CrrpfvbNyMw"
+      },
+      "FOqxuzEr4R4": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204042+00:00",
+        "id": "FOqxuzEr4R4",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T15:00:22+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Pikmin 4 \u2013 Nintendo Switch 2 Edition + Dandori Academy \u2013 Overview Trailer",
+        "url": "https://www.youtube.com/watch?v=FOqxuzEr4R4",
+        "video_id": "FOqxuzEr4R4"
+      },
+      "Fupb0CeuPoc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204247+00:00",
+        "id": "Fupb0CeuPoc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-09T23:00:03+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "The Legend of Zelda: Ocarina of Time | Timeless Memories",
+        "url": "https://www.youtube.com/watch?v=Fupb0CeuPoc",
+        "video_id": "Fupb0CeuPoc"
+      },
+      "G9O1Ex3EXno": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "channel_name": "Framer",
+        "discovered_at": "2026-11-12T21:57:18.619656+00:00",
+        "id": "G9O1Ex3EXno",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T16:02:42+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Introducing image and shader generation in Framer",
+        "url": "https://www.youtube.com/watch?v=G9O1Ex3EXno",
+        "video_id": "G9O1Ex3EXno"
+      },
+      "GX-hxto7Q0A": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142788+00:00",
+        "id": "GX-hxto7Q0A",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T15:00:32+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Hazard Levels - Launch Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=GX-hxto7Q0A",
+        "video_id": "GX-hxto7Q0A"
+      },
+      "Gzk-oWaAgIw": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142767+00:00",
+        "id": "Gzk-oWaAgIw",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T16:15:38+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Supermarket Simulator - Launch Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=Gzk-oWaAgIw",
+        "video_id": "Gzk-oWaAgIw"
+      },
+      "LduxuM387hc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629965+00:00",
+        "id": "LduxuM387hc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T21:00:04+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "The Road of Dust and Sorrow | Official New Release Date Announcement",
+        "url": "https://www.youtube.com/watch?v=LduxuM387hc",
+        "video_id": "LduxuM387hc"
+      },
+      "N5YLi8Ar3Wg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-12T21:57:13.626727+00:00",
+        "id": "N5YLi8Ar3Wg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T17:00:21+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Meet the Startup: Aegiq, A Full-Stack Photonic Quantum Computing Company",
+        "url": "https://www.youtube.com/watch?v=N5YLi8Ar3Wg",
+        "video_id": "N5YLi8Ar3Wg"
+      },
+      "NS220dAaRMo": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667492+00:00",
+        "id": "NS220dAaRMo",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T21:10:28+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "How to request and enable Daybreak Blue",
+        "url": "https://www.youtube.com/watch?v=NS220dAaRMo",
+        "video_id": "NS220dAaRMo"
+      },
+      "O5CPlL-1rYg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142777+00:00",
+        "id": "O5CPlL-1rYg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T15:15:20+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Bus Simulator 27 - BYD Bus Pack Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=O5CPlL-1rYg",
+        "video_id": "O5CPlL-1rYg"
+      },
+      "OZ5KXB6kHUg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-12T21:57:13.626756+00:00",
+        "id": "OZ5KXB6kHUg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T16:08:39+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "NVIDIA Alpamayo 2 Edge is here, bringing adaptive AI reasoning in real-time to the vehicle. \ud83d\ude98",
+        "url": "https://www.youtube.com/watch?v=OZ5KXB6kHUg",
+        "video_id": "OZ5KXB6kHUg"
+      },
+      "QRm7VNMnurA": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667577+00:00",
+        "id": "QRm7VNMnurA",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:07+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Sites and the Next Generation of Web Apps | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=QRm7VNMnurA",
+        "video_id": "QRm7VNMnurA"
+      },
+      "Qk4R02ZS1BQ": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629766+00:00",
+        "id": "Qk4R02ZS1BQ",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:43:53+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Grand Theft Auto VI: Pre-Load Now",
+        "url": "https://www.youtube.com/watch?v=Qk4R02ZS1BQ",
+        "video_id": "Qk4R02ZS1BQ"
+      },
+      "QsIDIiED5kc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204258+00:00",
+        "id": "QsIDIiED5kc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-06T22:00:39+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Stellar Blade Complete Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=QsIDIiED5kc",
+        "video_id": "QsIDIiED5kc"
+      },
+      "R4Ql9j5O858": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142837+00:00",
+        "id": "R4Ql9j5O858",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T13:00:12+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Vindictus: Defying Fate - Game Overview Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=R4Ql9j5O858",
+        "video_id": "R4Ql9j5O858"
+      },
+      "U1IVZy9FhVQ": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667587+00:00",
+        "id": "U1IVZy9FhVQ",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:07+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "What Will You Build With Coding Agents That Don\u2019t Quit? | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=U1IVZy9FhVQ",
+        "video_id": "U1IVZy9FhVQ"
+      },
+      "VQjDInADRMM": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142817+00:00",
+        "id": "VQjDInADRMM",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T14:00:08+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "I Am Security - Launch Trailer | PS VR2 Games",
+        "url": "https://www.youtube.com/watch?v=VQjDInADRMM",
+        "video_id": "VQjDInADRMM"
+      },
+      "W2DPDjuL7Do": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142713+00:00",
+        "id": "W2DPDjuL7Do",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T18:00:33+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Microsoft Flight Simulator 2024 - The Airbus A380 | PS5 & PS VR2 Games",
+        "url": "https://www.youtube.com/watch?v=W2DPDjuL7Do",
+        "video_id": "W2DPDjuL7Do"
+      },
+      "W_Wjpk-oUbc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142740+00:00",
+        "id": "W_Wjpk-oUbc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:31:20+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Phoenix Cyclops knows how to strike a pose, even mid-battle in MARVEL Tokon: Fighting Souls.",
+        "url": "https://www.youtube.com/watch?v=W_Wjpk-oUbc",
+        "video_id": "W_Wjpk-oUbc"
+      },
+      "Ys5914f54mY": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142623+00:00",
+        "id": "Ys5914f54mY",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T20:00:17+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Dragonkin: The Banished - The Harrower Update Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=Ys5914f54mY",
+        "video_id": "Ys5914f54mY"
+      },
+      "YsdViJ1v1fc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142798+00:00",
+        "id": "YsdViJ1v1fc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T14:15:34+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Edge of Memories - Animated Opening | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=YsdViJ1v1fc",
+        "video_id": "YsdViJ1v1fc"
+      },
+      "Z9k5oI3Paoc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667653+00:00",
+        "id": "Z9k5oI3Paoc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T18:07:12+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Introducing Businesses in ChatGPT in beta",
+        "url": "https://www.youtube.com/watch?v=Z9k5oI3Paoc",
+        "video_id": "Z9k5oI3Paoc"
+      },
+      "_eST776E7Vo": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "channel_name": "Framer",
+        "discovered_at": "2026-11-12T21:57:18.619687+00:00",
+        "id": "_eST776E7Vo",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-09T12:27:43+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "How to connect Notion to Framer with the Framer MCP",
+        "url": "https://www.youtube.com/watch?v=_eST776E7Vo",
+        "video_id": "_eST776E7Vo"
+      },
+      "b7l_Dhe1h8M": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667611+00:00",
+        "id": "b7l_Dhe1h8M",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:07+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Harness-as-a-Service: Building with the Agents API | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=b7l_Dhe1h8M",
+        "video_id": "b7l_Dhe1h8M"
+      },
+      "e2IY4_8WUuQ": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142857+00:00",
+        "id": "e2IY4_8WUuQ",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T09:00:12+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Test Drive Unlimited Solar Crown - Initial D Collaboration Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=e2IY4_8WUuQ",
+        "video_id": "e2IY4_8WUuQ"
+      },
+      "enGnEY2-YTQ": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142750+00:00",
+        "id": "enGnEY2-YTQ",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:00:28+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Ball x Pit - Risen Ballbylon Launch Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=enGnEY2-YTQ",
+        "video_id": "enGnEY2-YTQ"
+      },
+      "enLchT36ens": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629987+00:00",
+        "id": "enLchT36ens",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T17:50:59+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Rayman Legends Retold - Vortex Outfit Trailer (XBOX-Exclusive)",
+        "url": "https://www.youtube.com/watch?v=enLchT36ens",
+        "video_id": "enLchT36ens"
+      },
+      "gSMS9m0k_nI": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629665+00:00",
+        "id": "gSMS9m0k_nI",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T20:00:13+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "9 Kings - 1.0 Launch Trailer",
+        "url": "https://www.youtube.com/watch?v=gSMS9m0k_nI",
+        "video_id": "gSMS9m0k_nI"
+      },
+      "gUQN7juxvVI": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667622+00:00",
+        "id": "gUQN7juxvVI",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:07+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Codex Security: From Vulnerability to Verified Fix | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=gUQN7juxvVI",
+        "video_id": "gUQN7juxvVI"
+      },
+      "gaF0dsDkiLc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142729+00:00",
+        "id": "gaF0dsDkiLc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:35:39+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Resident Evil makes a home delivery on Sony Pictures Core",
+        "url": "https://www.youtube.com/watch?v=gaF0dsDkiLc",
+        "video_id": "gaF0dsDkiLc"
+      },
+      "hUhr0JiVZZs": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667530+00:00",
+        "id": "hUhr0JiVZZs",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T21:10:05+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "How to run your first Codex Security scan",
+        "url": "https://www.youtube.com/watch?v=hUhr0JiVZZs",
+        "video_id": "hUhr0JiVZZs"
+      },
+      "iNYtvpobCPU": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629913+00:00",
+        "id": "iNYtvpobCPU",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T14:00:21+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Edge of Memories | Official Animated Opening",
+        "url": "https://www.youtube.com/watch?v=iNYtvpobCPU",
+        "video_id": "iNYtvpobCPU"
+      },
+      "jDxKzlGLCas": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667540+00:00",
+        "id": "jDxKzlGLCas",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:08+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Building with GPT-Live and Image Generation | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=jDxKzlGLCas",
+        "video_id": "jDxKzlGLCas"
+      },
+      "jp0cNm3xpcs": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629975+00:00",
+        "id": "jp0cNm3xpcs",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T20:00:34+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Exterminauts | Wishlist Trailer",
+        "url": "https://www.youtube.com/watch?v=jp0cNm3xpcs",
+        "video_id": "jp0cNm3xpcs"
+      },
+      "ketIuVCUI8k": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-12T21:57:16.149602+00:00",
+        "id": "ketIuVCUI8k",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T23:00:03+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Intro to Popovers & Modals \u2014 Webflow Tutorial",
+        "url": "https://www.youtube.com/watch?v=ketIuVCUI8k",
+        "video_id": "ketIuVCUI8k"
+      },
+      "lggz1NlytE0": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-12T21:57:16.149558+00:00",
+        "id": "lggz1NlytE0",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T06:03:20+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "View Source: Building Webflow's Merch Store",
+        "url": "https://www.youtube.com/watch?v=lggz1NlytE0",
+        "video_id": "lggz1NlytE0"
+      },
+      "mdSB_Fizm0A": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "channel_name": "Google",
+        "discovered_at": "2026-11-12T21:57:07.518741+00:00",
+        "id": "mdSB_Fizm0A",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-06T15:16:04+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Google Search Task: Stargazing Edition",
+        "url": "https://www.youtube.com/watch?v=mdSB_Fizm0A",
+        "video_id": "mdSB_Fizm0A"
+      },
+      "nAubbmlhPfI": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667633+00:00",
+        "id": "nAubbmlhPfI",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:07+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "What Comes After Loops?: Deep Dive Into Agentic Architecture | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=nAubbmlhPfI",
+        "video_id": "nAubbmlhPfI"
+      },
+      "pIW_8VyvCuQ": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667566+00:00",
+        "id": "pIW_8VyvCuQ",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T01:24:08+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Build What\u2019s Next on the ChatGPT Platform with Plugins | DevDay 2026",
+        "url": "https://www.youtube.com/watch?v=pIW_8VyvCuQ",
+        "video_id": "pIW_8VyvCuQ"
+      },
+      "q1f-O-IS_VI": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-12T21:57:16.149717+00:00",
+        "id": "q1f-O-IS_VI",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-06T15:05:11+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Add components to CMS rich text",
+        "url": "https://www.youtube.com/watch?v=q1f-O-IS_VI",
+        "video_id": "q1f-O-IS_VI"
+      },
+      "qLUWYcbddJA": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142827+00:00",
+        "id": "qLUWYcbddJA",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T13:15:40+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "World War Z - Viral State Launch Trailer | PS5 & PS4 Games",
+        "url": "https://www.youtube.com/watch?v=qLUWYcbddJA",
+        "video_id": "qLUWYcbddJA"
+      },
+      "qOFd1pHYTmc": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204207+00:00",
+        "id": "qOFd1pHYTmc",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T15:00:03+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Hello! Pikmin \u2013 #03 Bowling \u2013 Nintendo",
+        "url": "https://www.youtube.com/watch?v=qOFd1pHYTmc",
+        "video_id": "qOFd1pHYTmc"
+      },
+      "qiZEzSyw6fo": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629856+00:00",
+        "id": "qiZEzSyw6fo",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:00:37+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "BALL x PIT: Risen Ballbylon | Launch Trailer",
+        "url": "https://www.youtube.com/watch?v=qiZEzSyw6fo",
+        "video_id": "qiZEzSyw6fo"
+      },
+      "sDLjFDQpy_o": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204183+00:00",
+        "id": "sDLjFDQpy_o",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T19:00:28+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Castlebound \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=sDLjFDQpy_o",
+        "video_id": "sDLjFDQpy_o"
+      },
+      "sEQOI49VJlA": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629902+00:00",
+        "id": "sEQOI49VJlA",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:00:18+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "\ud83d\udc2a Kingdom Two Crowns: Pharaoh Lands | Launching December 1st, 2026! \u2600\ufe0f",
+        "url": "https://www.youtube.com/watch?v=sEQOI49VJlA",
+        "video_id": "sEQOI49VJlA"
+      },
+      "sSyzj08Cy2U": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667678+00:00",
+        "id": "sSyzj08Cy2U",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T16:07:53+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Greg Brockman on how OpenAI uses frontier models for cyber defense",
+        "url": "https://www.youtube.com/watch?v=sSyzj08Cy2U",
+        "video_id": "sSyzj08Cy2U"
+      },
+      "sv1pTURzX_c": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629933+00:00",
+        "id": "sv1pTURzX_c",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T01:49:04+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Microsoft Flight Simulator | The D77-TC Pelican",
+        "url": "https://www.youtube.com/watch?v=sv1pTURzX_c",
+        "video_id": "sv1pTURzX_c"
+      },
+      "uND6iY2qp_c": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "channel_name": "Google DeepMind",
+        "discovered_at": "2026-11-12T21:57:11.050567+00:00",
+        "id": "uND6iY2qp_c",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T18:00:31+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "AlphaGenome 2: Teaching AI to read the entire human genome",
+        "url": "https://www.youtube.com/watch?v=uND6iY2qp_c",
+        "video_id": "uND6iY2qp_c"
+      },
+      "uRjiHf8OKb0": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.629997+00:00",
+        "id": "uRjiHf8OKb0",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T14:00:32+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Thronefall - Launch Trailer",
+        "url": "https://www.youtube.com/watch?v=uRjiHf8OKb0",
+        "video_id": "uRjiHf8OKb0"
+      },
+      "umQBBI0374A": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-12T21:57:23.630017+00:00",
+        "id": "umQBBI0374A",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T08:00:29+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Mistfall Hunter Season 2: Fires of the Past is LIVE!",
+        "url": "https://www.youtube.com/watch?v=umQBBI0374A",
+        "video_id": "umQBBI0374A"
+      },
+      "vLAegkGGWrM": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "channel_name": "Google for Developers",
+        "discovered_at": "2026-11-12T21:57:28.675250+00:00",
+        "id": "vLAegkGGWrM",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T17:00:11+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Building with Gemini in Google Antigravity",
+        "url": "https://www.youtube.com/watch?v=vLAegkGGWrM",
+        "video_id": "vLAegkGGWrM"
+      },
+      "vdBDMj2UhDg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667507+00:00",
+        "id": "vdBDMj2UhDg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T21:10:24+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "How to enable PR security reviews with Codex Security",
+        "url": "https://www.youtube.com/watch?v=vdBDMj2UhDg",
+        "video_id": "vdBDMj2UhDg"
+      },
+      "vu3YlUMkvyg": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-12T21:57:04.667438+00:00",
+        "id": "vu3YlUMkvyg",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T09:45:17+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "What Codex Unlocks for Holiday Extras",
+        "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
+        "video_id": "vu3YlUMkvyg"
+      },
+      "witRjoQP16I": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-12T21:57:21.142847+00:00",
+        "id": "witRjoQP16I",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-12T10:00:29+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Rooftops & Alleys: The Parkour Game - Modding Update | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=witRjoQP16I",
+        "video_id": "witRjoQP16I"
+      },
+      "wvs2M144Y5g": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-12T21:57:26.204226+00:00",
+        "id": "wvs2M144Y5g",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-11T00:00:35+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Marvel's Guardians of the Galaxy: Encore Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=wvs2M144Y5g",
+        "video_id": "wvs2M144Y5g"
+      },
+      "y9jP_T-BO8g": {
+        "api_verification": "pending",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-12T21:57:16.149695+00:00",
+        "id": "y9jP_T-BO8g",
+        "metadata_source": "official_atom_feed",
+        "primary_sources": [],
+        "published_at": "2026-11-10T14:57:15+00:00",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "story_cluster_id": null,
+        "title": "Create a static page template",
+        "url": "https://www.youtube.com/watch?v=y9jP_T-BO8g",
+        "video_id": "y9jP_T-BO8g"
+      }
+    }
+  },
+  "quota": {},
+  "revision": 14,
+  "rights_ledger": {},
+  "runs": [
+    {
+      "blockers": [],
+      "checked_at": "2026-11-12T21:53:18.925294+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "local",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YOUTUBE_API_KEY missing; ranking not run"
+      ],
+      "checked_at": "2026-11-12T21:53:19.007073+00:00",
+      "command": "archive",
+      "details": {},
+      "run_id": "local",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "OpenAI: RSS channel identity mismatch",
+        "Google: RSS channel identity mismatch",
+        "Google DeepMind: RSS channel identity mismatch",
+        "NVIDIA: RSS channel identity mismatch",
+        "Webflow: RSS channel identity mismatch",
+        "Framer: RSS channel identity mismatch",
+        "PlayStation: RSS channel identity mismatch",
+        "Xbox: RSS channel identity mismatch",
+        "Nintendo of America: RSS channel identity mismatch",
+        "Google for Developers: RSS channel identity mismatch",
+        "YOUTUBE_API_KEY missing; official RSS discovery only, uploads playlist reconciliation pending"
+      ],
+      "checked_at": "2026-11-12T21:55:14.599483+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": false,
+        "channels_attempted": 10,
+        "new_leads": 0
+      },
+      "run_id": "local-integration-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "YOUTUBE_API_KEY missing; official RSS discovery only, uploads playlist reconciliation pending"
+      ],
+      "checked_at": "2026-11-12T21:57:00.227584+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": false,
+        "channels_attempted": 10,
+        "channels_registered": 10,
+        "new_leads": 66
+      },
+      "run_id": "local-integration-2",
+      "status": "BLOCKED"
+    }
+  ],
+  "schema_version": 1
+}
