@@ -6,7 +6,7 @@ The selected fallback is a scheduled Dot task, not an always-running browser or 
 
 The root coordinator can register a supported durable automation at **09:00, 12:00, 15:00, 18:00 and 19:00 America/New_York**. This cadence allows daytime fresh/blog preparation and the plan's 19:00 daily recap finalization before its 20:00 target. It does not guarantee a publication at that time; delayed runs, insufficient stories, missing OAuth or failed QC must be reported honestly. Initial three-Short daily cap remains separate from recap/blog formats. Hourly source discovery continues in the existing Actions control workflow and must not be duplicated.
 
-**Activation status:** code and instructions are ready for the root to register the automation. No schedule creation or first scheduled render is claimed by this document. The root must verify the actual saved schedule and update its private commitment record. No new Actions rendering workflow is required or enabled.
+**Activation status:** the coordinator confirmed the supported preproduction schedule was saved on November 12, 2026 at 09:00, 12:00, 15:00, 18:00 and 19:00 America/New_York, with the first upcoming run at 18:00 that day. This records schedule creation, not proof of scheduled rendering or publishing. Publication pause and all stage-specific gates remain intact. No new Actions rendering workflow is required or enabled.
 
 ## What a run may do without OAuth
 

@@ -31,3 +31,11 @@ Publication is paused in state. The manual `pause` command is an emergency stop 
 Preserve upload intent before any external call. An ambiguous outcome requires reconciliation, not a new upload. Bind receipts to production key, exact render digest and exact channel. Verify processing and requested privacy explicitly, never assume API defaults. Cleanup needs a durable verified publication receipt and exact artifact ID, plus policy-required approval when deleting the only recoverable copy. Deleting a public artifact cannot retract copies already downloaded.
 
 Do not commit raw media, transcripts, credentials, private drafts or personal email addresses. Reports are public and must not reveal secrets. No Cloudflare R2, paid service, website edits or subscription changes are part of this bootstrap.
+
+## One authorized recap test
+
+On November 12, 2026, the owner requested research, production and public publication of one original top-ten technology recap as an end-to-end test. This authorizes a narrowly scoped Studio-browser fallback on channel `UCAaukaaw1tGA1-pP_JdkU7Q` if API OAuth remains unavailable. It does not enable recurring browser publishing, change OAuth status or unpause automation. It does not waive factual, rights, listening, exact-render, metadata or playback checks. If fewer than ten significant stories are verified, use an accurate count and title instead of padding.
+
+Before selecting any media in Studio, preserve and remotely read back a one-use release record and upload intent bound to the exact reviewed video and package digests. Capture the resulting video ID immediately, preserve a separate public-visibility intent before Publish, and reconcile any uncertain outcome without another upload. Record browser-observed processing, visibility and copyright checks as browser evidence, not API verification. A verified public receipt consumes this one-use release. Keep the same `daily_recap` source/date identity in the shared publication ledger so later automation cannot duplicate it. Browser uploads do not consume Data API insert quota.
+
+A local technical pass or source review does not constitute actual listening. If audio review is unavailable, provide the final reviewable video to the owner and keep publication pending. Do not fabricate a passing audio attestation or silently waive it.

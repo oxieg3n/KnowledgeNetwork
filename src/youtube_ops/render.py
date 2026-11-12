@@ -32,8 +32,69 @@ def validate_spec(spec: dict) -> None:
                 raise ValueError(f'invalid {field}')
             if any(ord(c) < 32 and c != '\n' for c in text):
                 raise ValueError('control characters forbidden')
+        graphic = scene.get('graphic')
+        if graphic is not None:
+            validate_graphic(graphic)
     if not isinstance(spec.get('sources', []), list):
         raise ValueError('sources must be a list')
+
+
+def validate_graphic(graphic: dict) -> None:
+    if not isinstance(graphic, dict) or graphic.get('kind') not in ('flow', 'comparison', 'timeline'):
+        raise ValueError('graphic kind must be flow, comparison, or timeline')
+    items = graphic.get('items', [])
+    if not isinstance(items, list) or not 2 <= len(items) <= 4:
+        raise ValueError('graphic requires two to four items')
+    for item in items:
+        if not isinstance(item, dict):
+            raise ValueError('graphic item must be an object')
+        for key, limit in [('label', 45), ('detail', 100)]:
+            value = item.get(key, '')
+            if not isinstance(value, str) or not value.strip() or len(value) > limit or any(ord(c) < 32 for c in value):
+                raise ValueError('invalid graphic item text')
+    emphasis = graphic.get('emphasis')
+    if emphasis is not None and (type(emphasis) is not int or not 0 <= emphasis < len(items)):
+        raise ValueError('graphic emphasis must name an existing item')
+
+
+def draw_graphic(draw: Any, graphic: dict, size: tuple[int, int], font_path: str) -> None:
+    """Draw subject-specific qualitative relationships, never invented chart values."""
+    from PIL import ImageFont
+    validate_graphic(graphic)
+    w, h = size
+    if w <= h:
+        raise ValueError('subject graphics currently require landscape format')
+    items = graphic['items']
+    gap, left, top, bottom = 34, 120, 365, 645
+    box_width = (w - 2 * left - gap * (len(items)-1)) // len(items)
+    label_font = ImageFont.truetype(font_path, 34)
+    detail_font = ImageFont.truetype(font_path, 28)
+    for index, item in enumerate(items):
+        x = left + index * (box_width+gap)
+        selected = graphic.get('emphasis') == index
+        outline = '#fbbf24' if selected else '#7dd3fc'
+        draw.rounded_rectangle((x, top, x+box_width, bottom), radius=18,
+                               fill='#173047' if selected else '#112535', outline=outline, width=4)
+        y = top + 24
+        for text, font, step, maximum in [(item['label'],label_font,44,2),(item['detail'],detail_font,36,4)]:
+            lines = wrap(draw,text,font,box_width-36)
+            if len(lines)>maximum:
+                raise ValueError('graphic text overflow: shorten label or detail')
+            for line in lines:
+                draw.text((x+18,y),line,font=font,fill='#f8fafc' if font == label_font else '#bed1e1')
+                y += step
+            y += 12
+        if y > bottom-6:
+            raise ValueError('graphic text overflow: combined label/detail too tall')
+        if index < len(items)-1 and graphic['kind'] == 'flow':
+            mid = (top+bottom)//2
+            draw.line((x+box_width+4,mid,x+box_width+gap-6,mid),fill='#7dd3fc',width=4)
+            draw.polygon([(x+box_width+gap-6,mid),(x+box_width+gap-15,mid-7),(x+box_width+gap-15,mid+7)],fill='#7dd3fc')
+    if graphic['kind'] == 'timeline':
+        draw.line((left,top-25,w-left,top-25),fill='#7dd3fc',width=3)
+        for index in range(len(items)):
+            x=left+index*(box_width+gap)+box_width//2
+            draw.ellipse((x-7,top-32,x+7,top-18),fill='#fbbf24')
 
 
 def verify_voice(model: Path, metadata: dict) -> None:
@@ -175,21 +236,46 @@ def card(scene: dict, path: Path, size: tuple[int, int], index: int, total: int,
     small = ImageFont.truetype(font_path, 28)
     d.text((margin, 90), 'POWERED BY OXIEG3N', font=small, fill='#7dd3fc')
     d.line((margin, 145, w-margin, 145), fill='#36506a', width=3)
-    textblock(scene['title'], 215 if w < h else 185, 66 if w < h else 70, '#f8fafc', h // 2 - 30)
+    textblock(scene['title'], 215 if w < h else 185, 56 if scene.get('graphic') else (66 if w < h else 70), '#f8fafc', 350 if scene.get('graphic') else h // 2 - 30)
     # Original schematic, never presented as product evidence or measurements.
     cy = h // 2
-    radius = 52 if w < h else 65
-    centers = [margin + radius, w//2, w-margin-radius]
-    for a, b in zip(centers, centers[1:]):
-        d.line((a+radius, cy, b-radius, cy), fill='#4ea8d5', width=6)
-    for j, cx in enumerate(centers):
-        d.ellipse((cx-radius, cy-radius, cx+radius, cy+radius), fill='#172e42', outline='#7dd3fc', width=4)
-        d.text((cx-12, cy-20), str(j+1), font=ImageFont.truetype(font_path, 32), fill='#ffffff')
+    if scene.get('graphic') is not None:
+        draw_graphic(d, scene['graphic'], size, font_path)
+    else:
+        radius = 52 if w < h else 65
+        centers = [margin + radius, w//2, w-margin-radius]
+        for a, b in zip(centers, centers[1:]):
+            d.line((a+radius, cy, b-radius, cy), fill='#4ea8d5', width=6)
+        for j, cx in enumerate(centers):
+            d.ellipse((cx-radius, cy-radius, cx+radius, cy+radius), fill='#172e42', outline='#7dd3fc', width=4)
+            d.text((cx-12, cy-20), str(j+1), font=ImageFont.truetype(font_path, 32), fill='#ffffff')
     textblock(scene['caption'], cy + 140, 44 if w < h else 42, '#d9e5ef', h-(520 if w < h else 280))
     label = 'TECHNICAL TEST • NOT FOR PUBLICATION' if technical_test else 'Original explanatory graphic • AI narration'
     d.text((margin, h-120), label, font=ImageFont.truetype(font_path, 22), fill='#9fb3c8')
     d.rectangle((margin, h-65, margin + int((w-2*margin)*(index+1)/total), h-57), fill='#7dd3fc')
     im.save(path)
+
+
+def scene_video_filter(duration: float, size: tuple[int, int], ass_name: str) -> str:
+    """Small visual entrance and elapsed-time cue; subtitles are never faded/cropped."""
+    if not math.isfinite(duration) or duration <= 0:
+        raise ValueError('positive finite narration duration required')
+    if not re.fullmatch(r'scene-[0-9]+\.ass', ass_name):
+        raise ValueError('only generated caption basenames are allowed')
+    w, h = size
+    left = 100 if w < h else 120
+    width = w - 2 * left
+    # Discrete one-sixtieth increments avoid version-dependent dynamic drawbox widths.
+    # This bar expresses elapsed narration time only, not source measurements.
+    filters = [f'fade=t=in:st=0:d={min(.18,duration/4):.6f}',
+               f'drawbox=x={left}:y={h-92}:w={width}:h=6:color=0x36506a:t=fill']
+    for index in range(60):
+        x0 = left + width * index // 60
+        x1 = left + width * (index+1) // 60
+        filters.append(f"drawbox=x={x0}:y={h-92}:w={x1-x0}:h=6:color=0x7dd3fc:t=fill:enable='gte(t,{duration*(index+1)/60:.6f})'")
+    # Subtitles come last, keeping them fully opaque and safely positioned throughout.
+    filters.append(f'ass={ass_name}')
+    return ','.join(filters)
 
 
 def probe(path: Path) -> dict:
@@ -241,7 +327,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         mp4 = output / f'scene-{i:02}.mp4'
         run(['ffmpeg','-hide_banner','-loglevel','error','-loop','1','-i',str(png),'-i',str(wav),
              '-t',str(duration),'-r','30','-c:v','libx264','-preset','ultrafast','-crf','22','-pix_fmt','yuv420p',
-             '-vf',f'ass={ass.name}', '-c:a','aac','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11','-threads','2',str(mp4)], cwd=output)
+             '-vf',scene_video_filter(duration,size,ass.name), '-c:a','aac','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11','-threads','2',str(mp4)], cwd=output)
         segments.append(mp4)
         durations.append(duration)
         for cue in cues:
