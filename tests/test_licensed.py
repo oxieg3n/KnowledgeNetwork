@@ -37,6 +37,10 @@ class LicensedTests(unittest.TestCase):
  def test_requires_analysis(self):
   s=fixture();s['scenes']=s['scenes'][1:]
   with self.assertRaises(ValueError):validate_licensed(s)
+ def test_excerpt_cannot_be_first_or_last(self):
+  for scenes in ([1,0,2],[0,2,1]):
+   s=fixture();s['scenes']=[s['scenes'][i] for i in scenes]
+   with self.assertRaises(ValueError):validate_licensed(s)
  def test_hash_verified_without_fetch(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d)/'source';p.write_bytes(b'fixture');verify_local_assets(fixture(),{'source':p})
