@@ -20,7 +20,7 @@ No OAuth-dependent step is activated by this schedule. Do not publish, subscribe
 
 ## Reservation and state protocol
 
-`render_queue.validate_request` requires an existing ready queue item, original-only media path, exact script review and source evidence. `reserve_render` rejects an existing reservation, saves the production/request identity and switches the queue to rendering. One active rendering job is allowed. The coordinator must then:
+`render_queue.validate_request` requires an existing ready queue item, supported reviewed media path, exact script review and source evidence. `reserve_render` rejects an existing reservation, saves the production/request identity and switches the queue to rendering. One active rendering job is allowed. The coordinator must then:
 
 - Read the remote file SHA, commit the reservation with compare-and-swap, and read back the exact bytes/revision.
 - On conflict, fetch the latest state and reapply only its scoped reservation to that state. Never force-push or replace newer Actions discoveries.
@@ -42,3 +42,27 @@ OAuth setup/secure storage and live end-to-end checks remain pending. No test fi
 ## Operator reporting
 
 Notify James only for material completed work, genuinely new blockers, or verified publication URLs. Do not send repeated unchanged setup warnings. Keep the automation enabled after a no-op or blocked run. Record actual run timestamps and distinguish code readiness, manually tested rendering, saved schedule, scheduled execution, accepted API requests, verified processing, requested visibility, and durable publication receipts.
+
+## Narrow licensed excerpt preparation
+
+The `licensed_cc_by_excerpt` rights path permits one locally supplied CC BY 3.0 or
+4.0 excerpt of at most 20 seconds in a Short, with at least two original commentary
+scenes and a documented distinct-value rationale. It is not a blanket channel
+license or a downloading service. The operator must verify the original license,
+commercial adaptation scope, underlying third-party rights, exact source bytes,
+visual content, context and accurate timed transcript. Supply source files through
+`execute_reserved(..., local_assets={asset_id: Path(...)})`; private local paths
+are not part of the public request. The reviewed script's `licensed_assets` map
+binds the SHA-256, creator, title, source/license evidence URLs, attribution and
+modification notice. Its excerpt scene includes exact start/end and caption times
+relative to that cut. See `tests/test_licensed.py` for the data schema (fixtures are
+not clearance or usable production requests).
+
+The source frame is fitted rather than cropped, source audio remains source audio,
+and attribution is visible. Original scenes use licensed synthetic narration and
+remain explicitly labeled. Both segment types use common 48 kHz stereo AAC so
+concatenation does not switch audio formats. Final listening, context, caption sync,
+visual, rights, synthetic-disclosure and reused-content review are still required.
+No render grants publication eligibility. Existing remote reservation/readback,
+execution-start intent, recovery, channel/OAuth and publication-pause requirements
+remain unchanged. This adapter neither fetches media nor enables an uploader.
