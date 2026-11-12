@@ -6,6 +6,9 @@ import urllib.error
 from urllib.parse import urlparse, urlencode
 
 ALLOWED = {'www.googleapis.com', 'www.youtube.com', 'poweredby.oxieg3n.com'}
+class FetchError(RuntimeError):
+    pass
+
 class SafeRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         validate_url(newurl)
@@ -28,7 +31,7 @@ def get(url, *, limit=4_000_000, headers=None, before_attempt=None):
                 return raw
         except urllib.error.HTTPError as exc:
             if exc.code not in (429,500,502,503,504) or attempt==2:
-                raise RuntimeError(f'HTTP {exc.code}; request details redacted') from None
+                raise FetchError(f'HTTP {exc.code}; request details redacted') from None
         except urllib.error.URLError:
             if attempt==2: raise RuntimeError('Network unavailable; request details redacted') from None
         time.sleep(2**attempt)
