@@ -1,0 +1,4 @@
+# Optional rendering environment, separate from lightweight monitoring dependencies.
+# Voice weights are separately licensed assets, never downloaded implicitly.
+Pillow==13.0.0
+piper-tts==1.8.0

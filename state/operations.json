@@ -1,0 +1,45 @@
+{
+  "alerts": {},
+  "archive_progress": {},
+  "blog_versions": {},
+  "channels": {},
+  "control": {
+    "production_host_verified": false,
+    "publication_paused": true
+  },
+  "publications": {},
+  "queues": {
+    "BLOG_VIDEO": {},
+    "DAILY_TECH_RECAP": {},
+    "EVERGREEN_TOP10": {},
+    "FRESH_UPLOAD": {}
+  },
+  "quota": {},
+  "revision": 2,
+  "rights_ledger": {},
+  "runs": [
+    {
+      "blockers": [],
+      "checked_at": "2026-11-12T21:53:18.925294+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "local",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YOUTUBE_API_KEY missing; ranking not run"
+      ],
+      "checked_at": "2026-11-12T21:53:19.007073+00:00",
+      "command": "archive",
+      "details": {},
+      "run_id": "local",
+      "status": "BLOCKED"
+    }
+  ],
+  "schema_version": 1
+}

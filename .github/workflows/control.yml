@@ -1,0 +1,80 @@
+name: Metadata and queue coordination
+on:
+  push:
+    branches: [main]
+    paths: ['src/**', 'sources/**', '.github/workflows/control.yml']
+  workflow_dispatch:
+    inputs:
+      task:
+        type: choice
+        description: Bounded metadata task (never renders or publishes)
+        default: report
+        options: [seed, monitor, archive, blog-sync, recap, report, pause]
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: knowledge-network-state-writer
+  cancel-in-progress: false
+jobs:
+  coordinate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Bounded metadata coordination
+        env:
+          PYTHONPATH: src
+          TASK: ${{ inputs.task }}
+          EVENT: ${{ github.event_name }}
+          RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from youtube_ops.cli import run
+          t=datetime.now(ZoneInfo('America/New_York'))
+          if os.environ['EVENT']=='workflow_dispatch':
+              tasks=[os.environ['TASK']]
+          elif os.environ['EVENT']=='push':
+              tasks=['seed','monitor','blog-sync','report']
+          else:
+              tasks=['monitor']
+              if t.hour%4==0: tasks.append('blog-sync')
+              if t.hour==6: tasks.append('archive')
+              if t.hour==19: tasks.append('recap')
+              if t.hour==20: tasks.append('report')
+          for task in tasks:
+              try: run(task,'.',os.environ['RUN_ID'])
+              except Exception as exc:
+                  from youtube_ops.state import State, now
+                  s=State('state');s.data['runs'].append({'command':task,'run_id':os.environ['RUN_ID'],'checked_at':now(),'status':'FAILED','error_type':type(exc).__name__});s.save()
+                  print(task, 'FAILED', type(exc).__name__)
+          PY
+      - name: Persist metadata without overwriting concurrent work
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add state reports
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record bounded metadata checkpoint [skip ci]'
+            # Reject non-fast-forward instead of overwriting/rebasing uncertain state.
+            git push origin HEAD:main
+          fi
+      - name: Public checkpoint summary (not proof of publication)
+        if: always()
+        run: |
+          echo '## Metadata checkpoint' >> "$GITHUB_STEP_SUMMARY"
+          echo 'See state/operations.json for actual PASS/BLOCKED/FAILED results. Workflow success does not prove upload, email, full feed coverage or production readiness.' >> "$GITHUB_STEP_SUMMARY"

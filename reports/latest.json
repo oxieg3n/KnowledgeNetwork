@@ -1,0 +1,10 @@
+{
+  "command": "archive",
+  "run_id": "local",
+  "checked_at": "2026-11-12T21:53:19.007073+00:00",
+  "status": "BLOCKED",
+  "details": {},
+  "blockers": [
+    "YOUTUBE_API_KEY missing; ranking not run"
+  ]
+}

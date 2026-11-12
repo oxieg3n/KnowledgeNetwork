@@ -1,0 +1,10 @@
+{
+  "format": "short",
+  "technical_test": true,
+  "sources": [],
+  "scenes": [
+    {"title": "A production test. Not a news report.", "caption": "Original graphics. Local narration. No borrowed footage.", "narration": "This is a technical test for the Knowledge Network video system, not a news report. Every graphic in this test is drawn locally. No footage or audio from another creator is included."},
+    {"title": "Evidence before publication", "caption": "Research → rights review → quality checks", "narration": "A finished file is only one part of publishing. Real stories still need verified sources, accurate scripts, clear rights records, and a review of the finished picture and sound."},
+    {"title": "A file is not a published video", "caption": "Rendering and uploading are separate steps.", "narration": "The renderer checks the video dimensions, audio track, duration, and encoding. This test remains unpublished. A successful render does not mean a video has been uploaded, approved, or made public."}
+  ]
+}

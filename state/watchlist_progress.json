@@ -1,0 +1,878 @@
+{
+  "MKBHD": {
+    "name": "MKBHD",
+    "categories": [
+      "Technology"
+    ],
+    "verification": "pending"
+  },
+  "Linus Tech Tips": {
+    "name": "Linus Tech Tips",
+    "categories": [
+      "Technology",
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "The Verge": {
+    "name": "The Verge",
+    "categories": [
+      "Technology",
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "CNET": {
+    "name": "CNET",
+    "categories": [
+      "Technology",
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "TechLinked": {
+    "name": "TechLinked",
+    "categories": [
+      "Technology",
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "Mrwhosetheboss": {
+    "name": "Mrwhosetheboss",
+    "categories": [
+      "Technology"
+    ],
+    "verification": "pending"
+  },
+  "The Tech Chap": {
+    "name": "The Tech Chap",
+    "categories": [
+      "Technology"
+    ],
+    "verification": "pending"
+  },
+  "Digital Trends": {
+    "name": "Digital Trends",
+    "categories": [
+      "Technology"
+    ],
+    "verification": "pending"
+  },
+  "Dave2D": {
+    "name": "Dave2D",
+    "categories": [
+      "Technology"
+    ],
+    "verification": "pending"
+  },
+  "TechCrunch": {
+    "name": "TechCrunch",
+    "categories": [
+      "Technology"
+    ],
+    "verification": "pending"
+  },
+  "IGN": {
+    "name": "IGN",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "GameSpot": {
+    "name": "GameSpot",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "gameranx": {
+    "name": "gameranx",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "Skill Up": {
+    "name": "Skill Up",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "Kinda Funny Games": {
+    "name": "Kinda Funny Games",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "Digital Foundry": {
+    "name": "Digital Foundry",
+    "categories": [
+      "Gaming",
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "Eurogamer": {
+    "name": "Eurogamer",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "Nintendo of America": {
+    "name": "Nintendo of America",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "PlayStation": {
+    "name": "PlayStation",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "Xbox": {
+    "name": "Xbox",
+    "categories": [
+      "Gaming"
+    ],
+    "verification": "pending"
+  },
+  "Matt Wolfe": {
+    "name": "Matt Wolfe",
+    "categories": [
+      "AI",
+      "ChatGPT",
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "AI Explained": {
+    "name": "AI Explained",
+    "categories": [
+      "AI",
+      "AI Models",
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "Two Minute Papers": {
+    "name": "Two Minute Papers",
+    "categories": [
+      "AI",
+      "AI Models"
+    ],
+    "verification": "pending"
+  },
+  "Matthew Berman": {
+    "name": "Matthew Berman",
+    "categories": [
+      "AI",
+      "AI Models",
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "Futurepedia": {
+    "name": "Futurepedia",
+    "categories": [
+      "AI",
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "The AI Advantage": {
+    "name": "The AI Advantage",
+    "categories": [
+      "AI",
+      "ChatGPT",
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Nate B Jones": {
+    "name": "Nate B Jones",
+    "categories": [
+      "AI"
+    ],
+    "verification": "pending"
+  },
+  "Fireship": {
+    "name": "Fireship",
+    "categories": [
+      "AI",
+      "Codex"
+    ],
+    "verification": "pending"
+  },
+  "IBM Technology": {
+    "name": "IBM Technology",
+    "categories": [
+      "AI"
+    ],
+    "verification": "pending"
+  },
+  "The AI Grid": {
+    "name": "The AI Grid",
+    "categories": [
+      "AI",
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "Mark Rober": {
+    "name": "Mark Rober",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Stuff Made Here": {
+    "name": "Stuff Made Here",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Simone Giertz": {
+    "name": "Simone Giertz",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Hacksmith Industries": {
+    "name": "Hacksmith Industries",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "colinfurze": {
+    "name": "colinfurze",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "The Backyard Scientist": {
+    "name": "The Backyard Scientist",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Jeremy Fielding": {
+    "name": "Jeremy Fielding",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Ivan Miranda": {
+    "name": "Ivan Miranda",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "James Bruton": {
+    "name": "James Bruton",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Adam Savage\u2019s Tested": {
+    "name": "Adam Savage\u2019s Tested",
+    "categories": [
+      "Inventions"
+    ],
+    "verification": "pending"
+  },
+  "Flux Academy": {
+    "name": "Flux Academy",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "DesignCourse": {
+    "name": "DesignCourse",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Kevin Powell": {
+    "name": "Kevin Powell",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Webflow": {
+    "name": "Webflow",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Figma": {
+    "name": "Figma",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Framer": {
+    "name": "Framer",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "The Futur": {
+    "name": "The Futur",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Jesse Showalter": {
+    "name": "Jesse Showalter",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Mizko": {
+    "name": "Mizko",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "Relume": {
+    "name": "Relume",
+    "categories": [
+      "Website Design"
+    ],
+    "verification": "pending"
+  },
+  "The Quantified Scientist": {
+    "name": "The Quantified Scientist",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "DC Rainmaker": {
+    "name": "DC Rainmaker",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "DesFit": {
+    "name": "DesFit",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "Chase the Summit": {
+    "name": "Chase the Summit",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "Wareable": {
+    "name": "Wareable",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "ShortCircuit": {
+    "name": "ShortCircuit",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "Android Authority": {
+    "name": "Android Authority",
+    "categories": [
+      "Wearable Tech"
+    ],
+    "verification": "pending"
+  },
+  "9to5Google": {
+    "name": "9to5Google",
+    "categories": [
+      "Wearable Tech",
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Gamers Nexus": {
+    "name": "Gamers Nexus",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "Hardware Unboxed": {
+    "name": "Hardware Unboxed",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "JayzTwoCents": {
+    "name": "JayzTwoCents",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "Optimum": {
+    "name": "Optimum",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "Hardware Canucks": {
+    "name": "Hardware Canucks",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "PC Centric": {
+    "name": "PC Centric",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "KitGuruTech": {
+    "name": "KitGuruTech",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "Paul\u2019s Hardware": {
+    "name": "Paul\u2019s Hardware",
+    "categories": [
+      "Gaming hardware"
+    ],
+    "verification": "pending"
+  },
+  "MacRumors": {
+    "name": "MacRumors",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "9to5Mac": {
+    "name": "9to5Mac",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "AppleInsider": {
+    "name": "AppleInsider",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "Luke Miani": {
+    "name": "Luke Miani",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "Max Tech": {
+    "name": "Max Tech",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "Snazzy Labs": {
+    "name": "Snazzy Labs",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "Windows Central": {
+    "name": "Windows Central",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "PCWorld": {
+    "name": "PCWorld",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "Tom\u2019s Hardware": {
+    "name": "Tom\u2019s Hardware",
+    "categories": [
+      "Computer/PC/Mac news"
+    ],
+    "verification": "pending"
+  },
+  "John Hammond": {
+    "name": "John Hammond",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "SANS Institute": {
+    "name": "SANS Institute",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "CISA": {
+    "name": "CISA",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "DEF CON": {
+    "name": "DEF CON",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "Black Hat": {
+    "name": "Black Hat",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "David Bombal": {
+    "name": "David Bombal",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "LiveOverflow": {
+    "name": "LiveOverflow",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "BleepingComputer": {
+    "name": "BleepingComputer",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "The PC Security Channel": {
+    "name": "The PC Security Channel",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "Black Hills Information Security": {
+    "name": "Black Hills Information Security",
+    "categories": [
+      "Virus / CVE / Security alerts"
+    ],
+    "verification": "pending"
+  },
+  "Cole Medin": {
+    "name": "Cole Medin",
+    "categories": [
+      "AI Agents",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "AI Jason": {
+    "name": "AI Jason",
+    "categories": [
+      "AI Agents",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "IndyDevDan": {
+    "name": "IndyDevDan",
+    "categories": [
+      "AI Agents",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Nate Herk": {
+    "name": "Nate Herk",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "Sam Witteveen": {
+    "name": "Sam Witteveen",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "n8n": {
+    "name": "n8n",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "LangChain": {
+    "name": "LangChain",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "LlamaIndex": {
+    "name": "LlamaIndex",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "Datalumina": {
+    "name": "Datalumina",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "Liam Ottley": {
+    "name": "Liam Ottley",
+    "categories": [
+      "AI Agents"
+    ],
+    "verification": "pending"
+  },
+  "OpenAI": {
+    "name": "OpenAI",
+    "categories": [
+      "AI Models",
+      "Codex",
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "Google DeepMind": {
+    "name": "Google DeepMind",
+    "categories": [
+      "AI Models",
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Anthropic": {
+    "name": "Anthropic",
+    "categories": [
+      "AI Models",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Hugging Face": {
+    "name": "Hugging Face",
+    "categories": [
+      "AI Models"
+    ],
+    "verification": "pending"
+  },
+  "NVIDIA": {
+    "name": "NVIDIA",
+    "categories": [
+      "AI Models"
+    ],
+    "verification": "pending"
+  },
+  "DeepLearningAI": {
+    "name": "DeepLearningAI",
+    "categories": [
+      "AI Models"
+    ],
+    "verification": "pending"
+  },
+  "Yannic Kilcher": {
+    "name": "Yannic Kilcher",
+    "categories": [
+      "AI Models"
+    ],
+    "verification": "pending"
+  },
+  "freeCodeCamp.org": {
+    "name": "freeCodeCamp.org",
+    "categories": [
+      "Codex"
+    ],
+    "verification": "pending"
+  },
+  "Nick Saraev": {
+    "name": "Nick Saraev",
+    "categories": [
+      "Codex",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Alex Finn": {
+    "name": "Alex Finn",
+    "categories": [
+      "Codex",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Theo - t3.gg": {
+    "name": "Theo - t3.gg",
+    "categories": [
+      "Codex",
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Latent Space": {
+    "name": "Latent Space",
+    "categories": [
+      "Codex"
+    ],
+    "verification": "pending"
+  },
+  "Simon Willison": {
+    "name": "Simon Willison",
+    "categories": [
+      "Codex"
+    ],
+    "verification": "pending"
+  },
+  "Ray Amjad": {
+    "name": "Ray Amjad",
+    "categories": [
+      "Codex"
+    ],
+    "verification": "pending"
+  },
+  "The Pragmatic Engineer": {
+    "name": "The Pragmatic Engineer",
+    "categories": [
+      "Codex"
+    ],
+    "verification": "pending"
+  },
+  "Claude": {
+    "name": "Claude",
+    "categories": [
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Riley Brown": {
+    "name": "Riley Brown",
+    "categories": [
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Duncan Rogoff | Learn Claude Code": {
+    "name": "Duncan Rogoff | Learn Claude Code",
+    "categories": [
+      "Claude"
+    ],
+    "verification": "pending"
+  },
+  "Skill Leap AI": {
+    "name": "Skill Leap AI",
+    "categories": [
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "Jeff Su": {
+    "name": "Jeff Su",
+    "categories": [
+      "ChatGPT",
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Kevin Stratvert": {
+    "name": "Kevin Stratvert",
+    "categories": [
+      "ChatGPT"
+    ],
+    "verification": "pending"
+  },
+  "Google": {
+    "name": "Google",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Google for Developers": {
+    "name": "Google for Developers",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Google Cloud Tech": {
+    "name": "Google Cloud Tech",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Google Workspace": {
+    "name": "Google Workspace",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  },
+  "Android Developers": {
+    "name": "Android Developers",
+    "categories": [
+      "Google Gemini"
+    ],
+    "verification": "pending"
+  }
+}
