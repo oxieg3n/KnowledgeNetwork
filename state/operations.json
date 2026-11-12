@@ -1338,7 +1338,25 @@
     "production_host_verified": false,
     "publication_paused": true
   },
-  "publications": {},
+  "publications": {
+    "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c": {
+      "api_insert_performed": false,
+      "attempt_ny_date": "2026-11-12",
+      "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "insert_quota_pt_date": "2026-11-12",
+      "method": "owner-approved manual YouTube Studio",
+      "privacy_status": "public",
+      "production_key": "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c",
+      "publication_format": "daily_recap",
+      "recap_date": "2026-11-12",
+      "render_sha256": "dfe0adc4c234a031fcb3a9327def7f41be09d546b1c1939a7830f3e5e9c39fdd",
+      "source_identity": "daily-tech-recap:2026-11-12",
+      "status": "published_verified",
+      "verification_record": "production/reviews/2026-11-12-studio-upload.json",
+      "video_id": "-ixuctbWUVw",
+      "watch_url": "https://www.youtube.com/watch?v=-ixuctbWUVw"
+    }
+  },
   "queues": {
     "BLOG_VIDEO": {
       "00579001143035a0cbb3fa421946530fbd5bc7c6307f05e710423a6d0cb35d79": {
@@ -1725,12 +1743,15 @@
         "date": "2026-11-12",
         "discovered_at": "2026-11-12T22:29:29Z",
         "id": "2026-11-12",
-        "owner_audio_review_required": true,
+        "owner_audio_review": "approved corrected pronunciation; Perfect. Post it.",
+        "owner_audio_review_required": false,
         "publication_eligible": false,
         "request": "production/requests/2026-11-12-recap.json",
         "source_identity": "daily-tech-recap:2026-11-12",
-        "status": "awaiting_owner_audio_review",
-        "story_count": 10
+        "status": "published",
+        "story_count": 10,
+        "video_id": "-ixuctbWUVw",
+        "watch_url": "https://www.youtube.com/watch?v=-ixuctbWUVw"
       }
     },
     "EVERGREEN_TOP10": {
@@ -4914,13 +4935,13 @@
   "render_jobs": {
     "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c": {
       "completed_at": "2026-11-12T23:12:08.219171+00:00",
-      "duration_seconds": 486.714648,
+      "duration_seconds": 486.250651,
       "execution_started_at": "2026-11-12T23:08:50.110928+00:00",
       "executor": "dot-cloud-bounded",
       "final_audio_loudness": {
-        "integrated_lufs": -16.2,
-        "range_lu": 2.7,
-        "true_peak_dbfs": -1.8
+        "integrated_lufs": -16.1,
+        "range_lu": 2.9,
+        "true_peak_dbfs": -1.3
       },
       "item_id": "2026-11-12",
       "media_handoff": "pending",
@@ -4929,11 +4950,12 @@
       "production_key": "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c",
       "publication_eligible": false,
       "queue": "DAILY_TECH_RECAP",
-      "render_sha256": "275ef0f358771cc6d1ec98f6b58b058faa1fe1e7d859fb87639238c8e60991d3",
+      "render_sha256": "dfe0adc4c234a031fcb3a9327def7f41be09d546b1c1939a7830f3e5e9c39fdd",
       "request_sha256": "14372a79d6bd79a55762d4b55d3cce1c9bfeac5d031f081b1a071fb16d989f5e",
-      "review_record": "production/reviews/2026-11-12-final.json",
+      "review_record": "production/reviews/2026-11-12-studio-upload.json",
       "started_at": "2026-11-12T23:07:42.986931+00:00",
-      "status": "awaiting_owner_audio_review"
+      "status": "published",
+      "video_id": "-ixuctbWUVw"
     },
     "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559": {
       "execution_started_at": "2026-11-12T23:02:13.549318+00:00",
@@ -4949,7 +4971,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 114,
+  "revision": 115,
   "rights_ledger": {},
   "runs": [
     {

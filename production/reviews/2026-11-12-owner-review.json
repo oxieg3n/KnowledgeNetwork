@@ -1,0 +1,14 @@
+{
+  "compact_bytes": 13990014,
+  "compact_sha256": "31d8ca5e2b70ace0f2ad6c5efa045c75f3de7ae3c151d041e075f4aae3193ad9",
+  "release_master_sha256": "275ef0f358771cc6d1ec98f6b58b058faa1fe1e7d859fb87639238c8e60991d3",
+  "encoded_audio_stream_hash": "SHA256=857287a0137989c87abaf50cac23a0b888173587bd468a623713290dad4f20fe",
+  "audio_bitstream_identical": true,
+  "visual_difference": "Review-only 1280x72015fps compressed copy; release master remains1920x108030fps",
+  "duration_seconds": "486.733333",
+  "delivery_status": "Root confirmed successful delivery to James for listening review",
+  "audio_approval": "pending",
+  "publication_eligible": false,
+  "public_status": "not_uploaded",
+  "approval_binding": "Listening approval must refer to this compact review and its bit-identical release-master audio; changed audio requires renewed listening review."
+}
