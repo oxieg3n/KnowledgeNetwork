@@ -72,3 +72,9 @@ This tool cannot substitute for listening review. A November 12 capability test 
 Each scene has a brief 180 ms maximum artwork fade-in and a thin elapsed-narration progress bar in 60 increments. The bar uses the measured synthesized duration, not text-length estimates. Captions are applied last and remain opaque: no zoom, cropping or caption fade is used. The separate bottom episode-position indicator remains static per scene. Neither progress indicator claims to measure a news subject.
 
 For narration-linked emphasis, split a story into consecutive scenes with the same verified graphic items, changing `emphasis` to the item actually discussed in each scene's narration. The transition occurs at that scene's measured audio boundary. Do not rotate highlights arbitrarily or imply a causal flow not supported by the story. These subtle effects support a deliberate explanatory sequence; they do not independently establish editorial distinctness or satisfy listening/playback review.
+
+## Required telemetry opt-out
+
+Start every rendering Python process with `ORT_DISABLE_TELEMETRY=1` before Piper or ONNX Runtime imports. Official native ONNX Runtime builds can send telemetry by default, and disabling events after import may miss initialization. The renderer refuses to import Piper unless the startup opt-out is present. This is a local privacy control, not authorization to transmit telemetry. Official reference: https://github.com/microsoft/onnxruntime/blob/main/docs/Privacy.md
+
+The November12 full-recap first render was interrupted by safety review after seven completed scenes and an empty eighth scene. No finalMP4 or upload resulted. Keep that attempt as interrupted; reconcile process termination and record a distinct authorized recovery attempt before restarting with telemetry disabled.

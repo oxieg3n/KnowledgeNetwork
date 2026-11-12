@@ -1289,7 +1289,7 @@
         "publication_eligible": false,
         "request": "production/requests/2026-11-12-recap.json",
         "source_identity": "daily-tech-recap:2026-11-12",
-        "status": "rendering",
+        "status": "ready",
         "story_count": 10
       }
     },
@@ -3345,16 +3345,18 @@
     "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559": {
       "execution_started_at": "2026-11-12T23:02:13.549318+00:00",
       "executor": "dot-cloud-bounded",
+      "interruption_reason": "Safety review rejected ONNX default telemetry; process absent; seven completed scenes, empty eighth, no final media or upload.",
       "item_id": "2026-11-12",
       "media_handoff": "pending",
       "production_key": "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559",
       "queue": "DAILY_TECH_RECAP",
+      "reconciled_at": "2026-11-12T23:06:13.168567+00:00",
       "request_sha256": "ee51084ffff1a6473efc44f250749c775726a4d7860fb9dedb3590d8bf0de0ba",
       "started_at": "2026-11-12T23:00:47.837363+00:00",
-      "status": "execution_started"
+      "status": "interrupted"
     }
   },
-  "revision": 97,
+  "revision": 98,
   "rights_ledger": {},
   "runs": [
     {

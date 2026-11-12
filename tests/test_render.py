@@ -99,3 +99,19 @@ class SceneMotionTests(unittest.TestCase):
         for duration in [0,-1,float('inf'),float('nan')]:
             with self.assertRaises(ValueError): scene_video_filter(duration,(1920,1080),'scene-03.ass')
         with self.assertRaises(ValueError): scene_video_filter(30,(1920,1080),'bad;filter.ass')
+
+
+class TelemetryGuardTests(unittest.TestCase):
+    def test_piper_import_guard_precedes_import(self):
+        import inspect
+        from youtube_ops import render as module
+        code = inspect.getsource(module.render)
+        self.assertLess(code.index('ORT_DISABLE_TELEMETRY'), code.index('from piper import PiperVoice'))
+        self.assertIn('raise ValueError("Start Python with ORT_DISABLE_TELEMETRY=1', code)
+    def test_missing_opt_out_refuses_before_voice_load(self):
+        from unittest.mock import patch
+        from pathlib import Path
+        from youtube_ops import render as module
+        with patch.dict('os.environ', {}, clear=True), patch.object(module, 'validate_spec'), patch.object(module, 'verify_voice'):
+            with self.assertRaisesRegex(ValueError, 'ORT_DISABLE_TELEMETRY=1'):
+                module.render({}, Path('/tmp/not-created-telemetry-test'), Path('/tmp/not-read-model'), {})

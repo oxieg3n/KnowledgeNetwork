@@ -2,7 +2,7 @@
   "schema_version": 1,
   "queue": "DAILY_TECH_RECAP",
   "item_id": "2026-11-12",
-  "production_key": "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559",
+  "production_key": "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c",
   "rights_path": "original",
   "primary_sources": [
     "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
@@ -577,5 +577,7 @@
       "status": "pass",
       "evidence": "Primary-source researcher reviewed exact scene claims and qualitative graphics against full original sources on November12; reviewed date/availability caveats and word budgets. Coordinator applied two reviewer-requested wording corrections without changing facts. See production/research/2026-11-12.json and production/reviews/2026-11-12.json."
     }
-  }
+  },
+  "prior_render_attempt": "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559",
+  "recovery_reason": "Prior render safely reconciled interrupted; retry only with documented pre-initialization telemetry opt-out."
 }
