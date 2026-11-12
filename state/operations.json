@@ -3343,6 +3343,7 @@
   },
   "render_jobs": {
     "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559": {
+      "execution_started_at": "2026-11-12T23:02:13.549318+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "2026-11-12",
       "media_handoff": "pending",
@@ -3350,10 +3351,10 @@
       "queue": "DAILY_TECH_RECAP",
       "request_sha256": "ee51084ffff1a6473efc44f250749c775726a4d7860fb9dedb3590d8bf0de0ba",
       "started_at": "2026-11-12T23:00:47.837363+00:00",
-      "status": "rendering"
+      "status": "execution_started"
     }
   },
-  "revision": 96,
+  "revision": 97,
   "rights_ledger": {},
   "runs": [
     {
