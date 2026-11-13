@@ -138,11 +138,12 @@ class UploadTests(unittest.TestCase):
   self.state.data['publications'][key]={'channel_id':CID,'production_key':key,'render_sha256':self.digest,
    'publication_format':fmt,'source_identity':source or key,'attempt_ny_date':day,
    'insert_quota_pt_date':day,'status':status,'recap_date':recap_date}
- def test_three_short_limit_counts_uncertain_and_inflight(self):
+ def test_owner_removed_three_short_cap_preserves_other_identities(self):
   for i,status in enumerate(['verified','in_flight','reconciliation_required']):self.reserve(str(i),status=status)
-  with self.assertRaisesRegex(UploadBlocked,'Three Shorts'):self.u.upload(self.state,self.item,self.path)
-  self.assertEqual(self.client.insert_count,0);self.assertNotIn('channels.list',self.events)
- def test_short_limit_resets_on_new_york_date(self):
+  self.u.upload(self.state,self.item,self.path)
+  self.assertEqual(self.client.insert_count,1)
+  self.assertEqual(self.state.data['publications']['2']['status'],'reconciliation_required')
+ def test_previous_day_records_remain_compatible(self):
   for i in range(3):self.reserve(str(i),day='2026-11-11')
   self.u.upload(self.state,self.item,self.path)
   self.assertEqual(self.client.insert_count,1)
