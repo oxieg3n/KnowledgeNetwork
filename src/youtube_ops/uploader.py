@@ -174,9 +174,8 @@ class Uploader:
             raise UploadBlocked('Legacy publication reservations need cadence reconciliation')
         if any(r['publication_format']==fmt and r['source_identity']==source for r in reservations):
             raise UploadBlocked('Source identity already has a reserved output in this format')
-        if fmt == 'short' and sum(r['publication_format']=='short' and r['attempt_ny_date']==ny_day
-                                  for r in reservations) >= 3:
-            raise UploadBlocked('Three Shorts already reserved for this New York day')
+        # Owner revoked the former three-Short cadence cap on 2026-11-13.
+        # Source deduplication, uncertain-intent reconciliation and API budgets remain.
         if fmt == 'daily_recap':
             try:
                 recap_day = date.fromisoformat(item.get('recap_date', ''))

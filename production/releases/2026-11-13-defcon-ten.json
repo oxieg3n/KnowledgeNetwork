@@ -11,7 +11,7 @@
   "visibility": "public",
   "global_controls_unchanged": true,
   "oauth_verified_by_this_record": false,
-  "shorts_daily_limit": 3,
+  "shorts_daily_limit": null,
   "daily_timezone": "America/New_York",
   "ledger": "state/operations.json publications",
   "playlist": {
@@ -1475,5 +1475,6 @@
       "reviewed_package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
       "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     }
-  ]
+  ],
+  "cadence_authorization_amendment": "Owner November13,2026: \"if its something i told you, ignore that. Post as many videos as you have time to post every day.\" Revokes the owner-imposed three-Short daily cadence cap, not platform quotas or rights/QC/deduplication controls."
 }
