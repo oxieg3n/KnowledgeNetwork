@@ -5490,10 +5490,13 @@
       "request_sha256": "7965798a7b0d06933c9a349be820e33a881a590ec41fb432318ac704234e9cd8",
       "review_only": false,
       "started_at": "2026-11-13T12:09:04.823277+00:00",
-      "status": "execution_started"
+      "status": "rendered_pending_review",
+      "render_sha256": "c67d74959283c4ae1f27d14e462c75b8ef4bd284465687d1b61d512a438c5db0",
+      "publication_eligible": false,
+      "completion_reconciliation": "Worker process absent; complete manifest and exact media hash verified. Checkpoint callback object-reference issue prevented normal local completion record. No rerender. Fresh synthesized audio differs in duration from approved preview; final audio review pending."
     }
   },
-  "revision": 222,
+  "revision": 223,
   "rights_ledger": {},
   "runs": [
     {
