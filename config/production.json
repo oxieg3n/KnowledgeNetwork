@@ -3,11 +3,12 @@
   "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
   "destination_url": "https://www.youtube.com/@PoweredByOxieg3n",
   "timezone": "America/New_York",
-  "initial_shorts_daily_cap": 3,
   "hosted_actions_production_rendering": false,
   "publication_paused": true,
   "oauth_verified": false,
   "alert_destination": null,
   "artifact_staging_enabled": false,
-  "paid_services_enabled": false
+  "paid_services_enabled": false,
+  "shorts_daily_cap": null,
+  "shorts_cadence_authorization": "Owner November13,2026: \"if its something i told you, ignore that. Post as many videos as you have time to post every day.\" Revokes the owner-imposed three-Short daily cadence cap, not platform quotas or rights/QC/deduplication controls."
 }
