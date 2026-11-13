@@ -66,15 +66,16 @@ digest does not inherit fabricated listening; identify owner listening as owner
 review and separately document which final bytes and changes were inspected.
 Any substantive change requires fresh applicable review. Rights uncertainty or
 an unresolved claim blocks the affected item. This exception does not override
-rights, editorial, exact-render, recovery or daily limits.
+rights, editorial, exact-render, recovery or platform/API quota limits.
 
 Before selecting a file in Studio, re-read remote state and reserve one item with
 compare-and-swap, then read back the exact saved bytes. Persist an upload intent
 bound to its release/item ID, production key, source identity, final media/package
 hashes, channel, method, and actual America/New_York attempt date. Count pending,
 ambiguous and successful Shorts reservations across browser and API routes in
-the same publication ledger. Never exceed three in a New York day; do not reserve
-all ten on day one. A delayed or uncertain attempt keeps its reservation until
+the same publication ledger. The owner revoked the former three-Short daily cadence cap on November 13, 2026.
+This is not a YouTube-imposed limit. Continue the authorized finite batch as time
+permits, one serialized intent at a time; no arbitrary replacement batch cap. A delayed or uncertain attempt keeps its reservation until
 reconciled. Browser uploads do not consume Data API insert quota.
 
 Capture the returned video ID immediately and persist/read back its receipt.
@@ -92,6 +93,11 @@ visibility from the existing receipt and Studio before recording it.
 Playlist creation, only if verified still necessary, likewise needs a create-once intent, approved title/visibility,
 captured playlist ID and verified receipt. Reconcile an uncertain creation before
 retrying. Add only verified batch video IDs, checking membership first to avoid
-duplicates. Do not imply all ten videos are public while later items await their
-daily slot. No credential extraction, new OAuth configuration, paid service or
+duplicates. Do not imply all ten videos are public while later items remain pending. No credential extraction, new OAuth configuration, paid service or
 unrelated channel change is authorized by this procedure.
+
+## Owner cadence amendment (November 13, 2026)
+
+Owner November13,2026: "if its something i told you, ignore that. Post as many videos as you have time to post every day." Revokes the owner-imposed three-Short daily cadence cap, not platform quotas or rights/QC/deduplication controls.
+
+Keep global publication pause, verified credential facts and all release-specific authorization unchanged. The existing ten-item release remains finite; this change does not authorize unrelated uploads, background daemons, new purchases or unsupported channels. Scheduled-run render bounds remain separate from this publication-cadence amendment.
