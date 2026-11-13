@@ -1403,7 +1403,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "published_observed_verification_pending",
+      "status": "published_verified",
       "privacy_status": "public",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -1506,6 +1506,22 @@
           "previous_event_digest": "201b5fe8e71fa56b7b606b23c798cfd55d554fc7b0fa29f55bf8eea1edea33b6",
           "evidence": "Browser coordinator verified exact title, S3Aw9VqHhqI Public Published Nov13 in existing playlist PLBqhZZfg3quY; public Shorts URL correct channel. Player spinner at time0 readyState0 after one reload; playback explicitly pending.",
           "event_digest": "99d102f042b39a473aea1ba3efb3f1a5d557e149ad08c502e4cfd0e8c49e2555"
+        },
+        {
+          "event_id": "defcon-ten-01-published_verified",
+          "type": "published_verified",
+          "timestamp_utc": "2026-11-13T13:06:36Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-1",
+          "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+          "package_sha256": "fe0bdf7e821e88a0979e293b3ed41a133a96bf3dbead7b73296c36d762522cad",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "99d102f042b39a473aea1ba3efb3f1a5d557e149ad08c502e4cfd0e8c49e2555",
+          "video_id": "S3Aw9VqHhqI",
+          "evidence": "Owner viewed exact public URL https://www.youtube.com/shorts/S3Aw9VqHhqI and confirmed: playback is confirmed. continue with posting. This is owner playback confirmation, not browser assistant playback observation. Prior public visibility/playlist/checks verified.",
+          "event_digest": "0625092badb40f71f43583006c7db85d21e5a44dcfac250379b3841e33b4c5c1"
         }
       ],
       "video_id": "S3Aw9VqHhqI",
@@ -1519,7 +1535,10 @@
       "published_observed_at": "2026-11-13T12:56:38Z",
       "playlist_membership_verified": true,
       "public_visibility_verified": true,
-      "playback_observation": "Pending: spinner time0 readyState0; one reload; no explicit error"
+      "playback_observation": "Owner confirmed actual playback at exact public URL",
+      "playback_reviewer": "owner",
+      "verified_at": "2026-11-13T13:06:36Z",
+      "release_consumed": true
     },
     "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0": {
       "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
@@ -1643,8 +1662,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "visibility_intent",
-      "privacy_status": "private",
+      "status": "published_observed_verification_pending",
+      "privacy_status": "public",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "3b0f1e35e76ccb0fd5567659aff58a5c89b815bc",
@@ -1714,6 +1733,22 @@
           "requested_visibility": "public",
           "evidence": "Browser coordinator reopened exact saved draft: reviewed title/full description trailing newline normalized, existing playlist/notkids/AIyes/nopaid. Processing complete; Copyright check complete No issues found. No future claims guarantee.",
           "event_digest": "392d10a5b941040255f3513c1c9f8e82c9471f1792009d8cbc17e4b6da2809c2"
+        },
+        {
+          "event_id": "defcon-ten-03-playlist_membership_verified",
+          "type": "playlist_membership_verified",
+          "timestamp_utc": "2026-11-13T13:06:36Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-3",
+          "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
+          "package_sha256": "1bd599a39b7b5c0be2c6345d2a7f5f0f5e0b1ee88d1076268a5d2b63e3927273",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "392d10a5b941040255f3513c1c9f8e82c9471f1792009d8cbc17e4b6da2809c2",
+          "video_id": "_e34CKau6-4",
+          "evidence": "Browser coordinator observed Video published modal and Public existing playlist row, PublishedNov13 exact title/link for _e34CKau6-4. Playback pending.",
+          "event_digest": "930eb854b8e8ec5a826958a2e2cd1f784b685c14ceb46470ccc05dd95ac51106"
         }
       ],
       "video_id": "_e34CKau6-4",
@@ -1723,7 +1758,11 @@
       "processing_observation": "Processing complete",
       "playlist_id": "PLBqhZZfg3quY",
       "requested_visibility": "public",
-      "copyright_check_observation": "Copyright check complete No issues found"
+      "copyright_check_observation": "Copyright check complete No issues found",
+      "public_visibility_verified": true,
+      "playlist_membership_verified": true,
+      "published_observed_at": "2026-11-13T13:06:36Z",
+      "playback_observation": "Pending"
     }
   },
   "queues": {
@@ -6020,7 +6059,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 277,
+  "revision": 278,
   "rights_ledger": {},
   "runs": [
     {
