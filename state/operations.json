@@ -1403,7 +1403,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "verification_pending",
+      "status": "visibility_intent",
       "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -1458,12 +1458,33 @@
           "video_id": "S3Aw9VqHhqI",
           "evidence": "Browser coordinator observed Saved as private, Upload complete/processing will begin shortly, returned Shorts link. No publish action yet.",
           "event_digest": "d11491f83ccff9a72c322544d7e285d081371754177aee6c74b6824ffccb63d4"
+        },
+        {
+          "event_id": "defcon-ten-01-public-intent",
+          "type": "visibility_intent",
+          "timestamp_utc": "2026-11-13T12:54:37Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-1",
+          "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+          "package_sha256": "fe0bdf7e821e88a0979e293b3ed41a133a96bf3dbead7b73296c36d762522cad",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "d11491f83ccff9a72c322544d7e285d081371754177aee6c74b6824ffccb63d4",
+          "video_id": "S3Aw9VqHhqI",
+          "requested_visibility": "public",
+          "evidence": "Browser coordinator verified reviewed title/full1323-character description with credits/license/CTA, existing playlist, not-made-for-kids, no paid promotion, conservative AI yes; processing finished and preview available; copyright checks No issues found. This is browser observation, not guarantee against future claims.",
+          "event_digest": "7015958e9779d2746ed8f5909758383b5ccd7e9498d69d2f547eb735a2f2f47b"
         }
       ],
       "video_id": "S3Aw9VqHhqI",
       "watch_url": "https://youtube.com/shorts/S3Aw9VqHhqI",
-      "processing_observation": "Upload complete; processing will begin shortly",
-      "response_received_at": "2026-11-13T12:53:34Z"
+      "processing_observation": "Finished; preview available",
+      "response_received_at": "2026-11-13T12:53:34Z",
+      "requested_visibility": "public",
+      "metadata_browser_verified": true,
+      "copyright_check_observation": "No issues found, browser observed; no future guarantee",
+      "playlist_id": "PLBqhZZfg3quY"
     }
   },
   "queues": {
@@ -5760,7 +5781,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 268,
+  "revision": 269,
   "rights_ledger": {},
   "runs": [
     {
