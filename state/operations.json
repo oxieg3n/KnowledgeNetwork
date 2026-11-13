@@ -2394,7 +2394,7 @@
         "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
         "review_only": true,
         "reviewed_script_sha256": "241eb2585ee8f003866fd978e8c216dafd4c2b7d0e18e41bc23dcc61d8f216c0",
-        "status": "rendering",
+        "status": "preview_rendered_pending_review",
         "title": "An API is not a reliability guarantee"
       },
       "meUr8fjy8lQ": {
@@ -5190,16 +5190,19 @@
   },
   "render_jobs": {
     "3be938aff59ceb524667770108da88d564d91f4db740d07967192ad3e9000ac8": {
+      "completed_at": "2026-11-13T11:36:56.512562+00:00",
       "execution_started_at": "2026-11-13T11:35:25.249538+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-06-brand-v1",
       "media_handoff": "pending",
       "production_key": "3be938aff59ceb524667770108da88d564d91f4db740d07967192ad3e9000ac8",
+      "publication_eligible": false,
       "queue": "EVERGREEN_TOP10",
+      "render_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
       "request_sha256": "9cffd30575cc7008155b9a0c4023ffbcb4f6a37023dc9cd399972caea36ff5e5",
       "review_only": true,
       "started_at": "2026-11-13T11:34:58.482099+00:00",
-      "status": "execution_started"
+      "status": "preview_rendered_pending_review"
     },
     "3df95d68971d179aa81a13b369befded8a3434a9a01a0c681006bc5f46049377": {
       "completed_at": "2026-11-13T11:27:08.324956+00:00",
@@ -5349,7 +5352,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 191,
+  "revision": 192,
   "rights_ledger": {},
   "runs": [
     {
