@@ -1,0 +1,1453 @@
+{
+  "requests": [
+    {
+      "number": 1,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-01-brand-v1",
+      "production_key": "fa3e66b85f345bf771dfd131e711dc6e8fcc49f6ff93eff896a8f4cc09fd2d79",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "The hidden cost of leaving a platform",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Original YouTube reuse metadata and matching Commons CC BY3.0 source inspected. Exact source SHA256 matched. Speaker-only exact-cut visual inspection. Owner listened to the exact292.20\u2013296.90s source sample and confirmed: It is just the speaker. No third-party music detected by that listening review. Owner approved the corresponding delivered review video; separate evidence retained with production request. This does not assert assistant listening.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Check the cost of leaving",
+            "narration": "Could you leave your platform without losing important work? Test three things before you commit. Cory Doctorow explained switching costs in twenty twenty-three.",
+            "caption": "Original commentary \u2022 Archival source:2023"
+          },
+          {
+            "title": "What are switching costs?",
+            "narration": "Switching costs, they're everything that you have to give up when you leave a product or a service.",
+            "caption": "Cory Doctorow / DEFCON Conference \u20222023 \u2022CC BY3.0",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 292.2,
+              "end": 296.9,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Talk distinguishes network effects from switching costs; complete definition retained, no changed meaning. Original speech transcript independently read. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.14,
+                  "end": 1.64,
+                  "text": "Switching costs, they're everything"
+                },
+                {
+                  "start": 1.64,
+                  "end": 2.6,
+                  "text": "that you have to give up"
+                },
+                {
+                  "start": 2.6,
+                  "end": 4.55,
+                  "text": "when you leave a product or a service."
+                }
+              ]
+            }
+          },
+          {
+            "title": "01. Export your content",
+            "narration": "Our advice: test your content export. Can another tool actually use it?",
+            "caption": "Original practical advice \u2022 Test the export"
+          },
+          {
+            "title": "02. Move your records",
+            "narration": "Check which customer records and fields you can move.",
+            "caption": "Original practical advice \u2022 Check portable formats"
+          },
+          {
+            "title": "03. Preserve your links",
+            "narration": "Plan for important links to keep working. Test the exit before you commit.",
+            "caption": "Original practical advice \u2022 Plan for continuity"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "The hidden cost of leaving a platform"
+        }
+      },
+      "reviewed_script_sha256": "a1a6a938925e8750f58e56c2410c253f419e69c4839daca4e16c431c3d157674",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
+      "owner_review_evidence": {
+        "quote": "Prior source sample: It is just the speaker; batch publication approval reported by coordinator",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening"
+      }
+    },
+    {
+      "number": 2,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-02-brand-v1",
+      "production_key": "7773099cb806abe3b84da688f2284fd8a21cef7f31ee5927cd631d14624a69d4",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Identify stakeholders rather than assuming product changes benefit every user.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Who is a platform really serving?",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Identify stakeholders rather than assuming product changes benefit every user.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Who is a platform really serving?",
+            "narration": "Did a platform update help you, or someone else? Map the incentives. Cory Doctorow framed the problem in this 2023 talk.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "What is a platform?",
+            "narration": "A platform is a firm that mediates between end users and business customers.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 96.42,
+              "end": 101.25,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Keep complete definition; examples optional. Do not imply only two stakeholders or reproduce later company allegations. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.1,
+                  "end": 3.12,
+                  "text": "A platform is a firm that mediates between"
+                },
+                {
+                  "start": 3.12,
+                  "end": 4.66,
+                  "text": "end users and business customers."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "When an update changes your experience, map the incentives: users, business customers, and the platform itself. A feature can help one group while creating friction for another. Ask whose problem it actually solves.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Who is a platform really serving?"
+        }
+      },
+      "reviewed_script_sha256": "bac7287bbcd0471a1022dc5b334afad46fe40862bb6b3fb81e73b737a27c2021",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Identify stakeholders rather than assuming product changes benefit every user. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 3,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-03-brand-v1",
+      "production_key": "2ba67e5a71fc88549689b6bd73104a9c693c78fd05cf4885132d40a60c027cb2",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Community migration experiment, distinct from the existing individual switching-cost definition.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Network effects can run backward",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Community migration experiment, distinct from the existing individual switching-cost definition.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Network effects can run backward",
+            "narration": "Moving a community? Test one shared activity before asking everyone to switch. Here is Doctorow\u2019s 2023 explanation of the network effect.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "Network effects can reverse",
+            "narration": "If users can't leave because everyone is staying then once everyone leaves there's no reason to stay.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 569.5,
+              "end": 573.9,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Exclude preceding violent-event references and following profanity. No prediction that a particular platform is collapsing. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.12,
+                  "end": 2.02,
+                  "text": "If users can't leave because everyone is staying"
+                },
+                {
+                  "start": 2.02,
+                  "end": 3.96,
+                  "text": "then once everyone leaves there's no reason to"
+                },
+                {
+                  "start": 3.96,
+                  "end": 4.24,
+                  "text": "stay."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "For a community considering a move, test one shared activity on the alternative first. You are checking whether people can use it together, not just whether one person likes its features.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Network effects can run backward"
+        }
+      },
+      "reviewed_script_sha256": "0c5048aea56edd49c244ad42ba1d471c8c8489ae9cf4b88e7f8060ea6cd2b26f",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Community migration experiment, distinct from the existing individual switching-cost definition. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 4,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-04-brand-v1",
+      "production_key": "c77f85ee9bbca8eff870d5a51dcef030a7c3d80b8b2511d6f172eeca010a59e0",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Test recovery with an actual export/import rather than promising permanence.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "What survives when a service closes?",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Test recovery with an actual export/import rather than promising permanence.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "What survives when a service closes?",
+            "narration": "If your favorite service closes, can you still use your work? Test an export now. Doctorow discussed this problem in his 2023 question session.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "Open systems can fail gracefully",
+            "narration": "And I would say that I'm way more interested in their success than their enduring success, because the whole point about federated open services is that they fail really gracefully, right?",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 2469.0,
+              "end": 2478.48,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Q&A transcript only, not written speech. No guarantee every federated service supports migration; exclude dubious X/Wayland example. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.1,
+                  "end": 2.08,
+                  "text": "And I would say that I'm way more"
+                },
+                {
+                  "start": 2.08,
+                  "end": 3.88,
+                  "text": "interested in their success than their enduring success,"
+                },
+                {
+                  "start": 4.12,
+                  "end": 6.72,
+                  "text": "because the whole point about federated open services"
+                },
+                {
+                  "start": 6.72,
+                  "end": 9.34,
+                  "text": "is that they fail really gracefully, right?"
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "Before trusting a tool with important work, try exporting a sample and opening it elsewhere. Keep a separate backup. A download button is not enough if the resulting files cannot be used.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "What survives when a service closes?"
+        }
+      },
+      "reviewed_script_sha256": "402c8b7d2d964eab918b229c6e1f57aedb75639eb7bb63f60de0432c8a5b78b4",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Test recovery with an actual export/import rather than promising permanence. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 5,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-05-brand-v1",
+      "production_key": "78c31b68b13c888ece9e22304f4e0328e9da1f39592df72115558f26e7a35f8b",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Clarifies export versus continued communication without promising present provider support.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Compatibility is more than a data export",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Clarifies export versus continued communication without promising present provider support.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Compatibility is more than a data export",
+            "narration": "A data export does not keep you connected. Learn what to test instead. In 2023, Doctorow proposed leaving a platform without losing contact.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "Compatibility is more than export",
+            "narration": "So you can leave Facebook or Twitter and go to Mastodon, Diaspora or Bluesky or some other new platform and still exchange messages with the people you left behind. And participate in the communities that matter to you and connect to the customers that you rely on.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 1520.36,
+              "end": 1534.4,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Context-sensitive fragment. Exact cut must follow introduction grammatically; hold if unusable. No present DMA scope or interoperability entitlement claim. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.12,
+                  "end": 1.94,
+                  "text": "So you can leave Facebook or Twitter and"
+                },
+                {
+                  "start": 1.94,
+                  "end": 4.08,
+                  "text": "go to Mastodon, Diaspora or Bluesky"
+                },
+                {
+                  "start": 4.08,
+                  "end": 6.4,
+                  "text": "or some other new platform and still exchange"
+                },
+                {
+                  "start": 6.4,
+                  "end": 9.36,
+                  "text": "messages with the people you left behind. And"
+                },
+                {
+                  "start": 9.36,
+                  "end": 11.62,
+                  "text": "participate in the communities that matter to you"
+                },
+                {
+                  "start": 11.62,
+                  "end": 13.86,
+                  "text": "and connect to the customers that you rely on."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "That is a goal, not a claim about services today. Export gives you a copy; interoperability connects systems. Before choosing a replacement, test whether the exact messages, files, or workflows you need actually cross over.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Compatibility is more than a data export"
+        }
+      },
+      "reviewed_script_sha256": "9ff96756ba330edcc171659e81baf574caa8cb601d32704a8de865c8a4fa0afc",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Clarifies export versus continued communication without promising present provider support. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "1bed2c98bb5cbc06da1fabd5faffcd38ce94d9cfe9c765922f4e793886f2dcf9",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "1bed2c98bb5cbc06da1fabd5faffcd38ce94d9cfe9c765922f4e793886f2dcf9",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 6,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-06-brand-v1",
+      "production_key": "bfadb304fc22d9800f55b64b549e7679ef73fb702b8ef1aadac10e3903e870c8",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Build a fallback and assess operational support, rather than alleging malicious access revocation.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "An API is not a reliability guarantee",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Build a fallback and assess operational support, rather than alleging malicious access revocation.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "An API is not a reliability guarantee",
+            "narration": "What will you do if an important API stops working? Build a fallback. In 2023, Doctorow warned that disputed shutdowns could take years to resolve.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "An API promise is not an uptime guarantee",
+            "narration": "So we're going to have disputed shutdowns that turn into years-long, fact-intensive inquests that will make nobody happy.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 1592.8,
+              "end": 1601.86,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Lead-in essential: disputed security justifications, not proven incident. End cleanly before next profanity; original followup must not imply bypassing a legitimate security shutdown. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.14,
+                  "end": 2.88,
+                  "text": "So we're going to have disputed shutdowns"
+                },
+                {
+                  "start": 2.88,
+                  "end": 5.38,
+                  "text": "that turn into years-long, fact-intensive"
+                },
+                {
+                  "start": 6.12,
+                  "end": 8.88,
+                  "text": "inquests that will make nobody happy."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "A shutdown may protect users; it is not proof of sabotage. For an important integration, check outage notices, support channels, and a fallback workflow before access disappears. An endpoint alone is not a continuity plan.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "An API is not a reliability guarantee"
+        }
+      },
+      "reviewed_script_sha256": "672b539aad48103b9f55c63397728aaed54b12e647cfb66fd999df068541496d",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Build a fallback and assess operational support, rather than alleging malicious access revocation. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 7,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-07-brand-v1",
+      "production_key": "bdccb713938083a1ebbc277bd6ff4311a68e855abb156f1caf74d678273b6b51",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Pre-purchase comparison and documented commitments, distinct from post-failure recovery testing.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Buy compatibility before you need it",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Pre-purchase comparison and documented commitments, distinct from post-failure recovery testing.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Buy compatibility before you need it",
+            "narration": "Buying a new tool? Ask the vendor to demonstrate compatibility before you commit. Doctorow proposed a stronger rule for government buyers in 2023.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "Buy compatibility before you need it",
+            "narration": "Governments should require that every tech company that sells them a product or a service has to promise not to interfere with interoperability.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 1812.06,
+              "end": 1822.64,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Government proposal is advocacy, not current law. Our buying checklist is an analogy; exclude historical rifle claim. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.12,
+                  "end": 4.42,
+                  "text": "Governments should require that every tech company that"
+                },
+                {
+                  "start": 4.42,
+                  "end": 7.14,
+                  "text": "sells them a product or a service has"
+                },
+                {
+                  "start": 7.14,
+                  "end": 10.4,
+                  "text": "to promise not to interfere with interoperability."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "Ask vendors to demonstrate compatibility before you commit. Check supported formats, documented interfaces, and migration assistance. Record the answers so the team choosing today is not guessing when it needs to leave.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Buy compatibility before you need it"
+        }
+      },
+      "reviewed_script_sha256": "440ae1c2a71ee9a778ad6a1cd9511ee1e600f4a48099f820b78b042631570165",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Pre-purchase comparison and documented commitments, distinct from post-failure recovery testing. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "cf15c6588129869f7d0b14069b0ed1d584685b686095bf9deb01cd39de19abe7",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "cf15c6588129869f7d0b14069b0ed1d584685b686095bf9deb01cd39de19abe7",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 8,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-08-brand-v1",
+      "production_key": "6351dbd285ede47cdcb3513aae94910753dc76e4be1eefe6d9f6eb5e78558366",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Least-access permission inspection, not generic endorsement of openness.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Open access still needs privacy safeguards",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Least-access permission inspection, not generic endorsement of openness.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Open access still needs privacy safeguards",
+            "narration": "Does that connected app really need access to everything? Check its permissions and your exit. Doctorow discussed interoperability and privacy in 2023.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "Open access still needs privacy rules",
+            "narration": "So whether you're using an API or whether you're fielding an interoperable app that relies on scraping and reversing, we want you bound by those same laws.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 1926.66,
+              "end": 1934.2,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Exclude Cambridge Analytica lead-in. Same laws refers to privacy, labor and fair trading in preceding context; policy position not legal determination. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.12,
+                  "end": 2.2,
+                  "text": "So whether you're using an API or whether"
+                },
+                {
+                  "start": 2.2,
+                  "end": 4.28,
+                  "text": "you're fielding an interoperable app that relies on"
+                },
+                {
+                  "start": 4.28,
+                  "end": 6.68,
+                  "text": "scraping and reversing, we want you bound by"
+                },
+                {
+                  "start": 6.68,
+                  "end": 7.38,
+                  "text": "those same laws."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "When connecting an app, inspect the permissions it requests. Does it need to read everything, or only one folder? Check how to revoke access. Compatibility is useful, but broader access deserves a clear reason.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Open access still needs privacy safeguards"
+        }
+      },
+      "reviewed_script_sha256": "3c3680cae93f52ab259d3ea3c3f7280f5b0e295bb4e72bdf3ad4501c5cffcd4c",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Least-access permission inspection, not generic endorsement of openness. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "5504fba39ff27417a2a6e1701d6cdbbfa7abb04ef67034bceee9a70ee2d36fc1",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "5504fba39ff27417a2a6e1701d6cdbbfa7abb04ef67034bceee9a70ee2d36fc1",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 9,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-09-brand-v1",
+      "production_key": "8659904731b063e003b162e2faf95bcaee9b5380bff4c3a8f119364417ca8a65",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Decision governance under pressure, not another migration tutorial.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Protect your principles before pressure arrives",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Decision governance under pressure, not another migration tutorial.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Protect your principles before pressure arrives",
+            "narration": "Will your project\u2019s promises survive a difficult decision? Write down who can change them. Doctorow described a stronger commitment device in 2023.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "Commit before the pressure arrives",
+            "narration": "A Ulysses pact is when you anticipate a time in the future when you can reasonably assume that you will be weak and you take a step now to prevent yourself now while you're strong from giving into that weakness.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 2342.74,
+              "end": 2355.04,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Q&A transcript only; verify exact awkward ASR against audio. Avoid implying a license forces all future versions to retain it. Suggested end may include diet example; choose boundary by listening. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.12,
+                  "end": 2.84,
+                  "text": "A Ulysses pact is when you anticipate a"
+                },
+                {
+                  "start": 2.84,
+                  "end": 4.18,
+                  "text": "time in the future when you can reasonably"
+                },
+                {
+                  "start": 4.18,
+                  "end": 6.98,
+                  "text": "assume that you will be weak and you"
+                },
+                {
+                  "start": 6.98,
+                  "end": 9.74,
+                  "text": "take a step now to prevent yourself now"
+                },
+                {
+                  "start": 9.74,
+                  "end": 12.12,
+                  "text": "while you're strong from giving into that weakness."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "For a project, start by naming what you will protect and who can approve a change. A written policy can guide decisions, but it is not automatically binding. Get qualified advice before making irreversible licensing commitments.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Protect your principles before pressure arrives"
+        }
+      },
+      "reviewed_script_sha256": "c38bca688667250fa9fb5e48a2b4d2f57fb3fd9d6d216299ead9935783a11046",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Decision governance under pressure, not another migration tutorial. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    },
+    {
+      "number": 10,
+      "schema_version": 1,
+      "queue": "EVERGREEN_TOP10",
+      "item_id": "defcon-production-10-brand-v1",
+      "production_key": "dd34fe9d6d04f1e36798b3d3b18d7cfbea71c6efc5eaf4511a6e1e0b0d00ee34",
+      "rights_path": "licensed_cc_by_excerpt",
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Separates capability, accessibility and authorization without offering circumvention instructions.",
+      "script": {
+        "format": "short",
+        "technical_test": false,
+        "title": "Possible does not mean permitted",
+        "editorial_date": "2026-11-13",
+        "sources": [
+          "https://www.youtube.com/watch?v=q118B_QdP2k",
+          "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+        ],
+        "licensed_assets": {
+          "doctorow": {
+            "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+            "license": "CC-BY-3.0",
+            "license_url": "https://creativecommons.org/licenses/by/3.0/",
+            "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+            "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+            "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+            "creator": "DEFCON Conference; speaker Cory Doctorow",
+            "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+            "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+            "rights_review_evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed.",
+            "commercial_adaptation_verified": true,
+            "underlying_rights_reviewed": true,
+            "excerpt_visual_reviewed": true,
+            "no_third_party_music": true,
+            "no_endorsement": true,
+            "known_rights_conflict": false,
+            "audio_review_status": "pass"
+          }
+        },
+        "original_commentary_rationale": "Separates capability, accessibility and authorization without offering circumvention instructions.",
+        "original_commentary_review": {
+          "status": "pass",
+          "evidence": "Independent review of concrete problem/payoff and distinct practical advice passed; no performance promise or invented current event. This is script-level private-preview review only."
+        },
+        "scenes": [
+          {
+            "title": "Possible does not mean permitted",
+            "narration": "A connection can be technically possible without being permitted. Check the authorized route. Here is Doctorow\u2019s 2023 point about general-purpose computers.",
+            "caption": "Original commentary \u2022 Archival source: 2023"
+          },
+          {
+            "title": "General-purpose computing leaves room for alternatives",
+            "narration": "We don't know how to make a computer that runs all the programs except for the one that makes your shareholders sad. We just know how to make that one.",
+            "caption": "Archival source \u2022 DEF CON 31 (2023)",
+            "licensed_excerpt": {
+              "asset_id": "doctorow",
+              "start": 857.96,
+              "end": 863.64,
+              "context_reviewed": true,
+              "context_evidence": "Prior preview-stage context assessment (listening-pending notes below are superseded by the exact owner review evidence in this request): Rhetorical simplification, not formal claim every computer runs every program. Exclude subsequent malware joke; no accusation against named company. Conditional editorial draft; exact full cut not yet reviewed. Reviewed against supplied official transcript/author speech for private preview; broad archival attribution/context preserved. Final cut listening still pending. Owner reviewed exact preview containing this unchanged source cut; clean final render still requires derivative QC.",
+              "captions": [
+                {
+                  "start": 0.12,
+                  "end": 1.24,
+                  "text": "We don't know how to make a computer"
+                },
+                {
+                  "start": 1.24,
+                  "end": 2.88,
+                  "text": "that runs all the programs except for the"
+                },
+                {
+                  "start": 2.88,
+                  "end": 4.94,
+                  "text": "one that makes your shareholders sad. We just"
+                },
+                {
+                  "start": 4.94,
+                  "end": 5.58,
+                  "text": "know how to make that one."
+                }
+              ]
+            }
+          },
+          {
+            "title": "What this means in practice",
+            "narration": "Technical possibility is not permission, and not every device gives users practical access. Look for documented formats and authorized integrations. That is a safer starting point than assuming any connection you can build is allowed.",
+            "caption": "Original practical advice \u2022 Not a guarantee"
+          },
+          {
+            "title": "Source: DEF CON 31",
+            "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+            "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+          },
+          {
+            "title": "Source and license",
+            "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+            "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "brand_intro": {
+          "template": "poweredby-plasma-v1",
+          "title": "Possible does not mean permitted"
+        }
+      },
+      "reviewed_script_sha256": "eb03ed9a133c1c5074da0e66fee4e199083e3b4e32e845ed70d5dbe07192e60b",
+      "publication_eligible": false,
+      "editorial": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "sources": {
+          "status": "pass",
+          "evidence": "Official DEFCON source and exact licensed Commons bytes; speech/transcript corroboration. Corrected Mastodon/Diaspora/Bluesky and inquests captions where original transcript corroborates; fillers omitted without changing meaning. Owner audio/source review evidence now recorded per exact preview. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Separates capability, accessibility and authorization without offering circumvention instructions. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "usefulness": {
+          "status": "pass",
+          "evidence": "Concrete viewer problem and actionable practical payoff; approved brand intro is presentation, not claimed proof or endorsement. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        }
+      },
+      "prior_preview_sha256": "4aec9c45ef663ce6ef4e603b786652312e37852bbdc18dee941bc99e64f5cb65",
+      "owner_review_evidence": {
+        "quote": "files 2-10 are good to go as well",
+        "scope": "owner approval relayed by root; not assistant listening",
+        "reviewed_preview_sha256": "4aec9c45ef663ce6ef4e603b786652312e37852bbdc18dee941bc99e64f5cb65",
+        "reviewer": "owner",
+        "review_method": "owner listening and contextual affirmation relayed by coordinator; not assistant listening",
+        "question": "The DEF CON Decoded | Practical Tech Shorts playlist is created. Before I publish the clips, one audio check: in clips 2\u201310, did you hear only the speaker in the DEF CON excerpts, with no background music? Also, did the finished narration and captions sound and sync correctly? I can\u2019t reliably hear the audio myself.",
+        "answer": "the outros are approved. files 2-10 are good to go as well",
+        "checks": {
+          "speaker_only_source_audio": "pass",
+          "no_background_music": "pass",
+          "finished_narration_and_caption_sync": "pass"
+        }
+      }
+    }
+  ],
+  "status": "reviewed_clean_production_requests"
+}
