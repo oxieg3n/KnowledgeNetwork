@@ -1,0 +1,57 @@
+Build The Knowledge Network Collector from the project files in this repository:
+https://github.com/oxieg3n/KnowledgeNetwork
+
+Use the existing authenticated GitHub connection. No chat attachments or ZIP
+extraction are needed. If a checkout already exists, inspect its remote, branch,
+and working tree before updating it. Preserve uncommitted work and compatible
+implementation already completed. Otherwise clone this repository.
+
+Fetch the current main branch without resetting existing work. Read applicable
+AGENTS.md instructions and available project skills, then read these files fully:
+
+1. docs/collector/v6/README.md
+2. docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md
+3. docs/collector/v6/COLLECTOR_OPEN_SOURCE_RESEARCH.md
+
+Then inspect the current README.md, OPERATIONS.md, SECURITY.md,
+docs/deployment-status.md, docs/recurring-production.md, docs/rendering.md,
+docs/brand-intro.md, docs/brand-outro.md, src/youtube_ops/, tests, workflows,
+and existing production requests, reviews and publication receipts.
+
+Treat the V6 master directive as the build specification. Its dated repository
+and upstream observations are a research snapshot: verify current files,
+versions and capabilities before implementation. Preserve later verified owner
+approvals and completed compatible work; do not restart the project.
+
+Implement on a dedicated feature branch or worktree. Reuse an appropriate
+existing implementation branch if it already contains Collector work. Do not
+force-push, overwrite unrelated work, merge automatically, or code directly
+on main.
+
+The product name is exactly "The Knowledge Network Collector". Reuse the
+existing pipeline and established open-source components. Validate OpenShot's
+native editor and agent interface first; use the documented Shotcut/MLT
+fallback only for a demonstrated blocker. Deliver a real integrated multitrack
+editor that Assistant can control for text, graphics, audio, captions, effects,
+previews and revisions. Preserve manual edits and native project state.
+
+Integrate the separately installed VoiceStudio through its supported local API.
+Verify the installed schema and the selected model/voice's commercial-use terms.
+Do not silently use a noncommercial model or substitute an unapproved narrator.
+Include BOTH approved plasma intro and outro in newly authored productions.
+Keep the approved outro audio and older approved renders unchanged.
+
+Start with the repository audit, the real Assistant-to-VM job round trip and
+scheduled result retrieval, plus bounded Windows editor and voice proofs.
+Use specialized helper agents on separate worktrees or nonoverlapping files.
+Serialize VM changes, large downloads, heavy media jobs and live upload tests.
+
+Preserve all four content streams, rights checks, publication holds,
+exact-render reviews, recovery, duplicate protection and safe cleanup.
+Do not modify oxieg3n/poweredby, unrelated host settings or existing sessions.
+Do not enable public publishing or purchase services as a test shortcut.
+
+Implement and test rather than stopping at a plan. Continue independent work
+when live access is missing and identify the exact unverified step. Deliver
+Windows build artifacts, test evidence, remaining owner setup steps and a
+reviewable pull request. Never present mocks or upstream claims as live proof.
