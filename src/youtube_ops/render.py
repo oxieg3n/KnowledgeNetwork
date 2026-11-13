@@ -218,7 +218,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 def card(scene: dict, path: Path, size: tuple[int, int], index: int, total: int,
-         *, technical_test: bool, font_path: str) -> None:
+         *, technical_test: bool, font_path: str, review_only: bool = False) -> None:
     from PIL import Image, ImageDraw, ImageFont
     w, h = size
     im = Image.new('RGB', size, '#0c1420')
@@ -251,7 +251,7 @@ def card(scene: dict, path: Path, size: tuple[int, int], index: int, total: int,
             d.ellipse((cx-radius, cy-radius, cx+radius, cy+radius), fill='#172e42', outline='#7dd3fc', width=4)
             d.text((cx-12, cy-20), str(j+1), font=ImageFont.truetype(font_path, 32), fill='#ffffff')
     textblock(scene['caption'], cy + 140, 44 if w < h else 42, '#d9e5ef', h-(520 if w < h else 280))
-    label = 'TECHNICAL TEST • NOT FOR PUBLICATION' if technical_test else 'Original explanatory graphic • AI narration'
+    label = 'PRIVATE REVIEW • AI narration • Not for publication' if review_only else ('TECHNICAL TEST • NOT FOR PUBLICATION' if technical_test else 'Original explanatory graphic • AI narration')
     d.text((margin, h-120), label, font=ImageFont.truetype(font_path, 22), fill='#9fb3c8')
     d.rectangle((margin, h-65, margin + int((w-2*margin)*(index+1)/total), h-57), fill='#7dd3fc')
     im.save(path)
@@ -302,6 +302,19 @@ def assess_probe(data: dict, size: tuple[int, int], short: bool) -> dict:
 
 def assemble_segments(concat: Path, final: Path, *, branded: bool) -> None:
     """Uniform generated scene sizes, stable filter state across color metadata changes."""
+    expected = None
+    for line in concat.read_text().splitlines():
+        match = re.fullmatch(r"file '([a-z0-9-]+\.mp4)'", line)
+        if not match:
+            raise ValueError('Only generated local segment basenames allowed')
+        streams = probe(concat.parent / match[1])['streams']
+        video = next((s for s in streams if s['codec_type']=='video'), {})
+        shape = (video.get('width'), video.get('height'), video.get('pix_fmt'))
+        if None in shape or (expected is not None and shape != expected):
+            raise ValueError('Uniform dimensions and pixel format required before assembly')
+        expected = shape
+    if expected is None:
+        raise ValueError('No generated segments to assemble')
     encoding = (['-vf','fps=30,setpts=PTS-STARTPTS','-af','asetpts=PTS-STARTPTS',
                  '-c:v','libx264','-threads','2','-preset','fast','-crf','19','-pix_fmt','yuv420p',
                  '-r','30','-fps_mode','cfr','-c:a','aac','-ar','48000','-ac','2','-b:a','160k']
@@ -358,7 +371,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
                 lines=wrap(draw,text,font,860)
                 if len(lines)>4: raise ValueError('Licensed attribution/title overflow')
                 for j,line in enumerate(lines): draw.text((110,y+j*58),line,font=font,fill='#f8fafc')
-            draw.text((110,1740),'Licensed archival excerpt • commentary follows',font=ImageFont.truetype(font_path,26),fill='#7dd3fc')
+            draw.text((110,1740),('PRIVATE REVIEW • Not for publication' if spec.get('review_purpose')=='owner_private_review' else 'Licensed archival excerpt • commentary follows'),font=ImageFont.truetype(font_path,26),fill='#7dd3fc')
             png=output/f'scene-{i:02}.png'; bg.save(png)
             mp4=output/f'scene-{i:02}.mp4'
             run(['ffmpeg','-hide_banner','-loglevel','error','-protocol_whitelist','file,pipe','-ss',str(clip['start']),'-t',str(duration),'-i',str(source),
@@ -377,7 +390,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
             ass = output / f'scene-{i:02}.ass'
             write_captions(ass, cues, size, font_path)
             png = output / f'scene-{i:02}.png'
-            card(scene, png, size, i, len(spec['scenes']), technical_test=spec.get('technical_test',False), font_path=font_path)
+            card(scene, png, size, i, len(spec['scenes']), technical_test=spec.get('technical_test',False), font_path=font_path, review_only=spec.get('review_purpose')=='owner_private_review')
             mp4 = output / f'scene-{i:02}.mp4'
             run(['ffmpeg','-hide_banner','-loglevel','error','-loop','1','-i',str(png),'-i',str(wav),
                  '-t',str(duration),'-r','30','-c:v','libx264','-preset','ultrafast','-crf','22','-pix_fmt','yuv420p',
@@ -424,7 +437,9 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
     (output/'captions.json').write_text(json.dumps(captions,indent=2))
     manifest = {
         'schema_version':1, 'technical_test':spec.get('technical_test',False),
-        'publication_eligible':False, 'status':'rendered_pending_editorial_review',
+        'publication_eligible':False, 'status':'preview_rendered_pending_review' if spec.get('review_purpose')=='owner_private_review' else 'rendered_pending_editorial_review',
+        'review_only':spec.get('review_purpose')=='owner_private_review',
+        'review_purpose':spec.get('review_purpose'),
         'sha256':sha256(final),'format':spec['format'],'sources':spec.get('sources',[]),
         'script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
         'brand_intro':intro_evidence,
