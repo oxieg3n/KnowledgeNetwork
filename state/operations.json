@@ -2374,7 +2374,7 @@
         "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
         "review_only": true,
         "reviewed_script_sha256": "8dc898ebb4d8f5a02b083c698aa3d0172ca55a322757aab248488c1448670abc",
-        "status": "rendering",
+        "status": "preview_rendered_pending_review",
         "title": "What survives when a service closes?"
       },
       "meUr8fjy8lQ": {
@@ -5244,16 +5244,19 @@
       "video_id": "-ixuctbWUVw"
     },
     "8f93fcad9c5cf6d53406657e651abede6c33df26cfa02bc8a35c34edaa95c896": {
+      "completed_at": "2026-11-13T11:32:41.612500+00:00",
       "execution_started_at": "2026-11-13T11:31:22.534228+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-04-brand-v1",
       "media_handoff": "pending",
       "production_key": "8f93fcad9c5cf6d53406657e651abede6c33df26cfa02bc8a35c34edaa95c896",
+      "publication_eligible": false,
       "queue": "EVERGREEN_TOP10",
+      "render_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
       "request_sha256": "0f91dc1e836776513252b29a746de3ad130a4a98970c092c2fee4a6c7eb92328",
       "review_only": true,
       "started_at": "2026-11-13T11:30:55.690790+00:00",
-      "status": "execution_started"
+      "status": "preview_rendered_pending_review"
     },
     "a026b9ad3b163bcc65a3ca30e9b835f5b7b8e014b5efed9e12707a9391746723": {
       "completed_at": "2026-11-13T11:29:03.098173+00:00",
@@ -5299,7 +5302,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 185,
+  "revision": 186,
   "rights_ledger": {},
   "runs": [
     {
