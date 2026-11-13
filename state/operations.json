@@ -5234,6 +5234,7 @@
       "video_id": "-ixuctbWUVw"
     },
     "a026b9ad3b163bcc65a3ca30e9b835f5b7b8e014b5efed9e12707a9391746723": {
+      "execution_started_at": "2026-11-13T11:27:48.467804+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-03-brand-v1",
       "media_handoff": "pending",
@@ -5242,7 +5243,7 @@
       "request_sha256": "559a961c9544f41114449c3560ce2a048af14aeef060db11deb7db5eca1f060d",
       "review_only": true,
       "started_at": "2026-11-13T11:27:40.856836+00:00",
-      "status": "rendering"
+      "status": "execution_started"
     },
     "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559": {
       "execution_started_at": "2026-11-12T23:02:13.549318+00:00",
@@ -5273,7 +5274,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 181,
+  "revision": 182,
   "rights_ledger": {},
   "runs": [
     {
