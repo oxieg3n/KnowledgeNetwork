@@ -1649,7 +1649,8 @@
       "public_visibility_verified": true,
       "playlist_membership_verified": true,
       "published_observed_at": "2026-11-13T13:04:26Z",
-      "playback_observation": "Pending browser verification"
+      "playback_observation": "Public Shorts page loads correct title and @PoweredByOxieg3n, but cloud media readyState0/time0; playback pending, not claimed passed.",
+      "public_page_identity_verified": true
     },
     "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2": {
       "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
@@ -1762,7 +1763,8 @@
       "public_visibility_verified": true,
       "playlist_membership_verified": true,
       "published_observed_at": "2026-11-13T13:06:36Z",
-      "playback_observation": "Pending"
+      "playback_observation": "Public Shorts page loads correct title and @PoweredByOxieg3n, but cloud media readyState0/time0; playback pending, not claimed passed.",
+      "public_page_identity_verified": true
     }
   },
   "queues": {
@@ -6059,7 +6061,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 278,
+  "revision": 279,
   "rights_ledger": {},
   "runs": [
     {
