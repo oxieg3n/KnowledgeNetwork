@@ -86,7 +86,10 @@ and exact item identity; no second upload or Publish retry until resolved. An
 absent search result is not proof of failure. Success consumes that item's
 one-use release; immutable events preserve prior intents and outcomes.
 
-Playlist creation likewise needs a create-once intent, approved title/visibility,
+First reconcile and reuse the existing owner-authorized batch playlist if already
+created; do not create a second playlist. Verify its exact ID, ownership and
+visibility from the existing receipt and Studio before recording it.
+Playlist creation, only if verified still necessary, likewise needs a create-once intent, approved title/visibility,
 captured playlist ID and verified receipt. Reconcile an uncertain creation before
 retrying. Add only verified batch video IDs, checking membership first to avoid
 duplicates. Do not imply all ten videos are public while later items await their
