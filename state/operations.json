@@ -2427,6 +2427,16 @@
         "status": "preview_rendered_pending_review",
         "title": "Protect your principles before pressure arrives"
       },
+      "defcon-private-preview-10-brand-v1": {
+        "attempts": 0,
+        "discovered_at": "2026-11-13T11:44:14.451346+00:00",
+        "id": "defcon-private-preview-10-brand-v1",
+        "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
+        "review_only": true,
+        "reviewed_script_sha256": "7d28faa4546160e886fe41358fd278e92c98fc7cf4095c477ba3e3a97b49334d",
+        "status": "rendering",
+        "title": "Possible does not mean permitted"
+      },
       "meUr8fjy8lQ": {
         "attempts": 0,
         "categories": [
@@ -5249,6 +5259,17 @@
       "started_at": "2026-11-13T11:25:26.070423+00:00",
       "status": "preview_rendered_pending_review"
     },
+    "4aca2a4d3fe07b2834cf2fabba354362eb898cb0b9a893d9d8c750dbf07a4ed9": {
+      "executor": "dot-cloud-bounded",
+      "item_id": "defcon-private-preview-10-brand-v1",
+      "media_handoff": "pending",
+      "production_key": "4aca2a4d3fe07b2834cf2fabba354362eb898cb0b9a893d9d8c750dbf07a4ed9",
+      "queue": "EVERGREEN_TOP10",
+      "request_sha256": "17656d82affae41a589e066bfbfd978af12c7ce0e2575fe049176ad6f4bd634d",
+      "review_only": true,
+      "started_at": "2026-11-13T11:44:14.462942+00:00",
+      "status": "rendering"
+    },
     "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047": {
       "completed_at": "2026-11-13T07:53:23.613389+00:00",
       "execution_started_at": "2026-11-13T07:52:36.597747+00:00",
@@ -5427,7 +5448,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 201,
+  "revision": 202,
   "rights_ledger": {},
   "runs": [
     {
