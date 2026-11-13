@@ -5504,13 +5504,15 @@
       "clean_request_key": "fa3e66b85f345bf771dfd131e711dc6e8fcc49f6ff93eff896a8f4cc09fd2d79",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0": {
       "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
@@ -5521,14 +5523,16 @@
       "clean_request_key": "7773099cb806abe3b84da688f2284fd8a21cef7f31ee5927cd631d14624a69d4",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "manual_scope": "Direct owner request to make 10 clips, independent of scheduled automation.",
       "render_sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2": {
       "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
@@ -5539,13 +5543,15 @@
       "clean_request_key": "2ba67e5a71fc88549689b6bd73104a9c693c78fd05cf4885132d40a60c027cb2",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c": {
       "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
@@ -5556,13 +5562,15 @@
       "clean_request_key": "c77f85ee9bbca8eff870d5a51dcef030a7c3d80b8b2511d6f172eeca010a59e0",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b": {
       "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
@@ -5573,13 +5581,15 @@
       "clean_request_key": "78c31b68b13c888ece9e22304f4e0328e9da1f39592df72115558f26e7a35f8b",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307": {
       "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
@@ -5590,13 +5600,15 @@
       "clean_request_key": "bfadb304fc22d9800f55b64b549e7679ef73fb702b8ef1aadac10e3903e870c8",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5": {
       "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
@@ -5607,13 +5619,15 @@
       "clean_request_key": "bdccb713938083a1ebbc277bd6ff4311a68e855abb156f1caf74d678273b6b51",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90": {
       "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
@@ -5624,13 +5638,15 @@
       "clean_request_key": "6351dbd285ede47cdcb3513aae94910753dc76e4be1eefe6d9f6eb5e78558366",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd": {
       "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
@@ -5641,13 +5657,15 @@
       "clean_request_key": "8659904731b063e003b162e2faf95bcaee9b5380bff4c3a8f119364417ca8a65",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     },
     "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2": {
       "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
@@ -5658,16 +5676,18 @@
       "clean_request_key": "dd34fe9d6d04f1e36798b3d3b18d7cfbea71c6efc5eaf4511a6e1e0b0d00ee34",
       "review_only": false,
       "publication_eligible": false,
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
       "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
       "technical_qc": true,
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
-      "outside_footer_pixels_verified": true
+      "outside_footer_pixels_verified": true,
+      "visual_derivative_review": "passed representative exact final frames; correct source and AI labels, no sampled review notices; outside-footer full-frame identity separately verified",
+      "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 265,
+  "revision": 266,
   "rights_ledger": {},
   "runs": [
     {
