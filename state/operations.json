@@ -1101,8 +1101,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-12T22:29:39.521459+00:00",
-      "last_monitored_at": "2026-11-12T22:29:39.521340+00:00",
+      "last_attempt_at": "2026-11-13T11:08:15.661815+00:00",
+      "last_monitored_at": "2026-11-13T11:08:15.661690+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -1242,8 +1242,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-12T22:29:40.147891+00:00",
-      "last_monitored_at": "2026-11-12T22:29:40.147769+00:00",
+      "last_attempt_at": "2026-11-13T11:08:16.285678+00:00",
+      "last_monitored_at": "2026-11-13T11:08:16.285540+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -5039,7 +5039,7 @@
       "upload": 0
     },
     "2026-11-13": {
-      "general": 6,
+      "general": 12,
       "search": 0,
       "upload": 0
     }
@@ -5118,7 +5118,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 150,
+  "revision": 162,
   "rights_ledger": {},
   "runs": [
     {
@@ -5638,6 +5638,69 @@
         "new_leads": 0
       },
       "run_id": "43412885662-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T11:08:15.140341+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "43414590994-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-13T11:08:15.155221+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "43414590994-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T11:08:16.297274+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 0
+      },
+      "run_id": "43414590994-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YouTube uploader OAuth not configured",
+        "Operational email destination/route unconfirmed",
+        "Persistent production runner not verified"
+      ],
+      "checked_at": "2026-11-13T11:08:19.199938+00:00",
+      "command": "report",
+      "details": {
+        "control": {
+          "production_host_verified": false,
+          "publication_paused": true
+        },
+        "pending_alerts": 126,
+        "publication_count": 0,
+        "queues": {
+          "BLOG_VIDEO": 33,
+          "DAILY_TECH_RECAP": 1,
+          "EVERGREEN_TOP10": 31,
+          "FRESH_UPLOAD": 126
+        },
+        "verified_sources": 10
+      },
+      "run_id": "43414590994-1",
       "status": "BLOCKED"
     }
   ],
