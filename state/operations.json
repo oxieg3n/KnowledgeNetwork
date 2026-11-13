@@ -5041,6 +5041,7 @@
   },
   "render_jobs": {
     "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047": {
+      "execution_started_at": "2026-11-13T07:52:36.597747+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "q118B_QdP2k-switching-costs",
       "media_handoff": "pending",
@@ -5048,7 +5049,7 @@
       "queue": "EVERGREEN_TOP10",
       "request_sha256": "53c7743315f0c3eaf2b9728dfdfe6c9fdeb06259b89d8cc1c2c0569f1e6e65ac",
       "started_at": "2026-11-13T07:51:58.286825+00:00",
-      "status": "rendering"
+      "status": "execution_started"
     },
     "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c": {
       "completed_at": "2026-11-12T23:12:08.219171+00:00",
@@ -5088,7 +5089,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 137,
+  "revision": 138,
   "rights_ledger": {},
   "runs": [
     {
