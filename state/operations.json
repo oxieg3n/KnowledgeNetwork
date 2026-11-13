@@ -2387,6 +2387,16 @@
         "status": "preview_rendered_pending_review",
         "title": "Compatibility is more than a data export"
       },
+      "defcon-private-preview-06-brand-v1": {
+        "attempts": 0,
+        "discovered_at": "2026-11-13T11:34:58.471806+00:00",
+        "id": "defcon-private-preview-06-brand-v1",
+        "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
+        "review_only": true,
+        "reviewed_script_sha256": "241eb2585ee8f003866fd978e8c216dafd4c2b7d0e18e41bc23dcc61d8f216c0",
+        "status": "rendering",
+        "title": "An API is not a reliability guarantee"
+      },
       "meUr8fjy8lQ": {
         "attempts": 0,
         "categories": [
@@ -5179,6 +5189,17 @@
     }
   },
   "render_jobs": {
+    "3be938aff59ceb524667770108da88d564d91f4db740d07967192ad3e9000ac8": {
+      "executor": "dot-cloud-bounded",
+      "item_id": "defcon-private-preview-06-brand-v1",
+      "media_handoff": "pending",
+      "production_key": "3be938aff59ceb524667770108da88d564d91f4db740d07967192ad3e9000ac8",
+      "queue": "EVERGREEN_TOP10",
+      "request_sha256": "9cffd30575cc7008155b9a0c4023ffbcb4f6a37023dc9cd399972caea36ff5e5",
+      "review_only": true,
+      "started_at": "2026-11-13T11:34:58.482099+00:00",
+      "status": "rendering"
+    },
     "3df95d68971d179aa81a13b369befded8a3434a9a01a0c681006bc5f46049377": {
       "completed_at": "2026-11-13T11:27:08.324956+00:00",
       "execution_started_at": "2026-11-13T11:25:53.653101+00:00",
@@ -5327,7 +5348,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 189,
+  "revision": 190,
   "rights_ledger": {},
   "runs": [
     {
