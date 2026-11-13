@@ -2340,7 +2340,7 @@
         "reviewed_script_sha256": "f525c8512b1ab479469190eb66918a172e1250d9de31837a3499a41555320b9b",
         "rights_path": "licensed_cc_by_excerpt",
         "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
-        "status": "rendering",
+        "status": "rendered_pending_review",
         "title": "The hidden cost of leaving a platform",
         "video_id": "q118B_QdP2k"
       },
@@ -5041,15 +5041,18 @@
   },
   "render_jobs": {
     "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047": {
+      "completed_at": "2026-11-13T07:53:23.613389+00:00",
       "execution_started_at": "2026-11-13T07:52:36.597747+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "q118B_QdP2k-switching-costs",
       "media_handoff": "pending",
       "production_key": "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047",
+      "publication_eligible": false,
       "queue": "EVERGREEN_TOP10",
+      "render_sha256": "89d5c5d10bc8f3430d9987428a436c98f6c619cd230f91b3a24bdd1c06659e61",
       "request_sha256": "53c7743315f0c3eaf2b9728dfdfe6c9fdeb06259b89d8cc1c2c0569f1e6e65ac",
       "started_at": "2026-11-13T07:51:58.286825+00:00",
-      "status": "execution_started"
+      "status": "rendered_pending_review"
     },
     "86ce52c041720619a47ea85874e20e260211c92284d1701a654c33f7da1d083c": {
       "completed_at": "2026-11-12T23:12:08.219171+00:00",
@@ -5089,7 +5092,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 138,
+  "revision": 139,
   "rights_ledger": {},
   "runs": [
     {
