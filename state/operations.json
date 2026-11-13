@@ -2322,7 +2322,8 @@
       "public_visibility_verified": true,
       "playlist_membership_verified": true,
       "published_observed_at": "2026-11-13T16:27:22Z",
-      "playback_observation": "Pending actual playback verification"
+      "playback_observation": "Browser coordinator verified public URL expected title/@PoweredByOxieg3n/AI label; videoDOM readyState0/currentTime0 no error. Playback pending, not failed or verified.",
+      "public_page_identity_verified": true
     },
     "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd": {
       "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
@@ -2432,7 +2433,8 @@
       "public_visibility_verified": true,
       "playlist_membership_verified": true,
       "published_observed_at": "2026-11-13T16:28:20Z",
-      "playback_observation": "Pending actual playback verification"
+      "playback_observation": "Browser coordinator verified public URL expected title/@PoweredByOxieg3n/AI label; videoDOM readyState0/currentTime0 no error. Playback pending, not failed or verified.",
+      "public_page_identity_verified": true
     },
     "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2": {
       "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
@@ -6799,7 +6801,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 307,
+  "revision": 308,
   "rights_ledger": {},
   "runs": [
     {
