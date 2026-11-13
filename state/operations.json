@@ -1777,8 +1777,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "upload_intent",
-      "privacy_status": "public",
+      "status": "verification_pending",
+      "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
@@ -1815,6 +1815,75 @@
           "evidence": "Owner requests all10 authorized batch posted now. No platform restriction bypass; separate visibility intent required.",
           "previous_event_digest": "ad3a293498f456d2fca18143f088d1506c5a6873f0a9843fd8ad8407b0ca674f",
           "event_digest": "622d31e049780fc875f8fe3f2793ff85811c15dd958d1bdc8d407e8555c87eae"
+        },
+        {
+          "event_id": "defcon-ten-4-video_id_observed",
+          "type": "video_id_observed",
+          "timestamp_utc": "2026-11-13T13:33:16Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-4",
+          "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
+          "package_sha256": "0f85e25b624530660442ab0092ba79de25ce56cd728af5d21d2334c876975a4c",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "622d31e049780fc875f8fe3f2793ff85811c15dd958d1bdc8d407e8555c87eae",
+          "evidence": "Browser coordinator verified exact clean upload, Saved private, upload complete processing will begin shortly; no publish.",
+          "video_id": "kFkZqee4qcg",
+          "event_digest": "dd61333fb569c29d6cbe5e64619a136b16a6fea5b94665bbef463aa1b12172f6"
+        }
+      ],
+      "video_id": "kFkZqee4qcg",
+      "watch_url": "https://www.youtube.com/shorts/kFkZqee4qcg",
+      "processing_observation": "Upload complete; processing will begin shortly"
+    },
+    "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b": {
+      "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+      "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "publication_format": "short",
+      "source_identity": "defcon31:q118B_QdP2k:1520.36-1534.40",
+      "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+      "reviewed_package_sha256": "fa82d5894abeda8c43532ae1399167917e83f2e4891965e72d7b23a3cf6255a1",
+      "attempt_ny_date": "2026-11-13",
+      "insert_quota_pt_date": "2026-11-13",
+      "api_insert_performed": false,
+      "method": "owner-authorized manual YouTube Studio",
+      "status": "upload_intent",
+      "privacy_status": "public",
+      "batch_id": "defcon-ten-2026-11-13",
+      "release_path": "production/releases/2026-11-13-defcon-ten.json",
+      "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
+      "title": "Compatibility is more than a data export",
+      "events": [
+        {
+          "event_id": "defcon-ten-5-reserved",
+          "type": "reserved",
+          "timestamp_utc": "2026-11-13T13:33:16Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-5",
+          "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+          "package_sha256": "fa82d5894abeda8c43532ae1399167917e83f2e4891965e72d7b23a3cf6255a1",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": null,
+          "evidence": "Reviewed finite batch; owner removed internal count cap. Exact clean asset and package verified.",
+          "event_digest": "9fa1a605a8bba7fb4be0f7f432b5598782f847902efd1285a4c064a7c3e24e81"
+        },
+        {
+          "event_id": "defcon-ten-5-upload_intent",
+          "type": "upload_intent",
+          "timestamp_utc": "2026-11-13T13:33:16Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-5",
+          "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+          "package_sha256": "fa82d5894abeda8c43532ae1399167917e83f2e4891965e72d7b23a3cf6255a1",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "9fa1a605a8bba7fb4be0f7f432b5598782f847902efd1285a4c064a7c3e24e81",
+          "evidence": "Next independent upload may proceed; separate visibility intent still required.",
+          "event_digest": "74d7bfaf6a60c1ccdc32d299240d912f54eabf1ea943937ffaacc8913675aab7"
         }
       ]
     }
@@ -6113,7 +6182,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 292,
+  "revision": 293,
   "rights_ledger": {},
   "runs": [
     {
