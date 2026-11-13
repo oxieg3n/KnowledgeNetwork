@@ -112,6 +112,13 @@ class Uploader:
         return data['items'][0]
 
     def _validate(self, state: State, item: dict):
+        # Inspect durable provenance, not just caller-supplied flags. A separate
+        # future reviewed-release mechanism is outside this private-preview path.
+        preview_jobs = [j for j in state.data.get('render_jobs',{}).values() if j.get('review_only')]
+        if item.get('review_only') or item.get('purpose')=='owner_private_review' or item.get('review_purpose')=='owner_private_review' or any(
+            j.get('production_key')==item.get('production_key') or
+            (j.get('render_sha256') and j.get('render_sha256')==item.get('render_sha256')) for j in preview_jobs):
+            raise UploadBlocked('Owner-review preview has no production release')
         if self.config.get('upload_enabled') is not True or self.config.get('oauth_verified') is not True:
             raise UploadBlocked('Uploader/OAuth not explicitly enabled and verified')
         if self.config.get('publication_paused', True):
