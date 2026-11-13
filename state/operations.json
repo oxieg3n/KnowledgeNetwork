@@ -1604,8 +1604,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "upload_intent",
-      "privacy_status": "public",
+      "status": "verification_pending",
+      "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "3b0f1e35e76ccb0fd5567659aff58a5c89b815bc",
@@ -1642,8 +1642,27 @@
           "evidence": "Third and final New York day slot; separate public intent still required",
           "previous_event_digest": "7b78a030569c1bbc256cbc5659b92a05d6d34cb6cd4fd92a2ea9b886313d0884",
           "event_digest": "9af5893c78606152d3f5a585cb65394f4ef5d50cded6aed1a4c2b40089348fc2"
+        },
+        {
+          "event_id": "defcon-ten-03-video-id",
+          "type": "video_id_observed",
+          "timestamp_utc": "2026-11-13T13:01:40Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-3",
+          "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
+          "package_sha256": "1bd599a39b7b5c0be2c6345d2a7f5f0f5e0b1ee88d1076268a5d2b63e3927273",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "9af5893c78606152d3f5a585cb65394f4ef5d50cded6aed1a4c2b40089348fc2",
+          "video_id": "_e34CKau6-4",
+          "evidence": "Browser coordinator observed exact clean file uploaded and saved private, matching Shorts link; no publish.",
+          "event_digest": "db362a1961d630940b9b1ffe21e6199a6df9bec828df2f6b615b849f6ea304f9"
         }
-      ]
+      ],
+      "video_id": "_e34CKau6-4",
+      "watch_url": "https://www.youtube.com/shorts/_e34CKau6-4",
+      "response_received_at": "2026-11-13T13:01:40Z"
     }
   },
   "queues": {
@@ -5940,7 +5959,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 273,
+  "revision": 274,
   "rights_ledger": {},
   "runs": [
     {
