@@ -2442,7 +2442,7 @@
         "discovered_at": "2026-11-13T12:09:04.807142+00:00",
         "id": "defcon-production-01-brand-v1",
         "request_path": "production/requests/2026-11-13-defcon-ten-clean.json",
-        "status": "rendering",
+        "status": "rendered_pending_review",
         "title": "The hidden cost of leaving a platform"
       },
       "meUr8fjy8lQ": {
@@ -5493,7 +5493,7 @@
       "status": "execution_started"
     }
   },
-  "revision": 221,
+  "revision": 222,
   "rights_ledger": {},
   "runs": [
     {
