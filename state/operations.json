@@ -5480,6 +5480,7 @@
       "status": "preview_rendered_pending_review"
     },
     "fa3e66b85f345bf771dfd131e711dc6e8fcc49f6ff93eff896a8f4cc09fd2d79": {
+      "execution_started_at": "2026-11-13T12:11:27.698845+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-production-01-brand-v1",
       "media_handoff": "pending",
@@ -5489,10 +5490,10 @@
       "request_sha256": "7965798a7b0d06933c9a349be820e33a881a590ec41fb432318ac704234e9cd8",
       "review_only": false,
       "started_at": "2026-11-13T12:09:04.823277+00:00",
-      "status": "rendering"
+      "status": "execution_started"
     }
   },
-  "revision": 220,
+  "revision": 221,
   "rights_ledger": {},
   "runs": [
     {
