@@ -20,3 +20,20 @@ class AssemblyTests(unittest.TestCase):
    self.assertGreaterEqual(int(video['nb_frames']),89)
    self.assertLess(abs(float(video['duration'])-float(audio['duration'])),.08)
    self.assertGreater(float(video['duration']),2.95)
+
+   for t,channel in ((.5,2),(1.5,0),(2.5,1)):
+    raw=subprocess.check_output(['ffmpeg','-v','error','-ss',str(t),'-i',str(final),'-frames:v','1','-vf','scale=1:1','-pix_fmt','rgb24','-f','rawvideo','-'])
+    self.assertEqual(max(range(3),key=lambda i:raw[i]),channel)
+    self.assertGreater(raw[channel],max(raw[i] for i in range(3) if i!=channel)+40)
+   frames=json.loads(subprocess.check_output(['ffprobe','-v','error','-select_streams','v:0','-show_frames','-show_entries','frame=best_effort_timestamp_time','-of','json',str(final)]))['frames']
+   pts=[float(x['best_effort_timestamp_time']) for x in frames]
+   self.assertTrue(all(a<b for a,b in zip(pts,pts[1:])))
+   self.assertAlmostEqual(pts[-1]-pts[0],(len(pts)-1)/30,places=3)
+ def test_mixed_dimensions_rejected_before_assembly(self):
+  from unittest.mock import patch
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);concat=root/'segments.txt';concat.write_text("file 'a.mp4'\nfile 'b.mp4'\n")
+   def info(width):return {'streams':[{'codec_type':'video','width':width,'height':160,'pix_fmt':'yuv420p'}]}
+   with patch('youtube_ops.render.probe',side_effect=[info(90),info(180)]),patch('youtube_ops.render.run') as run:
+    with self.assertRaisesRegex(ValueError,'Uniform dimensions'):assemble_segments(concat,root/'out.mp4',branded=True)
+    run.assert_not_called()
