@@ -94,3 +94,13 @@ Piper-narrated production path has not been rerendered for this change; the
 local test interpreter did not have Piper installed. Actual listening and
 final episode playback review remain pending. Do not transfer these technical
 results into an editorial or audio approval.
+
+### Licensed-source metadata transition regression
+
+A three-scene synthetic fixture exposed a decoder/filter reinitialization hazard
+when the middle licensed-style segment changes color metadata: nominal 3.002-second
+audio survived while video shortened to 2.100 seconds, despite reporting 30 fps.
+Assembly now disables filter reinitialization across the uniformly sized generated
+segments. The regression verifies at least 89 frames and matching approximately
+three-second audio/video durations. This is a timeline test, not a listening or
+licensed-content approval; actual episode transitions remain subject to review.

@@ -74,3 +74,24 @@ display title as described in [brand-intro.md](brand-intro.md). The 1.6-second
 bumper counts toward the total runtime. Preserve source attribution and verify
 the exact combined render, including listening, before release. This production
 default does not modify older renders, receipts, upload permissions or pause state.
+
+## Owner-private review previews
+
+An explicit owner request to make source-based review videos may use
+`rights_path=licensed_cc_by_review_preview`, with request `purpose` and script
+`review_purpose` both `owner_private_review`. This is not production readiness.
+The queue status is `preview_requested`; normal exact-script editorial review,
+remote reservation and execution-start checkpoints still apply. Licensing,
+commercial adaptation scope, exact source hashes, visual/context inspection and
+attribution remain mandatory. No known rights conflict is allowed. Audio inspection
+may remain explicitly `pending`; underlying-rights and no-third-party-music flags
+retain their actual values and are never invented to obtain a render.
+
+Preview manifests and durable render jobs retain `review_only=true` and
+`publication_eligible=false`; completion is `preview_rendered_pending_review`.
+The uploader rejects explicit preview packages and retained preview jobs matching
+the production key or media hash even if submitted flags are changed. Private
+Library delivery to the owner is review, not YouTube upload or public release.
+There is no automatic promotion mechanism. A future fully reviewed release must
+be handled separately; do not relabel or erase the preview receipt. Publication
+pause, daily cap, credentials and all normal production defaults remain unchanged.

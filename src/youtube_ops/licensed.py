@@ -7,7 +7,11 @@ from .render import sha256
 LICENSES = {'CC-BY-3.0': 'https://creativecommons.org/licenses/by/3.0/',
             'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/'}
 
-def validate_licensed(spec):
+def validate_licensed(spec, *, review_only=False):
+    if review_only and spec.get("review_purpose") != "owner_private_review":
+        raise ValueError("Explicit owner-private preview purpose required")
+    if not review_only and spec.get("review_purpose"):
+        raise ValueError("Preview spec cannot be treated as production")
     assets = spec.get('licensed_assets', {})
     clips = [s for s in spec.get('scenes', []) if 'licensed_excerpt' in s]
     if spec.get('format') != 'short' or len(clips) != 1 or len(spec['scenes']) < 3:
@@ -23,7 +27,13 @@ def validate_licensed(spec):
             if not a.get(k,'').startswith('https://'): raise ValueError('Public provenance URL required')
         for k in ('title','creator','attribution','modifications','rights_review_evidence'):
             if not isinstance(a.get(k),str) or not a[k].strip(): raise ValueError('Missing provenance: '+k)
-        for k in ('commercial_adaptation_verified','underlying_rights_reviewed','excerpt_visual_reviewed','no_third_party_music','no_endorsement'):
+        required = ('commercial_adaptation_verified','excerpt_visual_reviewed','no_endorsement') if review_only else ('commercial_adaptation_verified','underlying_rights_reviewed','excerpt_visual_reviewed','no_third_party_music','no_endorsement')
+        if review_only:
+            if a.get('known_rights_conflict') is not False or a.get('audio_review_status') not in ('pending','pass'):
+                raise ValueError('Preview requires explicit conflict assessment and audio-review status')
+            if any(type(a.get(k)) is not bool for k in ('underlying_rights_reviewed','no_third_party_music')):
+                raise ValueError('Preview must retain actual incomplete rights flags')
+        for k in required:
             if a.get(k) is not True: raise ValueError('Missing rights review: '+k)
     s=clips[0]; c=s['licensed_excerpt']
     if c.get('asset_id') not in assets: raise ValueError('Unknown licensed asset')
@@ -48,7 +58,7 @@ def validate_licensed(spec):
         raise ValueError('Substantive original commentary review required; scene counts are not a rights safe harbor')
 
 def verify_local_assets(spec, local_assets):
-    validate_licensed(spec)
+    validate_licensed(spec, review_only=spec.get('review_purpose')=='owner_private_review')
     if set(local_assets or {}) != set(spec['licensed_assets']): raise ValueError('Exact local asset mapping required')
     for key,path in local_assets.items():
         path=Path(path)
