@@ -32,6 +32,14 @@
       "url": "https://www.youtube.com/watch?v=1oryBjH9iiQ",
       "video_id": "1oryBjH9iiQ"
     },
+    "video:25X9nalEXg0": {
+      "created_at": "2026-11-13T11:21:38.844380+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Bombanana XBOX Launch Trailer",
+      "url": "https://www.youtube.com/watch?v=25X9nalEXg0",
+      "video_id": "25X9nalEXg0"
+    },
     "video:2eVPrGJPy30": {
       "created_at": "2026-11-12T23:07:36.462892+00:00",
       "kind": "new_video",
@@ -127,6 +135,14 @@
       "title": "Just Dance: Decades of Hits \u2013 Every Era One Floor Trailer \u2013 Nintendo Switch 2",
       "url": "https://www.youtube.com/watch?v=AFclxMTQ2hI",
       "video_id": "AFclxMTQ2hI"
+    },
+    "video:ANljgCRnrKA": {
+      "created_at": "2026-11-13T11:21:38.368053+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Bombanana! - Launch Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=ANljgCRnrKA",
+      "video_id": "ANljgCRnrKA"
     },
     "video:AQc8khSSd-4": {
       "created_at": "2026-11-12T21:57:23.629956+00:00",
@@ -447,6 +463,14 @@
       "title": "I Am Security - Launch Trailer | PS VR2 Games",
       "url": "https://www.youtube.com/watch?v=VQjDInADRMM",
       "video_id": "VQjDInADRMM"
+    },
+    "video:Vuv1aC_1cyk": {
+      "created_at": "2026-11-13T11:21:38.368065+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Naruto To Boruto: Shinobi Striker - Kabuto Yakushi (Sage Mode) DLC Trailer | PS4 Games",
+      "url": "https://www.youtube.com/watch?v=Vuv1aC_1cyk",
+      "video_id": "Vuv1aC_1cyk"
     },
     "video:W2DPDjuL7Do": {
       "created_at": "2026-11-12T21:57:21.142717+00:00",
@@ -1073,8 +1097,8 @@
         "https://www.youtube.com/@PlayStation",
         "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
       ],
-      "last_attempt_at": "2026-11-12T23:07:36.463234+00:00",
-      "last_monitored_at": "2026-11-12T23:07:36.463122+00:00",
+      "last_attempt_at": "2026-11-13T11:21:38.368344+00:00",
+      "last_monitored_at": "2026-11-13T11:21:38.368212+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "PlayStation",
@@ -1328,8 +1352,8 @@
         "https://www.youtube.com/@Xbox",
         "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
       ],
-      "last_attempt_at": "2026-11-12T23:07:37.009806+00:00",
-      "last_monitored_at": "2026-11-12T23:07:37.009677+00:00",
+      "last_attempt_at": "2026-11-13T11:21:38.844633+00:00",
+      "last_monitored_at": "2026-11-13T11:21:38.844497+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Xbox",
@@ -2484,6 +2508,26 @@
         "url": "https://www.youtube.com/watch?v=1oryBjH9iiQ",
         "video_id": "1oryBjH9iiQ"
       },
+      "25X9nalEXg0": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-13T11:21:38.844360+00:00",
+        "id": "25X9nalEXg0",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T09:00:25Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Bombanana XBOX Launch Trailer",
+        "url": "https://www.youtube.com/watch?v=25X9nalEXg0",
+        "video_id": "25X9nalEXg0"
+      },
       "2eVPrGJPy30": {
         "api_verification": "verified",
         "attempts": 0,
@@ -2730,6 +2774,26 @@
         "title": "Just Dance: Decades of Hits \u2013 Every Era One Floor Trailer \u2013 Nintendo Switch 2",
         "url": "https://www.youtube.com/watch?v=AFclxMTQ2hI",
         "video_id": "AFclxMTQ2hI"
+      },
+      "ANljgCRnrKA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-13T11:21:38.368031+00:00",
+        "id": "ANljgCRnrKA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T09:00:19Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Bombanana! - Launch Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=ANljgCRnrKA",
+        "video_id": "ANljgCRnrKA"
       },
       "AQc8khSSd-4": {
         "api_verification": "verified",
@@ -3561,6 +3625,26 @@
         "title": "I Am Security - Launch Trailer | PS VR2 Games",
         "url": "https://www.youtube.com/watch?v=VQjDInADRMM",
         "video_id": "VQjDInADRMM"
+      },
+      "Vuv1aC_1cyk": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-13T11:21:38.368061+00:00",
+        "id": "Vuv1aC_1cyk",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T05:00:05Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Naruto To Boruto: Shinobi Striker - Kabuto Yakushi (Sage Mode) DLC Trailer | PS4 Games",
+        "url": "https://www.youtube.com/watch?v=Vuv1aC_1cyk",
+        "video_id": "Vuv1aC_1cyk"
       },
       "W2DPDjuL7Do": {
         "api_verification": "verified",
@@ -5039,7 +5123,7 @@
       "upload": 0
     },
     "2026-11-13": {
-      "general": 12,
+      "general": 18,
       "search": 0,
       "upload": 0
     }
@@ -5118,7 +5202,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 162,
+  "revision": 174,
   "rights_ledger": {},
   "runs": [
     {
@@ -5701,6 +5785,69 @@
         "verified_sources": 10
       },
       "run_id": "43414590994-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T11:21:37.834463+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "43416415075-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-13T11:21:37.853875+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 3
+      },
+      "run_id": "43416415075-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T11:21:38.853763+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 0
+      },
+      "run_id": "43416415075-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YouTube uploader OAuth not configured",
+        "Operational email destination/route unconfirmed",
+        "Persistent production runner not verified"
+      ],
+      "checked_at": "2026-11-13T11:21:42.310380+00:00",
+      "command": "report",
+      "details": {
+        "control": {
+          "production_host_verified": false,
+          "publication_paused": true
+        },
+        "pending_alerts": 129,
+        "publication_count": 0,
+        "queues": {
+          "BLOG_VIDEO": 33,
+          "DAILY_TECH_RECAP": 1,
+          "EVERGREEN_TOP10": 31,
+          "FRESH_UPLOAD": 129
+        },
+        "verified_sources": 10
+      },
+      "run_id": "43416415075-1",
       "status": "BLOCKED"
     }
   ],
