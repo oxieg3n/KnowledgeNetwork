@@ -480,6 +480,14 @@
       "url": "https://www.youtube.com/watch?v=YKiN_h38Gzo",
       "video_id": "YKiN_h38Gzo"
     },
+    "video:YmxpxJZvm4M": {
+      "created_at": "2026-11-13T07:44:41.064607+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Cyber at the Frontier",
+      "url": "https://www.youtube.com/watch?v=YmxpxJZvm4M",
+      "video_id": "YmxpxJZvm4M"
+    },
     "video:Ys5914f54mY": {
       "created_at": "2026-11-12T21:57:21.142640+00:00",
       "kind": "new_video",
@@ -1019,6 +1027,7 @@
     }
   },
   "blog_versions": {
+    "https://poweredby.oxieg3n.com/blog/a2ui-native-component-catalog/": "8fd5919c33001bc38f493dfefa2c9edf006a17a76b279734595afb672336af03",
     "https://poweredby.oxieg3n.com/blog/ai-memory-correction-test/": "accb85819d8cab6394ed45eb5fdce153be778476c64ff728a1e62c12ec0fc71d",
     "https://poweredby.oxieg3n.com/blog/aws-emulator-local-testing/": "d39c278549b5c9945a9fed511bf180da2e8b22dde3bc618b8b5df3faf83eba55",
     "https://poweredby.oxieg3n.com/blog/choose-your-website-visual-direction/": "8ae8b21d77fdfe8392938c4808dfcf14e9e27596f5575e317af79981e3b84ac5",
@@ -1038,6 +1047,7 @@
     "https://poweredby.oxieg3n.com/blog/github-chat-code-handoff/": "20ac8ef733ac89e891cece461ce7e7644bbecf7edaf1c24325d75d3d4d905f79",
     "https://poweredby.oxieg3n.com/blog/github-pull-request-overview-review/": "41156743e2d8e8fd6887327895c28a12b5ac9f3b6783521fec815e3baeac9bbd",
     "https://poweredby.oxieg3n.com/blog/grok-bot-shared-account-check/": "595ea5363eddd6f9537f68c4011d4e40a259bd1f798f82603b6faeeb65f62ab6",
+    "https://poweredby.oxieg3n.com/blog/litellm-11086-request-fields-upgrade-check/": "4442403f7ac4b487d63326798d17427a6b5ac20b6d33c9b3ad3b55eae209a543",
     "https://poweredby.oxieg3n.com/blog/meta-muse-spaces-client-work/": "1cd81d40e8ce2ae290f03c354ea9e26792ea6888fd97efe556b33cb8dffdcf37",
     "https://poweredby.oxieg3n.com/blog/mistral-studio-small-business-automation/": "2fdf6c1b64f2f6aad07af1f72463dd3264b6d52aa5481a67ec2363597deb75fb",
     "https://poweredby.oxieg3n.com/blog/motive-fleet-agent-demo/": "bca2ca146309e3cf3102ceba0e1e09cd9bf3e1179299f7bfeb9d43b7ad01219e",
@@ -1045,9 +1055,11 @@
     "https://poweredby.oxieg3n.com/blog/nod-local-agent-first-test/": "970c34ad755c7328f9e97b2f33fb9ac3eb213038ad0fba04a9d5546e4e5e1133",
     "https://poweredby.oxieg3n.com/blog/practical-ai-automation-small-business/": "6f29c3fe615878529e8a372d0722dbfa2bab32ff32d024a507a70a65ea53de2f",
     "https://poweredby.oxieg3n.com/blog/qwen-code-repository-event-filter/": "31afcfb9e43ad6ded67fe8be2afa8f7d2b01bb86409d716c6d06bf007155d340",
+    "https://poweredby.oxieg3n.com/blog/slay-the-spire-2-beta-fool-blitz-dread/": "6f10d9b3fb5658a0e581ed77de9733aef358637999b145c6af857e622fd273dd",
     "https://poweredby.oxieg3n.com/blog/vercel-tracing-website-slowdowns/": "52cad508f87b2a19d6780d05c4fe0074b5a2926276720cf3cd7b46baeadb8fb7",
     "https://poweredby.oxieg3n.com/blog/webflow-copied-component-ownership/": "b0fe2785c20e85e6cf5709085a464ae8d7eaae57b5d05eed494b1a5a90b08de5",
-    "https://poweredby.oxieg3n.com/blog/website-project-brief-checklist/": "252851c5880ebb6a9ba81e0d5a852e69f8befe9901a384adad3c5fe568ceb963"
+    "https://poweredby.oxieg3n.com/blog/website-project-brief-checklist/": "252851c5880ebb6a9ba81e0d5a852e69f8befe9901a384adad3c5fe568ceb963",
+    "https://poweredby.oxieg3n.com/blog/workspace-mcp-oauth-client-cutoff/": "9b21c822756077033c6f72fb7c39d30c34c27677f76dd37082ea4eb250644dc2"
   },
   "channels": {
     "UC-2Y8dQb0S6DtpxNgAKoJKA": {
@@ -1173,8 +1185,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-12T22:14:07.791541+00:00",
-      "last_monitored_at": "2026-11-12T22:14:07.791390+00:00",
+      "last_attempt_at": "2026-11-13T07:44:41.467760+00:00",
+      "last_monitored_at": "2026-11-13T07:44:41.467597+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -1260,8 +1272,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-12T22:14:07.369924+00:00",
-      "last_monitored_at": "2026-11-12T22:14:07.369832+00:00",
+      "last_attempt_at": "2026-11-13T07:44:41.064808+00:00",
+      "last_monitored_at": "2026-11-13T07:44:41.064676+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -1398,6 +1410,19 @@
         "status": "needs_editorial_review",
         "title": "Meta Muse Spaces: A Client-Work Organization Test for Freelancers"
       },
+      "09fea17420ea46b51dec084c48cae63c6b26ed1eaf9ce51d9c56bf0dcd78839b": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/a2ui-native-component-catalog/",
+        "discovered_at": "2026-11-13T07:44:42.033815+00:00",
+        "id": "09fea17420ea46b51dec084c48cae63c6b26ed1eaf9ce51d9c56bf0dcd78839b",
+        "live_verified_at": "2026-11-13T07:44:42.033796+00:00",
+        "original_published_at": "Fri, 13 Nov 2026 02:26:22 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "8fd5919c33001bc38f493dfefa2c9edf006a17a76b279734595afb672336af03",
+        "status": "needs_editorial_review",
+        "title": "A2UI 1.0: build agent interfaces from your own components"
+      },
       "1cbc2216e525ee1d16f69a8b8470256af1cadbfcb97a46c49f0396b9e4f663cf": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/qwen-code-repository-event-filter/",
@@ -1463,6 +1488,19 @@
         "status": "needs_editorial_review",
         "title": "Copying a Webflow section? Check who maintains the copy"
       },
+      "29837ed77740562ba0e48f25d25de2a1c78672c9573ffb45e9fdb395bdcab923": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/workspace-mcp-oauth-client-cutoff/",
+        "discovered_at": "2026-11-13T07:44:41.805730+00:00",
+        "id": "29837ed77740562ba0e48f25d25de2a1c78672c9573ffb45e9fdb395bdcab923",
+        "live_verified_at": "2026-11-13T07:44:41.805711+00:00",
+        "original_published_at": "Fri, 13 Nov 2026 02:20:23 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "9b21c822756077033c6f72fb7c39d30c34c27677f76dd37082ea4eb250644dc2",
+        "status": "needs_editorial_review",
+        "title": "Workspace MCP's OAuth cutoff: check the client, not just the login"
+      },
       "35349d6182c590cc4e3684e7314772e1f6147d9bf39ee12cb48ecb674cdf0467": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/nod-local-agent-first-test/",
@@ -1488,6 +1526,19 @@
         "source_version": "a1bf81c79d029a3466be1e14e962ee76b44600561525ab9d355ac46e81a8352b",
         "status": "needs_editorial_review",
         "title": "Figma\u2019s Faster Object Selection: A Product-Photo Review Checklist"
+      },
+      "43d7403fd54de45cb9305634049864fa11021a56520cc66a79696af1eb4a2063": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/slay-the-spire-2-beta-fool-blitz-dread/",
+        "discovered_at": "2026-11-13T07:44:42.182355+00:00",
+        "id": "43d7403fd54de45cb9305634049864fa11021a56520cc66a79696af1eb4a2063",
+        "live_verified_at": "2026-11-13T07:44:42.182336+00:00",
+        "original_published_at": "Thu, 12 Nov 2026 23:33:18 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "6f10d9b3fb5658a0e581ed77de9733aef358637999b145c6af857e622fd273dd",
+        "status": "needs_editorial_review",
+        "title": "Slay the Spire 2: where to find The Fool, Blitz and Dread"
       },
       "49ca49be7d8722ec13aef78dbd4c76e8bba2937db305b5bba4102707c200149e": {
         "attempts": 0,
@@ -1618,6 +1669,19 @@
         "source_version": "52cad508f87b2a19d6780d05c4fe0074b5a2926276720cf3cd7b46baeadb8fb7",
         "status": "needs_editorial_review",
         "title": "Vercel Tracing: Investigate Website Slowdowns and Check the Cost"
+      },
+      "aefe81cbad20ea575637689db7f725c7df50a96c555c9bf1393f330958a8fafc": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/litellm-11086-request-fields-upgrade-check/",
+        "discovered_at": "2026-11-13T07:44:41.934777+00:00",
+        "id": "aefe81cbad20ea575637689db7f725c7df50a96c555c9bf1393f330958a8fafc",
+        "live_verified_at": "2026-11-13T07:44:41.934759+00:00",
+        "original_published_at": "Fri, 13 Nov 2026 02:23:18 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "4442403f7ac4b487d63326798d17427a6b5ac20b6d33c9b3ad3b55eae209a543",
+        "status": "needs_editorial_review",
+        "title": "LiteLLM 1.108.6: check request fields before upgrading"
       },
       "b83384e658a09ee00637c1d27a765dd20bfd7737ced722a56179683572f0b123": {
         "attempts": 0,
@@ -3568,6 +3632,28 @@
         "url": "https://www.youtube.com/watch?v=YKiN_h38Gzo",
         "video_id": "YKiN_h38Gzo"
       },
+      "YmxpxJZvm4M": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-13T07:44:41.064587+00:00",
+        "id": "YmxpxJZvm4M",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-12T22:37:14Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Cyber at the Frontier",
+        "url": "https://www.youtube.com/watch?v=YmxpxJZvm4M",
+        "video_id": "YmxpxJZvm4M"
+      },
       "Ys5914f54mY": {
         "api_verification": "verified",
         "attempts": 0,
@@ -4936,7 +5022,7 @@
   },
   "quota": {
     "2026-11-12": {
-      "general": 33,
+      "general": 39,
       "search": 3,
       "upload": 0
     }
@@ -4980,7 +5066,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 124,
+  "revision": 136,
   "rights_ledger": {},
   "runs": [
     {
@@ -5422,6 +5508,69 @@
         "new_leads": 0
       },
       "run_id": "43353483848-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T07:44:40.610174+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "43387914673-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-13T07:44:40.633181+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "43387914673-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T07:44:41.476899+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 4
+      },
+      "run_id": "43387914673-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YouTube uploader OAuth not configured",
+        "Operational email destination/route unconfirmed",
+        "Persistent production runner not verified"
+      ],
+      "checked_at": "2026-11-13T07:44:46.539365+00:00",
+      "command": "report",
+      "details": {
+        "control": {
+          "production_host_verified": false,
+          "publication_paused": true
+        },
+        "pending_alerts": 126,
+        "publication_count": 0,
+        "queues": {
+          "BLOG_VIDEO": 33,
+          "DAILY_TECH_RECAP": 1,
+          "EVERGREEN_TOP10": 30,
+          "FRESH_UPLOAD": 126
+        },
+        "verified_sources": 10
+      },
+      "run_id": "43387914673-1",
       "status": "BLOCKED"
     }
   ],
