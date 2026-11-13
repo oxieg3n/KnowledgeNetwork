@@ -1643,7 +1643,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "verification_pending",
+      "status": "visibility_intent",
       "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -1697,14 +1697,33 @@
           "video_id": "_e34CKau6-4",
           "evidence": "Browser coordinator observed exact clean file uploaded and saved private, matching Shorts link; no publish.",
           "event_digest": "db362a1961d630940b9b1ffe21e6199a6df9bec828df2f6b615b849f6ea304f9"
+        },
+        {
+          "event_id": "defcon-ten-03-public-intent",
+          "type": "visibility_intent",
+          "timestamp_utc": "2026-11-13T13:05:02Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-3",
+          "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
+          "package_sha256": "1bd599a39b7b5c0be2c6345d2a7f5f0f5e0b1ee88d1076268a5d2b63e3927273",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "db362a1961d630940b9b1ffe21e6199a6df9bec828df2f6b615b849f6ea304f9",
+          "video_id": "_e34CKau6-4",
+          "requested_visibility": "public",
+          "evidence": "Browser coordinator reopened exact saved draft: reviewed title/full description trailing newline normalized, existing playlist/notkids/AIyes/nopaid. Processing complete; Copyright check complete No issues found. No future claims guarantee.",
+          "event_digest": "392d10a5b941040255f3513c1c9f8e82c9471f1792009d8cbc17e4b6da2809c2"
         }
       ],
       "video_id": "_e34CKau6-4",
       "watch_url": "https://www.youtube.com/shorts/_e34CKau6-4",
       "response_received_at": "2026-11-13T13:01:40Z",
       "metadata_browser_verified": true,
-      "processing_observation": "Processing and copyright checks ongoing; saved private draft",
-      "playlist_id": "PLBqhZZfg3quY"
+      "processing_observation": "Processing complete",
+      "playlist_id": "PLBqhZZfg3quY",
+      "requested_visibility": "public",
+      "copyright_check_observation": "Copyright check complete No issues found"
     }
   },
   "queues": {
@@ -6001,7 +6020,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 276,
+  "revision": 277,
   "rights_ledger": {},
   "runs": [
     {
