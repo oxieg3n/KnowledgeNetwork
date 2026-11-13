@@ -2377,6 +2377,16 @@
         "status": "preview_rendered_pending_review",
         "title": "What survives when a service closes?"
       },
+      "defcon-private-preview-05-brand-v1": {
+        "attempts": 0,
+        "discovered_at": "2026-11-13T11:32:59.216423+00:00",
+        "id": "defcon-private-preview-05-brand-v1",
+        "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
+        "review_only": true,
+        "reviewed_script_sha256": "ffe0773d100b22a11a89918cc0af58a779425acc356a69c8144a51d93a62bf52",
+        "status": "rendering",
+        "title": "Compatibility is more than a data export"
+      },
       "meUr8fjy8lQ": {
         "attempts": 0,
         "categories": [
@@ -5300,9 +5310,20 @@
       "review_only": true,
       "started_at": "2026-11-13T11:23:31.701385+00:00",
       "status": "preview_rendered_pending_review"
+    },
+    "f3f40c871dca12606a3a577e33ac6a1afee97ce36456cce19812dd78903b8454": {
+      "executor": "dot-cloud-bounded",
+      "item_id": "defcon-private-preview-05-brand-v1",
+      "media_handoff": "pending",
+      "production_key": "f3f40c871dca12606a3a577e33ac6a1afee97ce36456cce19812dd78903b8454",
+      "queue": "EVERGREEN_TOP10",
+      "request_sha256": "3cbcc3420974b91be9559a0b04f3483d7927ecebc0e074d6674abcad609ea724",
+      "review_only": true,
+      "started_at": "2026-11-13T11:32:59.229170+00:00",
+      "status": "rendering"
     }
   },
-  "revision": 186,
+  "revision": 187,
   "rights_ledger": {},
   "runs": [
     {
