@@ -1876,7 +1876,8 @@
       "public_visibility_verified": true,
       "playlist_membership_verified": true,
       "published_observed_at": "2026-11-13T13:36:22Z",
-      "playback_observation": "Pending; not tested yet"
+      "playback_observation": "Public page correct title/channel/AI label; cloud player time0 readyState0 no error, playback pending",
+      "public_page_identity_verified": true
     },
     "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b": {
       "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
@@ -1889,7 +1890,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "verification_pending",
+      "status": "visibility_intent",
       "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -1941,11 +1942,32 @@
           "evidence": "Browser coordinator observed private uploaded file, upload complete processing will begin shortly; no publish.",
           "video_id": "LGAPzHFiKvQ",
           "event_digest": "bf8315d54891eef8f5326d00b57c6311997856816537a7ee7373a3a56a1473df"
+        },
+        {
+          "event_id": "defcon-ten-05-public-intent",
+          "type": "visibility_intent",
+          "timestamp_utc": "2026-11-13T13:38:01Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-5",
+          "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+          "package_sha256": "fa82d5894abeda8c43532ae1399167917e83f2e4891965e72d7b23a3cf6255a1",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "bf8315d54891eef8f5326d00b57c6311997856816537a7ee7373a3a56a1473df",
+          "video_id": "LGAPzHFiKvQ",
+          "requested_visibility": "public",
+          "evidence": "Browser coordinator verified exact metadata, existing playlist, notkids/nopaid/AIyes. Processed54s; Copyright No issues found.",
+          "event_digest": "317204b4c105456c860ba81d52080b903526a3d330b2cc43f57bbc988c490c21"
         }
       ],
       "video_id": "LGAPzHFiKvQ",
       "watch_url": "https://www.youtube.com/shorts/LGAPzHFiKvQ",
-      "processing_observation": "Upload complete; processing will begin shortly"
+      "processing_observation": "Processed54s",
+      "requested_visibility": "public",
+      "metadata_browser_verified": true,
+      "copyright_check_observation": "No issues found",
+      "playlist_id": "PLBqhZZfg3quY"
     },
     "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307": {
       "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
@@ -6292,7 +6314,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 296,
+  "revision": 297,
   "rights_ledger": {},
   "runs": [
     {
