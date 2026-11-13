@@ -1,0 +1,1319 @@
+{
+  "schema_version": 1,
+  "record_type": "owner_browser_batch_release",
+  "batch_id": "defcon-ten-2026-11-13",
+  "status": "pending_independent_metadata_review",
+  "release_enabled": false,
+  "authorization_evidence": "Owner explicitly requested ten DEF CON clips, approved delivered files and requested public YouTube uploads to existing playlist, followed by Facebook. Manual finite batch, not scheduled automation.",
+  "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+  "method": "owner-authorized manual YouTube Studio",
+  "allowed_item_count": 10,
+  "visibility": "public",
+  "global_controls_unchanged": true,
+  "oauth_verified_by_this_record": false,
+  "shorts_daily_limit": 3,
+  "daily_timezone": "America/New_York",
+  "ledger": "state/operations.json publications",
+  "playlist": {
+    "playlist_id": "PLBqhZZfg3quY",
+    "title": "DEF CON Decoded | Practical Tech Shorts",
+    "studio_url": "https://studio.youtube.com/playlist/PLBqhZZfg3quY/edit",
+    "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+    "visibility": "public",
+    "evidence": "Browser observed Playlist created then readback exact saved title/description/public visibility in Studio",
+    "video_uploads_at_receipt": 0,
+    "no_duplicate_creation": true
+  },
+  "items": [
+    {
+      "number": 1,
+      "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+      "source_identity": "defcon31:q118B_QdP2k:292.20-296.90",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "The hidden cost of leaving a platform",
+      "description": "Could you leave your platform without losing important work? Test three things before you commit. Cory Doctorow explained switching costs in 2023.\n\nOur advice: test your content export. Can another tool actually use it?\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 292.20\u2013296.90 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+      "reviewed_render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+      "preview_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Original YouTube reuse metadata and matching Commons CC BY3.0 source inspected. Exact source SHA256 matched. Speaker-only exact-cut visual inspection. Owner listened to the exact292.20\u2013296.90s source sample and confirmed: It is just the speaker. No third-party music detected by that listening review. Owner approved the corresponding delivered review video; separate evidence retained with production request. This does not assert assistant listening."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "2141a5f42e1816ecc34f65caee3bf569f2dae9d478d65469e4097cc937eb4d1c",
+          "pcm_sha256": "bb6e9de6aa39c4a44bcf507a1914274689edc0164bc34c73dbd2636d08f0f69b"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 40.954,
+      "finishing_proof": {
+        "manifest_sha256": "ba4bcdd6447604e601adb86fd8d2ca46f7fab81e5132161d1f288ac4c7196aa7",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
+        "sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+        "duration_seconds": "40.954000",
+        "frame_count": 1228,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "2141a5f42e1816ecc34f65caee3bf569f2dae9d478d65469e4097cc937eb4d1c",
+        "pcm_sha256": "bb6e9de6aa39c4a44bcf507a1914274689edc0164bc34c73dbd2636d08f0f69b",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 40.954
+        },
+        "status": "rendered_pending_review",
+        "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "da7658ce9cce90890bbe013dbb26d868eced822cfad0fa759650f10920f96605"
+    },
+    {
+      "number": 2,
+      "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
+      "source_identity": "defcon31:q118B_QdP2k:96.42-101.25",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Who is a platform really serving?",
+      "description": "Did a platform update help you, or someone else? Map the incentives. Cory Doctorow framed the problem in this 2023 talk.\n\nWhen an update changes your experience, map the incentives: users, business customers, and the platform itself. A feature can help one group while creating friction for another. Ask whose problem it actually solves.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 96.42\u2013101.25 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
+      "reviewed_render_sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
+      "preview_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Identify stakeholders rather than assuming product changes benefit every user.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Identify stakeholders rather than assuming product changes benefit every user."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "534a0e2c4fd40f276db9c3847615499bd4ddb9a213e02024d7e74014f4be3f94",
+          "pcm_sha256": "fd002669b0c5228761fe5867a0f37ba038db7bc334e8ba2442cca189c9a26098"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 42.133333,
+      "finishing_proof": {
+        "manifest_sha256": "6d8e1685f2ec442c06ae01f15f21cf4cae7997b4dc076b183c79f4ac4cd1b57a",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
+        "sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
+        "duration_seconds": "42.133333",
+        "frame_count": 1264,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "534a0e2c4fd40f276db9c3847615499bd4ddb9a213e02024d7e74014f4be3f94",
+        "pcm_sha256": "fd002669b0c5228761fe5867a0f37ba038db7bc334e8ba2442cca189c9a26098",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 42.133333
+        },
+        "status": "rendered_pending_review",
+        "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "5e3efe23c56a707f8605d719978fb524697e4aa619a3716677c2b4cc176530b5"
+    },
+    {
+      "number": 3,
+      "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
+      "source_identity": "defcon31:q118B_QdP2k:569.50-573.90",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Network effects can run backward",
+      "description": "Moving a community? Test one shared activity before asking everyone to switch. Here is Doctorow\u2019s 2023 explanation of the network effect.\n\nFor a community considering a move, test one shared activity on the alternative first. You are checking whether people can use it together, not just whether one person likes its features.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 569.50\u2013573.90 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
+      "reviewed_render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
+      "preview_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Community migration experiment, distinct from the existing individual switching-cost definition.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Community migration experiment, distinct from the existing individual switching-cost definition."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "6f4ee5b1ef889ed70b0b4d966ebc36caf45ba73b654d1a6009facb589c2c2c8b",
+          "pcm_sha256": "3ff08a8753486ee67473e9db0a6fd4b239c5b222add12e3d966af0b4a98548ca"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 40.107,
+      "finishing_proof": {
+        "manifest_sha256": "882972e726ae02d3d8b1ffcb83d6d268b45598a4aa5e08d664d141c42bfe47c8",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
+        "sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
+        "duration_seconds": "40.107000",
+        "frame_count": 1202,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "6f4ee5b1ef889ed70b0b4d966ebc36caf45ba73b654d1a6009facb589c2c2c8b",
+        "pcm_sha256": "3ff08a8753486ee67473e9db0a6fd4b239c5b222add12e3d966af0b4a98548ca",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 40.107
+        },
+        "status": "rendered_pending_review",
+        "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "41271aed7d79180b5770e82bdd641cd38208821ea87e11fce4484795674b0725"
+    },
+    {
+      "number": 4,
+      "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
+      "source_identity": "defcon31:q118B_QdP2k:2469.00-2478.48",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "What survives when a service closes?",
+      "description": "If your favorite service closes, can you still use your work? Test an export now. Doctorow discussed this problem in his 2023 question session.\n\nBefore trusting a tool with important work, try exporting a sample and opening it elsewhere. Keep a separate backup. A download button is not enough if the resulting files cannot be used.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 2469.00\u20132478.48 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
+      "reviewed_render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
+      "preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Test recovery with an actual export/import rather than promising permanence.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Test recovery with an actual export/import rather than promising permanence."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "5e7d81eed76b7bb4bc7bbbae2ad2c316b06d308fc4726b948513b686505ecd75",
+          "pcm_sha256": "730d515ac65d0153848370c4bcaef0a544999c4c5377c7754e02c10fe100cf29"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 45.909,
+      "finishing_proof": {
+        "manifest_sha256": "3979710c89b17fb2f7266730e4df2871730337252d1f404438b785c05e90ade2",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
+        "sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
+        "duration_seconds": "45.909000",
+        "frame_count": 1377,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "5e7d81eed76b7bb4bc7bbbae2ad2c316b06d308fc4726b948513b686505ecd75",
+        "pcm_sha256": "730d515ac65d0153848370c4bcaef0a544999c4c5377c7754e02c10fe100cf29",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 45.909
+        },
+        "status": "rendered_pending_review",
+        "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "aa050db442565b14188e7233903d3d31348e5379df0504f670e548eeb7613b13"
+    },
+    {
+      "number": 5,
+      "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+      "source_identity": "defcon31:q118B_QdP2k:1520.36-1534.40",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Compatibility is more than a data export",
+      "description": "A data export does not keep you connected. Learn what to test instead. In 2023, Doctorow proposed leaving a platform without losing contact.\n\nThat is a goal, not a claim about services today. Export gives you a copy; interoperability connects systems. Before choosing a replacement, test whether the exact messages, files, or workflows you need actually cross over.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 1520.36\u20131534.40 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+      "reviewed_render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+      "preview_sha256": "1bed2c98bb5cbc06da1fabd5faffcd38ce94d9cfe9c765922f4e793886f2dcf9",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Clarifies export versus continued communication without promising present provider support.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Clarifies export versus continued communication without promising present provider support."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "5b261e8e133b69f4a420e9769d3d0e1c1575fece3463f39abf59b7e7dd0408c2",
+          "pcm_sha256": "ea04037b0e0360599f75c012b06a267c873ad74f0c63315f8be56647692e71be"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 53.7,
+      "finishing_proof": {
+        "manifest_sha256": "d5dc5f04f3f356847eb3d355eb4c2be00a219d016234f7fb41f700a80f501b8d",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "1bed2c98bb5cbc06da1fabd5faffcd38ce94d9cfe9c765922f4e793886f2dcf9",
+        "sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
+        "duration_seconds": "53.700000",
+        "frame_count": 1610,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "5b261e8e133b69f4a420e9769d3d0e1c1575fece3463f39abf59b7e7dd0408c2",
+        "pcm_sha256": "ea04037b0e0360599f75c012b06a267c873ad74f0c63315f8be56647692e71be",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 53.7
+        },
+        "status": "rendered_pending_review",
+        "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "4523ca0fdd5623db3ad3f95b0264c50c7731d20dea76b8d57d2361bc57137f8a"
+    },
+    {
+      "number": 6,
+      "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
+      "source_identity": "defcon31:q118B_QdP2k:1592.80-1601.86",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "An API is not a reliability guarantee",
+      "description": "What will you do if an important API stops working? Build a fallback. In 2023, Doctorow warned that disputed shutdowns could take years to resolve.\n\nA shutdown may protect users; it is not proof of sabotage. For an important integration, check outage notices, support channels, and a fallback workflow before access disappears. An endpoint alone is not a continuity plan.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 1592.80\u20131601.86 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
+      "reviewed_render_sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
+      "preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Build a fallback and assess operational support, rather than alleging malicious access revocation.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Build a fallback and assess operational support, rather than alleging malicious access revocation."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "50784e28e1306de075d794d8db80b0d7bd7e9b7917cacbda65035b539c76e6c6",
+          "pcm_sha256": "fbc2ad10ff290069895197bc296095d805a4311862b56b45e776af27a2bcf998"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 49.433333,
+      "finishing_proof": {
+        "manifest_sha256": "daf9b8f84ed8cc8dcce62d414193952a29606d31dbb8eb028f2bce15f7125882",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
+        "sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
+        "duration_seconds": "49.433333",
+        "frame_count": 1483,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "50784e28e1306de075d794d8db80b0d7bd7e9b7917cacbda65035b539c76e6c6",
+        "pcm_sha256": "fbc2ad10ff290069895197bc296095d805a4311862b56b45e776af27a2bcf998",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 49.433333
+        },
+        "status": "rendered_pending_review",
+        "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "b2c871a77422b75d9460a80c45bddeabc01699538583c4a607bf40cf41fe275f"
+    },
+    {
+      "number": 7,
+      "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
+      "source_identity": "defcon31:q118B_QdP2k:1812.06-1822.64",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Buy compatibility before you need it",
+      "description": "Buying a new tool? Ask the vendor to demonstrate compatibility before you commit. Doctorow proposed a stronger rule for government buyers in 2023.\n\nAsk vendors to demonstrate compatibility before you commit. Check supported formats, documented interfaces, and migration assistance. Record the answers so the team choosing today is not guessing when it needs to leave.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 1812.06\u20131822.64 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
+      "reviewed_render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
+      "preview_sha256": "cf15c6588129869f7d0b14069b0ed1d584685b686095bf9deb01cd39de19abe7",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Pre-purchase comparison and documented commitments, distinct from post-failure recovery testing.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Pre-purchase comparison and documented commitments, distinct from post-failure recovery testing."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "2bf9aeec3764f4088204d187bd9661d4a8854510092a0cde591bbbafdd765678",
+          "pcm_sha256": "25cdf51a0b6da7fc957bbad35cf8fa50337c4243894902dbbeb744ecccf09001"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 49.02,
+      "finishing_proof": {
+        "manifest_sha256": "a830f6270bf2cbf3a582b66b313df37752538a4a96d0ae57c1c457ebf03682c2",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "cf15c6588129869f7d0b14069b0ed1d584685b686095bf9deb01cd39de19abe7",
+        "sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
+        "duration_seconds": "49.020000",
+        "frame_count": 1470,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "2bf9aeec3764f4088204d187bd9661d4a8854510092a0cde591bbbafdd765678",
+        "pcm_sha256": "25cdf51a0b6da7fc957bbad35cf8fa50337c4243894902dbbeb744ecccf09001",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 49.02
+        },
+        "status": "rendered_pending_review",
+        "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "3e4fcfbb797aca182a7313b92ea67bb1c75313992cb3589fbbca915f4f8f837a"
+    },
+    {
+      "number": 8,
+      "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
+      "source_identity": "defcon31:q118B_QdP2k:1926.66-1934.20",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Open access still needs privacy safeguards",
+      "description": "Does that connected app really need access to everything? Check its permissions and your exit. Doctorow discussed interoperability and privacy in 2023.\n\nWhen connecting an app, inspect the permissions it requests. Does it need to read everything, or only one folder? Check how to revoke access. Compatibility is useful, but broader access deserves a clear reason.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 1926.66\u20131934.20 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
+      "reviewed_render_sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
+      "preview_sha256": "5504fba39ff27417a2a6e1701d6cdbbfa7abb04ef67034bceee9a70ee2d36fc1",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Least-access permission inspection, not generic endorsement of openness.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Least-access permission inspection, not generic endorsement of openness."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "cc14b0b7f5ac121a0fa3aeb272149df5448eae6edd88104393834313ea6ef4f1",
+          "pcm_sha256": "963f1a15e3867e91af66b66f002d6a6178c7d9354c20b31f404e403f59dd78c3"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 46.366667,
+      "finishing_proof": {
+        "manifest_sha256": "8386cc146483ddd1f9298a925893dff2e3757fde4210bdec471ff47a9e394f92",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "5504fba39ff27417a2a6e1701d6cdbbfa7abb04ef67034bceee9a70ee2d36fc1",
+        "sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
+        "duration_seconds": "46.366667",
+        "frame_count": 1391,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "cc14b0b7f5ac121a0fa3aeb272149df5448eae6edd88104393834313ea6ef4f1",
+        "pcm_sha256": "963f1a15e3867e91af66b66f002d6a6178c7d9354c20b31f404e403f59dd78c3",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 46.366667
+        },
+        "status": "rendered_pending_review",
+        "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "ebcf1a16f0eb2a7dbffec905d449dbc3232267b9207f5e3fd8d9df34e1518463"
+    },
+    {
+      "number": 9,
+      "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+      "source_identity": "defcon31:q118B_QdP2k:2342.74-2355.04",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Protect your principles before pressure arrives",
+      "description": "Will your project\u2019s promises survive a difficult decision? Write down who can change them. Doctorow described a stronger commitment device in 2023.\n\nFor a project, start by naming what you will protect and who can approve a change. A written policy can guide decisions, but it is not automatically binding. Get qualified advice before making irreversible licensing commitments.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 2342.74\u20132355.04 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+      "reviewed_render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+      "preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Decision governance under pressure, not another migration tutorial.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Decision governance under pressure, not another migration tutorial."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "37ac1cc2c2ab41720f4fb5857979ee52871a26617d834e424c2f9f6737990023",
+          "pcm_sha256": "6c6f1d8947bf3a9bdfdad3e4a7b7c3f62fc0d56d99b20ad427b29f9dadac4e3b"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 51.674,
+      "finishing_proof": {
+        "manifest_sha256": "b285af57004ef9f7da1c0c3888878a919fd69b25011f1f8715451c32147fffc5",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
+        "sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+        "duration_seconds": "51.674000",
+        "frame_count": 1549,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "37ac1cc2c2ab41720f4fb5857979ee52871a26617d834e424c2f9f6737990023",
+        "pcm_sha256": "6c6f1d8947bf3a9bdfdad3e4a7b7c3f62fc0d56d99b20ad427b29f9dadac4e3b",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 51.674
+        },
+        "status": "rendered_pending_review",
+        "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "07e9b9dc9a1b38f10c8a8f867831160afd92cd5d50f102b4f816f58b908bec96"
+    },
+    {
+      "number": 10,
+      "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+      "source_identity": "defcon31:q118B_QdP2k:857.96-863.64",
+      "publication_format": "short",
+      "destination_channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "title": "Possible does not mean permitted",
+      "description": "A connection can be technically possible without being permitted. Check the authorized route. Here is Doctorow\u2019s 2023 point about general-purpose computers.\n\nTechnical possibility is not permission, and not every device gives users practical access. Look for documented formats and authorized integrations. That is a safer starting point than assuming any connection you can build is allowed.\n\nThis Short combines an archival 2023 excerpt with original commentary and AI-generated narration. The speaker's voice in the excerpt is the original recording, not a synthetic imitation.\n\nSOURCE & LICENSE\nDEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow\nCreator: DEFCON Conference; speaker: Cory Doctorow.\nOriginal video: https://www.youtube.com/watch?v=q118B_QdP2k\nLicense: Creative Commons Attribution 3.0\nhttps://creativecommons.org/licenses/by/3.0/\nSource and license evidence: https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159\nExcerpt: 857.96\u2013863.64 seconds of the source.\nChanges: excerpted, fitted into a vertical layout, captioned and combined with our original text cards, commentary, AI narration and branding. No endorsement by Cory Doctorow or DEFCON Conference is implied.\n\nLike this video if it helped, and subscribe to follow Powered By Oxieg3n for practical technology breakdowns.\n\n#Shorts #Technology #Interoperability",
+      "visibility": "public",
+      "made_for_kids": false,
+      "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
+      "contains_synthetic_media": true,
+      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+      "reviewed_render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+      "preview_sha256": "4aec9c45ef663ce6ef4e603b786652312e37852bbdc18dee941bc99e64f5cb65",
+      "rights_path": "licensed",
+      "assets": [
+        {
+          "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+          "rights_holder": "DEFCON Conference; speaker Cory Doctorow",
+          "license": "CC-BY-3.0",
+          "evidence": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        },
+        {
+          "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+          "rights_holder": "rhasspy/piper-voices; LJ Speech public-domain recordings",
+          "license": "MIT voice model; public-domain source recordings",
+          "evidence": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+          "third_party": true,
+          "download_permitted": true,
+          "edit_permitted": true,
+          "youtube_permitted": true,
+          "commercial_permitted": true
+        }
+      ],
+      "primary_sources": [
+        "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+      ],
+      "distinct_value": "Separates capability, accessibility and authorization without offering circumvention instructions.",
+      "checks": {
+        "facts": {
+          "status": "pass",
+          "evidence": "2023 archival frame; source quote checked against original transcript, own advice presented as advice. No present-law/performance claims. Production derivative retains exact narration, captions, cuts and intro; review-purpose field removed only. Content unchanged from independently reviewed preview; clean derivative removes review footer only, no new outro."
+        },
+        "rights": {
+          "status": "pass",
+          "evidence": "Exact source license/hash and sampled visual/context checks verified. Owner listening review: explicit speaker-only/no-background-music and finished narration/caption-sync question answered affirmatively for this exact delivered preview. Verbatim question/answer and exact preview hash retained in owner_review_evidence. No assistant listening claimed."
+        },
+        "originality": {
+          "status": "pass",
+          "evidence": "Separates capability, accessibility and authorization without offering circumvention instructions."
+        },
+        "audio": {
+          "status": "pass",
+          "evidence": "Owner reviewed source/narration in exact approved preview. Clean derivative retains identical compressed AAC and decoded PCM hashes; no assistant listening claimed.",
+          "aac_sha256": "34d0c5d6c5d171048306a3458f0f52c6d2d18d76e39124719e1b4c830b04231c",
+          "pcm_sha256": "6c7ed1fee276c27b2b3ab5e53395e386e8d9fdf40191a1b6dbfe3e3ef95be5ef"
+        },
+        "captions": {
+          "status": "pass",
+          "evidence": "Owner confirmed preview narration/caption sync; clean derivative has identical frame timestamps and pixels outside footer masks, preserving caption pixels/timing."
+        },
+        "visuals": {
+          "status": "pass",
+          "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
+        },
+        "metadata": {
+          "status": "pending",
+          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+        }
+      },
+      "publication_eligible": false,
+      "technical_test": false,
+      "duration_seconds": 45.584,
+      "finishing_proof": {
+        "manifest_sha256": "527cd082d6864e8f36d9aaead6b9d6c3bf18c151c810f19d433150f7d046988d",
+        "outside_footer_pixels_identical": true,
+        "source_preview_sha256": "4aec9c45ef663ce6ef4e603b786652312e37852bbdc18dee941bc99e64f5cb65",
+        "sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+        "duration_seconds": "45.584000",
+        "frame_count": 1367,
+        "frame_timestamps_identical": true,
+        "aac_bitstream_sha256": "34d0c5d6c5d171048306a3458f0f52c6d2d18d76e39124719e1b4c830b04231c",
+        "pcm_sha256": "6c7ed1fee276c27b2b3ab5e53395e386e8d9fdf40191a1b6dbfe3e3ef95be5ef",
+        "audio_identical": true,
+        "change": "Known review-footer rectangles only, after bumper reveal",
+        "rectangles": [
+          [
+            90,
+            1798,
+            900,
+            28
+          ],
+          [
+            100,
+            1738,
+            880,
+            36
+          ]
+        ],
+        "start_seconds": 1.42,
+        "publication_eligible": false,
+        "manual_visual_review": "pending",
+        "qc": {
+          "checks": {
+            "h264": true,
+            "pixel_format": true,
+            "dimensions": true,
+            "fps_30": true,
+            "aac_audio": true,
+            "duration": true
+          },
+          "passed": true,
+          "duration_seconds": 45.584
+        },
+        "status": "rendered_pending_review",
+        "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+        "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
+      },
+      "reviewed_package_sha256": "390044487bcbdd12e7ee1782378a1f5aee721356b020ef9f5713261c0b4ad0b6"
+    }
+  ]
+}
