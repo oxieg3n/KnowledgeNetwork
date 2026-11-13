@@ -1153,8 +1153,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-13T02:37:45.875721+00:00",
-      "last_monitored_at": "2026-11-13T02:37:45.875602+00:00",
+      "last_attempt_at": "2026-11-13T12:09:49.116701+00:00",
+      "last_monitored_at": "2026-11-13T12:09:49.116505+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -1324,8 +1324,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-13T02:37:46.291038+00:00",
-      "last_monitored_at": "2026-11-13T02:37:46.290913+00:00",
+      "last_attempt_at": "2026-11-13T12:09:49.566609+00:00",
+      "last_monitored_at": "2026-11-13T12:09:49.566425+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -5231,7 +5231,7 @@
       "upload": 0
     },
     "2026-11-13": {
-      "general": 18,
+      "general": 24,
       "search": 0,
       "upload": 0
     }
@@ -5491,7 +5491,7 @@
       "status": "rendering"
     }
   },
-  "revision": 207,
+  "revision": 219,
   "rights_ledger": {},
   "runs": [
     {
@@ -6137,6 +6137,69 @@
         "verified_sources": 10
       },
       "run_id": "43416415075-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T12:09:48.681364+00:00",
+      "command": "seed",
+      "details": {
+        "category_entries": 150,
+        "distinct_names": 121,
+        "verified_channels": 10
+      },
+      "run_id": "43422832462-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-13T12:09:48.699235+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "43422832462-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-13T12:09:49.577781+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 0
+      },
+      "run_id": "43422832462-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YouTube uploader OAuth not configured",
+        "Operational email destination/route unconfirmed",
+        "Persistent production runner not verified"
+      ],
+      "checked_at": "2026-11-13T12:09:52.903499+00:00",
+      "command": "report",
+      "details": {
+        "control": {
+          "production_host_verified": false,
+          "publication_paused": true
+        },
+        "pending_alerts": 129,
+        "publication_count": 0,
+        "queues": {
+          "BLOG_VIDEO": 33,
+          "DAILY_TECH_RECAP": 1,
+          "EVERGREEN_TOP10": 42,
+          "FRESH_UPLOAD": 129
+        },
+        "verified_sources": 10
+      },
+      "run_id": "43422832462-1",
       "status": "BLOCKED"
     }
   ],

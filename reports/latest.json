@@ -1,13 +1,13 @@
 {
   "command": "report",
-  "run_id": "43416415075-1",
-  "checked_at": "2026-11-13T11:21:42.310380+00:00",
+  "run_id": "43422832462-1",
+  "checked_at": "2026-11-13T12:09:52.903499+00:00",
   "status": "BLOCKED",
   "details": {
     "queues": {
       "BLOG_VIDEO": 33,
       "DAILY_TECH_RECAP": 1,
-      "EVERGREEN_TOP10": 31,
+      "EVERGREEN_TOP10": 42,
       "FRESH_UPLOAD": 129
     },
     "verified_sources": 10,
