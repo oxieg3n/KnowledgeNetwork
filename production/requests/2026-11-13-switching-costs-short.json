@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "queue": "EVERGREEN_TOP10",
+  "item_id": "q118B_QdP2k-switching-costs",
+  "production_key": "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047",
+  "rights_path": "licensed_cc_by_excerpt",
+  "primary_sources": [
+    "https://www.youtube.com/watch?v=q118B_QdP2k",
+    "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+    "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+  ],
+  "distinct_value": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim.",
+  "script": {
+    "format": "short",
+    "technical_test": false,
+    "title": "The hidden cost of leaving a platform",
+    "editorial_date": "2026-11-13",
+    "sources": [
+      "https://www.youtube.com/watch?v=q118B_QdP2k",
+      "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+      "https://pluralistic.net/2023/08/27/an-audacious-plan-to-halt-the-internets-enshittification-and-throw-it-into-reverse/"
+    ],
+    "licensed_assets": {
+      "doctorow": {
+        "sha256": "ea46de84c4bb39704207e1cee6785a33ae2a9fcaaa5661400f66530b58215d0e",
+        "license": "CC-BY-3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "source_url": "https://www.youtube.com/watch?v=q118B_QdP2k",
+        "license_evidence_url": "https://commons.wikimedia.org/w/index.php?title=File:DEF_CON_31_-_An_Audacious_Plan_to_Halt_the_Internet%27s_Enshittification_-_Cory_Doctorow_(q118B_QdP2k).webm&oldid=1107404159",
+        "title": "DEF CON 31 - An Audacious Plan to Halt the Internet's Enshittification - Cory Doctorow",
+        "creator": "DEFCON Conference; speaker Cory Doctorow",
+        "attribution": "Cory Doctorow / DEFCON Conference \u2022 DEF CON31(2023) \u2022 CC BY3.0",
+        "modifications": "Excerpted and reframed; original commentary added. No endorsement implied.",
+        "rights_review_evidence": "Original YouTube reuse metadata and matching Commons CC BY3.0 source inspected. Exact source SHA256 matched. Speaker-only exact-cut visual inspection. Owner listened to the exact292.20\u2013296.90s source sample and confirmed: It is just the speaker. No third-party music detected by that listening review.",
+        "commercial_adaptation_verified": true,
+        "underlying_rights_reviewed": true,
+        "excerpt_visual_reviewed": true,
+        "no_third_party_music": true,
+        "no_endorsement": true
+      }
+    },
+    "original_commentary_rationale": "Archival definition used briefly to teach a distinct practical exit-plan checklist for small businesses. Not a repost or current-news claim.",
+    "original_commentary_review": {
+      "status": "pass",
+      "evidence": "Opening establishes dated speaker attribution, follow-up applies concept to content exports, movable customer records and link continuity. Recommendations framed as our advice, not tested results or speaker quotations."
+    },
+    "scenes": [
+      {
+        "title": "Check the cost of leaving",
+        "narration": "Before choosing a platform, check the cost of leaving. Here is Cory Doctorow at DEF CON in twenty twenty-three.",
+        "caption": "Original commentary \u2022 Archival source:2023"
+      },
+      {
+        "title": "What are switching costs?",
+        "narration": "Switching costs, they're everything that you have to give up when you leave a product or a service.",
+        "caption": "Cory Doctorow / DEFCON Conference \u20222023 \u2022CC BY3.0",
+        "licensed_excerpt": {
+          "asset_id": "doctorow",
+          "start": 292.2,
+          "end": 296.9,
+          "context_reviewed": true,
+          "context_evidence": "Talk distinguishes network effects from switching costs; complete definition retained, no changed meaning. Original speech transcript independently read.",
+          "captions": [
+            {
+              "start": 0.14,
+              "end": 1.64,
+              "text": "Switching costs, they're everything"
+            },
+            {
+              "start": 1.64,
+              "end": 2.94,
+              "text": "that you have to give up"
+            },
+            {
+              "start": 2.94,
+              "end": 4.55,
+              "text": "when you leave a product or a service."
+            }
+          ]
+        }
+      },
+      {
+        "title": "01. Export your content",
+        "narration": "Our advice: test your content export. Can another tool actually use it?",
+        "caption": "Original practical advice \u2022 Test the export"
+      },
+      {
+        "title": "02. Move your records",
+        "narration": "Check which customer records and fields you can move.",
+        "caption": "Original practical advice \u2022 Check portable formats"
+      },
+      {
+        "title": "03. Preserve your links",
+        "narration": "Plan for important links to keep working. Test the exit before you commit.",
+        "caption": "Original practical advice \u2022 Plan for continuity"
+      },
+      {
+        "title": "Source: DEF CON 31",
+        "narration": "This archival excerpt is from Cory Doctorow\u2019s talk for DEF CON Conference.",
+        "caption": "An Audacious Plan to Halt the Internet's Enshittification\nCory Doctorow / DEFCON Conference"
+      },
+      {
+        "title": "Source and license",
+        "narration": "Used under Creative Commons Attribution three point zero. Excerpted and reframed, with our commentary. No endorsement implied.",
+        "caption": "youtube.com/watch?v=q118B_QdP2k\ncreativecommons.org/licenses/by/3.0/"
+      }
+    ]
+  },
+  "reviewed_script_sha256": "819cd4ce0af536cdec53442a77a43e553135fc653b0f1f589b3ca1317f1e8002",
+  "editorial": {
+    "facts": {
+      "status": "pass",
+      "evidence": "Archival2023 framing matches official source and author speech. Definition preserved verbatim; exit checklist is clearly own practical advice, not empirical claims."
+    },
+    "sources": {
+      "status": "pass",
+      "evidence": "Original DEFCON video, exact licensed Commons file revision and author speech support attribution/context. Source file SHA256 reverified and actual source frame inspected. Owner listened to exact source excerpt and confirmed speech only."
+    },
+    "originality": {
+      "status": "pass",
+      "evidence": "Brief4.7second definition embedded within own concrete platform-selection checklist. Not a stand-alone republished excerpt; original narrative intro, distinct recommendations and full credits."
+    },
+    "usefulness": {
+      "status": "pass",
+      "evidence": "Answers concrete buyer question: what should I check before committing to a platform? Provides content-export, customer-record portability and link-continuity checks without claiming guaranteed migration."
+    }
+  },
+  "publication_eligible": false
+}
