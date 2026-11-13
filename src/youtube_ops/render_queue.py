@@ -25,11 +25,16 @@ def validate_request(request: dict, state: State) -> None:
         raise ValueError('Existing durable queue item required')
     if not re.fullmatch(r'[a-f0-9]{64}',request.get('production_key','')):
         raise ValueError('Stable SHA-256 production key required')
-    if request.get('rights_path') not in ('original','licensed_cc_by_excerpt'):
+    if request.get('rights_path') not in ('original','licensed_cc_by_excerpt','licensed_cc_by_review_preview'):
         raise ValueError('Unsupported rights path')
-    if request['rights_path']=='licensed_cc_by_excerpt':
+    preview=request['rights_path']=='licensed_cc_by_review_preview'
+    if preview and (request.get('purpose')!='owner_private_review' or request.get('script',{}).get('review_purpose')!='owner_private_review'):
+        raise ValueError('Explicit private review purpose required')
+    if not preview and (request.get('purpose') or request.get('script',{}).get('review_purpose')):
+        raise ValueError('Preview requests cannot be promoted by changing rights path')
+    if request['rights_path'] in ('licensed_cc_by_excerpt','licensed_cc_by_review_preview'):
         from .licensed import validate_licensed
-        validate_licensed(request['script'])
+        validate_licensed(request['script'],review_only=preview)
     elif request.get('script',{}).get('licensed_assets') or any('licensed_excerpt' in s for s in request.get('script',{}).get('scenes',[])):
         raise ValueError('Licensed footage cannot use original rights path')
     if request.get('script',{}).get('technical_test',False):
@@ -46,7 +51,7 @@ def validate_request(request: dict, state: State) -> None:
     digest=hashlib.sha256(json.dumps(request['script'],sort_keys=True).encode()).hexdigest()
     if request.get('reviewed_script_sha256')!=digest:
         raise ValueError('Exact script review missing')
-    if state.data['queues'][queue][item_id].get('status') not in ('ready','rendering'):
+    if state.data['queues'][queue][item_id].get('status') not in (('preview_requested','rendering') if preview else ('ready','rendering')):
         raise ValueError('Queue item not editorially ready')
     from .render import validate_spec
     validate_spec(request['script'])
@@ -61,7 +66,8 @@ def reserve_render(state: State, request: dict, *, executor: str) -> dict:
         raise RuntimeError('A render is already reserved; reconcile before starting')
     record={'production_key':key,'request_sha256':request_digest(request),
             'queue':request['queue'],'item_id':request['item_id'],'executor':executor,
-            'status':'rendering','started_at':now(),'media_handoff':'pending'}
+            'status':'rendering','started_at':now(),'media_handoff':'pending',
+            'review_only':request.get('purpose')=='owner_private_review'}
     jobs[key]=record
     state.data['queues'][request['queue']][request['item_id']]['status']='rendering'
     state.save()
@@ -97,16 +103,19 @@ def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
     if renderer is None:
         from .render import render
         renderer=render
-    if request['rights_path']=='licensed_cc_by_excerpt':
+    if request['rights_path'] in ('licensed_cc_by_excerpt','licensed_cc_by_review_preview'):
         result=renderer(request['script'],output,voice,voice_metadata,local_assets=local_assets)
     else:
         result=renderer(request['script'],output,voice,voice_metadata)
     digest=result.get('sha256')
     if not re.fullmatch(r'[a-f0-9]{64}',digest or '') or result.get('publication_eligible') is not False:
         raise ValueError('Invalid or improperly approved render result')
-    record.update(status='rendered_pending_review',render_sha256=digest,
+    status='preview_rendered_pending_review' if record.get('review_only') else 'rendered_pending_review'
+    if record.get('review_only') and result.get('review_only') is not True:
+        raise ValueError('Preview renderer failed to retain review-only provenance')
+    record.update(status=status,render_sha256=digest,
                   completed_at=now(),media_handoff='pending',publication_eligible=False)
-    state.data['queues'][request['queue']][request['item_id']]['status']='rendered_pending_review'
+    state.data['queues'][request['queue']][request['item_id']]['status']=status
     state.save()
     persist_remote()
     return result
