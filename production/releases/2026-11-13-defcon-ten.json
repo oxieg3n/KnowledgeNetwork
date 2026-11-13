@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_type": "owner_browser_batch_release",
   "batch_id": "defcon-ten-2026-11-13",
-  "status": "pending_independent_metadata_review",
-  "release_enabled": false,
+  "status": "reviewed_finite_manual_release",
+  "release_enabled": true,
   "authorization_evidence": "Owner explicitly requested ten DEF CON clips, approved delivered files and requested public YouTube uploads to existing playlist, followed by Facebook. Manual finite batch, not scheduled automation.",
   "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
   "method": "owner-authorized manual YouTube Studio",
@@ -37,7 +37,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
       "reviewed_render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
       "preview_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
@@ -64,6 +64,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "998becb6170272f3c32b63c51484b0929aab0def2997749a9e702bc41bf2e04b",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -100,11 +115,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 40.954,
       "finishing_proof": {
@@ -152,7 +167,8 @@
         "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "da7658ce9cce90890bbe013dbb26d868eced822cfad0fa759650f10920f96605"
+      "reviewed_package_sha256": "fe0bdf7e821e88a0979e293b3ed41a133a96bf3dbead7b73296c36d762522cad",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 2,
@@ -166,7 +182,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
       "reviewed_render_sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
       "preview_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
@@ -193,6 +209,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "2167ea29bd435b272e2035ef30abc3de9d479818fff08212c547523bff2914ac",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -229,11 +260,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 42.133333,
       "finishing_proof": {
@@ -281,7 +312,8 @@
         "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "5e3efe23c56a707f8605d719978fb524697e4aa619a3716677c2b4cc176530b5"
+      "reviewed_package_sha256": "4fa77545f3a2869db9c023cd7e1ff39e4f825c5becb94b6f9035f4087f7bb6e8",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 3,
@@ -295,7 +327,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
       "reviewed_render_sha256": "05c3db7175e5adf9df4f925f163ee059ad73a45e3c27fff5dc08dd51d5404a82",
       "preview_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
@@ -322,6 +354,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "5107498ccd4c7f454544acc1fd165cace7dd4060208bfbddb33c3262e0eea103",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -358,11 +405,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 40.107,
       "finishing_proof": {
@@ -410,7 +457,8 @@
         "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "41271aed7d79180b5770e82bdd641cd38208821ea87e11fce4484795674b0725"
+      "reviewed_package_sha256": "1bd599a39b7b5c0be2c6345d2a7f5f0f5e0b1ee88d1076268a5d2b63e3927273",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 4,
@@ -424,7 +472,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
       "reviewed_render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
       "preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
@@ -451,6 +499,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "d92d486ba27703d8ad0af37fe95d5638e1e50851b2bc24e44b66a9fcb3219aa8",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -487,11 +550,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 45.909,
       "finishing_proof": {
@@ -539,7 +602,8 @@
         "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "aa050db442565b14188e7233903d3d31348e5379df0504f670e548eeb7613b13"
+      "reviewed_package_sha256": "0f85e25b624530660442ab0092ba79de25ce56cd728af5d21d2334c876975a4c",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 5,
@@ -553,7 +617,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
       "reviewed_render_sha256": "21a3359902eff9a225785e6e9167f06891b02e7121cff92911b3b1bfad537e2f",
       "preview_sha256": "1bed2c98bb5cbc06da1fabd5faffcd38ce94d9cfe9c765922f4e793886f2dcf9",
@@ -580,6 +644,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "9f633d41b715354e1b42525257fa4ec24dd654594bcc3d39fbcd3cd7ab1232bb",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -616,11 +695,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 53.7,
       "finishing_proof": {
@@ -668,7 +747,8 @@
         "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "4523ca0fdd5623db3ad3f95b0264c50c7731d20dea76b8d57d2361bc57137f8a"
+      "reviewed_package_sha256": "fa82d5894abeda8c43532ae1399167917e83f2e4891965e72d7b23a3cf6255a1",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 6,
@@ -682,7 +762,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
       "reviewed_render_sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
       "preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
@@ -709,6 +789,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "9496d3167ae1f9deddfdb319a9118587a8be6c23aefe684b090ca1b9683e8502",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -745,11 +840,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 49.433333,
       "finishing_proof": {
@@ -797,7 +892,8 @@
         "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "b2c871a77422b75d9460a80c45bddeabc01699538583c4a607bf40cf41fe275f"
+      "reviewed_package_sha256": "9b1592a03e26b041f95d7ca0b3093db185d319e263e913ee555330e54dd5bbdb",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 7,
@@ -811,7 +907,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
       "reviewed_render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
       "preview_sha256": "cf15c6588129869f7d0b14069b0ed1d584685b686095bf9deb01cd39de19abe7",
@@ -838,6 +934,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "1bdaf58344a1c64b74f3601d6586a0e581119805e3acd0938cb0a2d40f8547cc",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -874,11 +985,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 49.02,
       "finishing_proof": {
@@ -926,7 +1037,8 @@
         "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "3e4fcfbb797aca182a7313b92ea67bb1c75313992cb3589fbbca915f4f8f837a"
+      "reviewed_package_sha256": "99cd911020bf035b9f5b6ca13ada7e8b7079fd496afe752fbf22dbb088a8d343",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 8,
@@ -940,7 +1052,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
       "reviewed_render_sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
       "preview_sha256": "5504fba39ff27417a2a6e1701d6cdbbfa7abb04ef67034bceee9a70ee2d36fc1",
@@ -967,6 +1079,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "479687ea1ee1d8a2f7144ae1abc481779798c237eba2bcac359878c3ef22cd5b",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -1003,11 +1130,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 46.366667,
       "finishing_proof": {
@@ -1055,7 +1182,8 @@
         "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "ebcf1a16f0eb2a7dbffec905d449dbc3232267b9207f5e3fd8d9df34e1518463"
+      "reviewed_package_sha256": "55279944c37b8632fcbb127ca9e0455297cf857f3fac762c492b2603ae2507ef",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 9,
@@ -1069,7 +1197,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
       "reviewed_render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
       "preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
@@ -1096,6 +1224,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "1fcf216467fb6b96b05acc9afb96a24a12068779c615caeee0fce3d2110270fb",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -1132,11 +1275,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 51.674,
       "finishing_proof": {
@@ -1184,7 +1327,8 @@
         "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "07e9b9dc9a1b38f10c8a8f867831160afd92cd5d50f102b4f816f58b908bec96"
+      "reviewed_package_sha256": "4a569748a4684ceda151cda7b8b1ee3dca05cabce3696a81676e6082f6a6559b",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     },
     {
       "number": 10,
@@ -1198,7 +1342,7 @@
       "made_for_kids": false,
       "audience_assessment": "General technology commentary for adults/general audiences; not directed at children.",
       "contains_synthetic_media": true,
-      "synthetic_assessment": "AI-generated original narrator and branding/text cards disclosed; archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
+      "synthetic_assessment": "Synthetic narrator; original procedural branding and text cards. Archival source voice unchanged, no voice imitation. Conservative disclosure enabled.",
       "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
       "reviewed_render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
       "preview_sha256": "4aec9c45ef663ce6ef4e603b786652312e37852bbdc18dee941bc99e64f5cb65",
@@ -1225,6 +1369,21 @@
           "edit_permitted": true,
           "youtube_permitted": true,
           "commercial_permitted": true
+        },
+        {
+          "sha256": "5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54",
+          "rights_holder": "Powered By Oxieg3n owner-selected brand artwork",
+          "license": "Owner-authorized channel branding",
+          "evidence": "Owner supplied and selected exact logo for channel intro; trusted poweredby-plasma-v1 manifest binds logo SHA256.",
+          "third_party": false
+        },
+        {
+          "sha256": "358b100afd60b944c829c1622313acbe3571ec0b72f728c240a135b4d52259df",
+          "rights_holder": "Powered By Oxieg3n original generated text cards, procedural animation and sound",
+          "license": "Original commissioned channel graphics and procedural sound; DejaVu font license",
+          "evidence": "Reviewed renderer and intro code, original non-evidentiary graphics; DejaVu Sans from system distribution, https://dejavu-fonts.github.io/License.html",
+          "third_party": false,
+          "renderer_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
         }
       ],
       "primary_sources": [
@@ -1261,11 +1420,11 @@
           "evidence": "Correct AI narration vs licensed-source labels, no sampled private-review notices, captions/source/title/license credits retained; every decoded YUV sample outside scoped footer masks identical."
         },
         "metadata": {
-          "status": "pending",
-          "evidence": "Complete attribution, AI disclosure and like/subscribe CTA prepared; independent final metadata review pending."
+          "status": "pass",
+          "evidence": "Independent final review verified supported titles, archival framing, full CC attribution/license/modifications/no endorsement, synthetic narration disclosure, audience assessment and like/subscribe CTA; no invented experiences or results."
         }
       },
-      "publication_eligible": false,
+      "publication_eligible": true,
       "technical_test": false,
       "duration_seconds": 45.584,
       "finishing_proof": {
@@ -1313,7 +1472,8 @@
         "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
         "owner_audio_review": "Exact approved preview audio retained byte-for-byte; no assistant listening claimed"
       },
-      "reviewed_package_sha256": "390044487bcbdd12e7ee1782378a1f5aee721356b020ef9f5713261c0b4ad0b6"
+      "reviewed_package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+      "finishing_proof_status_note": "Embedded finishing receipt is immutable machine-stage evidence. Its pending manual_visual_review field is superseded by this package checks.visuals exact-render independent review."
     }
   ]
 }
