@@ -2354,7 +2354,7 @@
         "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
         "review_only": true,
         "reviewed_script_sha256": "b66789e4d2115817d1b61630964b4753dea47efcf9a9138e384a5bf3dedf8469",
-        "status": "rendering",
+        "status": "preview_rendered_pending_review",
         "title": "Who is a platform really serving?"
       },
       "meUr8fjy8lQ": {
@@ -5150,16 +5150,19 @@
   },
   "render_jobs": {
     "3df95d68971d179aa81a13b369befded8a3434a9a01a0c681006bc5f46049377": {
+      "completed_at": "2026-11-13T11:27:08.324956+00:00",
       "execution_started_at": "2026-11-13T11:25:53.653101+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-02-brand-v1",
       "media_handoff": "pending",
       "production_key": "3df95d68971d179aa81a13b369befded8a3434a9a01a0c681006bc5f46049377",
+      "publication_eligible": false,
       "queue": "EVERGREEN_TOP10",
+      "render_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
       "request_sha256": "6a9c4f55d0c733280497cf9cd84c819a7db2308e67d7735872e13db3c90e718a",
       "review_only": true,
       "started_at": "2026-11-13T11:25:26.070423+00:00",
-      "status": "execution_started"
+      "status": "preview_rendered_pending_review"
     },
     "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047": {
       "completed_at": "2026-11-13T07:53:23.613389+00:00",
@@ -5249,7 +5252,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 179,
+  "revision": 180,
   "rights_ledger": {},
   "runs": [
     {
