@@ -1532,8 +1532,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "visibility_intent",
-      "privacy_status": "private",
+      "status": "published_observed_verification_pending",
+      "privacy_status": "public",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "3b0f1e35e76ccb0fd5567659aff58a5c89b815bc",
@@ -1601,6 +1601,22 @@
           "requested_visibility": "public",
           "evidence": "Browser coordinator reopened saved draft, verified exact reviewed title/full description (trailing newline normalized), existing playlist/notkids/AIyes/nopaid; processing complete and copyright check complete No issues found. No guarantee against future claims.",
           "event_digest": "a8dad0cca3693ad1be989e305ea549f2c814979b4c44ae91034c0b81a150948a"
+        },
+        {
+          "event_id": "defcon-ten-02-public-playlist-observed",
+          "type": "playlist_membership_verified",
+          "timestamp_utc": "2026-11-13T13:04:26Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-2",
+          "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "2184fd94e67e71ddebf14e86641de849b383a7b23d0ce95697552956b0478cdd",
+          "package_sha256": "4fa77545f3a2869db9c023cd7e1ff39e4f825c5becb94b6f9035f4087f7bb6e8",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "a8dad0cca3693ad1be989e305ea549f2c814979b4c44ae91034c0b81a150948a",
+          "video_id": "2sfcUSj9JhQ",
+          "evidence": "Browser coordinator observed Published modal and existing playlist row, exact title, Public PublishedNov13, matching Shorts share link. Playback still being checked. Transient authorization-changed error before public radio caused no action; same saved-intent action succeeded after readback.",
+          "event_digest": "1bf4164e3675ae83014052052b314d29a4e2dc667f162852c8ecd1c9f4da65f8"
         }
       ],
       "video_id": "2sfcUSj9JhQ",
@@ -1610,7 +1626,11 @@
       "processing_observation": "Processing complete",
       "playlist_id": "PLBqhZZfg3quY",
       "requested_visibility": "public",
-      "copyright_check_observation": "Copyright check complete No issues found"
+      "copyright_check_observation": "Copyright check complete No issues found",
+      "public_visibility_verified": true,
+      "playlist_membership_verified": true,
+      "published_observed_at": "2026-11-13T13:04:26Z",
+      "playback_observation": "Pending browser verification"
     },
     "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2": {
       "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
@@ -5981,7 +6001,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 275,
+  "revision": 276,
   "rights_ledger": {},
   "runs": [
     {
