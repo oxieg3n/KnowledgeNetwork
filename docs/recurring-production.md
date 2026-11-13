@@ -4,7 +4,7 @@
 
 The selected fallback is a scheduled Dot task, not an always-running browser or daemon and not a GitHub-hosted video farm. Dot's cloud computer has completed a real 35-second narrated/captioned render. That proves a bounded interactive render, **not** scheduled recurrence or durable media retention.
 
-The root coordinator can register a supported durable automation at **09:00, 12:00, 15:00, 18:00 and 19:00 America/New_York**. This cadence allows daytime fresh/blog preparation and the plan's 19:00 daily recap finalization before its 20:00 target. It does not guarantee a publication at that time; delayed runs, insufficient stories, missing OAuth or failed QC must be reported honestly. Initial three-Short daily cap remains separate from recap/blog formats. Hourly source discovery continues in the existing Actions control workflow and must not be duplicated.
+The root coordinator can register a supported durable automation at **09:00, 12:00, 15:00, 18:00 and 19:00 America/New_York**. This cadence allows daytime fresh/blog preparation and the plan's 19:00 daily recap finalization before its 20:00 target. It does not guarantee a publication at that time; delayed runs, insufficient stories, missing OAuth or failed QC must be reported honestly. The owner revoked the former three-Short daily cadence cap on November 13, 2026; publish qualifying authorized work as time permits, without filler. Platform/API budgets and all rights, QC, recovery and deduplication controls remain. Hourly source discovery continues in the existing Actions control workflow and must not be duplicated.
 
 **Activation status:** the coordinator confirmed the supported preproduction schedule was saved on November 12, 2026 at 09:00, 12:00, 15:00, 18:00 and 19:00 America/New_York, with the first upcoming run at 18:00 that day. This records schedule creation, not proof of scheduled rendering or publishing. Publication pause and all stage-specific gates remain intact. No new Actions rendering workflow is required or enabled.
 
@@ -94,7 +94,7 @@ the production key or media hash even if submitted flags are changed. Private
 Library delivery to the owner is review, not YouTube upload or public release.
 There is no automatic promotion mechanism. A future fully reviewed release must
 be handled separately; do not relabel or erase the preview receipt. Publication
-pause, daily cap, credentials and all normal production defaults remain unchanged.
+pause, current owner-directed cadence, credentials and all normal production defaults remain unchanged.
 
 ## Future-video branding
 All newly authored video scripts must include the approved `brand_outro` template before review and digest calculation. See [brand-outro.md](brand-outro.md) for portrait/landscape assets and exact validation. Existing approved requests and renders are immutable; do not retrofit the ten DEF CON previews.
