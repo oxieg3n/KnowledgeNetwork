@@ -280,7 +280,7 @@ def scene_video_filter(duration: float, size: tuple[int, int], ass_name: str) ->
 
 
 def probe(path: Path) -> dict:
-    return json.loads(run(['ffprobe', '-v', 'error', '-show_format', '-show_streams', '-of', 'json', str(path)]).stdout)
+    return json.loads(run(['ffprobe', '-protocol_whitelist', 'file,pipe', '-v', 'error', '-show_format', '-show_streams', '-of', 'json', str(path)]).stdout)
 
 
 def assess_probe(data: dict, size: tuple[int, int], short: bool) -> dict:
@@ -301,8 +301,11 @@ def assess_probe(data: dict, size: tuple[int, int], short: bool) -> dict:
 
 
 def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
-           font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf') -> dict:
+           font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', *, local_assets: dict | None = None) -> dict:
     validate_spec(spec)
+    if spec.get('licensed_assets') or any('licensed_excerpt' in s for s in spec.get('scenes', [])):
+        from .licensed import verify_local_assets
+        verify_local_assets(spec, local_assets)
     verify_voice(model, voice_metadata)
     # Official native ONNX builds can initialize telemetry during import.
     # Refuse to import Piper/ONNX unless process startup explicitly opted out.
@@ -319,20 +322,48 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
     segments, durations, captions = [], [], []
     elapsed = 0.0
     for i, scene in enumerate(spec['scenes']):
-        wav = output / f'scene-{i:02}.wav'
-        phrases = caption_phrases(scene['narration'], font_path=font_path,
-                                  width=size[0]-(220 if size[0]<size[1] else 300),
-                                  px=48 if size[0]<size[1] else 44)
-        cues = synthesize_phrases(voice, phrases, wav)
-        duration = cues[-1]['end']
-        ass = output / f'scene-{i:02}.ass'
-        write_captions(ass, cues, size, font_path)
-        png = output / f'scene-{i:02}.png'
-        card(scene, png, size, i, len(spec['scenes']), technical_test=spec.get('technical_test',False), font_path=font_path)
-        mp4 = output / f'scene-{i:02}.mp4'
-        run(['ffmpeg','-hide_banner','-loglevel','error','-loop','1','-i',str(png),'-i',str(wav),
-             '-t',str(duration),'-r','30','-c:v','libx264','-preset','ultrafast','-crf','22','-pix_fmt','yuv420p',
-             '-vf',scene_video_filter(duration,size,ass.name), '-c:a','aac','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11','-threads','2',str(mp4)], cwd=output)
+        if 'licensed_excerpt' in scene:
+            clip=scene['licensed_excerpt']; duration=clip['end']-clip['start']
+            source=Path(local_assets[clip['asset_id']]).resolve()
+            source_probe=probe(source)
+            if clip['end']>float(source_probe['format']['duration']) or not any(s['codec_type']=='audio' for s in source_probe['streams']):
+                raise ValueError('Source cut exceeds media or audio missing')
+            cues=clip['captions']; ass=output/f'scene-{i:02}.ass'
+            write_captions(ass,cues,size,font_path)
+            # Preserve full source frame: never crop a speaker or contextual slide.
+            # Text is drawn with Pillow, not interpolated into an FFmpeg expression.
+            from PIL import Image, ImageDraw, ImageFont
+            bg=Image.new('RGB',size,'#0c1420'); draw=ImageDraw.Draw(bg)
+            font=ImageFont.truetype(font_path,42)
+            asset=spec['licensed_assets'][clip['asset_id']]
+            for text,y in [(scene['title'],180),(asset['attribution'],1250)]:
+                lines=wrap(draw,text,font,860)
+                if len(lines)>4: raise ValueError('Licensed attribution/title overflow')
+                for j,line in enumerate(lines): draw.text((110,y+j*58),line,font=font,fill='#f8fafc')
+            draw.text((110,1740),'Licensed archival excerpt • commentary follows',font=ImageFont.truetype(font_path,26),fill='#7dd3fc')
+            png=output/f'scene-{i:02}.png'; bg.save(png)
+            mp4=output/f'scene-{i:02}.mp4'
+            run(['ffmpeg','-hide_banner','-loglevel','error','-protocol_whitelist','file,pipe','-ss',str(clip['start']),'-t',str(duration),'-i',str(source),
+                 '-loop','1','-i',str(png),'-filter_complex',
+                 f'[0:v]scale=1080:700:force_original_aspect_ratio=decrease,setsar=1[v];[1:v][v]overlay=(W-w)/2:520,ass={ass.name}[out]',
+                 '-map','[out]','-map','0:a:0','-t',str(duration),'-r','30','-c:v','libx264','-preset','ultrafast','-crf','22',
+                 '-pix_fmt','yuv420p','-c:a','aac','-ar','48000','-ac','2','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11',
+                 '-threads','2',str(mp4)],cwd=output)
+        else:
+            wav = output / f'scene-{i:02}.wav'
+            phrases = caption_phrases(scene['narration'], font_path=font_path,
+                                      width=size[0]-(220 if size[0]<size[1] else 300),
+                                      px=48 if size[0]<size[1] else 44)
+            cues = synthesize_phrases(voice, phrases, wav)
+            duration = cues[-1]['end']
+            ass = output / f'scene-{i:02}.ass'
+            write_captions(ass, cues, size, font_path)
+            png = output / f'scene-{i:02}.png'
+            card(scene, png, size, i, len(spec['scenes']), technical_test=spec.get('technical_test',False), font_path=font_path)
+            mp4 = output / f'scene-{i:02}.mp4'
+            run(['ffmpeg','-hide_banner','-loglevel','error','-loop','1','-i',str(png),'-i',str(wav),
+                 '-t',str(duration),'-r','30','-c:v','libx264','-preset','ultrafast','-crf','22','-pix_fmt','yuv420p',
+                 '-vf',scene_video_filter(duration,size,ass.name), '-c:a','aac','-ar','48000','-ac','2','-b:a','160k','-af','loudnorm=I=-16:TP=-1.5:LRA=11','-threads','2',str(mp4)], cwd=output)
         segments.append(mp4)
         durations.append(duration)
         for cue in cues:
@@ -359,8 +390,9 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         'publication_eligible':False, 'status':'rendered_pending_editorial_review',
         'sha256':sha256(final),'format':spec['format'],'sources':spec.get('sources',[]),
         'script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
-        'voice':voice_metadata,'graphics':{'origin':'original programmatic schematic','font':'DejaVu Sans (Bitstream Vera / DejaVu license)'},
-        'captions':'burned-in phrase captions and JSON sidecar; exact synthesized PCM phrase timing with muxed scene offsets; manual listening/sync review still required',
+        'licensed_assets':spec.get('licensed_assets',{}),
+        'voice':voice_metadata,'graphics':{'origin':'original programmatic schematic; licensed source frames where explicitly registered' if spec.get('licensed_assets') else 'original programmatic schematic','font':'DejaVu Sans (Bitstream Vera / DejaVu license)'},
+        'captions':'burned-in captions and JSON sidecar; original narration uses synthesized PCM phrase timing; licensed excerpts use reviewed source-relative cues; muxed scene offsets; manual listening/sync review required',
         'pillow_version':pillow_version,'qc':qc,
     }
     (output/'manifest.json').write_text(json.dumps(manifest,indent=2))
