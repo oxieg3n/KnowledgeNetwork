@@ -1391,6 +1391,59 @@
       "verification_record": "production/reviews/2026-11-12-studio-upload.json",
       "video_id": "-ixuctbWUVw",
       "watch_url": "https://www.youtube.com/watch?v=-ixuctbWUVw"
+    },
+    "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6": {
+      "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+      "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "publication_format": "short",
+      "source_identity": "defcon31:q118B_QdP2k:292.20-296.90",
+      "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+      "reviewed_package_sha256": "fe0bdf7e821e88a0979e293b3ed41a133a96bf3dbead7b73296c36d762522cad",
+      "attempt_ny_date": "2026-11-13",
+      "insert_quota_pt_date": "2026-11-13",
+      "api_insert_performed": false,
+      "method": "owner-authorized manual YouTube Studio",
+      "status": "upload_intent",
+      "privacy_status": "public",
+      "batch_id": "defcon-ten-2026-11-13",
+      "release_path": "production/releases/2026-11-13-defcon-ten.json",
+      "release_commit": "3b0f1e35e76ccb0fd5567659aff58a5c89b815bc",
+      "title": "The hidden cost of leaving a platform",
+      "events": [
+        {
+          "timestamp_utc": "2026-11-13T12:51:19Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-1",
+          "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+          "package_sha256": "fe0bdf7e821e88a0979e293b3ed41a133a96bf3dbead7b73296c36d762522cad",
+          "method": "owner-authorized manual YouTube Studio",
+          "event_id": "defcon-ten-01-reserved",
+          "type": "reserved",
+          "previous_event_digest": null,
+          "evidence": "Reviewed finite batch release on trusted main; exact Library readback and all media/review proofs verified",
+          "attempt_ny_date": "2026-11-13",
+          "shared_daily_count_before": 0,
+          "event_digest": "7b776006c0fbab371caf14b807dca05296d0fb7472c12c2f07420a4881aaab13"
+        },
+        {
+          "timestamp_utc": "2026-11-13T12:51:19Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-1",
+          "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "2c866839d24e8b6f74d49a0ef8a7344e5c615221b464f74af4f093148865c845",
+          "package_sha256": "fe0bdf7e821e88a0979e293b3ed41a133a96bf3dbead7b73296c36d762522cad",
+          "method": "owner-authorized manual YouTube Studio",
+          "event_id": "defcon-ten-01-upload-intent",
+          "type": "upload_intent",
+          "evidence": "Owner-authorized public Short; browser worker must verify channel and uploaded file before proceeding",
+          "attempt_ny_date": "2026-11-13",
+          "previous_event_digest": "7b776006c0fbab371caf14b807dca05296d0fb7472c12c2f07420a4881aaab13",
+          "event_digest": "1aa2b2cd48dd7c1763e39b367acbac3e475e991dc8018a44e4eb40296e97871f"
+        }
+      ]
     }
   },
   "queues": {
@@ -5687,7 +5740,7 @@
       "owner_audio_review": "owner approved exact preview; clean master retains identical AAC and PCM"
     }
   },
-  "revision": 266,
+  "revision": 267,
   "rights_ledger": {},
   "runs": [
     {
