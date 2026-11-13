@@ -2364,7 +2364,7 @@
         "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
         "review_only": true,
         "reviewed_script_sha256": "b6c03bdb24ce1c750b9cc274efb28909a2786a183e1d694574a09c9a6be93cb0",
-        "status": "rendering",
+        "status": "preview_rendered_pending_review",
         "title": "Network effects can run backward"
       },
       "meUr8fjy8lQ": {
@@ -5234,16 +5234,19 @@
       "video_id": "-ixuctbWUVw"
     },
     "a026b9ad3b163bcc65a3ca30e9b835f5b7b8e014b5efed9e12707a9391746723": {
+      "completed_at": "2026-11-13T11:29:03.098173+00:00",
       "execution_started_at": "2026-11-13T11:27:48.467804+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-03-brand-v1",
       "media_handoff": "pending",
       "production_key": "a026b9ad3b163bcc65a3ca30e9b835f5b7b8e014b5efed9e12707a9391746723",
+      "publication_eligible": false,
       "queue": "EVERGREEN_TOP10",
+      "render_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
       "request_sha256": "559a961c9544f41114449c3560ce2a048af14aeef060db11deb7db5eca1f060d",
       "review_only": true,
       "started_at": "2026-11-13T11:27:40.856836+00:00",
-      "status": "execution_started"
+      "status": "preview_rendered_pending_review"
     },
     "c94f608715ba4ad7eae42d05ab996697da529a51b2ab6456cfd846cb034c7559": {
       "execution_started_at": "2026-11-12T23:02:13.549318+00:00",
@@ -5274,7 +5277,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 182,
+  "revision": 183,
   "rights_ledger": {},
   "runs": [
     {
