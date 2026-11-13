@@ -2111,7 +2111,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "verification_pending",
+      "status": "visibility_intent",
       "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -2163,11 +2163,33 @@
           "evidence": "Browser coordinator observed private upload complete, processing shortly; no publish.",
           "video_id": "loIoTFJP8xM",
           "event_digest": "6a7801172ae8f0d640a49ce537e0dc9db67e9abd4c7cc374d4710ac6abdf024e"
+        },
+        {
+          "event_id": "defcon-ten-7-visibility_intent",
+          "type": "visibility_intent",
+          "timestamp_utc": "2026-11-13T14:52:30Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-7",
+          "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
+          "package_sha256": "99cd911020bf035b9f5b6ca13ada7e8b7079fd496afe752fbf22dbb088a8d343",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "6a7801172ae8f0d640a49ce537e0dc9db67e9abd4c7cc374d4710ac6abdf024e",
+          "video_id": "loIoTFJP8xM",
+          "requested_visibility": "public",
+          "evidence": "Browser coordinator verified exact metadata readback, existing playlist/notkids/nopaid/AIYes, Copyright No issues found, processed0:50.",
+          "event_digest": "862b6771c611e5fa847ca87d4241338ce7ebed6e8b27d3a1d427b57eec5c9ccc"
         }
       ],
       "video_id": "loIoTFJP8xM",
       "watch_url": "https://www.youtube.com/shorts/loIoTFJP8xM",
-      "response_received_at": "2026-11-13T14:51:31Z"
+      "response_received_at": "2026-11-13T14:51:31Z",
+      "requested_visibility": "public",
+      "metadata_browser_verified": true,
+      "playlist_id": "PLBqhZZfg3quY",
+      "copyright_check_observation": "No issues found",
+      "processing_observation": "Processed0:50"
     },
     "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90": {
       "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
@@ -6514,7 +6536,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 300,
+  "revision": 301,
   "rights_ledger": {},
   "runs": [
     {
