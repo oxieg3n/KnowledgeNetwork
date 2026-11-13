@@ -68,11 +68,11 @@
             },
             {
               "start": 1.64,
-              "end": 2.94,
+              "end": 2.6,
               "text": "that you have to give up"
             },
             {
-              "start": 2.94,
+              "start": 2.6,
               "end": 4.55,
               "text": "when you leave a product or a service."
             }
@@ -106,7 +106,7 @@
       }
     ]
   },
-  "reviewed_script_sha256": "819cd4ce0af536cdec53442a77a43e553135fc653b0f1f589b3ca1317f1e8002",
+  "reviewed_script_sha256": "f525c8512b1ab479469190eb66918a172e1250d9de31837a3499a41555320b9b",
   "editorial": {
     "facts": {
       "status": "pass",
@@ -114,7 +114,7 @@
     },
     "sources": {
       "status": "pass",
-      "evidence": "Original DEFCON video, exact licensed Commons file revision and author speech support attribution/context. Source file SHA256 reverified and actual source frame inspected. Owner listened to exact source excerpt and confirmed speech only."
+      "evidence": "Original DEFCON video, exact licensed Commons file revision and author speech support attribution/context. Source file SHA256 reverified and actual source frame inspected. Owner listened to exact source excerpt and confirmed speech only. Source caption boundary after give up verified from ASR at294.80absolute/2.60relative. Independent editorial review of final text passed; listening/sync of final output remains pending."
     },
     "originality": {
       "status": "pass",
