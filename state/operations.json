@@ -5631,9 +5631,21 @@
       "exact_audio_verified": true,
       "exact_frame_timestamps_verified": true,
       "outside_footer_pixels_verified": true
+    },
+    "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd": {
+      "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+      "item_id": "defcon-exact-audio-9",
+      "queue": "EVERGREEN_TOP10",
+      "status": "rendering",
+      "source_preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
+      "clean_request_key": "8659904731b063e003b162e2faf95bcaee9b5380bff4c3a8f119364417ca8a65",
+      "review_only": false,
+      "publication_eligible": false,
+      "media_handoff": "pending",
+      "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
     }
   },
-  "revision": 259,
+  "revision": 260,
   "rights_ledger": {},
   "runs": [
     {
