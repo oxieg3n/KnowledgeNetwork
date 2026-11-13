@@ -66,3 +66,11 @@ visual, rights, synthetic-disclosure and reused-content review are still require
 No render grants publication eligibility. Existing remote reservation/readback,
 execution-start intent, recovery, channel/OAuth and publication-pause requirements
 remain unchanged. This adapter neither fetches media nor enables an uploader.
+
+## Owner-selected video branding (November 13, 2026)
+
+Future owner-channel productions use `poweredby-plasma-v1` and a subject-specific
+display title as described in [brand-intro.md](brand-intro.md). The 1.6-second
+bumper counts toward the total runtime. Preserve source attribution and verify
+the exact combined render, including listening, before release. This production
+default does not modify older renders, receipts, upload permissions or pause state.
