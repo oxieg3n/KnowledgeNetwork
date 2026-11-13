@@ -5046,18 +5046,32 @@
       "executor": "dot-cloud-bounded",
       "finishing_intent": {
         "at": "2026-11-13T07:54:40.015661+00:00",
+        "audio_pcm_unchanged": true,
+        "failed_derivatives": "Two nondelivered timing variants rejected; original retained",
         "operation": "Normalize concatenated video to constant30fps; preserve audio and exact content",
         "reason": "AAC packet padding caused mean29.961fps despite each scene30fps",
+        "result_sha256": "42ebe2fa392453e0f50829840d0da852a3bb89e5974e019531c65ec55266f502",
         "source_sha256": "89d5c5d10bc8f3430d9987428a436c98f6c619cd230f91b3a24bdd1c06659e61",
-        "status": "prepared"
+        "status": "completed_verified",
+        "technical_checks_passed": true
       },
+      "initial_render_sha256": "89d5c5d10bc8f3430d9987428a436c98f6c619cd230f91b3a24bdd1c06659e61",
       "item_id": "q118B_QdP2k-switching-costs",
-      "media_handoff": "pending",
+      "media_handoff": "owner_library_verified",
       "production_key": "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047",
       "publication_eligible": false,
+      "qc_summary": {
+        "black_segments": 0,
+        "dimensions": "1080x1920",
+        "duration_seconds": 37.481667,
+        "fps": 30,
+        "listening": "pending",
+        "long_silences": 0
+      },
       "queue": "EVERGREEN_TOP10",
-      "render_sha256": "89d5c5d10bc8f3430d9987428a436c98f6c619cd230f91b3a24bdd1c06659e61",
+      "render_sha256": "42ebe2fa392453e0f50829840d0da852a3bb89e5974e019531c65ec55266f502",
       "request_sha256": "53c7743315f0c3eaf2b9728dfdfe6c9fdeb06259b89d8cc1c2c0569f1e6e65ac",
+      "review_status": "awaiting_owner_final_audio",
       "started_at": "2026-11-13T07:51:58.286825+00:00",
       "status": "rendered_pending_review"
     },
@@ -5099,7 +5113,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 140,
+  "revision": 141,
   "rights_ledger": {},
   "runs": [
     {
