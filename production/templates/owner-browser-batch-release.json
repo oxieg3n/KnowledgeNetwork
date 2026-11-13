@@ -11,7 +11,7 @@
   "visibility": "public",
   "global_controls_unchanged": true,
   "oauth_verified_by_this_record": false,
-  "shorts_daily_limit": 3,
+  "shorts_daily_limit": null,
   "daily_timezone": "America/New_York",
   "ledger": "state/operations.json publications",
   "items": [
@@ -211,9 +211,9 @@
     ],
     "reservation_fields": [
       "attempt_ny_date",
-      "shared_daily_count_before",
       "remote_state_commit",
-      "readback_sha256"
+      "readback_sha256",
+      "shared_daily_count_observed"
     ],
     "receipt_fields": [
       "video_id",
@@ -230,5 +230,6 @@
       "Playlist events use playlist identity; do not invent media hashes for playlist-only actions.",
       "Later owner stop overrides remaining unstarted batch releases."
     ]
-  }
+  },
+  "cadence_authorization_amendment": "Owner November13,2026: \"if its something i told you, ignore that. Post as many videos as you have time to post every day.\" Revokes the owner-imposed three-Short daily cadence cap, not platform quotas or rights/QC/deduplication controls."
 }
