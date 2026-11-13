@@ -305,7 +305,15 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
     validate_spec(spec)
     if spec.get('licensed_assets') or any('licensed_excerpt' in s for s in spec.get('scenes', [])):
         from .licensed import verify_local_assets
-        verify_local_assets(spec, local_assets)
+        excerpt_assets = ({k:v for k,v in local_assets.items() if k != 'poweredby_logo'}
+                          if spec.get('brand_intro') is not None and local_assets else local_assets)
+        verify_local_assets(spec, excerpt_assets)
+    intro_config = spec.get('brand_intro')
+    if intro_config is not None:
+        from .intro import verify_intro
+        if not local_assets or 'poweredby_logo' not in local_assets:
+            raise ValueError('brand_intro requires local approved poweredby_logo')
+        verify_intro(intro_config, Path(local_assets['poweredby_logo']))
     verify_voice(model, voice_metadata)
     # Official native ONNX builds can initialize telemetry during import.
     # Refuse to import Piper/ONNX unless process startup explicitly opted out.
@@ -370,15 +378,39 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
             captions.append({'start':round(elapsed+cue['start'],3), 'end':round(elapsed+cue['end'],3), 'text':cue['text'], 'scene':i})
         # Muxed scene duration includes codec/frame padding; use it for later scene offsets.
         elapsed += float(probe(mp4)['format']['duration'])
+    intro_evidence = None
+    if intro_config is not None:
+        from PIL import Image
+        from .intro import render_intro, offset_captions, TEMPLATE, LOGO_SHA256
+        first = output/'first-content-frame.png'
+        run(['ffmpeg','-hide_banner','-loglevel','error','-i',str(segments[0]),'-frames:v','1',str(first)])
+        bumper = render_intro(intro_config, Path(local_assets['poweredby_logo']),
+                              Image.open(first).convert('RGB'), output, font_path)
+        intro_duration = float(probe(bumper)['format']['duration'])
+        if abs(intro_duration-1.6) > 1/30:
+            raise ValueError('intro timing outside reviewed template bounds')
+        segments.insert(0, bumper)
+        captions = offset_captions(captions, intro_duration)
+        intro_evidence = {'template':TEMPLATE,'title':intro_config['title'],
+                          'logo_sha256':LOGO_SHA256,'intro_sha256':sha256(bumper),
+                          'content_offset_seconds':intro_duration,
+                          'origin':'owner-selected logo; original procedural plasma and synchronized sound',
+                          'listening_review':'pending exact-final-render review',
+                          'source_endorsement':False}
     concat = output / 'segments.txt'
     # Generated safe basenames only; no untrusted strings in concat input.
     concat.write_text(''.join(f"file '{p.name}'\n" for p in segments))
     final = output / 'final.mp4'
+    encoding = (['-vf','fps=30,setpts=PTS-STARTPTS','-af','asetpts=PTS-STARTPTS',
+                 '-c:v','libx264','-threads','2','-preset','fast','-crf','19','-pix_fmt','yuv420p',
+                 '-r','30','-fps_mode','cfr','-c:a','aac','-ar','48000','-ac','2','-b:a','160k']
+                if intro_evidence else ['-c','copy'])
     run(['ffmpeg','-hide_banner','-loglevel','error','-f','concat','-safe','1','-i',str(concat),
-         '-c','copy','-movflags','+faststart',str(final)])
+         *encoding,'-movflags','+faststart',str(final)])
     qc = assess_probe(probe(final), size, spec['format']=='short')
-    scan = run(['ffmpeg','-hide_banner','-i',str(final),'-vf','blackdetect=d=0.5:pix_th=0.05',
+    scan = run(['ffmpeg','-hide_banner','-i',str(final),'-vf',(f"trim=start={intro_evidence['content_offset_seconds']},blackdetect=d=0.5:pix_th=0.05" if intro_evidence else 'blackdetect=d=0.5:pix_th=0.05'),
                 '-af','silencedetect=n=-45dB:d=2,ebur128=peak=true','-f','null','-'])
+    qc['branded_black_background_exemption_seconds'] = intro_evidence['content_offset_seconds'] if intro_evidence else 0
     qc['black_segments'] = len(re.findall(r'black_start:', scan.stderr))
     qc['long_silences'] = len(re.findall(r'silence_start:', scan.stderr))
     qc['passed'] = qc['passed'] and qc['black_segments']==0 and qc['long_silences']==0
@@ -390,6 +422,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         'publication_eligible':False, 'status':'rendered_pending_editorial_review',
         'sha256':sha256(final),'format':spec['format'],'sources':spec.get('sources',[]),
         'script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
+        'brand_intro':intro_evidence,
         'licensed_assets':spec.get('licensed_assets',{}),
         'voice':voice_metadata,'graphics':{'origin':'original programmatic schematic; licensed source frames where explicitly registered' if spec.get('licensed_assets') else 'original programmatic schematic','font':'DejaVu Sans (Bitstream Vera / DejaVu license)'},
         'captions':'burned-in captions and JSON sidecar; original narration uses synthesized PCM phrase timing; licensed excerpts use reviewed source-relative cues; muxed scene offsets; manual listening/sync review required',
@@ -405,8 +438,9 @@ def main() -> None:
     ap.add_argument('--output',type=Path,required=True)
     ap.add_argument('--voice',type=Path,required=True)
     ap.add_argument('--voice-metadata',type=Path,required=True)
+    ap.add_argument('--local-assets',type=Path,help='private JSON asset-id to local-path mapping; never committed')
     args=ap.parse_args()
-    manifest=render(json.loads(args.spec.read_text()),args.output,args.voice,json.loads(args.voice_metadata.read_text()))
+    manifest=render(json.loads(args.spec.read_text()),args.output,args.voice,json.loads(args.voice_metadata.read_text()),local_assets=json.loads(args.local_assets.read_text()) if args.local_assets else None)
     print(json.dumps({'status':manifest['status'],'qc_passed':manifest['qc']['passed'],'publication_eligible':False}))
 
 if __name__=='__main__':
