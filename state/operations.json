@@ -1111,19 +1111,19 @@
         "Gaming"
       ],
       "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
-      "coverage": "feed_window_only; API reconciliation pending",
       "evidence_urls": [
         "https://www.nintendo.com/us/",
         "https://www.youtube.com/nintendo",
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-12T22:05:50.292502+00:00",
-      "last_monitored_at": "2026-11-12T22:05:50.292428+00:00",
+      "last_attempt_at": "2026-11-13T02:37:45.875721+00:00",
+      "last_monitored_at": "2026-11-13T02:37:45.875602+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
-      "monitor_method": "official_atom_feed",
+      "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
       "observed_title": "Nintendo of America",
+      "pagination_remaining": true,
       "playlist_observed_title": "Uploads from Nintendo of America",
       "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCGIY_O-8vW4rfX98KlMkvRg",
       "subscription_status": "pending_oauth",
@@ -1282,19 +1282,19 @@
         "Google Gemini"
       ],
       "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
-      "coverage": "feed_window_only; API reconciliation pending",
       "evidence_urls": [
         "https://developers.google.com/",
         "https://www.youtube.com/user/GoogleDevelopers",
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-12T22:05:50.332186+00:00",
-      "last_monitored_at": "2026-11-12T22:05:50.332114+00:00",
+      "last_attempt_at": "2026-11-13T02:37:46.291038+00:00",
+      "last_monitored_at": "2026-11-13T02:37:46.290913+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
-      "monitor_method": "official_atom_feed",
+      "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
       "observed_title": "Google for Developers",
+      "pagination_remaining": true,
       "playlist_observed_title": "Uploads from Google for Developers",
       "rss_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw",
       "subscription_status": "pending_oauth",
@@ -2635,7 +2635,7 @@
         "video_id": "9qOjJaeKTAQ"
       },
       "AFclxMTQ2hI": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -2644,9 +2644,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204237+00:00",
         "id": "AFclxMTQ2hI",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-10T18:00:34+00:00",
+        "published_at": "2026-11-10T18:00:34Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2738,7 +2739,7 @@
         "video_id": "BUT-8qn-jtg"
       },
       "B_bw2zq6nEU": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -2747,9 +2748,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204196+00:00",
         "id": "B_bw2zq6nEU",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T17:00:21+00:00",
+        "published_at": "2026-11-11T17:00:21Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2863,7 +2865,7 @@
         "video_id": "FNTz0CdqL6g"
       },
       "FOqxuzEr4R4": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -2872,9 +2874,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204042+00:00",
         "id": "FOqxuzEr4R4",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-12T15:00:22+00:00",
+        "published_at": "2026-11-12T15:00:22Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -2883,7 +2886,7 @@
         "video_id": "FOqxuzEr4R4"
       },
       "Fupb0CeuPoc": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -2892,9 +2895,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204247+00:00",
         "id": "Fupb0CeuPoc",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-09T23:00:03+00:00",
+        "published_at": "2026-11-09T23:00:03Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -3337,7 +3341,7 @@
         "video_id": "Qk4R02ZS1BQ"
       },
       "QsIDIiED5kc": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -3346,9 +3350,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204258+00:00",
         "id": "QsIDIiED5kc",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-06T22:00:39+00:00",
+        "published_at": "2026-11-06T22:00:39Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -4424,7 +4429,7 @@
         "video_id": "qLUWYcbddJA"
       },
       "qOFd1pHYTmc": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -4433,9 +4438,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204207+00:00",
         "id": "qOFd1pHYTmc",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T15:00:03+00:00",
+        "published_at": "2026-11-11T15:00:03Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -4485,7 +4491,7 @@
         "video_id": "qiZEzSyw6fo"
       },
       "sDLjFDQpy_o": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -4494,9 +4500,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204183+00:00",
         "id": "sDLjFDQpy_o",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T19:00:28+00:00",
+        "published_at": "2026-11-11T19:00:28Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -4714,7 +4721,7 @@
         "video_id": "umQBBI0374A"
       },
       "vLAegkGGWrM": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Google Gemini"
@@ -4723,9 +4730,10 @@
         "channel_name": "Google for Developers",
         "discovered_at": "2026-11-12T21:57:28.675250+00:00",
         "id": "vLAegkGGWrM",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-12T17:00:11+00:00",
+        "published_at": "2026-11-12T17:00:11Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -4843,7 +4851,7 @@
         "video_id": "witRjoQP16I"
       },
       "wvs2M144Y5g": {
-        "api_verification": "pending",
+        "api_verification": "verified",
         "attempts": 0,
         "categories": [
           "Gaming"
@@ -4852,9 +4860,10 @@
         "channel_name": "Nintendo of America",
         "discovered_at": "2026-11-12T21:57:26.204226+00:00",
         "id": "wvs2M144Y5g",
-        "metadata_source": "official_atom_feed",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
         "primary_sources": [],
-        "published_at": "2026-11-11T00:00:35+00:00",
+        "published_at": "2026-11-11T00:00:35Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
         "story_cluster_id": null,
@@ -4927,7 +4936,7 @@
   },
   "quota": {
     "2026-11-12": {
-      "general": 27,
+      "general": 33,
       "search": 3,
       "upload": 0
     }
@@ -4971,7 +4980,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 115,
+  "revision": 124,
   "rights_ledger": {},
   "runs": [
     {
@@ -5398,6 +5407,21 @@
         "verified_sources": 10
       },
       "run_id": "43326120082-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-13T02:37:45.421558+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "43353483848-1",
       "status": "BLOCKED"
     }
   ],
