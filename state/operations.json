@@ -2445,7 +2445,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "upload_intent",
+      "status": "platform_limit_blocked_reconciliation_required",
       "privacy_status": "public",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -2481,8 +2481,28 @@
           "previous_event_digest": "155ada06d53c543e0ff48391d0a744dee1e53a06252ec535981f102cadd8ca1a",
           "evidence": "Final independent upload in authorized ten, separate visibility intent required.",
           "event_digest": "7b95122263734bc85c59abe7951d54a3ae1a76c99afc05eb7997cfb160e0e82f"
+        },
+        {
+          "event_id": "defcon-ten-10-platform-upload-limit",
+          "type": "platform_limit_observed",
+          "timestamp_utc": "2026-11-13T16:29:27Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-10",
+          "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+          "package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "7b95122263734bc85c59abe7951d54a3ae1a76c99afc05eb7997cfb160e0e82f",
+          "evidence": "Browser coordinator selected exact item10 file; Studio displayed Daily upload limit reached. Upload more videos daily after a one-time verification or wait24hours. UI Creating link... with no video ID. No verification clicked. Upload outcome must be reconciled before retry; not counted uploaded or published.",
+          "event_digest": "204bd39c5d4997b1cdf3eb8a3597d12bfa91f0675d1026ad68a9fc09e772e857"
         }
-      ]
+      ],
+      "platform_limit_observation": "Daily upload limit reached. Upload more videos daily after a one-time verification or wait24hours.",
+      "upload_outcome": "No video ID observed; Creating link... shown; not confirmed uploaded",
+      "reconciliation_required": true,
+      "automatic_retry_allowed": false,
+      "blocked_at": "2026-11-13T16:29:27Z"
     }
   },
   "queues": {
@@ -6779,7 +6799,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 306,
+  "revision": 307,
   "rights_ledger": {},
   "runs": [
     {
