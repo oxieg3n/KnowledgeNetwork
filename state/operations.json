@@ -2417,6 +2417,16 @@
         "status": "preview_rendered_pending_review",
         "title": "Open access still needs privacy safeguards"
       },
+      "defcon-private-preview-09-brand-v1": {
+        "attempts": 0,
+        "discovered_at": "2026-11-13T11:41:49.321785+00:00",
+        "id": "defcon-private-preview-09-brand-v1",
+        "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
+        "review_only": true,
+        "reviewed_script_sha256": "5a37782d419655773329a9c2564684b7bff5b0b8f1f186ff2d45f2f0b3a7721e",
+        "status": "rendering",
+        "title": "Protect your principles before pressure arrives"
+      },
       "meUr8fjy8lQ": {
         "attempts": 0,
         "categories": [
@@ -5274,6 +5284,17 @@
       "started_at": "2026-11-13T07:51:58.286825+00:00",
       "status": "rendered_pending_review"
     },
+    "6802299d00053f8a3a35f001815924af3ec91cbda960f2b176f3f3f3ac8625ac": {
+      "executor": "dot-cloud-bounded",
+      "item_id": "defcon-private-preview-09-brand-v1",
+      "media_handoff": "pending",
+      "production_key": "6802299d00053f8a3a35f001815924af3ec91cbda960f2b176f3f3f3ac8625ac",
+      "queue": "EVERGREEN_TOP10",
+      "request_sha256": "8b3d27e2a736a24f771546e4edbee3a1c8be447e0ba5a131e156c38319fe1996",
+      "review_only": true,
+      "started_at": "2026-11-13T11:41:49.334280+00:00",
+      "status": "rendering"
+    },
     "6d62832b382e19c74e176cb1ad61b212ea08c2c8ea39e9b5a5f5dd169a74cfa1": {
       "completed_at": "2026-11-13T11:39:10.962390+00:00",
       "execution_started_at": "2026-11-13T11:37:38.301663+00:00",
@@ -5402,7 +5423,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 198,
+  "revision": 199,
   "rights_ledger": {},
   "runs": [
     {
