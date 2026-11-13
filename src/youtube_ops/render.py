@@ -300,6 +300,16 @@ def assess_probe(data: dict, size: tuple[int, int], short: bool) -> dict:
     return {'checks': checks, 'passed': all(checks.values()), 'duration_seconds': duration}
 
 
+def assemble_segments(concat: Path, final: Path, *, branded: bool) -> None:
+    """Uniform generated scene sizes, stable filter state across color metadata changes."""
+    encoding = (['-vf','fps=30,setpts=PTS-STARTPTS','-af','asetpts=PTS-STARTPTS',
+                 '-c:v','libx264','-threads','2','-preset','fast','-crf','19','-pix_fmt','yuv420p',
+                 '-r','30','-fps_mode','cfr','-c:a','aac','-ar','48000','-ac','2','-b:a','160k']
+                if branded else ['-c','copy'])
+    run(['ffmpeg','-hide_banner','-loglevel','error','-reinit_filter','0','-f','concat','-safe','1','-i',str(concat),
+         *encoding,'-movflags','+faststart',str(final)])
+
+
 def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
            font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', *, local_assets: dict | None = None) -> dict:
     validate_spec(spec)
@@ -401,12 +411,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
     # Generated safe basenames only; no untrusted strings in concat input.
     concat.write_text(''.join(f"file '{p.name}'\n" for p in segments))
     final = output / 'final.mp4'
-    encoding = (['-vf','fps=30,setpts=PTS-STARTPTS','-af','asetpts=PTS-STARTPTS',
-                 '-c:v','libx264','-threads','2','-preset','fast','-crf','19','-pix_fmt','yuv420p',
-                 '-r','30','-fps_mode','cfr','-c:a','aac','-ar','48000','-ac','2','-b:a','160k']
-                if intro_evidence else ['-c','copy'])
-    run(['ffmpeg','-hide_banner','-loglevel','error','-f','concat','-safe','1','-i',str(concat),
-         *encoding,'-movflags','+faststart',str(final)])
+    assemble_segments(concat, final, branded=bool(intro_evidence))
     qc = assess_probe(probe(final), size, spec['format']=='short')
     scan = run(['ffmpeg','-hide_banner','-i',str(final),'-vf',(f"trim=start={intro_evidence['content_offset_seconds']},blackdetect=d=0.5:pix_th=0.05" if intro_evidence else 'blackdetect=d=0.5:pix_th=0.05'),
                 '-af','silencedetect=n=-45dB:d=2,ebur128=peak=true','-f','null','-'])
