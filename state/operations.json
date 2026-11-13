@@ -2001,8 +2001,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "visibility_intent",
-      "privacy_status": "private",
+      "status": "published_observed_verification_pending",
+      "privacy_status": "public",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
@@ -2070,6 +2070,22 @@
           "video_id": "YQmdOwiagGk",
           "requested_visibility": "public",
           "event_digest": "a787dd0e43b3fdb0483ea38a81311daa7aaada71d5c38c0789da063116f3300b"
+        },
+        {
+          "event_id": "defcon-ten-6-playlist_membership_verified",
+          "type": "playlist_membership_verified",
+          "timestamp_utc": "2026-11-13T14:50:31Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-6",
+          "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "c93980f2e510ba8aef70bf0f7906e32d25df2b76995f024c88d97053bfc1b94e",
+          "package_sha256": "9b1592a03e26b041f95d7ca0b3093db185d319e263e913ee555330e54dd5bbdb",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "a787dd0e43b3fdb0483ea38a81311daa7aaada71d5c38c0789da063116f3300b",
+          "video_id": "YQmdOwiagGk",
+          "evidence": "Browser coordinator observed Video published modal and Public existing playlist row Nov13. Playback pending, not claimed verified.",
+          "event_digest": "333ce16776b8c59cbd7f8a3296e4e4c35892507e7ee1d84a08a5a3353422d1ff"
         }
       ],
       "video_id": "YQmdOwiagGk",
@@ -2078,7 +2094,11 @@
       "metadata_browser_verified": true,
       "copyright_check_observation": "No issues found",
       "processing_observation": "Processed0:50",
-      "playlist_id": "PLBqhZZfg3quY"
+      "playlist_id": "PLBqhZZfg3quY",
+      "public_visibility_verified": true,
+      "playlist_membership_verified": true,
+      "published_observed_at": "2026-11-13T14:50:31Z",
+      "playback_observation": "Pending actual playback verification"
     },
     "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5": {
       "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
@@ -6425,7 +6445,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 298,
+  "revision": 299,
   "rights_ledger": {},
   "runs": [
     {
