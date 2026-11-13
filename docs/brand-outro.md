@@ -1,0 +1,9 @@
+# Approved reusable plasma outro
+
+Owner approved both portrait and landscape previews November 13, 2026. Use for all newly authored future video requests. Do not revise existing requests or the previously approved ten DEF CON renders. This template approval is not publication permission or an exact combined-video listening review.
+
+Set `"brand_outro": {"template": "poweredby-plasma-outro-v1"}` in the script **before** script review/digest/reservation. Supply `local_assets.poweredby_outro` pointing to the matching approved Library deliverable, `Powered-By-Outro-Portrait.mp4` or `Powered-By-Outro-Landscape.mp4`. Materialize through the authorized Library workflow; never guess a download URL. The renderer checks pinned content hashes, dimensions and audio/video duration before any synthesis. Media remains outside this public repository. Existing requests with no outro retain their previous behavior; never silently mutate a reviewed request.
+
+The 7.8-second, 30fps asset has the approved circular badge, irregular curved plasma, bold “Like, Follow, Subscribe!” and synthetic spoken CTA. Speech begins at0.25s and ends about1.83s. The screen holds over five seconds after speech, then fades7.0–7.8s. Original procedural crackle is quieter than the intro; no third-party samples. Voice uses the MIT Piper LJ Speech model with public-domain recordings. Logo SHA256 `5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`.
+
+The renderer copies the exact approved asset, appends with CFR assembly, preserves content caption offsets, and records provenance/hash/start/duration in the manifest. Black-background exemptions cover only the bounded intro/outro intervals; silence checks remain enabled. Check the final body-to-outro transition, volume, caption ending, full audio/video duration, end fade, and Short length limit before exact-final approval. Neither publication pause nor rights/release safeguards change.

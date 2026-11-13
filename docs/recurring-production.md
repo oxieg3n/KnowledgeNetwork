@@ -95,3 +95,6 @@ Library delivery to the owner is review, not YouTube upload or public release.
 There is no automatic promotion mechanism. A future fully reviewed release must
 be handled separately; do not relabel or erase the preview receipt. Publication
 pause, daily cap, credentials and all normal production defaults remain unchanged.
+
+## Future-video branding
+All newly authored video scripts must include the approved `brand_outro` template before review and digest calculation. See [brand-outro.md](brand-outro.md) for portrait/landscape assets and exact validation. Existing approved requests and renders are immutable; do not retrofit the ten DEF CON previews.
