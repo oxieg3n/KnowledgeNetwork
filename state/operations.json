@@ -5285,6 +5285,7 @@
       "status": "rendered_pending_review"
     },
     "6802299d00053f8a3a35f001815924af3ec91cbda960f2b176f3f3f3ac8625ac": {
+      "execution_started_at": "2026-11-13T11:41:57.255679+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-09-brand-v1",
       "media_handoff": "pending",
@@ -5293,7 +5294,7 @@
       "request_sha256": "8b3d27e2a736a24f771546e4edbee3a1c8be447e0ba5a131e156c38319fe1996",
       "review_only": true,
       "started_at": "2026-11-13T11:41:49.334280+00:00",
-      "status": "rendering"
+      "status": "execution_started"
     },
     "6d62832b382e19c74e176cb1ad61b212ea08c2c8ea39e9b5a5f5dd169a74cfa1": {
       "completed_at": "2026-11-13T11:39:10.962390+00:00",
@@ -5423,7 +5424,7 @@
       "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 199,
+  "revision": 200,
   "rights_ledger": {},
   "runs": [
     {
