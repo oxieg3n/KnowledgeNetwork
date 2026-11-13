@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "status": "reviewed_inputs_not_release",
+  "items": [
+    {
+      "number": 1,
+      "production_key": "d457c3245dd4a3ab2839cc9a10ec61ce3287bf74f5b15d0f680c95fe76b7ebf6",
+      "clean_request_key": "fa3e66b85f345bf771dfd131e711dc6e8fcc49f6ff93eff896a8f4cc09fd2d79",
+      "preview_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
+      "manifest_sha256": "ba4bcdd6447604e601adb86fd8d2ca46f7fab81e5132161d1f288ac4c7196aa7",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "4df242ddfd352249bf28d4847f98f1e794dd45db4cc95d51aaa2a5b5ab4940ac",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "505fda5ed71a0c76b7b052f62c6d2c3f342de78323190b48780e7bfe0711f3f0",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "b9f74ad439a902026ae66d5c80e595f9101417aee1705cd8ea106a66f05b9888",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "8e502efe7af4978f13cac5c34f57936429ac2aeba3103e31c62bc5e8d04bbd0a",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "a0db22c00d49dd596852f6015f7200f6b76083ca7e22d4dcb27b6f1476229c12",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "755ff4052fc89f680988389d26d1c6362f3ea203fda72424ea1a36fd3975071b",
+          "kind": "original"
+        },
+        {
+          "name": "scene-05.mp4",
+          "sha256": "6c52620fd91d25d5d001efcc3dac9dbf4970d6367e9f9e853ca1a11dacc36aa3",
+          "kind": "original"
+        },
+        {
+          "name": "scene-06.mp4",
+          "sha256": "6d075e9b7809982fac061028e45ea54669610362efd28178eea7fa371baeb49e",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 2,
+      "production_key": "f1d084ffe22a308f772180f99ecb00a110e954d3bc15af2cd3b34a3f224147f0",
+      "clean_request_key": "7773099cb806abe3b84da688f2284fd8a21cef7f31ee5927cd631d14624a69d4",
+      "preview_sha256": "854c54783ab29bd05191816d05ca697d6d2f27b24336e531109c7af5426163f6",
+      "manifest_sha256": "6d8e1685f2ec442c06ae01f15f21cf4cae7997b4dc076b183c79f4ac4cd1b57a",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "f9a2edc34d1e2de66689772943f613956f499bf5a604756b93f69c8fcccebff7",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "c5d5a6e98c0c44764e8ebb82e07657124691a324619389f4ad0066dc7f9e7fef",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "57329addc1236ddafb5f607e90b63779ca07410eda03733149b92220b6ddbc80",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "55b7f564a8d8474387a729020702668e1f3d8c25227638821d89b0bac63f5395",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "99a77b2c90bad7959856183b263a38950475c103e782408220af437dc2c48a8b",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "52ef33a08dccbea40a5060fc5bf2e796dcb33bd520318723df724afe9088906e",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 3,
+      "production_key": "4915db7654bf03df571c2441d1a22f014845060603ccdeb4f89117939df871b2",
+      "clean_request_key": "2ba67e5a71fc88549689b6bd73104a9c693c78fd05cf4885132d40a60c027cb2",
+      "preview_sha256": "7990fea31c5bec5856f812e3fce99005405b8d18a178ad8a42321e8b63202942",
+      "manifest_sha256": "882972e726ae02d3d8b1ffcb83d6d268b45598a4aa5e08d664d141c42bfe47c8",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "cad14c5a58aa02bec6b8d09d09b054c387281255f3fb9b6249157175b438e7ac",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "238185d570cfd953adbd41432730d84ef3a7e3f134177a2d90717138621b89e4",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "c9ce349fc63bd24ab46fde5e6c5dccace3dafe8ff63ecedd3359caab8319f241",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "945ab69d46523bba9676f66b954348239a3b3000ae8d092e6a80c2f11da38152",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "f0c8f372bee9cb9cefc885135ff5ea956b906904eec77c0c461167609c1b52d1",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "a48f87ce0985bbcad2cc0435c69ec0c1893276e374a1a8ea5da8a889f55c98c9",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 4,
+      "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
+      "clean_request_key": "c77f85ee9bbca8eff870d5a51dcef030a7c3d80b8b2511d6f172eeca010a59e0",
+      "preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
+      "manifest_sha256": "3979710c89b17fb2f7266730e4df2871730337252d1f404438b785c05e90ade2",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "08a6f370f1323e650a244253694cf0b62f1c849c27533b21ca378a491ce64d40",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "9d4bcb2e56704a8d5145b6257eab93d49fa8c0799035e3d1900e9ea025896298",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "c9ece5408937ac4c3952538ac16716881e335fda6fe212182f2ff24b170aa3eb",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "e70bfdf4dd1df250f96beaac3244a92ac5034172bf2c33312595feced0b5cee8",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "012f6d65b1fd1de3ba934b9e022a01fc2684cff3c0ff3c7bd1aefc42113d8051",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "8a5ea1367494f464b70ca5f4f6b6b70b516ad5afcc559510c6b8185065dcf1f3",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 5,
+      "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
+      "clean_request_key": "78c31b68b13c888ece9e22304f4e0328e9da1f39592df72115558f26e7a35f8b",
+      "preview_sha256": "1bed2c98bb5cbc06da1fabd5faffcd38ce94d9cfe9c765922f4e793886f2dcf9",
+      "manifest_sha256": "d5dc5f04f3f356847eb3d355eb4c2be00a219d016234f7fb41f700a80f501b8d",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "f57f247630b3c846b6676e111eef54f12e654f01d4902dbfc65ebd79c20fe09d",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "353f3c457390e0efa80072cbb81b98f1f59e5f54184ccb61127fbd2928474292",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "b17ce8ce3aa803b5cd1b89c161614fdba19f3255add6592a8af4145c1cb6d652",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "9d544cdb3c3226b0382af4932f9220f3bead9d7d831527330327b0a2fb7ac8b5",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "caff370a79ab5e70fbcdcc8419d2cd8487cf2f0b56efe36d2cdbc3f720c3169f",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "f1460945be25f747b36b4e4a7561e219a6e26faee33f28ba7fcdfa06146525d7",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 6,
+      "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
+      "clean_request_key": "bfadb304fc22d9800f55b64b549e7679ef73fb702b8ef1aadac10e3903e870c8",
+      "preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
+      "manifest_sha256": "daf9b8f84ed8cc8dcce62d414193952a29606d31dbb8eb028f2bce15f7125882",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "f81f003eaefee12515d0ae564b7469c6a5899b0410edd60cdce084bf07b2a49f",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "476c708f1a10285e73caa854d892ffeb11442cd2584ec67b85f947b9ec89746d",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "690a3dfc655427c30d3f15bbe2eae18c020a2eecbab0889a886a7ba57d24b9c1",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "b1ad0fc50f0fc9366f11e1f553a0515c3d8e4ae1c2c025eb5109f970570d8d63",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "bab8acc922b45dc77bc6fb1344e643c1173a6e8e27d34633e6a8ca963a6aced5",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "56885d47783ebbefd2dc3ec61adaad6242f17603065f91693c2fa1dc382652d5",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 7,
+      "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
+      "clean_request_key": "bdccb713938083a1ebbc277bd6ff4311a68e855abb156f1caf74d678273b6b51",
+      "preview_sha256": "cf15c6588129869f7d0b14069b0ed1d584685b686095bf9deb01cd39de19abe7",
+      "manifest_sha256": "a830f6270bf2cbf3a582b66b313df37752538a4a96d0ae57c1c457ebf03682c2",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "656631b0c054f25e84c47f2dee527da8152864a58d00d385568fe773f51f19af",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "7d486914421773950eadbdbd26eb2fd6df6f37fbdd9c842995c4eee9a87fc8cb",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "11007b9d60ee546859e0097d695a05441a7c1b45ccc3501323574780e8030c26",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "55e82402251e1e1a2c22ff3f4cc290d70fd8c162f8a24fd46409d96e53aba7a4",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "35b4a1fec5f0c093941b3793b8e691b2a27534571b77157f5f029e11c4ac49c2",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "04a8abe419c459c8bcb3d6f4ccaa514c2309eb4e6d89a787f60738c655e2fe1d",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 8,
+      "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
+      "clean_request_key": "6351dbd285ede47cdcb3513aae94910753dc76e4be1eefe6d9f6eb5e78558366",
+      "preview_sha256": "5504fba39ff27417a2a6e1701d6cdbbfa7abb04ef67034bceee9a70ee2d36fc1",
+      "manifest_sha256": "8386cc146483ddd1f9298a925893dff2e3757fde4210bdec471ff47a9e394f92",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "917c9abec500bd8b669d99be42c9a69eea2859e1360314929a69f9584d35a8db",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "1aa7d677595d821460610ae71bec0eb2da6d8c9fe52943a6f1e52b5f2feafb04",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "7c6a812c4c6f274bc157f0c311acb675bd8cb70e26994403fdcf5b8c4cab0256",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "b2a99a15bdb784fa0ea83bc993077b9cdfb6061a954ac04024f321f97754187c",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "a828c61eed0facc68f9dc31cbb4169236450038dc2aa755d50cc8da32c918e38",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "f86527cf29eb3121b7390c886612fccb0c8fc3faec275b187876f2cec344c99a",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 9,
+      "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+      "clean_request_key": "8659904731b063e003b162e2faf95bcaee9b5380bff4c3a8f119364417ca8a65",
+      "preview_sha256": "ad983127b9d1ff978a73062ac70754971e7902678e98de7c1dcf791c75a636f7",
+      "manifest_sha256": "b285af57004ef9f7da1c0c3888878a919fd69b25011f1f8715451c32147fffc5",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "345db8b6f11b9ce984cebfb9315bbbb3b2861d9192fac24c1d742ddb28daa101",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "f0ea3f636ffa6fe7e7da47e9bcfbdab9f521fa38a9444802a78790ca46a89380",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "c83b8363422f5fcd7efe03e481625f069fa518a88183843bf6500acbcb5e4b09",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "8bf29920bfa45dcf9d256387bf5e0cf9a72f3fd34b0d57d5eec9f9701fb098e5",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "a3b4e65684d044cadbcec8acb38c3e71003c20cf917c0fd5d40b508023b75298",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "ab3d458ae3ab685763538d8db13b78af9eadf99f096918527650ddc92e89c91b",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    },
+    {
+      "number": 10,
+      "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+      "clean_request_key": "dd34fe9d6d04f1e36798b3d3b18d7cfbea71c6efc5eaf4511a6e1e0b0d00ee34",
+      "preview_sha256": "4aec9c45ef663ce6ef4e603b786652312e37852bbdc18dee941bc99e64f5cb65",
+      "manifest_sha256": "527cd082d6864e8f36d9aaead6b9d6c3bf18c151c810f19d433150f7d046988d",
+      "segments": [
+        {
+          "name": "intro.mp4",
+          "sha256": "1560f2bd9f7304d855809a01d668352874f9fdca3fb843a64e27acef40c8e358",
+          "kind": "intro"
+        },
+        {
+          "name": "scene-00.mp4",
+          "sha256": "bc7b31ac1776f7419857ac26256e1b56df7d53499b2f49ed2d3e2d0206982883",
+          "kind": "original"
+        },
+        {
+          "name": "scene-01.mp4",
+          "sha256": "6f8778372da64b1d48ce258d698ab5f53fe25da2b996b12bea0108d9f7649367",
+          "kind": "source"
+        },
+        {
+          "name": "scene-02.mp4",
+          "sha256": "fdf4c73b0047634556a3924d233049197971a1deab390eb25a3c56683efc0f61",
+          "kind": "original"
+        },
+        {
+          "name": "scene-03.mp4",
+          "sha256": "48a3d6a07e5b59959bc6cbd033e8e21a6c8695527b17e6320f35f41a9eb8c03e",
+          "kind": "original"
+        },
+        {
+          "name": "scene-04.mp4",
+          "sha256": "bbca93cd34583990418b2fe832f1b12879d783593bdfbfa34a125ae415e1b7f7",
+          "kind": "original"
+        }
+      ],
+      "changes": "Only known private review footer rectangles replaced with accurate AI-narration/licensed-source labels. No new outro, narration, cuts, captions, branding or audio.",
+      "publication_eligible": false
+    }
+  ]
+}
