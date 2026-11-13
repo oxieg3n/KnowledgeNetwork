@@ -2098,7 +2098,8 @@
       "public_visibility_verified": true,
       "playlist_membership_verified": true,
       "published_observed_at": "2026-11-13T14:50:31Z",
-      "playback_observation": "Pending actual playback verification"
+      "playback_observation": "Public page correct title/channel/AI label; cloud player readyState0/time0 no error, playback pending.",
+      "public_page_identity_verified": true
     },
     "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5": {
       "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
@@ -2111,8 +2112,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "visibility_intent",
-      "privacy_status": "private",
+      "status": "published_observed_verification_pending",
+      "privacy_status": "public",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
@@ -2180,6 +2181,22 @@
           "requested_visibility": "public",
           "evidence": "Browser coordinator verified exact metadata readback, existing playlist/notkids/nopaid/AIYes, Copyright No issues found, processed0:50.",
           "event_digest": "862b6771c611e5fa847ca87d4241338ce7ebed6e8b27d3a1d427b57eec5c9ccc"
+        },
+        {
+          "event_id": "defcon-ten-7-playlist_membership_verified",
+          "type": "playlist_membership_verified",
+          "timestamp_utc": "2026-11-13T16:24:33Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-7",
+          "production_key": "1770dbd5368b98ae87c6c794f5e92decd52d837a2a7fa0c4028627ead0d468d5",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "ab32ae194bf9e6186cd674a89fb555224a42b30a9a3c710e7d44501a39bd9cec",
+          "package_sha256": "99cd911020bf035b9f5b6ca13ada7e8b7079fd496afe752fbf22dbb088a8d343",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "862b6771c611e5fa847ca87d4241338ce7ebed6e8b27d3a1d427b57eec5c9ccc",
+          "evidence": "Browser coordinator observed published modal and Public existing playlist row Nov13; playback pending.",
+          "video_id": "loIoTFJP8xM",
+          "event_digest": "5753d7355eca737b9f12a459fb9c583a3072e7e0011c68839334b482ffd9c1dd"
         }
       ],
       "video_id": "loIoTFJP8xM",
@@ -2189,7 +2206,11 @@
       "metadata_browser_verified": true,
       "playlist_id": "PLBqhZZfg3quY",
       "copyright_check_observation": "No issues found",
-      "processing_observation": "Processed0:50"
+      "processing_observation": "Processed0:50",
+      "public_visibility_verified": true,
+      "playlist_membership_verified": true,
+      "published_observed_at": "2026-11-13T16:24:33Z",
+      "playback_observation": "Pending actual playback verification"
     },
     "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90": {
       "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
@@ -2202,8 +2223,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "upload_intent",
-      "privacy_status": "public",
+      "status": "verification_pending",
+      "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
@@ -2238,6 +2259,75 @@
           "previous_event_digest": "a405d9ebea9c1df27d7fdeb1e2c52835189462122b67de9a36a4986aafa6e31d",
           "evidence": "Next independent upload authorized, separate visibility intent required.",
           "event_digest": "386f4f55d5103c5337507fb0ef27ce505ee784e77ac145bc2a517bd09cc59b81"
+        },
+        {
+          "event_id": "defcon-ten-8-video_id_observed",
+          "type": "video_id_observed",
+          "timestamp_utc": "2026-11-13T16:24:33Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-8",
+          "production_key": "c369fdf4e31bb12dd8a72195bd1d5322def5d2db479b22731f3139d821f58b90",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "dcf09e82b8ae31c9ca99c7d43829b46d0000ad1a78864253d0e9d909fada6950",
+          "package_sha256": "55279944c37b8632fcbb127ca9e0455297cf857f3fac762c492b2603ae2507ef",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "386f4f55d5103c5337507fb0ef27ce505ee784e77ac145bc2a517bd09cc59b81",
+          "evidence": "Browser coordinator observed private upload complete, processing pending.",
+          "video_id": "K8RHgViKO4I",
+          "event_digest": "ef7ce14fd31acb8a2a2c53b0d14ce3153c39672f8f66757cba2c6505adc3e3c2"
+        }
+      ],
+      "video_id": "K8RHgViKO4I",
+      "watch_url": "https://www.youtube.com/shorts/K8RHgViKO4I",
+      "response_received_at": "2026-11-13T16:24:33Z"
+    },
+    "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd": {
+      "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+      "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "publication_format": "short",
+      "source_identity": "defcon31:q118B_QdP2k:2342.74-2355.04",
+      "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+      "reviewed_package_sha256": "4a569748a4684ceda151cda7b8b1ee3dca05cabce3696a81676e6082f6a6559b",
+      "attempt_ny_date": "2026-11-13",
+      "insert_quota_pt_date": "2026-11-13",
+      "api_insert_performed": false,
+      "method": "owner-authorized manual YouTube Studio",
+      "status": "upload_intent",
+      "privacy_status": "public",
+      "batch_id": "defcon-ten-2026-11-13",
+      "release_path": "production/releases/2026-11-13-defcon-ten.json",
+      "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
+      "title": "Protect your principles before pressure arrives",
+      "events": [
+        {
+          "event_id": "defcon-ten-9-reserved",
+          "type": "reserved",
+          "timestamp_utc": "2026-11-13T16:24:33Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-9",
+          "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+          "package_sha256": "4a569748a4684ceda151cda7b8b1ee3dca05cabce3696a81676e6082f6a6559b",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": null,
+          "evidence": "Reviewed finite batch exact asset/package; owner removed internal count cap.",
+          "event_digest": "496c1172ca81584111f728f5fd8d12da3114648dbc96ac72dfe2e93696434ecc"
+        },
+        {
+          "event_id": "defcon-ten-9-upload_intent",
+          "type": "upload_intent",
+          "timestamp_utc": "2026-11-13T16:24:33Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-9",
+          "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+          "package_sha256": "4a569748a4684ceda151cda7b8b1ee3dca05cabce3696a81676e6082f6a6559b",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "496c1172ca81584111f728f5fd8d12da3114648dbc96ac72dfe2e93696434ecc",
+          "evidence": "Next independent upload authorized, separate visibility intent required.",
+          "event_digest": "a7d47aba76a0318695ee40ee20dab7eb31c7b73fa785149df5d23b469ad3aa1e"
         }
       ]
     }
@@ -6536,7 +6626,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 301,
+  "revision": 302,
   "rights_ledger": {},
   "runs": [
     {
