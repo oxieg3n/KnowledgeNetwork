@@ -5044,6 +5044,13 @@
       "completed_at": "2026-11-13T07:53:23.613389+00:00",
       "execution_started_at": "2026-11-13T07:52:36.597747+00:00",
       "executor": "dot-cloud-bounded",
+      "finishing_intent": {
+        "at": "2026-11-13T07:54:40.015661+00:00",
+        "operation": "Normalize concatenated video to constant30fps; preserve audio and exact content",
+        "reason": "AAC packet padding caused mean29.961fps despite each scene30fps",
+        "source_sha256": "89d5c5d10bc8f3430d9987428a436c98f6c619cd230f91b3a24bdd1c06659e61",
+        "status": "prepared"
+      },
       "item_id": "q118B_QdP2k-switching-costs",
       "media_handoff": "pending",
       "production_key": "4d8cba5676ab87c08e682e8fc3f8a37eea51ceee4282c47733d1e0ec102d4047",
@@ -5092,7 +5099,7 @@
       "status": "interrupted"
     }
   },
-  "revision": 139,
+  "revision": 140,
   "rights_ledger": {},
   "runs": [
     {
