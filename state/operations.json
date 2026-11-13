@@ -2344,7 +2344,7 @@
         "request_path": "production/requests/2026-11-13-defcon-ten-owner-previews.json",
         "review_only": true,
         "reviewed_script_sha256": "25625a394e480f847b9aed9ca481693c48bc37aae451a0380fd1102c26bc124a",
-        "status": "rendering",
+        "status": "preview_rendered_pending_review",
         "title": "The hidden cost of leaving a platform"
       },
       "meUr8fjy8lQ": {
@@ -5212,19 +5212,22 @@
       "status": "interrupted"
     },
     "e85cc538f61a83cde2f2faf01e608219ee6daa685d15b8e3c7db1ed17ef88da4": {
+      "completed_at": "2026-11-13T11:25:15.842323+00:00",
       "execution_started_at": "2026-11-13T11:24:02.390507+00:00",
       "executor": "dot-cloud-bounded",
       "item_id": "defcon-private-preview-01-brand-v1",
       "media_handoff": "pending",
       "production_key": "e85cc538f61a83cde2f2faf01e608219ee6daa685d15b8e3c7db1ed17ef88da4",
+      "publication_eligible": false,
       "queue": "EVERGREEN_TOP10",
+      "render_sha256": "930464e46a4c1a3e852060f1f24334b2ac59fcde39e5f684f33ef63e24526ca4",
       "request_sha256": "0e0c3e3850b9d7cb5f2fe3ec69213c528cdece2feb4a461f1011a218bcab0709",
       "review_only": true,
       "started_at": "2026-11-13T11:23:31.701385+00:00",
-      "status": "execution_started"
+      "status": "preview_rendered_pending_review"
     }
   },
-  "revision": 176,
+  "revision": 177,
   "rights_ledger": {},
   "runs": [
     {
