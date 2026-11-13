@@ -1777,7 +1777,7 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "verification_pending",
+      "status": "visibility_intent",
       "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
@@ -1831,11 +1831,32 @@
           "evidence": "Browser coordinator verified exact clean upload, Saved private, upload complete processing will begin shortly; no publish.",
           "video_id": "kFkZqee4qcg",
           "event_digest": "dd61333fb569c29d6cbe5e64619a136b16a6fea5b94665bbef463aa1b12172f6"
+        },
+        {
+          "event_id": "defcon-ten-04-public-intent",
+          "type": "visibility_intent",
+          "timestamp_utc": "2026-11-13T13:34:17Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-4",
+          "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
+          "package_sha256": "0f85e25b624530660442ab0092ba79de25ce56cd728af5d21d2334c876975a4c",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "dd61333fb569c29d6cbe5e64619a136b16a6fea5b94665bbef463aa1b12172f6",
+          "video_id": "kFkZqee4qcg",
+          "requested_visibility": "public",
+          "evidence": "Browser coordinator verified exact reviewed title/description readback, existing playlist, notkids/no paid promotion/AIyes/Science&Technology; upload+SD complete, Copyright No issues found.",
+          "event_digest": "e9fc810e0f6133d29b4bafba43222104ec3424d786fee5241546dd558f56ba35"
         }
       ],
       "video_id": "kFkZqee4qcg",
       "watch_url": "https://www.youtube.com/shorts/kFkZqee4qcg",
-      "processing_observation": "Upload complete; processing will begin shortly"
+      "processing_observation": "Upload and SD complete",
+      "requested_visibility": "public",
+      "metadata_browser_verified": true,
+      "copyright_check_observation": "No issues found",
+      "playlist_id": "PLBqhZZfg3quY"
     },
     "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b": {
       "production_key": "bdc6d019a1c2fcd3ee6d5e7c88fbd07c5d55eb779c5b446c7509a29c42fd414b",
@@ -6182,7 +6203,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 293,
+  "revision": 294,
   "rights_ledger": {},
   "runs": [
     {
