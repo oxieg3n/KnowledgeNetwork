@@ -5551,16 +5551,21 @@
       "production_key": "1b927d744ef5de181a1ac832059efe7e91d1aae36527f39acd9fc4e8b76b3e1c",
       "item_id": "defcon-exact-audio-4",
       "queue": "EVERGREEN_TOP10",
-      "status": "execution_started",
+      "status": "rendered_pending_review",
       "source_preview_sha256": "2168cfcc237e7dbcaf19b198694ba719895df024072fa9aae8e980b28dccab0d",
       "clean_request_key": "c77f85ee9bbca8eff870d5a51dcef030a7c3d80b8b2511d6f172eeca010a59e0",
       "review_only": false,
       "publication_eligible": false,
       "media_handoff": "pending",
-      "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
+      "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab",
+      "render_sha256": "70959a9efb7a6a66dcb290332b13d5161e9b5411b1ad5e31a2398dfd838c3772",
+      "technical_qc": true,
+      "exact_audio_verified": true,
+      "exact_frame_timestamps_verified": true,
+      "outside_footer_pixels_verified": true
     }
   },
-  "revision": 246,
+  "revision": 247,
   "rights_ledger": {},
   "runs": [
     {
