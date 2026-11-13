@@ -5585,7 +5585,7 @@
       "production_key": "f79745853dfccd5373a966ffd57c4adc717d1e9f65f0ccb7c157589a20179307",
       "item_id": "defcon-exact-audio-6",
       "queue": "EVERGREEN_TOP10",
-      "status": "rendering",
+      "status": "execution_started",
       "source_preview_sha256": "106348fd1802417ecd9fa5a7e5bf703ef4bec655d619104c0c321eea7380866d",
       "clean_request_key": "bfadb304fc22d9800f55b64b549e7679ef73fb702b8ef1aadac10e3903e870c8",
       "review_only": false,
@@ -5594,7 +5594,7 @@
       "finishing_code_commit": "4b3cd1d6f7a3e0b1567e1f5e74c67570a45f60ab"
     }
   },
-  "revision": 251,
+  "revision": 252,
   "rights_ledger": {},
   "runs": [
     {
