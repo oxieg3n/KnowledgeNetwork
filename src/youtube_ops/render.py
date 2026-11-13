@@ -23,6 +23,9 @@ def run(args: list[str], *, timeout: int = 600, cwd: Path | None = None) -> subp
 def validate_spec(spec: dict) -> None:
     if spec.get('format') not in ('short', 'landscape'):
         raise ValueError('format must be short or landscape')
+    if spec.get('brand_outro') is not None:
+        from .outro import validate_config
+        validate_config(spec['brand_outro'])
     scenes = spec.get('scenes', [])
     if not 1 <= len(scenes) <= 30:
         raise ValueError('one to thirty scenes required')
@@ -326,10 +329,19 @@ def assemble_segments(concat: Path, final: Path, *, branded: bool) -> None:
 def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
            font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', *, local_assets: dict | None = None) -> dict:
     validate_spec(spec)
+    reserved_assets = set()
+    if spec.get('brand_intro') is not None: reserved_assets.add('poweredby_logo')
+    outro_config = spec.get('brand_outro')
+    if outro_config is not None:
+        from .outro import verify_outro
+        if not local_assets or 'poweredby_outro' not in local_assets:
+            raise ValueError('brand_outro requires local approved poweredby_outro')
+        verify_outro(outro_config, local_assets['poweredby_outro'], spec['format'])
+        reserved_assets.add('poweredby_outro')
     if spec.get('licensed_assets') or any('licensed_excerpt' in s for s in spec.get('scenes', [])):
         from .licensed import verify_local_assets
-        excerpt_assets = ({k:v for k,v in local_assets.items() if k != 'poweredby_logo'}
-                          if spec.get('brand_intro') is not None and local_assets else local_assets)
+        excerpt_assets = ({k:v for k,v in local_assets.items() if k not in reserved_assets}
+                          if reserved_assets and local_assets else local_assets)
         verify_local_assets(spec, excerpt_assets)
     intro_config = spec.get('brand_intro')
     if intro_config is not None:
@@ -420,15 +432,25 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
                           'origin':'owner-selected logo; original procedural plasma and synchronized sound',
                           'listening_review':'pending exact-final-render review',
                           'source_endorsement':False}
+    outro_evidence = None
+    if outro_config is not None:
+        from .outro import append_outro
+        outro_evidence = append_outro(outro_config, local_assets['poweredby_outro'], spec['format'], output, segments)
     concat = output / 'segments.txt'
     # Generated safe basenames only; no untrusted strings in concat input.
     concat.write_text(''.join(f"file '{p.name}'\n" for p in segments))
     final = output / 'final.mp4'
-    assemble_segments(concat, final, branded=bool(intro_evidence))
-    qc = assess_probe(probe(final), size, spec['format']=='short')
-    scan = run(['ffmpeg','-hide_banner','-i',str(final),'-vf',(f"trim=start={intro_evidence['content_offset_seconds']},blackdetect=d=0.5:pix_th=0.05" if intro_evidence else 'blackdetect=d=0.5:pix_th=0.05'),
+    assemble_segments(concat, final, branded=bool(intro_evidence or outro_evidence))
+    final_probe = probe(final)
+    qc = assess_probe(final_probe, size, spec['format']=='short')
+    if outro_evidence:
+        from .outro import verify_assembled_timeline
+        qc['outro_timeline_complete'] = verify_assembled_timeline(final_probe, outro_evidence['start_seconds'] + outro_evidence['duration_seconds'])
+        qc['passed'] = qc['passed'] and qc['outro_timeline_complete']
+    scan = run(['ffmpeg','-hide_banner','-i',str(final),'-vf',(f"trim=start={intro_evidence['content_offset_seconds'] if intro_evidence else 0}" + (f":end={outro_evidence['start_seconds']}" if outro_evidence else '') + ',blackdetect=d=0.5:pix_th=0.05'),
                 '-af','silencedetect=n=-45dB:d=2,ebur128=peak=true','-f','null','-'])
     qc['branded_black_background_exemption_seconds'] = intro_evidence['content_offset_seconds'] if intro_evidence else 0
+    qc['approved_outro_black_background_interval'] = ([outro_evidence['start_seconds'], outro_evidence['start_seconds'] + outro_evidence['duration_seconds']] if outro_evidence else None)
     qc['black_segments'] = len(re.findall(r'black_start:', scan.stderr))
     qc['long_silences'] = len(re.findall(r'silence_start:', scan.stderr))
     qc['passed'] = qc['passed'] and qc['black_segments']==0 and qc['long_silences']==0
@@ -442,7 +464,7 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         'review_purpose':spec.get('review_purpose'),
         'sha256':sha256(final),'format':spec['format'],'sources':spec.get('sources',[]),
         'script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
-        'brand_intro':intro_evidence,
+        'brand_intro':intro_evidence, 'brand_outro':outro_evidence,
         'licensed_assets':spec.get('licensed_assets',{}),
         'voice':voice_metadata,'graphics':{'origin':'original programmatic schematic; licensed source frames where explicitly registered' if spec.get('licensed_assets') else 'original programmatic schematic','font':'DejaVu Sans (Bitstream Vera / DejaVu license)'},
         'captions':'burned-in captions and JSON sidecar; original narration uses synthesized PCM phrase timing; licensed excerpts use reviewed source-relative cues; muxed scene offsets; manual listening/sync review required',
