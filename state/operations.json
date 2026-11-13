@@ -2315,8 +2315,8 @@
       "insert_quota_pt_date": "2026-11-13",
       "api_insert_performed": false,
       "method": "owner-authorized manual YouTube Studio",
-      "status": "upload_intent",
-      "privacy_status": "public",
+      "status": "visibility_intent",
+      "privacy_status": "private",
       "batch_id": "defcon-ten-2026-11-13",
       "release_path": "production/releases/2026-11-13-defcon-ten.json",
       "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
@@ -2351,6 +2351,96 @@
           "previous_event_digest": "496c1172ca81584111f728f5fd8d12da3114648dbc96ac72dfe2e93696434ecc",
           "evidence": "Next independent upload authorized, separate visibility intent required.",
           "event_digest": "a7d47aba76a0318695ee40ee20dab7eb31c7b73fa785149df5d23b469ad3aa1e"
+        },
+        {
+          "event_id": "defcon-ten-9-video_id_observed",
+          "type": "video_id_observed",
+          "timestamp_utc": "2026-11-13T16:26:22Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-9",
+          "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+          "package_sha256": "4a569748a4684ceda151cda7b8b1ee3dca05cabce3696a81676e6082f6a6559b",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "a7d47aba76a0318695ee40ee20dab7eb31c7b73fa785149df5d23b469ad3aa1e",
+          "evidence": "Browser coordinator observed private upload complete, processing initially pending.",
+          "video_id": "O9MfH2_LlLE",
+          "event_digest": "3736d647f80106e34ef143934e812b842c64ace9abcd9af594a6609bd975bb3c"
+        },
+        {
+          "event_id": "defcon-ten-9-visibility_intent",
+          "type": "visibility_intent",
+          "timestamp_utc": "2026-11-13T16:26:22Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-9",
+          "production_key": "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "8804d71513fe659bc9684f61d1dc4c14e11eb1482225a3207c81d7c85cec2d3b",
+          "package_sha256": "4a569748a4684ceda151cda7b8b1ee3dca05cabce3696a81676e6082f6a6559b",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "3736d647f80106e34ef143934e812b842c64ace9abcd9af594a6609bd975bb3c",
+          "evidence": "Browser coordinator now verified exact metadata/playlist/notkids/nopaid/AIYes and Copyright No issues found.",
+          "video_id": "O9MfH2_LlLE",
+          "requested_visibility": "public",
+          "event_digest": "cf923b164e9d8e4a36d5995b0677890eb31dc65dc6346e26cf9ea6c6ec305ba6"
+        }
+      ],
+      "video_id": "O9MfH2_LlLE",
+      "watch_url": "https://www.youtube.com/shorts/O9MfH2_LlLE",
+      "response_received_at": "2026-11-13T16:26:22Z",
+      "requested_visibility": "public",
+      "metadata_browser_verified": true,
+      "playlist_id": "PLBqhZZfg3quY",
+      "copyright_check_observation": "No issues found"
+    },
+    "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2": {
+      "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+      "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+      "publication_format": "short",
+      "source_identity": "defcon31:q118B_QdP2k:857.96-863.64",
+      "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+      "reviewed_package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+      "attempt_ny_date": "2026-11-13",
+      "insert_quota_pt_date": "2026-11-13",
+      "api_insert_performed": false,
+      "method": "owner-authorized manual YouTube Studio",
+      "status": "upload_intent",
+      "privacy_status": "public",
+      "batch_id": "defcon-ten-2026-11-13",
+      "release_path": "production/releases/2026-11-13-defcon-ten.json",
+      "release_commit": "36f2bd45201cfe96b26b14d18239439a7ca1cc86",
+      "title": "Possible does not mean permitted",
+      "events": [
+        {
+          "event_id": "defcon-ten-10-reserved",
+          "type": "reserved",
+          "timestamp_utc": "2026-11-13T16:26:22Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-10",
+          "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+          "package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": null,
+          "evidence": "Reviewed finite batch exact asset/package; owner removed internal count cap.",
+          "event_digest": "155ada06d53c543e0ff48391d0a744dee1e53a06252ec535981f102cadd8ca1a"
+        },
+        {
+          "event_id": "defcon-ten-10-upload_intent",
+          "type": "upload_intent",
+          "timestamp_utc": "2026-11-13T16:26:22Z",
+          "batch_id": "defcon-ten-2026-11-13",
+          "item_id": "defcon-exact-audio-10",
+          "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+          "package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+          "method": "owner-authorized manual YouTube Studio",
+          "previous_event_digest": "155ada06d53c543e0ff48391d0a744dee1e53a06252ec535981f102cadd8ca1a",
+          "evidence": "Final independent upload in authorized ten, separate visibility intent required.",
+          "event_digest": "7b95122263734bc85c59abe7951d54a3ae1a76c99afc05eb7997cfb160e0e82f"
         }
       ]
     }
@@ -6649,7 +6739,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 303,
+  "revision": 304,
   "rights_ledger": {},
   "runs": [
     {
