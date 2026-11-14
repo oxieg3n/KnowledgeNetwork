@@ -6,6 +6,28 @@ publication operation, media subprocess or production scheduler. Existing Python
 queues and publication controls remain authoritative and unchanged. It is not
 proof of Assistant/Dot reachability or a finished editing service.
 
+V8 places production VoiceStudio on BLACKHAT-BASE. The Collector service does
+not yet dispatch `narration.generate`; capabilities explicitly return
+`narration_jobs_enabled=false` and
+`remote_voice_provider_not_bound_to_service_identity`. A successful standalone
+Python provider probe is separate from a working LocalService job. No remote
+endpoint or credential is accepted in a submitted job.
+
+Before enabling that one job type, register an administrator-configured, pinned
+provider executable/module and fixed private endpoint on FORGE; verify its
+bounded REST allowlist and returned WAV validation. Provision the narrow
+credential in Windows-protected storage readable by the exact service identity
+and prove restart access without printing it. Register licensed model/profile
+evidence and resolve project/output IDs inside the private vault. The worker
+must persist the script/profile/request digests before sending, serialize one
+speech request, and reconcile uncertain host responses rather than blindly
+replay generation after a timeout/restart. A cancelled local request is not
+proof that host synthesis stopped. Only then add the typed job, its recovery
+policy and native end-to-end tests. Never expose arbitrary URLs, paths,
+provider commands, host settings, cloning or general remote HTTP through this
+boundary. Current diagnostic/snapshot scheduling and publication holds remain
+unchanged. See [V8 architecture](v8/REMOTE_VOICESTUDIO_ARCHITECTURE.md).
+
 Build with the .NET 10 LTS SDK on Windows:
 
 ```powershell

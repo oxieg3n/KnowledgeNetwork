@@ -17,22 +17,34 @@ internal sealed class JobStore : IDisposable
         Directory.CreateDirectory(directory);
         db = new SqliteConnection(new SqliteConnectionStringBuilder { DataSource = Path.Combine(directory, "jobs.sqlite"), Pooling = false }.ToString());
         db.Open();
+        try
+        {
+            bool hasMetadata = Scalar("SELECT name FROM sqlite_master WHERE type='table' AND name='metadata'") is string;
+            if (hasMetadata ? (string?)Scalar("SELECT value FROM metadata WHERE key='schema_version'") != "1" :
+                (long)Scalar("SELECT count(*) FROM sqlite_master WHERE type='table'")! != 0)
+                throw new RequestError("unsupported_database_schema");
+        }
+        catch { db.Dispose(); throw; }
         Run("PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA busy_timeout=5000; PRAGMA max_page_count=65536;");
-        Run("""
-            CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
-            CREATE TABLE IF NOT EXISTS jobs (
-                id TEXT PRIMARY KEY, idem TEXT NOT NULL UNIQUE, payload_hash TEXT NOT NULL,
-                payload TEXT NOT NULL, state TEXT NOT NULL, priority INTEGER NOT NULL,
-                created_at TEXT NOT NULL, expires_at TEXT NOT NULL, attempt INTEGER NOT NULL DEFAULT 0,
-                result TEXT, result_hash TEXT, error TEXT);
-            CREATE TABLE IF NOT EXISTS events (
-                sequence INTEGER PRIMARY KEY AUTOINCREMENT, job_id TEXT NOT NULL,
-                state TEXT NOT NULL, at TEXT NOT NULL, digest TEXT NOT NULL);
-            CREATE TRIGGER IF NOT EXISTS events_no_update BEFORE UPDATE ON events BEGIN SELECT RAISE(ABORT,'append_only'); END;
-            CREATE TRIGGER IF NOT EXISTS events_no_delete BEFORE DELETE ON events BEGIN SELECT RAISE(ABORT,'append_only'); END;
-            CREATE INDEX IF NOT EXISTS jobs_pending ON jobs(state,priority,created_at);
-            """);
-        Run("INSERT OR IGNORE INTO metadata VALUES ('schema_version','1'); INSERT OR IGNORE INTO metadata VALUES ('worker_id',$id)", ("$id", Guid.NewGuid().ToString("N")));
+        using (var initialization = db.BeginTransaction())
+        {
+            Run("""
+                CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+                CREATE TABLE IF NOT EXISTS jobs (
+                    id TEXT PRIMARY KEY, idem TEXT NOT NULL UNIQUE, payload_hash TEXT NOT NULL,
+                    payload TEXT NOT NULL, state TEXT NOT NULL, priority INTEGER NOT NULL,
+                    created_at TEXT NOT NULL, expires_at TEXT NOT NULL, attempt INTEGER NOT NULL DEFAULT 0,
+                    result TEXT, result_hash TEXT, error TEXT);
+                CREATE TABLE IF NOT EXISTS events (
+                    sequence INTEGER PRIMARY KEY AUTOINCREMENT, job_id TEXT NOT NULL,
+                    state TEXT NOT NULL, at TEXT NOT NULL, digest TEXT NOT NULL);
+                CREATE TRIGGER IF NOT EXISTS events_no_update BEFORE UPDATE ON events BEGIN SELECT RAISE(ABORT,'append_only'); END;
+                CREATE TRIGGER IF NOT EXISTS events_no_delete BEFORE DELETE ON events BEGIN SELECT RAISE(ABORT,'append_only'); END;
+                CREATE INDEX IF NOT EXISTS jobs_pending ON jobs(state,priority,created_at);
+                """, initialization);
+            Run("INSERT OR IGNORE INTO metadata VALUES ('schema_version','1'); INSERT OR IGNORE INTO metadata VALUES ('worker_id',$id)", initialization, ("$id", Guid.NewGuid().ToString("N")));
+            initialization.Commit();
+        }
         if ((string?)Scalar("SELECT value FROM metadata WHERE key='schema_version'") != "1") throw new RequestError("unsupported_database_schema");
         WorkerId = (string)Scalar("SELECT value FROM metadata WHERE key='worker_id'")!;
         // Only replay-safe read-only jobs are accepted. Side-effecting jobs must reconcile instead.
@@ -66,7 +78,7 @@ internal sealed class JobStore : IDisposable
         {
             "health" => Health(request),
             "capabilities" => new { schema_version = 1, operations = new[] { "health", "capabilities", "jobs.submit", "jobs.get", "jobs.cancel", "research.snapshot" }, job_types = new[] { "diagnostic.echo", "research.snapshot" }, research_snapshot_configured = snapshotPath is not null,
-                editor_jobs_enabled = false, narration_jobs_enabled = false, publication_paused = true, production_scheduler_enabled = false },
+                editor_jobs_enabled = false, narration_jobs_enabled = false, narration_block_reason = "remote_voice_provider_not_bound_to_service_identity", publication_paused = true, production_scheduler_enabled = false },
             "research.snapshot" => ResearchSnapshot(),
             "jobs.submit" => Submit(request.GetProperty("job")),
             "jobs.get" => Get(Protocol.Text(request, "job_id", 32)),
@@ -134,6 +146,8 @@ internal sealed class JobStore : IDisposable
         using var cmd = Command("SELECT state,payload_hash,result,result_hash,error,attempt,created_at,expires_at FROM jobs WHERE id=$id", null, ("$id", id));
         using var reader = cmd.ExecuteReader();
         if (!reader.Read()) throw new RequestError("job_not_found");
+        if (!reader.IsDBNull(2) && (reader.IsDBNull(3) || Protocol.Hash(reader.GetString(2)) != reader.GetString(3)))
+            throw new RequestError("result_digest_mismatch");
         return new
         {
             job_id = id, state = reader.GetString(0), payload_sha256 = reader.GetString(1),
@@ -153,12 +167,17 @@ internal sealed class JobStore : IDisposable
     }
     public void ExecuteNext()
     {
-        string? id = null, payload = null, expires = null;
-        using (var cmd = Command("SELECT id,payload,expires_at FROM jobs WHERE state='queued' ORDER BY priority DESC,created_at,id LIMIT 1"))
-        using (var reader = cmd.ExecuteReader()) if (reader.Read()) { id = reader.GetString(0); payload = reader.GetString(1); expires = reader.GetString(2); }
+        string? id = null, payload = null, expires = null, digest = null;
+        using (var cmd = Command("SELECT id,payload,expires_at,payload_hash FROM jobs WHERE state='queued' ORDER BY priority DESC,created_at,id LIMIT 1"))
+        using (var reader = cmd.ExecuteReader()) if (reader.Read()) { id = reader.GetString(0); payload = reader.GetString(1); expires = reader.GetString(2); digest = reader.GetString(3); }
         if (id is null) return;
         using (var tx = db.BeginTransaction())
         {
+            if (Protocol.Hash(payload!) != digest)
+            {
+                Run("UPDATE jobs SET state='blocked',error='payload_digest_mismatch' WHERE id=$id", tx, ("$id", id));
+                Event(id, "blocked", "", tx); tx.Commit(); return;
+            }
             if (DateTimeOffset.Parse(expires!, CultureInfo.InvariantCulture) <= DateTimeOffset.UtcNow)
             {
                 Run("UPDATE jobs SET state='expired',error='expired_before_execution' WHERE id=$id", tx, ("$id", id));
@@ -167,13 +186,16 @@ internal sealed class JobStore : IDisposable
             Run("UPDATE jobs SET state='running',attempt=attempt+1 WHERE id=$id", tx, ("$id", id));
             Event(id, "running", "", tx); tx.Commit();
         }
-        using var parsed = JsonDocument.Parse(payload!);
         string result;
         try
         {
-            result = parsed.RootElement.GetProperty("job_type").GetString() == "diagnostic.echo"
-                ? Protocol.Encode(new { nonce = parsed.RootElement.GetProperty("inputs").GetProperty("nonce").GetString(), worker_id = WorkerId })
-                : Protocol.Encode(ResearchSnapshot());
+            using var parsed = JsonDocument.Parse(payload!);
+            result = parsed.RootElement.GetProperty("job_type").GetString() switch
+            {
+                "diagnostic.echo" => Protocol.Encode(new { nonce = parsed.RootElement.GetProperty("inputs").GetProperty("nonce").GetString(), worker_id = WorkerId }),
+                "research.snapshot" => Protocol.Encode(ResearchSnapshot()),
+                _ => throw new RequestError("unsupported_job_type")
+            };
         }
         catch (Exception error) when (error is RequestError or IOException or UnauthorizedAccessException or JsonException or KeyNotFoundException or InvalidOperationException)
         {

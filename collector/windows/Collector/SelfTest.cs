@@ -25,6 +25,23 @@ internal static class SelfTest
             using var manifest = ServiceInstall.ReadPackageManifest(manifestPath);
             Check(manifest.RootElement.ValueKind == JsonValueKind.Array);
         }
+        string Read(byte[] bytes) => Protocol.ReadLine(new MemoryStream(bytes), CancellationToken.None).GetAwaiter().GetResult();
+        Check(Read(System.Text.Encoding.UTF8.GetBytes("{}\n")) == "{}");
+        Reject(() => Read(System.Text.Encoding.UTF8.GetBytes("{}")), "incomplete_request");
+        Reject(() => Read(System.Text.Encoding.UTF8.GetBytes(new string('x', Protocol.MaxBytes + 1) + "\n")), "request_too_large");
+        try { Read([0xc3, 0x28, 10]); throw new InvalidOperationException("invalid_utf8_accepted"); }
+        catch (System.Text.DecoderFallbackException) { checks++; }
+        var foreign = Path.Combine(path, "future-schema"); Directory.CreateDirectory(foreign);
+        var foreignDatabase = Path.Combine(foreign, "jobs.sqlite");
+        using (var connection = new SqliteConnection("Data Source=" + foreignDatabase + ";Pooling=False"))
+        {
+            connection.Open(); using var cmd = connection.CreateCommand();
+            cmd.CommandText = "CREATE TABLE metadata(key TEXT PRIMARY KEY,value TEXT); INSERT INTO metadata VALUES('schema_version','2')";
+            cmd.ExecuteNonQuery();
+        }
+        var foreignBytes = File.ReadAllBytes(foreignDatabase);
+        Reject(() => { using var rejected = new JobStore(foreign); }, "unsupported_database_schema");
+        Check(File.ReadAllBytes(foreignDatabase).SequenceEqual(foreignBytes));
         var job = Json("""{"schema_version":1,"job_type":"diagnostic.echo","idempotency_key":"test-1","inputs":{"nonce":"hello"}}""");
         string id, worker;
         using (var store = new JobStore(path))
@@ -35,6 +52,7 @@ internal static class SelfTest
             Check(Value(store.Submit(Json("""{"inputs":{"nonce":"\u0068ello"},"idempotency_key":"test-1","job_type":"diagnostic.echo","schema_version":1}"""))).GetProperty("job_id").GetString() == id);
             Reject(() => store.Submit(Json(job.GetRawText().Replace("hello", "different"))), "idempotency_conflict");
             Reject(() => store.Submit(Json(job.GetRawText().Replace("diagnostic.echo", "shell"))), "unsupported_job_type");
+            Reject(() => store.Submit(Json(job.GetRawText().Replace("diagnostic.echo", "narration.generate"))), "unsupported_job_type");
             Reject(() => store.Submit(Json(job.GetRawText().Replace("\"nonce\":", "\"shell\":\"whoami\",\"nonce\":"))), "unexpected_or_duplicate_field");
             Reject(() => store.Submit(Json(job.GetRawText().Replace("\"nonce\":", "\"nonce\":\"duplicate\",\"nonce\":"))), "unexpected_or_duplicate_field");
             Reject(() => store.Dispatch(Json("""{"schema_version":1,"operation":"publication.request"}""")), "unsupported_operation");
@@ -83,6 +101,17 @@ internal static class SelfTest
             Check(report.GetProperty("queues").GetProperty("FRESH_UPLOAD").GetProperty("count").GetInt32() == 1);
             File.AppendAllText(snapshotPath, " ");
             Reject(() => store.Dispatch(Json("""{"schema_version":1,"operation":"research.snapshot"}""")), "research_snapshot_digest_mismatch");
+        }
+        using (var store = new JobStore(path))
+        using (var connection = new SqliteConnection("Data Source=" + Path.Combine(path, "jobs.sqlite")))
+        {
+            connection.Open(); using var cmd = connection.CreateCommand();
+            var tampered = Value(store.Submit(Json(job.GetRawText().Replace("test-1", "tampered-1")))).GetProperty("job_id").GetString()!;
+            cmd.CommandText = "UPDATE jobs SET payload='{}' WHERE id=$id"; cmd.Parameters.AddWithValue("$id", tampered); cmd.ExecuteNonQuery();
+            store.ExecuteNext();
+            Check(Value(store.Get(tampered)).GetProperty("error").GetString() == "payload_digest_mismatch");
+            cmd.CommandText = "UPDATE jobs SET result='{}' WHERE id=$id"; cmd.Parameters["$id"].Value = id; cmd.ExecuteNonQuery();
+            Reject(() => store.Get(id), "result_digest_mismatch");
         }
         // Evidence remains in a uniquely named temporary directory for the coordinator to inspect.
         Console.WriteLine(Protocol.Encode(new { status = "PASS", checks, evidence_directory = path }));

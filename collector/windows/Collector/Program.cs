@@ -120,6 +120,7 @@ internal sealed class PipeWorker(WorkerSettings settings) : BackgroundService
                     try { await Protocol.WriteLine(pipe, Protocol.Encode(new { ok = false, error = error is RequestError ? error.Message : "invalid_request" }), timeout.Token); }
                     catch (IOException) { }
             }
+            if (!stoppingToken.IsCancellationRequested) store.ExecuteNext();
         }
     }
 }
