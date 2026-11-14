@@ -1,5 +1,6 @@
 """Owned, unbranded native technical fixture; not a narrated acceptance demo."""
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -73,6 +74,36 @@ def narration_receipt(client, path):
     return path, audio_path, receipt, audio
 
 
+def caption_fingerprint(client, clip_id):
+    clip = client._invoke(['clip', 'get', clip_id])['data']
+    style = client._invoke(['text', 'get', clip_id])['data']['style']
+    # Saving relocates thumbnail caches; every other native clip/style field is protected.
+    clip = {key: value for key, value in clip.items() if key != 'image'}
+    return hashlib.sha256(json.dumps({'clip': clip, 'style': style}, sort_keys=True).encode()).hexdigest()
+
+
+def replaced_caption_ids(client, speech_id, clips):
+    matches = []
+    for path in client.receipts.glob('*.json'):
+        if not re.fullmatch('[0-9a-f]{32}', path.stem):
+            continue
+        record = json.loads(path.read_text())
+        result = record.get('result', {})
+        if record.get('kind') == 'narration.attach' and (
+                result.get('speech_clip_id') or result.get('native', {}).get('refs', {}).get('speech', {}).get('id')) == speech_id:
+            matches.append(result)
+    if not matches:
+        return []  # First attachment may explicitly replace the fixture's original accent.
+    if len(matches) != 1 or matches[0].get('caption_ownership') != 'managed':
+        raise ValueError('Narration caption ownership is ambiguous; reconcile before retake')
+    captions = matches[0]['generated_captions']
+    present = {clip['id'] for clip in clips}
+    for caption in captions:
+        if caption['clip_id'] not in present or caption_fingerprint(client, caption['clip_id']) != caption['sha256']:
+            raise ValueError('Generated caption was changed or removed; preserve manual edits and reconcile retake')
+    return [caption['clip_id'] for caption in captions]
+
+
 def attach_narration_to_fixture(client, receipt_path, base_revision, replace_clip_id=None):
     """Import verified remote audio into this fixture's dedicated third track."""
     path, audio_path, receipt, audio = narration_receipt(client, receipt_path)
@@ -90,6 +121,9 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
     if replace_clip_id is not None and not speech_clips:
         raise ValueError('The requested accent clip is not on the speech track')
     commands = [{'method': 'clip.remove', 'params': {'id': replace_clip_id}}] if speech_clips else []
+    if speech_clips:
+        commands += [{'method': 'clip.remove', 'params': {'id': clip_id}}
+                     for clip_id in replaced_caption_ids(client, replace_clip_id, clips)]
     commands += [
         {'method': 'file.import', 'as': 'narration', 'params': {'path': str(audio_path)}},
         {'method': 'clip.add', 'as': 'speech', 'params': {'file_id': {'$ref': 'narration.id'},
@@ -133,8 +167,19 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
         'rights_sha256': receipt['rights_sha256'], 'host_model_evidence_sha256': receipt['host_model_evidence_sha256'],
         'engine_id': receipt['engine_id'], 'voice_id': receipt['voice_id'], 'model_id': receipt['model_id'],
         'model_revision': receipt['model_revision'], 'caption_alignment': alignment, 'native': applied,
+        'speech_clip_id': applied['refs']['speech']['id'], 'generated_captions': [],
+        'caption_ownership': 'pending',
         'review_only': True, 'publication_eligible': False, 'listening': 'NOT_TESTED'}
-    write_json(client.receipts / (uuid.uuid4().hex + '.json'), {'kind': 'narration.attach', 'result': result})
+    ownership_path = client.receipts / (uuid.uuid4().hex + '.json')
+    write_json(ownership_path, {'kind': 'narration.attach', 'result': result})
+    if alignment.startswith('MEASURED_SEGMENT'):
+        for index in range(len(cues)):
+            clip_id = applied['refs']['caption' + str(index)]['clip']['id']
+            result['generated_captions'].append({'clip_id': clip_id, 'sha256': caption_fingerprint(client, clip_id)})
+    if client.inspect()['revision'] != applied['revision']:
+        raise ValueError('Fixture changed while recording caption ownership; reconcile before retake')
+    result['caption_ownership'] = 'managed'
+    write_json(ownership_path, {'kind': 'narration.attach', 'result': result})
     return result
 
 

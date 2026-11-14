@@ -287,6 +287,47 @@ class EditorTests(unittest.TestCase):
         return {'revision': 7, 'data': {'width': 1080, 'height': 1920, 'fps': {'num': 30, 'den': 1},
                 'layers': [{'number': i * 1000000} for i in range(1, 6)]}}
 
+    def fake_fixture_editor(self):
+        state = {'revision': 7, 'next_id': 0, 'commands': [], 'clips': {
+            'accent': {'id': 'accent', 'layer': 3000000},
+            'music': {'id': 'music', 'layer': 2000000},
+            'manual': {'id': 'manual', 'layer': 5000000, 'style': {'text': 'Owner title'}}}}
+        def inspect():
+            result = self.fixture_narration_inspection()
+            result['revision'] = state['revision']
+            return result
+        def invoke(args):
+            if args == ['clip', 'list']:
+                return {'data': list(state['clips'].values())}
+            clip = state['clips'][args[2]]
+            return {'data': clip if args[0] == 'clip' else {'style': clip['style']}}
+        def apply(commands, revision):
+            self.assertEqual(revision, state['revision'])
+            self.client.validate_edits(commands)
+            state['commands'].append(commands)
+            refs = {}
+            for command in commands:
+                method, params = command['method'], command['params']
+                if method == 'clip.remove':
+                    del state['clips'][params['id']]
+                elif method in ('clip.add', 'text.add'):
+                    state['next_id'] += 1
+                    clip_id = 'generated-' + str(state['next_id'])
+                    clip = {'id': clip_id, 'layer': params['layer'], 'position': params['position'],
+                            'end': params.get('end', params.get('duration'))}
+                    if method == 'text.add':
+                        clip['style'] = {'text': params['text'], 'font_size': params['font_size']}
+                    state['clips'][clip_id] = clip
+                    refs[command['as']] = {'clip': {'id': clip_id}} if method == 'text.add' else {'id': clip_id}
+                elif method == 'clip.set':
+                    clip_id = params['id']
+                    if isinstance(clip_id, dict):
+                        clip_id = refs[clip_id['$ref'].split('.')[0]]['clip']['id']
+                    state['clips'][clip_id].update(params['values'])
+            state['revision'] += 1
+            return {'revision': state['revision'], 'refs': refs}
+        return state, inspect, invoke, apply
+
     def test_remote_audio_metadata_and_exact_pcm_cues_are_required(self):
         path, receipt = self.remote_narration_fixture()
         self.assertEqual(narration_receipt(self.client, path)[3]['frames'], 32000)
@@ -302,16 +343,12 @@ class EditorTests(unittest.TestCase):
 
     def test_remote_audio_attaches_to_separate_track_with_measured_captions(self):
         path, receipt = self.remote_narration_fixture()
-        commands = []
-        def apply(edits, revision):
-            self.client.validate_edits(edits)
-            commands.extend(edits)
-            return {'revision': revision + 1}
-        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
-                patch.object(self.client, '_invoke', return_value={'data': [
-                    {'id': 'accent', 'layer': 3000000}, {'id': 'music', 'layer': 2000000}]}), \
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
                 patch.object(self.client, 'apply', side_effect=apply):
             result = attach_narration_to_fixture(self.client, path, 7, 'accent')
+        commands = state['commands'][0]
         speech = next(command['params'] for command in commands if command.get('as') == 'speech')
         self.assertEqual(speech['layer'], 3000000)
         self.assertEqual(speech['end'], 2)
@@ -323,10 +360,11 @@ class EditorTests(unittest.TestCase):
 
     def test_missing_measured_cues_does_not_invent_captions(self):
         path, _ = self.remote_narration_fixture(cues=False)
-        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
-                patch.object(self.client, '_invoke', return_value={'data': []}), \
-                patch.object(self.client, 'apply', return_value={'revision': 8}) as apply:
-            result = attach_narration_to_fixture(self.client, path, 7)
+        state, inspect, invoke, apply_native = self.fake_fixture_editor()
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply_native) as apply:
+            result = attach_narration_to_fixture(self.client, path, 7, 'accent')
         self.assertIn('BLOCKED', result['caption_alignment'])
         self.assertFalse(any(command['method'] == 'text.add' for command in apply.call_args.args[0]))
 
@@ -334,12 +372,41 @@ class EditorTests(unittest.TestCase):
         path, receipt = self.remote_narration_fixture()
         receipt['cues'][0]['text'] = 'A' * 120
         path.write_text(json.dumps(receipt))
-        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
-                patch.object(self.client, '_invoke', return_value={'data': []}), \
-                patch.object(self.client, 'apply', return_value={'revision': 8}) as apply:
-            result = attach_narration_to_fixture(self.client, path, 7)
+        state, inspect, invoke, apply_native = self.fake_fixture_editor()
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply_native) as apply:
+            result = attach_narration_to_fixture(self.client, path, 7, 'accent')
         self.assertIn('BLOCKED', result['caption_alignment'])
         self.assertFalse(any(command['method'] == 'text.add' for command in apply.call_args.args[0]))
+
+    def test_retake_removes_only_unchanged_owned_captions_and_preserves_manual_text(self):
+        path, receipt = self.remote_narration_fixture()
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            first = attach_narration_to_fixture(self.client, path, 7, 'accent')
+            old_captions = {caption['clip_id'] for caption in first['generated_captions']}
+            self.assertEqual(len(old_captions), 2)
+            # A save can relocate thumbnail cache paths without changing caption ownership.
+            for clip_id in old_captions:
+                state['clips'][clip_id]['image'] = 'new-project_assets/thumbnail.png'
+            receipt['cues'][0]['text'] = 'The actual retake text.'
+            path.write_text(json.dumps(receipt))
+            second = attach_narration_to_fixture(self.client, path, 8, first['speech_clip_id'])
+            self.assertFalse(old_captions & state['clips'].keys())
+            self.assertNotIn(first['speech_clip_id'], state['clips'])
+            self.assertEqual(state['clips']['manual']['style']['text'], 'Owner title')
+            self.assertEqual(len(second['generated_captions']), 2)
+            self.assertTrue(all(caption['clip_id'] in state['clips'] for caption in second['generated_captions']))
+            # A real manual correction must block a later retake, not silently delete it.
+            manual_caption = second['generated_captions'][0]['clip_id']
+            state['clips'][manual_caption]['style']['text'] = 'Owner corrected caption'
+            with self.assertRaisesRegex(ValueError, 'preserve manual edits'):
+                attach_narration_to_fixture(self.client, path, 9, second['speech_clip_id'])
+            self.assertEqual(len(state['commands']), 2)
+            self.assertEqual(state['clips'][manual_caption]['style']['text'], 'Owner corrected caption')
 
     def test_occupied_speech_track_is_not_silently_deleted(self):
         path, _ = self.remote_narration_fixture()

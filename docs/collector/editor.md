@@ -192,6 +192,16 @@ an occupied speech track is otherwise rejected. New fixture creation supplies it
 own accent ID. The function uses the same revision-checked native edit batch,
 asset registration and subsequent save/reopen path. It never flattens the project.
 
+For a retake, supply the new provider job's receipt and explicitly replace the
+previous attachment's returned `speech_clip_id`. The attachment receipt tracks
+only its generated caption IDs and native clip/text-style fingerprints. A retake
+removes those exact captions only when they still match; unrelated manual titles
+remain. Modified/missing captions, incomplete readback or older receipts without
+ownership fingerprints block the retake for reconciliation. Thumbnail cache
+relocation is excluded from the fingerprint. All actual text, timing, transforms,
+effects and style remain protected. Ownership is finalized only after revision
+readback, so a concurrent manual edit cannot silently become generated ownership.
+
 Captions require real provider cues with exact sample offsets and matching
 seconds. Their timing is quantized once through rational project FPS to native
 frame boundaries. No paragraph is divided into invented word/phrase timings.
