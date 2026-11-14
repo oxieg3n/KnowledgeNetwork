@@ -23,6 +23,35 @@ Running the service as LocalSystem is rejected. Do not install it with a default
 LocalSystem service command. Service installation, ACLs, launch and recovery must
 be tested by the VM coordinator before claiming installed readiness.
 
+The installed executable has two local, administrator-only maintenance verbs:
+
+```text
+"C:/Program Files/The Knowledge Network Collector/kn-collector.exe" install-service
+"C:/Program Files/The Knowledge Network Collector/kn-collector.exe" remove-service
+```
+
+`install-service` optionally takes the intended Windows owner SID; it defaults
+to the elevated caller's SID and rejects a different owner because it cannot
+authenticate on that user's behalf. Both verbs require this exact canonical
+installed executable path. They are not service jobs and cannot be submitted
+through the pipe. No PowerShell script or execution-policy change is required.
+The Inno installer should call these verbs and preserve their exit status.
+
+Before touching SCM, native installation checks the bounded `files.sha256.json`
+manifest, all listed runtime hashes, path confinement, regular files and the
+absence of unlisted files/reparse points (Inno-generated uninstall files are the
+sole exception). It creates/configures only the named Collector service through
+fixed System32 `sc.exe` argument arrays, runs it as LocalService, configures
+bounded recovery and restricts the private ProgramData directory ACL. An
+existing service must already point at the canonical Collector executable.
+If the fixed private `research-staging.json` exists, installation pins its
+measured SHA-256, requiring a regular file of at most 8 MiB. No production writer
+or migration is enabled. An obsolete/unmanifested binary blocks upgrades until
+the package discrepancy is reviewed; installation never deletes private data.
+Removal stops/deletes only the matching service and retains media, database and
+binaries. PowerShell scripts remain optional advanced staging tools; a restricted
+execution policy must not be bypassed to run them.
+
 The installation script declares healthy only after two authenticated installed
 CLI responses with fresh matching nonces, healthy Windows-service context,
 publication pause and scheduler hold, the same persistent worker ID and the

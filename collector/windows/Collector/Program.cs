@@ -14,6 +14,10 @@ internal static class Program
         try
         {
             if (args.Length == 0) throw new RequestError("usage_serve_health_capabilities_submit_get_cancel_self-test");
+            if (args[0] == "install-service" && args.Length <= 2)
+            { Console.WriteLine(Protocol.Encode(new { ok = true, result = await ServiceInstall.Install(args.Length == 2 ? args[1] : null) })); return 0; }
+            if (args[0] == "remove-service" && args.Length == 1)
+            { Console.WriteLine(Protocol.Encode(new { ok = true, result = await ServiceInstall.Remove() })); return 0; }
             if (args[0] == "self-test")
             {
                 try { SelfTest.Run(); return 0; }
@@ -66,7 +70,7 @@ internal static class Program
             using var result = JsonDocument.Parse(response);
             return result.RootElement.GetProperty("ok").GetBoolean() ? 0 : 1;
         }
-        catch (Exception error) when (error is RequestError or JsonException or KeyNotFoundException or InvalidOperationException or FormatException or ArgumentException or IOException or UnauthorizedAccessException or OperationCanceledException or System.ComponentModel.Win32Exception)
+        catch (Exception error) when (error is RequestError or JsonException or KeyNotFoundException or InvalidOperationException or FormatException or ArgumentException or IOException or UnauthorizedAccessException or OperationCanceledException or System.ComponentModel.Win32Exception or System.ServiceProcess.TimeoutException or System.Security.SecurityException)
         {
             Console.WriteLine(Protocol.Encode(new { ok = false, error = error is RequestError ? error.Message : error.GetType().Name }));
             return 1;
