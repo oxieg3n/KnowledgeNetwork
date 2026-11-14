@@ -120,6 +120,31 @@ class RemoteVoiceTests(unittest.TestCase):
                 with self.assertRaisesRegex(VoiceError, code):
                     self.provider._request('/health')
 
+    def test_mixed_capability_permissions_preserve_good_catalog(self):
+        schema, catalog = self.catalog()
+        schema['paths'].update({path: {'get': {}} for path in
+            ('/.well-known/voicestudio-speech', '/model/loaded', '/models')})
+        connections = [Connection(Response(b'{"protocol":"fixture.speech"}')),
+                       Connection(Response(b'private server error body', status=403)),
+                       Connection(Response(b'{"models":[{"repo_id":"fixture-model","downloaded":true}]}'))]
+        with patch.object(self.provider, 'discover', return_value=(schema, catalog)), patch.object(self.provider, '_connect', side_effect=connections) as connect:
+            result = self.provider.inspect_capabilities()
+        self.assertEqual(connect.call_count, 3)
+        self.assertEqual(result['status'], 'PARTIAL')
+        self.assertFalse(result['complete'])
+        saved = json.loads((self.spool / 'host-capabilities.private.json').read_text())
+        self.assertEqual(saved['/model/loaded'], {'status': 'BLOCKED', 'error': 'BLOCKED_VOICE_AUTH', 'http_status': 403})
+        self.assertTrue(saved['/models']['data']['models'][0]['downloaded'])
+        self.assertEqual(saved['/.well-known/voicestudio-speech']['status'], 'PASS')
+        self.assertNotIn('private server error body', json.dumps(saved))
+
+    def test_mandatory_discovery_auth_failure_is_not_partial_success(self):
+        with patch.object(self.provider, 'discover', side_effect=VoiceError('BLOCKED_VOICE_AUTH')), patch.object(self.provider, '_connect') as connect:
+            with self.assertRaisesRegex(VoiceError, 'BLOCKED_VOICE_AUTH'):
+                self.provider.inspect_capabilities()
+            connect.assert_not_called()
+        self.assertFalse((self.spool / 'host-capabilities.private.json').exists())
+
     def test_bounded_read_retry_but_never_post_retry(self):
         connections = [Connection(Response(status=429)), Connection(Response())]
         with patch.object(self.provider, '_connect', side_effect=connections) as connect, patch('time.sleep'):

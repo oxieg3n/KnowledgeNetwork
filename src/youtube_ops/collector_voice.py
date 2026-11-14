@@ -399,9 +399,16 @@ class RemoteVoiceStudioProvider:
             if not isinstance(operation, dict) or 'get' not in operation:
                 results[path] = {'status': 'UNSUPPORTED'}
             else:
-                results[path] = self._json(path)
+                try:
+                    results[path] = {'status': 'PASS', 'data': self._json(path)}
+                except (VoiceError, OSError, ValueError) as exc:
+                    code = str(exc) if isinstance(exc, VoiceError) else 'VOICE_CAPABILITY_READ_FAILED'
+                    results[path] = {'status': 'BLOCKED', 'error': code,
+                                     'http_status': getattr(exc, 'http_status', None)}
         checkpoint(self.spool / 'host-capabilities.private.json', results)
-        return {'status': 'PASS', 'capability_document_sha256': digest(results),
+        complete = all(result['status'] == 'PASS' for result in results.values())
+        return {'status': 'PASS' if complete else 'PARTIAL', 'complete': complete,
+                'capability_document_sha256': digest(results),
                 'routes': list(results), 'private_evidence_saved': True,
                 'publication_eligible': False}
 

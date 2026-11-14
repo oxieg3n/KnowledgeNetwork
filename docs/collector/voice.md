@@ -70,6 +70,12 @@ three exact read-only capability routes `/.well-known/voicestudio-speech`,
 `/model/loaded`, `/models` are callable. The latter must be GET routes in the
 live schema. Their private responses are retained in
 `host-capabilities.private.json`; console output contains only their digest.
+Each optional route retains its own PASS/data or BLOCKED/safe-error result.
+A denied loaded-model read does not discard a successful catalog read:
+the command reports `PARTIAL`, `complete=false` and keeps both outcomes.
+Mandatory health, schema and voice-catalog authentication still fail the whole
+discovery before optional reads. A denied route is never retried with broader
+credentials or replaced by an administrative endpoint.
 No generic HTTP, transcription, settings or host-path operation exists. In
 pinned0.5.6, even GET `/api/settings/license/{engine_id}` is on a require_admin
 router. The consumption PIN does not authorize it; it remains denied here.
