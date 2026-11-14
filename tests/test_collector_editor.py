@@ -7,7 +7,8 @@ from unittest.mock import patch
 import wave
 
 from youtube_ops.collector_editor import OpenShot, EditorError
-from youtube_ops.collector_editor_fixture import build
+from youtube_ops.collector_editor_fixture import build, narration_receipt, attach_narration_to_fixture
+from youtube_ops.collector_voice import inspect_wav
 
 
 class EditorTests(unittest.TestCase):
@@ -259,6 +260,95 @@ class EditorTests(unittest.TestCase):
         self.assertIn('NOT TESTED', result['manual_edit'])
         self.assertIn('BLOCKED', result['voice'])
         self.assertFalse(result['publication_eligible'])
+
+    def remote_narration_fixture(self, cues=True):
+        # Synthetic PCM/receipt is unit-test data, never evidence of host synthesis.
+        spool = self.vault / 'voice-job'
+        spool.mkdir()
+        audio_path = spool / 'narration.wav'
+        with wave.open(str(audio_path), 'wb') as audio:
+            audio.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
+            audio.writeframes(b'\0\0' * 32000)
+        receipt = {'provider': 'voicestudio_remote', 'status': 'generated_pending_review',
+            'review_only': True, 'publication_eligible': False, 'rights_sha256': 'a' * 64,
+            'text_sha256': 'c' * 64,
+            'host_model_evidence_sha256': 'b' * 64, 'engine_id': 'unit-test-engine',
+            'voice_id': 'unit-test-voice', 'model_id': 'unit-test-model', 'model_revision': 'test-only',
+            'audio': inspect_wav(audio_path.read_bytes())}
+        if cues:
+            receipt['cues'] = [
+                {'text': 'Measured first segment.', 'start_sample': 0, 'end_sample': 8000, 'start': 0, 'end': .5},
+                {'text': 'Measured second segment.', 'start_sample': 8000, 'end_sample': 32000, 'start': .5, 'end': 2}]
+        path = spool / 'narration.json'
+        path.write_text(json.dumps(receipt))
+        return path, receipt
+
+    def fixture_narration_inspection(self):
+        return {'revision': 7, 'data': {'width': 1080, 'height': 1920, 'fps': {'num': 30, 'den': 1},
+                'layers': [{'number': i * 1000000} for i in range(1, 6)]}}
+
+    def test_remote_audio_metadata_and_exact_pcm_cues_are_required(self):
+        path, receipt = self.remote_narration_fixture()
+        self.assertEqual(narration_receipt(self.client, path)[3]['frames'], 32000)
+        receipt['cues'][0]['end'] = 1
+        path.write_text(json.dumps(receipt))
+        with self.assertRaisesRegex(ValueError, 'actual PCM samples'):
+            narration_receipt(self.client, path)
+        receipt['cues'][0]['end'] = .5
+        receipt['audio']['sha256'] = '0' * 64
+        path.write_text(json.dumps(receipt))
+        with self.assertRaisesRegex(ValueError, 'SHA-256'):
+            narration_receipt(self.client, path)
+
+    def test_remote_audio_attaches_to_separate_track_with_measured_captions(self):
+        path, receipt = self.remote_narration_fixture()
+        commands = []
+        def apply(edits, revision):
+            self.client.validate_edits(edits)
+            commands.extend(edits)
+            return {'revision': revision + 1}
+        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
+                patch.object(self.client, '_invoke', return_value={'data': [
+                    {'id': 'accent', 'layer': 3000000}, {'id': 'music', 'layer': 2000000}]}), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            result = attach_narration_to_fixture(self.client, path, 7, 'accent')
+        speech = next(command['params'] for command in commands if command.get('as') == 'speech')
+        self.assertEqual(speech['layer'], 3000000)
+        self.assertEqual(speech['end'], 2)
+        captions = [command['params'] for command in commands if command['method'] == 'text.add']
+        self.assertEqual([(cue['position'], cue['duration']) for cue in captions], [(0, .5), (.5, 1.5)])
+        self.assertEqual([cue['text'] for cue in captions], [cue['text'] for cue in receipt['cues']])
+        self.assertIn('MEASURED_SEGMENT', result['caption_alignment'])
+        self.assertFalse(result['publication_eligible'])
+
+    def test_missing_measured_cues_does_not_invent_captions(self):
+        path, _ = self.remote_narration_fixture(cues=False)
+        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
+                patch.object(self.client, '_invoke', return_value={'data': []}), \
+                patch.object(self.client, 'apply', return_value={'revision': 8}) as apply:
+            result = attach_narration_to_fixture(self.client, path, 7)
+        self.assertIn('BLOCKED', result['caption_alignment'])
+        self.assertFalse(any(command['method'] == 'text.add' for command in apply.call_args.args[0]))
+
+    def test_long_measured_paragraph_is_not_given_invented_subtitle_timestamps(self):
+        path, receipt = self.remote_narration_fixture()
+        receipt['cues'][0]['text'] = 'A' * 120
+        path.write_text(json.dumps(receipt))
+        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
+                patch.object(self.client, '_invoke', return_value={'data': []}), \
+                patch.object(self.client, 'apply', return_value={'revision': 8}) as apply:
+            result = attach_narration_to_fixture(self.client, path, 7)
+        self.assertIn('BLOCKED', result['caption_alignment'])
+        self.assertFalse(any(command['method'] == 'text.add' for command in apply.call_args.args[0]))
+
+    def test_occupied_speech_track_is_not_silently_deleted(self):
+        path, _ = self.remote_narration_fixture()
+        with patch.object(self.client, 'inspect', return_value=self.fixture_narration_inspection()), \
+                patch.object(self.client, '_invoke', return_value={'data': [{'id': 'owner-speech', 'layer': 3000000}]}), \
+                patch.object(self.client, 'apply') as apply:
+            with self.assertRaisesRegex(ValueError, 'Speech track occupied'):
+                attach_narration_to_fixture(self.client, path, 7)
+            apply.assert_not_called()
 
 
 if __name__ == '__main__':

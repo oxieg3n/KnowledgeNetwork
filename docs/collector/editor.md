@@ -173,6 +173,39 @@ VoiceStudio narration, real speech captions, approved plasma assets, listening,
 manual GUI edits, GUI/service companion and preview/export parity remain separate
 acceptance rows. Public publishing remains paused.
 
+## Remote narration receipt import
+
+The fixture accepts optional `--narration-receipt` pointing to the remote
+provider's `narration.json`, with sibling `narration.wav`, both staged inside the
+configured private editor vault on Forge. It never opens a host path or fetches a
+URL. The importer reuses the voice module's PCM validator and verifies exact
+SHA-256, samples, sample rate, channels, sample width and duration. It retains the
+source-script/model/profile/rights evidence digests and accepts only the completed
+`voicestudio_remote` review-only provider receipt. Retained metadata is evidence
+to review, not independent legal clearance or proof somebody listened.
+
+For this owned fixture only, `attach_narration_to_fixture(client, receipt_path,
+base_revision, replace_clip_id=None)` imports speech on the third native track
+and ducks music on the second track. If the third track contains the technical
+accent clip, the caller must explicitly identify that exact clip for replacement;
+an occupied speech track is otherwise rejected. New fixture creation supplies its
+own accent ID. The function uses the same revision-checked native edit batch,
+asset registration and subsequent save/reopen path. It never flattens the project.
+
+Captions require real provider cues with exact sample offsets and matching
+seconds. Their timing is quantized once through rational project FPS to native
+frame boundaries. No paragraph is divided into invented word/phrase timings.
+Missing cues leave caption alignment blocked. Overlong cues also leave captions
+blocked and request shorter actually measured segments, while retaining the
+valid speech import. Local native text placement keeps speech captions apart
+from the technical lower thirds and permanent review label; actual rendered
+layout still requires inspection.
+
+This import path is unit-tested with explicitly synthetic PCM/receipt fixtures.
+No real host narration/import/export pass is claimed until an authorized remote
+provider supplies genuine audio, the same project is rendered, and actual sound
+and caption timing are reviewed. The technical proof above contains no narration.
+
 ## Minimal worker integration boundary
 
 Keep scheduling and durable job identity in the .NET worker. Register individual
