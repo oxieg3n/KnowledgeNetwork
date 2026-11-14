@@ -114,6 +114,7 @@ internal static class SelfTest
             Reject(() => store.Get(id), "result_digest_mismatch");
         }
         checks += SelfTestCompanion.Run(Path.Combine(path, "companion"));
+        checks += SelfTestFrames.Run(path);
         // Evidence remains in a uniquely named temporary directory for the coordinator to inspect.
         Console.WriteLine(Protocol.Encode(new { status = "PASS", checks, evidence_directory = path }));
     }

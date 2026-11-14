@@ -39,12 +39,16 @@ internal static class Protocol
     {
         // A bounded frame prevents an authenticated but broken client from exhausting memory.
         using var buffer = new MemoryStream();
-        byte[] one = new byte[1];
-        while (await stream.ReadAsync(one, token) != 0)
+        byte[] chunk = new byte[4096];
+        int received;
+        while ((received = await stream.ReadAsync(chunk, token)) != 0)
         {
-            if (one[0] == 10) return new UTF8Encoding(false, true).GetString(buffer.ToArray());
-            if (buffer.Length >= MaxBytes) throw new RequestError("request_too_large");
-            buffer.WriteByte(one[0]);
+            int newline = Array.IndexOf(chunk, (byte)10, 0, received);
+            int count = newline >= 0 ? newline : received;
+            if (buffer.Length + count > MaxBytes) throw new RequestError("request_too_large");
+            buffer.Write(chunk, 0, count);
+            // Each connection executes one frame; trailing bytes never become another request.
+            if (newline >= 0) return new UTF8Encoding(false, true).GetString(buffer.ToArray());
         }
         throw new RequestError("incomplete_request");
     }
