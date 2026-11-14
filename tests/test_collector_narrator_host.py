@@ -170,6 +170,18 @@ class HostStoreTests(HostFixture):
             NarratorStore(self.spool, NarratorManifest(self.manifest_path), Mock())
         self.assertEqual(store.health()['queue_depth'], 0)
 
+    def test_worker_database_fault_latches_blocked_health_and_new_submissions(self):
+        store = self.store(Mock())
+        with patch.object(store, 'run_next', side_effect=sqlite3.OperationalError('private database detail')):
+            store.start(); store.thread.join(2)
+        self.assertFalse(store.thread.is_alive())
+        self.assertTrue(store.health()['worker_fault'])
+        self.assertEqual(store.health()['status'], 'blocked')
+        with self.assertRaisesRegex(NarratorError, 'requires_reconciliation'):
+            store.submit(self.request())
+        self.assertTrue(store.held())
+        store.executor.assert_not_called()
+
     def test_corrupted_stored_request_or_provenance_never_executes(self):
         for column, replacement in (('text', 'tampered'), ('text_sha', '0' * 64),
                                     ('request_sha', '0' * 64), ('provenance', '{}')):

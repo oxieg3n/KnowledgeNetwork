@@ -219,6 +219,7 @@ class NarratorStore:
         self.executor = executor or WindowsScriptRunner()
         self.lock, self.stop = threading.RLock(), threading.Event()
         self.active, self.thread = None, None
+        self.worker_fault = False
         self.lease = voice_lease(self.spool); self.lease.__enter__()
         try:
             self.db = sqlite3.connect(self.spool / 'host-narrations.sqlite', check_same_thread=False)
@@ -252,12 +253,13 @@ class NarratorStore:
             raise
 
     def held(self):
-        return self.db.execute("SELECT 1 FROM metadata WHERE key='execution_hold'").fetchone() is not None
+        return self.worker_fault or self.db.execute("SELECT 1 FROM metadata WHERE key='execution_hold'").fetchone() is not None
 
     def health(self):
         with self.lock:
             return {'schema_version': 1, 'service': SERVICE, 'narrator_id': NARRATOR,
                 'status': 'blocked' if self.held() else 'ready', 'execution_hold': self.held(),
+                'worker_fault': self.worker_fault,
                 'queue_depth': self.db.execute("SELECT count(*) FROM jobs WHERE state='queued'").fetchone()[0],
                 'model_state': 'not_probed', 'device': 'not_verified', 'provenance': self.manifest.provenance}
 
@@ -373,8 +375,18 @@ class NarratorStore:
     def start(self):
         def work():
             while not self.stop.is_set():
-                if not self.run_next():
-                    self.stop.wait(.1)
+                try:
+                    if not self.run_next():
+                        self.stop.wait(.1)
+                except Exception:
+                    with self.lock:
+                        self.worker_fault = True
+                        try:
+                            with self.db:
+                                self.db.execute("INSERT OR REPLACE INTO metadata VALUES('execution_hold','worker_fault_requires_reconciliation')")
+                        except sqlite3.Error:
+                            pass
+                    return
         self.thread = threading.Thread(target=work, name='collector-host-narrator', daemon=True)
         self.thread.start()
 
