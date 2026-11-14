@@ -33,7 +33,7 @@ public partial class MainWindow : Window
         Actions.IsEnabled = false;
         Tell("Request in progress…");
         try { Tell(await action()); }
-        catch (Exception error) when (error is IOException or JsonException or InvalidOperationException or
+        catch (Exception error) when (error is IOException or UnauthorizedAccessException or JsonException or InvalidOperationException or
             KeyNotFoundException or OperationCanceledException or System.ComponentModel.Win32Exception)
         {
             string code = error is InvalidDataException ? error.Message : error.GetType().Name;
