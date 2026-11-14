@@ -17,6 +17,7 @@ probe = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(probe)
 
 
+# Windows hosted TEMP may use an 8.3 alias; fixtures model canonical trusted roots.
 class InventoryBoundsTests(unittest.TestCase):
     def shared_fixture(self, root, content=b'installed synthetic weights'):
         repo = root / 'models--openbmb--VoxCPM2'
@@ -30,7 +31,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_shared_blobs_record_logical_and_resolved_contents(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, checksum = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, checksum = self.shared_fixture(Path(tmp).resolve())
             (snapshot / 'model.safetensors').symlink_to(blob)
             if os.name == 'nt':
                 self.assertTrue(os.readlink(snapshot / 'model.safetensors').startswith('\\\\?\\'))
@@ -45,7 +46,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_existing_repository_blob_link_still_accepted(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo = Path(tmp) / 'repo'
+            repo = Path(tmp).resolve() / 'repo'
             snapshot = repo / 'snapshots' / ('a' * 40)
             snapshot.mkdir(parents=True)
             blob = repo / 'blobs' / 'existing-weight'
@@ -56,7 +57,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_external_and_shared_lookalike_paths_denied_before_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
+            root = Path(tmp).resolve()
             repo, snapshot, blob, checksum = self.shared_fixture(root)
             for target in (root / 'outside' / checksum[:2] / checksum,
                            root / 'blobs-extra' / checksum[:2] / checksum,
@@ -74,14 +75,14 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_shared_blob_name_and_prefix_must_match_exact_shape(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, checksum = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, checksum = self.shared_fixture(Path(tmp).resolve())
             for parts in [('00' if checksum[:2] != '00' else 'ff', checksum),
                           (checksum[:2], checksum + '.bin'), (checksum[:2], checksum[:-1]),
                           ('xyz', checksum), (checksum[:2].upper(), checksum.upper()),
                           (checksum[:2], 'nested', checksum), (checksum,)]:
                 with self.subTest(parts=parts):
                     link = snapshot / 'weight'
-                    link.symlink_to(Path(tmp).joinpath('blobs', *parts))
+                    link.symlink_to(Path(tmp).resolve().joinpath('blobs', *parts))
                     with patch.object(probe, 'sha') as hashed:
                         with self.assertRaisesRegex(ValueError, 'invalid_shared_blob_path'):
                             probe.catalog(snapshot, repo)
@@ -90,7 +91,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_cache_object_id_is_not_assumed_to_be_content_sha256(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
             (snapshot / 'weight').symlink_to(blob)
             blob.write_bytes(b'cache object IDs can use a different digest')
             result = probe.catalog(snapshot, repo)
@@ -99,7 +100,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_exact_hf_repository_to_shared_blob_chain_is_accepted(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, checksum = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, checksum = self.shared_fixture(Path(tmp).resolve())
             intermediate = repo / 'blobs' / ('9' * 64)
             intermediate.parent.mkdir()
             intermediate.symlink_to(Path('../../blobs') / checksum[:2] / checksum)
@@ -111,7 +112,7 @@ class InventoryBoundsTests(unittest.TestCase):
     def test_repository_chain_cannot_redirect_to_arbitrary_or_extra_links(self):
         for destination in ('external', 'repository', 'extra-shared-link'):
             with self.subTest(destination=destination), tempfile.TemporaryDirectory() as tmp:
-                root = Path(tmp)
+                root = Path(tmp).resolve()
                 repo, snapshot, blob, _ = self.shared_fixture(root)
                 other = root / 'external' if destination == 'external' else repo / 'other'
                 other.write_bytes(b'arbitrary data')
@@ -130,7 +131,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_repository_blob_link_change_during_hash_is_detected(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
             intermediate = repo / 'blobs' / ('9' * 64)
             intermediate.parent.mkdir()
             intermediate.symlink_to(blob)
@@ -147,7 +148,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_broken_shared_blob_and_redirected_blob_file_denied(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
             (snapshot / 'weight').symlink_to(blob)
             blob.unlink()
             with self.assertRaises(FileNotFoundError):
@@ -162,7 +163,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_device_and_unc_link_targets_denied_without_target_io(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
             link = snapshot / 'weight'
             link.symlink_to(blob)
             for target in (r'\\\\?\\UNC\server\share\blob', r'\\\\.\C:\blob',
@@ -175,7 +176,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_broken_reference_and_file_link_chain_denied_before_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
             for target in (repo / 'missing', repo / 'indirect'):
                 with self.subTest(target=target):
                     if target.name == 'indirect':
@@ -190,7 +191,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_linked_shared_directory_and_snapshot_directory_denied(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
+            root = Path(tmp).resolve()
             repo, snapshot, blob, checksum = self.shared_fixture(root)
             (snapshot / 'weight').symlink_to(blob)
             shard = blob.parent
@@ -208,7 +209,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_shared_store_root_link_and_snapshot_root_link_denied(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
+            root = Path(tmp).resolve()
             repo, snapshot, blob, _ = self.shared_fixture(root)
             (snapshot / 'weight').symlink_to(blob)
             shared = root / 'blobs'
@@ -225,7 +226,7 @@ class InventoryBoundsTests(unittest.TestCase):
     def test_changing_contents_or_reference_denied(self):
         for change in ('contents', 'reference', 'replacement'):
             with self.subTest(change=change), tempfile.TemporaryDirectory() as tmp:
-                repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+                repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
                 link = snapshot / 'weight'
                 link.symlink_to(blob)
                 original_sha = probe.sha
@@ -249,7 +250,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_shared_blobs_preserve_byte_limit_before_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, blob, _ = self.shared_fixture(Path(tmp).resolve())
             (snapshot / 'weight').symlink_to(blob)
             with patch.object(probe, 'MAX_MODEL_BYTES', 1), patch.object(probe, 'sha') as hashed:
                 with self.assertRaisesRegex(ValueError, 'model_byte_limit'):
@@ -258,7 +259,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_unreadable_directory_cannot_produce_partial_inventory(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo, snapshot, _, _ = self.shared_fixture(Path(tmp))
+            repo, snapshot, _, _ = self.shared_fixture(Path(tmp).resolve())
             (snapshot / 'config.json').write_text('{}')
             denied = snapshot / 'unreadable'
             denied.mkdir()
@@ -274,7 +275,7 @@ class InventoryBoundsTests(unittest.TestCase):
     def test_inspect_retains_exact_revision_and_detects_ref_changes(self):
         for changed in (False, True):
             with self.subTest(changed=changed), tempfile.TemporaryDirectory() as tmp:
-                root = Path(tmp)
+                root = Path(tmp).resolve()
                 repo, snapshot, blob, _ = self.shared_fixture(root)
                 (snapshot / 'model.safetensors').symlink_to(blob)
                 ref = repo / 'refs/main'
@@ -304,7 +305,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_real_fixture_files_hash_and_empty_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo = Path(tmp)
+            repo = Path(tmp).resolve()
             snapshot = repo / 'snapshots' / ('a' * 40)
             snapshot.mkdir(parents=True)
             with self.assertRaisesRegex(ValueError, 'empty_snapshot'):
@@ -318,14 +319,14 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_snapshot_outside_repository_denied(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo = Path(tmp) / 'repo'
+            repo = Path(tmp).resolve() / 'repo'
             repo.mkdir()
             with self.assertRaisesRegex(ValueError, 'snapshot_escape'):
-                probe.catalog(Path(tmp), repo)
+                probe.catalog(Path(tmp).resolve(), repo)
 
     def test_total_bytes_denied_before_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo = Path(tmp)
+            repo = Path(tmp).resolve()
             (repo / 'weight').write_bytes(b'12345')
             with patch.object(probe, 'MAX_MODEL_BYTES', 4), patch.object(probe, 'sha') as hashed:
                 with self.assertRaisesRegex(ValueError, 'model_byte_limit'):
@@ -336,7 +337,7 @@ class InventoryBoundsTests(unittest.TestCase):
     def test_main_redacts_failure_and_writes_only_after_acl_verified(self):
         for acl_ok in (False, True):
             with tempfile.TemporaryDirectory() as tmp:
-                fake_script = Path(tmp) / 'inspector.py'
+                fake_script = Path(tmp).resolve() / 'inspector.py'
                 output = io.StringIO()
                 with patch.object(probe, '__file__', str(fake_script)), patch.object(probe.sys, 'argv', ['probe']), \
                      patch.object(probe, '_system_powershell', return_value='trusted-powershell'), \
@@ -351,7 +352,7 @@ class InventoryBoundsTests(unittest.TestCase):
                 self.assertNotIn('PRIVATE_CACHE_PATH', output.getvalue())
                 self.assertNotIn('2.0.3-private-test', output.getvalue())
                 self.assertNotIn(tmp, output.getvalue())
-                reports = list(Path(tmp).glob('*/failure.json'))
+                reports = list(Path(tmp).resolve().glob('*/failure.json'))
                 self.assertEqual(len(reports), int(acl_ok))
                 if reports:
                     report = json.loads(reports[0].read_text())
@@ -370,7 +371,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_rejected_component_diagnostics_are_allowlisted_private_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
+            root = Path(tmp).resolve()
             target = root / 'private-target'
             target.mkdir()
             link = root / 'private-link'
@@ -384,7 +385,7 @@ class InventoryBoundsTests(unittest.TestCase):
 
     def test_file_count_is_bounded(self):
         with tempfile.TemporaryDirectory() as tmp:
-            repo = Path(tmp)
+            repo = Path(tmp).resolve()
             for number in range(257):
                 (repo / str(number)).touch()
             with self.assertRaisesRegex(ValueError, 'model_inventory_limit'):

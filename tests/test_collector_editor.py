@@ -16,7 +16,8 @@ class EditorTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
-        self.root = Path(self.temporary.name)
+        # Match the canonical paths recorded by the native adapter, including Windows 8.3 TEMP aliases.
+        self.root = Path(self.temporary.name).resolve()
         self.exe = self.root / 'openshot-qt-cmd.exe'
         self.exe.write_bytes(b'test executable fixture, never executed')
         self.sha = hashlib.sha256(self.exe.read_bytes()).hexdigest()

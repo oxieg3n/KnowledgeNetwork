@@ -98,3 +98,35 @@ No Linux runner was available locally. Windows CI uses Python3.12, so the local
 Python3.13 result is supporting evidence rather than exact hosted parity. Root
 should inspect the first actual hosted runs and any explicit skips before
 reporting CI success.
+
+## First hosted run and Windows fixture correction
+
+After integration, hosted Linux passed. The first Windows Python job
+[132608484897](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647509991/job/132608484897)
+failed: 302 tests,18 failures/16 errors/5 skips. Dependency installation passed.
+The actual runner TEMP used C:/Users/RUNNER~1 while resolve() yielded
+C:/Users/runneradmin. Synthetic inspector fixtures mixed those lexical and
+canonical roots, causing snapshot_escape before their intended containment
+assertions. The editor fixture similarly wrote noncanonical fake receipt paths
+and expected noncanonical native arguments. This is fixture setup, not evidence
+that the already-passed BLACKHAT-BASE inventory failed.
+
+Correction canonicalizes existing temporary roots before building synthetic
+files, links, receipts and expected paths. All containment, link-change,
+file-identity, redaction and exact-hash assertions remain intact. No test was
+skipped or weakened; production inspector/kit and editor source are unchanged.
+
+Focused local verification:24 inspector tests PASS and31 editor tests PASS.
+A separate fresh directory was given a distinct real Windows 8.3 alias using
+GetShortPathNameW; both suites were rerun with TMP/TEMP set to that alias,
+all55 PASS. Private evidence: C:/admin/collector-v9/ci-short-alias-fixed.log.
+This exercises the observed path mismatch without a host model inspection,
+new model inference, host settings, or network changes. Hosted Python3.12 rerun
+remains necessary after integration; local verification used Python3.13.
+
+Full local regression under a fresh distinct real 8.3 TMP/TEMP alias also
+passed:302 tests in41.151s, five FFmpeg-unavailable skips, no failures/errors.
+Private log: C:/admin/collector-v9/ci-full-short-alias-fixed.log.
+Ponytail diff review found no production changes, relaxed assertions or new
+framework; changes only establish canonical fixture roots and retain the actual
+hosted failure and correction evidence.
