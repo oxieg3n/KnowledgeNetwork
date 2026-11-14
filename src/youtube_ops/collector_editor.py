@@ -294,9 +294,10 @@ def main():
         client = OpenShot(args.executable, args.executable_sha256, args.vault, args.session)
         request = {}
         if args.request:
-            raw = Path(args.request).read_bytes()
-            if len(raw) > 128 * 1024:
-                raise ValueError('Request exceeds limit')
+            with Path(args.request).open('rb') as stream:
+                raw = stream.read(128 * 1024 + 1)
+                if len(raw) > 128 * 1024:
+                    raise ValueError('Request exceeds limit')
             request = json.loads(raw)
         methods = {'start': client.start, 'inspect': client.inspect, 'apply': client.apply,
                    'save': client.save, 'reopen': client.reopen, 'export': client.export,

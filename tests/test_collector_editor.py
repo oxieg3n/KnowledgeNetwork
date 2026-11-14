@@ -28,6 +28,30 @@ class EditorTests(unittest.TestCase):
         with self.assertRaisesRegex(EditorError, 'executable_hash_mismatch'):
             OpenShot(self.exe, '0' * 64, self.vault)
 
+    def test_native_invocation_uses_fixed_executable_and_no_shell(self):
+        def launch(args, **kwargs):
+            self.assertEqual(args[:2], [str(self.exe.resolve()), '--cli'])
+            self.assertIn('--session', args)
+            self.assertFalse(kwargs['shell'])
+            kwargs['stdout'].write(b'{"ok":true,"result":{"revision":3}}')
+            process = unittest.mock.Mock()
+            process.poll.return_value = 0
+            process.returncode = 0
+            return process
+        with patch('youtube_ops.collector_editor.subprocess.Popen', side_effect=launch):
+            self.assertEqual(self.client.inspect(), {'revision': 3})
+
+    def test_native_errors_do_not_return_private_error_messages(self):
+        def launch(args, **kwargs):
+            kwargs['stderr'].write(b'{"ok":false,"error":{"code":"validation_error","message":"private registry token"}}')
+            process = unittest.mock.Mock()
+            process.poll.return_value = 1
+            process.returncode = 1
+            return process
+        with patch('youtube_ops.collector_editor.subprocess.Popen', side_effect=launch):
+            with self.assertRaisesRegex(EditorError, '^validation_error$'):
+                self.client.inspect()
+
     def test_paths_cannot_escape_vault_or_load_project_as_media(self):
         for path in [self.root / 'private.mp4', self.vault / '..' / 'private.mp4',
                      self.vault / 'project.osp', Path('relative.mp4')]:
