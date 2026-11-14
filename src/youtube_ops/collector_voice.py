@@ -1,13 +1,10 @@
 """Retired V8 provider, retained for historical fixtures; active CLI fails closed."""
 from __future__ import annotations
 
-import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
-import getpass
 import hashlib
 import http.client
-import io
 import ipaddress
 import json
 import os
@@ -16,8 +13,6 @@ import re
 import shutil
 import socket
 import ssl
-import sys
-import threading
 import time
 import urllib.parse
 import uuid
