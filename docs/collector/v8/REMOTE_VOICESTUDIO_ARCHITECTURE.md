@@ -1,3 +1,5 @@
+> **SUPERSEDED FOR NARRATION as of 2026-11-14:** The Collector now uses direct VoxCPM2 Python/CLI and the approved Oxiegen-Narrator script on BLACKHAT-BASE. Read `docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md`; do not implement the VoiceStudio API described below. Preserve all unrelated project rules.
+
 # Collector V8: Forge production worker + BLACKHAT-BASE VoiceStudio API
 
 Owner architecture update: November 14, 2026. Source repository: https://github.com/oxieg3n/KnowledgeNetwork.
