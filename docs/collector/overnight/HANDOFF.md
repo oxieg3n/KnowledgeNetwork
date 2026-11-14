@@ -48,7 +48,12 @@ roots only, preserving production inspector and all assertions. Both hosted
 workflows at67a5cdb passed:
 [push43647910451](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647910451),
 [PR43647914711](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647914711).
-Later pipe-source head requires its own hosted run before claiming final-head CI.
+Pipe-source head d5132eb also passed both hosted workflows:
+[push43648989366](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648989366),
+[PR43648993931](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648993931).
+Actual hosted Python3.12:302 tests per OS, OK with7 Linux/5 Windows explicit
+skips; Windows builds zero warnings/errors and190 worker checks PASS.
+Subsequent evidence-only commits do not change installed/source runtime code.
 [Exact investigation/strategy](PR20-CI-INTEGRATION.md).
 
 **PASS — reuse/validation:**302 Python tests with5 explicit FFmpeg skips in
@@ -56,7 +61,11 @@ source-review environment, including an actual Windows8.3 TEMP alias regression;
 190 published worker self-test checks;23 narrator host/contract and17 direct
 client tests (synthetic inference). PowerShell and embedded Python examples in
 the prepared smoke procedure parse; no host commands were executed. Ponytail
-5.3.3 FULL and review skill read/applied; independent source/rights/CI specialists
+5.3.3 FULL and review skill read/applied from
+`C:/Users/oxieg3n/.codex/plugins/cache/ponytail/ponytail/5.3.3/skills/ponytail/SKILL.md`
+and sibling `ponytail-review/SKILL.md`; runtime explicitly reports FULL active.
+No plugin installation, new hook trust or session restart. Independent
+source/rights/CI specialists
 used nonoverlapping worktrees. No UI changed, so no new UI/UX/Taste gate claimed.
 
 **BLOCKED — narrator rights/live acceptance:** inventory remains PASS at

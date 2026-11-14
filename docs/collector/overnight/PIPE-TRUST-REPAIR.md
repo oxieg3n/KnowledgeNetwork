@@ -102,3 +102,12 @@ Ponytail FULL review read callers in Program/ServiceInstall, native structures,
 handle cleanup, request-before-auth ordering, console fallback and regression
 checks. Reused SCM and current self-test infrastructure; no new dependency or
 remote-control framework. No UI changed, so no UI skills/gates were rerun.
+An independent specialist reviewed the connected source and tests and found no
+concrete remaining issue. SCM/Program Files administrators remain trusted.
+
+Hosted source-build validation at d5132eb also PASS:
+[PR run43648993931](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648993931)
+and [push run43648989366](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648989366).
+Python3.12 ran302 tests per platform, OK with7 Linux/5 Windows explicit skips;
+Windows worker and WPF builds had zero warnings/errors and190 worker self-tests
+passed. Skips and native boundaries above remain explicit.

@@ -99,6 +99,18 @@ Python3.13 result is supporting evidence rather than exact hosted parity. Root
 should inspect the first actual hosted runs and any explicit skips before
 reporting CI success.
 
+## Root integration and actual hosted results
+
+Integrated with normal feature-branch commits; PR remains draft and unmerged.
+Both hosted workflows passed after the short-path fixture repair at67a5cdb.
+Both also passed for the installed pipe-fix source d5132eb:
+[push43648989366](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648989366)
+and [PR43648993931](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648993931).
+Python3.12:302 tests on each OS, OK with7 Linux/5 Windows explicit skips.
+Windows worker locked restore/build,190 self-test checks and dashboard compilation
+PASS; zero build warnings/errors. Hosted jobs do not install the Collector or
+substitute for the native medium-client evidence in [pipe repair](PIPE-TRUST-REPAIR.md).
+
 ## First hosted run and Windows fixture correction
 
 After integration, hosted Linux passed. The first Windows Python job
