@@ -136,6 +136,21 @@ def inspect():
             'runtime_device': 'not_probed', 'voice_consent': 'owner_review_required'}
 
 
+def failure_context():
+    """Private allowlisted diagnostics; never dump environment or import inference."""
+    context = {'python_executable': sys.executable[:32768],
+               'python_version': sys.version.split()[0][:256]}
+    constants = sys.modules.get('huggingface_hub.constants')
+    cache = getattr(constants, 'HF_HUB_CACHE', None)
+    if isinstance(cache, (str, os.PathLike)):
+        context['hf_hub_cache'] = str(cache)[:32768]
+    try:
+        context['voxcpm_version'] = importlib.metadata.version('voxcpm')[:256]
+    except Exception:
+        context['voxcpm_version'] = 'unavailable'
+    return context
+
+
 def main():
     global STAGE
     print('Creating a NEW private report folder beside this inspector; applying its DACL only. '
@@ -176,7 +191,7 @@ def main():
         if acl_verified:
             try:
                 failure = {'schema_version': 1, 'status': 'BLOCKED', 'stage': STAGE,
-                    'exception_type': error_type,
+                    'exception_type': error_type, 'private_context': failure_context(),
                     'frames': [{'file': frame.filename, 'line': frame.lineno, 'function': frame.name}
                                for frame in traceback.extract_tb(exc.__traceback__)[-16:]]}
                 with (folder / 'failure.json').open('x', encoding='utf-8') as out:

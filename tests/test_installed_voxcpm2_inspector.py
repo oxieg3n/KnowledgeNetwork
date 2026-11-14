@@ -5,6 +5,7 @@ import json
 import importlib.util
 from pathlib import Path
 import tempfile
+import types
 import unittest
 from unittest.mock import patch
 
@@ -55,9 +56,13 @@ class InventoryBoundsTests(unittest.TestCase):
                      patch.object(probe.subprocess, 'run', return_value=type('Result', (), {'returncode': 0})()), \
                      patch.object(probe, 'verify_spool_acl', side_effect=None if acl_ok else RuntimeError('PRIVATE_SECRET')), \
                      patch.object(probe, 'inspect', side_effect=RuntimeError('PRIVATE_SECRET')), \
+                     patch.dict(probe.sys.modules, {'huggingface_hub.constants': types.SimpleNamespace(HF_HUB_CACHE='PRIVATE_CACHE_PATH')}), \
+                     patch.object(probe.importlib.metadata, 'version', return_value='2.0.3-private-test'), \
                      contextlib.redirect_stdout(output):
                     self.assertEqual(probe.main(), 1)
                 self.assertNotIn('PRIVATE_SECRET', output.getvalue())
+                self.assertNotIn('PRIVATE_CACHE_PATH', output.getvalue())
+                self.assertNotIn('2.0.3-private-test', output.getvalue())
                 self.assertNotIn(tmp, output.getvalue())
                 reports = list(Path(tmp).glob('*/failure.json'))
                 self.assertEqual(len(reports), int(acl_ok))
@@ -65,6 +70,9 @@ class InventoryBoundsTests(unittest.TestCase):
                     report = json.loads(reports[0].read_text())
                     self.assertEqual(report['stage'], 'inspection')
                     self.assertEqual(report['exception_type'], 'RuntimeError')
+                    self.assertEqual(report['private_context']['hf_hub_cache'], 'PRIVATE_CACHE_PATH')
+                    self.assertEqual(report['private_context']['voxcpm_version'], '2.0.3-private-test')
+                    self.assertIn('python_executable', report['private_context'])
                     self.assertNotIn('PRIVATE_SECRET', reports[0].read_text())
 
     def test_file_count_is_bounded(self):
