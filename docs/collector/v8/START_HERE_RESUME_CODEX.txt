@@ -1,0 +1,30 @@
+You are continuing development of The Knowledge Network Collector on the FORGE Windows VM. This is a RESUME of the existing project, not a new build.
+
+Owner-reported saved state:
+- Branch: feature/collector-v7-overnight
+- Checkpoint: 8c0e7f0
+- Verified local backup: C:\admin\collector-backups\20261114-073652 (500 files, zero hash mismatches)
+- Local handoff: docs/collector/overnight/HANDOFF.md
+- Helpers stopped, no active builds/renders/services, and publishing remains paused.
+
+Preserve all of the above. Do not reset or reclone an existing checkout, restore the backup over newer files, clean untracked data, rebase blindly, force-push, or overwrite production state.
+
+The owner has changed ONE major architectural decision:
+- FORGE = Collector Windows app, service, research, editor, captions, graphics, FFmpeg rendering, queues, local storage.
+- BLACKHAT-BASE = physical host with installed GPU-accelerated VoiceStudio for all narration.
+- FORGE communicates with BLACKHAT-BASE using a verified private, restricted, authenticated VoiceStudio REST API and downloads the produced WAV. Do NOT take over the host keyboard, mouse, desktop, or clipboard. Do NOT install a second VoiceStudio on FORGE to avoid the connection.
+
+From your existing FORGE working tree, non-destructively fetch origin/main, then read these new files DIRECTLY FROM origin/main using git show before integrating:
+1. AGENTS.md
+2. docs/collector/v8/REMOTE_VOICESTUDIO_ARCHITECTURE.md
+3. docs/collector/v8/RESUME_FROM_FORGE_CHECKPOINT.md
+
+Preserve the current feature branch and implement only needed changes on it. Read the existing handoff and existing source/tests before editing. V8 overrides V7's VoiceStudio location assumptions; everything else from the V6/V7 build instructions remains in effect, including Ponytail FULL, Taste and UI/UX Pro Max, open-source editor reuse, all four content queues, approved plasma intro/outro and no public publishing.
+
+Proceed autonomously on FORGE. Prioritize the remote VoiceStudio adapter, secure private host connectivity, real WAV transfer and integration into a 45–55 second editable review-only Short. Use host VoiceStudio's supported API; discover its installed model/voice/profile and licensing; never invent IDs. A local Forge CLI or VM test is not proof of Assistant's scheduled access. If a host-side setting must be enabled, report the one precise action required and keep working on independent components. Do not alter BLACKHAT-BASE's Gateway, Tailscale Serve, networking or firewall without separately authorized narrow owner action.
+
+Delegate independent work when helper agents are available. Serialize VM services, native editor tests, host GPU speech and heavy rendering. Preserve the backup and keep a reviewable feature branch. Do not post anything to YouTube or unpause publishing.
+
+At completion, update docs/collector/overnight/HANDOFF.md on your feature branch with actual build paths, tests, voice backend connection, audio hashes, project/MP4 paths and remaining blockers. Give me a copyable message to send to Assistant to create an original local video using the new remote voice API, editor, captions, effects and both plasma bookends.
+
+Resume actual implementation now. Don't stop after planning.
