@@ -2,11 +2,11 @@
 
 Rights-safe video operations for Powered By Oxieg3n. This public repository contains software and small public metadata only. It does not modify the separate website repository.
 
-The **Knowledge Network Collector** Windows staging build now has a tested
-LocalService worker, durable diagnostic/research CLI, native operations dashboard
-and installer. OpenShot integration and the private BLACKHAT-BASE direct VoxCPM2
-Oxiegen-Narrator provider are development clients; their service bridge is not
-enabled. VoiceStudio is retired from the active narration stack. See the
+**The Knowledge Network Collector** Windows staging build has a tested
+LocalService worker, durable CLI, native operations dashboard and installer.
+Its user-session companion dispatches narration and four bounded native OpenShot
+operations. Real editor jobs and a 50-second synthetic export passed; live
+BLACKHAT-BASE VoxCPM2 narration remains blocked by host verification/deployment. VoiceStudio is retired from the active narration stack. See the
 [verified handoff](docs/collector/overnight/HANDOFF.md) and
 [Assistant operations](docs/collector/ASSISTANT-OPERATIONS.md). Full narrated,
 branded production acceptance remains blocked; publishing remains paused.
@@ -17,7 +17,7 @@ branded production acceptance remains blocked; publishing remains paused.
 - 150 watchlist entries (121 unique names); ten channels initially verified with official identity evidence.
 - Bounded official RSS discovery, optional YouTube Data API uploads-playlist reconciliation and archival ranking, live public blog sync.
 - Versioned JSON state with single-writer workflow concurrency and optimistic conflict rejection.
-- Local original-graphics/Piper renderer, FFmpeg QC, publication gates and recovery tests.
+- Local original-graphics renderer with verified narration receipts, FFmpeg QC, publication gates and recovery tests.
 - Public operational reports and pending alert outbox. No email is claimed sent.
 
 **Not yet fully autonomous:** official upload/subscription OAuth, an approved persistent render host, email route, finished editorial scripts and exact-render human-quality review remain required. Browser Studio sign-in is not API authorization. Production publication is paused by default. No video has been published by this software.

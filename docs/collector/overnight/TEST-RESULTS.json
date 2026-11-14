@@ -1,57 +1,72 @@
 {
   "schema_version": 1,
-  "recorded_at": "2026-11-14T13:47:03.501555+00:00",
+  "recorded_at": "2026-11-14T19:05:12.633963+00:00",
+  "scope": "V9 FORGE staging; not full production acceptance",
   "python_regression": {
-    "passed": 173,
+    "run": 284,
+    "passed": 284,
     "failed": 0,
     "skipped": 0,
-    "seconds": 50.359
+    "seconds": 55.991,
+    "environment": ".venv/Scripts/python.exe with pinned FFmpeg bin on process PATH",
+    "log": "C:/admin/collector-v9/regression-final-venv.log"
   },
-  "installed_worker_self_checks": 37,
+  "earlier_wrong_environment_run": {
+    "errors": 26,
+    "skipped": 7,
+    "cause": "System Python lacked project timezone/Pillow dependencies and pinned FFmpeg PATH; rerun existing configured venv without test changes"
+  },
+  "installed_worker_self_checks": 163,
   "dashboard_in_process_checks": 17,
-  "native_worker": {
-    "install": true,
-    "restart_persistence": true,
-    "upgrade_retention": true,
-    "uninstall_reinstall_retention": true,
-    "counterfeit_pipe_received_bytes": 0,
-    "tampered_package_rejected": true,
-    "noncanonical_install_rejected": true,
-    "reboot": "NOT_TESTED"
+  "worker": {
+    "restart_same_identity_and_five_results": "PASS",
+    "schema1_to2_original_rows_preserved": "PASS",
+    "large_frame_bounded_roundtrip": "PASS",
+    "queued_cancel_no_attempt": "PASS",
+    "reboot": "NOT TESTED",
+    "signed_out_session": "NOT TESTED",
+    "scheduled_dot": "NOT TESTED"
   },
-  "remote_voice": {
-    "earlier_verified_tls_and_auth": true,
-    "invalid_pin_status": 401,
-    "earlier_valid_pin_status": 200,
-    "latest_stored_credential": "REJECTED_401_403",
-    "observed_backend_version": "0.5.6",
-    "speech_post_sent": false,
-    "host_wav_generated": false,
-    "commercial_model_verified": false,
-    "actual_gpu_execution_verified": false
-  },
-  "native_editor": {
+  "editor": {
+    "service_inspect_apply_save_reopen": "PASS",
+    "native_export": "PASS",
     "duration_seconds": 50.0,
     "resolution": [
       1080,
       1920
     ],
-    "fps": "30/1",
-    "revision": 104,
-    "full_decode": "PASS",
-    "text_pixels": "PASS",
-    "trim_split_reorder_undo": "PASS",
-    "music_curve_reset_undo": "PASS",
-    "project_sha256": "fcbdaef5d8b3a4c8a67ddce33ef6df4ea89c88ca024972f5af9ab5b362e2b4a0",
-    "video_sha256": "b11728e5b2504871db1ad255ba92e3ed8015a9aca3cfc73015ee7b3c2a5d950a",
-    "real_voice": "BLOCKED",
-    "bookends": "BLOCKED",
-    "listening": "NOT_TESTED",
-    "manual_gui_edit": "NOT_TESTED"
+    "frames": 1500,
+    "sha256": "f453bd15c060ac590bfe8beb58c93898e3acc249df40c43310fe72978fa77c63",
+    "decode_exit": 0,
+    "source_hashes_unchanged": 6,
+    "revision": 59,
+    "visual_sample_seconds": [
+      4,
+      21,
+      42
+    ],
+    "black_events": 0,
+    "silence": "final faded 0.508s only",
+    "audio": "synthetic tones; not listened",
+    "approved_bookends": "BLOCKED missing exact assets"
   },
-  "service_editor_narration_bridge": "NOT_IMPLEMENTED",
-  "assistant_scheduled_connection": "UNVERIFIED",
+  "narrator": {
+    "script_reference_cli_identity": "PASS read-only matched existing host bytes",
+    "installed_package": "2.0.3",
+    "python": "3.11",
+    "selected_model_revision": "BLOCKED",
+    "reference_component_rights": "BLOCKED",
+    "direct_python_parity": "NOT TESTED",
+    "actual_host_api": "BLOCKED not deployed",
+    "forge_to_host_new_wav": "BLOCKED not performed",
+    "local_contract_tests": "PASS MOCK inference only"
+  },
+  "installer": {
+    "round5_actual_upgrade": "PASS",
+    "signature": "NotSigned",
+    "sha256": "58b73fd62cb3a2997e12b801a88686a6854bfa1421c67cd027b1b0c6dba9da5d"
+  },
   "publication_paused": true,
-  "public_media_uploads": 0,
-  "operations_sha256": "d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d"
+  "public_demo_uploaded": false,
+  "evidence_root": "C:/admin/collector-v9"
 }

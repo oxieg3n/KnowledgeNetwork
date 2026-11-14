@@ -1,210 +1,226 @@
-# V8 handoff — verified staging build, incomplete production acceptance
+# V9 handoff - The Knowledge Network Collector
 
-Updated November 14, 2026, America/New_York. Resumed checkpoint `8c0e7f0` on
-`feature/collector-v7-overnight`. Original backup
-`C:/admin/collector-backups/20261114-073652` is preserved. Its Git bundle still
-hashes `c09bd03678201fe4576e746246c7709ba32dbdc2b6b2c7992872f4c9367659cd`.
-The prior paused handoff remains in that backup and Git history.
+Updated November 14, 2026. Publication remains **PAUSED**. No demonstration or
+other media was publicly uploaded. Production workflows/permissions and the
+separate poweredby repository were not changed.
 
-Implementation/evidence checkpoint: `36b88c9`. A noninteractive push of the
-feature branch failed because Git credentials were unavailable; no remote branch
-or review PR was created. Local history and all completed work remain intact.
+## Outcome and checkpoint
 
-Non-destructive fetch found origin/main `47e7aeb`. Only its updated AGENTS.md
-and three V8 instructions were integrated; no live production state was merged
-or reset. Original untracked instructions were also preserved at
-`C:/admin/collector-v8/pre-v8-AGENTS.md`. All helper worktrees remain.
+Continued the existing `feature/collector-v7-overnight` branch from original
+checkpoint `8c0e7f0`, retaining the V8 checkpoint `8403136`, all helper worktrees,
+assets and history. Non-destructively fetched origin/main `1db0530` and read its
+AGENTS/V9 master/architecture instructions. V9 supersedes VoiceStudio narration.
+No reset, reclone, new repository, force push or merge into main occurred.
 
-## Outcome
+Installed worker source checkpoint: `6f34384f7c77437c74c7a178ce6be0642a75bbbb`.
+Subsequent commits finish documentation; consult `git log` for the exact final
+handoff commit. A noninteractive push lacked credentials earlier; no review PR
+was created. Review preparation is local, not a claimed GitHub URL.
 
-PASS: installed Windows staging worker/dashboard, real LocalService health,
-durable jobs, restart/upgrade/uninstall/reinstall retention, native 1080p editable
-project/export with visible text, and authenticated private host API discovery.
+The service now dispatches narration and four bounded native editor operations
+through an interactive-user companion. Actual inspect/apply/save/reopen and
+synthetic export passed. Direct VoxCPM2 host/client implementation and negative
+security/recovery tests passed locally. **No real V9 host speech was generated.**
+A complete narrated/branded Short remains BLOCKED, not accepted on mock evidence.
 
-BLOCKED: actual remote narration and complete branded Short. Last successful
-host catalog reported only noncommercial OmniVoice TTS weights installed, no
-loaded speech engine/actual execution device, and no cleared voice profile.
-The supplied consumption PIN subsequently began failing 401/403. Approved badge
-and outro MP4 bytes remain outside GitHub and were not materialized.
+## Installer and launch
 
-After the owner reconfirmed the Tailscale HTTPS route and reported that sharing
-could not be enabled following an update, one further provider status check
-returned `BLOCKED_VOICE_AUTH`. The route is reachable; authenticated speech
-access is not restored. Evidence: private `voice-user-route-recheck.json`.
-No host settings, networking or GUI were changed and no speech POST was sent.
+Existing, installed unsigned staging installer (0.1.0):
+`C:/Admin/Projects/KnowledgeNetwork/output/installer-v9-round5/The-Knowledge-Network-Collector-0.1.0-setup.exe`
 
-INCOMPLETE engineering: editor/narration dispatch through the service identity
-and user-session companion; source-level Collector/Qt editing workspace. The
-WPF operations window is not an integrated video timeline. Developer adapters
-and the stock Qt editor do not complete that requirement.
-
-Publication remains PAUSED. No demonstration or other video was uploaded.
-
-## Installer, launch and repair
-
-Unsigned installer, actually installed, upgraded and reinstalled:
-`C:/admin/projects/KnowledgeNetwork/output/installer-v8-round3/The-Knowledge-Network-Collector-0.1.0-setup.exe`
-
-SHA-256: `145c61039e183e6bfd38fa74099c8a261ff881beac097d760d108961b82e0725`.
-All successful install/upgrade/reinstall runs exited 0. Actual uninstall exited
-0 and retained the private database. Manifests, .NET notices, Apache license
-and NuGet license/copyright metadata are packaged. Python development clients,
-OpenShot, VoiceStudio and models are not bundled in this installer.
+SHA-256: `58b73fd62cb3a2997e12b801a88686a6854bfa1421c67cd027b1b0c6dba9da5d`.
+Actual Round5 upgrade exited0 and preserved companion enablement and jobs.
+Self-contained .NET runtime/notices/licenses are packaged. Python source clients,
+OpenShot, models and owner media are not bundled; this is not a standalone full
+studio acceptance. No signing certificate is claimed.
 
 Installed CLI: `C:/Program Files/The Knowledge Network Collector/kn-collector.exe`
-SHA-256: `4d9cf8f0ec0aa9b9f5c55ab076b87a608a98af36296bc1e28cc8875535d67515`.
-Worker DLL SHA-256: `e34e8278da1ca7d1de400dd3ab4ffdb30f3f50c746924bcfb0b7732919db3f5a`.
-
-Dashboard: `C:/Program Files/The Knowledge Network Collector/kn-collector-dashboard.exe`
-SHA-256: `d61b35b5d3c39b0d4ff4b7b9adb9d389320c12613c218bdc1c2f0b0c8fa28d04`.
-Dashboard DLL SHA-256: `bc3c4483bdd09a3efe4b85b7882e8c3ceb751e26ff8277f39e09b84bf44017b1`.
-Worker build identifies source `9b1b669`; corrected dashboard was built from
-`719ea5b`. Later Python/docs commits do not change those binaries.
-
-Launch normally from the Start Menu or:
+SHA-256: `70ff38e9c81a6b7f2617f94fe6ad262fb734d45e867674429023d57242020a76`.
+Managed DLL: same directory `kn-collector.dll`, SHA-256
+`5b16b7ce9bd14b3ec7f58acf2847f5a973e007db261a091c5d683e6a53f859a5`.
+Dashboard apphost SHA-256:
+`4d38514a5d64e1cfe61b5ffe50a1a033884eda48880968e69d581b780889d667`.
+Dashboard DLL SHA-256:
+`9ea6504a1967707237c38e9a664905decabcf82cd924d92fb983bf39f3cdf19a`.
+Complete installed hashes: `C:/admin/collector-v9/final-package-hashes.json`.
 
 ```powershell
 & 'C:/Program Files/The Knowledge Network Collector/kn-collector-dashboard.exe'
-$nonce = [guid]::NewGuid().ToString('N')
-& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health $nonce
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health ([guid]::NewGuid().ToString('N'))
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' capabilities
 ```
 
-Repair: rerun the installer, or run the installed CLI's `install-service`
-elevated as the configured owner. `remove-service` is native and preserves
-data. No PowerShell execution policy was changed or bypassed. Observed installer
-signature status is NotSigned; no signing certificate is claimed.
+Repair by rerunning this installer elevated as the configured owner, or using
+canonical CLI `install-service`. Explicit `--enable-companion` and
+`--disable-companion` are supported; noflag preserves the setting. Removal
+preserves data. Upgrade now preserves the flag through Inno's remove/reinstall.
+No PowerShell execution policy was bypassed or changed.
 
-## Worker and persistence
+## Worker, recovery and backups
 
-Service `KnowledgeNetworkCollector` is Running, startup Auto, LocalService.
-Private data: `C:/ProgramData/KnowledgeNetworkCollector`.
-Persistent worker ID: `cb6ce3cd482148e7b8b0c8661ec8c6e9`.
-Job `131f54611e5a41c8b9e0d178b1a11dde` succeeded and survived service restart,
-upgrade, full uninstall and reinstall with the same result hash and worker ID.
-Result SHA-256: `f082e2ce38e84625e303c17d16948a0e824e84e49fd5686b5ab14bb145593b65`.
-Consistent pre-uninstall backup:
-`C:/admin/collector-v8/worker-before-uninstall.sqlite`.
+Service KnowledgeNetworkCollector: Running/Auto/LocalService. Stable worker ID
+`cb6ce3cd482148e7b8b0c8661ec8c6e9`. Final health reports windows_service, companion
+true, reconciliation hold false, publication_paused true and scheduler false.
+Typed jobs: diagnostic.echo, research.snapshot, narration.generate,
+editor.operation. Editor ops: inspect/apply/save/reopen. Queued export is disabled;
+remote narrator readiness is explicitly false. Health is not a Dot connection.
 
-PASS: duplicate returns same job, changed payload rejects, exact nonce matches,
-terminal cancellation retains success. Fake-pipe test received zero bytes and
-returned `untrusted_pipe_server`. Tampered package failed before service mutation.
-Noncanonical install path failed with exit 7 and retained the running service PID.
-Actual service/private-spool ACLs reviewed.
+Actual service restart retained all five sampled V9 job records/results exactly:
+`C:/admin/collector-v9/native-final-restart.json`. Upgrade retained the original
+three V1 jobs/IDs/hashes and worker identity. Schema2 uses consistent verified
+pre-migration backup before changes, durable leases and media outcome-unknown
+holds; no automatic replay of uncertain edits/speech. Read-only jobs can recover.
 
-Only `diagnostic.echo` and `research.snapshot` jobs are enabled. Editor/narration
-jobs explicitly report disabled; no arbitrary shell/remote-HTTP job exists.
-Immutable research snapshot contains 143 fresh leads, 2 recap slots, 33 blog
-versions and 42 evergreen entries. This is not a production cutover.
+Final consistent SQLite backup (integrity_check=ok):
+`C:/admin/collector-v9/worker-final-v9.sqlite`, SHA-256
+`daca19da767c1ce7fd1a3149db358d42e31f0c3745ce42dc76f3f4e21f0adf4b`.
+Automatic pre-v2 backup:
+`C:/ProgramData/KnowledgeNetworkCollector/jobs.pre-v2-7f166ba07afc4dc099b17e46cc548f88.sqlite`,
+SHA-256 `8456232e1201345733a877dac4545c8b0ac2ddafa3a4b8ba309fd374c5c554be`.
+V1 cannot read schema2: rollback requires deliberate backup/outcome review, never
+blind restore/replay. Reboot, locked/signed-out session and scheduled Dot access
+remain NOT TESTED. Prior V8 uninstall/reinstall proof is preserved, not rerun V9.
 
-VM reboot, signed-out/locked operation, scheduled Assistant access and off-VM
-recovery remain NOT TESTED/UNVERIFIED. Local Codex calls are not Dot proof.
+Original verified backup `C:/admin/collector-backups/20261114-073652` untouched.
+Its Git bundle was rechecked: SHA-256
+`c09bd03678201fe4576e746246c7709ba32dbdc2b6b2c7992872f4c9367659cd`.
+This is not a new rehash assertion for every original backup file.
 
-## Remote VoiceStudio
+One real negative fixture exposed OWNER RIGHTS ACL compatibility in Python3.13
+private temp files. Completion was denied and lease expiry correctly held the
+queue. Fixed at the shared ACL validation. Root reconstructed that this specific
+synthetic job had never reached POST (missing provider route, no durable intent)
+and performed a single stopped-service/exclusive-lock, backed-up reconciliation;
+no other rows changed or generic clear/replay endpoint added. Original failure,
+backup and assessment remain private:
+`native-companion-roundtrip.json`, `fixed-negative-job-reconciliation.private.json`
+(assessment SHA `c9cc45ed9860976ced83d8074ba9d1123ddb632cd05b75e236691d17155b5da2`).
+The original child stage was not captured; reconstructed evidence is not called
+a direct original provider observation. Normal production hold reconciliation
+still requires operator evidence and remains a usability limitation.
 
-BLACKHAT-BASE is the speech host; FORGE is the Collector/editor VM. The existing
-VM VoiceStudio installation was preserved and unused by V8. No host desktop,
-input, clipboard, model install, license acceptance, firewall, Gateway, service
-or Tailscale configuration changes occurred.
+## V9 narrator: observed facts and remaining gate
 
-PASS earlier: supplied HTTPS endpoint matched the private tailnet peer; TLS
-certificate/hostname verification; health/OpenAPI 0.5.6 and voice catalog.
-Wrong PIN returned 401, correct PIN 200. Credential went only into Forge's
-Windows Credential Manager via stdin, not process arguments, environment secrets,
-repository or URL. Private route and nonsecret user configuration stay outside
-Git. Remote Workers or an administrative key was not needed for this API path.
+Read-only redirected `\\tsclient\D` access matched existing host bytes:
+- canonical narrate.ps1: `98b75e5313d72d7aa65d160b41ebcb8726968bb7044700e2cffb510b5a72f189`
+- reference.wav: `050db3aeca148b98dd2edbcdf77abcb12b7ebc1debb344879e81af6e49b7fe44`
+- voxcpm.exe: `582115086868288000249adebbdfbf2de7db8392534d760fa9675ad9b0217492`
 
-Latest check at 13:35 UTC: stored credential rejected. Independent standard HTTPS
-client returned 403; provider reported blocked authentication. Cause was not
-proven and retries stopped. Refresh using interactive local `credential-save`,
-then perform one `verify-auth`. No bypass was attempted.
+Installed metadata: VoxCPM2.0.3, Python3.11, package Apache-2.0. Preserve fixed
+Oxiegen-Narrator identity and exact script configuration: CFG2.0, ten steps,
+no-denoiser, no-optimize, local-files-only, TORCH_COMPILE_DISABLE=1. Script,
+reference and installed model files were not modified. The old reference is not
+new narration and was not listened to. Model selected checkpoint/revision,
+component license evidence/reference rights and runtime Python parity remain
+BLOCKED. The owner-run old inspector returned a generic failure; cause is unknown.
 
-Speech capabilities and model catalog reads passed; `/model/loaded` was denied.
-Client retains partial evidence without requesting administrative credentials.
-Only `k2-fsa/OmniVoice` was installed for TTS; its publisher labels pretrained
-weights noncommercial. No commercial model/voice clearance was invented. RTX3060
-visibility is not actual GPU speech execution proof.
+The restricted loopback host service uses canonical script runner first. Direct
+persistent Python model loading remains gated on verified runtime parity. It has
+authenticated bounded routes, one GPU queue, durable idempotency, exact manifest
+and artifact checks, no arbitrary command/path/voice/model API, process-tree
+cancel/timeout and restart/storage-fault holds. Forge uses HTTPS/certificate and
+private-address pins, scoped CredMan bearer, socket deadline and PCM/hash checks.
+VoiceStudio app/API/PIN are retired and never used as fallback.
 
-**No host speech POST, real WAV, GPU synthesis or listening occurred.**
-Original 97-word/9-segment request `1610ea5e060d431980e52af9f273ed85` is prepared
-as `blocked_remote_voice` / rights-not-verified. Private spool:
-`C:/admin/collector-v8/editor-vault/remote-voice`. Original text/segments:
-`C:/admin/collector-v8/demo-script.private.txt` and `demo-segments.private.json`.
+No host process, scoped key or dedicated HTTPS route was installed/configured;
+no host screen or general execution channel used. Gateway and existing Tailscale
+routes remain unchanged. Only new project kit files were placed with permission.
+Latest kit is staged/readback-hash verified, **NOT EXECUTED**, at:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004` on BLACKHAT-BASE.
+Owner next command when available:
 
-Source supports streamed WAV checks, exact observed model identity, measured
-PCM cues, cross-process serialization, deadlines and cancellation. Local socket
-fixtures test slow headers/body and TLS interruption. Unknown POST outcomes
-retain a global durable hold across new job IDs/process restarts; no automatic
-retry, expiry or unsafe override. These tests are not actual host synthesis.
-See [voice acceptance](../VOICE-PROVIDER-ACCEPTANCE.md) for scope and prerequisites.
+```powershell
+& 'D:/projects/knowledgenetwork/collector-narrator-v9-004/Inspect-InstalledVoxCPM.cmd'
+```
 
-## Native editor and media
+Local ZIP:
+`C:/Admin/Projects/KnowledgeNetwork/output/The-Knowledge-Network-Collector-Narrator-V9-004.zip`
+SHA-256 `1ca74b22892fd13b138c3b804d5dd03005ef14a5d2dd9201fe47edd07bcec563`.
+It contains no model/voice/key. Inspector reads/hashes installed files and creates
+only a new protected private report. No inference/download/route changes. Older
+kits002/003 and owner's differently spelled project folder remain intact.
 
-OpenShot 4.1.1/libopenshot 1.1.1, pinned Windows native console. Child-only
-`QT_QPA_FONTDIR` fixed the V7 missing-glyph export without binary patches or
-global/host changes.
+Next live gate: inspect actual cache revision; review rights/component evidence;
+run unchanged host narrator smoke, then parity comparison; owner-scoped route
+setup; authenticated Forge status + actual new WAV transfer; import/caption/mix,
+retake/listening and exact final render. Those steps cannot be replaced by mocks.
 
-Project: `C:/admin/collector-v8/editor-vault/technical-1080-001/technical-v3.osp`
-SHA-256: `fcbdaef5d8b3a4c8a67ddce33ef6df4ea89c88ca024972f5af9ab5b362e2b4a0`.
-Video: same directory, `native-final-1080.mp4`.
-SHA-256: `b11728e5b2504871db1ad255ba92e3ed8015a9aca3cfc73015ee7b3c2a5d950a`.
+## Native editor and exact synthetic media
 
-PASS: exactly 50.000s, 1080x1920, 30fps, H264/yuv420p, AAC48k stereo, 1500 frames,
-full decode, configured black/silence scans and unchanged six source hashes.
-Job `8c8555feddb54d16b1e0be6e6a6277d4` exported revision 104. Three actual scenes
-show native titles, lower thirds and review labels. Native trim/split/reorder,
-grouped undo, 30000/1001 split timing and save/reopen passed.
+Actual service?user companion?OpenShot jobs:
+inspect `313710c99fdc4aafa75449ebaca234c3`, apply
+`42243403fca64f14af59384e3231ccf3`, save
+`df260a58e18c4eb3b61d63a5da9c7fdd`, reopen
+`9fe17030c3684cde80708c188c2a3334`. Revision56?59. The saved graphic alpha0.9
+was read back with native float32 tolerance. Durable private receipts bind each
+job; no mutation replay. Save exercised heartbeat across a 16-second call.
 
-Music reset/duck/readback/two-undo proof restored exact original clip JSON.
-Managed first attachments/longer retakes remove stale gain points. Manual caption
-or music edits and ambiguous ownership block a retake before mutation.
+Project:
+`C:/admin/collector-v9/editor-vault/service-editor-001/service-v9-reviewed-edit.osp`
+SHA-256 `7d108fbe024e27fefe3e1373fc4ede4993b29ce8da3df4100996a2c410fe5e92`.
+Video, same folder: `service-v9-local-review.mp4`
+SHA-256 `f453bd15c060ac590bfe8beb58c93898e3acc249df40c43310fe72978fa77c63`.
+Actual direct native export `897c917c5e2b4b18b6be561695ff67c6`, revision59:
+50.000s, 1080x1920,30fps,1500frames,H264/yuv420p,AAC48k stereo. Full decode0;
+black scan no events; silence scan only faded last0.508s. Six sources and revision
+unchanged. Frames4/21/42s visually inspected: text, lower thirds, animated graphic,
+three scenes and LOCAL REVIEW labels visible. Separate tones/music exist, not
+real speech; no listening assertion. Report `native-editor-export-qc.json`.
 
-This is an unbranded fixture with original low-volume tones, not speech.
-Artifact wall interval was 130.643s; one worker sample measured about 923MiB,
-not a continuous peak. Real speech mix, listening, manual Qt GUI edit, preview/
-export parity, landscape and approved bookends remain unverified. V7 artifacts
-are intact. Exact saved project/video hashes stayed unchanged after native tests.
+Native OpenShot4.1.1/libopenshot1.1.1 remains authoritative, editable multitrack
+`.osp`; WPF operations dashboard is not a replacement timeline. Existing adapter
+covers trim/split/reorder/undo, titles, overlays/keyframes/effects, subtitle/retake
+and mixing. Prior V8 native proofs remain separate historical evidence; manual Qt
+GUI editing, preview/export parity, spoken retake, DPI and Dot remain unverified.
+Older V8 exact project and video hashes were rechecked unchanged before V9 export.
 
-The owner reconfirmed that approved MP4 bytes are maintained separately. Existing
-intro/outro code and hashes were reread/preserved. Actual badge/MP4 locations
-remain needed; no substitute or re-created approved media was used.
+Approved portrait/landscape outro MP4s and exact intro badge bytes are still
+missing. Existing implementations and expected hashes preserved; bounded host
+project-folder search found no candidates. No substitute or recreated approval.
+All new fixtures are unbranded technical reviews, not full production acceptance.
 
-## Tests and visual review
+## Tests, skills and review
 
-Final Python/FFmpeg regression: **173 passed, zero failures/skips**, 50.359s.
-Installed worker self-test: **37 checks passed**. Dashboard: **17 real in-process
-UIA/CLI/service/focus/error/recovery/render checks passed**, exit 0. An actual
-invalid-job-ID crash was fixed and retested through installer upgrade.
+Final configured-environment regression: **284 tests PASS, zero failures/skips,
+55.991s** (`regression-final-venv.log`). Initial accidental system-Python run
+failed26/errors with7skips from missing dependencies/FFmpeg; retained as
+`regression-final.log`, corrected by using existing project venv and pinned tools,
+not weakening tests. Installed worker **163 checks PASS**. Final dashboard
+**17 checks PASS**,2727ms (`dashboard-smoke-v9-round5/smoke-results.json`). Real
+shown WPF window, in-process UIA/focus/buttons, installed CLI/service/error/recovery;
+96dpi rendered captures at800x600/1040x780. Not OS keystroke or high-DPI proof.
 
-Rendered WPF captures at 1040x780 and 800x600 were inspected: readable charcoal
-layout, visible focus, wrapped actions and no clipped main controls. Actual
-Windows desktop capture succeeded too. OS input/accessibility-tree testing was
-blocked by the dashboard's higher Windows integrity than the computer-use helper;
-no security settings/barriers were changed. OS DPI/high contrast and an ordinary
-non-elevated desktop client remain NOT TESTED.
+Real Windows checks: scoped credential write/read/delete; private ACL acceptance
+and public/inherited denial; native runner complete/cancel/timeout stopping owned
+children; inspector report ACL and redaction using MOCK inventories; service
+negative narration blocked before POST; queued cancel without attempt; 288170-byte
+valid unicode payload roundtrip;300085-byte invalid frame rejected in90ms after
+shared chunked-pipe fix. Contract server/renderer MOCK tone tests are explicitly
+local/synthetic; no host API/WAV acceptance. Logs/evidence root:
+`C:/admin/collector-v9`; sanitized totals in TEST-RESULTS.json.
 
-Evidence: `C:/admin/collector-v8`. Reports include `final-regression.log`,
-`installed-self-test.json`, `native-worker-acceptance.json`, `pipe-squatting.json`,
-`package-integrity-negative.json`, `installer-path-negative.json`,
-`uninstall-retention.json`, `dashboard-smoke-002/smoke-results.json`,
-`native-desktop-review.json`, `editor-native-qc-1080.json`,
-`editor-native-music-proof.json`, `host-probe-result.json`, and
-`voice-latest-auth-check.json`. Raw API/route/catalog files and media stay private.
+Ponytail5.3.3 FULL resolver/review skill actually applied. UI/UX Pro Max2.15.0
+`C:/admin/tools/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md` and Taste2.5.1
+native visual judgment reuse reviewed charcoal/muted-blue tokens; no UI redesign.
+Final dashboard captures were reviewed; web finish gates do not apply to native
+WPF/Qt and are not claimed. No lifecycle trust/session restart performed.
+Independent helpers owned worker/editor/voice changes in separate worktrees;
+root serialized VM installs, service tests and heavy renders. Diff review focused
+on trust boundaries, no duplicate scheduler/provider, cancellation, no-replay,
+revision/hash binding, bounded storage/transport, installer migration and missing
+integration tests. No speculative framework or general remote control was added.
 
-Ponytail 5.3.3 FULL resolver verified; actual review skill and independent review
-applied. No lifecycle-hook trust/execution was asserted. UI/UX Pro Max 2.15.0
-actual skill and targeted WPF/focus/status searches reused current tokens.
-Taste 2.5.1 native visual judgment applied; web gates are not applicable.
-Remaining native UI/host/lifecycle checks are listed above.
+## Assistant test and remaining follow-up
 
-## Assistant test and production controls
+Copy the plain-English request in [Assistant operations](../ASSISTANT-OPERATIONS.md).
+It includes real installed health/provider/companion syntax and requires a fresh
+45-55s editable LOCAL REVIEW-ONLY Short with direct VoxCPM2 narration, captions,
+text/graphics, effect, two video layers, ducked music, and both exact bookends
+inside the duration. Full narrated/branded command has not run successfully;
+missing live API/assets must return BLOCKED, never synthetic acceptance.
 
-Use the copyable request in [Assistant operations](../ASSISTANT-OPERATIONS.md).
-It begins with the real installed health CLI and private remote provider.
-A tested one-command full narrated/branded Short does not exist yet; the
-acceptance request must report invalid auth, missing eligible model/voice or
-unmaterialized bookends rather than invent success.
-
-Production receipts, rights/review gates and workflows are unchanged.
-operations.json remains
-`d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
-Publication is paused. No public media upload or automatic publication occurred.
+Real Assistant/Dot connection and scheduled execution remain NOT TESTED. Host
+execution/setup/model rights, approved bookend bytes, manual GUI/audio review,
+installer signing, reboot recovery and an authenticated review PR remain scoped
+follow-up. Existing production rights/review/exact-render/duplicate-upload gates
+remain intact; no public upload, workflow permission change or publication.

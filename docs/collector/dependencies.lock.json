@@ -32,7 +32,8 @@
   "inno_setup": {
     "version": "6.7.3",
     "source": "https://github.com/jrsoftware/issrc/releases/tag/is-6_7_3",
-    "installer_sha256": "9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732"
+    "installer_sha256": "9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732",
+    "license_review": "Upstream license permits commercial use; official purchase FAQ says purchase not strictly required. No purchase or policy acceptance performed."
   },
   "python_development": {
     "version": "3.13.17",
@@ -45,9 +46,12 @@
     "source": "https://github.com/OpenBMB/VoxCPM",
     "model_source": "https://huggingface.co/openbmb/VoxCPM2",
     "upstream_license": "Apache-2.0",
-    "installed_revision": "BLOCKED: host installation not inspected",
+    "installed_revision": "BLOCKED: selected cache checkpoint not verified; owner inspector failed at unknown stage",
     "narrator": "oxiegen-narrator",
     "integration": "Canonical owner script wrapper first; direct persistent Python model requires parity proof",
-    "host_assets": "Private and immutable; not bundled"
+    "host_assets": "Private and immutable; not bundled",
+    "installed_package_version": "2.0.3 (read host metadata)",
+    "host_python": "3.11 (read pyvenv.cfg)",
+    "reference_rights": "BLOCKED: exact reference consent/license evidence not verified"
   }
 }

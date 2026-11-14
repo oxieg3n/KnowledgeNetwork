@@ -33,7 +33,9 @@ The saved project is
 `C:/admin/collector-v9/editor-vault/service-editor-001/service-v9-reviewed-edit.osp`,
 SHA-256 `7d108fbe024e27fefe3e1373fc4ede4993b29ce8da3df4100996a2c410fe5e92`.
 It contains no real narration or approved bookends. The V9 direct native export
-completion does not establish decode/QC, listening, or publication acceptance.
+passed full decode and black scan; silence scan detected only the faded final
+0.508s. This is technical tone output, not listening or publication acceptance.
+Video SHA-256: `f453bd15c060ac590bfe8beb58c93898e3acc249df40c43310fe72978fa77c63`.
 
 Preserved V8 evidence: actual 50.000s 1080×1920 export at
 `C:/admin/collector-v8/editor-vault/technical-1080-001/native-final-1080.mp4`.
