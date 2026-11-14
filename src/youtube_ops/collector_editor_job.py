@@ -137,7 +137,9 @@ def execute(job_id, inputs, cancel, factory=from_environment):
             native = client.reopen(request['path'], request['sha256'])
             after = client.inspect()
         final_revision = _revision(after)
-        if operation in ('apply', 'reopen') and (not isinstance(native, dict) or native.get('revision') != final_revision):
+        native_context = native.get('native') if operation == 'save' and isinstance(native, dict) else native
+        if operation != 'inspect' and (not isinstance(native_context, dict) or
+                type(native_context.get('revision')) is not int or native_context['revision'] != final_revision):
             raise EditorJobError('EDITOR_REVISION_CHANGED_RECONCILE_REQUIRED')
         if cancel.is_set(): return outcome(operation, 'reconciliation_required', 'EDITOR_CANCELLED_AFTER_DISPATCH')
         receipt_hash = _new(receipt_path, {**intent, 'intent_sha256': intent_hash,

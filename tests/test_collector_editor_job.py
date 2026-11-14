@@ -35,7 +35,7 @@ class EditorJobTests(unittest.TestCase):
     def save(self,path):
         Path(path).write_bytes(b'saved native fixture')
         self.revision+=2
-        return {'native':{'revision':self.revision-1},'path':path,'sha256':hashlib.sha256(Path(path).read_bytes()).hexdigest()}
+        return {'native':{'revision':self.revision},'path':path,'sha256':hashlib.sha256(Path(path).read_bytes()).hexdigest()}
     def reopen(self,path,sha256):
         self.revision+=1
         return {'revision':self.revision}
@@ -65,6 +65,17 @@ class EditorJobTests(unittest.TestCase):
     def test_save_uses_actual_after_revision_even_native_save_relocates(self):
         result=self.run_job('save',{'path':str(self.vault/'new.osp')})
         self.assertEqual(result['status'],'completed'); self.assertEqual(result['revision'],5)
+    def test_edit_after_save_reply_cannot_be_attributed_to_saved_project(self):
+        def raced_save(path):
+            result=self.save(path)
+            self.revision+=1
+            return result
+        self.client.save.side_effect=raced_save
+        result=self.run_job('save',{'path':str(self.vault/'race.osp')})
+        self.assertEqual(result['error'],'EDITOR_REVISION_CHANGED_RECONCILE_REQUIRED')
+        self.assertEqual(result['status'],'reconciliation_required')
+        self.assertTrue((self.client.receipts/('service-'+JOB+'-intent.json')).exists())
+        self.assertFalse((self.client.receipts/('service-'+JOB+'.json')).exists())
     def test_reopen_binds_path_hash_and_actual_revision(self):
         path=self.vault/'owned.osp'; path.write_bytes(b'fixture')
         sha=hashlib.sha256(path.read_bytes()).hexdigest()
