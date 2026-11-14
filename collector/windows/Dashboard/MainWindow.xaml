@@ -1,0 +1,64 @@
+<Window x:Class="CollectorDashboard.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="The Knowledge Network Collector"
+ Width="1040" Height="780" MinWidth="800" MinHeight="600" Background="#171B20" Foreground="#F0F3F6"
+ FontFamily="Segoe UI" FontSize="15" UseLayoutRounding="True" Loaded="OnLoaded" Closed="OnClosed">
+ <Window.Resources>
+  <SolidColorBrush x:Key="Surface" Color="#222830"/>
+  <SolidColorBrush x:Key="Ink" Color="#F0F3F6"/>
+  <SolidColorBrush x:Key="Line" Color="#687785"/>
+  <SolidColorBrush x:Key="Focus" Color="#80C6DC"/>
+  <Style x:Key="FocusRing"><Setter Property="Control.Template"><Setter.Value><ControlTemplate>
+   <Rectangle Margin="-3" Stroke="#80C6DC" StrokeThickness="2" SnapsToDevicePixels="True"/>
+  </ControlTemplate></Setter.Value></Setter></Style>
+  <Style TargetType="Button">
+   <Setter Property="Background" Value="{StaticResource Surface}"/><Setter Property="Foreground" Value="{StaticResource Ink}"/>
+   <Setter Property="BorderBrush" Value="{StaticResource Line}"/><Setter Property="Padding" Value="16,9"/>
+   <Setter Property="Margin" Value="0,0,8,8"/><Setter Property="MinHeight" Value="42"/>
+   <Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+    <Border x:Name="Frame" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+     BorderThickness="1" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/></Border>
+    <ControlTemplate.Triggers>
+     <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Frame" Property="BorderBrush" Value="#80C6DC"/></Trigger>
+     <Trigger Property="IsPressed" Value="True"><Setter TargetName="Frame" Property="Background" Value="#35434E"/></Trigger>
+     <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.55"/></Trigger>
+    </ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+  <Style TargetType="TextBox">
+   <Setter Property="Background" Value="{StaticResource Surface}"/><Setter Property="Foreground" Value="{StaticResource Ink}"/>
+   <Setter Property="BorderBrush" Value="{StaticResource Line}"/><Setter Property="CaretBrush" Value="{StaticResource Ink}"/>
+   <Setter Property="Padding" Value="8"/><Setter Property="FocusVisualStyle" Value="{StaticResource FocusRing}"/>
+  </Style>
+ </Window.Resources>
+ <Grid Margin="24" KeyboardNavigation.TabNavigation="Continue">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+  <StackPanel>
+   <TextBlock Text="The Knowledge Network Collector" FontSize="24" FontWeight="SemiBold" TextWrapping="Wrap"/>
+   <TextBlock Text="Operations · local review only" Foreground="#BCC7D1" Margin="0,4,0,16"/>
+  </StackPanel>
+  <Border Grid.Row="1" BorderBrush="{StaticResource Line}" BorderThickness="1" Padding="12" Margin="0,0,0,16">
+   <TextBlock x:Name="Status" Text="Worker status not checked. Select Check health." TextWrapping="Wrap"
+    AutomationProperties.Name="Worker request status" AutomationProperties.LiveSetting="Polite"/>
+  </Border>
+  <StackPanel Grid.Row="2" x:Name="Actions">
+   <WrapPanel>
+    <Button x:Name="Health" Content="Check _health" Click="HealthClick" AutomationProperties.Name="Check worker health"/>
+    <Button Content="_Capabilities" Click="CapabilitiesClick" AutomationProperties.Name="Get worker capabilities"/>
+    <Button Content="_Research snapshot" Click="ResearchClick" AutomationProperties.Name="Get read-only research snapshot"/>
+    <Button Content="Run _echo test" Click="EchoClick" AutomationProperties.Name="Run durable diagnostic echo test"/>
+   </WrapPanel>
+   <Label Content="_Job ID" Target="{Binding ElementName=JobId}" Foreground="{StaticResource Ink}" Padding="0,4,0,4"/>
+   <DockPanel Margin="0,0,0,16">
+    <Button DockPanel.Dock="Right" Content="Ca_ncel job" Click="CancelClick" Margin="8,0,0,0" AutomationProperties.Name="Request cancellation of entered job"/>
+    <Button DockPanel.Dock="Right" Content="_Get job" Click="GetClick" Margin="8,0,0,0" AutomationProperties.Name="Get entered job status"/>
+    <TextBox x:Name="JobId" MinWidth="250" MaxLength="32" VerticalContentAlignment="Center" AutomationProperties.Name="Job ID"/>
+   </DockPanel>
+  </StackPanel>
+  <Grid Grid.Row="3"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+   <TextBlock Text="Worker response" FontSize="20" Margin="0,0,0,8"/>
+   <TextBox Grid.Row="1" x:Name="Response" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
+    VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="13" AutomationProperties.Name="Raw worker JSON response"/>
+  </Grid>
+ </Grid>
+</Window>
