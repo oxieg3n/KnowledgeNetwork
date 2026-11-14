@@ -33,6 +33,13 @@ internal static class SelfTestCompanion
             ? new { status, provider = "voxcpm2_remote", narrator_id = "oxiegen-narrator", publication_eligible = false,
                     narration_receipt_sha256 = new string('a', 64), audio_sha256 = new string('b', 64) }
             : new { status, provider = "voxcpm2_remote", narrator_id = "oxiegen-narrator", publication_eligible = false, error };
+        Check(Program.ParseInstallArguments([]) == (null, null));
+        Check(Program.ParseInstallArguments(["--enable-companion"]).CompanionOverride == true);
+        Check(Program.ParseInstallArguments(["S-1-5-21-1-2-3-1001", "--disable-companion"]) == ("S-1-5-21-1-2-3-1001", false));
+        Reject(() => Program.ParseInstallArguments(["--other"]), "invalid_install_arguments");
+        Reject(() => Program.ParseInstallArguments(["--enable-companion", "--enable-companion"]), "duplicate_or_conflicting_install_flag");
+        Reject(() => Program.ParseInstallArguments(["--enable-companion", "--disable-companion"]), "duplicate_or_conflicting_install_flag");
+        Reject(() => Program.ParseInstallArguments(["S-1-5-21-1-2-3-1001", "S-1-5-21-1-2-3-1002"]), "invalid_install_arguments");
         void Sql(string directory, string sql)
         {
             using var db = new SqliteConnection(new SqliteConnectionStringBuilder { DataSource = Path.Combine(directory, "jobs.sqlite"), Pooling = false }.ToString());

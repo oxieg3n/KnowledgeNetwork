@@ -97,7 +97,7 @@ internal static class ServiceInstall
         using var service = new ServiceController(Name);
         return QueryServiceStatusEx(service.ServiceHandle, 0, out var status, Marshal.SizeOf<Status>(), out _) && status.State == 4 ? status.Pid : 0;
     }
-    private static async Task<object> VerifyHealth(string command)
+    private static async Task<object> VerifyHealth(string command, bool companion)
     {
         using var deadline = new CancellationTokenSource(TimeSpan.FromSeconds(45));
         uint stablePid = 0; string? stableWorker = null; int stable = 0;
@@ -120,18 +120,19 @@ internal static class ServiceInstall
                     health.GetProperty("product").GetString() == Product && health.GetProperty("status").GetString() == "healthy" &&
                     health.GetProperty("execution_context").GetString() == "windows_service" && health.GetProperty("publication_paused").GetBoolean() &&
                     !health.GetProperty("production_scheduler_enabled").GetBoolean() && worker.Length == 32 && worker.All(char.IsAsciiHexDigit) &&
+                    health.GetProperty("narration_companion_enabled").GetBoolean() == companion &&
                     string.Equals(key?.GetValue("ObjectName") as string, @"NT AUTHORITY\LocalService", StringComparison.OrdinalIgnoreCase) &&
                     string.Equals(key?.GetValue("ImagePath") as string, command, StringComparison.Ordinal);
                 stable = valid ? (after == stablePid && worker == stableWorker ? stable + 1 : 1) : 0;
                 stablePid = after; stableWorker = worker;
-                if (stable >= 2) return new { status = "PASS", service = Name, process_id = after, worker_id = worker, publication_paused = true };
+                if (stable >= 2) return new { status = "PASS", service = Name, process_id = after, worker_id = worker, companion_enabled = companion, publication_paused = true };
             }
             catch (Exception error) when (error is RequestError or IOException or OperationCanceledException or JsonException or InvalidOperationException or KeyNotFoundException or System.ComponentModel.Win32Exception) { stable = 0; }
             try { await Task.Delay(300, deadline.Token); } catch (OperationCanceledException) { break; }
         }
         throw new RequestError("service_authenticated_health_failed_data_retained");
     }
-    public static async Task<object> Install(string? ownerSid)
+    public static async Task<object> Install(string? ownerSid, bool? companionOverride = null)
     {
         var current = CheckAdministrator();
         var owner = ownerSid is null ? current : new SecurityIdentifier(ownerSid);
@@ -143,6 +144,7 @@ internal static class ServiceInstall
             using var key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\" + Name);
             companion = System.Text.RegularExpressions.Regex.IsMatch(key?.GetValue("ImagePath") as string ?? "", @"(?:^|\s)--enable-companion(?:\s|$)");
         }
+        companion = companionOverride ?? companion;
         if (existing) Stop();
         System.IO.Directory.CreateDirectory(Data);
         if ((File.GetAttributes(Data) & FileAttributes.ReparsePoint) != 0) throw new RequestError("data_reparse_point_denied");
@@ -163,7 +165,7 @@ internal static class ServiceInstall
         await Sc("description", Name, "Local-only bounded review worker; publication remains paused.");
         await Sc("failure", Name, "reset=", "86400", "actions=", "restart/5000/restart/15000/none/0");
         using (var service = new ServiceController(Name)) { service.Start(); service.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(20)); }
-        return await VerifyHealth(command);
+        return await VerifyHealth(command, companion);
     }
     public static async Task<object> Remove()
     {

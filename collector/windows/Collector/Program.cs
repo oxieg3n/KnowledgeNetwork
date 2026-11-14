@@ -15,8 +15,11 @@ internal static class Program
         try
         {
             if (args.Length == 0) throw new RequestError("usage_serve_health_capabilities_submit_get_cancel_self-test");
-            if (args[0] == "install-service" && args.Length <= 2)
-            { Console.WriteLine(Protocol.Encode(new { ok = true, result = await ServiceInstall.Install(args.Length == 2 ? args[1] : null) })); return 0; }
+            if (args[0] == "install-service")
+            {
+                var install = ParseInstallArguments(args.Skip(1));
+                Console.WriteLine(Protocol.Encode(new { ok = true, result = await ServiceInstall.Install(install.OwnerSid, install.CompanionOverride) })); return 0;
+            }
             if (args[0] == "remove-service" && args.Length == 1)
             { Console.WriteLine(Protocol.Encode(new { ok = true, result = await ServiceInstall.Remove() })); return 0; }
             if (args[0] == "self-test")
@@ -86,6 +89,25 @@ internal static class Program
     {
         if (new FileInfo(path).Length > Protocol.MaxBytes) throw new RequestError("job_file_too_large");
         return JsonSerializer.Deserialize<JsonElement>(File.ReadAllText(path));
+    }
+    internal static (string? OwnerSid, bool? CompanionOverride) ParseInstallArguments(IEnumerable<string> arguments)
+    {
+        string? owner = null; bool? companion = null;
+        foreach (string argument in arguments)
+        {
+            if (argument is "--enable-companion" or "--disable-companion")
+            {
+                if (companion.HasValue) throw new RequestError("duplicate_or_conflicting_install_flag");
+                companion = argument == "--enable-companion";
+            }
+            else
+            {
+                if (argument.StartsWith('-') || owner is not null || string.IsNullOrWhiteSpace(argument))
+                    throw new RequestError("invalid_install_arguments");
+                owner = argument;
+            }
+        }
+        return (owner, companion);
     }
     private static string CompanionRequest(string verb, string path)
     {
