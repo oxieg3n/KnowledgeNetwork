@@ -27,9 +27,10 @@ private/tailnet IP literals, `verified_by`, `verified_at` and
 match. HTTP requires an actually verified encrypted tailnet route or an isolated
 trusted link, not merely a private IP. These transport declarations are operator
 evidence, not automatic network isolation proof. Public, loopback and link-local
-destinations are denied. All DNS answers must match the pinned addresses, and
-the connection uses an approved literal address while retaining the original
-hostname for TLS certificate verification. System certificate and hostname
+destinations are denied. The operator verifies the hostname/peer mapping while
+establishing the pins. Connections use an approved literal address directly,
+avoiding DNS blocking/rebinding, while retaining the original hostname for TLS
+certificate verification. System certificate and hostname
 checks remain enabled. Environment proxies and redirects are never used.
 
 `auth_mode` is `share_pin` or `scoped_bearer`. A scoped bearer also requires
@@ -143,8 +144,11 @@ job IDs return the same verified output; changed inputs conflict. A blocked or
 uncertain submitted job cannot silently restart. A host API timeout does not
 prove cancellation of its GPU work.
 
-WAV bytes stream into the new local job directory with bounded reads, socket/
-total deadlines,64MiB limits and disk reserve. JSON bodies are never accepted as
+WAV bytes stream into the new local job directory with bounded incremental reads,
+socket/total deadlines,64MiB limits and disk reserve. A cancellation/deadline
+watchdog closes the active transport even while waiting for connect, TLS, headers
+or stalled body bytes. This bounds the consumer request, not the host GPU job;
+its result remains uncertain and is never replayed. JSON bodies are never accepted as
 audio. Actual PCM format, complete sample count, measured duration and SHA-256
 are checked. Segment formats must match; exact frames are joined without gaps.
 The final artifacts are sibling `JOB_ID/narration.json` and `narration.wav`.
@@ -175,7 +179,9 @@ commit `3915a62cb482bb43117aaebab57d22745bd1cc21`: setup/models.py (cached catal
 and local install scan), services/model_lifecycle.py (loaded inventory),
 speech_platform.py (capabilities) and settings.py (administrative boundary).
 
-Unit tests use explicit fixtures/mocks only. They do not prove host reachability,
+Tests use explicit mocks and synthetic loopback TCP fixtures. The latter exercise
+real byte-dripping headers/body and stalled-header/body cancellation on Windows.
+These tests do not prove host reachability,
 PIN enforcement, selected voice rights, GPU use, audible speech, host lifecycle,
 Dot connectivity or publication acceptance. These require root's separately
 serialized cross-machine tests. The exact endpoint was not provided to this

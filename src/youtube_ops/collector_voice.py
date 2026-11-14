@@ -17,6 +17,7 @@ import shutil
 import socket
 import ssl
 import sys
+import threading
 import time
 import urllib.parse
 import uuid
@@ -28,10 +29,59 @@ MAX_JSON = 8 * 1024 * 1024
 MAX_WAV = 64 * 1024 * 1024
 PATHS = ('/health', '/openapi.json', '/v1/audio/voices', '/v1/audio/speech')
 CAPABILITY_READS = ('/.well-known/voicestudio-speech', '/model/loaded', '/models')
+READ_DEADLINE_SECONDS = 30
+POST_DEADLINE_SECONDS = 180
 
 
 class VoiceError(RuntimeError):
     """Public-safe status, never a raw server body, address or secret."""
+
+
+@contextmanager
+def socket_deadline(deadline, cancel, is_post):
+    """Interrupt blocking headers, TLS or body I/O even if a peer keeps dripping."""
+    stopped, active, cause = threading.Event(), [None], [None]
+
+    def reason():
+        if cancel and cancel.is_set():
+            return 'VOICE_CANCELLED_RESULT_UNKNOWN' if is_post else 'VOICE_CANCELLED'
+        if time.monotonic() >= deadline:
+            return 'VOICE_TIMEOUT_RESULT_UNKNOWN' if is_post else 'VOICE_READ_DEADLINE'
+        return None
+
+    def check():
+        code = cause[0] or reason()
+        if code:
+            raise VoiceError(code)
+
+    def register(transport):
+        active[0] = transport
+        check()
+
+    def watch():
+        while not stopped.wait(.02):
+            if code := reason():
+                cause[0] = code
+                if active[0] is not None:
+                    try:
+                        active[0].shutdown(socket.SHUT_RDWR)
+                    except OSError:
+                        pass
+                    # Windows file wrappers can defer socket.close(). Detach
+                    # and close the handle now to wake a stalled buffered read.
+                    try:
+                        socket.close(active[0].detach())
+                    except OSError:
+                        pass
+                return
+
+    watcher = threading.Thread(target=watch, name='collector-voice-deadline', daemon=True)
+    watcher.start()
+    try:
+        yield register, check
+    finally:
+        stopped.set()
+        watcher.join(timeout=.2)
 
 
 def digest(value):
@@ -246,16 +296,21 @@ class RemoteVoiceStudioProvider:
         except KeyError as exc:
             raise VoiceError('BLOCKED_REMOTE_VOICE_CONFIG') from exc
 
-    def _connect(self, timeout):
-        # Validate DNS, then connect directly to its approved address. Never
-        # repeat DNS resolution while sending an authentication header.
-        resolved = {str(ipaddress.ip_address(row[4][0])) for row in socket.getaddrinfo(self.host, self.port, type=socket.SOCK_STREAM)}
-        if not resolved or not resolved.issubset(self.addresses):
-            raise VoiceError('BLOCKED_VOICE_DESTINATION_CHANGED')
+    def _connect(self, timeout, on_socket=lambda transport: None):
+        # The operator verified these exact private literals. Connect directly:
+        # no unbounded DNS resolution or rebinding can move a credential.
+        address = sorted(self.addresses)[0]
         connection = http.client.HTTPConnection(self.host, self.port, timeout=timeout)
-        raw = socket.create_connection((sorted(resolved)[0], self.port), timeout)
+        raw = socket.socket(socket.AF_INET6 if ipaddress.ip_address(address).version == 6 else socket.AF_INET, socket.SOCK_STREAM)
         try:
-            connection.sock = ssl.create_default_context().wrap_socket(raw, server_hostname=self.host) if self.scheme == 'https' else raw
+            raw.settimeout(timeout)
+            on_socket(raw)
+            raw.connect((address, self.port))
+            if self.scheme == 'https':
+                raw = ssl.create_default_context().wrap_socket(raw, server_hostname=self.host, do_handshake_on_connect=False)
+                on_socket(raw)
+                raw.do_handshake()
+            connection.sock = raw
         except BaseException:
             raw.close()
             raise
@@ -275,69 +330,76 @@ class RemoteVoiceStudioProvider:
             if len(body) > 32768:
                 raise VoiceError('VOICE_INPUT_TOO_LARGE')
             headers['Content-Type'] = 'application/json'
-        deadline = time.monotonic() + (180 if payload else 30)
-        for attempt in range(3 if payload is None else 1):
-            connection = None
-            try:
-                if cancel and cancel.is_set():
-                    raise VoiceError('VOICE_CANCELLED_RESULT_UNKNOWN' if payload else 'VOICE_CANCELLED')
-                connection = self._connect(min(10, max(.1, deadline - time.monotonic())))
-                connection.request('POST' if payload is not None else 'GET', path, body, headers)
-                response = connection.getresponse()
-                status = response.status
-                if 300 <= status < 400:
-                    raise VoiceError('BLOCKED_VOICE_REDIRECT')
-                if payload is None and status in (429, 503) and attempt < 2:
-                    retry = response.getheader('Retry-After', '')
-                    if retry.isdigit() and int(retry) > 2:
-                        raise VoiceError('BLOCKED_VOICE_BACKPRESSURE')
-                    pause = min(2, max(.25, float(retry) if retry.isdigit() else .25 * 2 ** attempt))
-                    if time.monotonic() + pause >= deadline:
-                        raise VoiceError('VOICE_READ_DEADLINE')
-                    if cancel:
-                        cancel.wait(pause)
-                    else:
-                        time.sleep(pause)
-                    continue
-                if status != 200:
-                    error = VoiceError({401: 'BLOCKED_VOICE_AUTH', 403: 'BLOCKED_VOICE_AUTH',
-                        404: 'UNSUPPORTED_VOICE_PROFILE_OR_ROUTE', 409: 'BLOCKED_VOICE_MODEL_BUSY',
-                        429: 'BLOCKED_VOICE_BACKPRESSURE', 503: 'BLOCKED_VOICE_MODEL_UNAVAILABLE'}.get(status, 'VOICE_HTTP_' + str(status)))
-                    error.http_status = status
-                    raise error
-                mime = response.getheader('Content-Type', '').split(';')[0].lower()
-                if destination is not None and mime not in ('audio/wav', 'audio/x-wav', 'audio/wave'):
-                    raise VoiceError('INVALID_AUDIO_CONTENT_TYPE')
-                limit = MAX_WAV if destination is not None else MAX_JSON
-                result, received = bytearray(), 0
-                stream = Path(destination).open('xb') if destination is not None else None
+        is_post = payload is not None
+        deadline = time.monotonic() + (POST_DEADLINE_SECONDS if is_post else READ_DEADLINE_SECONDS)
+        with socket_deadline(deadline, cancel, is_post) as (register, check):
+            for attempt in range(1 if is_post else 3):
+                connection, response = None, None
                 try:
-                    while True:
-                        if time.monotonic() >= deadline or (cancel and cancel.is_set()):
-                            raise VoiceError('VOICE_RESULT_UNKNOWN' if payload else 'VOICE_READ_DEADLINE')
-                        block = response.read(65536)
-                        if not block:
-                            break
-                        received += len(block)
-                        if received > limit:
-                            raise VoiceError('VOICE_RESPONSE_TOO_LARGE')
-                        if stream:
-                            stream.write(block)
+                    check()
+                    connection = self._connect(min(10, max(.1, deadline - time.monotonic())), on_socket=register)
+                    register(getattr(connection, 'sock', None))
+                    connection.request('POST' if is_post else 'GET', path, body, headers)
+                    response = connection.getresponse()
+                    check()
+                    status = response.status
+                    if 300 <= status < 400:
+                        raise VoiceError('BLOCKED_VOICE_REDIRECT')
+                    if not is_post and status in (429, 503) and attempt < 2:
+                        retry = response.getheader('Retry-After', '')
+                        if retry.isdigit() and int(retry) > 2:
+                            raise VoiceError('BLOCKED_VOICE_BACKPRESSURE')
+                        pause = min(2, max(.25, float(retry) if retry.isdigit() else .25 * 2 ** attempt))
+                        if time.monotonic() + pause >= deadline:
+                            raise VoiceError('VOICE_READ_DEADLINE')
+                        if cancel:
+                            cancel.wait(pause)
                         else:
-                            result.extend(block)
-                    if stream:
-                        stream.flush(); os.fsync(stream.fileno())
+                            time.sleep(pause)
+                        continue
+                    if status != 200:
+                        error = VoiceError({401: 'BLOCKED_VOICE_AUTH', 403: 'BLOCKED_VOICE_AUTH',
+                            404: 'UNSUPPORTED_VOICE_PROFILE_OR_ROUTE', 409: 'BLOCKED_VOICE_MODEL_BUSY',
+                            429: 'BLOCKED_VOICE_BACKPRESSURE', 503: 'BLOCKED_VOICE_MODEL_UNAVAILABLE'}.get(status, 'VOICE_HTTP_' + str(status)))
+                        error.http_status = status
+                        raise error
+                    mime = response.getheader('Content-Type', '').split(';')[0].lower()
+                    if destination is not None and mime not in ('audio/wav', 'audio/x-wav', 'audio/wave'):
+                        raise VoiceError('INVALID_AUDIO_CONTENT_TYPE')
+                    limit = MAX_WAV if destination is not None else MAX_JSON
+                    result, received = bytearray(), 0
+                    stream = Path(destination).open('xb') if destination is not None else None
+                    try:
+                        while True:
+                            check()
+                            block = response.read1(65536)
+                            check()
+                            if not block:
+                                break
+                            received += len(block)
+                            if received > limit:
+                                raise VoiceError('VOICE_RESPONSE_TOO_LARGE')
+                            if stream:
+                                stream.write(block)
+                            else:
+                                result.extend(block)
+                        if stream:
+                            stream.flush(); os.fsync(stream.fileno())
+                    finally:
+                        if stream:
+                            stream.close()
+                    return bytes(result), mime, status
+                except ssl.SSLCertVerificationError as exc:
+                    check()
+                    raise VoiceError('BLOCKED_VOICE_TLS_VERIFICATION') from exc
+                except (TimeoutError, socket.timeout, http.client.HTTPException, OSError) as exc:
+                    check()
+                    raise VoiceError('VOICE_TRANSPORT_RESULT_UNKNOWN' if is_post else 'BLOCKED_REMOTE_VOICE_DISCONNECTED') from exc
                 finally:
-                    if stream:
-                        stream.close()
-                return bytes(result), mime, status
-            except ssl.SSLCertVerificationError as exc:
-                raise VoiceError('BLOCKED_VOICE_TLS_VERIFICATION') from exc
-            except (TimeoutError, socket.timeout, http.client.HTTPException, OSError) as exc:
-                raise VoiceError('VOICE_TRANSPORT_RESULT_UNKNOWN' if payload else 'BLOCKED_REMOTE_VOICE_DISCONNECTED') from exc
-            finally:
-                if connection:
-                    connection.close()
+                    if response:
+                        response.close()
+                    if connection:
+                        connection.close()
 
     def _json(self, path):
         data, mime, _ = self._request(path)

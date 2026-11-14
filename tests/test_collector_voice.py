@@ -1,10 +1,15 @@
-"""Mock remote-provider tests; these never establish host API acceptance."""
+"""Mocks and local synthetic socket fixtures; never host API acceptance."""
+from contextlib import contextmanager
 import io
 import ctypes
+import http.client
 import json
 from pathlib import Path
 import socket
+import socketserver
 import tempfile
+import threading
+import time
 import unittest
 from unittest.mock import patch
 import wave
@@ -41,6 +46,56 @@ class Connection:
         return self.response
     def close(self):
         self.closed = True
+
+
+@contextmanager
+def slow_http_fixture(mode):
+    """Loopback-only synthetic peer exercising real blocking HTTP reads."""
+    stop = threading.Event()
+    class Handler(socketserver.StreamRequestHandler):
+        def handle(self):
+            if mode == 'tls-stall':
+                self.request.recv(4096)
+                self.server.requests += 1
+                stop.wait(2)
+                return
+            self.rfile.readline()
+            length = 0
+            while line := self.rfile.readline():
+                if line == b'\r\n':
+                    break
+                if line.lower().startswith(b'content-length:'):
+                    length = int(line.split(b':', 1)[1])
+            self.rfile.read(length)
+            self.server.requests += 1
+            header = b'HTTP/1.1 200 OK\r\nContent-Type: audio/wav\r\nContent-Length: 100000\r\n\r\n'
+            try:
+                if mode == 'headers-stall':
+                    stop.wait(2)
+                elif mode == 'headers':
+                    for byte in header:
+                        self.request.sendall(bytes([byte]))
+                        if stop.wait(.02):
+                            return
+                else:
+                    self.request.sendall(header)
+                    if mode == 'stall':
+                        stop.wait(2)
+                    else:
+                        while not stop.wait(.02):
+                            self.request.sendall(b'x')
+            except OSError:
+                pass
+    class Server(socketserver.ThreadingTCPServer):
+        daemon_threads = True
+    server = Server(('127.0.0.1', 0), Handler)
+    server.requests = 0
+    thread = threading.Thread(target=lambda: server.serve_forever(poll_interval=.02), daemon=True)
+    thread.start()
+    try:
+        yield server
+    finally:
+        stop.set(); server.shutdown(); server.server_close(); thread.join(timeout=1)
 
 
 class RemoteVoiceTests(unittest.TestCase):
@@ -98,12 +153,11 @@ class RemoteVoiceTests(unittest.TestCase):
             RemoteVoiceStudioProvider(url, {**route, 'transport': 'isolated_link_http',
                 'auth_mode': 'scoped_bearer', 'route_scoped': True}, self.spool)
 
-    def test_dns_rebinding_rejected_before_socket_connect(self):
-        answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, '', ('8.8.8.8', 443))]
-        with patch('socket.getaddrinfo', return_value=answer), patch('socket.create_connection') as connect:
-            with self.assertRaisesRegex(VoiceError, 'DESTINATION_CHANGED'):
-                self.provider._connect(1)
-            connect.assert_not_called()
+    def test_pinned_literal_connection_never_resolves_hostname(self):
+        with patch('socket.getaddrinfo') as resolve, patch('socket.socket') as raw, patch('ssl.create_default_context'):
+            self.provider._connect(1)
+            resolve.assert_not_called()
+            raw.return_value.connect.assert_called_once_with(('10.23.45.67', 443))
 
     def test_unknown_paths_redirects_and_auth_failures_are_redacted(self):
         with self.assertRaises(VoiceError):
@@ -166,11 +220,58 @@ class RemoteVoiceTests(unittest.TestCase):
                 self.provider._request('/v1/audio/speech', {}, destination=self.spool / 'too-large.wav')
 
     def test_tls_uses_default_verification_and_original_hostname(self):
-        answer = [(socket.AF_INET, socket.SOCK_STREAM, 6, '', ('10.23.45.67', 443))]
-        with patch('socket.getaddrinfo', return_value=answer), patch('socket.create_connection') as connect, patch('ssl.create_default_context') as context:
+        with patch('socket.socket') as raw, patch('ssl.create_default_context') as context:
             self.provider._connect(3)
-            connect.assert_called_once_with(('10.23.45.67', 443), 3)
-            context.return_value.wrap_socket.assert_called_once_with(connect.return_value, server_hostname='voice-fixture.invalid')
+            raw.return_value.settimeout.assert_called_once_with(3)
+            raw.return_value.connect.assert_called_once_with(('10.23.45.67', 443))
+            context.return_value.wrap_socket.assert_called_once_with(raw.return_value,
+                server_hostname='voice-fixture.invalid', do_handshake_on_connect=False)
+            context.return_value.wrap_socket.return_value.do_handshake.assert_called_once()
+
+    def test_real_dripping_headers_and_body_cannot_extend_post_deadline(self):
+        for mode in ('headers', 'body'):
+            with self.subTest(mode=mode), slow_http_fixture(mode) as server:
+                def connect(timeout, on_socket):
+                    connection = http.client.HTTPConnection('127.0.0.1', server.server_address[1], timeout=10)
+                    connection.connect(); on_socket(connection.sock)
+                    return connection
+                started = time.monotonic()
+                with patch.object(self.provider, '_connect', side_effect=connect), patch('youtube_ops.collector_voice.POST_DEADLINE_SECONDS', .25):
+                    with self.assertRaisesRegex(VoiceError, 'VOICE_TIMEOUT_RESULT_UNKNOWN'):
+                        self.provider._request('/v1/audio/speech', {'input': 'fixture'}, destination=self.spool / f'{mode}.partial')
+                self.assertLess(time.monotonic() - started, 1.2)
+                self.assertEqual(server.requests, 1)
+
+    def test_real_stalled_headers_and_body_are_interrupted_by_cancellation(self):
+        for mode in ('headers-stall', 'stall'):
+            with self.subTest(mode=mode), slow_http_fixture(mode) as server:
+                def connect(timeout, on_socket):
+                    connection = http.client.HTTPConnection('127.0.0.1', server.server_address[1], timeout=10)
+                    connection.connect(); on_socket(connection.sock)
+                    return connection
+                cancel = threading.Event()
+                timer = threading.Timer(.15, cancel.set); timer.start()
+                started = time.monotonic()
+                try:
+                    with patch.object(self.provider, '_connect', side_effect=connect), patch('youtube_ops.collector_voice.POST_DEADLINE_SECONDS', 5):
+                        with self.assertRaisesRegex(VoiceError, 'VOICE_CANCELLED_RESULT_UNKNOWN'):
+                            self.provider._request('/v1/audio/speech', {'input': 'fixture'}, destination=self.spool / f'{mode}-cancel.partial', cancel=cancel)
+                    self.assertLess(time.monotonic() - started, 1.2)
+                    self.assertEqual(server.requests, 1)
+                finally:
+                    timer.cancel(); timer.join(timeout=1)
+
+    def test_real_stalled_tls_handshake_is_interrupted_by_deadline(self):
+        with slow_http_fixture('tls-stall') as server:
+            # The only loopback override is this synthetic test transport.
+            self.provider.addresses = {'127.0.0.1'}
+            self.provider.port = server.server_address[1]
+            started = time.monotonic()
+            with patch('youtube_ops.collector_voice.POST_DEADLINE_SECONDS', .25):
+                with self.assertRaisesRegex(VoiceError, 'VOICE_TIMEOUT_RESULT_UNKNOWN'):
+                    self.provider._request('/v1/audio/speech', {'input': 'fixture'}, destination=self.spool / 'tls.partial')
+            self.assertLess(time.monotonic() - started, 1.2)
+            self.assertEqual(server.requests, 1)
 
     def test_stream_wav_and_reject_json_audio(self):
         path = self.spool / 'stream.wav'
