@@ -5,6 +5,16 @@ other media was publicly uploaded. Production workflows/permissions and the
 separate poweredby repository were not changed. Final operations.json SHA-256
 remains `d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
 
+## Subsequent inspector repair
+
+Owner-run host inventory now PASS at revision
+`7936080b41163874f38610f46f438e2c0757f9fd`;9 snapshot files/4,960,731,830 bytes
+and39 package files. This supersedes only the earlier inventory blocker below.
+[Repair evidence, kit command, hashes,24+23 focused tests and remaining rights/API gates](INSPECTOR-SHARED-BLOB-REPAIR.md).
+Actual reference consent, runtime parity/GPU/WAV and remote API remain blocked
+or untested. No Collector rebuild or Gateway/network change. Earlier checkpoints,
+backups and results below are historical evidence and remain preserved.
+
 ## Outcome and checkpoint
 
 Continued the existing `feature/collector-v7-overnight` branch from original

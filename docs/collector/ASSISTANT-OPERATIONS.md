@@ -147,3 +147,31 @@ It can be run by the owner locally on return; no host command channel was used.
 Do not configure the proposed host listener/HTTPS route until its manifest and
 separate scoped deployment permission are established. Existing Gateway remains
 unchanged.
+
+## Inspector follow-up
+
+The owner ran the repaired existing kit004 successfully. Its private manifest now
+binds revision7936080b41163874f38610f46f438e2c0757f9fd and actual resolved shared
+blob content hashes. Read [repair evidence](overnight/INSPECTOR-SHARED-BLOB-REPAIR.md)
+for the exact rerun command and source/artifact checks. Do not repeat the earlier
+claim that the selected model cache is wholly uninspected. Status still blocks
+on undeployed narrator API and unresolved consent/runtime provenance gates.
+Do not weaken pipe trust to resolve Assistant's reported untrusted_pipe_server;
+actual Assistant context is required to identify the mismatch.
+
+For the reported pipe failure, run this **from Assistant's actual FORGE client
+context**, keeping output private. Do not substitute the developer shell:
+
+```powershell
+hostname
+whoami /user
+whoami /groups
+(Get-Process -Id $PID).SessionId
+sc.exe queryex KnowledgeNetworkCollector
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health ([guid]::NewGuid().ToString('N'))
+```
+
+Use the canonical EXE, not `dotnet <dll>` or a worktree copy. Exact path identity,
+process query and SCM access are trust checks; a mismatch needs evidence before
+any repair. Current installed service/binary hashes match the prior receipt and
+local health passes, so no specific actual Dot failure cause is established.

@@ -31,3 +31,14 @@ The observed owner-run installed-model inspection attempt returned a generic BLO
 
 See [host setup](host-narrator.md), [owner-run inspector](host-tools/README.md), [operations](ASSISTANT-OPERATIONS.md) and [handoff](overnight/HANDOFF.md). Public publication remains PAUSED. No demonstration video has been publicly uploaded.
 
+
+## Subsequent owner-run inventory
+
+PASS: selected host revision7936080b41163874f38610f46f438e2c0757f9fd,
+9 snapshot files/4,960,731,830 bytes and39 package files. Exact cached model card
+matches upstream at that revision and declares Apache-2.0/commercial use;
+installed package LICENSE hash matches inventory. See
+[inspector repair evidence](overnight/INSPECTOR-SHARED-BLOB-REPAIR.md).
+This supersedes selected-cache inventory as a blocker, not reference consent,
+remaining dependency obligations, runtime parity, actual GPU speech, host route
+or a real FORGE-to-host WAV. No valid runtime manifest is asserted.

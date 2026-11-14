@@ -332,6 +332,7 @@ class InventoryBoundsTests(unittest.TestCase):
                     probe.catalog(repo, repo)
                 hashed.assert_not_called()
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows-only report ACL orchestration')
     def test_main_redacts_failure_and_writes_only_after_acl_verified(self):
         for acl_ok in (False, True):
             with tempfile.TemporaryDirectory() as tmp:

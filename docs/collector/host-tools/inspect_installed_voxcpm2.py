@@ -86,6 +86,8 @@ def file_link_target(logical):
             if not re.match(r'^[A-Za-z]:\\', link[4:]):
                 raise ValueError('model_file_escape')
             link = link[4:]
+        if link.startswith(('\\\\', '//')):
+            raise ValueError('model_file_escape')
         target = Path(os.path.abspath(logical.parent / link))
         return target, ((str(logical), file_identity(info), link),)
     else:
