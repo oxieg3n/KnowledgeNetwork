@@ -77,6 +77,65 @@ if ($existing) {
 if ($LASTEXITCODE -ne 0) { throw 'Recovery configuration failed.' }
 Start-Service -Name $serviceName
 (Get-Service $serviceName).WaitForStatus('Running', [TimeSpan]::FromSeconds(20))
-Write-Output "Installed The Knowledge Network Collector. CLI: $binary"
+if ($identity.User.Value -ne $owner.Value) {
+    throw 'Service installed, but authenticated health is NOT VERIFIED: run the installed CLI as the configured owner. Automatic installation verification requires elevation under that same user SID.'
+}
+$deadline = [DateTime]::UtcNow.AddSeconds(45)
+$stableCount = 0
+$verifiedProcess = 0
+$verifiedWorker = $null
+while ([DateTime]::UtcNow -lt $deadline) {
+    $before = Get-CimInstance -ClassName Win32_Service -Filter "Name='KnowledgeNetworkCollector'" -OperationTimeoutSec 5
+    $nonce = [Guid]::NewGuid().ToString('N')
+    $start = New-Object Diagnostics.ProcessStartInfo
+    $start.FileName = $binary
+    $start.Arguments = 'health ' + $nonce
+    $start.UseShellExecute = $false
+    $start.CreateNoWindow = $true
+    $start.RedirectStandardOutput = $true
+    $start.RedirectStandardError = $true
+    $probe = New-Object Diagnostics.Process
+    $probe.StartInfo = $start
+    $sample = $null
+    try {
+        if (-not $probe.Start()) { throw 'Health client could not start.' }
+        $output = $probe.StandardOutput.ReadToEndAsync()
+        $errorOutput = $probe.StandardError.ReadToEndAsync()
+        $remaining = [Math]::Max(1, [Math]::Min(10000, [int]($deadline - [DateTime]::UtcNow).TotalMilliseconds))
+        if (-not $probe.WaitForExit($remaining)) {
+            $probe.Kill()
+            $probe.WaitForExit()
+        } elseif ($probe.ExitCode -eq 0) {
+            try { $sample = $output.GetAwaiter().GetResult() | ConvertFrom-Json } catch { $sample = $null }
+        }
+    } finally { $probe.Dispose() }
+    $after = Get-CimInstance -ClassName Win32_Service -Filter "Name='KnowledgeNetworkCollector'" -OperationTimeoutSec 5
+    $serviceIdentity = $null
+    if ($after) {
+        try {
+            $serviceAccount = New-Object Security.Principal.NTAccount($after.StartName)
+            $serviceIdentity = $serviceAccount.Translate([Security.Principal.SecurityIdentifier]).Value
+        } catch { $serviceIdentity = $null }
+    }
+    $valid = $before -and $after -and $before.State -eq 'Running' -and $after.State -eq 'Running' -and
+        $before.ProcessId -gt 0 -and $before.ProcessId -eq $after.ProcessId -and
+        $after.PathName -eq $command -and $serviceIdentity -eq 'S-1-5-19' -and
+        $sample -and $sample.ok -is [bool] -and $sample.ok -eq $true -and $sample.result.schema_version -eq 1 -and
+        $sample.result.product -eq 'The Knowledge Network Collector' -and $sample.result.status -eq 'healthy' -and
+        $sample.result.nonce -ceq $nonce -and $sample.result.execution_context -eq 'windows_service' -and
+        $sample.result.publication_paused -is [bool] -and $sample.result.publication_paused -eq $true -and
+        $sample.result.production_scheduler_enabled -is [bool] -and $sample.result.production_scheduler_enabled -eq $false -and
+        $sample.result.worker_id -cmatch '^[a-f0-9]{32}$'
+    if ($valid) {
+        if ($verifiedProcess -eq $after.ProcessId -and $verifiedWorker -ceq $sample.result.worker_id) { $stableCount++ }
+        else { $stableCount = 1; $verifiedProcess = $after.ProcessId; $verifiedWorker = $sample.result.worker_id }
+        if ($stableCount -ge 2) { break }
+    } else { $stableCount = 0; $verifiedProcess = 0; $verifiedWorker = $null }
+    Start-Sleep -Milliseconds 300
+}
+if ($stableCount -lt 2) {
+    throw 'Service installation health FAILED: no two authenticated health responses from one stable LocalService PID within 45 seconds. Private data retained; inspect the Collector service and Windows Event Log.'
+}
+Write-Output "Verified The Knowledge Network Collector installed and healthy. CLI: $binary"
+Write-Output "Verified LocalService PID: $verifiedProcess; worker ID: $verifiedWorker"
 Write-Output "Private durable data preserved at: $dataDirectory"
-Write-Output 'Run the CLI as the configured owner: kn-collector.exe health fresh-nonce'

@@ -23,6 +23,18 @@ Running the service as LocalSystem is rejected. Do not install it with a default
 LocalSystem service command. Service installation, ACLs, launch and recovery must
 be tested by the VM coordinator before claiming installed readiness.
 
+The installation script declares healthy only after two authenticated installed
+CLI responses with fresh matching nonces, healthy Windows-service context,
+publication pause and scheduler hold, the same persistent worker ID and the
+same running SCM process ID before and after both calls. It also verifies the
+service account resolves to LocalService (`S-1-5-19`) and the exact configured
+binary command remains unchanged. Probes have a 45-second deadline, individual
+CLI processes are bounded to ten seconds, and CIM calls have five-second
+timeouts. A failed check throws without deleting the database. When elevated
+under a different user from `OwnerSid`, installation cannot authenticate on the
+owner's behalf and explicitly fails health verification after service setup;
+run verification as the intended owner rather than broadening pipe access.
+
 For a local same-user diagnostic run, launch the first command in one terminal:
 
 ```powershell
@@ -93,3 +105,18 @@ The self-test checks deduplication/conflicts, denied shell/publication fields,
 duplicate fields, result hashes, cancellation, restart persistence, journal
 immutability, snapshot hash mismatch and recovery. It does not establish native pipe ACL enforcement,
 Windows service restart, reboot, sign-out behavior or scheduled Assistant access.
+
+For the serialized fake-server negative test, the coordinator first stops the
+genuine Collector service and confirms no console worker is active. Then run:
+
+```powershell
+./collector/windows/Test-PipeSquatting.ps1 -CollectorExecutable 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' -EvidencePath 'C:/admin/collector-evidence/pipe-squatting.json'
+```
+
+The evidence parent directory must already exist and the output file must be
+new. The script briefly hosts a user-ACL-protected fake pipe inside PowerShell,
+starts the real CLI, and verifies `untrusted_pipe_server`, exit status 1 and zero
+request bytes received. It never stops/starts a service or sends a publication
+request. Its process and pipe are closed in cleanup. Restore the real service
+and repeat authenticated health after this test. Merely parsing this helper is
+not a native negative-test pass.
