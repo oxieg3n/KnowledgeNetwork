@@ -518,6 +518,8 @@ class RemoteVoiceStudioProvider:
                 if existing.get('status') == 'generated_pending_review' and sha256_file(directory / 'narration.wav') == existing.get('audio', {}).get('sha256'):
                     return existing
                 raise VoiceError('VOICE_RESULT_REQUIRES_RECONCILIATION')
+            if (self.spool / 'remote-active.json').exists():
+                raise VoiceError('BLOCKED_VOICE_REMOTE_OUTCOME_UNCERTAIN')
             if directory.exists() and read_json(directory / 'request.json').get('request_identity') != identity:
                 raise VoiceError('VOICE_IDEMPOTENCY_CONFLICT')
             if shutil.disk_usage(self.spool).free < MAX_WAV * 3:
@@ -574,6 +576,14 @@ class RemoteVoiceStudioProvider:
                 intent.update(status='generation_intent', active_segment=index)
                 checkpoint(receipt, intent)
                 path = directory / f'segment-{index:02d}.wav'
+                hold = self.spool / 'remote-active.json'
+                if hold.exists():
+                    raise VoiceError('BLOCKED_VOICE_REMOTE_OUTCOME_UNCERTAIN')
+                checkpoint(hold, {'schema_version': 1, 'status': 'remote_outcome_pending',
+                    'collector_job_id': intent['collector_job_id'], 'segment_index': index,
+                    'request_sha256': intent['request_sha256'],
+                    'segment_text_sha256': hashlib.sha256(text.encode()).hexdigest(),
+                    'created_at': datetime.now(timezone.utc).isoformat()})
                 self._request('/v1/audio/speech', {'model': engine_id, 'voice': voice_id,
                     'input': text, 'response_format': 'wav'}, destination=path, cancel=cancel)
                 audio = inspect_wav(path)
@@ -594,6 +604,8 @@ class RemoteVoiceStudioProvider:
                     'start': offset / key[2], 'end': (offset + audio['frames']) / key[2]})
                 offset += audio['frames']
                 checkpoint(receipt, intent)
+                # Only validated, durably recorded audio resolves this host call.
+                hold.unlink()
         finally:
             if joined is not None:
                 joined.close()

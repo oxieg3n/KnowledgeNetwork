@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import socket
 import socketserver
+import subprocess
+import sys
 import tempfile
 import threading
 import time
@@ -310,6 +312,8 @@ class RemoteVoiceTests(unittest.TestCase):
         def synth(path, payload, *, destination, **kwargs):
             saved = json.loads((self.spool / job_id / 'narration.json').read_text())
             self.assertEqual(saved['status'], 'generation_intent')
+            held = json.loads((self.spool / 'remote-active.json').read_text())
+            self.assertEqual(held['collector_job_id'], job_id)
             Path(destination).write_bytes(wav_bytes(8000 if payload['input'].startswith('First') else 24000))
         with patch.object(self.provider, 'discover', return_value=self.catalog()), patch.object(self.provider, '_request', side_effect=synth) as request:
             result = self.provider.generate(job_id, text, self.evidence(), segments=parts)
@@ -322,6 +326,7 @@ class RemoteVoiceTests(unittest.TestCase):
         self.assertEqual(result['cues'][1]['start_sample'], 8000)
         self.assertEqual(result['cues'][1]['end'], 2)
         self.assertFalse(result['publication_eligible'])
+        self.assertFalse((self.spool / 'remote-active.json').exists())
         with self.assertRaisesRegex(VoiceError, 'IDEMPOTENCY'):
             self.provider.generate(job_id, 'Different.', self.evidence())
 
@@ -332,10 +337,58 @@ class RemoteVoiceTests(unittest.TestCase):
                 self.provider.generate('2' * 32, 'Original sentence.', self.evidence())
             with self.assertRaisesRegex(VoiceError, 'RECONCILIATION'):
                 self.provider.generate('2' * 32, 'Original sentence.', self.evidence())
+            with self.assertRaisesRegex(VoiceError, 'REMOTE_OUTCOME_UNCERTAIN'):
+                self.provider.generate('a' * 32, 'A different job.', self.evidence())
             self.assertEqual(request.call_count, 1)
         saved = json.loads((self.spool / ('2' * 32) / 'narration.json').read_text())
         self.assertEqual(saved['status'], 'blocked_remote_voice')
         self.assertEqual(saved['error'], 'VOICE_TRANSPORT_RESULT_UNKNOWN')
+        restarted = RemoteVoiceStudioProvider(self.url, self.route, self.spool)
+        with patch.object(restarted, '_request') as request:
+            with self.assertRaisesRegex(VoiceError, 'REMOTE_OUTCOME_UNCERTAIN'):
+                restarted.generate('b' * 32, 'After restart.', self.evidence())
+            request.assert_not_called()
+
+    def test_persisted_hold_without_local_job_blocks_after_process_restart(self):
+        checkpoint(self.spool / 'remote-active.json', {'status': 'remote_outcome_pending', 'collector_job_id': 'a' * 32})
+        restarted = RemoteVoiceStudioProvider(self.url, self.route, self.spool)
+        with patch.object(restarted, 'discover') as discover, patch.object(restarted, '_request') as request:
+            with self.assertRaisesRegex(VoiceError, 'REMOTE_OUTCOME_UNCERTAIN'):
+                restarted.generate('c' * 32, 'After process crash.', self.evidence())
+            discover.assert_not_called(); request.assert_not_called()
+        script = """
+import json,sys
+from youtube_ops.collector_voice import RemoteVoiceStudioProvider,VoiceError
+provider=RemoteVoiceStudioProvider(sys.argv[1],json.loads(sys.argv[2]),sys.argv[3])
+try:
+    provider.generate('c'*32,'After process crash.',{})
+except VoiceError as error:
+    print(str(error))
+    sys.exit(0 if str(error)=='BLOCKED_VOICE_REMOTE_OUTCOME_UNCERTAIN' else 1)
+sys.exit(2)
+"""
+        result = subprocess.run([sys.executable, '-c', script, self.url, json.dumps(self.route), str(self.spool)],
+                                capture_output=True, text=True, timeout=10, check=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.strip(), 'BLOCKED_VOICE_REMOTE_OUTCOME_UNCERTAIN')
+
+    def test_rights_failure_before_post_does_not_hold_host(self):
+        evidence = self.evidence(); evidence['commercial_use'] = False
+        with patch.object(self.provider, '_request') as request:
+            with self.assertRaisesRegex(VoiceError, 'RIGHTS'):
+                self.provider.generate('d' * 32, 'Unreviewed.', evidence)
+            request.assert_not_called()
+        self.assertFalse((self.spool / 'remote-active.json').exists())
+
+    def test_completed_idempotent_read_is_allowed_while_another_outcome_is_held(self):
+        self.auth()
+        def synth(path, payload, *, destination, **kwargs):
+            Path(destination).write_bytes(wav_bytes())
+        with patch.object(self.provider, 'discover', return_value=self.catalog()), patch.object(self.provider, '_request', side_effect=synth) as request:
+            completed = self.provider.generate('e' * 32, 'Completed.', self.evidence())
+            checkpoint(self.spool / 'remote-active.json', {'status': 'remote_outcome_pending', 'collector_job_id': 'a' * 32})
+            self.assertEqual(self.provider.generate('e' * 32, 'Completed.', self.evidence()), completed)
+            self.assertEqual(request.call_count, 1)
 
     def test_changed_host_capability_or_credential_version_blocks_post(self):
         self.auth()

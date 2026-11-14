@@ -144,6 +144,15 @@ job IDs return the same verified output; changed inputs conflict. A blocked or
 uncertain submitted job cannot silently restart. A host API timeout does not
 prove cancellation of its GPU work.
 
+Before every segment POST, a fsynced global `remote-active.json` hold records the
+job and segment identity. It clears only after actual completed audio is decoded,
+hashed and durably recorded. A crash, timeout, cancellation or unvalidated response
+leaves the hold blocking generation under **every** new job ID, including after a
+process restart. Completed idempotent output reads remain allowed without POSTs.
+There is no automatic expiry or override command. Resolution requires actual
+host outcome evidence and a scoped coordinator reconciliation; deleting a pending
+file or choosing another job ID is not a retry procedure.
+
 WAV bytes stream into the new local job directory with bounded incremental reads,
 socket/total deadlines,64MiB limits and disk reserve. A cancellation/deadline
 watchdog closes the active transport even while waiting for connect, TLS, headers
