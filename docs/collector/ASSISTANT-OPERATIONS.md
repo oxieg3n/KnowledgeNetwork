@@ -125,25 +125,28 @@ Run from the project environment in the configured Windows owner's interactive
 session; do not run as LocalService or SYSTEM. The companion is one-shot, not a
 second scheduler. The service owns claims/leases/state; native receipts retain
 private details. Current installed apphost SHA (managed DLL/build also verified):
-`70ff38e9c81a6b7f2617f94fe6ad262fb734d45e867674429023d57242020a76`.
+`60516f07332facbbfa484cb5a2b4b430cc42c12128bc6525283e589b812e2754`.
 
 ```powershell
 Set-Location C:/Admin/Projects/KnowledgeNetwork
 $env:PYTHONPATH = 'src'
 $env:COLLECTOR_EDITOR_VAULT = 'C:/admin/collector-v9/editor-vault'
-& ./.venv/Scripts/python.exe -m youtube_ops.collector_companion --once --collector-sha256 70ff38e9c81a6b7f2617f94fe6ad262fb734d45e867674429023d57242020a76 --private-spool C:/admin/collector-v9/companion-control
+& ./.venv/Scripts/python.exe -m youtube_ops.collector_companion --once --collector-sha256 60516f07332facbbfa484cb5a2b4b430cc42c12128bc6525283e589b812e2754 --private-spool C:/admin/collector-v9/companion-control
 ```
 
-This command was actually exercised for narration's missing-config negative and
-all four editor operations. Private request files are submitted with
+The prior build exercised narration's missing-config negative and all four
+editor operations; the hash above now pins the installed pipe-authentication
+patch. Those media round trips were not repeated for this IPC-only correction.
+Private request files are submitted with
 `kn-collector.exe submit <local-json-path>`, queried with `get <job-id>` and
 cancelled with `cancel <job-id>`. See [bridge contract](COMPANION-INTEGRATION.md)
 for exact typed payloads. Never fabricate an ID to retry an uncertain media job.
 Interrupted media jobs hold further claims pending evidence reconciliation.
 
-The new inspector is staged, NOT EXECUTED, at host
+The existing inspector entry point is at host
 `D:/projects/knowledgenetwork/collector-narrator-v9-004/Inspect-InstalledVoxCPM.cmd`.
-It can be run by the owner locally on return; no host command channel was used.
+Its inventory has PASSED; do not rerun completed inspection as routine setup.
+No host command channel was used.
 Do not configure the proposed host listener/HTTPS route until its manifest and
 separate scoped deployment permission are established. Existing Gateway remains
 unchanged.
@@ -168,10 +171,34 @@ whoami /user
 whoami /groups
 (Get-Process -Id $PID).SessionId
 sc.exe queryex KnowledgeNetworkCollector
+sc.exe qc KnowledgeNetworkCollector
+$collectorExe = 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe'
+Get-FileHash -LiteralPath $collectorExe -Algorithm SHA256
+$collectorService = Get-CimInstance Win32_Service -Filter "Name='KnowledgeNetworkCollector'" -ErrorAction Continue
+$collectorService | Select-Object Name,State,ProcessId,StartName,PathName
+if ($collectorService.ProcessId -gt 0) {
+    Get-Process -Id $collectorService.ProcessId -ErrorAction Continue |
+        Select-Object Id,SessionId,Path
+}
 & 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health ([guid]::NewGuid().ToString('N'))
+"collector_exit_code=$LASTEXITCODE"
 ```
 
-Use the canonical EXE, not `dotnet <dll>` or a worktree copy. Exact path identity,
-process query and SCM access are trust checks; a mismatch needs evidence before
-any repair. Current installed service/binary hashes match the prior receipt and
-local health passes, so no specific actual Dot failure cause is established.
+Use the canonical EXE. The installed worker now uses SCM-first service identity;
+the non-service path retains strict executable and user checks. Read
+[the verified repair](overnight/PIPE-TRUST-REPAIR.md) for the original
+OpenProcess/error5 failure, native medium-integrity PASS and owner-returned
+Assistant-context healthy response. Scheduled Assistant execution remains untested.
+
+The historical `pipe-squatting.json` negative fixture deliberately produced this
+same error with zero request bytes; it is not Assistant's failure receipt. The
+client validates the server before transmitting any health/job request. Trust
+failures now include a fixed stage and numeric Win32 error without credentials
+or private paths. Preserve the actual error/access-denied output above.
+Do not elevate or change Assistant's token for
+this collection, substitute the developer shell, copy the CLI, or disable trust.
+
+Prepared owner-scoped narrator smoke and deployment gates are in
+[next integration](overnight/NARRATOR-NEXT-INTEGRATION.md). Those commands have
+not run on BLACKHAT-BASE; the passed inventory must not be repeated as a setup
+prerequisite. Consent and component obligations remain separately reviewed gates.

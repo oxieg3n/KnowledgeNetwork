@@ -11,9 +11,14 @@ The supplied script uses `reference.wav` beside the script and the installed
 `D:\tools\audio\voicestudio\data\engines\voxcpm2\voxcpm2\.venv\Scripts\voxcpm.exe`.
 The owner reported its flags: `clone`, cfg2.0,10 inference steps, no denoiser,
 no optimization, local files only, `TORCH_COMPILE_DISABLE=1`. The worker does
-not replace those defaults or supply a different voice. Seed, checkpoint
-revision, implicit CLI defaults, filters and output format still require actual
-host inspection; the reported script text does not establish their values.
+not replace those defaults or supply a different voice. The completed owner-run
+inventory binds revision `7936080b41163874f38610f46f438e2c0757f9fd` and installed
+VoxCPM 2.0.3/Python 3.11.16. Installed CLI source defaults are auto device,
+seed unset, normalize/denoise false, no supplied control/prompt transcript/LoRA;
+the script supplies the existing reference only. Soundfile writes the WAV;
+actual returned format/device and quality remain untested, not inferred defaults.
+See [the next integration procedure](overnight/NARRATOR-NEXT-INTEGRATION.md) for
+the non-overwriting smoke, runtime diagnostics and separate host authorization.
 
 ## Current acceptance boundary
 

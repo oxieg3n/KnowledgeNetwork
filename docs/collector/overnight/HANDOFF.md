@@ -1,5 +1,101 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Current continuation from pushed checkpoint6a76f44
+
+November14 continuation on `feature/collector-v7-overnight`; PR
+[#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20) remains draft/unmerged.
+This section supersedes older installed-worker hashes and pipe-status blockers
+below. Historical receipts, installers, backups and passed inspector remain intact.
+
+**PASS — installed pipe repair:** exact original medium-client failure was
+OpenProcess/error5 (access denied), before QueryFullProcessImageName. SCM status
+and config queries succeeded. Source `d85ab96`/`d5132eb` now validates the live
+pipe PID against stable running own-process LocalService SCM identity/config
+first, with strict fail-closed SCM errors and unchanged strict console fallback.
+Native medium client now passes, despite process-query denial remaining in place.
+Owner returned Assistant's actual FORGE health response: healthy,
+windows_service, nonce `1587a1afca4a490c9075638f997625e1`, same worker identity,
+companion true, reconciliation hold false, publication paused, scheduler false.
+This is manual actual-context health, not a scheduled connection.
+[Full diagnosis, test matrix, exact response and rollback](PIPE-TRUST-REPAIR.md).
+
+Only three worker files plus their package-manifest entries were patched in
+place; no entire-Collector reinstall. Current installed EXE:
+`C:/Program Files/The Knowledge Network Collector/kn-collector.exe`, SHA-256
+`60516f07332facbbfa484cb5a2b4b430cc42c12128bc6525283e589b812e2754`.
+Current DLL SHA-256:
+`cb1d2debccce27e47c0046bd6c2f60aaa8113600fc207429347f3d8f3545b3d3`.
+Source build: `0.1.0+d5132ebba7fe8ae83b7ce9cb056904f926cabdd7`.
+Fresh published worker: `output/collector-pipefix-001`. Existing Round5 installer
+is preserved with original hash but lacks this fix; do not run it as routine
+repair or claim a new installer was built. Dashboard/editor/runtime unchanged.
+
+Service restart PID14316→4188 retained all13 jobs,39 events, metadata/sequence
+rows exactly; integrity_check=ok. Worker ID remains
+`cb6ce3cd482148e7b8b0c8661ec8c6e9`. Consistent pre-patch DB backup hash remains
+`daca19da767c1ce7fd1a3149db358d42e31f0c3745ce42dc76f3f4e21f0adf4b`.
+Private patch originals/verification: `C:/admin/collector-v9/pipe-auth-20261114-01`.
+Native fake pipe rejected at ServiceIdentity with zero transmitted request bytes.
+The triggerless least-privilege test task was removed. No service/process ACL
+expansion or execution-policy changes. Original protected backups untouched.
+
+**PASS — PR conflicts/CI:** exactly three V8 add/add documentation conflicts
+resolved by adopting main's V9 supersession notices. No merge/rebase/force-push.
+CI push filter now includes this branch; read-only Python Windows/Linux jobs and
+Windows .NET worker/self-test/WPF compile jobs added using pinned official actions.
+Hosted first Windows failure was synthetic short-TEMP alias mismatch; fixed test
+roots only, preserving production inspector and all assertions. Both hosted
+workflows at67a5cdb passed:
+[push43647910451](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647910451),
+[PR43647914711](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647914711).
+Later pipe-source head requires its own hosted run before claiming final-head CI.
+[Exact investigation/strategy](PR20-CI-INTEGRATION.md).
+
+**PASS — reuse/validation:**302 Python tests with5 explicit FFmpeg skips in
+source-review environment, including an actual Windows8.3 TEMP alias regression;
+190 published worker self-test checks;23 narrator host/contract and17 direct
+client tests (synthetic inference). PowerShell and embedded Python examples in
+the prepared smoke procedure parse; no host commands were executed. Ponytail
+5.3.3 FULL and review skill read/applied; independent source/rights/CI specialists
+used nonoverlapping worktrees. No UI changed, so no new UI/UX/Taste gate claimed.
+
+**BLOCKED — narrator rights/live acceptance:** inventory remains PASS at
+VoxCPM2 revision7936080b41163874f38610f46f438e2c0757f9fd; not repeated.
+Consent/commercial-use evidence for exact reference still absent. Installed
+kaldiio has evaluation-limited terms; actual involvement in the no-denoiser
+runtime is not established. Preserve environment and resolve actual runtime
+scope rather than deleting dependencies or assuming all-component clearance.
+[Rights and exact-assets review](NARRATOR-RIGHTS-AND-ASSETS.md).
+
+Prepared a new non-overwriting canonical-script smoke with private logs, saved
+inventory/package/ref binding, CUDA device-report check, actual PCM/duration/hash
+validation and import diagnostics. It awaits scoped host authorization and rights
+evidence. No host inference, listener, credential or dedicated Serve route was
+created. [Exact owner commands and separate deployment gates](NARRATOR-NEXT-INTEGRATION.md).
+FORGE status actually returns BLOCKED_NARRATOR_CONFIG. Real cross-machine WAV,
+caption alignment and45–55s branded/narrated acceptance remain BLOCKED. The exact
+badge and portrait/landscape outros remain missing; original hash enforcement
+is unchanged. Existing50s synthetic project/render below are preserved, not
+rebuilt or relabeled full acceptance. No listening claim.
+
+Working Assistant health command (actually exercised; owner returned actual
+Assistant-context JSON):
+
+```powershell
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health ([guid]::NewGuid().ToString('N'))
+```
+
+For the full local-only Short use the plain-English acceptance request in
+[Assistant operations](../ASSISTANT-OPERATIONS.md), with current installed hash
+and real provider/companion syntax. No successful full command or output is
+invented while host/rights/exact-assets gates are blocked. Publication remains
+**PAUSED**; no demo or other media was publicly uploaded. operations.json hash
+`d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`
+is unchanged. Gateway, all host routes, original narrator and separate website
+were untouched. Reboot and scheduled Assistant execution remain NOT TESTED.
+
+## Earlier checkpoint evidence (preserved)
+
 Updated November 14, 2026. Publication remains **PAUSED**. No demonstration or
 other media was publicly uploaded. Production workflows/permissions and the
 separate poweredby repository were not changed. Final operations.json SHA-256
