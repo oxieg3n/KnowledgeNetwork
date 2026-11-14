@@ -72,3 +72,29 @@ is claimed here. Local validation results are recorded in the integration
 handoff. Review checked immutable action pins, read-only permissions, fixed
 commands, no caller-controlled shell arguments, no new service or scheduler,
 and reuse of existing tests rather than a new test framework.
+
+## Actual local results for this repair
+
+- Windows Python 3.13 project venv: 302 tests in 57.983s, OK with five explicit
+  FFmpeg-unavailable skips. Private log: C:/admin/collector-v9/ci-review-python.log.
+- Worker locked restore and Release build with win-x64: PASS, zero warnings/errors.
+  Initial restore without the runtime identifier failed NU1004; CI was corrected
+  to use the already-required identifier from Build-Release.ps1 rather than
+  regenerating the lock or weakening locked restore.
+- Existing worker self-test: PASS, 163 checks. Isolated temporary evidence:
+  C:/Users/oxieg3n/AppData/Local/Temp/kn-collector-self-test-7695b92601d74f9a9357bdcde0b321ae.
+- WPF dashboard Release compilation: PASS, zero warnings/errors; no UI acceptance
+  or installed-app rebuild/upgrade is implied.
+- git diff --check: PASS. Ponytail FULL review skill read/applied; no findings in
+  fixed workflow commands, source-only job isolation, permissions or pinned action
+  use. actionlint/YAML parser is not installed; hosted syntax/execution remains
+  NOT TESTED until the coordinator pushes the integrated commit.
+- Exact main blob bytes adopted for the three V8 notices in source commit
+  2e295ea. Non-mutating merge-tree against origin/main c41ec1 returned exit0 and
+  tree 5f44e29003189a3f61d4a214d22744e083104966 with no conflicts. This proves
+  those notice updates remove the observed add/add conflicts; no merge occurred.
+
+No Linux runner was available locally. Windows CI uses Python3.12, so the local
+Python3.13 result is supporting evidence rather than exact hosted parity. Root
+should inspect the first actual hosted runs and any explicit skips before
+reporting CI success.
