@@ -9,7 +9,7 @@ import wave
 from youtube_ops.collector_editor import OpenShot, EditorError
 from youtube_ops.collector_editor_fixture import (build, narration_receipt, attach_narration_to_fixture,
                                                  music_fingerprint, capture_music_baseline)
-from youtube_ops.collector_voice import inspect_wav
+from youtube_ops.collector_narration_common import inspect_wav
 
 
 class EditorTests(unittest.TestCase):
@@ -272,11 +272,10 @@ class EditorTests(unittest.TestCase):
         with wave.open(str(audio_path), 'wb') as audio:
             audio.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
             audio.writeframes(b'\0\0' * 32000)
-        receipt = {'provider': 'voicestudio_remote', 'status': 'generated_pending_review',
-            'review_only': True, 'publication_eligible': False, 'rights_sha256': 'a' * 64,
-            'text_sha256': 'c' * 64,
-            'host_model_evidence_sha256': 'b' * 64, 'engine_id': 'unit-test-engine',
-            'voice_id': 'unit-test-voice', 'model_id': 'unit-test-model', 'model_revision': 'test-only',
+        receipt = {'provider': 'voxcpm2_remote', 'narrator_id': 'oxiegen-narrator', 'status': 'generated_pending_review',
+            'review_only': True, 'publication_eligible': False, 'text_sha256': 'c' * 64,
+            'provenance': {'script_sha256': 'a' * 64, 'config_sha256': 'b' * 64,
+                           'model_revision': 'test-only', 'license_evidence_sha256': 'd' * 64},
             'audio': inspect_wav(audio_path.read_bytes())}
         if cues:
             receipt['cues'] = [
@@ -358,6 +357,20 @@ class EditorTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'SHA-256'):
             narration_receipt(self.client, path)
 
+    def test_only_approved_voxcpm2_narrator_receipts_can_start_new_import(self):
+        path, receipt = self.remote_narration_fixture()
+        for field, value in [('provider', 'voicestudio_remote'), ('narrator_id', 'other-narrator')]:
+            changed = dict(receipt, **{field: value})
+            path.write_text(json.dumps(changed))
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'Oxiegen-Narrator'):
+                narration_receipt(self.client, path)
+        for field in ('script_sha256', 'config_sha256', 'license_evidence_sha256', 'model_revision'):
+            changed = json.loads(json.dumps(receipt))
+            changed['provenance'][field] = ''
+            path.write_text(json.dumps(changed))
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                narration_receipt(self.client, path)
+
     def test_remote_audio_attaches_to_separate_track_with_measured_captions(self):
         path, receipt = self.remote_narration_fixture()
         state, inspect, invoke, apply = self.fake_fixture_editor()
@@ -373,7 +386,27 @@ class EditorTests(unittest.TestCase):
         self.assertEqual([(cue['position'], cue['duration']) for cue in captions], [(0, .5), (.5, 1.5)])
         self.assertEqual([cue['text'] for cue in captions], [cue['text'] for cue in receipt['cues']])
         self.assertIn('MEASURED_SEGMENT', result['caption_alignment'])
+        self.assertEqual(result['narrator_id'], 'oxiegen-narrator')
+        self.assertEqual(result['provenance'], receipt['provenance'])
         self.assertFalse(result['publication_eligible'])
+
+    def test_historical_attachment_ownership_is_read_without_reexecuting_retired_provider(self):
+        path, _ = self.remote_narration_fixture()
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            first = attach_narration_to_fixture(self.client, path, 7, 'accent')
+            record_path = next(candidate for candidate in self.client.receipts.glob('*.json')
+                              if json.loads(candidate.read_text()).get('kind') == 'narration.attach')
+            historical = json.loads(record_path.read_text())
+            historical['result']['provider'] = 'voicestudio_remote'
+            record_path.write_text(json.dumps(historical))
+            unchanged_bytes = record_path.read_bytes()
+            second = attach_narration_to_fixture(self.client, path, 8, first['speech_clip_id'])
+        self.assertEqual(second['provider'], 'voxcpm2_remote')
+        self.assertEqual(record_path.read_bytes(), unchanged_bytes)
+        self.assertTrue(all(caption['clip_id'] not in state['clips'] for caption in first['generated_captions']))
 
     def test_missing_measured_cues_does_not_invent_captions(self):
         path, _ = self.remote_narration_fixture(cues=False)

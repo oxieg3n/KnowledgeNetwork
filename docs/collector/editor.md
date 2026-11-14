@@ -178,11 +178,20 @@ acceptance rows. Public publishing remains paused.
 The fixture accepts optional `--narration-receipt` pointing to the remote
 provider's `narration.json`, with sibling `narration.wav`, both staged inside the
 configured private editor vault on Forge. It never opens a host path or fetches a
-URL. The importer reuses the voice module's PCM validator and verifies exact
+URL. The importer reuses the provider-neutral `collector_narration_common` PCM validator and verifies exact
 SHA-256, samples, sample rate, channels, sample width and duration. It retains the
-source-script/model/profile/rights evidence digests and accepts only the completed
-`voicestudio_remote` review-only provider receipt. Retained metadata is evidence
-to review, not independent legal clearance or proof somebody listened.
+body-text digest and accepts only a completed `voxcpm2_remote` review-only receipt
+with fixed `narrator_id=oxiegen-narrator`. Required nested `provenance` binds
+`script_sha256`, `config_sha256`, `model_revision` and `license_evidence_sha256`.
+These retain the host's approved narrator implementation/configuration and model/
+license evidence without executing any receipt-supplied host path or command.
+Retained metadata is evidence to review, not independent legal clearance or proof
+somebody listened. VoiceStudio is not an active import/provider dependency.
+
+Existing historical attachment receipts remain immutable and may be read to
+protect caption/music ownership during an explicitly requested retake. An old
+VoiceStudio provider receipt cannot start a new narration import. Historical
+compatibility does not execute or reactivate that provider.
 
 For this owned fixture only, `attach_narration_to_fixture(client, receipt_path,
 base_revision, replace_clip_id=None)` imports speech on the third native track

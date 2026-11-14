@@ -12,7 +12,7 @@ import wave
 import zlib
 
 from .collector_editor import OpenShot, digest, write_json
-from .collector_voice import inspect_wav, MAX_WAV
+from .collector_narration_common import inspect_wav, MAX_WAV
 
 
 def narration_receipt(client, path):
@@ -25,15 +25,20 @@ def narration_receipt(client, path):
     if len(raw) > 128 * 1024:
         raise ValueError('Narration receipt exceeds limit')
     receipt = json.loads(raw)
-    if not isinstance(receipt, dict) or receipt.get('provider') != 'voicestudio_remote' or receipt.get('status') != 'generated_pending_review' \
+    if not isinstance(receipt, dict) or receipt.get('provider') != 'voxcpm2_remote' \
+            or receipt.get('narrator_id') != 'oxiegen-narrator' or receipt.get('status') != 'generated_pending_review' \
             or receipt.get('review_only') is not True or receipt.get('publication_eligible') is not False:
-        raise ValueError('A completed remote review-only narration receipt is required')
-    for key in ('text_sha256', 'rights_sha256', 'host_model_evidence_sha256'):
-        if not isinstance(receipt.get(key), str) or not re.fullmatch('[a-f0-9]{64}', receipt[key]):
-            raise ValueError('Narration provenance evidence is missing')
-    for key in ('engine_id', 'voice_id', 'model_id', 'model_revision'):
-        if not isinstance(receipt.get(key), str) or not 1 <= len(receipt[key]) <= 256:
-            raise ValueError('Narration model/profile identity is missing')
+        raise ValueError('A completed review-only VoxCPM2 Oxiegen-Narrator receipt is required')
+    if not isinstance(receipt.get('text_sha256'), str) or not re.fullmatch('[a-f0-9]{64}', receipt['text_sha256']):
+        raise ValueError('Narration script digest is missing')
+    provenance = receipt.get('provenance')
+    if not isinstance(provenance, dict):
+        raise ValueError('Narrator provenance evidence is missing')
+    for key in ('script_sha256', 'config_sha256', 'license_evidence_sha256'):
+        if not isinstance(provenance.get(key), str) or not re.fullmatch('[a-f0-9]{64}', provenance[key]):
+            raise ValueError('Narrator provenance evidence is missing')
+    if not isinstance(provenance.get('model_revision'), str) or not 1 <= len(provenance['model_revision']) <= 256:
+        raise ValueError('Narrator model revision is missing')
     audio_path = client.local_path(path.with_name('narration.wav'), {'.wav'})
     with audio_path.open('rb') as stream:
         audio_bytes = stream.read(MAX_WAV + 1)
@@ -216,9 +221,9 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
     applied = client.apply(commands, base_revision)
     result = {'provider': receipt['provider'], 'audio': audio, 'receipt_sha256': digest(path),
         'text_sha256': receipt['text_sha256'],
-        'rights_sha256': receipt['rights_sha256'], 'host_model_evidence_sha256': receipt['host_model_evidence_sha256'],
-        'engine_id': receipt['engine_id'], 'voice_id': receipt['voice_id'], 'model_id': receipt['model_id'],
-        'model_revision': receipt['model_revision'], 'caption_alignment': alignment, 'native': applied,
+        'narrator_id': receipt['narrator_id'], 'provenance': {key: receipt['provenance'][key] for key in (
+            'script_sha256', 'config_sha256', 'model_revision', 'license_evidence_sha256')},
+        'caption_alignment': alignment, 'native': applied,
         'speech_clip_id': applied['refs']['speech']['id'], 'generated_captions': [],
         'managed_music': [],
         'caption_ownership': 'pending',
@@ -352,7 +357,7 @@ def build(client, directory, width=360, height=640, reuse_session=False, narrati
     return {'session_id': started['session_id'], 'first_project': first, 'project': second,
             'reopened': reopened, 'changed': changed, 'directory': str(directory),
             'end_frame': 1500, 'expected_duration_seconds': 50,
-            'voice': narration or 'BLOCKED: no licensed remote VoiceStudio narration supplied',
+            'voice': narration or 'BLOCKED: verified VoxCPM2 Oxiegen-Narrator body WAV not supplied',
             'branding': 'BLOCKED: unbranded technical fixture; approved bookends not supplied',
             'caption_alignment': narration['caption_alignment'] if narration else 'NOT TESTED: timed technical text is not speech alignment',
             'manual_edit': 'NOT TESTED', 'review_only': True, 'publication_eligible': False}
@@ -366,7 +371,7 @@ def main():
     parser.add_argument('--directory', required=True)
     parser.add_argument('--session', help='Reuse an already enrolled, reconciled native session')
     parser.add_argument('--width', type=int, choices=[360, 1080], default=360)
-    parser.add_argument('--narration-receipt', help='Verified remote narration.json inside the private editor vault')
+    parser.add_argument('--narration-receipt', help='Verified VoxCPM2 Oxiegen-Narrator narration.json inside the private editor vault')
     args = parser.parse_args()
     client = OpenShot(args.executable, args.executable_sha256, args.vault, args.session)
     result = build(client, args.directory, args.width, args.width * 16 // 9,
