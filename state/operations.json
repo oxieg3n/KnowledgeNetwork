@@ -1997,6 +1997,24 @@
           "type": "video_id_observed",
           "video_id": "ilo_cQj0iN0",
           "event_digest": "997235307a83f264e86f48691041d7ee0c978e2717eeb76e86055fc15c708bd7"
+        },
+        {
+          "attempt_ny_date": "2026-11-14",
+          "batch_id": "defcon-ten-2026-11-13",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "event_id": "defcon-ten-10-20261114-public-intent",
+          "evidence": "Exact approved title and complete 1495-character description read back in Studio; existing DEF CON Decoded playlist, not made for kids, no paid promotion, AI yes, Science and Technology verified. Processing complete 0:46, Copyright No issues found. Public release authorized for reviewed clean tenth master; shared November 14 count is one upload, within nine ceiling.",
+          "item_id": "defcon-exact-audio-10",
+          "method": "owner-authorized manual YouTube Studio",
+          "package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+          "previous_event_digest": "997235307a83f264e86f48691041d7ee0c978e2717eeb76e86055fc15c708bd7",
+          "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+          "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+          "timestamp_utc": "2026-11-14T17:04:55.670Z",
+          "type": "visibility_intent",
+          "video_id": "ilo_cQj0iN0",
+          "requested_visibility": "public",
+          "event_digest": "c08917ff7c59965190de9f14eb3705920522a683af3ac07761fdd58441f87528"
         }
       ],
       "insert_quota_pt_date": "2026-11-13",
@@ -2014,12 +2032,16 @@
       "shared_daily_ceiling": 9,
       "shared_daily_count_before": 0,
       "source_identity": "defcon31:q118B_QdP2k:857.96-863.64",
-      "status": "uploaded_private_processing",
+      "status": "visibility_intent",
       "title": "Possible does not mean permitted",
       "upload_outcome": "No video ID observed; Creating link... shown; not confirmed uploaded",
       "video_id": "ilo_cQj0iN0",
       "watch_url": "https://youtube.com/shorts/ilo_cQj0iN0",
-      "response_received_at": "2026-11-14T17:03:43.373Z"
+      "response_received_at": "2026-11-14T17:03:43.373Z",
+      "metadata_browser_verified": true,
+      "processing_observation": "Processed 0:46",
+      "copyright_check_observation": "No issues found",
+      "playlist_id": "PLBqhZZfg3quY"
     },
     "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd": {
       "api_insert_performed": false,
@@ -7401,7 +7423,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 349,
+  "revision": 350,
   "rights_ledger": {},
   "runs": [
     {
