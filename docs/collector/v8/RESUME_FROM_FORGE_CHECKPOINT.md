@@ -1,3 +1,5 @@
+> **V9 NOTE (2026-11-14):** Preserve every local checkpoint, branch and backup rule below, but VoiceStudio narration has been replaced by direct VoxCPM2 + Oxiegen-Narrator. Read `docs/collector/v9/START_HERE_DIRECT_VOXCPM2_CODEX.txt` and `docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md` instead of implementing the older VoiceStudio integration.
+
 # Collector V8: resume from local FORGE checkpoint, remote VoiceStudio on BLACKHAT-BASE
 
 **Owner instruction dated November 14, 2026.** This document supersedes the V7 assumption that VoiceStudio lives on FORGE. Continue the existing development branch, never restart from scratch.
