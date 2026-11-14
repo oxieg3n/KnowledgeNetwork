@@ -82,7 +82,23 @@ def caption_fingerprint(client, clip_id):
     return hashlib.sha256(json.dumps({'clip': clip, 'style': style}, sort_keys=True).encode()).hexdigest()
 
 
-def replaced_caption_ids(client, speech_id, clips):
+def music_fingerprint(clip):
+    values = {key: clip.get(key) for key in ('id', 'position', 'start', 'end', 'volume')}
+    return hashlib.sha256(json.dumps(values, sort_keys=True).encode()).hexdigest()
+
+
+def capture_music_baseline(client, clip_id, revision):
+    path = client.receipts / (uuid.uuid4().hex + '.json')
+    result = {'ownership': 'pending', 'managed_music': [{'clip_id': clip_id}]}
+    write_json(path, {'kind': 'fixture.music', 'result': result})
+    result['managed_music'][0]['sha256'] = music_fingerprint(client._invoke(['clip', 'get', clip_id])['data'])
+    if client.inspect()['revision'] != revision:
+        raise ValueError('Fixture changed while recording music baseline; reconcile before narration')
+    result['ownership'] = 'managed'
+    write_json(path, {'kind': 'fixture.music', 'result': result})
+
+
+def replaced_narration(client, speech_id, clips):
     matches = []
     for path in client.receipts.glob('*.json'):
         if not re.fullmatch('[0-9a-f]{32}', path.stem):
@@ -93,7 +109,7 @@ def replaced_caption_ids(client, speech_id, clips):
                 result.get('speech_clip_id') or result.get('native', {}).get('refs', {}).get('speech', {}).get('id')) == speech_id:
             matches.append(result)
     if not matches:
-        return []  # First attachment may explicitly replace the fixture's original accent.
+        return None  # First attachment may explicitly replace the fixture's original accent.
     if len(matches) != 1 or matches[0].get('caption_ownership') != 'managed':
         raise ValueError('Narration caption ownership is ambiguous; reconcile before retake')
     captions = matches[0]['generated_captions']
@@ -101,7 +117,34 @@ def replaced_caption_ids(client, speech_id, clips):
     for caption in captions:
         if caption['clip_id'] not in present or caption_fingerprint(client, caption['clip_id']) != caption['sha256']:
             raise ValueError('Generated caption was changed or removed; preserve manual edits and reconcile retake')
-    return [caption['clip_id'] for caption in captions]
+    return matches[0]
+
+
+def checked_music(client, clips, layer, previous):
+    music_ids = {clip['id'] for clip in clips if clip['layer'] == layer}
+    if previous is None:
+        baselines = []
+        for path in client.receipts.glob('*.json'):
+            if re.fullmatch('[0-9a-f]{32}', path.stem):
+                record = json.loads(path.read_text())
+                result = record.get('result', {})
+                if record.get('kind') == 'fixture.music' and {
+                        item['clip_id'] for item in result.get('managed_music', [])} == music_ids:
+                    baselines.append(result)
+        if len(baselines) != 1 or baselines[0].get('ownership') != 'managed':
+            raise ValueError('Managed fixture music baseline missing or ambiguous; reconcile before narration')
+        owned = baselines[0]['managed_music']
+    else:
+        owned = previous.get('managed_music', [])
+    if not owned or {item['clip_id'] for item in owned} != music_ids:
+        raise ValueError('Music ownership changed; preserve manual music and reconcile narration')
+    result = []
+    for item in owned:
+        clip = client._invoke(['clip', 'get', item['clip_id']])['data']
+        if music_fingerprint(clip) != item.get('sha256'):
+            raise ValueError('Music gain or timing was changed; preserve manual edits and reconcile narration')
+        result.append(clip)
+    return result
 
 
 def attach_narration_to_fixture(client, receipt_path, base_revision, replace_clip_id=None):
@@ -120,10 +163,12 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
         raise ValueError('Speech track occupied; explicitly identify the owned accent clip to replace')
     if replace_clip_id is not None and not speech_clips:
         raise ValueError('The requested accent clip is not on the speech track')
+    previous = replaced_narration(client, replace_clip_id, clips) if speech_clips else None
+    music = checked_music(client, clips, layers[1], previous)
     commands = [{'method': 'clip.remove', 'params': {'id': replace_clip_id}}] if speech_clips else []
-    if speech_clips:
-        commands += [{'method': 'clip.remove', 'params': {'id': clip_id}}
-                     for clip_id in replaced_caption_ids(client, replace_clip_id, clips)]
+    if previous:
+        commands += [{'method': 'clip.remove', 'params': {'id': caption['clip_id']}}
+                     for caption in previous['generated_captions']]
     commands += [
         {'method': 'file.import', 'as': 'narration', 'params': {'path': str(audio_path)}},
         {'method': 'clip.add', 'as': 'speech', 'params': {'file_id': {'$ref': 'narration.id'},
@@ -131,15 +176,22 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
         {'method': 'clip.fade', 'params': {'id': {'$ref': 'speech.id'}, 'property': 'volume',
             'fade_in': .02, 'fade_out': .02, 'value': 1}},
     ]
-    for clip in clips:
-        if clip['layer'] == layers[1]:
-            for at, value in [(0, .05), (audio['duration_seconds'], .05)]:
-                commands.append({'method': 'clip.keyframe.set', 'params': {'id': clip['id'],
-                    'property': 'volume', 'space': 'timeline', 'unit': 'seconds', 'at': at, 'value': value}})
-            if audio['duration_seconds'] < 49:
-                commands.append({'method': 'clip.keyframe.set', 'params': {'id': clip['id'],
-                    'property': 'volume', 'space': 'timeline', 'unit': 'seconds',
-                    'at': audio['duration_seconds'] + .5, 'value': .25}})
+    fps = Fraction(data['fps']['num'], data['fps']['den'])
+    speech_end = Fraction(audio['frames'], audio['sample_rate'])
+    for clip in music:
+        length = Fraction(str(clip['end'])) - Fraction(str(clip['start']))
+        last = Fraction(round(length * fps) - 1, 1) / fps
+        if last <= 0:
+            raise ValueError('Managed music clip is too short for narration mixing')
+        fade_start = max(Fraction(0), last - 2)
+        points = {Fraction(0): 0, min(Fraction(1), speech_end, last): .05, fade_start: .05, last: 0}
+        if speech_end < fade_start:
+            points.update({speech_end: .05, min(speech_end + Fraction(1, 2), fade_start): .25, fade_start: .25})
+        # Native scalar set replaces the entire Points curve, clearing owned prior restores.
+        commands.append({'method': 'clip.set', 'params': {'id': clip['id'], 'values': {'volume': .05}}})
+        commands += [{'method': 'clip.keyframe.set', 'params': {'id': clip['id'],
+            'property': 'volume', 'space': 'clip', 'unit': 'seconds', 'at': float(at), 'value': value}}
+            for at, value in sorted(points.items())]
     cues = receipt.get('cues', [])
     alignment = 'BLOCKED: actual measured speech cues were not supplied'
     if cues and all(len(cue['text']) <= 96 and cue['text'].count('\n') <= 1 for cue in cues):
@@ -168,6 +220,7 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
         'engine_id': receipt['engine_id'], 'voice_id': receipt['voice_id'], 'model_id': receipt['model_id'],
         'model_revision': receipt['model_revision'], 'caption_alignment': alignment, 'native': applied,
         'speech_clip_id': applied['refs']['speech']['id'], 'generated_captions': [],
+        'managed_music': [],
         'caption_ownership': 'pending',
         'review_only': True, 'publication_eligible': False, 'listening': 'NOT_TESTED'}
     ownership_path = client.receipts / (uuid.uuid4().hex + '.json')
@@ -176,6 +229,8 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
         for index in range(len(cues)):
             clip_id = applied['refs']['caption' + str(index)]['clip']['id']
             result['generated_captions'].append({'clip_id': clip_id, 'sha256': caption_fingerprint(client, clip_id)})
+    result['managed_music'] = [{'clip_id': clip['id'], 'sha256': music_fingerprint(
+        client._invoke(['clip', 'get', clip['id']])['data'])} for clip in music]
     if client.inspect()['revision'] != applied['revision']:
         raise ValueError('Fixture changed while recording caption ownership; reconcile before retake')
     result['caption_ownership'] = 'managed'
@@ -283,6 +338,7 @@ def build(client, directory, width=360, height=640, reuse_session=False, narrati
             'space': 'clip', 'unit': 'seconds', 'at': 33, 'value': .15}},
     ])
     applied = client.apply(commands, current['revision'])
+    capture_music_baseline(client, applied['refs']['bedclip']['id'], applied['revision'])
     narration = None
     if narration_path is not None:
         narration = attach_narration_to_fixture(client, narration_path, applied['revision'],

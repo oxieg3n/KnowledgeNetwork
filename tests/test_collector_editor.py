@@ -7,7 +7,8 @@ from unittest.mock import patch
 import wave
 
 from youtube_ops.collector_editor import OpenShot, EditorError
-from youtube_ops.collector_editor_fixture import build, narration_receipt, attach_narration_to_fixture
+from youtube_ops.collector_editor_fixture import (build, narration_receipt, attach_narration_to_fixture,
+                                                 music_fingerprint, capture_music_baseline)
 from youtube_ops.collector_voice import inspect_wav
 
 
@@ -241,7 +242,8 @@ class EditorTests(unittest.TestCase):
         def apply(commands, revision):
             self.client.validate_edits(commands)
             batches.append(commands)
-            return {'revision': revision + 1, 'refs': {'title2': {'clip': {'id': 'native-title'}}}}
+            return {'revision': revision + 1, 'refs': {'title2': {'clip': {'id': 'native-title'}},
+                                                     'bedclip': {'id': 'native-music'}}}
         def save(path):
             return {'path': str(path), 'sha256': '0' * 64}
         with patch.object(self.client, 'start', return_value={'session_id': 'fixture'}), \
@@ -249,6 +251,7 @@ class EditorTests(unittest.TestCase):
                     'layers': [{'number': i * 1000000} for i in range(1, 6)]}}), \
                 patch.object(self.client, 'apply', side_effect=apply), \
                 patch.object(self.client, 'save', side_effect=save), \
+                patch('youtube_ops.collector_editor_fixture.capture_music_baseline'), \
                 patch.object(self.client, 'reopen', return_value={'revision': 3}):
             result = build(self.client, self.vault / 'fixture')
         with wave.open(str(self.vault / 'fixture' / 'original-ambient.wav')) as audio:
@@ -290,8 +293,13 @@ class EditorTests(unittest.TestCase):
     def fake_fixture_editor(self):
         state = {'revision': 7, 'next_id': 0, 'commands': [], 'clips': {
             'accent': {'id': 'accent', 'layer': 3000000},
-            'music': {'id': 'music', 'layer': 2000000},
+            'music': {'id': 'music', 'layer': 2000000, 'position': 0, 'start': 0, 'end': 50,
+                      'volume': {'Points': [{'co': {'X': x, 'Y': y}}
+                                           for x, y in [(1, 0), (31, .25), (1440, .25), (1500, 0)]]}},
             'manual': {'id': 'manual', 'layer': 5000000, 'style': {'text': 'Owner title'}}}}
+        (self.client.receipts / ('d' * 32 + '.json')).write_text(json.dumps({'kind': 'fixture.music',
+            'result': {'ownership': 'managed', 'managed_music': [{'clip_id': 'music',
+                         'sha256': music_fingerprint(state['clips']['music'])}]}}))
         def inspect():
             result = self.fixture_narration_inspection()
             result['revision'] = state['revision']
@@ -323,7 +331,16 @@ class EditorTests(unittest.TestCase):
                     clip_id = params['id']
                     if isinstance(clip_id, dict):
                         clip_id = refs[clip_id['$ref'].split('.')[0]]['clip']['id']
-                    state['clips'][clip_id].update(params['values'])
+                    values = dict(params['values'])
+                    if 'volume' in values:
+                        values['volume'] = {'Points': [{'co': {'X': 1, 'Y': values['volume']}}]}
+                    state['clips'][clip_id].update(values)
+                elif method == 'clip.keyframe.set' and params['property'] == 'volume':
+                    curve = state['clips'][params['id']]['volume']['Points']
+                    frame = round(params['at'] * 30) + 1
+                    curve[:] = [point for point in curve if point['co']['X'] != frame]
+                    curve.append({'co': {'X': frame, 'Y': params['value']}})
+                    curve.sort(key=lambda point: point['co']['X'])
             state['revision'] += 1
             return {'revision': state['revision'], 'refs': refs}
         return state, inspect, invoke, apply
@@ -407,6 +424,72 @@ class EditorTests(unittest.TestCase):
                 attach_narration_to_fixture(self.client, path, 9, second['speech_clip_id'])
             self.assertEqual(len(state['commands']), 2)
             self.assertEqual(state['clips'][manual_caption]['style']['text'], 'Owner corrected caption')
+
+    def test_first_music_duck_and_longer_retake_clear_old_restore_points(self):
+        path, receipt = self.remote_narration_fixture()
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        curve = lambda: {point['co']['X']: point['co']['Y'] for point in state['clips']['music']['volume']['Points']}
+        self.assertEqual(curve()[31], .25)  # Existing fixture fade restored normal gain at one second.
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            first = attach_narration_to_fixture(self.client, path, 7, 'accent')
+            self.assertEqual(curve()[31], .05)
+            self.assertTrue(all(value <= .05 for frame, value in curve().items() if frame <= 61))
+            self.assertEqual(curve()[76], .25)  # Two-second speech restored after its half-second fade.
+            with wave.open(str(path.with_name('narration.wav')), 'wb') as audio:
+                audio.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
+                audio.writeframes(b'\0\0' * 64000)
+            receipt['audio'] = inspect_wav(path.with_name('narration.wav').read_bytes())
+            receipt['cues'][-1].update(end_sample=64000, end=4)
+            path.write_text(json.dumps(receipt))
+            second = attach_narration_to_fixture(self.client, path, 8, first['speech_clip_id'])
+            self.assertNotIn(76, curve())
+            self.assertTrue(all(value <= .05 for frame, value in curve().items() if frame <= 121))
+            self.assertEqual(curve()[136], .25)
+            state['clips']['music']['volume']['Points'][0]['co']['Y'] = .7
+            state['revision'] += 1  # Caller inspects a fresh revision after an owner's gain correction.
+            with self.assertRaisesRegex(ValueError, 'preserve manual edits'):
+                attach_narration_to_fixture(self.client, path, 10, second['speech_clip_id'])
+            self.assertEqual(len(state['commands']), 2)
+            self.assertEqual(curve()[1], .7)
+
+    def test_manual_music_gain_before_first_attachment_blocks_without_mutation(self):
+        path, _ = self.remote_narration_fixture()
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        state['clips']['music']['volume']['Points'][1]['co']['Y'] = .8
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            with self.assertRaisesRegex(ValueError, 'preserve manual edits'):
+                attach_narration_to_fixture(self.client, path, 7, 'accent')
+        self.assertEqual(state['commands'], [])
+        self.assertIn('accent', state['clips'])
+
+    def test_unrelated_manual_music_is_not_rewritten_by_narration(self):
+        path, _ = self.remote_narration_fixture()
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        manual = {'id': 'manual-music', 'layer': 2000000, 'volume': {'Points': [{'co': {'X': 1, 'Y': .8}}]}}
+        state['clips']['manual-music'] = manual
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            with self.assertRaisesRegex(ValueError, 'baseline missing or ambiguous'):
+                attach_narration_to_fixture(self.client, path, 7, 'accent')
+        self.assertEqual(state['commands'], [])
+        self.assertEqual(state['clips']['manual-music'], manual)
+
+    def test_fixture_music_baseline_is_recorded_from_native_volume_readback(self):
+        state, inspect, invoke, _ = self.fake_fixture_editor()
+        (self.client.receipts / ('d' * 32 + '.json')).unlink()
+        with patch.object(self.client, 'inspect', side_effect=inspect), \
+                patch.object(self.client, '_invoke', side_effect=invoke):
+            capture_music_baseline(self.client, 'music', 7)
+        receipt = next(json.loads(path.read_text()) for path in self.client.receipts.glob('*.json')
+                       if path.name != 'session-test-session.json')
+        self.assertEqual(receipt['kind'], 'fixture.music')
+        self.assertEqual(receipt['result']['ownership'], 'managed')
+        self.assertEqual(receipt['result']['managed_music'][0]['sha256'], music_fingerprint(state['clips']['music']))
 
     def test_occupied_speech_track_is_not_silently_deleted(self):
         path, _ = self.remote_narration_fixture()

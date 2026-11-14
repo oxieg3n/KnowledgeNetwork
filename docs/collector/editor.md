@@ -202,6 +202,27 @@ relocation is excluded from the fingerprint. All actual text, timing, transforms
 effects and style remain protected. Ownership is finalized only after revision
 readback, so a concurrent manual edit cannot silently become generated ownership.
 
+Music is guarded in the same way. Fresh fixture creation records its native
+volume curve and timing fingerprint immediately after its initial batch. First
+attachment requires that baseline; retakes require the prior attachment's managed
+music fingerprint. Changed gains/timing, extra music clips, absent legacy
+ownership or ambiguous readback block before mutation. Older projects are not
+automatically adopted as a new baseline.
+
+Only unchanged owned music is reset. The pinned
+[native property setter](https://github.com/OpenShot/openshot-qt/blob/v4.1.1/src/classes/agent/service.py)
+turns a scalar `clip.set` volume into a new constant keyframe curve, clearing
+earlier points. The importer then builds fresh duck/fade points for the measured
+speech duration. This removes both the fixture's one-second normal-gain point
+and a previous shorter narration's restore point without rewriting manual music.
+
+A separate actual native property test confirmed that the original frame-31
+gain of 0.25 became 0.05; a longer retake removed the old frame-76 restore and
+remained ducked through frame 121. Two grouped undos restored the entire original
+native music clip and clip list exactly. The saved project/video digests remained
+unchanged. No speech, export, GUI or host action occurred in that property test;
+it does not establish audible narration/mix acceptance.
+
 Captions require real provider cues with exact sample offsets and matching
 seconds. Their timing is quantized once through rational project FPS to native
 frame boundaries. No paragraph is divided into invented word/phrase timings.
