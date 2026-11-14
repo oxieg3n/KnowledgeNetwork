@@ -78,6 +78,11 @@ def build(client, directory, width=360, height=640, reuse_session=False):
                 'background_padding': 10}},
         ])
     commands.extend([
+        {'method': 'text.add', 'as': 'review_label', 'params': {
+            'text': 'LOCAL REVIEW ONLY\nUnbranded technical test', 'layer': layers[4],
+            'position': 0, 'duration': 50, 'font_family': 'Segoe UI',
+            'font_size': int(width / 28), 'color': '#b5c4cf',
+            'width': int(width * .85), 'place': 'bottom'}},
         {'method': 'file.import', 'as': 'graphic', 'params': {'path': str(graphic)}},
         {'method': 'clip.add', 'as': 'overlay', 'params': {'file_id': {'$ref': 'graphic.id'},
             'layer': layers[3], 'position': 0, 'end': 50}},

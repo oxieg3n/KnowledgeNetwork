@@ -108,6 +108,11 @@ class OpenShot:
         self.receipts.mkdir(exist_ok=True)
         if self.receipts.resolve() != self.receipts:
             raise ValueError('Editor receipts cannot be redirected through a link')
+        self.font_directory = None
+        if os.name == 'nt':
+            self.font_directory = (Path(os.environ.get('SystemRoot', r'C:\Windows')) / 'Fonts').resolve(strict=True)
+            if not self.font_directory.is_dir() or not any(self.font_directory.glob('*.ttf')):
+                raise EditorError('system_fonts_unavailable')
 
     def _managed_session(self):
         if not self.session or not (self.receipts / ('session-' + self.session + '.json')).is_file():
@@ -116,7 +121,9 @@ class OpenShot:
         if marker.stat().st_size > 1024:
             raise EditorError('unmanaged_native_session')
         record = json.loads(marker.read_text())
-        if record != {'session_id': self.session, 'executable_sha256': self.executable_sha256}:
+        expected = {'session_id': self.session, 'executable_sha256': self.executable_sha256}
+        font_directory = record.pop('font_directory', None)
+        if record != expected or font_directory not in (None, str(self.font_directory)):
             raise EditorError('unmanaged_native_session')
 
     def local_path(self, path, suffixes, exists=True):
@@ -144,6 +151,9 @@ class OpenShot:
         args += arguments
         env = dict(os.environ)
         env.pop('OPENSHOT_SESSION', None)
+        if self.font_directory is not None:
+            # Qt's Windows offscreen export uses FreeType, not the Windows font database.
+            env['QT_QPA_FONTDIR'] = str(self.font_directory)
         # Retain the installed user's registry; never return its authentication record.
         with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
             process = subprocess.Popen(args, cwd=self.vault, env=env, shell=False,
@@ -211,7 +221,8 @@ class OpenShot:
             raise EditorError('invalid_native_session')
         self.session = session_id
         write_json(self.receipts / ('session-' + self.session + '.json'),
-                   {'session_id': self.session, 'executable_sha256': self.executable_sha256})
+                   {'session_id': self.session, 'executable_sha256': self.executable_sha256,
+                    'font_directory': str(self.font_directory)})
 
     def recover_start(self):
         pending = self.receipts / 'start-pending.json'
@@ -384,6 +395,10 @@ class OpenShot:
         return self._complete(intent, self._invoke(['project', 'open', str(path)]))
 
     def export(self, path, end_frame):
+        self._managed_session()
+        marker = json.loads((self.receipts / ('session-' + self.session + '.json')).read_text())
+        if self.font_directory is not None and marker.get('font_directory') != str(self.font_directory):
+            raise EditorError('new_font_configured_session_required')
         path = self.local_path(path, {'.mp4'}, exists=False)
         if type(end_frame) is not int or not 1 <= end_frame <= 108_000:
             raise ValueError('Export range must be 1..108000 inclusive frames')

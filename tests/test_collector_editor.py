@@ -22,7 +22,8 @@ class EditorTests(unittest.TestCase):
         self.vault.mkdir()
         self.client = OpenShot(self.exe, self.sha, self.vault, 'test-session')
         (self.client.receipts / 'session-test-session.json').write_text(json.dumps({
-            'session_id': 'test-session', 'executable_sha256': self.sha}))
+            'session_id': 'test-session', 'executable_sha256': self.sha,
+            'font_directory': str(self.client.font_directory)}))
         self.media = self.vault / 'owned.mp4'
         self.media.write_bytes(b'synthetic test')
 
@@ -51,6 +52,8 @@ class EditorTests(unittest.TestCase):
             self.assertEqual(args[:2], [str(self.exe.resolve()), '--cli'])
             self.assertIn('--session', args)
             self.assertFalse(kwargs['shell'])
+            if self.client.font_directory is not None:
+                self.assertEqual(kwargs['env']['QT_QPA_FONTDIR'], str(self.client.font_directory))
             kwargs['stdout'].write(b'{"ok":true,"result":{"revision":3}}')
             process = unittest.mock.Mock()
             process.poll.return_value = 0
@@ -173,6 +176,16 @@ class EditorTests(unittest.TestCase):
         receipts = [json.loads(p.read_text()) for p in self.client.receipts.glob('*.json')
                     if p.name != 'session-test-session.json']
         self.assertEqual(receipts[0]['details']['snapshot_context'], {'revision': 9})
+
+    def test_old_windows_session_cannot_claim_new_offscreen_font_configuration(self):
+        if self.client.font_directory is None:
+            self.skipTest('Windows offscreen font configuration only')
+        (self.client.receipts / 'session-test-session.json').write_text(json.dumps({
+            'session_id': 'test-session', 'executable_sha256': self.sha}))
+        with patch.object(self.client, '_invoke') as invoke:
+            with self.assertRaisesRegex(EditorError, 'new_font_configured_session_required'):
+                self.client.export(self.vault / 'old-session.mp4', 1500)
+            invoke.assert_not_called()
 
     def test_concurrent_gui_edit_cancels_different_export_snapshot(self):
         with patch.object(self.client, '_invoke', side_effect=[{'revision': 9}, {

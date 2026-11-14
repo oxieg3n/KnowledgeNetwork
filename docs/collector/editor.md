@@ -122,6 +122,57 @@ peak-resource claim. No human listening, manual GUI edit, speech alignment,
 VoiceStudio narration, approved branding, integrated GUI, or service-to-editor
 companion acceptance is established by this proof. Publication remains paused.
 
+The subsequent actual visual review of that 360x640 export FAILED: native text
+glyphs were absent despite a successful codec/decode pass. Preserve that artifact
+as failed visual evidence; the technical checks above do not qualify its text.
+
+## V8 Windows offscreen font repair and 1080p proof
+
+The pinned OpenShot export worker forces the Qt offscreen platform. Qt 5.15's
+[Windows offscreen implementation](https://github.com/qt/qtbase/blob/5.15/src/plugins/platforms/offscreen/qoffscreenintegration.cpp)
+uses FreeType, whose
+[font database](https://github.com/qt/qtbase/blob/5.15/src/platformsupport/fontdatabases/freetype/qfreetypefontdatabase.cpp)
+loads its configured font directory. Qt's
+[fontDir implementation](https://github.com/qt/qtbase/blob/5.15/src/gui/text/qplatformfontdatabase.cpp)
+honors `QT_QPA_FONTDIR`; its fallback is the Qt library's fonts directory rather
+than the Windows system font directory. The installed editor lacked that fallback
+font directory. Correct native text/font/color records alone therefore did not
+prove glyph rendering.
+
+The adapter now sets `QT_QPA_FONTDIR` to the existing Windows system Fonts folder
+only in the native child environment, before session startup. Export workers
+inherit it. No font is downloaded/copied, no upstream binary is patched, and no
+global environment or host setting is changed. New managed session markers retain
+that configuration; older unconfigured sessions cannot export while falsely
+claiming the new font setup. Saved projects and old evidence remain untouched.
+
+A new 1080x1920 native project and 50.000-second native export completed. Actual
+exported frames at 5, 25 and 40 seconds were viewed at mobile size: native titles,
+lower-third words and a persistent local-review/unbranded label are visible and
+legible in all three scenes. This establishes the missing-glyph repair for that
+fixture, not general GUI or publication acceptance.
+
+The project also passed actual native trim, split, reorder and grouped undo.
+A separate profile change to 30000/1001 fps and split at exactly 1.001 seconds
+used the expected native frame boundary; grouped undo restored 30 fps and all
+original clip summaries. Final save/reopen retained the composition and history.
+Native undo was called by the controlled test coordinator; it is not advertised
+as a newly implemented service job or unrestricted job command.
+
+- `technical-v3.osp` SHA-256: `fcbdaef5d8b3a4c8a67ddce33ef6df4ea89c88ca024972f5af9ab5b362e2b4a0`.
+- `native-final-1080.mp4` SHA-256: `b11728e5b2504871db1ad255ba92e3ed8015a9aca3cfc73015ee7b3c2a5d950a`.
+- Native export snapshot revision 104; 1500 frames, 30 fps, H.264/yuv420p,
+  AAC 48 kHz stereo, audio/video each 50.000 seconds, full decode exit zero.
+- No configured black/silence spans; all six source hashes unchanged after export.
+- Approximate job artifact wall interval 130.643 seconds. One live worker sample
+  showed 967,540,736 bytes peak working set at that moment; a final continuously
+  sampled resource peak was not measured.
+
+This remains an unbranded technical fixture with original quiet tones. Host
+VoiceStudio narration, real speech captions, approved plasma assets, listening,
+manual GUI edits, GUI/service companion and preview/export parity remain separate
+acceptance rows. Public publishing remains paused.
+
 ## Minimal worker integration boundary
 
 Keep scheduling and durable job identity in the .NET worker. Register individual
