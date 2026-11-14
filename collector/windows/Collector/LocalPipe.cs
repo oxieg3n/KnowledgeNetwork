@@ -66,21 +66,35 @@ internal static class LocalPipe
         if (error == 1060) return false;
         throw Denied("OpenService", error);
     }
+    internal readonly record struct ServiceSnapshot(uint State, uint ProcessId, uint Type, string Command, string Account);
+    internal static void ValidateServiceSnapshots(uint beforePid, ServiceSnapshot before, uint afterPid, ServiceSnapshot after)
+    {
+        if (!ServiceIdentity(beforePid, before.State, before.ProcessId, before.Type, before.Command, before.Account))
+            throw Denied("ServiceIdentity");
+        if (beforePid != afterPid || before != after ||
+            !ServiceIdentity(afterPid, after.State, after.ProcessId, after.Type, after.Command, after.Account))
+            throw Denied("ServiceChanged");
+    }
+    internal static void CheckServiceQuery(bool success, string stage, int error)
+    {
+        if (!success) throw Denied(stage, error);
+    }
     private static ServiceStatusProcess ServiceStatus(IntPtr service)
     {
-        if (!QueryServiceStatusEx(service, 0, out var status, Marshal.SizeOf<ServiceStatusProcess>(), out _))
-            throw Denied("QueryServiceStatusEx", Marshal.GetLastWin32Error());
+        bool success = QueryServiceStatusEx(service, 0, out var status, Marshal.SizeOf<ServiceStatusProcess>(), out _);
+        CheckServiceQuery(success, "QueryServiceStatusEx", Marshal.GetLastWin32Error());
         return status;
     }
     private static (uint Type, string Command, string Account) Configuration(IntPtr service)
     {
         QueryServiceConfig(service, IntPtr.Zero, 0, out int needed);
         int error = Marshal.GetLastWin32Error();
-        if (error != 122 || needed <= 0 || needed > 65536) throw Denied("QueryServiceConfigSize", error);
+        CheckServiceQuery(error == 122 && needed > 0 && needed <= 65536, "QueryServiceConfigSize", error);
         var memory = Marshal.AllocHGlobal(needed);
         try
         {
-            if (!QueryServiceConfig(service, memory, needed, out _)) throw Denied("QueryServiceConfig", Marshal.GetLastWin32Error());
+            bool success = QueryServiceConfig(service, memory, needed, out _);
+            CheckServiceQuery(success, "QueryServiceConfig", Marshal.GetLastWin32Error());
             var config = Marshal.PtrToStructure<ServiceConfig>(memory);
             return (config.Type, Marshal.PtrToStringUni(config.Binary) ?? "", Marshal.PtrToStringUni(config.Account) ?? "");
         }
@@ -103,14 +117,13 @@ internal static class LocalPipe
             {
                 var before = ServiceStatus(service);
                 var config = Configuration(service);
-                if (!ServiceIdentity(processId, before.State, before.ProcessId, before.Type, config.Command, config.Account) || config.Type != before.Type)
-                    throw Denied("ServiceIdentity");
+                if (config.Type != before.Type) throw Denied("ServiceIdentity");
                 var afterConfig = Configuration(service);
                 var after = ServiceStatus(service);
                 if (!GetNamedPipeServerProcessId(pipe, out uint afterPid)) throw Denied("GetNamedPipeServerProcessId", Marshal.GetLastWin32Error());
-                if (config != afterConfig || afterPid != processId ||
-                    !ServiceIdentity(afterPid, after.State, after.ProcessId, after.Type, afterConfig.Command, afterConfig.Account))
-                    throw Denied("ServiceChanged");
+                if (afterConfig.Type != after.Type) throw Denied("ServiceChanged");
+                ValidateServiceSnapshots(processId, new(before.State, before.ProcessId, before.Type, config.Command, config.Account),
+                    afterPid, new(after.State, after.ProcessId, after.Type, afterConfig.Command, afterConfig.Account));
                 return true;
             }
             finally { CloseServiceHandle(service); }

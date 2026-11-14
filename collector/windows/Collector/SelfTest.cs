@@ -35,6 +35,23 @@ internal static class SelfTest
             try { LocalPipe.AbsentService(denied); throw new InvalidOperationException("scm_failure_allowed_console"); }
             catch (RequestError error) { Check(error.Message == "untrusted_pipe_server" && error.Stage == "OpenService" && error.Win32Error == denied); }
         }
+        var serviceBefore = new LocalPipe.ServiceSnapshot(4, 42, 0x10, serviceCommand, localService);
+        LocalPipe.ValidateServiceSnapshots(42, serviceBefore, 42, serviceBefore); checks++;
+        foreach (var after in new[] {
+            serviceBefore with { State = 1 },
+            serviceBefore with { ProcessId = 43 },
+            serviceBefore with { Type = 0x20 },
+            serviceBefore with { Command = serviceCommand + " --enable-companion" },
+            serviceBefore with { Account = "LocalSystem" }
+        }) Reject(() => LocalPipe.ValidateServiceSnapshots(42, serviceBefore, 42, after), "untrusted_pipe_server");
+        Reject(() => LocalPipe.ValidateServiceSnapshots(42, serviceBefore, 43, serviceBefore with { ProcessId = 43 }), "untrusted_pipe_server");
+        Reject(() => LocalPipe.ValidateServiceSnapshots(42, serviceBefore with { ProcessId = 43 }, 42, serviceBefore), "untrusted_pipe_server");
+        foreach (var stage in new[] { "QueryServiceStatusEx", "QueryServiceConfig", "QueryServiceConfigSize" })
+        {
+            LocalPipe.CheckServiceQuery(true, stage, 5); checks++;
+            try { LocalPipe.CheckServiceQuery(false, stage, 5); throw new InvalidOperationException("scm_query_failure_accepted"); }
+            catch (RequestError error) { Check(error.Message == "untrusted_pipe_server" && error.Stage == stage && error.Win32Error == 5); }
+        }
         var manifestPath = Path.Combine(path, "files.sha256.json");
         foreach (bool bom in new[] { false, true })
         {
