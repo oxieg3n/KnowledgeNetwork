@@ -4,7 +4,11 @@ using System.Text.Json;
 
 namespace Collector;
 
-internal sealed class RequestError(string code) : Exception(code);
+internal sealed class RequestError(string code, string? stage = null, int win32Error = 0) : Exception(code)
+{
+    public string? Stage { get; } = stage;
+    public int Win32Error { get; } = win32Error;
+}
 
 internal static class Protocol
 {

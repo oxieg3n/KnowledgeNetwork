@@ -18,6 +18,23 @@ internal static class SelfTest
             try { action(); throw new InvalidOperationException("expected_" + code); }
             catch (RequestError error) { Check(error.Message == code); }
         }
+        var serviceCommand = '"' + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "The Knowledge Network Collector", "kn-collector.exe") + "\" serve --data private";
+        const string localService = @"NT AUTHORITY\LocalService";
+        Check(LocalPipe.ServiceIdentity(42, 4, 42, 0x10, serviceCommand, localService));
+        Check(!LocalPipe.ServiceIdentity(0, 4, 0, 0x10, serviceCommand, localService));
+        Check(!LocalPipe.ServiceIdentity(42, 4, 43, 0x10, serviceCommand, localService));
+        Check(!LocalPipe.ServiceIdentity(42, 1, 42, 0x10, serviceCommand, localService));
+        Check(!LocalPipe.ServiceIdentity(42, 4, 42, 0x20, serviceCommand, localService));
+        Check(!LocalPipe.ServiceIdentity(42, 4, 42, 0x10, serviceCommand, "LocalSystem"));
+        Check(!LocalPipe.ServiceIdentity(42, 4, 42, 0x10, serviceCommand.Replace("kn-collector.exe", "fake.exe"), localService));
+        Check(!LocalPipe.ServiceIdentity(42, 4, 42, 0x10, serviceCommand.Replace("\" serve ", ".fake\" serve "), localService));
+        Check(!LocalPipe.ServiceIdentity(42, 4, 42, 0x10, serviceCommand.Replace(" serve ", " health "), localService));
+        Check(!LocalPipe.AbsentService(1060));
+        foreach (int denied in new[] { 5, 6, 1072 })
+        {
+            try { LocalPipe.AbsentService(denied); throw new InvalidOperationException("scm_failure_allowed_console"); }
+            catch (RequestError error) { Check(error.Message == "untrusted_pipe_server" && error.Stage == "OpenService" && error.Win32Error == denied); }
+        }
         var manifestPath = Path.Combine(path, "files.sha256.json");
         foreach (bool bom in new[] { false, true })
         {

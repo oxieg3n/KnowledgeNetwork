@@ -81,7 +81,9 @@ internal static class Program
         }
         catch (Exception error) when (error is RequestError or JsonException or KeyNotFoundException or InvalidOperationException or FormatException or ArgumentException or IOException or UnauthorizedAccessException or OperationCanceledException or System.ComponentModel.Win32Exception or System.ServiceProcess.TimeoutException or System.Security.SecurityException)
         {
-            Console.WriteLine(Protocol.Encode(new { ok = false, error = error is RequestError ? error.Message : error.GetType().Name }));
+            if (error is RequestError { Stage: not null } trust)
+                Console.WriteLine(Protocol.Encode(new { ok = false, error = trust.Message, stage = trust.Stage, win32_error = trust.Win32Error }));
+            else Console.WriteLine(Protocol.Encode(new { ok = false, error = error is RequestError ? error.Message : error.GetType().Name }));
             return 1;
         }
     }

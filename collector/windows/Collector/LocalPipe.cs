@@ -42,40 +42,107 @@ internal static class LocalPipe
         public uint Type, State, Controls, ExitCode, SpecificExitCode, Checkpoint, WaitHint, ProcessId, Flags;
     }
 
-    private static bool RegisteredServiceProcess(uint processId)
+    [StructLayout(LayoutKind.Sequential)]
+    private struct ServiceConfig
     {
-        var manager = OpenSCManager(null, null, 1);
-        if (manager == IntPtr.Zero) return false;
+        public uint Type, Start, Error;
+        public IntPtr Binary, Group;
+        public uint Tag;
+        public IntPtr Dependencies, Account, DisplayName;
+    }
+    [DllImport("advapi32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern bool QueryServiceConfig(IntPtr service, IntPtr config, int size, out int needed);
+
+    private static RequestError Denied(string stage, int error = 0) => new("untrusted_pipe_server", stage, error);
+    internal static bool ServiceIdentity(uint pipePid, uint state, uint servicePid, uint type, string command, string account)
+    {
+        var binary = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "The Knowledge Network Collector", "kn-collector.exe");
+        return pipePid != 0 && state == 4 && servicePid == pipePid && type == 0x10 &&
+            string.Equals(account, @"NT AUTHORITY\LocalService", StringComparison.OrdinalIgnoreCase) &&
+            command.StartsWith('"' + binary + "\" serve ", StringComparison.OrdinalIgnoreCase);
+    }
+    internal static bool AbsentService(int error)
+    {
+        if (error == 1060) return false;
+        throw Denied("OpenService", error);
+    }
+    private static ServiceStatusProcess ServiceStatus(IntPtr service)
+    {
+        if (!QueryServiceStatusEx(service, 0, out var status, Marshal.SizeOf<ServiceStatusProcess>(), out _))
+            throw Denied("QueryServiceStatusEx", Marshal.GetLastWin32Error());
+        return status;
+    }
+    private static (uint Type, string Command, string Account) Configuration(IntPtr service)
+    {
+        QueryServiceConfig(service, IntPtr.Zero, 0, out int needed);
+        int error = Marshal.GetLastWin32Error();
+        if (error != 122 || needed <= 0 || needed > 65536) throw Denied("QueryServiceConfigSize", error);
+        var memory = Marshal.AllocHGlobal(needed);
         try
         {
-            var service = OpenService(manager, "KnowledgeNetworkCollector", 4);
-            if (service == IntPtr.Zero) return false;
-            try { return QueryServiceStatusEx(service, 0, out var status, Marshal.SizeOf<ServiceStatusProcess>(), out _) && status.State == 4 && status.ProcessId == processId; }
+            if (!QueryServiceConfig(service, memory, needed, out _)) throw Denied("QueryServiceConfig", Marshal.GetLastWin32Error());
+            var config = Marshal.PtrToStructure<ServiceConfig>(memory);
+            return (config.Type, Marshal.PtrToStringUni(config.Binary) ?? "", Marshal.PtrToStringUni(config.Account) ?? "");
+        }
+        finally { Marshal.FreeHGlobal(memory); }
+    }
+    private static bool RegisteredServiceProcess(SafePipeHandle pipe, uint processId)
+    {
+        var manager = OpenSCManager(null, null, 1);
+        if (manager == IntPtr.Zero) throw Denied("OpenSCManager", Marshal.GetLastWin32Error());
+        try
+        {
+            var service = OpenService(manager, "KnowledgeNetworkCollector", 5);
+            if (service == IntPtr.Zero)
+            {
+                int error = Marshal.GetLastWin32Error();
+                // Only an absent service permits the same-user console worker.
+                return AbsentService(error);
+            }
+            try
+            {
+                var before = ServiceStatus(service);
+                var config = Configuration(service);
+                if (!ServiceIdentity(processId, before.State, before.ProcessId, before.Type, config.Command, config.Account) || config.Type != before.Type)
+                    throw Denied("ServiceIdentity");
+                var afterConfig = Configuration(service);
+                var after = ServiceStatus(service);
+                if (!GetNamedPipeServerProcessId(pipe, out uint afterPid)) throw Denied("GetNamedPipeServerProcessId", Marshal.GetLastWin32Error());
+                if (config != afterConfig || afterPid != processId ||
+                    !ServiceIdentity(afterPid, after.State, after.ProcessId, after.Type, afterConfig.Command, afterConfig.Account))
+                    throw Denied("ServiceChanged");
+                return true;
+            }
             finally { CloseServiceHandle(service); }
         }
         finally { CloseServiceHandle(manager); }
     }
     private static void AuthenticateServer(SafePipeHandle pipe)
     {
-        if (!GetNamedPipeServerProcessId(pipe, out var processId)) throw new RequestError("untrusted_pipe_server");
+        if (!GetNamedPipeServerProcessId(pipe, out var processId)) throw Denied("GetNamedPipeServerProcessId", Marshal.GetLastWin32Error());
+        // SCM is authoritative for LocalService; its process image may be unreadable to a medium-integrity owner.
+        if (RegisteredServiceProcess(pipe, processId)) return;
         using var process = OpenProcess(0x1000, false, processId);
+        if (process.IsInvalid) throw Denied("OpenProcess", Marshal.GetLastWin32Error());
         var image = new StringBuilder(32768); int length = image.Capacity;
-        if (process.IsInvalid || !QueryFullProcessImageName(process, 0, image, ref length) ||
-            !string.Equals(image.ToString(), Environment.ProcessPath, StringComparison.OrdinalIgnoreCase))
-            throw new RequestError("untrusted_pipe_server");
-        if (RegisteredServiceProcess(processId)) return;
-        if (!OpenProcessToken(process, 8, out var token)) throw new RequestError("untrusted_pipe_server");
+        if (!QueryFullProcessImageName(process, 0, image, ref length)) throw Denied("QueryFullProcessImageName", Marshal.GetLastWin32Error());
+        if (!string.Equals(image.ToString(), Environment.ProcessPath, StringComparison.OrdinalIgnoreCase)) throw Denied("ConsoleImageIdentity");
+        if (!OpenProcessToken(process, 8, out var token)) throw Denied("OpenProcessToken", Marshal.GetLastWin32Error());
         using (token)
         {
             GetTokenInformation(token, 1, IntPtr.Zero, 0, out int required);
-            if (required <= 0 || required > 65536) throw new RequestError("untrusted_pipe_server");
+            if (required <= 0 || required > 65536) throw Denied("GetTokenInformationSize", Marshal.GetLastWin32Error());
             var buffer = Marshal.AllocHGlobal(required);
             try
             {
-                if (!GetTokenInformation(token, 1, buffer, required, out _)) throw new RequestError("untrusted_pipe_server");
+                if (!GetTokenInformation(token, 1, buffer, required, out _)) throw Denied("GetTokenInformation", Marshal.GetLastWin32Error());
                 var server = new SecurityIdentifier(Marshal.ReadIntPtr(buffer));
                 using var identity = WindowsIdentity.GetCurrent();
-                if (identity.User is not { } current || !server.Equals(current)) throw new RequestError("untrusted_pipe_server");
+                if (identity.User is not { } current || !server.Equals(current)) throw Denied("ConsoleUserIdentity");
+                // Do not fall back if a service appeared while inspecting the console process.
+                if (RegisteredServiceProcess(pipe, processId)) throw Denied("ServiceAppeared");
+                if (!GetNamedPipeServerProcessId(pipe, out uint afterPid)) throw Denied("GetNamedPipeServerProcessId", Marshal.GetLastWin32Error());
+                if (afterPid != processId) throw Denied("ConsoleProcessChanged");
             }
             finally { Marshal.FreeHGlobal(buffer); }
         }
