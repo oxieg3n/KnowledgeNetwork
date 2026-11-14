@@ -117,7 +117,7 @@ while ([DateTime]::UtcNow -lt $deadline) {
             $serviceIdentity = $serviceAccount.Translate([Security.Principal.SecurityIdentifier]).Value
         } catch { $serviceIdentity = $null }
     }
-    $valid = $before -and $after -and $before.State -eq 'Running' -and $after.State -eq 'Running' -and
+    $valid = [DateTime]::UtcNow -lt $deadline -and $before -and $after -and $before.State -eq 'Running' -and $after.State -eq 'Running' -and
         $before.ProcessId -gt 0 -and $before.ProcessId -eq $after.ProcessId -and
         $after.PathName -eq $command -and $serviceIdentity -eq 'S-1-5-19' -and
         $sample -and $sample.ok -is [bool] -and $sample.ok -eq $true -and $sample.result.schema_version -eq 1 -and
