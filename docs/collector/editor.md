@@ -35,6 +35,14 @@ identity can still race file changes between validation and native reads; privat
 ACLs, a protected editor installation, and final source/hash rechecks remain
 required. Do not treat path validation as protection from that identity.
 
+Upstream session startup has a fixed 30-second discovery window. Cold startup
+can outlast it while the native server continues running. A startup intent blocks
+duplicate starts; the session ID from the pinned native timeout log reference is
+preserved without exposing registry credentials. Use `recover-start` to check
+that same session after it becomes reachable. If no identity was returned,
+inspect the native process/registry under coordinator control rather than start
+another editor. The fixture's `--session` can reuse an enrolled recovered session.
+
 Supported edits are native media import; clip placement, trimming, reorder via
 position/layer, split, removal, gain/transform, alpha/audio fades and keyframes;
 native text/lower thirds; a curated effect set; and custom project profiles.
@@ -59,6 +67,9 @@ Before saves/exports, the adapter inspects the native file and clip readers and
 requires local sources matching exact prior-import hashes. Changed/unregistered
 GUI-added sources, unsupported readers and path escapes block those operations.
 Reopen also rechecks the source hashes in its managed-save receipt.
+Native save can advance revision while moving project assets. The adapter checks
+the tracked save operation's `revision_before` against the audited context,
+rather than rejecting that legitimate save revision change.
 
 Exports start once, asynchronously. Receipts preserve the pre-start context and
 native export job result. The native result's snapshot revision is authoritative;
@@ -86,6 +97,30 @@ does not establish manual GUI edit preservation, audible narration, listening,
 bookend acceptance, or a complete V7 production demonstration.
 
 Unit tests use mocked native replies and never count as a real editor pass.
+
+## Observed Windows proof, November 14, 2026
+
+OpenShot 4.1.1/libopenshot 1.1.1 executed the actual layered technical batch,
+native text correction, save/reopen and native export on the VM. The final native
+session inspection reported revision 54, 12 clips, 12 file entries, one effect,
+five layers, a clean saved project and available undo. This is a 360x640 technical
+proof, not the requested 1080x1920 narrated/branded acceptance demo.
+
+The native export completed 1500 frames: exactly 50.000 seconds of H.264/yuv420p
+at 30 fps, with 50.000 seconds of AAC stereo audio at 48 kHz. Full FFmpeg decode
+returned zero. Configured black detection (at least 0.5 seconds, pixel threshold
+0.10) and silence detection (at least 2 seconds below -50 dB) returned no spans.
+Original tones were intentionally quiet: mean -44.7 dB and maximum -38.4 dB.
+All six original source hashes still matched after export.
+
+- Native `technical-v2.osp` SHA-256: `02104e6651757a1c5132615bc11c43fbeb6f4738c8af402aec7eb113c2272a9e`.
+- Native `native-final.mp4` SHA-256: `66ef21dc5413abf087f28a3e9f1ab69ac9e66b77f6f3cd987cf83c702ed76f9d`.
+
+Approximate native job artifact interval was 22.329 seconds, measured from job
+spec creation to worker-log last write. This is not a benchmark or a measured
+peak-resource claim. No human listening, manual GUI edit, speech alignment,
+VoiceStudio narration, approved branding, integrated GUI, or service-to-editor
+companion acceptance is established by this proof. Publication remains paused.
 
 ## Minimal worker integration boundary
 

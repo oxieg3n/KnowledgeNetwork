@@ -43,6 +43,9 @@ METHODS = {
 
 class EditorError(RuntimeError):
     """A safe status code, without native logs or session credentials."""
+    def __init__(self, code, native_session_id=None):
+        super().__init__(code)
+        self.native_session_id = native_session_id
 
 
 def digest(path):
@@ -171,19 +174,62 @@ class OpenShot:
                 code = error.get('code', 'native_failed') if isinstance(error, dict) else 'native_failed'
                 if not isinstance(code, str) or not re.fullmatch('[a-z_]{1,80}', code):
                     code = 'native_failed'
-                raise EditorError(code)
+                owned = None
+                if code == 'startup_timeout' and isinstance(error, dict):
+                    message = error.get('message', '')
+                    match = re.search(r'([0-9a-f]{32})\.log\s*$', message) if isinstance(message, str) else None
+                    owned = match.group(1) if match else None
+                raise EditorError(code, native_session_id=owned)
             if 'result' not in reply:
                 raise EditorError('invalid_native_response')
             return reply['result']
 
     def start(self):
-        result = self._invoke(['session', 'start'], session=False)
-        self.session = result['session_id']
-        if not isinstance(self.session, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', self.session):
+        pending = self.receipts / 'start-pending.json'
+        intent = {'id': uuid.uuid4().hex, 'kind': 'session.start', 'session_id': None}
+        try:
+            with pending.open('x') as stream:
+                json.dump(intent, stream)
+                stream.flush(); os.fsync(stream.fileno())
+        except FileExistsError:
+            raise EditorError('startup_reconciliation_required') from None
+        try:
+            result = self._invoke(['session', 'start'], session=False)
+        except EditorError as exc:
+            if exc.native_session_id:
+                intent['session_id'] = exc.native_session_id
+                write_json(pending, intent)
+                self._enroll(exc.native_session_id)
+            raise
+        self._enroll(result['session_id'])
+        write_json(self.receipts / (intent['id'] + '.json'), {**intent, 'result': result})
+        pending.unlink()
+        return {'session_id': self.session, 'review_only': True, 'publication_eligible': False}
+
+    def _enroll(self, session_id):
+        if not isinstance(session_id, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', session_id):
             raise EditorError('invalid_native_session')
+        self.session = session_id
         write_json(self.receipts / ('session-' + self.session + '.json'),
                    {'session_id': self.session, 'executable_sha256': self.executable_sha256})
-        return {'session_id': self.session, 'review_only': True, 'publication_eligible': False}
+
+    def recover_start(self):
+        pending = self.receipts / 'start-pending.json'
+        if not pending.is_file() or pending.stat().st_size > 1024:
+            raise EditorError('startup_reconciliation_required')
+        intent = json.loads(pending.read_text())
+        if not re.fullmatch('[0-9a-f]{32}', intent.get('id', '')) or intent.get('kind') != 'session.start':
+            raise EditorError('startup_reconciliation_required')
+        session_id = intent.get('session_id')
+        if not isinstance(session_id, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', session_id):
+            raise EditorError('startup_identity_unknown_inspect_native_process')
+        self.session = session_id
+        status = self._invoke(['session', 'status'])
+        if status.get('data', {}).get('session_id') != session_id:
+            raise EditorError('startup_identity_mismatch')
+        write_json(self.receipts / (intent['id'] + '.json'), {**intent, 'result': status})
+        pending.unlink()
+        return {'session_id': session_id, 'native': status, 'review_only': True, 'publication_eligible': False}
 
     def inspect(self):
         return self._invoke(['project', 'get'])
@@ -310,7 +356,13 @@ class OpenShot:
         sources = self.audit_sources()
         intent = self._intent('project.save', {'path': str(path)})
         result = self._invoke(['project', 'save', str(path)])
-        if result.get('revision') != revision:
+        operation_id = result.get('operation_id')
+        if not isinstance(operation_id, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', operation_id):
+            raise EditorError('save_operation_missing_reconcile_required')
+        operation = self._invoke(['operation', 'get', operation_id])['data']
+        # Saving relocates native project assets and can legitimately advance revision.
+        if operation.get('method') != 'project.save' or operation.get('state') != 'completed' \
+                or operation.get('revision_before') != revision:
             raise EditorError('revision_changed_during_save_reconcile_required')
         result = {'native': result, 'path': str(path), 'sha256': digest(path),
                   'assets': sources, 'review_only': True, 'publication_eligible': False}
@@ -361,7 +413,7 @@ def main():
     parser.add_argument('--executable-sha256', required=True)
     parser.add_argument('--vault', required=True)
     parser.add_argument('--session')
-    parser.add_argument('operation', choices=['start', 'inspect', 'apply', 'save', 'reopen', 'export', 'export-status', 'reconcile'])
+    parser.add_argument('operation', choices=['start', 'recover-start', 'inspect', 'apply', 'save', 'reopen', 'export', 'export-status', 'reconcile'])
     parser.add_argument('--request', help='Local JSON request file, at most 128 KiB')
     args = parser.parse_args()
     try:
@@ -373,7 +425,7 @@ def main():
                 if len(raw) > 128 * 1024:
                     raise ValueError('Request exceeds limit')
             request = json.loads(raw)
-        methods = {'start': client.start, 'inspect': client.inspect, 'apply': client.apply,
+        methods = {'start': client.start, 'recover-start': client.recover_start, 'inspect': client.inspect, 'apply': client.apply,
                    'save': client.save, 'reopen': client.reopen, 'export': client.export,
                    'export-status': client.export_status, 'reconcile': client.reconcile}
         result = methods[args.operation](**request)

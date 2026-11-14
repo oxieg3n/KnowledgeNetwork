@@ -30,6 +30,22 @@ class EditorTests(unittest.TestCase):
         with self.assertRaisesRegex(EditorError, 'executable_hash_mismatch'):
             OpenShot(self.exe, '0' * 64, self.vault)
 
+    def test_cold_start_timeout_owns_session_and_prevents_duplicate_start(self):
+        session_id = 'c' * 32
+        with patch.object(self.client, '_invoke', side_effect=EditorError('startup_timeout', session_id)):
+            with self.assertRaisesRegex(EditorError, 'startup_timeout'):
+                self.client.start()
+        restarted = OpenShot(self.exe, self.sha, self.vault)
+        with patch.object(restarted, '_invoke') as invoke:
+            with self.assertRaisesRegex(EditorError, 'startup_reconciliation_required'):
+                restarted.start()
+            invoke.assert_not_called()
+        with patch.object(restarted, '_invoke', return_value={'data': {'session_id': session_id}}) as invoke:
+            recovered = restarted.recover_start()
+            self.assertEqual(recovered['session_id'], session_id)
+            self.assertEqual(invoke.call_args.args[0], ['session', 'status'])
+        self.assertFalse((restarted.receipts / 'start-pending.json').exists())
+
     def test_native_invocation_uses_fixed_executable_and_no_shell(self):
         def launch(args, **kwargs):
             self.assertEqual(args[:2], [str(self.exe.resolve()), '--cli'])
@@ -119,8 +135,13 @@ class EditorTests(unittest.TestCase):
     def test_saved_native_project_hash_required_for_reopen(self):
         project = self.vault / 'saved.osp'
         def native_save(args):
+            if args == ['project', 'get']:
+                return {'revision': 4}
+            if args[:2] == ['operation', 'get']:
+                return {'data': {'method': 'project.save', 'state': 'completed',
+                                 'revision_before': 4, 'revision_after': 5}}
             project.write_text('{"native": "project"}')
-            return {'revision': 4}
+            return {'revision': 5, 'operation_id': 'save-operation'}
         with patch.object(self.client, '_invoke', side_effect=native_save), \
                 patch.object(self.client, 'audit_sources', return_value={}):
             saved = self.client.save(project)
@@ -130,6 +151,15 @@ class EditorTests(unittest.TestCase):
         project.write_text('{"native": "externally changed"}')
         with self.assertRaisesRegex(EditorError, 'untrusted_or_changed_project'):
             self.client.reopen(project, saved['sha256'])
+
+    def test_save_rejects_edit_between_audit_and_native_save(self):
+        with patch.object(self.client, 'audit_sources', return_value={}), \
+                patch.object(self.client, '_invoke', side_effect=[{'revision': 4}, {
+                    'revision': 6, 'operation_id': 'save-operation'}, {'data': {
+                    'method': 'project.save', 'state': 'completed', 'revision_before': 5}}]):
+            with self.assertRaisesRegex(EditorError, 'revision_changed_during_save'):
+                self.client.save(self.vault / 'conflict.osp')
+        self.assertTrue(self.client._pending().exists())
 
     def test_export_does_not_wait_or_repeat_and_binds_snapshot_context(self):
         with patch.object(self.client, '_invoke', side_effect=[{'revision': 9}, {
@@ -197,7 +227,7 @@ class EditorTests(unittest.TestCase):
         def apply(commands, revision):
             self.client.validate_edits(commands)
             batches.append(commands)
-            return {'revision': revision + 1, 'refs': {'title2': {'id': 'native-title'}}}
+            return {'revision': revision + 1, 'refs': {'title2': {'clip': {'id': 'native-title'}}}}
         def save(path):
             return {'path': str(path), 'sha256': '0' * 64}
         with patch.object(self.client, 'start', return_value={'session_id': 'fixture'}), \

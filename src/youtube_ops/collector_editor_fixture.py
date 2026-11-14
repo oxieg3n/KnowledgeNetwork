@@ -34,7 +34,7 @@ def tone(path, frequency, seconds=50):
         stream.writeframes(samples)
 
 
-def build(client, directory, width=360, height=640):
+def build(client, directory, width=360, height=640, reuse_session=False):
     directory = Path(directory).resolve()
     if not directory.is_relative_to(client.vault) or directory.exists():
         raise ValueError('Fixture requires a new directory inside the private vault')
@@ -50,7 +50,7 @@ def build(client, directory, width=360, height=640):
     accent = directory / 'original-accent.wav'
     tone(bed, 165)
     tone(accent, 220)
-    started = client.start()
+    started = {'session_id': client.session} if reuse_session else client.start()
     current = client.inspect()
     layers = sorted(layer['number'] for layer in current['data']['layers'])
     if len(layers) < 5:
@@ -106,7 +106,7 @@ def build(client, directory, width=360, height=640):
     ])
     applied = client.apply(commands, current['revision'])
     first = client.save(directory / 'technical-v1.osp')
-    edit = [{'method': 'text.set', 'params': {'id': applied['refs']['title2']['id'],
+    edit = [{'method': 'text.set', 'params': {'id': applied['refs']['title2']['clip']['id'],
              'text': 'Local review only\nRevision 2'}}]
     changed = client.apply(edit, client.inspect()['revision'])
     second = client.save(directory / 'technical-v2.osp')
@@ -126,10 +126,11 @@ def main():
     parser.add_argument('--executable-sha256', required=True)
     parser.add_argument('--vault', required=True)
     parser.add_argument('--directory', required=True)
+    parser.add_argument('--session', help='Reuse an already enrolled, reconciled native session')
     parser.add_argument('--width', type=int, choices=[360, 1080], default=360)
     args = parser.parse_args()
-    client = OpenShot(args.executable, args.executable_sha256, args.vault)
-    result = build(client, args.directory, args.width, args.width * 16 // 9)
+    client = OpenShot(args.executable, args.executable_sha256, args.vault, args.session)
+    result = build(client, args.directory, args.width, args.width * 16 // 9, bool(args.session))
     print(json.dumps(result, indent=2))
 
 
