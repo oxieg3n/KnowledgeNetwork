@@ -1,0 +1,88 @@
+# The Knowledge Network Collector: local Windows worker
+
+This first worker implements a bounded diagnostic connection test and read-only
+research staging snapshot. It has no
+publication operation, media subprocess or production scheduler. Existing Python
+queues and publication controls remain authoritative and unchanged. It is not
+proof of Assistant/Dot reachability or a finished editing service.
+
+Build with the .NET 10 LTS SDK on Windows:
+
+```powershell
+dotnet restore collector/windows/Collector/Collector.csproj --locked-mode
+dotnet build collector/windows/Collector/Collector.csproj -c Release --no-restore
+dotnet run --project collector/windows/Collector -c Release --no-build -- self-test
+dotnet publish collector/windows/Collector/Collector.csproj -c Release -r win-x64 --self-contained true -o output/collector
+```
+
+The executable is `output/collector/kn-collector.exe`. The console worker and CLI
+use the same binary; the service uses .NET Windows Service hosting. Installation
+must select a dedicated low-privilege service identity (for example LocalService),
+a private data directory outside the repository, and the owner's Windows SID.
+Running the service as LocalSystem is rejected. Do not install it with a default
+LocalSystem service command. Service installation, ACLs, launch and recovery must
+be tested by the VM coordinator before claiming installed readiness.
+
+For a local same-user diagnostic run, launch the first command in one terminal:
+
+```powershell
+./output/collector/kn-collector.exe serve --data "$env:LOCALAPPDATA/KnowledgeNetworkCollector"
+./output/collector/kn-collector.exe health unique-caller-nonce
+./output/collector/kn-collector.exe capabilities
+./output/collector/kn-collector.exe research-snapshot
+./output/collector/kn-collector.exe submit collector/windows/diagnostic-echo.json
+./output/collector/kn-collector.exe get ACTUAL_JOB_ID_FROM_SUBMIT
+./output/collector/kn-collector.exe cancel ACTUAL_JOB_ID_FROM_SUBMIT
+```
+
+`--client-sid S-1-...` on `serve` grants exactly that additional Windows identity
+pipe read/write access. It does not grant database access or command execution.
+Never grant Everyone/Authenticated Users. The private directory ACL permits only
+the worker identity, SYSTEM and local administrators. The OS pipe mode rejects
+remote clients, the protected pipe ACL admits only the worker and configured
+owner, and first-instance creation fails if another server already owns the pipe.
+There is one fixed pipe, `KnowledgeNetworkCollector-v1`; no TCP listener.
+
+CLI replies are JSON: `ok`, and either `result` or a stable `error` code. The CLI
+returns exit status 1 for a rejected request, timeout or missing worker. `health`
+requires a fresh caller nonce and returns it with the persistent worker ID.
+
+`diagnostic.echo` jobs require schema version 1, a bounded idempotency key and
+`inputs.nonce`. Optional `created_at` and `expires_at` must be explicit UTC ISO
+timestamps; expiry defaults to one hour and cannot exceed seven days. Optional
+priority is an integer from 0 through 9. Unknown/duplicate fields are rejected.
+Repeating the exact canonical request returns its existing job; changing a
+payload under the same key fails. An accepted job is committed before a reply.
+
+Configure research readback only with server-side `--research-snapshot PATH`
+and `--research-sha256 LOWERCASE_SHA256`. The immutable staging file is limited
+to 8 MiB, checked against its pinned digest on every read, and is never written.
+`research-snapshot` reads it immediately; a `research.snapshot` job with empty
+`inputs` performs the same read durably. Results retain the four original queue
+IDs, counts, first eight sorted item IDs (explicitly marked when truncated),
+source revision, exact digest and observed source pause. Missing config or a
+changed snapshot blocks the job. This is staging evidence, not a live migration,
+research scheduler or production cutover.
+
+Jobs transition from queued to running to succeeded, or queued to cancelled or
+expired. A failed snapshot is blocked with a stable error. Terminal cancellation
+is a harmless status read. Results retain exact
+SHA-256 digests, review-only status and publication ineligibility. SQLite uses
+WAL plus FULL synchronous commits, a single writer, transactionally appended
+events, protected journal triggers and an exclusive worker lock. On restart,
+only the implemented replay-safe read-only jobs are recovered from running to
+queued. A future side-effecting job needs its own reconciliation policy.
+
+Capacity limits are a 64 KiB framed pipe request, 5-second client handling,
+256 MiB free-disk reserve for submission, 100,000 jobs and 65,536 SQLite pages.
+No automatic pruning or public export exists. Logs must not include job text or
+private paths. The self-test leaves its uniquely named local evidence database
+for inspection; never commit it.
+
+`shortcut: diagnostic.echo and research.snapshot are the only dispatched jobs; add editor/voice work only
+through validated project/asset IDs and a tested user-session boundary.`
+
+The self-test checks deduplication/conflicts, denied shell/publication fields,
+duplicate fields, result hashes, cancellation, restart persistence, journal
+immutability, snapshot hash mismatch and recovery. It does not establish native pipe ACL enforcement,
+Windows service restart, reboot, sign-out behavior or scheduled Assistant access.
