@@ -114,3 +114,20 @@ Still BLOCKED/NOT TESTED separately:
 
 Inventory PASS does not make remote narration operational or satisfy the full
 45-55s branded/narrated Assistant acceptance test. Public publishing stays PAUSED.
+
+## Remote review and unrelated blockers
+
+GitHub authentication/access verified; existing implementation branch pushed
+without force. Draft PR [#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20)
+targets main; do not merge. Docs-only snapshot branch remains unchanged.
+Pre-push history audit found no private media/models/databases/executables or
+unreviewed credential matches. Two URL-validation fixtures use dummy userinfo.
+
+Read-only IPC review found no proven cause for Assistant's actual error. The
+installed service is Running/LocalService and canonical apphost/DLL hashes match
+the recorded release. Worktree/DLL invocation or token access to SCM/process
+identity are possibilities, not diagnoses. Assistant must collect the private
+same-context evidence commands in ASSISTANT-OPERATIONS.md before changing trust.
+Asset recovery reviewed203 metadata files and both source ZIP/manifests without
+extracting or modifying backups; no exact badge/outro bytes or new location.
+Those blockers were investigated independently and remain explicit.

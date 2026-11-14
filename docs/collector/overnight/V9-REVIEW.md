@@ -23,4 +23,6 @@ autostart scheduler, network exposure or speculative abstraction was added.
 Not checked live: actual host service/WAV/GPU/license/parity, real Dot connection,
 reboot, high-DPI/manual editor use and listening. Synthetic/local contract evidence
 is labeled explicitly. Installer is unsigned; Python/OpenShot are prerequisites.
-Review PR is not created because authenticated push was unavailable.
+The earlier authentication blocker is resolved: the original feature branch
+is pushed and draft PR https://github.com/oxieg3n/KnowledgeNetwork/pull/20 is open.
+No force push, merge, workflow permission change or media publication occurred.

@@ -46,12 +46,14 @@
     "source": "https://github.com/OpenBMB/VoxCPM",
     "model_source": "https://huggingface.co/openbmb/VoxCPM2",
     "upstream_license": "Apache-2.0",
-    "installed_revision": "BLOCKED: selected cache checkpoint not verified; owner inspector failed at unknown stage",
+    "installed_revision": "7936080b41163874f38610f46f438e2c0757f9fd (owner-run read-only inventory PASS)",
     "narrator": "oxiegen-narrator",
     "integration": "Canonical owner script wrapper first; direct persistent Python model requires parity proof",
     "host_assets": "Private and immutable; not bundled",
     "installed_package_version": "2.0.3 (read host metadata)",
-    "host_python": "3.11 (read pyvenv.cfg)",
-    "reference_rights": "BLOCKED: exact reference consent/license evidence not verified"
+    "host_python": "3.11.16 (owner-run inventory)",
+    "reference_rights": "BLOCKED: exact reference consent/license evidence not verified",
+    "model_card_sha256": "feb850b390aa5051b81cbdc73b048361273552f003dd386b4da9c39ec9b6f055",
+    "package_license_sha256": "4f10acc209addacfad28293315c74c4cd648f771ee1263a748f1781d1e0265e4"
   }
 }

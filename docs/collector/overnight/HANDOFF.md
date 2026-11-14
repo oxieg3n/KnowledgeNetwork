@@ -5,6 +5,20 @@ other media was publicly uploaded. Production workflows/permissions and the
 separate poweredby repository were not changed. Final operations.json SHA-256
 remains `d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
 
+## Remote review status
+
+GitHub CLI authentication verified as oxieg3n; repository access verified.
+Existing implementation branch pushed without force or history changes:
+[feature/collector-v7-overnight](https://github.com/oxieg3n/KnowledgeNetwork/tree/feature/collector-v7-overnight).
+Draft review PR: [#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20),
+target main, not merged. Docs-only snapshot branch remains at29f493f untouched.
+Pre-push audit covered247 unpublished historical blobs/2,662,489 bytes, largest
+36,775 bytes: no credential-pattern or private/binary candidates. Two credential
+URL matches were reviewed dummy negative tests on fixture.invalid/127.0.0.1.
+Audit receipt stays private at `C:/admin/collector-v9/pre-push-audit-final.json`.
+No workflow files/permissions changed. This is a bounded audit, not a guarantee
+against every possible secret. No media/model/executable/database was pushed.
+
 ## Subsequent inspector repair
 
 Owner-run host inventory now PASS at revision
@@ -25,8 +39,8 @@ No reset, reclone, new repository, force push or merge into main occurred.
 
 Installed worker source checkpoint: `6f34384f7c77437c74c7a178ce6be0642a75bbbb`.
 Evidence/docs checkpoint: `675fa9736cfc27d67d1fd24e890c26afe36e93d9`.
-The final receipt commit only adds backup references; consult `git log` for its ID. A noninteractive push lacked credentials earlier; no review PR
-was created. Review preparation is local, not a claimed GitHub URL.
+The final receipt commit only adds backup references; consult `git log` for its ID. An earlier noninteractive push lacked credentials. This was resolved by the
+owner-configured GitHub CLI; current draft PR is linked above. Review preparation is local, not a claimed GitHub URL.
 
 The service now dispatches narration and four bounded native editor operations
 through an interactive-user companion. Actual inspect/apply/save/reopen and
@@ -244,6 +258,6 @@ missing live API/assets must return BLOCKED, never synthetic acceptance.
 
 Real Assistant/Dot connection and scheduled execution remain NOT TESTED. Host
 execution/setup/model rights, approved bookend bytes, manual GUI/audio review,
-installer signing, reboot recovery and an authenticated review PR remain scoped
-follow-up. Existing production rights/review/exact-render/duplicate-upload gates
+installer signing and reboot recovery remain scoped follow-up. The review PR
+is now created as a draft; GitHub authentication is no longer a blocker. Existing production rights/review/exact-render/duplicate-upload gates
 remain intact; no public upload, workflow permission change or publication.

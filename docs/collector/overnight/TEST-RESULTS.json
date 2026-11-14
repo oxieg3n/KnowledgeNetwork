@@ -54,12 +54,13 @@
     "script_reference_cli_identity": "PASS read-only matched existing host bytes",
     "installed_package": "2.0.3",
     "python": "3.11",
-    "selected_model_revision": "BLOCKED",
+    "selected_model_revision": "PASS inventory:7936080b41163874f38610f46f438e2c0757f9fd",
     "reference_component_rights": "BLOCKED",
     "direct_python_parity": "NOT TESTED",
     "actual_host_api": "BLOCKED not deployed",
     "forge_to_host_new_wav": "BLOCKED not performed",
-    "local_contract_tests": "PASS MOCK inference only"
+    "local_contract_tests": "PASS MOCK inference only",
+    "model_license_evidence": "Exact cached model card matches verified revision upstream; declares Apache-2.0/commercial use. Reference consent and remaining obligations still incomplete."
   },
   "installer": {
     "round5_actual_upgrade": "PASS",
@@ -68,5 +69,18 @@
   },
   "publication_paused": true,
   "public_demo_uploaded": false,
-  "evidence_root": "C:/admin/collector-v9"
+  "evidence_root": "C:/admin/collector-v9",
+  "inspector_repair": {
+    "windows_tests_passed": 24,
+    "host_contract_tests_passed": 23,
+    "host_inventory": "PASS owner-run",
+    "revision": "7936080b41163874f38610f46f438e2c0757f9fd",
+    "snapshot_files": 9,
+    "snapshot_bytes": 4960731830,
+    "package_files": 39,
+    "inventory_sha256": "8db573cd5c002dd3e934f6b03dfbb6a78ad4245d263070a320a6db1914a08898",
+    "collector_rebuilt": false,
+    "latest_stricter_unc_guard": "Windows tests PASS; actual host PASS preceded guard only"
+  },
+  "review_pr": "https://github.com/oxieg3n/KnowledgeNetwork/pull/20"
 }
