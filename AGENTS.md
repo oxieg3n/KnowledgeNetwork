@@ -16,7 +16,8 @@
 First inspect the live branch, workspace, existing `AGENTS.md` files and installed skills. Then read, in this order:
 
 1. `docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md` and `docs/collector/v9/START_HERE_DIRECT_VOXCPM2_CODEX.txt` (NEW authoritative Oxiegen-Narrator, host Python/CLI and private narration API)
-2. `docs/collector/v8/RESUME_FROM_FORGE_CHECKPOINT.md` (checkpoint-preservation rules only; V8 VoiceStudio voice instructions superseded)\n3. `docs/collector/v7/README.md`
+2. `docs/collector/v8/RESUME_FROM_FORGE_CHECKPOINT.md` (checkpoint-preservation rules only; V8 VoiceStudio voice instructions superseded)
+3. `docs/collector/v7/README.md`
 4. `docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md`
 5. `docs/collector/v7/START_HERE_CODEX_OVERNIGHT.txt`
 6. `docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md`
