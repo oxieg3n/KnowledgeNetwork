@@ -2015,12 +2015,30 @@
           "video_id": "ilo_cQj0iN0",
           "requested_visibility": "public",
           "event_digest": "c08917ff7c59965190de9f14eb3705920522a683af3ac07761fdd58441f87528"
+        },
+        {
+          "attempt_ny_date": "2026-11-14",
+          "batch_id": "defcon-ten-2026-11-13",
+          "channel_id": "UCAaukaaw1tGA1-pP_JdkU7Q",
+          "event_id": "defcon-ten-10-20261114-public-playlist",
+          "evidence": "Studio Video published modal confirms November 14. Existing DEF CON Decoded playlist shows all ten Public with exact tenth title and ID. Public Shorts page has correct channel, title and AI label. Cloud player remains time 0 readyState 0 after one reload; playback not claimed verified.",
+          "item_id": "defcon-exact-audio-10",
+          "method": "owner-authorized manual YouTube Studio",
+          "package_sha256": "35da011a24070cb3edf9137df739e9097e23cfb9f502b5f748f959e5780ef63c",
+          "previous_event_digest": "c08917ff7c59965190de9f14eb3705920522a683af3ac07761fdd58441f87528",
+          "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
+          "render_sha256": "4aab0cd9a2c18207752996d4cc6a2a15410c818fbc45453837aaf45c029ae705",
+          "timestamp_utc": "2026-11-14T17:08:01.296Z",
+          "type": "playlist_membership_verified",
+          "video_id": "ilo_cQj0iN0",
+          "requested_visibility": "public",
+          "event_digest": "d35aa41920715727fdf019a1c93fe004a9a76d8b032adb0b7c330e40f26df93a"
         }
       ],
       "insert_quota_pt_date": "2026-11-13",
       "method": "owner-authorized manual YouTube Studio",
       "platform_limit_observation": "Daily upload limit reached. Upload more videos daily after a one-time verification or wait24hours.",
-      "privacy_status": "private",
+      "privacy_status": "public",
       "production_key": "94ccb72682069491e9bba2f9c5de4c642d21b32897a9db9d5e08a1183bea20b2",
       "publication_format": "short",
       "reconciliation_required": false,
@@ -2032,16 +2050,21 @@
       "shared_daily_ceiling": 9,
       "shared_daily_count_before": 0,
       "source_identity": "defcon31:q118B_QdP2k:857.96-863.64",
-      "status": "visibility_intent",
+      "status": "published_observed_verification_pending",
       "title": "Possible does not mean permitted",
       "upload_outcome": "No video ID observed; Creating link... shown; not confirmed uploaded",
       "video_id": "ilo_cQj0iN0",
-      "watch_url": "https://youtube.com/shorts/ilo_cQj0iN0",
+      "watch_url": "https://www.youtube.com/shorts/ilo_cQj0iN0",
       "response_received_at": "2026-11-14T17:03:43.373Z",
       "metadata_browser_verified": true,
       "processing_observation": "Processed 0:46",
       "copyright_check_observation": "No issues found",
-      "playlist_id": "PLBqhZZfg3quY"
+      "playlist_id": "PLBqhZZfg3quY",
+      "public_visibility_verified": true,
+      "public_page_identity_verified": true,
+      "playlist_membership_verified": true,
+      "published_observed_at": "2026-11-14T17:08:01.296Z",
+      "playback_observation": "Public page correct title/channel/AI label; cloud player time 0 readyState 0 after one reload. Playback pending, not claimed verified."
     },
     "aa656c48083716adcb3fa15d0f93862f950be9fe1b08c95be7c4fda7e2f263bd": {
       "api_insert_performed": false,
@@ -7423,7 +7446,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 350,
+  "revision": 351,
   "rights_ledger": {},
   "runs": [
     {
