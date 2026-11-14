@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text.Json;
+using System.Reflection;
 using Microsoft.Data.Sqlite;
 
 namespace Collector;
@@ -76,6 +77,7 @@ internal sealed class JobStore : IDisposable
     private object Health(JsonElement request) => new
     {
         schema_version = 1, product = "The Knowledge Network Collector", version = "0.1.0", worker_id = WorkerId,
+        build = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unrecorded",
         status = "healthy", transport = "windows-local-named-pipe", nonce = Protocol.Text(request, "nonce", 256),
         execution_context = Microsoft.Extensions.Hosting.WindowsServices.WindowsServiceHelpers.IsWindowsService() ? "windows_service" : "interactive_console",
         publication_paused = true, production_scheduler_enabled = false

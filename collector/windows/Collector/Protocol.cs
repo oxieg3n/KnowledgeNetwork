@@ -32,6 +32,7 @@ internal static class Protocol
         JsonValueKind.Object => "{" + string.Join(",", value.EnumerateObject().OrderBy(p => p.Name, StringComparer.Ordinal)
             .Select(p => JsonSerializer.Serialize(p.Name) + ":" + Canonical(p.Value))) + "}",
         JsonValueKind.Array => "[" + string.Join(",", value.EnumerateArray().Select(Canonical)) + "]",
+        JsonValueKind.String => JsonSerializer.Serialize(value.GetString()),
         _ => value.GetRawText()
     };
     public static async Task<string> ReadLine(Stream stream, CancellationToken token)

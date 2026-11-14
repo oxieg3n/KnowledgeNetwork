@@ -59,8 +59,7 @@ internal static class Program
                 _ => throw new RequestError("invalid_command_or_arguments")
             };
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-            using var pipe = new NamedPipeClientStream(".", Protocol.PipeName, PipeDirection.InOut, PipeOptions.Asynchronous, TokenImpersonationLevel.Identification);
-            await pipe.ConnectAsync(timeout.Token);
+            using var pipe = await LocalPipe.Connect(timeout.Token);
             await Protocol.WriteLine(pipe, request, timeout.Token);
             var response = await Protocol.ReadLine(pipe, timeout.Token);
             Console.WriteLine(response);

@@ -25,6 +25,7 @@ internal static class SelfTest
             worker = store.WorkerId;
             id = Value(store.Submit(job)).GetProperty("job_id").GetString()!;
             Check(Value(store.Submit(job)).GetProperty("job_id").GetString() == id);
+            Check(Value(store.Submit(Json("""{"inputs":{"nonce":"\u0068ello"},"idempotency_key":"test-1","job_type":"diagnostic.echo","schema_version":1}"""))).GetProperty("job_id").GetString() == id);
             Reject(() => store.Submit(Json(job.GetRawText().Replace("hello", "different"))), "idempotency_conflict");
             Reject(() => store.Submit(Json(job.GetRawText().Replace("diagnostic.echo", "shell"))), "unsupported_job_type");
             Reject(() => store.Submit(Json(job.GetRawText().Replace("\"nonce\":", "\"shell\":\"whoami\",\"nonce\":"))), "unexpected_or_duplicate_field");

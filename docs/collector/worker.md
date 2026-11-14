@@ -42,6 +42,13 @@ the worker identity, SYSTEM and local administrators. The OS pipe mode rejects
 remote clients, the protected pipe ACL admits only the worker and configured
 owner, and first-instance creation fails if another server already owns the pipe.
 There is one fixed pipe, `KnowledgeNetworkCollector-v1`; no TCP listener.
+Before sending any job bytes, the CLI verifies the connected server process ID,
+its executable path against the CLI's own image, and either its registered
+running Collector service PID or the current user's process token SID. A fake
+server from another executable/identity is rejected. Use the installed CLI for
+the installed service; a CLI from a different build directory fails closed.
+The native client requests read/write without pipe-instance creation rights and
+limits the server to identification-level client impersonation.
 
 CLI replies are JSON: `ok`, and either `result` or a stable `error` code. The CLI
 returns exit status 1 for a rejected request, timeout or missing worker. `health`

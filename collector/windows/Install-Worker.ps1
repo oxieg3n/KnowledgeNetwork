@@ -30,7 +30,15 @@ if ($ResearchSnapshot -or $ResearchSha256) {
     if ((Get-FileHash -LiteralPath $ResearchSnapshot -Algorithm SHA256).Hash.ToLowerInvariant() -ne $ResearchSha256) { throw 'Snapshot integrity mismatch.' }
 }
 $existing = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
-if ($existing) { Stop-Service -Name $serviceName; (Get-Service $serviceName).WaitForStatus('Stopped', [TimeSpan]::FromSeconds(20)) }
+if ($existing) {
+    $definition = Get-CimInstance -ClassName Win32_Service -Filter "Name='KnowledgeNetworkCollector'"
+    $expectedPrefix = '"' + (Join-Path $destination 'kn-collector.exe') + '" serve '
+    if (-not $definition -or -not $definition.PathName.StartsWith($expectedPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw 'Existing service does not point to the expected Collector installation; refusing takeover.'
+    }
+    Stop-Service -Name $serviceName
+    (Get-Service $serviceName).WaitForStatus('Stopped', [TimeSpan]::FromSeconds(20))
+}
 New-Item -ItemType Directory -Path $destination,$dataDirectory -Force | Out-Null
 $acl = New-Object Security.AccessControl.DirectorySecurity
 $acl.SetAccessRuleProtection($true,$false)
