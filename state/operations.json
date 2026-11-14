@@ -248,6 +248,14 @@
       "url": "https://www.youtube.com/watch?v=DLHEr67OWT0",
       "video_id": "DLHEr67OWT0"
     },
+    "video:ErOVIC-MGVA": {
+      "created_at": "2026-11-14T15:02:28.697067+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "6 Underrated Ways to Use ChatGPT",
+      "url": "https://www.youtube.com/watch?v=ErOVIC-MGVA",
+      "video_id": "ErOVIC-MGVA"
+    },
     "video:FNTz0CdqL6g": {
       "created_at": "2026-11-12T22:14:07.369806+00:00",
       "kind": "new_video",
@@ -352,6 +360,14 @@
       "url": "https://www.youtube.com/watch?v=LduxuM387hc",
       "video_id": "LduxuM387hc"
     },
+    "video:MJ5f8oJsDaY": {
+      "created_at": "2026-11-14T15:02:29.298800+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "In our element",
+      "url": "https://www.youtube.com/watch?v=MJ5f8oJsDaY",
+      "video_id": "MJ5f8oJsDaY"
+    },
     "video:MXPN5ICAUvk": {
       "created_at": "2026-11-12T23:07:37.009594+00:00",
       "kind": "new_video",
@@ -431,6 +447,14 @@
       "title": "DERELIKT XBOX Launch Trailer",
       "url": "https://www.youtube.com/watch?v=PX1Q6Ld5beY",
       "video_id": "PX1Q6Ld5beY"
+    },
+    "video:PkAmyub12K8": {
+      "created_at": "2026-11-14T15:02:28.697080+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Mozilla uses GPT-6 Cyber to find and fix Firefox vulnerabilities",
+      "url": "https://www.youtube.com/watch?v=PkAmyub12K8",
+      "video_id": "PkAmyub12K8"
     },
     "video:QRA_JmNiLnk": {
       "created_at": "2026-11-12T23:07:37.009522+00:00",
@@ -928,6 +952,14 @@
       "url": "https://www.youtube.com/watch?v=pbKZ3IzvB4Q",
       "video_id": "pbKZ3IzvB4Q"
     },
+    "video:pfbfZKxUEDQ": {
+      "created_at": "2026-11-14T15:02:28.697088+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Mozilla strengthens Firefox security with GPT-6 Cyber",
+      "url": "https://www.youtube.com/watch?v=pfbfZKxUEDQ",
+      "video_id": "pfbfZKxUEDQ"
+    },
     "video:q1f-O-IS_VI": {
       "created_at": "2026-11-12T21:57:16.149719+00:00",
       "kind": "new_video",
@@ -1326,8 +1358,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-13T12:25:05.415568+00:00",
-      "last_monitored_at": "2026-11-13T12:25:05.415400+00:00",
+      "last_attempt_at": "2026-11-14T15:02:29.298933+00:00",
+      "last_monitored_at": "2026-11-14T15:02:29.298804+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -1413,8 +1445,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-13T12:25:05.084159+00:00",
-      "last_monitored_at": "2026-11-13T12:25:05.084009+00:00",
+      "last_attempt_at": "2026-11-14T15:02:28.697330+00:00",
+      "last_monitored_at": "2026-11-14T15:02:28.697173+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -4410,6 +4442,28 @@
         "url": "https://www.youtube.com/watch?v=DLHEr67OWT0",
         "video_id": "DLHEr67OWT0"
       },
+      "ErOVIC-MGVA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-14T15:02:28.697040+00:00",
+        "id": "ErOVIC-MGVA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T18:15:41Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "6 Underrated Ways to Use ChatGPT",
+        "url": "https://www.youtube.com/watch?v=ErOVIC-MGVA",
+        "video_id": "ErOVIC-MGVA"
+      },
       "FNTz0CdqL6g": {
         "api_verification": "verified",
         "attempts": 0,
@@ -4678,6 +4732,26 @@
         "url": "https://www.youtube.com/watch?v=LduxuM387hc",
         "video_id": "LduxuM387hc"
       },
+      "MJ5f8oJsDaY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "channel_name": "Google",
+        "discovered_at": "2026-11-14T15:02:29.298778+00:00",
+        "id": "MJ5f8oJsDaY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T19:50:09Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "In our element",
+        "url": "https://www.youtube.com/watch?v=MJ5f8oJsDaY",
+        "video_id": "MJ5f8oJsDaY"
+      },
       "MXPN5ICAUvk": {
         "api_verification": "verified",
         "attempts": 0,
@@ -4883,6 +4957,28 @@
         "title": "DERELIKT XBOX Launch Trailer",
         "url": "https://www.youtube.com/watch?v=PX1Q6Ld5beY",
         "video_id": "PX1Q6Ld5beY"
+      },
+      "PkAmyub12K8": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-14T15:02:28.697076+00:00",
+        "id": "PkAmyub12K8",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T16:56:45Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Mozilla uses GPT-6 Cyber to find and fix Firefox vulnerabilities",
+        "url": "https://www.youtube.com/watch?v=PkAmyub12K8",
+        "video_id": "PkAmyub12K8"
       },
       "QRA_JmNiLnk": {
         "api_verification": "verified",
@@ -5234,7 +5330,7 @@
         "published_at": "2026-11-12T22:37:14Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
-        "title": "Cyber at the Frontier",
+        "title": "Cyber at the Frontier: Introducing Daybreak Red Team & Daybreak Defense Factory",
         "url": "https://www.youtube.com/watch?v=YmxpxJZvm4M",
         "video_id": "YmxpxJZvm4M"
       },
@@ -6176,6 +6272,28 @@
         "url": "https://www.youtube.com/watch?v=pbKZ3IzvB4Q",
         "video_id": "pbKZ3IzvB4Q"
       },
+      "pfbfZKxUEDQ": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-14T15:02:28.697085+00:00",
+        "id": "pfbfZKxUEDQ",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T16:38:23Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Mozilla strengthens Firefox security with GPT-6 Cyber",
+        "url": "https://www.youtube.com/watch?v=pfbfZKxUEDQ",
+        "video_id": "pfbfZKxUEDQ"
+      },
       "q1f-O-IS_VI": {
         "api_verification": "verified",
         "attempts": 0,
@@ -6754,6 +6872,11 @@
       "general": 56,
       "search": 0,
       "upload": 0
+    },
+    "2026-11-14": {
+      "general": 6,
+      "search": 0,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -7207,7 +7330,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 338,
+  "revision": 347,
   "rights_ledger": {},
   "runs": [
     {
@@ -8097,6 +8220,21 @@
         "new_leads": 2
       },
       "run_id": "43571875856-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-14T15:02:27.952536+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 4
+      },
+      "run_id": "43607985661-1",
       "status": "BLOCKED"
     }
   ],
