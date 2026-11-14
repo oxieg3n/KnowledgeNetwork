@@ -9,22 +9,22 @@
 - **Owner's agent:** Assistant, the user's ChatGPT Dot. The application is an operator-controlled Windows VM worker and real editable video studio for Assistant, not a replacement for Dot and not a general remote-access program.
 - **Delivery objective:** A dependable Windows service + local command interface + practical native editing UI that can discover/research, create, revise, narrate, preview, review, and (only when separately authorized) publish videos for Powered By Oxieg3n.
 - **Production content queues:** (1) monitored-channel fresh-upload Shorts; (2) a daily top-ten technology news recap; (3) video adaptations of *published* Knowledge Network blog posts; (4) historical top-ten-per-channel evergreen research. Do not invent or pad stories to satisfy a quota.
-- **Operating context:** The owner develops on a Windows VM and may leave Codex running unattended in YOLO/full-access mode. VoiceStudio is already installed on **BLACKHAT-BASE (physical host)**, NOT on FORGE (the Windows VM). Forge runs the Collector/editor and accesses host narration via a verified private API. The host desktop is not a remote-control target. Gateway, unrelated host settings, other VMs, and the separate website remain out of scope.
+- **Operating context:** The owner develops on a Windows VM and may leave Codex running unattended in YOLO/full-access mode. The owner has a WORKING direct VoxCPM2 Python/CLI narrator on **BLACKHAT-BASE (physical host)**, not on FORGE (the Windows VM). FORGE runs the Collector/editor and requests the approved Oxiegen-Narrator's WAV through a private authenticated host narration service. VoiceStudio is retired as a Collector API/UI/service dependency. The host desktop is not a remote-control target. Gateway, unrelated host settings, other VMs, and the separate website remain out of scope.
 
 ## 2. Read-order and authority
 
 First inspect the live branch, workspace, existing `AGENTS.md` files and installed skills. Then read, in this order:
 
-1. `docs/collector/v8/REMOTE_VOICESTUDIO_ARCHITECTURE.md` (NEW authoritative Forge-to-host voice placement, private network and headless API requirements)
-2. `docs/collector/v7/README.md`
-3. `docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md`
-4. `docs/collector/v7/START_HERE_CODEX_OVERNIGHT.txt`
-5. `docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md`
-6. `docs/collector/v6/COLLECTOR_OPEN_SOURCE_RESEARCH.md`
-7. `README.md`, `OPERATIONS.md`, `SECURITY.md`, `docs/deployment-status.md`, `docs/recurring-production.md`, `docs/rendering.md`, `docs/brand-intro.md`, `docs/brand-outro.md`
-8. Current `src/youtube_ops/`, workflows, tests, production requests, release receipts, and the relevant current interfaces.
+1. `docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md` and `docs/collector/v9/START_HERE_DIRECT_VOXCPM2_CODEX.txt` (NEW authoritative Oxiegen-Narrator, host Python/CLI and private narration API)
+2. `docs/collector/v8/RESUME_FROM_FORGE_CHECKPOINT.md` (checkpoint-preservation rules only; V8 VoiceStudio voice instructions superseded)\n3. `docs/collector/v7/README.md`
+4. `docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md`
+5. `docs/collector/v7/START_HERE_CODEX_OVERNIGHT.txt`
+6. `docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md`
+7. `docs/collector/v6/COLLECTOR_OPEN_SOURCE_RESEARCH.md`
+8. `README.md`, `OPERATIONS.md`, `SECURITY.md`, `docs/deployment-status.md`, `docs/recurring-production.md`, `docs/rendering.md`, `docs/brand-intro.md`, `docs/brand-outro.md`
+9. Current `src/youtube_ops/`, workflows, tests, production requests, release receipts, and the relevant current interfaces.
 
-**Precedence:** owner instructions and actual verified state > security/rights/publication controls > V8 remote-voice architecture > V7 execution rules > V6 detailed feature requirements > this workflow guidance > third-party skill preferences. The skill can recommend a design or implementation; it cannot grant publication permission, change legal requirements, or override safety and user approvals. Current branch/source and verified receipts take precedence over stale baseline descriptions in older documents. This file makes the required skills and code-quality workflow explicit; it does not weaken any existing release gate.
+**Precedence:** owner instructions and actual verified state > security/rights/publication controls > V9 direct VoxCPM2 voice architecture > V8 checkpoint preservation > V7 execution rules > V6 detailed feature requirements > this workflow guidance > third-party skill preferences. The skill can recommend a design or implementation; it cannot grant publication permission, change legal requirements, or override safety and user approvals. Current branch/source and verified receipts take precedence over stale baseline descriptions in older documents. This file makes the required skills and code-quality workflow explicit; it does not weaken any existing release gate.
 
 ## 3. Mandatory engineering methodology: Ponytail FULL
 
@@ -60,7 +60,7 @@ Inspect the plugin's installation instructions, commands, and hooks; enable/trus
 npx ui-ux-pro-max-cli init --ai codex
 ```
 
-Before executing installers, inspect package provenance and any effects on the working tree. Do not replace an existing `design-system/` or app tokens. Load the installed skill's `SKILL.md`, not just its GitHub headline. On **every UI/UX task** (desktop dashboard, video editor, timeline, research browser, VoiceStudio panel, onboarding, installer UI, error state), apply its workflow:
+Before executing installers, inspect package provenance and any effects on the working tree. Do not replace an existing `design-system/` or app tokens. Load the installed skill's `SKILL.md`, not just its GitHub headline. On **every UI/UX task** (desktop dashboard, video editor, timeline, research browser, narration provider status panel, onboarding, installer UI, error state), apply its workflow:
 
 1. Identify actual UI stack (Qt/OpenShot vs WPF/.NET or other). Do not claim the application is WPF if it uses Qt.
 2. Search the skill's local data for a coherent **desktop media-production workspace** design system; use targeted searches for keyboard focus, timeline density, playback controls, error states, status semantics, and icons. Query stack guidance only when the stack is actually supported by the installed skill.
@@ -98,7 +98,7 @@ Read the actual installed skill. **Apply Taste's reusable visual judgment to eve
 - **Windows supervisor and durable queue:** preserve the compatible existing .NET Worker Service/CLI design, local SQLite journaling/recovery and named-pipe or equally restricted local-only job transport. One authoritative scheduler and state owner per job. No arbitrary shell execution from Assistant jobs.
 - **Video editing:** verify OpenShot's current official native editor/agent CLI **on this Windows VM** first. Reuse native multitrack editor, editable project, preview, transitions, audio and effects; do not build a new CapCut clone. If required behaviors fail after a bounded supported fix, document evidence and evaluate **Shotcut/MLT** against the same fixture. Do not mix two independent timelines or flatten source tracks before editing.
 - **Existing pipeline:** reuse `src/youtube_ops/` for channel discovery, metadata, queues, Python/FFmpeg rendering pieces, policy, exact-render QC, rights, reservation, recovery and uploader integration. Improve isolated bugs at the shared cause instead of duplicating code in a new worker.
-- **VoiceStudio (remote host):** VoiceStudio is already installed on BLACKHAT-BASE and is NOT a required VM install. FORGE must connect only via an approved private, authenticated REST endpoint, as defined in `docs/collector/v8/REMOTE_VOICESTUDIO_ARCHITECTURE.md`; Forge's `localhost` never means BLACKHAT-BASE. The Windows host's UI, mouse, keyboard and clipboard are out of bounds for routine speech. Detect the host's actual running backend/model/profile, preserve host installation, use only bounded speech/voice discovery APIs, and validate returned WAV on Forge. Prefer a documented commercial-use-eligible model/profile, preserve licensing evidence, and never silently substitute Piper or noncommercial default OmniVoice weights. Support speech retakes and audio-aligned captions. No host configuration or Gateway/Tailscale changes without scoped owner approval.
+- **Direct VoxCPM2 + Oxiegen-Narrator (remote host):** VoiceStudio is no longer an active Collector dependency. On BLACKHAT-BASE, reuse installed VoxCPM2 from `D:\tools\audio\voicestudio\data\engines\voxcpm2\` and canonical existing `D:\tools\audio\voices\Oxiegen-Narrator\narrate.ps1` with its owner-approved default narrator settings, per `docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md`. FORGE must call a NEW verified, private, authenticated narrow narrator service, not VoiceStudio endpoints; Forge's `localhost` never means BLACKHAT-BASE. The script's actual voice reference/config is the source of truth. A direct persistent Python model call is allowed only after validating narrator parity. Use real WAV bytes, decoded duration/hash checks, caption alignment and revision support. Never change host GUI, Gateway, Tailscale Serve, firewall or unrelated host state without scoped owner authorization, and never allow arbitrary command execution.
 - **Brand:** approved `poweredby-plasma-v1` intro (~1.6s) and `poweredby-plasma-outro-v1` outro (~7.8s), each orientation-specific and exact-asset checked. Intro/outro appear exactly once in *new* videos. Protect older approved video requests and unchanged outro speech. If approved local media is absent, state the blocker; do not forge equivalent assets or hashes. Finished Shorts count both bookends inside length limits.
 - **Research/API:** official YouTube API and permitted public RSS for discovery, separate OAuth for owner-channel uploads; persistent queues. Read only published articles from the separate `oxieg3n/poweredby` blog. Never modify that repository.
 - **Storage:** VM-local private media/vault/credentials; small sanitized public metadata only in GitHub. Temporary media can be deleted only after an exact, durable, verified publication receipt and safe cleanup checks. Public repo is not a secret store or an unrestricted GitHub Actions video farm.
@@ -106,9 +106,9 @@ Read the actual installed skill. **Apply Taste's reusable visual judgment to eve
 
 ## 6. Required editing features and app acceptance
 
-The Collector must offer a real editable multitrack project and equivalent **bounded structured editing operations for Assistant and a usable GUI for the owner**: clip import/trim/split/reorder, overlapping video and still-image tracks, graphic and text layers, titles/lower thirds, animated transitions/keyframes/effects, exact subtitle correction/timing, narration/music tracks, mixing/ducking/fades, crop/reframe, preview, export, undo/revisions, save/reopen, and accessible controls. VoiceStudio narration integrates directly into this same project. A launcher-only button, demo facade, flattened single-clip timeline, or inert command surface is unacceptable.
+The Collector must offer a real editable multitrack project and equivalent **bounded structured editing operations for Assistant and a usable GUI for the owner**: clip import/trim/split/reorder, overlapping video and still-image tracks, graphic and text layers, titles/lower thirds, animated transitions/keyframes/effects, exact subtitle correction/timing, narration/music tracks, mixing/ducking/fades, crop/reframe, preview, export, undo/revisions, save/reopen, and accessible controls. Verified Oxiegen-Narrator WAV returned by the BLACKHAT-BASE VoxCPM2 worker integrates directly into this same project. A launcher-only button, demo facade, flattened single-clip timeline, or inert command surface is unacceptable.
 
-At least one owned/synthetic **local review-only** Short fixture must exercise all implemented features, both plasma bookends when actual approved assets are available, real narration when a legally usable VoiceStudio model is available, and actual decode/QC. Protect the revision and final video hash; an edited project invalidates older render approvals.
+At least one owned/synthetic **local review-only** Short fixture must exercise all implemented features, both plasma bookends when actual approved assets are available, real narration from the approved direct VoxCPM2 Oxiegen-Narrator when host transport and provenance are verified, and actual decode/QC. Protect the revision and final video hash; an edited project invalidates older render approvals.
 
 **No overnight public publication.** Rights checks, human/owner-specific review flags, privacy state, accurate audio/listening assertions, release ledger, exact-channel verification, and duplicate upload protections remain mandatory. Failure to complete Dot computer access must be recorded as unverified, not simulated by a local Codex call.
 
@@ -120,11 +120,11 @@ The root Codex session is **technical coordinator** and owns architecture decisi
 |---|---|---|
 | Windows service / IPC | Service, CLI, SQLite, durable jobs, restart and cancellation | Idempotent local round-trip and restart/recovery evidence |
 | Editor / media engine | OpenShot or fallback adapter, native project, timeline, effects, rendering | Editable saved project and identical-context preview/export test |
-| Voice / captions | VoiceStudio adapter, WAV validation, caption alignment, errors | Actual backend probe and verified legally usable speech sample or an explicit blocker |
+| Voice / captions | Direct VoxCPM2 host Python/CLI narrator, restricted API, WAV validation, caption alignment, errors | Host script and FORGE-initiated cross-machine speech verified or explicit blocker |
 | UI/UX / design | Collector screens, design tokens, accessibility, installer UI | UI/UX Pro Max + Taste applied and real screenshots/keyboard tests |
 | Security / QA | Publication holds, rights, dependency audit, test fixtures and fault injection | Negative tests, no secrets/leaks, no publication bypass |
 
-First agree shared contracts (job schema, project IDs, state transitions, errors, local paths) and fixtures; then parallelize source changes in separate worktrees/branches. The root agent alone integrates. **Serialize** all native VM changes, package installs, service migrations/restarts, editor GUI sessions, VoiceStudio model loads, full media renders, hardware benchmarks, and actual account/YouTube tests. Keep at most one heavy media job active until resource capacity is measured.
+First agree shared contracts (job schema, project IDs, state transitions, errors, local paths) and fixtures; then parallelize source changes in separate worktrees/branches. The root agent alone integrates. **Serialize** all native VM changes, package installs, service migrations/restarts, editor GUI sessions, BLACKHAT-BASE VoxCPM2 model loads, full media renders, hardware benchmarks, and actual account/YouTube tests. Keep at most one heavy media job active until resource capacity is measured.
 
 ## 8. Overnight autonomy and hard boundaries
 
@@ -150,7 +150,7 @@ Write `docs/collector/overnight/HANDOFF.md` on the implementation feature branch
 - Exact branch, commits, review PR (only if genuinely created); unchanged production controls.
 - Windows installer/exe **existing verified** path, hash, install/launch/recovery instructions.
 - Worker status, persistence/reboot proof, real Assistant-to-VM scheduled connection status separately from manual testing.
-- BLACKHAT-BASE remote VoiceStudio version/health/voice profile + license status, verified FORGE-to-host API transport and returned sample audio; distinguish VM-local test from genuine cross-machine test.
+- BLACKHAT-BASE installed direct VoxCPM2 version/checkpoint, approved Oxiegen-Narrator script/config and rights status, verified FORGE-to-host restricted narration API and returned sample audio; distinguish VM-local test from genuine cross-machine test.
 - Editor project, local preview/final MP4 (if built), duration, render hash and what was actually inspected/listened to.
 - Tests passed/failed/skipped, UI/UX Pro Max and Taste results, Ponytail FULL verification/review, remaining blockers.
 - A working **plain-English command for Assistant** using `docs/collector/v7/ASSISTANT_END_TO_END_TEST.md`, with *actual* installed CLI/API syntax and paths for a 45–55s local-only Short showing narration, graphics, text, captions, audio mix, effects, video layers, plasma intro/outro. Never invent a command or claim output exists unless run.
