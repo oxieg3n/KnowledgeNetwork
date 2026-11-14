@@ -2,6 +2,14 @@
 
 Rights-safe video operations for Powered By Oxieg3n. This public repository contains software and small public metadata only. It does not modify the separate website repository.
 
+The **Knowledge Network Collector** Windows staging build now has a tested
+LocalService worker, durable diagnostic/research CLI, native operations dashboard
+and installer. OpenShot integration and the private BLACKHAT-BASE VoiceStudio
+provider are development clients; their service bridge is not enabled. See the
+[verified V8 handoff](docs/collector/overnight/HANDOFF.md) and
+[Assistant operations](docs/collector/ASSISTANT-OPERATIONS.md). Full narrated,
+branded production acceptance remains blocked; publishing remains paused.
+
 ## Current implementation
 
 - Four durable queues: fresh source uploads, daily recap, published-blog adaptations, historical top-ten research.

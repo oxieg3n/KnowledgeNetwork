@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-14T13:47:03.501555+00:00",
+  "python_regression": {
+    "passed": 173,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 50.359
+  },
+  "installed_worker_self_checks": 37,
+  "dashboard_in_process_checks": 17,
+  "native_worker": {
+    "install": true,
+    "restart_persistence": true,
+    "upgrade_retention": true,
+    "uninstall_reinstall_retention": true,
+    "counterfeit_pipe_received_bytes": 0,
+    "tampered_package_rejected": true,
+    "noncanonical_install_rejected": true,
+    "reboot": "NOT_TESTED"
+  },
+  "remote_voice": {
+    "earlier_verified_tls_and_auth": true,
+    "invalid_pin_status": 401,
+    "earlier_valid_pin_status": 200,
+    "latest_stored_credential": "REJECTED_401_403",
+    "observed_backend_version": "0.5.6",
+    "speech_post_sent": false,
+    "host_wav_generated": false,
+    "commercial_model_verified": false,
+    "actual_gpu_execution_verified": false
+  },
+  "native_editor": {
+    "duration_seconds": 50.0,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "fps": "30/1",
+    "revision": 104,
+    "full_decode": "PASS",
+    "text_pixels": "PASS",
+    "trim_split_reorder_undo": "PASS",
+    "music_curve_reset_undo": "PASS",
+    "project_sha256": "fcbdaef5d8b3a4c8a67ddce33ef6df4ea89c88ca024972f5af9ab5b362e2b4a0",
+    "video_sha256": "b11728e5b2504871db1ad255ba92e3ed8015a9aca3cfc73015ee7b3c2a5d950a",
+    "real_voice": "BLOCKED",
+    "bookends": "BLOCKED",
+    "listening": "NOT_TESTED",
+    "manual_gui_edit": "NOT_TESTED"
+  },
+  "service_editor_narration_bridge": "NOT_IMPLEMENTED",
+  "assistant_scheduled_connection": "UNVERIFIED",
+  "publication_paused": true,
+  "public_media_uploads": 0,
+  "operations_sha256": "d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d"
+}

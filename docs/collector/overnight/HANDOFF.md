@@ -1,157 +1,200 @@
-# Paused checkpoint — November 14, 2026
+# V8 handoff — verified staging build, incomplete production acceptance
 
-The owner requested a pause at 07:36 America/New_York to change direction.
-Development and helper work stopped. This is a recoverable partial build,
-not morning acceptance or a completed installation. Wait for further instructions.
+Updated November 14, 2026, America/New_York. Resumed checkpoint `8c0e7f0` on
+`feature/collector-v7-overnight`. Original backup
+`C:/admin/collector-backups/20261114-073652` is preserved. Its Git bundle still
+hashes `c09bd03678201fe4576e746246c7709ba32dbdc2b6b2c7992872f4c9367659cd`.
+The prior paused handoff remains in that backup and Git history.
 
-## Source and backup
+Non-destructive fetch found origin/main `47e7aeb`. Only its updated AGENTS.md
+and three V8 instructions were integrated; no live production state was merged
+or reset. Original untracked instructions were also preserved at
+`C:/admin/collector-v8/pre-v8-AGENTS.md`. All helper worktrees remain.
 
-Branch: `feature/collector-v7-overnight`, based on `e388ad8`.
-Integrated helper commits through `90f0bea`; the following checkpoint commits
-preserve root integration changes and this handoff. No PR was created, no branch
-was pushed, and nothing was merged. The owner's originally untracked `AGENTS.md`
-is preserved unmodified and excluded from implementation commits.
+## Outcome
 
-Local backup destination: `C:/admin/collector-backups/20261114-073652`.
-The backup contains an all-refs Git bundle, source archive, original AGENTS.md,
-private evidence/media, existing release output, and SHA-256 manifest. Consult
-the backup's receipt for the exact checkpoint commit and digests. It is local
-to this VM; no off-VM backup is claimed.
+PASS: installed Windows staging worker/dashboard, real LocalService health,
+durable jobs, restart/upgrade/uninstall/reinstall retention, native 1080p editable
+project/export with visible text, and authenticated private host API discovery.
 
-Separate helper worktrees/branches remain intact at KnowledgeNetwork-worker,
-KnowledgeNetwork-editor and KnowledgeNetwork-voice beside the main worktree.
-Their source commits were integrated. Voice worktree bin/obj build artifacts
-are untracked, not source changes.
+BLOCKED: actual remote narration and complete branded Short. Last successful
+host catalog reported only noncommercial OmniVoice TTS weights installed, no
+loaded speech engine/actual execution device, and no cleared voice profile.
+The supplied consumption PIN subsequently began failing 401/403. Approved badge
+and outro MP4 bytes remain outside GitHub and were not materialized.
 
-## Implemented and checked
+INCOMPLETE engineering: editor/narration dispatch through the service identity
+and user-session companion; source-level Collector/Qt editing workspace. The
+WPF operations window is not an integrated video timeline. Developer adapters
+and the stock Qt editor do not complete that requirement.
 
-- Windows .NET 10 LTS worker/CLI: restricted local Windows pipe, client/server
-  authentication, durable SQLite WAL/FULL commits, job deduplication, result
-  hashes, append-only events, cancellation and replay-safe diagnostic recovery.
-  Worker source builds with zero warnings/errors; 26 self-checks passed.
-- Only diagnostic.echo and immutable research.snapshot jobs are enabled.
-  No production scheduler or publication operation is enabled. Editor and
-  narration adapters are separate developer clients, not yet service jobs.
-- Native WPF operations dashboard compiles with zero warnings/errors. It calls
-  the real CLI. Source includes own-app UIA/rendered-window smoke instrumentation
-  and explicit tab order, but that instrumentation has NOT been run.
-- Native admin-only install-service/remove-service source compiles. Noncanonical
-  worktree executable paths are denied. Actual installed-path installation,
-  LocalService health, pipe-squatting test, service restart/reboot, installer
-  execution and upgrade/uninstall remain NOT TESTED. No Collector service is
-  installed at this checkpoint.
-- Integrated Python suite passed 133 tests with 5 skips before later editor
-  hardening. A subsequent FFmpeg-enabled run ran 135 tests with 2 failures in
-  existing Linux-font finishing code. The targeted Windows font-path fix then
-  passed all 3 finishing tests, preserving audio and outside-footer pixels.
-  Editor helper's latest focused run passed 17 tests. The full suite must be
-  rerun after all latest changes; do not combine these counts into a new total.
-- Python 3.13.17 and .NET SDK10.0.404/runtime10.0.15 installed. Development venv
-  includes tzdata2026.2, NumPy2.3.5 and now Pillow13.0.0. Earlier tests initially
-  used Pillow12; a full latest-environment regression is pending.
+Publication remains PAUSED. No demonstration or other video was uploaded.
 
-Evidence logs: `C:/admin/collector-v7`, with initial baseline logs additionally
-at `C:/admin/collector-baseline-tests.log`, `collector-baseline-configured.log`
-and `collector-integrated-python.log`.
+## Installer, launch and repair
 
-## Native media proof and important failure
+Unsigned installer, actually installed, upgraded and reinstalled:
+`C:/admin/projects/KnowledgeNetwork/output/installer-v8-round3/The-Knowledge-Network-Collector-0.1.0-setup.exe`
 
-OpenShot4.1.1 was downloaded from its official release, matched installer SHA-256
-`6c18abf951a798b536b07aa88f78d62eb55345903699b429b08322323c049690`, and installed.
-Its native Windows console introduction returned real output. The installed
-console digest is recorded in dependencies.lock.json. No fallback editor selected.
+SHA-256: `145c61039e183e6bfd38fa74099c8a261ff881beac097d760d108961b82e0725`.
+All successful install/upgrade/reinstall runs exited 0. Actual uninstall exited
+0 and retained the private database. Manifests, .NET notices, Apache license
+and NuGet license/copyright metadata are packaged. Python development clients,
+OpenShot, VoiceStudio and models are not bundled in this installer.
 
-Private project:
-`C:/admin/collector-v7/editor-vault/technical-002/technical-v2.osp`.
-Private export:
-`C:/admin/collector-v7/editor-vault/technical-002/native-final.mp4`.
-The source project survived actual native save/edit/save/reopen. Export job
-`cde34dc4acd84df190dd91831eafa5e4` completed from revision54. It is50.000 seconds,
-360x640,30fps, H264/yuv420p, AAC48k stereo,1500frames, full decode exit0.
-Configured black/silence scans found no qualifying spans. Original low-volume
-tones are technical audio, not narration. No listening occurred.
+Installed CLI: `C:/Program Files/The Knowledge Network Collector/kn-collector.exe`
+SHA-256: `4d9cf8f0ec0aa9b9f5c55ab076b87a608a98af36296bc1e28cc8875535d67515`.
+Worker DLL SHA-256: `e34e8278da1ca7d1de400dd3ab4ffdb30f3f50c746924bcfb0b7732919db3f5a`.
 
-**FAILED visual text acceptance:** actual exported frames at5,25,40 seconds
-show backgrounds/animated graphic/lower-third backing but no title/text glyphs.
-Contact sheet: `C:/admin/collector-v7/editor-contact-sheet.png`, actually viewed.
-Do not call native text or the production demo passed. The editor helper found
-a candidate cause: OpenShot export_worker forces Qt offscreen on Windows,
-whose basic font database may not see system fonts. A per-session documented
-QT_QPA_FONTDIR configuration is a candidate, NOT tested/applied. The next run
-must first verify official support and render a new native session/fixture;
-do not silently replace native text with a different compositor.
+Dashboard: `C:/Program Files/The Knowledge Network Collector/kn-collector-dashboard.exe`
+SHA-256: `d61b35b5d3c39b0d4ff4b7b9adb9d389320c12613c218bdc1c2f0b0c8fa28d04`.
+Dashboard DLL SHA-256: `bc3c4483bdd09a3efe4b85b7882e8c3ceb751e26ff8277f39e09b84bf44017b1`.
+Worker build identifies source `9b1b669`; corrected dashboard was built from
+`719ea5b`. Later Python/docs commits do not change those binaries.
 
-Project SHA-256:
-`02104e6651757a1c5132615bc11c43fbeb6f4738c8af402aec7eb113c2272a9e`.
-MP4 SHA-256:
-`66ef21dc5413abf087f28a3e9f1ab69ac9e66b77f6f3cd987cf83c702ed76f9d`.
-No1080p fixture, manual GUI edit, preview/export comparison, true speech captions,
-approved branding or full editor/service integration acceptance is claimed.
+Launch normally from the Start Menu or:
 
-## Voice, branding and connection
+```powershell
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector-dashboard.exe'
+$nonce = [guid]::NewGuid().ToString('N')
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health $nonce
+```
 
-Preexisting VoiceStudio0.5.8.0 was detected and preserved. Its existing app was
-launched; processes eventually appeared, but loopback3900 probes still returned
-BLOCKED_VOICE_SESSION. No model/profile/license was verified, downloaded or
-accepted; no test speech WAV exists. No fallback narrator was substituted.
+Repair: rerun the installer, or run the installed CLI's `install-service`
+elevated as the configured owner. `remove-service` is native and preserves
+data. No PowerShell execution policy was changed or bypassed. Observed installer
+signature status is NotSigned; no signing certificate is claimed.
 
-Approved badge and portrait/landscape outro media were not found in inspected
-project/Downloads/Documents locations. Their expected hashes remain protected;
-no equivalent assets were forged. The technical export is unbranded.
+## Worker and persistence
 
-Real Assistant/Dot-to-VM and scheduled connection remain UNVERIFIED. Local Codex
-commands are not proof. Both native computer-use runtimes repeatedly timed out;
-one app inventory succeeded after reset, but no Collector/OpenShot GUI keyboard
-or screenshot acceptance was obtained. WPF visual-tree instrumentation is pending
-and must be reported separately from OS screenshots/actual DPI/OS key injection.
+Service `KnowledgeNetworkCollector` is Running, startup Auto, LocalService.
+Private data: `C:/ProgramData/KnowledgeNetworkCollector`.
+Persistent worker ID: `cb6ce3cd482148e7b8b0c8661ec8c6e9`.
+Job `131f54611e5a41c8b9e0d178b1a11dde` succeeded and survived service restart,
+upgrade, full uninstall and reinstall with the same result hash and worker ID.
+Result SHA-256: `f082e2ce38e84625e303c17d16948a0e824e84e49fd5686b5ab14bb145593b65`.
+Consistent pre-uninstall backup:
+`C:/admin/collector-v8/worker-before-uninstall.sqlite`.
 
-## Packaging and resume cautions
+PASS: duplicate returns same job, changed payload rejects, exact nonce matches,
+terminal cancellation retains success. Fake-pipe test received zero bytes and
+returned `untrusted_pipe_server`. Tampered package failed before service mutation.
+Noncanonical install path failed with exit 7 and retained the running service PID.
+Actual service/private-spool ACLs reviewed.
 
-Existing self-contained build files are under
-`C:/admin/projects/KnowledgeNetwork/output/collector-windows/`.
-These are intermediate builds: they predate the latest native maintenance and
-dashboard smoke/tab-order source changes. They are NOT the final release.
-No Collector installer exe has been compiled or installed yet.
+Only `diagnostic.echo` and `research.snapshot` jobs are enabled. Editor/narration
+jobs explicitly report disabled; no arbitrary shell/remote-HTTP job exists.
+Immutable research snapshot contains 143 fresh leads, 2 recap slots, 33 blog
+versions and 42 evergreen entries. This is not a production cutover.
 
-Inno Setup6.7.3 and FFmpeg Gyan9.0.2 were installed/extracted from checksum-verified
-official release locations; see dependencies.lock.json and notices. Inno source
-and reproducible build scripts are present. Windows effective PowerShell policy
-is Restricted; an actual -File probe was denied. No policy was changed or bypassed.
-The installer source now calls native maintenance verbs instead of PowerShell.
+VM reboot, signed-out/locked operation, scheduled Assistant access and off-VM
+recovery remain NOT TESTED/UNVERIFIED. Local Codex calls are not Dot proof.
 
-Before packaging, review a known pending issue: ServiceInstall.VerifyPackage
-currently parses File.ReadAllBytes(manifest), while Windows PowerShell
-Set-Content -Encoding UTF8 creates a BOM. Verify/fix that compatibility before
-running the installer. Regenerate the manifest after final worker/dashboard
-publishes and include runtime/NuGet notices. Test canonical path checks,
-authenticated stable service health, malicious pipe denial with zero request
-bytes, deduplication/restart, snapshot readback, installer upgrade/uninstall
-retaining data, real dashboard flows and actual rendered screens. Do not count
-source compilation as any of those runtime passes.
+## Remote VoiceStudio
 
-At pause, only owned idle OpenShot headless session process5940 and the existing
-VoiceStudio app processes remained from this work; no FFmpeg/render/build process
-or Collector worker service was running. They were left intact to preserve state.
-No VM reboot or unrelated process shutdown was performed.
+BLACKHAT-BASE is the speech host; FORGE is the Collector/editor VM. The existing
+VM VoiceStudio installation was preserved and unused by V8. No host desktop,
+input, clipboard, model install, license acceptance, firewall, Gateway, service
+or Tailscale configuration changes occurred.
 
-## Skills and production controls
+PASS earlier: supplied HTTPS endpoint matched the private tailnet peer; TLS
+certificate/hostname verification; health/OpenAPI 0.5.6 and voice catalog.
+Wrong PIN returned 401, correct PIN 200. Credential went only into Forge's
+Windows Credential Manager via stdin, not process arguments, environment secrets,
+repository or URL. Private route and nonsecret user configuration stay outside
+Git. Remote Workers or an administrative key was not needed for this API path.
 
-Ponytail5.3.3 FULL instructions and actual review skill loaded from the installed
-plugin. Its mode resolver returned full with a session-scoped setting; lifecycle
-hook trust/execution was not asserted. UI/UX Pro Max2.15.0 official checkout at
-`C:/admin/tools/ui-ux-pro-max` and actual SKILL were read, with targeted desktop,
-focus, error, timeline and WPF searches. Taste2.5.1 actual installed SKILL was
-read/applied for native visual judgment. No web gate pass is claimed. See design
-spec for searches; actual native screenshot/DPI/manual keyboard checks remain pending.
-Independent review found pipe impersonation, dashboard/default-data-directory
-collision, installer path execution and premature health claims; source fixes
-were integrated, with runtime verification still pending.
+Latest check at 13:35 UTC: stored credential rejected. Independent standard HTTPS
+client returned 403; provider reported blocked authentication. Cause was not
+proven and retries stopped. Refresh using interactive local `credential-save`,
+then perform one `verify-auth`. No bypass was attempted.
 
-Publication remains PAUSED. The demo has NOT been publicly uploaded. No production
-state, existing approvals/receipts, workflows, OAuth permissions or poweredby
-website was changed. The operations.json digest remains
+Speech capabilities and model catalog reads passed; `/model/loaded` was denied.
+Client retains partial evidence without requesting administrative credentials.
+Only `k2-fsa/OmniVoice` was installed for TTS; its publisher labels pretrained
+weights noncommercial. No commercial model/voice clearance was invented. RTX3060
+visibility is not actual GPU speech execution proof.
+
+**No host speech POST, real WAV, GPU synthesis or listening occurred.**
+Original 97-word/9-segment request `1610ea5e060d431980e52af9f273ed85` is prepared
+as `blocked_remote_voice` / rights-not-verified. Private spool:
+`C:/admin/collector-v8/editor-vault/remote-voice`. Original text/segments:
+`C:/admin/collector-v8/demo-script.private.txt` and `demo-segments.private.json`.
+
+Source supports streamed WAV checks, exact observed model identity, measured
+PCM cues, cross-process serialization, deadlines and cancellation. Local socket
+fixtures test slow headers/body and TLS interruption. Unknown POST outcomes
+retain a global durable hold across new job IDs/process restarts; no automatic
+retry, expiry or unsafe override. These tests are not actual host synthesis.
+See [voice acceptance](../VOICE-PROVIDER-ACCEPTANCE.md) for scope and prerequisites.
+
+## Native editor and media
+
+OpenShot 4.1.1/libopenshot 1.1.1, pinned Windows native console. Child-only
+`QT_QPA_FONTDIR` fixed the V7 missing-glyph export without binary patches or
+global/host changes.
+
+Project: `C:/admin/collector-v8/editor-vault/technical-1080-001/technical-v3.osp`
+SHA-256: `fcbdaef5d8b3a4c8a67ddce33ef6df4ea89c88ca024972f5af9ab5b362e2b4a0`.
+Video: same directory, `native-final-1080.mp4`.
+SHA-256: `b11728e5b2504871db1ad255ba92e3ed8015a9aca3cfc73015ee7b3c2a5d950a`.
+
+PASS: exactly 50.000s, 1080x1920, 30fps, H264/yuv420p, AAC48k stereo, 1500 frames,
+full decode, configured black/silence scans and unchanged six source hashes.
+Job `8c8555feddb54d16b1e0be6e6a6277d4` exported revision 104. Three actual scenes
+show native titles, lower thirds and review labels. Native trim/split/reorder,
+grouped undo, 30000/1001 split timing and save/reopen passed.
+
+Music reset/duck/readback/two-undo proof restored exact original clip JSON.
+Managed first attachments/longer retakes remove stale gain points. Manual caption
+or music edits and ambiguous ownership block a retake before mutation.
+
+This is an unbranded fixture with original low-volume tones, not speech.
+Artifact wall interval was 130.643s; one worker sample measured about 923MiB,
+not a continuous peak. Real speech mix, listening, manual Qt GUI edit, preview/
+export parity, landscape and approved bookends remain unverified. V7 artifacts
+are intact. Exact saved project/video hashes stayed unchanged after native tests.
+
+The owner reconfirmed that approved MP4 bytes are maintained separately. Existing
+intro/outro code and hashes were reread/preserved. Actual badge/MP4 locations
+remain needed; no substitute or re-created approved media was used.
+
+## Tests and visual review
+
+Final Python/FFmpeg regression: **173 passed, zero failures/skips**, 50.359s.
+Installed worker self-test: **37 checks passed**. Dashboard: **17 real in-process
+UIA/CLI/service/focus/error/recovery/render checks passed**, exit 0. An actual
+invalid-job-ID crash was fixed and retested through installer upgrade.
+
+Rendered WPF captures at 1040x780 and 800x600 were inspected: readable charcoal
+layout, visible focus, wrapped actions and no clipped main controls. Actual
+Windows desktop capture succeeded too. OS input/accessibility-tree testing was
+blocked by the dashboard's higher Windows integrity than the computer-use helper;
+no security settings/barriers were changed. OS DPI/high contrast and an ordinary
+non-elevated desktop client remain NOT TESTED.
+
+Evidence: `C:/admin/collector-v8`. Reports include `final-regression.log`,
+`installed-self-test.json`, `native-worker-acceptance.json`, `pipe-squatting.json`,
+`package-integrity-negative.json`, `installer-path-negative.json`,
+`uninstall-retention.json`, `dashboard-smoke-002/smoke-results.json`,
+`native-desktop-review.json`, `editor-native-qc-1080.json`,
+`editor-native-music-proof.json`, `host-probe-result.json`, and
+`voice-latest-auth-check.json`. Raw API/route/catalog files and media stay private.
+
+Ponytail 5.3.3 FULL resolver verified; actual review skill and independent review
+applied. No lifecycle-hook trust/execution was asserted. UI/UX Pro Max 2.15.0
+actual skill and targeted WPF/focus/status searches reused current tokens.
+Taste 2.5.1 native visual judgment applied; web gates are not applicable.
+Remaining native UI/host/lifecycle checks are listed above.
+
+## Assistant test and production controls
+
+Use the copyable request in [Assistant operations](../ASSISTANT-OPERATIONS.md).
+It begins with the real installed health CLI and private remote provider.
+A tested one-command full narrated/branded Short does not exist yet; the
+acceptance request must report invalid auth, missing eligible model/voice or
+unmaterialized bookends rather than invent success.
+
+Production receipts, rights/review gates and workflows are unchanged.
+operations.json remains
 `d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
-Do not issue a purported tested final Assistant45–55second command yet: the full
-licensed-voice/branded/local-service path has not run. Use the V7 Assistant test
-template only after these concrete blockers and tests are resolved and the owner
-authorizes resumption.
+Publication is paused. No public media upload or automatic publication occurred.

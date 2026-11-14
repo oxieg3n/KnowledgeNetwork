@@ -20,3 +20,9 @@ approved badge/outro media. No equivalent assets were forged or downloaded from
 guessed URLs. Materialization through the owner's authorized Library path is
 BLOCKED. The technical editor fixture must remain explicitly unbranded until
 the actual bytes are available and verified. Older approved requests are untouched.
+
+V8: the owner reconfirmed that the MP4 bytes are maintained separately from
+GitHub. Existing intro.py/outro.py are retained; neither their code nor a digest
+materializes those external files. Exact-name and related connected Drive
+searches found no approved asset candidate. No unrelated Drive/Page files were
+opened. A local/authorized Library location for the actual bytes is still needed.
