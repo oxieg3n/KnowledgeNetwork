@@ -23,9 +23,11 @@ $ErrorActionPreference = 'Stop'
 try {
  $p = ([Console]::In.ReadToEnd() | ConvertFrom-Json).path
  $user = [Security.Principal.WindowsIdentity]::GetCurrent().User
- $acl = [Security.AccessControl.DirectorySecurity]::new()
- $acl.SetOwner($user)
+ $acl = Get-Acl -LiteralPath $p
  $acl.SetAccessRuleProtection($true, $false)
+ foreach ($rule in @($acl.GetAccessRules($true, $false, [Security.Principal.SecurityIdentifier]))) {
+  $acl.RemoveAccessRuleSpecific($rule)
+ }
  foreach ($sid in @($user.Value,'S-1-5-18','S-1-5-32-544')) {
   $rule = [Security.AccessControl.FileSystemAccessRule]::new(
    [Security.Principal.SecurityIdentifier]::new($sid), 'FullControl',

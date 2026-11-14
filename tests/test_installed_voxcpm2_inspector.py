@@ -75,6 +75,12 @@ class InventoryBoundsTests(unittest.TestCase):
                     self.assertIn('python_executable', report['private_context'])
                     self.assertNotIn('PRIVATE_SECRET', reports[0].read_text())
 
+    def test_private_folder_changes_only_dacl_and_preserves_owner(self):
+        self.assertIn('Get-Acl -LiteralPath $p', probe.PRIVATE_ACL)
+        self.assertIn('RemoveAccessRuleSpecific', probe.PRIVATE_ACL)
+        self.assertIn('SetAccessRuleProtection($true, $false)', probe.PRIVATE_ACL)
+        self.assertNotIn('SetOwner', probe.PRIVATE_ACL)
+
     def test_file_count_is_bounded(self):
         with tempfile.TemporaryDirectory() as tmp:
             repo = Path(tmp)
