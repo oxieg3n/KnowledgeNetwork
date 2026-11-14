@@ -162,6 +162,8 @@ def request_identity(job_id, text, segments):
     segments = [text] if segments is None else segments
     if (not isinstance(segments, list) or not 1 <= len(segments) <= 16 or
             any(not isinstance(segment, str) or not segment.strip() for segment in segments) or
+            sum(len(segment) for segment in segments) > 4096 or
+            any(ord(character) < 32 and character not in '\n\t' for segment in segments for character in segment) or
             ' '.join(text.split()) != ' '.join(' '.join(segments).split())):
         raise VoiceError('INVALID_NARRATION_SEGMENTS')
     return segments, digest({'job_id': job_id, 'text': text, 'segments': segments})
@@ -187,9 +189,11 @@ def _prepare_request(spool, job_id, text, segments, identity):
         return {key: value for key, value in saved.items() if key not in ('text', 'segments')}
     if (directory / 'narration.json').exists():
         raise VoiceError('VOICE_RESULT_REQUIRES_RECONCILIATION')
+    configured = all(os.environ.get(key) for key in ('COLLECTOR_VOICE_PROVIDER', 'COLLECTOR_VOICESTUDIO_BASE_URL',
+                     'COLLECTOR_VOICESTUDIO_ROUTE_FILE', 'COLLECTOR_VOICESTUDIO_SPOOL'))
     result = {'schema_version': 2, 'collector_job_id': job_id, 'request_identity': identity,
               'text': text, 'segments': segments, 'text_sha256': hashlib.sha256(text.encode()).hexdigest(),
-              'status': 'blocked_remote_voice', 'error': 'BLOCKED_REMOTE_VOICE_CONFIG',
+              'status': 'blocked_remote_voice', 'error': 'BLOCKED_VOICE_RIGHTS_NOT_VERIFIED' if configured else 'BLOCKED_REMOTE_VOICE_CONFIG',
               'rights_status': 'NOT_VERIFIED', 'provider': 'voicestudio_remote',
               'submission_started': False, 'review_only': True, 'publication_eligible': False}
     checkpoint(path, result)
@@ -198,6 +202,8 @@ def _prepare_request(spool, job_id, text, segments, identity):
 
 class RemoteVoiceStudioProvider:
     def __init__(self, base_url, route, spool):
+        if not isinstance(base_url, str) or not isinstance(route, dict):
+            raise VoiceError('INVALID_REMOTE_VOICE_ENDPOINT')
         parsed = urllib.parse.urlsplit(base_url)
         if (parsed.scheme not in ('https', 'http') or not parsed.hostname or parsed.username or parsed.password or
                 parsed.path or parsed.query or parsed.fragment or '\\' in base_url or any(ord(c) < 33 for c in base_url)):
@@ -266,6 +272,8 @@ class RemoteVoiceStudioProvider:
                    'Accept': 'application/json' if payload is None else 'audio/wav', 'Connection': 'close'}
         body = None if payload is None else json.dumps(payload).encode()
         if body is not None:
+            if len(body) > 32768:
+                raise VoiceError('VOICE_INPUT_TOO_LARGE')
             headers['Content-Type'] = 'application/json'
         deadline = time.monotonic() + (180 if payload else 30)
         for attempt in range(3 if payload is None else 1):
@@ -344,6 +352,8 @@ class RemoteVoiceStudioProvider:
     def discover(self):
         self._json('/health')
         schema, catalog = self._json('/openapi.json'), self._json('/v1/audio/voices')
+        if not isinstance(schema.get('info'), dict):
+            raise VoiceError('UNSUPPORTED_SPEECH_SCHEMA')
         if not isinstance(schema.get('paths'), dict) or not isinstance(schema['paths'].get('/v1/audio/speech'), dict) or 'post' not in schema['paths']['/v1/audio/speech']:
             raise VoiceError('UNSUPPORTED_SPEECH_SCHEMA')
         if any(not isinstance(catalog.get(key), list) or any(not isinstance(row, dict) for row in catalog[key]) for key in ('voices', 'engines')):

@@ -247,6 +247,10 @@ class RemoteVoiceTests(unittest.TestCase):
         with self.assertRaisesRegex(VoiceError, 'IDEMPOTENCY'):
             prepare_request(self.spool, '3' * 32, 'Changed script.')
 
+    def test_segment_bounds_cannot_be_bypassed_with_whitespace(self):
+        with self.assertRaisesRegex(VoiceError, 'SEGMENTS'):
+            self.provider.generate('7' * 32, 'Original.', self.evidence(), segments=['Original.' + ' ' * 4096])
+
     def test_pcm_json_and_truncation_rejected(self):
         for data in (b'{}', wav_bytes()[:-2]):
             with self.assertRaises(VoiceError):
