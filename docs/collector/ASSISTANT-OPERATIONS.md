@@ -27,6 +27,8 @@ VoiceStudio is retired. Do not call its root URL, reuse its PIN, start its app,
 or revive the V8 credential commands. The fixed default body voice is
 Oxiegen-Narrator on BLACKHAT-BASE. Approved outro audio is unchanged.
 
+Use the existing project virtual environment and pinned FFmpeg process PATH:
+`$env:PATH = 'C:/admin/tools/ffmpeg-9.0.2/ffmpeg-9.0.2-full_build/bin;' + $env:PATH`.
 The actual CLI syntax below was checked. `status` currently exits 1 with
 `BLOCKED_NARRATOR_CONFIG`; no dedicated host route/credential is configured.
 Host deployment/inspection instructions are in [host-narrator.md](host-narrator.md).

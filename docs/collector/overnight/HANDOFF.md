@@ -2,7 +2,8 @@
 
 Updated November 14, 2026. Publication remains **PAUSED**. No demonstration or
 other media was publicly uploaded. Production workflows/permissions and the
-separate poweredby repository were not changed.
+separate poweredby repository were not changed. Final operations.json SHA-256
+remains `d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
 
 ## Outcome and checkpoint
 
@@ -13,8 +14,8 @@ AGENTS/V9 master/architecture instructions. V9 supersedes VoiceStudio narration.
 No reset, reclone, new repository, force push or merge into main occurred.
 
 Installed worker source checkpoint: `6f34384f7c77437c74c7a178ce6be0642a75bbbb`.
-Subsequent commits finish documentation; consult `git log` for the exact final
-handoff commit. A noninteractive push lacked credentials earlier; no review PR
+Evidence/docs checkpoint: `675fa9736cfc27d67d1fd24e890c26afe36e93d9`.
+The final receipt commit only adds backup references; consult `git log` for its ID. A noninteractive push lacked credentials earlier; no review PR
 was created. Review preparation is local, not a claimed GitHub URL.
 
 The service now dispatches narration and four bounded native editor operations
@@ -85,6 +86,18 @@ Original verified backup `C:/admin/collector-backups/20261114-073652` untouched.
 Its Git bundle was rechecked: SHA-256
 `c09bd03678201fe4576e746246c7709ba32dbdc2b6b2c7992872f4c9367659cd`.
 This is not a new rehash assertion for every original backup file.
+
+Fresh private backup: `C:/admin/collector-backups/v9-final-20261114-1410`.
+Contains complete-history Git bundle (52refs, verified), source ZIP at675fa97,
+all149 copied evidence/source/package files hash-verified, synthetic project/render,
+consistent database backup and installed installer copy. Manifest SHA-256:
+`322d0312bcc00374de03a69ef974c6050509b98334b9ba7c37ff00eb60357313`.
+Bundle SHA-256: `8eb8f4a30c75c217afaf07016e345084cbe19f310f3dd9b67c08a9477c601365`.
+Source ZIP SHA-256: `ad732c623446ecfa8e6be5922fd5e74696b03806e2dbf4e9d73cd4d7f11d1fb6`.
+Private verification receipt: `C:/admin/collector-v9/final-backup-receipt.json`.
+An initial ACL-construction error affected only this new empty backup directory;
+corrected using explicit SID objects before files were written. Original backup
+and existing project ACLs were not touched.
 
 One real negative fixture exposed OWNER RIGHTS ACL compatibility in Python3.13
 private temp files. Completion was denied and lease expiry correctly held the
