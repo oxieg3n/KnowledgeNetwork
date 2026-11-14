@@ -141,6 +141,10 @@ class ServiceCLI:
                     raw = output.read(MAX_REPLY + 1)
                     if len(raw) > MAX_REPLY: raise CompanionError('COMPANION_REPLY_INVALID')
                     reply = _json(raw)
+                    if isinstance(reply, dict) and reply.get('ok') is False:
+                        code = reply.get('error')
+                        if isinstance(code, str) and re.fullmatch('[A-Za-z][A-Za-z0-9_]{0,95}', code):
+                            raise CompanionError('COMPANION_SERVICE_' + code.upper())
                     if process.returncode or not isinstance(reply, dict) or reply.get('ok') is not True:
                         raise CompanionError('COMPANION_SERVICE_REJECTED')
                     if set(reply) != {'ok', 'result'}: raise CompanionError('COMPANION_REPLY_INVALID')
@@ -246,8 +250,9 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
         if (not isinstance(completed, dict) or completed.get('job_id') != job['job_id'] or
                 completed.get('state') != expected_state):
             raise CompanionError('COMPANION_COMPLETION_MISMATCH')
-    except Exception:
-        return _result('reconciliation_required', 'COMPANION_COMPLETION_UNCERTAIN')
+    except Exception as exc:
+        code = str(exc) if isinstance(exc, CompanionError) and str(exc).startswith('COMPANION_SERVICE_') else 'COMPANION_COMPLETION_UNCERTAIN'
+        return _result('reconciliation_required', code)
     return result
 
 
@@ -261,8 +266,9 @@ def main(argv=None):
         result = run_once(ServiceCLI(args.collector_sha256, args.private_spool))
         print(json.dumps(result, sort_keys=True))
         return 0 if result['status'] in ('idle', 'completed') else 1
-    except Exception:
-        print(json.dumps(_result('reconciliation_required', 'COMPANION_TRANSPORT_UNCERTAIN')))
+    except Exception as exc:
+        code = str(exc) if isinstance(exc, CompanionError) else 'COMPANION_TRANSPORT_UNCERTAIN'
+        print(json.dumps(_result('reconciliation_required', code)))
         return 1
 
 

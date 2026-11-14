@@ -105,6 +105,13 @@ class CompanionTests(unittest.TestCase):
         self.service.complete_error=True
         self.assertEqual(self.run_job()['error'],'COMPANION_COMPLETION_UNCERTAIN')
         self.assertEqual(sum(op=='complete' for op,_ in self.service.calls),1)
+    def test_stable_service_rejection_code_survives_completion_diagnostic(self):
+        original=self.service.call
+        def call(op,body=None):
+            if op=='complete': raise CompanionError('COMPANION_SERVICE_PRIVATE_FILE_ACL_INVALID')
+            return original(op,body)
+        self.service.call=call
+        self.assertEqual(self.run_job()['error'],'COMPANION_SERVICE_PRIVATE_FILE_ACL_INVALID')
     def test_wrong_completion_job_reconciled(self):
         self.service.wrong_complete=True
         self.assertEqual(self.run_job()['status'],'reconciliation_required')
@@ -182,6 +189,12 @@ class TransportTests(unittest.TestCase):
         with patch('youtube_ops.collector_companion.subprocess.Popen',side_effect=start): self.client().call('claim')
     def test_oversize_reply_denied(self):
         with self.assertRaises(CompanionError): self.bad_reply(b'x'*(512*1024+1))
+    def test_native_stable_service_code_propagates_safely(self):
+        with self.assertRaisesRegex(CompanionError,'^COMPANION_SERVICE_PRIVATE_FILE_ACL_INVALID$'):
+            self.bad_reply(b'{"ok":false,"error":"private_file_acl_invalid"}')
+    def test_service_error_with_private_text_does_not_propagate(self):
+        with self.assertRaisesRegex(CompanionError,'^COMPANION_SERVICE_REJECTED$'):
+            self.bad_reply(b'{"ok":false,"error":"private host URL and token"}')
     def test_duplicate_reply_keys_denied(self):
         with self.assertRaises(ValueError): self.bad_reply(b'{"ok":true,"ok":true,"result":{}}')
 
