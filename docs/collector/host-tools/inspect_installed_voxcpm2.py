@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import re
+import stat
 import subprocess
 import sys
 import traceback
@@ -48,14 +49,91 @@ def sha(path):
     return h.hexdigest()
 
 
+class ModelPathError(ValueError):
+    def __init__(self, path, info):
+        super().__init__('unexpected_model_link')
+        self.details = {'component': str(path)[:32768], 'mode': info.st_mode,
+                        'file_attributes': getattr(info, 'st_file_attributes', 0),
+                        'reparse_tag': getattr(info, 'st_reparse_tag', 0)}
+        try:
+            self.details['link_target'] = os.readlink(path)[:32768]
+        except OSError:
+            self.details['link_target'] = None
+
+
+def plain_path(path, root):
+    """Reject redirected components below the canonical cache trust root."""
+    item = root
+    for part in ('.', *path.relative_to(root).parts):
+        item = item / part
+        info = item.lstat()
+        if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+            raise ModelPathError(item, info)
+
+
+def file_identity(info):
+    return (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
+
+
+def file_link_target(logical):
+    info = logical.lstat()
+    if stat.S_ISLNK(info.st_mode):
+        if getattr(info, 'st_reparse_tag', 0xA000000C) != 0xA000000C:
+            raise ModelPathError(logical, info)
+        link = os.readlink(logical)
+        # Windows readlink returns extended drive names; do not accept device/UNC aliases.
+        if link.startswith('\\\\?\\'):
+            if not re.match(r'^[A-Za-z]:\\', link[4:]):
+                raise ValueError('model_file_escape')
+            link = link[4:]
+        target = Path(os.path.abspath(logical.parent / link))
+        return target, ((str(logical), file_identity(info), link),)
+    else:
+        if getattr(info, 'st_file_attributes', 0) & 0x400:
+            raise ModelPathError(logical, info)
+        return logical, ()
+
+
+def model_target(logical, repository, cache):
+    target, links = file_link_target(logical)
+    shared = cache / 'blobs'
+    if not (target.is_relative_to(repository) or target.is_relative_to(shared)):
+        raise ValueError('model_file_escape')
+    # HF also links snapshot -> repository blob -> shared blob. No other chain is allowed.
+    if (links and target.parent == repository / 'blobs' and
+            re.fullmatch('[a-f0-9]{64}', target.name)):
+        plain_path(target.parent, cache)
+        if target.is_symlink():
+            target, second_link = file_link_target(target)
+            links += second_link
+            if not target.is_relative_to(shared):
+                raise ValueError('model_file_escape')
+    if not target.is_relative_to(repository):
+        if not target.is_relative_to(shared):
+            raise ValueError('model_file_escape')
+        parts = target.relative_to(shared).parts
+        if (len(parts) != 2 or not re.fullmatch('[a-f0-9]{2}', parts[0]) or
+                not re.fullmatch('[a-f0-9]{64}', parts[1]) or parts[0] != parts[1][:2]):
+            raise ValueError('invalid_shared_blob_path')
+    plain_path(target, cache)
+    if (target.resolve(strict=True) != target or logical.resolve(strict=True) != target or
+            not stat.S_ISREG(target.stat().st_mode)):
+        raise ValueError('model_file_escape')
+    return target, links
+
+
 def catalog(snapshot, repository):
-    """Bound traversal and permit only HF blob links within this repository."""
-    repository = repository.resolve(strict=True)
-    snapshot = snapshot.resolve(strict=True)
+    """Bound read-only inventory of repository files and canonical HF shared blobs."""
+    cache = repository.parent.resolve(strict=True)
+    repository = cache / repository.name
+    snapshot = Path(os.path.abspath(snapshot))
     if not snapshot.is_relative_to(repository):
         raise ValueError('snapshot_escape')
+    plain_path(snapshot, cache)
     files, visited, total_bytes = [], 0, 0
-    for directory, dirs, names in os.walk(snapshot, followlinks=False):
+    def walk_error(error):
+        raise error
+    for directory, dirs, names in os.walk(snapshot, followlinks=False, onerror=walk_error):
         visited += len(dirs) + len(names)
         if visited > 256:
             raise ValueError('model_inventory_limit')
@@ -65,16 +143,17 @@ def catalog(snapshot, repository):
                 raise ValueError('linked_directory_denied')
         for name in sorted(names):
             logical = Path(directory) / name
-            target = logical.resolve(strict=True)
-            if not target.is_relative_to(repository) or not target.is_file():
-                raise ValueError('model_file_escape')
+            link_before = file_identity(logical.lstat())
+            target, links = model_target(logical, repository, cache)
             before = target.stat()
             total_bytes += before.st_size
             if before.st_size > MAX_MODEL_BYTES or total_bytes > MAX_MODEL_BYTES:
                 raise ValueError('model_byte_limit')
             checksum = sha(target)
             after = target.stat()
-            if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+            if (file_identity(before) != file_identity(after) or
+                    link_before != file_identity(logical.lstat()) or
+                    model_target(logical, repository, cache) != (target, links)):
                 raise ValueError('model_changed_during_inspection')
             files.append({'logical_path': str(logical), 'resolved_path': str(target),
                           'bytes': after.st_size, 'sha256': checksum})
@@ -138,7 +217,7 @@ def inspect():
             'runtime_device': 'not_probed', 'voice_consent': 'owner_review_required'}
 
 
-def failure_context():
+def failure_context(error=None):
     """Private allowlisted diagnostics; never dump environment or import inference."""
     context = {'python_executable': sys.executable[:32768],
                'python_version': sys.version.split()[0][:256]}
@@ -150,6 +229,8 @@ def failure_context():
         context['voxcpm_version'] = importlib.metadata.version('voxcpm')[:256]
     except Exception:
         context['voxcpm_version'] = 'unavailable'
+    if isinstance(error, ModelPathError):
+        context['rejected_model_path'] = error.details
     return context
 
 
@@ -193,7 +274,7 @@ def main():
         if acl_verified:
             try:
                 failure = {'schema_version': 1, 'status': 'BLOCKED', 'stage': STAGE,
-                    'exception_type': error_type, 'private_context': failure_context(),
+                    'exception_type': error_type, 'private_context': failure_context(exc),
                     'frames': [{'file': frame.filename, 'line': frame.lineno, 'function': frame.name}
                                for frame in traceback.extract_tb(exc.__traceback__)[-16:]]}
                 with (folder / 'failure.json').open('x', encoding='utf-8') as out:

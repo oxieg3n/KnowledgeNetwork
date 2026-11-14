@@ -12,3 +12,31 @@ Private failure context includes bounded Python executable/version, installed vo
 
 
 The new private folder retains its existing owner; only its DACL is replaced. This avoids requiring WRITE_OWNER merely to restrict a folder already owned by the caller. Windows permits the owner to change its DACL; changing ownership requires separate rights ([Microsoft SetNamedSecurityInfoW](https://learn.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setnamedsecurityinfow)). The final verifier still rejects untrusted owners, null/inherited DACLs and missing current-user FullControl. Owner permission to create/read/change the new folder DACL is required; failure blocks report writing. Non-elevated host execution has not been verified.
+
+## Shared Hugging Face blobs
+
+The catalog accepts regular repository-local files and a direct file symlink to
+the canonical effective `HF_HUB_CACHE/blobs/<two lowercase hex>/<64 lowercase hex>`
+store. The shard must equal the first two object-ID characters. A second link is
+allowed only for the observed HF layout: snapshot file -> repository's
+`blobs/<64 lowercase hex>` file -> canonical shared blob. No extra hop, arbitrary
+repository alias, linked directory or external target is allowed. This root is derived from the same cache as the
+verified model repository; callers cannot supply an extra allowed directory.
+Windows extended drive names returned by readlink are normalized narrowly;
+device/UNC targets, unexpected file-link chains, arbitrary external
+files, malformed names, broken references and nonregular files remain denied.
+
+Shared-store names use the Xet object ID in the installed Hugging Face source,
+not necessarily the file's SHA-256. The inspector hashes the actual resolved
+contents separately; it does not incorrectly assert that the Xet ID is a SHA-256.
+
+The private manifest retains each snapshot logical path, resolved target, actual
+SHA-256 and bytes. The same 256-entry/32GiB total limits apply, including duplicate
+logical references. File/link identity, size, mtime and ctime are checked around
+hashing; link targets are revalidated afterward. Unreadable subdirectories fail
+the inventory rather than silently producing a partial success. Snapshot/ref
+selection is unchanged and a changed revision still fails. No cache variables,
+model files, narrator script/reference, packages or network settings are changed.
+Rejected reparse components have bounded path/type/tag/link-target details in
+the protected private failure report only. The console still exposes no paths or
+raw exception messages. Inspection success alone does not verify rights or speech.
