@@ -175,6 +175,23 @@ class EditorTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.client.audit_sources()
 
+    def test_native_text_readers_need_no_external_resource_registration(self):
+        # v4.1.1 direct_text.reader_json deliberately emits a pathless reader.
+        native_text = {'type': 'QtTextReader', 'path': '', 'media_type': 'image',
+                       'direct_text': {'text': 'Plain lower third', 'font_family': 'Segoe UI'},
+                       'font': 'Segoe UI,36,-1,5,50,0,0,0,0,0'}
+        def reply(args):
+            if args[1] == 'list':
+                return {'data': [{'id': args[0] + '1'}]}
+            if args[0] == 'file':
+                return {'data': native_text}
+            return {'data': {'reader': native_text, 'thumbnail': 'outside-cache-thumbnail.png'}}
+        with patch.object(self.client, '_invoke', side_effect=reply):
+            self.assertEqual(self.client.audit_sources(), {})
+            native_text['path'] = str(self.vault / 'untrusted.svg')
+            with self.assertRaises((ValueError, OSError)):
+                self.client.audit_sources()
+
     def test_owned_fixture_preserves_native_layers_and_labels_missing_acceptance(self):
         batches = []
         def apply(commands, revision):
