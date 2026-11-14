@@ -37,12 +37,14 @@ internal static class ServiceInstall
             throw new RequestError("existing_service_path_mismatch");
         return true;
     }
+    internal static JsonDocument ReadPackageManifest(string path) =>
+        JsonDocument.Parse(File.ReadAllText(path), new JsonDocumentOptions { MaxDepth = 8 });
     private static void VerifyPackage()
     {
         string manifest = Path.Combine(DirectoryPath, "files.sha256.json");
         if (new FileInfo(manifest).Length > 2 * 1024 * 1024 || (File.GetAttributes(manifest) & FileAttributes.ReparsePoint) != 0)
             throw new RequestError("invalid_package_manifest");
-        using var document = JsonDocument.Parse(File.ReadAllBytes(manifest), new JsonDocumentOptions { MaxDepth = 8 });
+        using var document = ReadPackageManifest(manifest);
         if (document.RootElement.ValueKind != JsonValueKind.Array || document.RootElement.GetArrayLength() > 4096) throw new RequestError("invalid_package_manifest");
         var expected = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var entry in document.RootElement.EnumerateArray())

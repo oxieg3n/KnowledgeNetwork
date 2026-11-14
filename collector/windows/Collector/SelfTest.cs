@@ -18,6 +18,13 @@ internal static class SelfTest
             try { action(); throw new InvalidOperationException("expected_" + code); }
             catch (RequestError error) { Check(error.Message == code); }
         }
+        var manifestPath = Path.Combine(path, "files.sha256.json");
+        foreach (bool bom in new[] { false, true })
+        {
+            File.WriteAllText(manifestPath, "[]", new System.Text.UTF8Encoding(bom));
+            using var manifest = ServiceInstall.ReadPackageManifest(manifestPath);
+            Check(manifest.RootElement.ValueKind == JsonValueKind.Array);
+        }
         var job = Json("""{"schema_version":1,"job_type":"diagnostic.echo","idempotency_key":"test-1","inputs":{"nonce":"hello"}}""");
         string id, worker;
         using (var store = new JobStore(path))
