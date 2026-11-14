@@ -1,20 +1,25 @@
 """Synthetic manifests and mocked execution; not BLACKHAT-BASE narrator proof."""
 from contextlib import ExitStack, closing
+import base64
+import ctypes
+from ctypes import wintypes
 import hashlib
 import http.client
 import io
 import json
+import os
 from pathlib import Path
 import socket
 import sqlite3
 import tempfile
 import threading
+import time
 import unittest
 from unittest.mock import Mock, patch
 import wave
 
 from youtube_ops.collector_narrator_host import (CLI, NARRATOR, SETTINGS, NarratorError,
-    NarratorHTTPServer, NarratorManifest, NarratorStore, script_arguments)
+    NarratorHTTPServer, NarratorManifest, NarratorStore, WindowsScriptRunner, script_arguments)
 from youtube_ops.collector_narration_common import VoiceError, sha256_file
 
 
@@ -76,6 +81,12 @@ class HostStoreTests(HostFixture):
         self.manifest['settings'] = {**SETTINGS, 'cfg_value': 99}; self.write_manifest()
         with self.assertRaisesRegex(NarratorError, 'configuration_unverified'):
             NarratorManifest(self.manifest_path)
+
+    def test_model_revision_cannot_leak_private_path_or_control_characters(self):
+        for revision in ('C:/private/model', '\\\\host\\cache', 'revision\nprivate', 'a' * 257):
+            self.manifest['model_revision'] = revision; self.write_manifest()
+            with self.subTest(revision=revision[:10]), self.assertRaisesRegex(NarratorError, 'invalid_model_revision'):
+                NarratorManifest(self.manifest_path)
 
     def test_changed_canonical_script_or_reference_never_executes(self):
         for path in (self.script, self.reference):
@@ -271,5 +282,84 @@ class HostHTTPTests(HostFixture):
                 NarratorHTTPServer(address, self.store_value, token)
 
 
+def native_runner_smoke(output_directory):
+    """Opt-in Forge process-boundary proof only. Never calls the host narrator."""
+    if os.name != 'nt':
+        raise RuntimeError('Windows is required')
+    output = Path(output_directory).absolute()
+    output.mkdir(exist_ok=False)
+    checks = []
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+    kernel.OpenProcess.restype = wintypes.HANDLE
+    kernel.WaitForSingleObject.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+    kernel.WaitForSingleObject.restype = wintypes.DWORD
+    kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+
+    def alive(pid):
+        handle = kernel.OpenProcess(0x100000, False, pid)
+        if not handle:
+            if ctypes.get_last_error() in (87, 1168):
+                return False
+            raise RuntimeError('child_liveness_not_verified')
+        try:
+            state = kernel.WaitForSingleObject(handle, 0)
+            if state not in (0, 0x102):
+                raise RuntimeError('child_liveness_not_verified')
+            return state == 0x102
+        finally:
+            kernel.CloseHandle(handle)
+
+    for name in ('completed', 'cancelled', 'timeout'):
+        destination = output / (name + '.wav')
+        child_file = output / (name + '-child.pid')
+        cancel, watcher_stop = threading.Event(), threading.Event()
+        started = time.monotonic()
+        if name == 'completed':
+            code = "[IO.File]::WriteAllBytes('" + str(destination).replace("'", "''") + "',[Convert]::FromBase64String('" + base64.b64encode(wav_bytes()).decode() + "'))"
+        else:
+            code = ("$p=Start-Process -FilePath (Join-Path $PSHOME 'powershell.exe') "
+                "-ArgumentList '-NoLogo -NoProfile -NonInteractive -Command Start-Sleep -Seconds 10' "
+                "-WindowStyle Hidden -PassThru; [IO.File]::WriteAllText('" +
+                str(child_file).replace("'", "''") + "',[string]$p.Id); Start-Sleep -Seconds 30")
+        def fixture_arguments(powershell, text, allocated_output):
+            return [str(powershell), '-NoLogo', '-NoProfile', '-NonInteractive', '-Command', code]
+        def trigger_cancel():
+            deadline = time.monotonic() + 8
+            while not watcher_stop.wait(.02) and not child_file.exists() and time.monotonic() < deadline:
+                pass
+            if not watcher_stop.is_set():
+                cancel.set()
+        thread = None
+        if name == 'cancelled':
+            thread = threading.Thread(target=trigger_cancel, daemon=True); thread.start()
+        actual = 'completed'
+        try:
+            with patch('youtube_ops.collector_narrator_host.script_arguments', side_effect=fixture_arguments), \
+                 patch('youtube_ops.collector_narrator_host.SCRIPT_TIMEOUT_SECONDS', 3 if name == 'timeout' else 12):
+                WindowsScriptRunner()('synthetic fixture only', destination, cancel)
+        except NarratorError as error:
+            actual = str(error)
+        finally:
+            watcher_stop.set()
+            if thread:
+                thread.join(1)
+        expected = {'completed': 'completed', 'cancelled': 'cancelled', 'timeout': 'generation_timeout_or_size_limit'}[name]
+        child_stopped = None
+        if name != 'completed':
+            child_stopped = child_file.exists() and not alive(int(child_file.read_text()))
+        passed = actual == expected and (destination.read_bytes() == wav_bytes() if name == 'completed' else child_stopped)
+        checks.append({'name': name, 'status': 'PASS' if passed else 'FAILED', 'actual': actual,
+                       'elapsed_seconds': time.monotonic() - started, 'child_stopped': child_stopped})
+    report = {'status': 'PASS' if all(check['status'] == 'PASS' for check in checks) else 'FAILED',
+        'scope': 'FORGE_SYNTHETIC_WINDOWS_RUNNER_ONLY', 'checks': checks,
+        'host_narrator_parity': 'NOT_TESTED', 'gpu_inference': 'NOT_TESTED'}
+    (output / 'native-runner-results.json').write_text(json.dumps(report, indent=2))
+    return 0 if report['status'] == 'PASS' else 1
+
+
 if __name__ == '__main__':
+    import sys
+    if len(sys.argv) == 3 and sys.argv[1] == '--native-runner-smoke':
+        raise SystemExit(native_runner_smoke(sys.argv[2]))
     unittest.main()

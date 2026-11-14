@@ -63,6 +63,8 @@ class NarratorManifest:
         for key in ('reviewed_by', 'reviewed_at', 'model_revision', 'license', 'cli_version'):
             if not isinstance(manifest.get(key), str) or not manifest[key].strip():
                 raise NarratorError('manifest_review_incomplete')
+        if not re.fullmatch('[A-Za-z0-9_.+-]{1,256}', manifest['model_revision']):
+            raise NarratorError('invalid_model_revision')
         if manifest.get('model_id') != 'openbmb/VoxCPM2' or manifest.get('settings') != SETTINGS:
             raise NarratorError('canonical_narrator_configuration_unverified')
         artifacts = manifest.get('artifacts')
@@ -113,6 +115,8 @@ def script_arguments(powershell, text, output):
 class WindowsScriptRunner:
     """Start suspended, own the complete process tree, then resume execution."""
     def __call__(self, text, output, cancel):
+        if cancel.is_set():
+            raise NarratorError('cancelled')
         if os.name != 'nt':
             raise NarratorError('windows_host_required')
         kernel = ctypes.WinDLL('kernel32', use_last_error=True)
@@ -337,6 +341,8 @@ class NarratorStore:
             directory.mkdir()
             local_spool(directory)
             output = directory / 'narration.wav'
+            if cancel.is_set():
+                raise NarratorError('cancelled')
             launched = True
             self.executor(text, output, cancel)
             finished = True
