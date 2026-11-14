@@ -4,9 +4,10 @@ Rights-safe video operations for Powered By Oxieg3n. This public repository cont
 
 The **Knowledge Network Collector** Windows staging build now has a tested
 LocalService worker, durable diagnostic/research CLI, native operations dashboard
-and installer. OpenShot integration and the private BLACKHAT-BASE VoiceStudio
-provider are development clients; their service bridge is not enabled. See the
-[verified V8 handoff](docs/collector/overnight/HANDOFF.md) and
+and installer. OpenShot integration and the private BLACKHAT-BASE direct VoxCPM2
+Oxiegen-Narrator provider are development clients; their service bridge is not
+enabled. VoiceStudio is retired from the active narration stack. See the
+[verified handoff](docs/collector/overnight/HANDOFF.md) and
 [Assistant operations](docs/collector/ASSISTANT-OPERATIONS.md). Full narrated,
 branded production acceptance remains blocked; publishing remains paused.
 

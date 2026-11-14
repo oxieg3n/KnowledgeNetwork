@@ -35,20 +35,6 @@ READ_DEADLINE_SECONDS = 30
 POST_DEADLINE_SECONDS = 180
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def verify_rights(evidence, engine_id, voice_id):
     if not isinstance(evidence, dict) or evidence.get('schema_version') != 2:
         raise VoiceError('BLOCKED_REMOTE_VOICE_RIGHTS')
@@ -75,12 +61,6 @@ def verify_rights(evidence, engine_id, voice_id):
                 not isinstance(artifact.get('logical_name'), str) or not artifact['logical_name'].strip() or
                 not re.fullmatch('[a-f0-9]{64}', str(artifact.get('sha256', '')))):
             raise VoiceError('BLOCKED_HOST_MODEL_EVIDENCE')
-
-
-
-
-
-
 
 
 def request_identity(job_id, text, segments):
@@ -490,8 +470,6 @@ def main(argv=None):
     print(json.dumps({'status': 'blocked_remote_voice', 'error': 'VOICESTUDIO_PROVIDER_RETIRED',
                       'replacement': 'youtube_ops.collector_voxcpm2', 'publication_eligible': False}))
     return 1
-
-
 
 
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+> RETIRED V8 DOCUMENTATION. Do not run these commands. VoiceStudio is no longer an active Collector dependency; its CLI and environment entry points fail closed. Current V9 setup is in [host-narrator.md](host-narrator.md) and [Assistant operations](ASSISTANT-OPERATIONS.md). Historical evidence below is retained for audit only.
+
 # Remote VoiceStudio on BLACKHAT-BASE
 
 V8 supersedes the earlier Forge-local voice adapter. The single

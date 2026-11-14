@@ -1,3 +1,5 @@
+> V9 override: use the direct VoxCPM2 Oxiegen-Narrator service on BLACKHAT-BASE for body narration. VoiceStudio instructions below are historical and must not be executed. See `../ASSISTANT-OPERATIONS.md` for current commands and prerequisite checks.
+
 # Assistant Dot: full-feature Collector end-to-end test (owner-review only)
 
 ## Intent

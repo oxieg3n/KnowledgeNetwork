@@ -1,11 +1,53 @@
 {
   "schema_version": 1,
   "scope": "Windows staging build; no model weights or owner media bundled",
-  "dotnet_sdk": {"version":"10.0.404","source":"https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/10.0/releases.json","installer_sha256":"f7fdaf56ff976c3450e6e984ddea3f01790b45ecec848bcfa5dc32f62b6aa93a"},
-  "dotnet_runtime": {"version":"10.0.15","nuget_lock":"../../collector/windows/Collector/packages.lock.json"},
-  "openshot": {"version":"4.1.1","source":"https://github.com/OpenShot/openshot-qt/releases/tag/v4.1.1","installer_sha256":"6c18abf951a798b536b07aa88f78d62eb55345903699b429b08322323c049690","console_sha256":"3637d631e5b01f263c87e7bbc0c9d3dd5b75274f7489bd2f56da8940ce292ca7"},
-  "voicestudio": {"version":"0.5.6","source":"https://github.com/debpalash/VoiceStudio/tree/3915a62cb482bb43117aaebab57d22745bd1cc21","installation":"BLACKHAT-BASE existing private HTTPS API; no host installation/configuration changes","model_license":"BLOCKED: only noncommercial OmniVoice TTS weights reported installed","legacy_forge_installation":"preserved and unused by V8"},
-  "ffmpeg_qc": {"version":"9.0.2","source":"https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2","zip_sha256":"759d0a9831c436a0eb331ad36f236c06cb04aaa0005da46571f0e9d3d9206f6b"},
-  "inno_setup": {"version":"6.7.3","source":"https://github.com/jrsoftware/issrc/releases/tag/is-6_7_3","installer_sha256":"9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732"},
-  "python_development": {"version":"3.13.17","tzdata":"2026.2","numpy":"2.3.5","pillow_tested":"13.0.0","note":"No Piper install or new narrator substitution"}
+  "dotnet_sdk": {
+    "version": "10.0.404",
+    "source": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/10.0/releases.json",
+    "installer_sha256": "f7fdaf56ff976c3450e6e984ddea3f01790b45ecec848bcfa5dc32f62b6aa93a"
+  },
+  "dotnet_runtime": {
+    "version": "10.0.15",
+    "nuget_lock": "../../collector/windows/Collector/packages.lock.json"
+  },
+  "openshot": {
+    "version": "4.1.1",
+    "source": "https://github.com/OpenShot/openshot-qt/releases/tag/v4.1.1",
+    "installer_sha256": "6c18abf951a798b536b07aa88f78d62eb55345903699b429b08322323c049690",
+    "console_sha256": "3637d631e5b01f263c87e7bbc0c9d3dd5b75274f7489bd2f56da8940ce292ca7"
+  },
+  "voicestudio": {
+    "version": "0.5.6",
+    "source": "https://github.com/debpalash/VoiceStudio/tree/3915a62cb482bb43117aaebab57d22745bd1cc21",
+    "installation": "BLACKHAT-BASE existing private HTTPS API; no host installation/configuration changes",
+    "model_license": "BLOCKED: only noncommercial OmniVoice TTS weights reported installed",
+    "legacy_forge_installation": "preserved and unused by V8",
+    "status": "RETIRED: historical evidence only; not an active Collector dependency"
+  },
+  "ffmpeg_qc": {
+    "version": "9.0.2",
+    "source": "https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2",
+    "zip_sha256": "759d0a9831c436a0eb331ad36f236c06cb04aaa0005da46571f0e9d3d9206f6b"
+  },
+  "inno_setup": {
+    "version": "6.7.3",
+    "source": "https://github.com/jrsoftware/issrc/releases/tag/is-6_7_3",
+    "installer_sha256": "9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732"
+  },
+  "python_development": {
+    "version": "3.13.17",
+    "tzdata": "2026.2",
+    "numpy": "2.3.5",
+    "pillow_tested": "13.0.0",
+    "note": "No Piper install or new narrator substitution"
+  },
+  "voxcpm2": {
+    "source": "https://github.com/OpenBMB/VoxCPM",
+    "model_source": "https://huggingface.co/openbmb/VoxCPM2",
+    "upstream_license": "Apache-2.0",
+    "installed_revision": "BLOCKED: host installation not inspected",
+    "narrator": "oxiegen-narrator",
+    "integration": "Canonical owner script wrapper first; direct persistent Python model requires parity proof",
+    "host_assets": "Private and immutable; not bundled"
+  }
 }
