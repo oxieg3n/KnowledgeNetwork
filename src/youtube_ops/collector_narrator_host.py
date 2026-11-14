@@ -102,6 +102,27 @@ def verify_spool_acl(spool):
         raise NarratorError('spool_acl_unverified')
 
 
+def _effective_model_ref():
+    """Resolve with the canonical engine interpreter, never importing inference."""
+    python = CLI.parent / 'python.exe'
+    try:
+        result = subprocess.run([str(python), '-I', '-X', 'utf8', '-c',
+            'import json; from huggingface_hub.constants import HF_HUB_CACHE; '
+            'from pathlib import Path; print(json.dumps(str(Path(HF_HUB_CACHE) / '
+            '"models--openbmb--VoxCPM2" / "refs" / "main")))'],
+            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, timeout=10,
+            text=True, encoding='utf-8', check=False, shell=False,
+            creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        if result.returncode or len(result.stdout) > 32768:
+            raise ValueError('resolver_failed')
+        value = json.loads(result.stdout)
+        if not isinstance(value, str) or not Path(value).is_absolute():
+            raise ValueError('invalid_ref')
+        return Path(value)
+    except (OSError, ValueError, subprocess.TimeoutExpired) as exc:
+        raise NarratorError('effective_model_reference_unverified') from exc
+
+
 class NarratorManifest:
     """Local reviewed file evidence, never fields accepted from an API client."""
     def __init__(self, path):
@@ -116,14 +137,14 @@ class NarratorManifest:
         for key in ('reviewed_by', 'reviewed_at', 'model_revision', 'license', 'cli_version'):
             if not isinstance(manifest.get(key), str) or not manifest[key].strip():
                 raise NarratorError('manifest_review_incomplete')
-        if not re.fullmatch('[A-Za-z0-9_.+-]{1,256}', manifest['model_revision']):
+        if not re.fullmatch('[a-f0-9]{40}', manifest['model_revision']):
             raise NarratorError('invalid_model_revision')
         if manifest.get('model_id') != 'openbmb/VoxCPM2' or manifest.get('settings') != SETTINGS:
             raise NarratorError('canonical_narrator_configuration_unverified')
         artifacts = manifest.get('artifacts')
         required = {'cli_executable', 'narrator_reference', 'model_checkpoint',
-                    'license_evidence', 'consent_evidence', 'inspection_record'}
-        if not isinstance(artifacts, list) or not 6 <= len(artifacts) <= 64:
+                    'license_evidence', 'consent_evidence', 'inspection_record', 'model_revision_ref'}
+        if not isinstance(artifacts, list) or not 7 <= len(artifacts) <= 64:
             raise NarratorError('manifest_artifacts_missing')
         for item in artifacts:
             if (not isinstance(item, dict) or set(item) != {'role', 'path', 'sha256'} or
@@ -148,6 +169,26 @@ class NarratorManifest:
         self.verify()
 
     def verify(self):
+        artifacts = self.value['artifacts']
+        refs = [item for item in artifacts if item['role'] == 'model_revision_ref']
+        effective = _effective_model_ref()
+        try:
+            if len(refs) != 1 or Path(refs[0]['path']) != effective or effective.stat().st_size > 128:
+                raise ValueError('ref_mismatch')
+            revision = effective.read_text(encoding='ascii').strip()
+            if revision != self.value['model_revision']:
+                raise ValueError('revision_changed')
+            snapshot = effective.parent.parent / 'snapshots' / revision
+            selected = {path.resolve(strict=True) for path in
+                (snapshot / 'model.safetensors', snapshot / 'pytorch_model.bin') if path.is_file()}
+            if (snapshot / 'model.safetensors').is_file():
+                selected = {(snapshot / 'model.safetensors').resolve(strict=True)}
+            checkpoints = [Path(item['path']).resolve(strict=True) for item in artifacts
+                           if item['role'] == 'model_checkpoint']
+            if not checkpoints or any(path not in selected for path in checkpoints):
+                raise ValueError('checkpoint_not_selected')
+        except (OSError, ValueError, UnicodeError) as exc:
+            raise NarratorError('selected_model_revision_unverified') from exc
         records = [{'path': str(SCRIPT), 'sha256': self.value.get('script_sha256')}, *self.value['artifacts']]
         for item in records:
             path = Path(item['path'])

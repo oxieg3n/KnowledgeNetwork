@@ -45,16 +45,24 @@ class HostFixture(unittest.TestCase):
             path.write_bytes(b'fixture only; never executable')
         for name, path in (('SCRIPT', self.script), ('REFERENCE', self.reference), ('CLI', self.cli)):
             self.stack.enter_context(patch('youtube_ops.collector_narrator_host.' + name, path))
+        self.ref = self.root / 'models--openbmb--VoxCPM2/refs/main'
+        self.ref.parent.mkdir(parents=True)
+        self.ref.write_text('a' * 40)
+        self.checkpoint = self.ref.parent.parent / 'snapshots' / ('a' * 40) / 'model.safetensors'
+        self.checkpoint.parent.mkdir(parents=True)
+        self.checkpoint.write_bytes(b'fixture weights')
+        self.stack.enter_context(patch('youtube_ops.collector_narrator_host._effective_model_ref', return_value=self.ref))
         self.manifest_path = self.root / 'manifest.json'
         artifacts = []
         for role, path in [('cli_executable', self.cli), ('narrator_reference', self.reference),
+                           ('model_revision_ref', self.ref), ('model_checkpoint', self.checkpoint),
                            *[(role, self.root / (role + '.private')) for role in
-                             ('model_checkpoint', 'license_evidence', 'consent_evidence', 'inspection_record')]]:
+                             ('license_evidence', 'consent_evidence', 'inspection_record')]]:
             if not path.exists():
                 path.write_bytes(b'fixture evidence only')
             artifacts.append({'role': role, 'path': str(path), 'sha256': sha256_file(path)})
         self.manifest = {'schema_version': 1, 'narrator_id': NARRATOR, 'settings': SETTINGS,
-            'model_id': 'openbmb/VoxCPM2', 'model_revision': 'fixture-revision', 'license': 'fixture-only',
+            'model_id': 'openbmb/VoxCPM2', 'model_revision': 'a' * 40, 'license': 'fixture-only',
             'cli_version': 'fixture-version', 'reviewed_by': 'unit-test', 'reviewed_at': '2026-11-14',
             'script_sha256': sha256_file(self.script), 'artifacts': artifacts,
             **{key: True for key in ('rights_reviewed', 'commercial_use', 'youtube_use', 'voice_consent',
@@ -83,6 +91,33 @@ class HostStoreTests(HostFixture):
         self.manifest['voice_consent'] = True
         self.manifest['settings'] = {**SETTINGS, 'cfg_value': 99}; self.write_manifest()
         with self.assertRaisesRegex(NarratorError, 'configuration_unverified'):
+            NarratorManifest(self.manifest_path)
+
+    def test_selected_ref_or_cache_change_blocks_unchanged_old_checkpoint(self):
+        for change_cache in (False, True):
+            self.ref.write_text('a' * 40)
+            executor = Mock()
+            store = self.store(executor)
+            key = ('b' if change_cache else 'a') * 32
+            store.submit(self.request(key))
+            if change_cache:
+                with patch('youtube_ops.collector_narrator_host._effective_model_ref', return_value=self.root / 'other/refs/main'):
+                    store.run_next()
+            else:
+                self.ref.write_text('b' * 40)
+                store.run_next()
+            executor.assert_not_called()
+            self.assertEqual(store.get(key)['state'], 'failed')
+            store.close()
+
+    def test_checkpoint_outside_selected_snapshot_is_denied(self):
+        old = self.root / 'old-model.safetensors'
+        old.write_bytes(self.checkpoint.read_bytes())
+        for artifact in self.manifest['artifacts']:
+            if artifact['role'] == 'model_checkpoint':
+                artifact['path'] = str(old)
+        self.write_manifest()
+        with self.assertRaisesRegex(NarratorError, 'selected_model_revision_unverified'):
             NarratorManifest(self.manifest_path)
 
     def test_model_revision_cannot_leak_private_path_or_control_characters(self):

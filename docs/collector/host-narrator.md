@@ -223,3 +223,6 @@ the narrator, changing execution policy or loading a model. Results are labeled
 FORGE_SYNTHETIC_WINDOWS_RUNNER_ONLY. This harness must be explicitly run in the
 coordinator's serialized native slot. Even a PASS does not establish canonical
 host script parity, consent, GPU quality, listening or cross-machine acceptance.
+
+
+Selected-model binding: manifests additionally require one `model_revision_ref` artifact containing the actual effective Hugging Face `models--openbmb--VoxCPM2/refs/main`, with its observed hash. `model_revision` must be the exact 40-character lowercase commit read from that ref. Before every dispatch the worker invokes only the canonical engine sibling `python.exe` with fixed isolated code importing `huggingface_hub.constants` (no Torch, model, download or arbitrary caller code) to resolve the current cache. It rejects a different cache/ref/revision even if the previous weights remain unchanged. `model_checkpoint` must resolve to the selected snapshot's `model.safetensors` (preferred) or `pytorch_model.bin` fallback, including the blob target of that snapshot file. All artifact hashes remain checked. Keep the host cache, environment and kit under trusted owner control; simultaneous administrator mutation of a model during execution is outside this local integrity check.
