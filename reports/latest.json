@@ -1,10 +1,15 @@
 {
-  "command": "recap",
-  "run_id": "43533434233-1",
-  "checked_at": "2026-11-14T00:19:47.067998+00:00",
+  "command": "monitor",
+  "run_id": "43571875856-1",
+  "checked_at": "2026-11-14T07:36:17.734599+00:00",
   "status": "BLOCKED",
-  "details": {},
+  "details": {
+    "channels_registered": 10,
+    "channels_attempted": 2,
+    "new_leads": 2,
+    "api_enabled": true
+  },
   "blockers": [
-    "Editorial lineup, original script and approved narration/render required; no filler generated"
+    "Bounded rotating batch; not all sources checked this run"
   ]
 }

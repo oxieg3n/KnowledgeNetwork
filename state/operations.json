@@ -56,6 +56,14 @@
       "url": "https://www.youtube.com/watch?v=3B-4_-HIMx4",
       "video_id": "3B-4_-HIMx4"
     },
+    "video:3ShCCyHTu1A": {
+      "created_at": "2026-11-14T07:36:18.134448+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "RACCOIN: Chaos Max Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=3ShCCyHTu1A",
+      "video_id": "3ShCCyHTu1A"
+    },
     "video:3g39ieG_fls": {
       "created_at": "2026-11-12T23:07:36.462868+00:00",
       "kind": "new_video",
@@ -359,6 +367,14 @@
       "title": "Acornia: Mirror Worlds - A Season-ing Trailer | PS5 Games",
       "url": "https://www.youtube.com/watch?v=MdylaeDkKJE",
       "video_id": "MdylaeDkKJE"
+    },
+    "video:MnW00Oo7Gs8": {
+      "created_at": "2026-11-14T07:36:18.134464+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Metaphor: ReFantazio \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=MnW00Oo7Gs8",
+      "video_id": "MnW00Oo7Gs8"
     },
     "video:N5YLi8Ar3Wg": {
       "created_at": "2026-11-12T21:57:13.626744+00:00",
@@ -1254,8 +1270,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-13T12:09:49.116701+00:00",
-      "last_monitored_at": "2026-11-13T12:09:49.116505+00:00",
+      "last_attempt_at": "2026-11-14T07:36:18.134619+00:00",
+      "last_monitored_at": "2026-11-14T07:36:18.134505+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -1425,8 +1441,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-13T12:09:49.566609+00:00",
-      "last_monitored_at": "2026-11-13T12:09:49.566425+00:00",
+      "last_attempt_at": "2026-11-14T07:36:18.488250+00:00",
+      "last_monitored_at": "2026-11-14T07:36:18.488126+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -3900,6 +3916,26 @@
         "url": "https://www.youtube.com/watch?v=3B-4_-HIMx4",
         "video_id": "3B-4_-HIMx4"
       },
+      "3ShCCyHTu1A": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-14T07:36:18.134429+00:00",
+        "id": "3ShCCyHTu1A",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T23:00:14Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "RACCOIN: Chaos Max Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=3ShCCyHTu1A",
+        "video_id": "3ShCCyHTu1A"
+      },
       "3g39ieG_fls": {
         "api_verification": "verified",
         "attempts": 0,
@@ -4681,6 +4717,26 @@
         "title": "Acornia: Mirror Worlds - A Season-ing Trailer | PS5 Games",
         "url": "https://www.youtube.com/watch?v=MdylaeDkKJE",
         "video_id": "MdylaeDkKJE"
+      },
+      "MnW00Oo7Gs8": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-14T07:36:18.134459+00:00",
+        "id": "MnW00Oo7Gs8",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-13T21:00:50Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Metaphor: ReFantazio \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=MnW00Oo7Gs8",
+        "video_id": "MnW00Oo7Gs8"
       },
       "N5YLi8Ar3Wg": {
         "api_verification": "verified",
@@ -6695,7 +6751,7 @@
       "upload": 0
     },
     "2026-11-13": {
-      "general": 50,
+      "general": 56,
       "search": 0,
       "upload": 0
     }
@@ -7151,7 +7207,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 329,
+  "revision": 338,
   "rights_ledger": {},
   "runs": [
     {
@@ -8026,6 +8082,21 @@
       "command": "recap",
       "details": {},
       "run_id": "43533434233-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-14T07:36:17.734599+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 2
+      },
+      "run_id": "43571875856-1",
       "status": "BLOCKED"
     }
   ],
