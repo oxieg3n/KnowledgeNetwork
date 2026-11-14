@@ -1,8 +1,9 @@
-﻿"""Synthetic filesystem tests; no installed host model is inspected."""
+"""Synthetic filesystem tests; no installed host model is inspected."""
 import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 SPEC = importlib.util.spec_from_file_location('installed_probe', Path(__file__).resolve().parents[1] /
     'docs/collector/host-tools/inspect_installed_voxcpm2.py')
@@ -29,6 +30,15 @@ class InventoryBoundsTests(unittest.TestCase):
             repo.mkdir()
             with self.assertRaisesRegex(ValueError, 'snapshot_escape'):
                 probe.catalog(Path(tmp), repo)
+
+    def test_total_bytes_denied_before_hash(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            (repo / 'weight').write_bytes(b'12345')
+            with patch.object(probe, 'MAX_MODEL_BYTES', 4), patch.object(probe, 'sha') as hashed:
+                with self.assertRaisesRegex(ValueError, 'model_byte_limit'):
+                    probe.catalog(repo, repo)
+                hashed.assert_not_called()
 
     def test_file_count_is_bounded(self):
         with tempfile.TemporaryDirectory() as tmp:

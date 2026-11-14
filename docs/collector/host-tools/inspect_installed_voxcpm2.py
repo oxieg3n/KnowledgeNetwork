@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
 from youtube_ops.collector_narrator_host import _system_powershell, verify_spool_acl
 
+SITE_PACKAGES = Path(r'D:\tools\audio\voicestudio\data\engines\voxcpm2\voxcpm2\.venv\Lib\site-packages')
+MAX_MODEL_BYTES = 32 * 1024 ** 3
+
 PRIVATE_ACL = r'''
 $ErrorActionPreference = 'Stop'
 try {
@@ -47,14 +50,14 @@ def catalog(snapshot, repository):
     snapshot = snapshot.resolve(strict=True)
     if not snapshot.is_relative_to(repository):
         raise ValueError('snapshot_escape')
-    files, visited = [], 0
+    files, visited, total_bytes = [], 0, 0
     for directory, dirs, names in os.walk(snapshot, followlinks=False):
         visited += len(dirs) + len(names)
         if visited > 256:
             raise ValueError('model_inventory_limit')
         for name in dirs:
             item = Path(directory) / name
-            if item.is_symlink() or item.is_junction():
+            if item.is_symlink() or getattr(item.lstat(), 'st_file_attributes', 0) & 0x400:
                 raise ValueError('linked_directory_denied')
         for name in sorted(names):
             logical = Path(directory) / name
@@ -62,6 +65,9 @@ def catalog(snapshot, repository):
             if not target.is_relative_to(repository) or not target.is_file():
                 raise ValueError('model_file_escape')
             before = target.stat()
+            total_bytes += before.st_size
+            if before.st_size > MAX_MODEL_BYTES or total_bytes > MAX_MODEL_BYTES:
+                raise ValueError('model_byte_limit')
             checksum = sha(target)
             after = target.stat()
             if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
@@ -98,6 +104,10 @@ def inspect():
             if len(package) >= 256:
                 raise ValueError('package_inventory_limit')
             path = Path(dist.locate_file(item)).resolve(strict=True)
+            if not path.is_relative_to(SITE_PACKAGES.resolve(strict=True)):
+                raise ValueError('package_file_escape')
+            if path.stat().st_size > 4 * 1024 * 1024:
+                raise ValueError('package_source_byte_limit')
             package.append({'logical_path': name, 'resolved_path': str(path),
                             'bytes': path.stat().st_size, 'sha256': sha(path)})
     return {'schema_version': 1, 'status': 'inventory_only_owner_review_required',
