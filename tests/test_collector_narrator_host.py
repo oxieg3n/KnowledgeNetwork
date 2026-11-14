@@ -1,5 +1,6 @@
 """Synthetic manifests and mocked execution; not BLACKHAT-BASE narrator proof."""
 from contextlib import ExitStack, closing
+from contextlib import redirect_stdout
 import base64
 import ctypes
 from ctypes import wintypes
@@ -11,6 +12,7 @@ import os
 from pathlib import Path
 import socket
 import sqlite3
+import subprocess
 import tempfile
 import threading
 import time
@@ -19,7 +21,8 @@ from unittest.mock import Mock, patch
 import wave
 
 from youtube_ops.collector_narrator_host import (CLI, NARRATOR, SETTINGS, NarratorError,
-    NarratorHTTPServer, NarratorManifest, NarratorStore, WindowsScriptRunner, script_arguments)
+    NarratorHTTPServer, NarratorManifest, NarratorStore, WindowsScriptRunner, main, script_arguments,
+    verify_spool_acl, SPOOL_ACL_CHECK)
 from youtube_ops.collector_narration_common import VoiceError, sha256_file
 
 
@@ -215,6 +218,50 @@ class HostStoreTests(HostFixture):
         with self.assertRaisesRegex(NarratorError, 'unsupported_host_database_schema'):
             NarratorStore(self.spool, NarratorManifest(self.manifest_path), Mock())
         self.assertEqual(path.read_bytes(), original)
+
+
+class SpoolACLTests(HostFixture):
+    def test_constant_command_receives_path_as_json_stdin_without_interpolation(self):
+        path = self.spool / "literal $(Write-Output private); 'x"
+        path.mkdir()
+        result = subprocess.CompletedProcess([], 0, '{"ok":true}')
+        with patch('youtube_ops.collector_narrator_host._system_powershell', return_value='fixed-system-powershell.exe'), \
+             patch('youtube_ops.collector_narrator_host.subprocess.run', return_value=result) as run:
+            verify_spool_acl(path)
+        arguments, options = run.call_args.args[0], run.call_args.kwargs
+        self.assertEqual(arguments[-1], SPOOL_ACL_CHECK)
+        self.assertNotIn(str(path), arguments)
+        self.assertEqual(json.loads(options['input']), {'spool': str(path)})
+        self.assertFalse(options['shell']); self.assertEqual(options['timeout'], 10)
+        self.assertNotIn('-File', arguments); self.assertNotIn('-ExecutionPolicy', arguments)
+
+    def test_denied_or_invalid_acl_output_is_redacted_and_fail_closed(self):
+        for result in (subprocess.CompletedProcess([], 1, '{"ok":false}'),
+                       subprocess.CompletedProcess([], 0, 'private unexpected output'),
+                       subprocess.CompletedProcess([], 0, '{"ok":true}' + ' ' * 65)):
+            with patch('youtube_ops.collector_narrator_host._system_powershell', return_value='fixed-system-powershell.exe'), \
+                 patch('youtube_ops.collector_narrator_host.subprocess.run', return_value=result):
+                with self.assertRaisesRegex(NarratorError, '^spool_acl_unverified$'):
+                    verify_spool_acl(self.spool)
+
+    def test_acl_timeout_is_redacted_and_fail_closed(self):
+        with patch('youtube_ops.collector_narrator_host._system_powershell', return_value='fixed-system-powershell.exe'), \
+             patch('youtube_ops.collector_narrator_host.subprocess.run', side_effect=subprocess.TimeoutExpired('private command', 10)):
+            with self.assertRaisesRegex(NarratorError, '^spool_acl_unverified$'):
+                verify_spool_acl(self.spool)
+
+    def test_serve_rejects_acl_before_opening_database_or_listener(self):
+        output = io.StringIO()
+        with patch('youtube_ops.collector_narrator_host.NarratorManifest'), \
+             patch('youtube_ops.collector_narrator_host.os') as system, \
+             patch('youtube_ops.collector_narrator_host.verify_spool_acl', side_effect=NarratorError('spool_acl_unverified')), \
+             patch('youtube_ops.collector_narrator_host.NarratorStore') as store, \
+             patch('youtube_ops.collector_narrator_host.NarratorHTTPServer') as server, redirect_stdout(output):
+            system.name = 'nt'
+            self.assertEqual(main(['serve', '--manifest', str(self.manifest_path), '--spool', str(self.spool)]), 1)
+        store.assert_not_called(); server.assert_not_called()
+        self.assertEqual(json.loads(output.getvalue()), {'status': 'BLOCKED', 'error': 'spool_acl_unverified'})
+        self.assertFalse((self.spool / 'host-narrations.sqlite').exists())
 
 
 class HostHTTPTests(HostFixture):

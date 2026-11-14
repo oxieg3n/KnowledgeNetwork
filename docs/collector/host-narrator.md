@@ -145,8 +145,26 @@ missing, changed or unreviewed evidence. Neither command synthesizes audio.
 
 Create an empty VM/host-local private spool directory owned by the intended host
 user, with inheritance disabled and access restricted to that identity, SYSTEM
-and Administrators. Review its ACL before use. The worker rejects network and
-reparse-point spools but does not silently rewrite existing host ACLs.
+and Administrators. Before opening the database or binding the API, production
+startup performs a read-only Windows DACL preflight. It requires a protected,
+nonnull DACL, an owner among those three identities, allow entries only for
+those identities, and explicit FullControl for the current host user. The path
+is passed as JSON on stdin to fixed system PowerShell code, never interpolated
+as code; the check has a10-second timeout and redacted bounded result. Unsafe or
+unverified permissions stop startup. No ACL is rewritten. This checks the spool
+root policy; use a newly created private spool rather than assuming it repairs
+preexisting child-file permissions. Unit-test stores can bypass production
+startup deliberately; their mocked ACL results are not Windows security proof.
+The selected spool must also sit beneath trusted, owner-controlled parent
+directories. This check trusts local administrators and does not audit every
+ancestor's ownership, all host accounts or the host filesystem as a whole.
+
+The isolated read-only check needs no narrator manifest or model load:
+
+```powershell
+& $python -m youtube_ops.collector_narrator_host validate-spool --spool $spool
+```
+
 Provision a newly generated app secret using the interactive hidden prompt,
 then start only the loopback worker:
 

@@ -32,6 +32,32 @@ SETTINGS = {'cfg_value': 2.0, 'inference_timesteps': 10, 'denoiser': False,
 MAX_BODY = 65536
 REQUEST_DEADLINE_SECONDS = 30
 SCRIPT_TIMEOUT_SECONDS = 900
+SPOOL_ACL_CHECK = r'''
+$ErrorActionPreference = 'Stop'
+try {
+    $request = [Console]::In.ReadToEnd() | ConvertFrom-Json
+    $acl = Get-Acl -LiteralPath ([string]$request.spool)
+    $raw = [Security.AccessControl.RawSecurityDescriptor]::new($acl.GetSecurityDescriptorBinaryForm(), 0)
+    if ($null -eq $raw.DiscretionaryAcl -or -not $acl.AreAccessRulesProtected) { throw 'unsafe' }
+    $user = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+    $allowed = @($user, 'S-1-5-18', 'S-1-5-32-544')
+    if ($acl.GetOwner([Security.Principal.SecurityIdentifier]).Value -notin $allowed) { throw 'unsafe' }
+    $ownFullControl = $false
+    foreach ($rule in $acl.GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier])) {
+        if ($rule.AccessControlType -ne [Security.AccessControl.AccessControlType]::Allow -or
+            $rule.IdentityReference.Value -notin $allowed) { throw 'unsafe' }
+        if ($rule.IdentityReference.Value -eq $user -and
+            ($rule.FileSystemRights -band [Security.AccessControl.FileSystemRights]::FullControl) -eq
+            [Security.AccessControl.FileSystemRights]::FullControl) { $ownFullControl = $true }
+    }
+    if (-not $ownFullControl) { throw 'unsafe' }
+    [Console]::Out.Write('{"ok":true}')
+    exit 0
+} catch {
+    [Console]::Out.Write('{"ok":false}')
+    exit 1
+}
+'''
 
 
 class NarratorError(RuntimeError):
@@ -47,6 +73,33 @@ def valid_id(value):
 def validate_text(text):
     if not isinstance(text, str) or not text.strip() or len(text) > 12000 or any(ord(c) < 32 and c not in '\n\t' for c in text):
         raise NarratorError('invalid_text')
+
+
+def _system_powershell():
+    if os.name != 'nt':
+        raise NarratorError('windows_spool_acl_verification_required')
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.GetSystemDirectoryW.argtypes = [wintypes.LPWSTR, wintypes.UINT]
+    kernel.GetSystemDirectoryW.restype = wintypes.UINT
+    directory = ctypes.create_unicode_buffer(32768)
+    length = kernel.GetSystemDirectoryW(directory, len(directory))
+    if not 0 < length < len(directory):
+        raise NarratorError('system_powershell_unavailable')
+    return Path(directory.value) / 'WindowsPowerShell/v1.0/powershell.exe'
+
+
+def verify_spool_acl(spool):
+    """Read-only Windows DACL gate. Never silently repair host permissions."""
+    path = local_spool(spool)
+    try:
+        result = subprocess.run([str(_system_powershell()), '-NoLogo', '-NoProfile', '-NonInteractive',
+            '-Command', SPOOL_ACL_CHECK], input=json.dumps({'spool': str(path)}, ensure_ascii=True),
+            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, encoding='utf-8',
+            timeout=10, check=False, shell=False, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise NarratorError('spool_acl_unverified') from exc
+    if result.returncode != 0 or len(result.stdout) > 64 or result.stdout.strip() != '{"ok":true}':
+        raise NarratorError('spool_acl_unverified')
 
 
 class NarratorManifest:
@@ -140,7 +193,6 @@ class WindowsScriptRunner:
             _fields_ = [('times', ctypes.c_int64 * 4), ('faults', wintypes.DWORD), ('total', wintypes.DWORD),
                 ('active', wintypes.DWORD), ('terminated', wintypes.DWORD)]
         signatures = {
-            'GetSystemDirectoryW': ([wintypes.LPWSTR, wintypes.UINT], wintypes.UINT),
             'CreateJobObjectW': ([ctypes.c_void_p, wintypes.LPCWSTR], handle),
             'SetInformationJobObject': ([handle, ctypes.c_int, ctypes.c_void_p, wintypes.DWORD], wintypes.BOOL),
             'AssignProcessToJobObject': ([handle, handle], wintypes.BOOL),
@@ -154,10 +206,7 @@ class WindowsScriptRunner:
                 wintypes.BOOL, wintypes.DWORD, ctypes.c_void_p, wintypes.LPCWSTR, ctypes.POINTER(Startup), ctypes.POINTER(Process)], wintypes.BOOL)}
         for name, (arguments, result) in signatures.items():
             function = getattr(kernel, name); function.argtypes = arguments; function.restype = result
-        system = ctypes.create_unicode_buffer(32768)
-        if not kernel.GetSystemDirectoryW(system, len(system)):
-            raise NarratorError('powershell_path_unavailable')
-        powershell = Path(system.value) / 'WindowsPowerShell/v1.0/powershell.exe'
+        powershell = _system_powershell()
         command = subprocess.list2cmdline(script_arguments(powershell, text, output))
         if len(command.encode('utf-16-le')) // 2 >= 32767:
             raise NarratorError('narration_command_too_long')
@@ -513,11 +562,16 @@ class NarratorHandler(BaseHTTPRequestHandler):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description='The Knowledge Network Collector restricted host narrator')
-    parser.add_argument('command', choices=('inspect-script', 'validate-manifest', 'credential-save', 'serve'))
+    parser.add_argument('command', choices=('inspect-script', 'validate-manifest', 'validate-spool', 'credential-save', 'serve'))
     parser.add_argument('--manifest', type=Path); parser.add_argument('--spool', type=Path)
     parser.add_argument('--port', type=int, default=39110)
     args = parser.parse_args(argv)
     try:
+        if args.command == 'validate-spool':
+            if not args.spool:
+                parser.error('--spool is required')
+            verify_spool_acl(args.spool)
+            print(json.dumps({'status': 'PASS', 'scope': 'host_spool_acl_only'})); return 0
         if args.command == 'inspect-script':
             files = {'script': SCRIPT, 'reference': REFERENCE, 'cli': CLI}
             print(json.dumps({'status': 'INSPECTED_FILES_ONLY', 'files': {role: sha256_file(path) for role, path in files.items()},
@@ -539,6 +593,7 @@ def main(argv=None):
             print(json.dumps({'status': 'PASS', 'provenance': manifest.provenance})); return 0
         if os.name != 'nt' or not args.spool or not 1024 <= args.port <= 65535:
             raise NarratorError('windows_private_host_configuration_required')
+        verify_spool_acl(args.spool)
         from .collector_credentials import read_secret
         secret, _ = read_secret(CREDENTIAL_TARGET)
         store = NarratorStore(args.spool, manifest)
