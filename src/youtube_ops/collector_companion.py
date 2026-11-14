@@ -15,6 +15,7 @@ from .collector_narration_common import VoiceError, local_spool, read_json, sha2
 from .collector_narration_receipt import read_voxcpm2_receipt
 from .collector_narrator_host import verify_spool_acl
 from .collector_voxcpm2 import RemoteVoxCPM2Provider, request_identity
+from .collector_editor_job import execute as execute_editor, outcome as editor_outcome
 
 IDENTITY = {'provider': 'voxcpm2_remote', 'narrator_id': 'oxiegen-narrator',
             'publication_eligible': False}
@@ -161,7 +162,8 @@ def _result(status, error=None, **hashes):
     return result
 
 
-def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *, heartbeat_seconds=10):
+def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *, heartbeat_seconds=10,
+             editor_executor=execute_editor):
     claim = service.call('claim')
     if not isinstance(claim, dict) or set(claim) != {'job', 'inputs', 'lease_token'}:
         raise CompanionError('COMPANION_CLAIM_INVALID')
@@ -171,6 +173,11 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
             not ID.fullmatch(job['job_id']) or not isinstance(token, str) or not ID.fullmatch(token)):
         raise CompanionError('COMPANION_CLAIM_INVALID')
     lease = {'job_id': job['job_id'], 'lease_token': token}
+    def failure(status, code):
+        if job.get('job_type') == 'editor.operation':
+            operation = inputs.get('operation') if isinstance(inputs, dict) else None
+            return editor_outcome(operation, status, code)
+        return _result(status, code)
     stop, cancel, lost = threading.Event(), threading.Event(), threading.Event()
 
     def heartbeat():
@@ -188,25 +195,28 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
     thread.start()
     provider, generating = None, False
     try:
-        if job.get('job_type') != 'narration.generate':
-            raise CompanionError('COMPANION_JOB_TYPE_DENIED')
-        if not isinstance(inputs, dict) or not {'text'} <= set(inputs) <= {'text', 'segments'}:
-            raise CompanionError('COMPANION_INPUT_INVALID')
-        request_identity(job['job_id'], inputs['text'], inputs.get('segments'))
-        provider = provider_factory()
-        health = provider.status()  # Read-only preflight; no submission has occurred.
-        if not isinstance(health, dict) or health.get('status') != 'PASS':
-            raise VoiceError('BLOCKED_NARRATOR_CONFIG')
-        if cancel.is_set():
-            result = _result('reconciliation_required' if lost.is_set() else 'cancelled', 'COMPANION_CANCELLED_BEFORE_GENERATION')
+        if job.get('job_type') == 'editor.operation':
+            result = editor_executor(job['job_id'], inputs, cancel)
         else:
-            generating = True
-            provider.generate(job['job_id'], inputs['text'], segments=inputs.get('segments'), cancel=cancel)
-            receipt_path = local_spool(provider.spool / job['job_id']) / 'narration.json'
-            _, _, receipt, audio, receipt_hash = read_voxcpm2_receipt(receipt_path, expected_text=inputs['text'], max_text=12000)
-            if receipt.get('collector_job_id') != job['job_id']:
-                raise CompanionError('COMPANION_RECEIPT_JOB_MISMATCH')
-            result = _result('completed', narration_receipt_sha256=receipt_hash, audio_sha256=audio['sha256'])
+            if job.get('job_type') != 'narration.generate':
+                raise CompanionError('COMPANION_JOB_TYPE_DENIED')
+            if not isinstance(inputs, dict) or not {'text'} <= set(inputs) <= {'text', 'segments'}:
+                raise CompanionError('COMPANION_INPUT_INVALID')
+            request_identity(job['job_id'], inputs['text'], inputs.get('segments'))
+            provider = provider_factory()
+            health = provider.status()  # Read-only preflight; no submission has occurred.
+            if not isinstance(health, dict) or health.get('status') != 'PASS':
+                raise VoiceError('BLOCKED_NARRATOR_CONFIG')
+            if cancel.is_set():
+                result = _result('reconciliation_required' if lost.is_set() else 'cancelled', 'COMPANION_CANCELLED_BEFORE_GENERATION')
+            else:
+                generating = True
+                provider.generate(job['job_id'], inputs['text'], segments=inputs.get('segments'), cancel=cancel)
+                receipt_path = local_spool(provider.spool / job['job_id']) / 'narration.json'
+                _, _, receipt, audio, receipt_hash = read_voxcpm2_receipt(receipt_path, expected_text=inputs['text'], max_text=12000)
+                if receipt.get('collector_job_id') != job['job_id']:
+                    raise CompanionError('COMPANION_RECEIPT_JOB_MISMATCH')
+                result = _result('completed', narration_receipt_sha256=receipt_hash, audio_sha256=audio['sha256'])
     except Exception as exc:
         code = str(exc) if isinstance(exc, (VoiceError, CompanionError, ValueError)) else 'COMPANION_OPERATION_FAILED'
         if not generating and code in {'COMPANION_JOB_TYPE_DENIED', 'COMPANION_INPUT_INVALID',
@@ -216,7 +226,7 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
             status = 'blocked'
         else:
             status = 'reconciliation_required'
-        result = _result(status, code)
+        result = failure(status, code)
     finally:
         if generating and cancel.is_set():
             try:
@@ -240,7 +250,7 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
                 result = _result('reconciliation_required', 'COMPANION_REMOTE_CANCEL_UNVERIFIED')
         stop.set(); thread.join(timeout=12)
     if thread.is_alive() or lost.is_set():
-        result = _result('reconciliation_required', 'COMPANION_LEASE_LOST')
+        result = failure('reconciliation_required', 'COMPANION_LEASE_LOST')
     elif cancel.is_set() and generating and result['status'] != 'cancelled':
         # A local Event is not evidence that remote inference stopped.
         result = _result('reconciliation_required', 'COMPANION_REMOTE_CANCEL_UNVERIFIED')
@@ -252,12 +262,12 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
             raise CompanionError('COMPANION_COMPLETION_MISMATCH')
     except Exception as exc:
         code = str(exc) if isinstance(exc, CompanionError) and str(exc).startswith('COMPANION_SERVICE_') else 'COMPANION_COMPLETION_UNCERTAIN'
-        return _result('reconciliation_required', code)
+        return failure('reconciliation_required', code)
     return result
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description='The Knowledge Network Collector one-shot narration companion')
+    parser = argparse.ArgumentParser(description='The Knowledge Network Collector one-shot media companion')
     parser.add_argument('--once', required=True, action='store_true')
     parser.add_argument('--collector-sha256', required=True)
     parser.add_argument('--private-spool', required=True, type=Path)
