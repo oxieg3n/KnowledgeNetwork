@@ -467,6 +467,7 @@ def unique_object(pairs):
 
 
 class NarratorHTTPServer(HTTPServer):
+    # shortcut: sequential requests can delay health/cancel up to30s; revisit for concurrent operators.
     request_queue_size = 8
     def __init__(self, address, store, credential):
         if address[0] != '127.0.0.1' or not isinstance(credential, str) or not 32 <= len(credential) <= 2048 or any(ord(c) < 33 or ord(c) > 126 for c in credential):
