@@ -6,8 +6,17 @@ import os
 import re
 
 
-def credential_target(base_url):
-    return 'KnowledgeNetworkCollector/VoiceStudio/' + hashlib.sha256(base_url.encode()).hexdigest()
+def credential_target(base_url, namespace='VoiceStudio'):
+    if not isinstance(namespace, str) or not re.fullmatch('[A-Za-z0-9_-]{1,64}', namespace):
+        raise ValueError('INVALID_CREDENTIAL_NAMESPACE')
+    return 'KnowledgeNetworkCollector/' + namespace + '/' + hashlib.sha256(base_url.encode()).hexdigest()
+
+
+def _target(target):
+    if (not isinstance(target, str) or not target.startswith('KnowledgeNetworkCollector/') or
+            not 1 <= len(target) <= 512 or any(ord(c) < 33 or ord(c) > 126 for c in target)):
+        raise ValueError('INVALID_CREDENTIAL_TARGET')
+    return target
 
 
 def validate_secret(secret, mode):
@@ -45,10 +54,10 @@ def _api():
     return api
 
 
-def read_credential(base_url, mode):
+def read_secret(target, mode='scoped_bearer'):
     api = _api()
     pointer = ctypes.POINTER(Credential)()
-    if not api.CredReadW(credential_target(base_url), 1, 0, ctypes.byref(pointer)):
+    if not api.CredReadW(_target(target), 1, 0, ctypes.byref(pointer)):
         raise ValueError('BLOCKED_VOICE_CREDENTIAL_MISSING')
     try:
         record = pointer.contents
@@ -62,17 +71,30 @@ def read_credential(base_url, mode):
         api.CredFree(pointer)
 
 
-def write_credential(base_url, secret, mode):
+def write_secret(target, secret, mode='scoped_bearer'):
     validate_secret(secret, mode)
     api = _api()
     blob = bytearray(secret.encode('utf-16-le'))
     buffer = (ctypes.c_ubyte * len(blob)).from_buffer(blob)
-    record = Credential(Type=1, TargetName=credential_target(base_url),
+    record = Credential(Type=1, TargetName=_target(target),
                         CredentialBlobSize=len(blob), CredentialBlob=buffer, Persist=2,
-                        UserName='VoiceStudio consumption only', Comment='Collector private speech route')
+                        UserName='Collector consumption only', Comment='Collector private speech route')
     try:
         if not api.CredWriteW(ctypes.byref(record), 0):
             raise ValueError('VOICE_CREDENTIAL_SAVE_FAILED')
     finally:
         for index in range(len(blob)):
             blob[index] = 0
+
+
+def read_credential(base_url, mode, namespace='VoiceStudio'):
+    secret, version = read_secret(credential_target(base_url, namespace), mode)
+    if namespace == 'VoxCPM2' and len(secret) < 32:
+        raise ValueError('INVALID_NARRATOR_CREDENTIAL')
+    return secret, version
+
+
+def write_credential(base_url, secret, mode, namespace='VoiceStudio'):
+    if namespace == 'VoxCPM2' and (not isinstance(secret, str) or len(secret) < 32):
+        raise ValueError('INVALID_NARRATOR_CREDENTIAL')
+    return write_secret(credential_target(base_url, namespace), secret, mode)
