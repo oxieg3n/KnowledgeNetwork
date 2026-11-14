@@ -1,0 +1,43 @@
+# Codex CLI overnight launch: The Knowledge Network Collector V7
+
+I am starting an unattended overnight development run inside the designated Windows VM. I have enabled Codex CLI YOLO/full-access mode, and **VoiceStudio for Windows is already installed on this VM before this session starts**.
+
+Use the EXISTING public GitHub repository:
+https://github.com/oxieg3n/KnowledgeNetwork
+
+Important: Do not create a new repository. If already cloned, inspect the current remote, worktree, branch and uncommitted changes; preserve them. Otherwise clone the repo, then read applicable AGENTS.md and development/design skill instructions.
+
+Read in this precise order:
+1. docs/collector/v7/README.md
+2. docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md
+3. docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md
+4. docs/collector/v6/COLLECTOR_OPEN_SOURCE_RESEARCH.md
+5. docs/collector/v7/ASSISTANT_END_TO_END_TEST.md
+6. Existing README.md, OPERATIONS.md, SECURITY.md, docs/brand-intro.md, docs/brand-outro.md, docs/recurring-production.md, docs/rendering.md, current source, existing tests and production receipts.
+
+Execute rather than plan. The V7 overnight directive overrides older setup and execution guidance; V6 remains the detailed feature specification. Keep all approved rights, publication holds, source attribution, exact render and rollback restrictions.
+
+**I authorize autonomous installation/configuration of necessary FREE development tools on the Windows VM, building code, servicing local worker processes, reproducing tests, rendering original/synthetic media, debugging, committing to a feature branch, preparing a PR, and packaging the installer.** This does not authorize paid purchases, account-policy acceptance, unrelated system/host changes, new public network exposure or public media publication.
+
+Reuse the preinstalled VoiceStudio Windows application, its settings/profiles and local API. Do not reinstall or replace it. Verify its actual backend and legally usable selected voice/model and generate a test WAV.
+
+Prefer OpenShot's verified native editing interface; use Shotcut/MLT only after a documented blocker. Reuse the existing Python pipeline and approved plasma intro/outro. Build a real multitrack, Assistant-controllable editor, a Windows service/CLI, durable job database, and accessible dashboard.
+
+Delegate independent tasks to available specialized helpers with separate worktrees/nonoverlapping ownership. Centralize interface decisions. Serialize shared VM changes, service tests, editor sessions, VoiceStudio model loads, heavy renders and tests involving Windows restarts.
+
+While I sleep, finish as much of Phases A through E as possible. Do not stop for optional questions. If a necessary external permission/login, approved brand file, licensed voice model, or real Dot connection is missing, label it BLOCKED with evidence and continue all independent engineering.
+
+Leave public publishing PAUSED. Do not post demonstration video. Do not modify oxieg3n/poweredby or production workflow permissions.
+
+Before ending, complete an honest morning review package:
+- Windows installer/exe path, SHA-256 and launch command;
+- working feature branch, commits and review PR URL (only if actually created);
+- worker health and restart/recovery results;
+- VoiceStudio detection, audio demo and actual model/license state;
+- editor project and exact synthetic render with both approved plasma bookends where assets are available;
+- test counts, logs, blocked steps and clearly scoped follow-up;
+- a specific plain-English command I can paste to Assistant for a 45-55 second fully edited **LOCAL REVIEW-ONLY** Short that uses VoiceStudio, multitrack editing, captions, text, graphic overlays, an effect, audio mix, intro and outro, with no YouTube publication.
+
+Write docs/collector/overnight/HANDOFF.md on your feature branch, provide all verified paths and checksums, and give me the final Assistant test message. Do not declare acceptance based on mocks or tools merely being installed.
+
+Start the actual build now; continue independent work until exhausted or external constraints prevent further progress.
