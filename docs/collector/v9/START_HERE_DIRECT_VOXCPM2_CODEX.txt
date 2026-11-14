@@ -1,0 +1,97 @@
+THE KNOWLEDGE NETWORK COLLECTOR
+V9 MASTER CODEX RESUME: DIRECT VOXCPM2 / OXIEGEN-NARRATOR
+Owner override: November 14, 2026.
+
+You are the master Codex coordinator continuing the EXISTING Knowledge Network Collector application in the FORGE Windows VM. THIS IS A RESUME. Preserve completed features and verified assets.
+
+A. FIRST: PRESERVE THE EXISTING CHECKPOINT
+- Local FORGE branch: feature/collector-v7-overnight
+- Saved checkpoint: 8c0e7f0
+- Verified backup: C:\admin\collector-backups\20261114-073652 (500 files, zero hash mismatches)
+- Local handoff: docs/collector/overnight/HANDOFF.md
+Inspect git status, HEAD, worktrees, uncommitted files, local handoff, source/tests and installed systems before editing. Do not reset, reclone, clean, overwrite, blindly merge/rebase, force push or restore older backup over newer files. The local branch may not be on GitHub.
+
+Non-destructively fetch origin/main and read these directly from origin/main with git show:
+1. AGENTS.md
+2. docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md
+3. docs/collector/v9/START_HERE_DIRECT_VOXCPM2_CODEX.txt
+4. docs/collector/v8/RESUME_FROM_FORGE_CHECKPOINT.md
+5. docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md
+6. docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md
+7. docs/brand-intro.md and docs/brand-outro.md
+V9 overrides V8 and older instructions **for narration only**; all unrelated implementation, security, publishing, UI, skill and production features remain in effect. Do not silently replace prior work.
+
+B. NEW ARCHITECTURE: NO VOICESTUDIO
+VoiceStudio is explicitly REMOVED from the active Collector narration stack due to reliability problems. DO NOT rely on its REST API, MCP, GUI, network sharing, backend health/model selection or VoiceStudio services, and DO NOT install another VoiceStudio instance on FORGE.
+
+Narration inference runs on BLACKHAT-BASE, the physical Windows host with NVIDIA RTX 3060 12 GB. FORGE runs everything else: Collector Windows worker/service, Dot command interface, job queue, native video editor, graphics, research, FFmpeg, captions, storage, preview, installer and release workflow.
+
+The host already has a WORKING VoxCPM2 Python/CLI installation at:
+D:\tools\audio\voicestudio\data\engines\voxcpm2\
+
+The host has an approved, configured narrator called Oxiegen-Narrator. It is THE DEFAULT VOICE FOR ALL NEW VIDEO BODY NARRATION. Its canonical successful script is:
+D:\tools\audio\voices\Oxiegen-Narrator\narrate.ps1
+
+OWNER-VERIFIED USAGE ON BLACKHAT-BASE:
+```powershell
+& "D:\tools\audio\voices\Oxiegen-Narrator\narrate.ps1" `
+  -Text "This is the voice of the Knowledge Network." `
+  -Output "D:\tools\audio\voices\Oxiegen-Narrator\test.wav"
+```
+
+Do not alter the existing script, narrator settings, reference WAV/prompt, checkpoint or profile. Do not overwrite the owner's test.wav; use a fresh unique test destination. Inspect the script and its dependencies with approved host access so the exact narrator's reference, voice design, transcription (if any), model version, seed/cfg/inference steps, processing, interpreter and output format are understood. THIS SCRIPT IS THE VOICE IDENTITY ORACLE. A similar-sounding new voice does not qualify. A directory name containing 'voicestudio' is only a disk location; inference must not require VoiceStudio's app/backend process.
+
+C. REUSE DIRECT PYTHON API WITHOUT INVENTING REMOTE AVAILABILITY
+Official OpenBMB VoxCPM2 upstream:
+https://github.com/OpenBMB/VoxCPM
+https://github.com/OpenBMB/VoxCPM/blob/main/LICENSE
+https://huggingface.co/openbmb/VoxCPM2
+
+Upstream exposes the Python interface `VoxCPM.from_pretrained(...)`, `model.generate(...)` and WAV export using `soundfile`. This does NOT mean a remote HTTP API is already running. Prefer a narrow host worker wrapping the existing trusted `narrate.ps1` first to establish exact voice fidelity. A direct persistent Python worker that loads the model once can replace script-per-request execution only after matching the saved narrator's exact reference/settings and passing voice-quality comparison. Do not use demo settings or make up a narrator ID as if it were a Hugging Face model ID. Verify installed model revision, script behavior and commercial use rights, including any third-party voice reference/conditioning assets.
+
+D. HOST/FORGE PRIVATE VOICE TRANSPORT
+Agree one minimal API contract with helper agents before implementation. Example names are a design proposal, not currently deployed endpoints:
+- GET /health = sanitized service/model/queue health.
+- POST /v1/narrations = bounded validated narration text, stable idempotency key and FIXED narrator_id=oxiegen-narrator, WAV only.
+- GET /v1/narrations/{id} = status/error.
+- GET /v1/narrations/{id}/audio = authenticated fresh WAV bytes.
+
+On BLACKHAT-BASE implement a narrow dedicated narrator process/service. Only a fixed, trusted script or inspected Python call may run. Never accept user-selected commands, arbitrary shell, reference paths, scripts, models, voices, output paths, URLs, or other filesystem access. Pass -Text and internally allocated -Output as structured arguments, not string-concatenated PowerShell. Serialize one GPU request at a time by default. Handle model warm-up, timeout, backoff, cancellation, idempotent retries, crash/restart, output verification and private cleanup. Authenticate each request with a narrowly scoped secret and tailnet ACL, validate input and output limits, and redact secrets and private narration text from logs. Do not create a general host administration API.
+
+On FORGE replace the active `RemoteVoiceStudioProvider` with a small `RemoteVoxCPM2Provider` (or adapt the existing interface with minimal disruption). Submit text, poll status, download real WAV, inspect header/size/codec/sample rate/duration, compute SHA-256, store verified file locally, connect durable job provenance, import into editor, and re-time captions on changes. A mock-only test must be labeled MOCK; host-only loopback does not establish Forge connectivity.
+
+E. NETWORK AND AUTH BOUNDARIES
+BLACKHAT-BASE previously reported these Tailscale Serve allocations:
+- Existing private HTTPS root targets 127.0.0.1:8085, the OLD VOICESTUDIO service. That route is NOT our new VoxCPM2 API.
+- Existing private HTTPS :8443 targets 127.0.0.1:43130, UNIVERSAL GATEWAY. Preserve it.
+
+Inspect tailnet and serve state read-only, and use a dedicated available private route/port when approved. Never reset Tailscale Serve, repoint or interrupt Gateway, overwrite another service, expose Funnel, change Windows firewall or SSH rules silently, or assume Tailscale proxy-to-loopback enforces API auth. Require a service-level credential; FORGE credentials in Windows protected local store, host credential private, NEVER GitHub or logs. Other restricted SSH workers for Android/emulation are NOT authorized generic host command tools. If creating/enabling the host service or route needs owner action, write precise minimal one-time host setup steps, mark live integration BLOCKED and keep working on other tasks. Do not remotely operate BLACKHAT-BASE GUI/keyboard/mouse.
+
+F. KEEP ALL APPROVED PRODUCT WORK
+- FORGE Collector: installable Windows worker/supervisor + restricted Dot-facing CLI, local durable jobs, repeatable tests, native OpenShot-based or tested Shotcut/MLT editable multitrack editor, preview/export, subtitles, effects, text/graphics, music mixing and undo/save/reopen.
+- Content: four current production queues (fresh monitored uploads, daily technology top-ten, published blog-to-video, evergreen highest-viewed channel research) with legal source, truthfulness, provenance and right-to-use checks.
+- Branding: EXACT approved intro `poweredby-plasma-v1` ~1.6 seconds and exact outro `poweredby-plasma-outro-v1` ~7.8 seconds; include each ONCE on new work. Preserve actual approved portrait/landscape outro asset, its speech and audio unchanged. VoxCPM2 voices BODY ONLY. Short target 45-55 seconds inclusive of intro/outro. Approved assets may be off-repo; no invented substitutes or hashes.
+- Security: no unattended public publishing, no manual approval bypass, no fake rights clearance or fake listener review, no YouTube or social upload until separately authorized. Blog repository oxieg3n/poweredby remains read-only.
+- Use Ponytail FULL, UI/UX Pro Max for actual UI work, Taste for visual-quality review. Maintain the accepted charcoal/muted-blue clean editor design.
+
+G. DELEGATION AND ORDER
+Master Codex owns real integration contracts, current branch, agent boundaries, tests, final decisions and handoff. Use specialized helper agents in separate worktrees/nonoverlapping paths where available:
+1. Host narrator/script/Python parity and restricted API design.
+2. FORGE provider, WAV ingest and subtitle alignment.
+3. Video native editor/FFmpeg/render and approved bookends.
+4. Windows service/CLI/installer and UI integration.
+5. Security/rights/QA/docs.
+Parallelize only independent source work after agreeing shared contract; SERIALIZE host GPU loads, network Serve changes, native editor/VM work, heavy renders, environment installs and integration tests. Host-specific work must remain within user-approved scope. Continue independent tasks if host integration is blocked.
+
+H. REQUIRED REAL TESTS
+- Host script smoke with the exact narrator and NEW temporary output.
+- Host Python API import/model call test using installed environment, preserving narrator identity; no VoiceStudio process dependency.
+- Authentication failures, API injection denial, oversized text, collision-safe WAV paths, idempotency, cancellation, queue concurrency, worker restart, host unavailable.
+- REAL FORGE-initiated secure HTTP request reaching BLACKHAT-BASE narrator service and receiving decodable audio bytes. Report exact output filename/hash/duration/sample rate and verified narrator reference (without sharing private assets).
+- Import that WAV into an editable native project; caption timing, fades/ducking, approved bookends, render QC and locally playable review-only MP4. Do not claim approved intro/outro were included if source files are missing.
+- Worker restart and installer tests, existing pipeline regression, project save/reopen, durable queue receipt and publication-PAUSED verification.
+- Write docs/collector/overnight/HANDOFF.md on the local feature branch with tested commands, actual paths, branch/commit/tests, exact preview and audio, known blockers and the precise working Assistant instruction to request a private end-to-end Short.
+
+If access to host script, dedicated host API, approved Tailscale route, licensed voice source or actual approved assets is missing, provide the exact blocker and smallest one-time owner action, then continue all other work without pretending those checks passed.
+
+Execute now, autonomously, preserving the live FORGE checkpoint. Do not ask repeated optional questions, do not reinstall functioning VoxCPM2, do not migrate the model, do not revive VoiceStudio, do not publish.
