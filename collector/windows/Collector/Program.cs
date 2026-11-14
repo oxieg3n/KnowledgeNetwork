@@ -111,10 +111,15 @@ internal static class Program
     }
     private static string CompanionRequest(string verb, string path)
     {
+        path = ValidatePrivateCompanionPath(path);
         var file = new FileInfo(path);
-        if (!Path.IsPathFullyQualified(path) || path.StartsWith(@"\\", StringComparison.Ordinal) ||
-            new DriveInfo(Path.GetPathRoot(path)!).DriveType == DriveType.Network ||
-            file.Length > Protocol.MaxBytes || (file.Attributes & FileAttributes.ReparsePoint) != 0)
+        if (new DriveInfo(Path.GetPathRoot(path)!).DriveType == DriveType.Network)
+            throw new RequestError("private_companion_file_required");
+        var parents = new List<DirectoryInfo>();
+        for (var directory = file.Directory; directory is not null; directory = directory.Parent) parents.Add(directory);
+        foreach (var directory in parents.AsEnumerable().Reverse())
+            if ((directory.Attributes & FileAttributes.ReparsePoint) != 0) throw new RequestError("private_companion_file_required");
+        if (file.Length > Protocol.MaxBytes || (file.Attributes & FileAttributes.ReparsePoint) != 0)
             throw new RequestError("private_companion_file_required");
         using var identity = WindowsIdentity.GetCurrent();
         ValidatePrivateCompanionAcl(file.GetAccessControl(), identity.User ?? throw new RequestError("windows_user_required"));
@@ -124,6 +129,15 @@ internal static class Program
             ? Protocol.Encode(new { schema_version = 1, operation = "companion.heartbeat", job_id = request.GetProperty("job_id"), lease_token = request.GetProperty("lease_token") })
             : Protocol.Encode(new { schema_version = 1, operation = "companion.complete", job_id = request.GetProperty("job_id"), lease_token = request.GetProperty("lease_token"), result = request.GetProperty("result") });
     }
+    internal static string ValidatePrivateCompanionPath(string path)
+    {
+        string? root = Path.GetPathRoot(path);
+        // Reject UNC/device syntax before any file or network-provider metadata access.
+        if (!Path.IsPathFullyQualified(path) || path.StartsWith(@"\\", StringComparison.Ordinal) ||
+            root is null || root.Length != 3 || !char.IsAsciiLetter(root[0]) || root[1] != ':')
+            throw new RequestError("private_companion_file_required");
+        return Path.GetFullPath(path);
+    }
     internal static void ValidatePrivateCompanionAcl(FileSecurity acl, SecurityIdentifier user)
     {
         var allowed = new[] { user, new SecurityIdentifier(WellKnownSidType.LocalSystemSid, null), new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null) };
@@ -131,8 +145,11 @@ internal static class Program
             acl.GetOwner(typeof(SecurityIdentifier)) is not SecurityIdentifier owner || !allowed.Contains(owner))
             throw new RequestError("private_companion_file_required");
         var rules = acl.GetAccessRules(true, true, typeof(SecurityIdentifier)).Cast<FileSystemAccessRule>().ToArray();
+        // OWNER RIGHTS applies only to the object owner, already verified above.
+        var ownerRights = new SecurityIdentifier("S-1-3-4");
         if (!rules.Any(rule => (rule.FileSystemRights & FileSystemRights.ReadData) != 0) ||
-            rules.Any(rule => rule.AccessControlType != AccessControlType.Allow || !allowed.Contains(rule.IdentityReference)))
+            rules.Any(rule => rule.AccessControlType != AccessControlType.Allow ||
+                (!allowed.Contains(rule.IdentityReference) && !rule.IdentityReference.Equals(ownerRights))))
             throw new RequestError("private_companion_file_required");
     }
 }

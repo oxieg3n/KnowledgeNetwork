@@ -183,6 +183,15 @@ internal static class SelfTestCompanion
         using var identity = WindowsIdentity.GetCurrent();
         var unsafeAcl = new FileSecurity(); unsafeAcl.SetSecurityDescriptorSddlForm("O:" + identity.User!.Value + "D:NO_ACCESS_CONTROL");
         Reject(() => Program.ValidatePrivateCompanionAcl(unsafeAcl, identity.User), "private_companion_file_required");
+        var ownerRights = new FileSecurity(); ownerRights.SetSecurityDescriptorSddlForm("O:BAD:(A;;FA;;;SY)(A;;FA;;;BA)(A;;FA;;;OW)");
+        Program.ValidatePrivateCompanionAcl(ownerRights, identity.User); checks++;
+        var foreignOwner = new FileSecurity(); foreignOwner.SetSecurityDescriptorSddlForm("O:S-1-5-21-1-2-3-9999D:(A;;FA;;;SY)(A;;FA;;;BA)(A;;FA;;;OW)");
+        Reject(() => Program.ValidatePrivateCompanionAcl(foreignOwner, identity.User), "private_companion_file_required");
+        var publicOwnerRights = new FileSecurity(); publicOwnerRights.SetSecurityDescriptorSddlForm("O:BAD:(A;;FA;;;OW)(A;;FR;;;WD)");
+        Reject(() => Program.ValidatePrivateCompanionAcl(publicOwnerRights, identity.User), "private_companion_file_required");
+        Check(Program.ValidatePrivateCompanionPath(@"C:\private\lease.json") == @"C:\private\lease.json");
+        foreach (string path in new[] { @"\\server\share\lease.json", @"\\?\C:\private\lease.json", @"\\.\C:\private\lease.json", @"\??\C:\private\lease.json", "//server/share/lease.json", "lease.json" })
+            Reject(() => Program.ValidatePrivateCompanionPath(path), "private_companion_file_required");
         return checks;
     }
 }
