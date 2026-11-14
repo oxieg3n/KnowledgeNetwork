@@ -6,6 +6,10 @@ Updated November 14, 2026, America/New_York. Resumed checkpoint `8c0e7f0` on
 hashes `c09bd03678201fe4576e746246c7709ba32dbdc2b6b2c7992872f4c9367659cd`.
 The prior paused handoff remains in that backup and Git history.
 
+Implementation/evidence checkpoint: `36b88c9`. A noninteractive push of the
+feature branch failed because Git credentials were unavailable; no remote branch
+or review PR was created. Local history and all completed work remain intact.
+
 Non-destructive fetch found origin/main `47e7aeb`. Only its updated AGENTS.md
 and three V8 instructions were integrated; no live production state was merged
 or reset. Original untracked instructions were also preserved at
@@ -22,6 +26,12 @@ host catalog reported only noncommercial OmniVoice TTS weights installed, no
 loaded speech engine/actual execution device, and no cleared voice profile.
 The supplied consumption PIN subsequently began failing 401/403. Approved badge
 and outro MP4 bytes remain outside GitHub and were not materialized.
+
+After the owner reconfirmed the Tailscale HTTPS route and reported that sharing
+could not be enabled following an update, one further provider status check
+returned `BLOCKED_VOICE_AUTH`. The route is reachable; authenticated speech
+access is not restored. Evidence: private `voice-user-route-recheck.json`.
+No host settings, networking or GUI were changed and no speech POST was sent.
 
 INCOMPLETE engineering: editor/narration dispatch through the service identity
 and user-session companion; source-level Collector/Qt editing workspace. The
