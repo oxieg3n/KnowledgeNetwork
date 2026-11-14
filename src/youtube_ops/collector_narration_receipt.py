@@ -20,13 +20,16 @@ def _local_file(value, limit):
     return path
 
 
-def read_voxcpm2_receipt(value, *, expected_text=None, max_duration=600):
-    path = _local_file(value, 128 * 1024)
+def read_voxcpm2_receipt(value, *, expected_text=None, max_duration=600, max_text=4096):
+    if type(max_text) is not int or not 1 <= max_text <= 12000:
+        raise ValueError('Narration script limit is invalid')
+    limit = max(128 * 1024, 12 * max_text + 32 * 1024)
+    path = _local_file(value, limit)
     if path.name != 'narration.json':
         raise ValueError('Expected the remote provider narration.json receipt')
     with path.open('rb') as stream:
-        raw = stream.read(128 * 1024 + 1)
-    if len(raw) > 128 * 1024:
+        raw = stream.read(limit + 1)
+    if len(raw) > limit:
         raise ValueError('Narration receipt exceeds limit')
     receipt = json.loads(raw.decode('utf-8-sig'))
     if not isinstance(receipt, dict) or receipt.get('provider') != 'voxcpm2_remote' \
@@ -68,7 +71,7 @@ def read_voxcpm2_receipt(value, *, expected_text=None, max_duration=600):
     last_end = 0
     for cue in cues:
         if not isinstance(cue, dict) or not isinstance(cue.get('text'), str) \
-                or not 1 <= len(cue['text']) <= 4096 or '\x00' in cue['text']:
+                or not 1 <= len(cue['text']) <= max_text or '\x00' in cue['text']:
             raise ValueError('Invalid measured cue text')
         first, end = cue.get('start_sample'), cue.get('end_sample')
         if type(first) is not int or type(end) is not int or not last_end == first < end <= audio['frames']:
@@ -81,8 +84,8 @@ def read_voxcpm2_receipt(value, *, expected_text=None, max_duration=600):
         last_end = end
     if cues and last_end != audio['frames']:
         raise ValueError('Measured speech cues do not cover the complete audio')
-    if sum(len(cue['text']) for cue in cues) > 4096:
-        raise ValueError('Measured cue text exceeds the renderer script limit')
+    if sum(len(cue['text']) for cue in cues) > max_text:
+        raise ValueError('Measured cue text exceeds the permitted script limit')
     if cues and expected_text is not None and ' '.join(' '.join(cue['text'] for cue in cues).split()) != ' '.join(expected_text.split()):
         raise ValueError('Measured cue text does not match scene narration')
     return path, audio_path, receipt, audio, hashlib.sha256(raw).hexdigest()

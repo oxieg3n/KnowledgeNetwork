@@ -53,6 +53,15 @@ class NarrationReceiptTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'cue text'):
             read_voxcpm2_receipt(self.path, expected_text=self.text)
 
+    def test_renderer_default_keeps_4096_limit_but_companion_can_validate_12000(self):
+        text = 'x' * 12000
+        self.receipt['text_sha256'] = hashlib.sha256(text.encode()).hexdigest()
+        self.receipt['cues'] = [{'text': text, 'start_sample': 0, 'end_sample': 32000, 'start': 0, 'end': 2}]
+        self.write_receipt()
+        with self.assertRaisesRegex(ValueError, 'cue text'):
+            read_voxcpm2_receipt(self.path, expected_text=text)
+        self.assertEqual(read_voxcpm2_receipt(self.path, expected_text=text, max_text=12000)[3]['frames'], 32000)
+
     def test_pcm_changed_after_receipt_is_rejected(self):
         changed = bytearray(self.wav.read_bytes()); changed[-1] ^= 1
         self.wav.write_bytes(changed)
