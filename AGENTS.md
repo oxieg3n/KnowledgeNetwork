@@ -9,21 +9,22 @@
 - **Owner's agent:** Assistant, the user's ChatGPT Dot. The application is an operator-controlled Windows VM worker and real editable video studio for Assistant, not a replacement for Dot and not a general remote-access program.
 - **Delivery objective:** A dependable Windows service + local command interface + practical native editing UI that can discover/research, create, revise, narrate, preview, review, and (only when separately authorized) publish videos for Powered By Oxieg3n.
 - **Production content queues:** (1) monitored-channel fresh-upload Shorts; (2) a daily top-ten technology news recap; (3) video adaptations of *published* Knowledge Network blog posts; (4) historical top-ten-per-channel evergreen research. Do not invent or pad stories to satisfy a quota.
-- **Operating context:** The owner develops on a Windows VM and may leave Codex running unattended in YOLO/full-access mode. VoiceStudio **is already installed on that VM**. The physical host, other VMs, Gateway, and the separate website are out of scope.
+- **Operating context:** The owner develops on a Windows VM and may leave Codex running unattended in YOLO/full-access mode. VoiceStudio is already installed on **BLACKHAT-BASE (physical host)**, NOT on FORGE (the Windows VM). Forge runs the Collector/editor and accesses host narration via a verified private API. The host desktop is not a remote-control target. Gateway, unrelated host settings, other VMs, and the separate website remain out of scope.
 
 ## 2. Read-order and authority
 
 First inspect the live branch, workspace, existing `AGENTS.md` files and installed skills. Then read, in this order:
 
-1. `docs/collector/v7/README.md`
-2. `docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md`
-3. `docs/collector/v7/START_HERE_CODEX_OVERNIGHT.txt`
-4. `docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md`
-5. `docs/collector/v6/COLLECTOR_OPEN_SOURCE_RESEARCH.md`
-6. `README.md`, `OPERATIONS.md`, `SECURITY.md`, `docs/deployment-status.md`, `docs/recurring-production.md`, `docs/rendering.md`, `docs/brand-intro.md`, `docs/brand-outro.md`
-7. Current `src/youtube_ops/`, workflows, tests, production requests, release receipts, and the relevant current interfaces.
+1. `docs/collector/v8/REMOTE_VOICESTUDIO_ARCHITECTURE.md` (NEW authoritative Forge-to-host voice placement, private network and headless API requirements)
+2. `docs/collector/v7/README.md`
+3. `docs/collector/v7/OVERNIGHT_BUILD_DIRECTIVE.md`
+4. `docs/collector/v7/START_HERE_CODEX_OVERNIGHT.txt`
+5. `docs/collector/v6/CODEX_THE_KNOWLEDGE_NETWORK_COLLECTOR_V6.md`
+6. `docs/collector/v6/COLLECTOR_OPEN_SOURCE_RESEARCH.md`
+7. `README.md`, `OPERATIONS.md`, `SECURITY.md`, `docs/deployment-status.md`, `docs/recurring-production.md`, `docs/rendering.md`, `docs/brand-intro.md`, `docs/brand-outro.md`
+8. Current `src/youtube_ops/`, workflows, tests, production requests, release receipts, and the relevant current interfaces.
 
-**Precedence:** owner instructions and actual verified state > security/rights/publication controls > V7 execution rules > V6 detailed feature requirements > this workflow guidance > third-party skill preferences. The skill can recommend a design or implementation; it cannot grant publication permission, change legal requirements, or override safety and user approvals. Current branch/source and verified receipts take precedence over stale baseline descriptions in older documents. This file makes the required skills and code-quality workflow explicit; it does not weaken any existing release gate.
+**Precedence:** owner instructions and actual verified state > security/rights/publication controls > V8 remote-voice architecture > V7 execution rules > V6 detailed feature requirements > this workflow guidance > third-party skill preferences. The skill can recommend a design or implementation; it cannot grant publication permission, change legal requirements, or override safety and user approvals. Current branch/source and verified receipts take precedence over stale baseline descriptions in older documents. This file makes the required skills and code-quality workflow explicit; it does not weaken any existing release gate.
 
 ## 3. Mandatory engineering methodology: Ponytail FULL
 
@@ -97,7 +98,7 @@ Read the actual installed skill. **Apply Taste's reusable visual judgment to eve
 - **Windows supervisor and durable queue:** preserve the compatible existing .NET Worker Service/CLI design, local SQLite journaling/recovery and named-pipe or equally restricted local-only job transport. One authoritative scheduler and state owner per job. No arbitrary shell execution from Assistant jobs.
 - **Video editing:** verify OpenShot's current official native editor/agent CLI **on this Windows VM** first. Reuse native multitrack editor, editable project, preview, transitions, audio and effects; do not build a new CapCut clone. If required behaviors fail after a bounded supported fix, document evidence and evaluate **Shotcut/MLT** against the same fixture. Do not mix two independent timelines or flatten source tracks before editing.
 - **Existing pipeline:** reuse `src/youtube_ops/` for channel discovery, metadata, queues, Python/FFmpeg rendering pieces, policy, exact-render QC, rights, reservation, recovery and uploader integration. Improve isolated bugs at the shared cause instead of duplicating code in a new worker.
-- **VoiceStudio:** an existing Windows installation is available before the run. Detect *rather than reinstall*; preserve user profiles/models/config. Inspect documented local `http://127.0.0.1:3900` endpoints (`/health`, `/openapi.json`, `/v1/audio/voices`) or actual configured address. Use REST/CLI/MCP only as documented by the running version. Prefer an installed, explicitly commercially usable voice and preserve exact engine/profile and model license evidence; no voice impersonation without permission. Never silently substitute Piper or use noncommercial default weights for this business channel. Generate verified WAV, align captions to real audio, support sentence/paragraph retakes.
+- **VoiceStudio (remote host):** VoiceStudio is already installed on BLACKHAT-BASE and is NOT a required VM install. FORGE must connect only via an approved private, authenticated REST endpoint, as defined in `docs/collector/v8/REMOTE_VOICESTUDIO_ARCHITECTURE.md`; Forge's `localhost` never means BLACKHAT-BASE. The Windows host's UI, mouse, keyboard and clipboard are out of bounds for routine speech. Detect the host's actual running backend/model/profile, preserve host installation, use only bounded speech/voice discovery APIs, and validate returned WAV on Forge. Prefer a documented commercial-use-eligible model/profile, preserve licensing evidence, and never silently substitute Piper or noncommercial default OmniVoice weights. Support speech retakes and audio-aligned captions. No host configuration or Gateway/Tailscale changes without scoped owner approval.
 - **Brand:** approved `poweredby-plasma-v1` intro (~1.6s) and `poweredby-plasma-outro-v1` outro (~7.8s), each orientation-specific and exact-asset checked. Intro/outro appear exactly once in *new* videos. Protect older approved video requests and unchanged outro speech. If approved local media is absent, state the blocker; do not forge equivalent assets or hashes. Finished Shorts count both bookends inside length limits.
 - **Research/API:** official YouTube API and permitted public RSS for discovery, separate OAuth for owner-channel uploads; persistent queues. Read only published articles from the separate `oxieg3n/poweredby` blog. Never modify that repository.
 - **Storage:** VM-local private media/vault/credentials; small sanitized public metadata only in GitHub. Temporary media can be deleted only after an exact, durable, verified publication receipt and safe cleanup checks. Public repo is not a secret store or an unrestricted GitHub Actions video farm.
@@ -149,7 +150,7 @@ Write `docs/collector/overnight/HANDOFF.md` on the implementation feature branch
 - Exact branch, commits, review PR (only if genuinely created); unchanged production controls.
 - Windows installer/exe **existing verified** path, hash, install/launch/recovery instructions.
 - Worker status, persistence/reboot proof, real Assistant-to-VM scheduled connection status separately from manual testing.
-- VoiceStudio version/health/voice profile + license status and verified sample audio.
+- BLACKHAT-BASE remote VoiceStudio version/health/voice profile + license status, verified FORGE-to-host API transport and returned sample audio; distinguish VM-local test from genuine cross-machine test.
 - Editor project, local preview/final MP4 (if built), duration, render hash and what was actually inspected/listened to.
 - Tests passed/failed/skipped, UI/UX Pro Max and Taste results, Ponytail FULL verification/review, remaining blockers.
 - A working **plain-English command for Assistant** using `docs/collector/v7/ASSISTANT_END_TO_END_TEST.md`, with *actual* installed CLI/API syntax and paths for a 45–55s local-only Short showing narration, graphics, text, captions, audio mix, effects, video layers, plasma intro/outro. Never invent a command or claim output exists unless run.
