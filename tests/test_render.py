@@ -1,9 +1,16 @@
 import tempfile
 import importlib.util
+import os
 import wave
 import unittest
 from pathlib import Path
 from youtube_ops.render import validate_spec, verify_voice, assess_probe, sha256, caption_phrases, synthesize_phrases, ass_time, write_captions
+
+# These tests exercise text layout, not the approved brand font or brand assets.
+TEST_FONT = next((str(p) for p in (
+    Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'),
+    Path(os.environ.get('WINDIR', 'C:/Windows')) / 'Fonts/arial.ttf',
+) if p.is_file()), None)
 
 class RenderTests(unittest.TestCase):
     def test_spec_rejects_control_characters(self):
@@ -46,9 +53,9 @@ class CaptionTests(unittest.TestCase):
     def test_time_centisecond_rollover(self):
         self.assertEqual(ass_time(59.999), '0:01:00.00')
         self.assertEqual(ass_time(3600), '1:00:00.00')
-    @unittest.skipUnless(importlib.util.find_spec('PIL') and Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf').exists(), 'optional render dependencies absent')
+    @unittest.skipUnless(importlib.util.find_spec('PIL') and TEST_FONT, 'Pillow and a test font required')
     def test_readable_chunks_preserve_transcript_and_reject_markup(self):
-        font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        font=TEST_FONT
         text='These captions follow the actual narration. They stay readable, with safe margins and short phrases.'
         phrases=caption_phrases(text,font_path=font,width=860,px=48)
         self.assertEqual(' '.join(phrases),text)
@@ -72,10 +79,10 @@ class SubjectGraphicsTests(unittest.TestCase):
         validate_graphic(base)
         for bad in [dict(base,kind='numeric-chart'),dict(base,emphasis=2),dict(base,emphasis=True),dict(base,items=[]),dict(base,items=[{'label':'','detail':'a'},{'label':'b','detail':'c'}])]:
             with self.assertRaises(ValueError): validate_graphic(bad)
-    @unittest.skipUnless(importlib.util.find_spec('PIL'), 'optional render dependencies absent')
+    @unittest.skipUnless(importlib.util.find_spec('PIL') and TEST_FONT, 'Pillow and a test font required')
     def test_landscape_graphic_modes_and_overflow(self):
         from youtube_ops.render import card
-        font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        font=TEST_FONT
         with tempfile.TemporaryDirectory() as tmp:
             for kind in ['flow','comparison','timeline']:
                 scene={'title':'A technical schematic, not a news report','caption':'Original diagram for layout validation.','graphic':{'kind':kind,'items':[{'label':'Source','detail':'Read the primary document'},{'label':'Evidence','detail':'Check the actual claim'},{'label':'Review','detail':'Inspect final output'}],'emphasis':1}}

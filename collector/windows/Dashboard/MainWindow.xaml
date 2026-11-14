@@ -43,21 +43,21 @@
   </Border>
   <StackPanel Grid.Row="2" x:Name="Actions">
    <WrapPanel>
-    <Button x:Name="Health" Content="Check _health" Click="HealthClick" AutomationProperties.Name="Check worker health"/>
-    <Button Content="_Capabilities" Click="CapabilitiesClick" AutomationProperties.Name="Get worker capabilities"/>
-    <Button Content="_Research snapshot" Click="ResearchClick" AutomationProperties.Name="Get read-only research snapshot"/>
-    <Button Content="Run _echo test" Click="EchoClick" AutomationProperties.Name="Run durable diagnostic echo test"/>
+    <Button x:Name="Health" TabIndex="0" Content="Check _health" Click="HealthClick" AutomationProperties.Name="Check worker health"/>
+    <Button TabIndex="1" Content="_Capabilities" Click="CapabilitiesClick" AutomationProperties.Name="Get worker capabilities"/>
+    <Button TabIndex="2" Content="_Research snapshot" Click="ResearchClick" AutomationProperties.Name="Get read-only research snapshot"/>
+    <Button TabIndex="3" Content="Run _echo test" Click="EchoClick" AutomationProperties.Name="Run durable diagnostic echo test"/>
    </WrapPanel>
    <Label Content="_Job ID" Target="{Binding ElementName=JobId}" Foreground="{StaticResource Ink}" Padding="0,4,0,4"/>
    <DockPanel Margin="0,0,0,16">
-    <Button DockPanel.Dock="Right" Content="Ca_ncel job" Click="CancelClick" Margin="8,0,0,0" AutomationProperties.Name="Request cancellation of entered job"/>
-    <Button DockPanel.Dock="Right" Content="_Get job" Click="GetClick" Margin="8,0,0,0" AutomationProperties.Name="Get entered job status"/>
-    <TextBox x:Name="JobId" MinWidth="250" MaxLength="32" VerticalContentAlignment="Center" AutomationProperties.Name="Job ID"/>
+    <Button TabIndex="6" DockPanel.Dock="Right" Content="Ca_ncel job" Click="CancelClick" Margin="8,0,0,0" AutomationProperties.Name="Request cancellation of entered job"/>
+    <Button TabIndex="5" DockPanel.Dock="Right" Content="_Get job" Click="GetClick" Margin="8,0,0,0" AutomationProperties.Name="Get entered job status"/>
+    <TextBox x:Name="JobId" TabIndex="4" MinWidth="250" MaxLength="32" VerticalContentAlignment="Center" AutomationProperties.Name="Job ID"/>
    </DockPanel>
   </StackPanel>
   <Grid Grid.Row="3"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
    <TextBlock Text="Worker response" FontSize="20" Margin="0,0,0,8"/>
-   <TextBox Grid.Row="1" x:Name="Response" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
+   <TextBox Grid.Row="1" x:Name="Response" TabIndex="7" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
     VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="13" AutomationProperties.Name="Raw worker JSON response"/>
   </Grid>
  </Grid>

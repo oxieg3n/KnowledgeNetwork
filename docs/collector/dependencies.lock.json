@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "scope": "Windows staging build; no model weights or owner media bundled",
+  "dotnet_sdk": {"version":"10.0.404","source":"https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/10.0/releases.json","installer_sha256":"f7fdaf56ff976c3450e6e984ddea3f01790b45ecec848bcfa5dc32f62b6aa93a"},
+  "dotnet_runtime": {"version":"10.0.15","nuget_lock":"../../collector/windows/Collector/packages.lock.json"},
+  "openshot": {"version":"4.1.1","source":"https://github.com/OpenShot/openshot-qt/releases/tag/v4.1.1","installer_sha256":"6c18abf951a798b536b07aa88f78d62eb55345903699b429b08322323c049690","console_sha256":"3637d631e5b01f263c87e7bbc0c9d3dd5b75274f7489bd2f56da8940ce292ca7"},
+  "voicestudio": {"version":"0.5.8.0","source":"https://github.com/debpalash/VoiceStudio","installation":"preexisting; preserved","model_license":"NOT_VERIFIED"},
+  "ffmpeg_qc": {"version":"9.0.2","source":"https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2","zip_sha256":"759d0a9831c436a0eb331ad36f236c06cb04aaa0005da46571f0e9d3d9206f6b"},
+  "inno_setup": {"version":"6.7.3","source":"https://github.com/jrsoftware/issrc/releases/tag/is-6_7_3","installer_sha256":"9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732"},
+  "python_development": {"version":"3.13.17","tzdata":"2026.2","numpy":"2.3.5","pillow_tested":"12.0.0","pillow_existing_render_pin":"13.0.0","note":"No Piper install or new narrator substitution"}
+}

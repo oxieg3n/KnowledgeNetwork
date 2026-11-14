@@ -76,7 +76,7 @@ public partial class MainWindow : Window
     private async void EchoClick(object sender, RoutedEventArgs e) => await Run(async () =>
     {
         string nonce = Guid.NewGuid().ToString("N");
-        string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KnowledgeNetworkCollector", "dashboard-requests");
+        string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KnowledgeNetworkCollectorDashboard", "requests");
         Directory.CreateDirectory(directory);
         string file = Path.Combine(directory, nonce + ".json");
         var job = new { schema_version = 1, job_type = "diagnostic.echo", idempotency_key = "dashboard-" + nonce,
