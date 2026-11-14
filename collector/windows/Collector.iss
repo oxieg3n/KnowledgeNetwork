@@ -32,6 +32,9 @@ Source: "{#PackageDir}\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubd
 Name: "{group}\The Knowledge Network Collector"; Filename: "{app}\kn-collector-dashboard.exe"
 
 [Code]
+var
+  CompanionWasEnabled: Boolean;
+
 function GetFileAttributesW(Name: String): LongWord;
   external 'GetFileAttributesW@kernel32.dll stdcall';
 
@@ -49,22 +52,36 @@ begin
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
+var
+  ServiceImage: String;
 begin
   Result := '';
   if CompareText(WizardDirValue, ExpandConstant('{autopf}\The Knowledge Network Collector')) <> 0 then begin
     Result := 'Collector installation requires its fixed Program Files directory.';
     Exit;
   end;
+  { remove-service deletes the registration; remember its opt-in before that. }
+  if RegQueryStringValue(HKLM, 'SYSTEM\CurrentControlSet\Services\KnowledgeNetworkCollector',
+    'ImagePath', ServiceImage) then
+    if Pos(' --enable-companion ', ' ' + ServiceImage + ' ') > 0 then begin
+      CompanionWasEnabled := True;
+      Log('Preserving configured user-session companion mode during upgrade.');
+    end;
   if FileExists(ExpandConstant('{app}\kn-collector.exe')) then
     if not RunWorker('remove-service') then
       Result := 'Could not stop the existing Collector service. Installation was not continued.';
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
+var
+  InstallCommand: String;
 begin
-  if CurStep = ssPostInstall then
-    if not RunWorker('install-service') then
+  if CurStep = ssPostInstall then begin
+    InstallCommand := 'install-service';
+    if CompanionWasEnabled then InstallCommand := InstallCommand + ' --enable-companion';
+    if not RunWorker(InstallCommand) then
       RaiseException('Collector files were installed, but service setup failed. Keep the installer log and run kn-collector.exe install-service elevated to repair.');
+  end;
 end;
 
 function InitializeUninstall(): Boolean;
