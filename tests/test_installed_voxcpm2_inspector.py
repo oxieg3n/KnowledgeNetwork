@@ -1,4 +1,7 @@
 """Synthetic filesystem tests; no installed host model is inspected."""
+import contextlib
+import io
+import json
 import importlib.util
 from pathlib import Path
 import tempfile
@@ -41,6 +44,28 @@ class InventoryBoundsTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'model_byte_limit'):
                     probe.catalog(repo, repo)
                 hashed.assert_not_called()
+
+    def test_main_redacts_failure_and_writes_only_after_acl_verified(self):
+        for acl_ok in (False, True):
+            with tempfile.TemporaryDirectory() as tmp:
+                fake_script = Path(tmp) / 'inspector.py'
+                output = io.StringIO()
+                with patch.object(probe, '__file__', str(fake_script)), patch.object(probe.sys, 'argv', ['probe']), \
+                     patch.object(probe, '_system_powershell', return_value='trusted-powershell'), \
+                     patch.object(probe.subprocess, 'run', return_value=type('Result', (), {'returncode': 0})()), \
+                     patch.object(probe, 'verify_spool_acl', side_effect=None if acl_ok else RuntimeError('PRIVATE_SECRET')), \
+                     patch.object(probe, 'inspect', side_effect=RuntimeError('PRIVATE_SECRET')), \
+                     contextlib.redirect_stdout(output):
+                    self.assertEqual(probe.main(), 1)
+                self.assertNotIn('PRIVATE_SECRET', output.getvalue())
+                self.assertNotIn(tmp, output.getvalue())
+                reports = list(Path(tmp).glob('*/failure.json'))
+                self.assertEqual(len(reports), int(acl_ok))
+                if reports:
+                    report = json.loads(reports[0].read_text())
+                    self.assertEqual(report['stage'], 'inspection')
+                    self.assertEqual(report['exception_type'], 'RuntimeError')
+                    self.assertNotIn('PRIVATE_SECRET', reports[0].read_text())
 
     def test_file_count_is_bounded(self):
         with tempfile.TemporaryDirectory() as tmp:

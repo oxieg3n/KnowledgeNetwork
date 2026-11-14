@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import traceback
 import uuid
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -15,6 +16,7 @@ from youtube_ops.collector_narrator_host import _system_powershell, verify_spool
 
 SITE_PACKAGES = Path(r'D:\tools\audio\voicestudio\data\engines\voxcpm2\voxcpm2\.venv\Lib\site-packages')
 MAX_MODEL_BYTES = 32 * 1024 ** 3
+STAGE = 'startup'
 
 PRIVATE_ACL = r'''
 $ErrorActionPreference = 'Stop'
@@ -80,8 +82,11 @@ def catalog(snapshot, repository):
 
 
 def inspect():
+    global STAGE
+    STAGE = 'package_discovery'
     from huggingface_hub.constants import HF_HUB_CACHE
     dist = importlib.metadata.distribution('voxcpm')
+    STAGE = 'model_reference'
     repository = Path(HF_HUB_CACHE) / 'models--openbmb--VoxCPM2'
     ref = repository / 'refs/main'
     if not ref.resolve(strict=True).is_relative_to(repository.resolve(strict=True)):
@@ -92,9 +97,11 @@ def inspect():
     if not re.fullmatch('[a-f0-9]{40}', revision):
         raise ValueError('invalid_revision')
     snapshot = repository / 'snapshots' / revision
+    STAGE = 'snapshot_catalog'
     files = catalog(snapshot, repository)
     if ref.read_text(encoding='ascii').strip() != revision:
         raise ValueError('revision_changed_during_inspection')
+    STAGE = 'package_catalog'
     package = []
     for item in dist.files or []:
         name = str(item).replace('\\', '/')
@@ -130,22 +137,30 @@ def inspect():
 
 
 def main():
+    global STAGE
     print('Creating a NEW private report folder beside this inspector; applying its DACL only. '
           'Reading and hashing installed cached model files sequentially; no inference or downloads.')
     if len(sys.argv) != 1 or os.name != 'nt':
         print('BLOCKED: Windows owner-run inspector accepts no arguments.')
         return 1
     folder = Path(__file__).resolve().parent / ('private-inventory-' + uuid.uuid4().hex)
+    acl_verified = False
     try:
+        STAGE = 'private_folder_create'
         folder.mkdir(exist_ok=False)
+        STAGE = 'private_folder_acl_apply'
         result = subprocess.run([str(_system_powershell()), '-NoLogo', '-NoProfile',
             '-NonInteractive', '-Command', PRIVATE_ACL], input=json.dumps({'path': str(folder)}),
             text=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10,
             shell=False, check=False)
         if result.returncode:
             raise ValueError('private_folder_acl_failed')
+        STAGE = 'private_folder_acl_verify'
         verify_spool_acl(folder)
+        acl_verified = True
+        STAGE = 'inspection'
         report = inspect()
+        STAGE = 'report_write'
         with (folder / 'inventory.partial').open('x', encoding='utf-8') as out:
             json.dump(report, out, indent=2, ensure_ascii=True)
             out.flush()
@@ -153,8 +168,24 @@ def main():
         (folder / 'inventory.partial').rename(folder / 'inventory.json')
         print('PASS inventory only: ' + folder.name + '/inventory.json')
         return 0
-    except Exception:
-        print('BLOCKED: inspection or private report validation failed; no model changes made.')
+    except Exception as exc:
+        error_type = type(exc).__name__
+        if not re.fullmatch('[A-Za-z_]{1,64}', error_type):
+            error_type = 'Exception'
+        print('BLOCKED: ' + STAGE + ' (' + error_type + '); no model changes made.')
+        if acl_verified:
+            try:
+                failure = {'schema_version': 1, 'status': 'BLOCKED', 'stage': STAGE,
+                    'exception_type': error_type,
+                    'frames': [{'file': frame.filename, 'line': frame.lineno, 'function': frame.name}
+                               for frame in traceback.extract_tb(exc.__traceback__)[-16:]]}
+                with (folder / 'failure.json').open('x', encoding='utf-8') as out:
+                    json.dump(failure, out, indent=2, ensure_ascii=True)
+                    out.flush()
+                    os.fsync(out.fileno())
+                print('Private diagnostics: ' + folder.name + '/failure.json')
+            except Exception:
+                print('Private diagnostics unavailable.')
         return 1
 
 
