@@ -1,5 +1,14 @@
 # Local renderer and qualification boundary
 
+**V9 override:** new body narration uses the approved direct VoxCPM2
+Oxiegen-Narrator service on BLACKHAT-BASE. The renderer now requires one
+`--narration-receipt` per original scene, validates its exact text/PCM/cues,
+and never loads Piper. Old `--voice`/`--voice-metadata` invocations fail closed.
+See [current operations](collector/ASSISTANT-OPERATIONS.md) and
+[host setup](collector/host-narrator.md). Approved intro/outro assets and
+historical media remain unchanged. The older Piper commands and observations
+below are retained as historical evidence, not current execution guidance.
+
 The renderer produces an original graphic sequence with local Piper narration. It does not download YouTube footage, upload anything, or grant editorial approval. `publication_eligible` is always false at this layer. A separate reviewed production package must clear facts, rights, pronunciation, captions, distinct value, and mobile readability.
 
 Install `requirements-render.txt` in an isolated environment. FFmpeg and ffprobe must be installed from the official distribution. Dependencies are version-pinned, not yet a transitive hash lock. Do not run sustained production on GitHub-hosted machines before the acceptable-use/runtime decision is resolved.

@@ -1,6 +1,5 @@
 # Optional rendering environment, separate from lightweight monitoring dependencies.
-# Voice weights are separately licensed assets, never downloaded implicitly.
+# Body narration arrives as verified direct VoxCPM2 receipts; no local TTS install.
 Pillow==13.0.0
-piper-tts==1.8.0
 
 numpy==2.3.5
