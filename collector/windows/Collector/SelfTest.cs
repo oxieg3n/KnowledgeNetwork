@@ -115,6 +115,7 @@ internal static class SelfTest
         }
         checks += SelfTestCompanion.Run(Path.Combine(path, "companion"));
         checks += SelfTestFrames.Run(path);
+        checks += SelfTestEditor.Run(Path.Combine(path, "editor"));
         // Evidence remains in a uniquely named temporary directory for the coordinator to inspect.
         Console.WriteLine(Protocol.Encode(new { status = "PASS", checks, evidence_directory = path }));
     }

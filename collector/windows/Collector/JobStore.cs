@@ -87,8 +87,8 @@ internal sealed partial class JobStore : IDisposable
         {
             "health" => Health(request),
             "capabilities" => new { schema_version = 1, operations = companionEnabled ? new[] { "health", "capabilities", "jobs.submit", "jobs.get", "jobs.cancel", "research.snapshot", "companion.claim", "companion.heartbeat", "companion.complete" } : ["health", "capabilities", "jobs.submit", "jobs.get", "jobs.cancel", "research.snapshot"],
-                job_types = companionEnabled ? new[] { "diagnostic.echo", "research.snapshot", "narration.generate" } : ["diagnostic.echo", "research.snapshot"], research_snapshot_configured = snapshotPath is not null,
-                editor_jobs_enabled = false, narration_jobs_enabled = companionEnabled, narration_backend_ready = false,
+                job_types = companionEnabled ? new[] { "diagnostic.echo", "research.snapshot", "narration.generate", "editor.operation" } : ["diagnostic.echo", "research.snapshot"], research_snapshot_configured = snapshotPath is not null,
+                editor_jobs_enabled = companionEnabled, editor_operations = EditorOperations, editor_export_jobs_enabled = false, narration_jobs_enabled = companionEnabled, narration_backend_ready = false,
                 narration_block_reason = companionEnabled ? "remote_narrator_readiness_not_verified" : "user_session_companion_disabled", media_reconciliation_hold = MediaHeld(), publication_paused = true, production_scheduler_enabled = false },
             "research.snapshot" => ResearchSnapshot(),
             "jobs.submit" => Submit(request.GetProperty("job")),
@@ -114,11 +114,12 @@ internal sealed partial class JobStore : IDisposable
         Protocol.Fields(job, "schema_version", "job_type", "idempotency_key", "inputs", "created_at", "expires_at", "priority");
         if (!job.TryGetProperty("schema_version", out var v) || !v.TryGetInt32(out var schema) || schema != 1) throw new RequestError("unsupported_schema");
         var type = Protocol.Text(job, "job_type", 64);
-        if (type is not ("diagnostic.echo" or "research.snapshot") && !(companionEnabled && type == "narration.generate")) throw new RequestError("unsupported_job_type");
+        if (type is not ("diagnostic.echo" or "research.snapshot") && !(companionEnabled && type is "narration.generate" or "editor.operation")) throw new RequestError("unsupported_job_type");
         var key = Protocol.Text(job, "idempotency_key", 128);
         var inputs = job.GetProperty("inputs");
         if (type == "diagnostic.echo") { Protocol.Fields(inputs, "nonce"); Protocol.Text(inputs, "nonce", 256); }
         else if (type == "narration.generate") ValidateNarration(inputs);
+        else if (type == "editor.operation") ValidateEditor(inputs);
         else Protocol.Fields(inputs);
         int priority = 0;
         if (job.TryGetProperty("priority", out var p) && (!p.TryGetInt32(out priority) || priority < 0 || priority > 9)) throw new RequestError("invalid_priority");
@@ -178,7 +179,7 @@ internal sealed partial class JobStore : IDisposable
         Get(id);
         using var tx = db.BeginTransaction();
         if (Run("UPDATE jobs SET state='cancelled',cancel_requested=1 WHERE id=$id AND state='queued'", tx, ("$id", id)) > 0) Event(id, "cancelled", "", tx);
-        if (Run("UPDATE jobs SET cancel_requested=1 WHERE id=$id AND job_type='narration.generate' AND state='running' AND cancel_requested=0", tx, ("$id", id)) > 0) Event(id, "cancel_requested", "", tx);
+        if (Run("UPDATE jobs SET cancel_requested=1 WHERE id=$id AND job_type IN ('narration.generate','editor.operation') AND state='running' AND cancel_requested=0", tx, ("$id", id)) > 0) Event(id, "cancel_requested", "", tx);
         tx.Commit();
         return Get(id);
     }

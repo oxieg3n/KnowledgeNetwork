@@ -71,7 +71,7 @@ internal sealed partial class JobStore
     {
         using var tx = db.BeginTransaction();
         var expired = new List<string>();
-        using (var cmd = Command("SELECT id FROM jobs WHERE job_type='narration.generate' AND state='running' AND (lease_expires_at IS NULL OR lease_expires_at <= $now)", tx, ("$now", DateTimeOffset.UtcNow.ToString("O"))))
+        using (var cmd = Command("SELECT id FROM jobs WHERE job_type IN ('narration.generate','editor.operation') AND state='running' AND (lease_expires_at IS NULL OR lease_expires_at <= $now)", tx, ("$now", DateTimeOffset.UtcNow.ToString("O"))))
         using (var reader = cmd.ExecuteReader()) while (reader.Read()) expired.Add(reader.GetString(0));
         foreach (var id in expired)
         {
@@ -86,9 +86,9 @@ internal sealed partial class JobStore
         RequireCompanion();
         string? id = null, payload = null, hash = null, expires = null;
         using var tx = db.BeginTransaction();
-        if (MediaHeld(tx) || Scalar("SELECT 1 FROM jobs WHERE job_type='narration.generate' AND state='running' LIMIT 1", tx) is not null)
+        if (MediaHeld(tx) || Scalar("SELECT 1 FROM jobs WHERE job_type IN ('narration.generate','editor.operation') AND state='running' LIMIT 1", tx) is not null)
         { tx.Commit(); return new { job = (object?)null, inputs = (object?)null, lease_token = (string?)null }; }
-        using (var cmd = Command("SELECT id,payload,payload_hash,expires_at FROM jobs WHERE job_type='narration.generate' AND state='queued' ORDER BY priority DESC,created_at,id LIMIT 1", tx))
+        using (var cmd = Command("SELECT id,payload,payload_hash,expires_at FROM jobs WHERE job_type IN ('narration.generate','editor.operation') AND state='queued' ORDER BY priority DESC,created_at,id LIMIT 1", tx))
         using (var reader = cmd.ExecuteReader()) if (reader.Read()) { id = reader.GetString(0); payload = reader.GetString(1); hash = reader.GetString(2); expires = reader.GetString(3); }
         if (id is null) { tx.Commit(); return new { job = (object?)null, inputs = (object?)null, lease_token = (string?)null }; }
         if (hash != Protocol.Hash(payload!) || DateTimeOffset.Parse(expires!, System.Globalization.CultureInfo.InvariantCulture) <= DateTimeOffset.UtcNow)
@@ -98,7 +98,9 @@ internal sealed partial class JobStore
             Event(id, state, "", tx); tx.Commit(); return new { job = (object?)null, inputs = (object?)null, lease_token = (string?)null };
         }
         using var document = JsonDocument.Parse(payload!);
-        var inputs = document.RootElement.GetProperty("inputs"); ValidateNarration(inputs);
+        var inputs = document.RootElement.GetProperty("inputs");
+        if (document.RootElement.GetProperty("job_type").GetString() == "editor.operation") ValidateEditor(inputs);
+        else ValidateNarration(inputs);
         string token = Convert.ToHexStringLower(RandomNumberGenerator.GetBytes(16));
         Run("UPDATE jobs SET state='running',attempt=attempt+1,lease_hash=$hash,lease_expires_at=$expires WHERE id=$id", tx,
             ("$id", id), ("$hash", Protocol.Hash(token)), ("$expires", DateTimeOffset.UtcNow.AddSeconds(60).ToString("O")));
@@ -110,7 +112,7 @@ internal sealed partial class JobStore
         RequireCompanion();
         string id = Protocol.Text(request, "job_id", 32), token = Protocol.Text(request, "lease_token", 32);
         if (id.Length != 32 || !Guid.TryParseExact(id, "N", out _) || token.Length != 32 || token.Any(c => !char.IsAsciiHexDigit(c) || char.IsUpper(c))) throw new RequestError("companion_lease_invalid");
-        using var cmd = Command("SELECT lease_hash FROM jobs WHERE id=$id AND job_type='narration.generate' AND state='running'", tx, ("$id", id));
+        using var cmd = Command("SELECT lease_hash FROM jobs WHERE id=$id AND job_type IN ('narration.generate','editor.operation') AND state='running'", tx, ("$id", id));
         var stored = cmd.ExecuteScalar() as string;
         if (stored is null || !CryptographicOperations.FixedTimeEquals(Encoding.UTF8.GetBytes(stored), Encoding.UTF8.GetBytes(Protocol.Hash(token))))
             throw new RequestError("companion_lease_invalid");
@@ -127,18 +129,30 @@ internal sealed partial class JobStore
     {
         using var tx = db.BeginTransaction(); string id = ValidateLease(request, tx);
         var result = request.GetProperty("result");
-        Protocol.Fields(result, "status", "provider", "narrator_id", "publication_eligible", "error", "narration_receipt_sha256", "audio_sha256");
+        bool editor = (string?)Scalar("SELECT job_type FROM jobs WHERE id=$id", tx, ("$id", id)) == "editor.operation";
+        Protocol.Fields(result, editor ? ["status", "provider", "operation", "publication_eligible", "error", "revision", "native_receipt_sha256"] :
+            ["status", "provider", "narrator_id", "publication_eligible", "error", "narration_receipt_sha256", "audio_sha256"]);
         string status = Protocol.Text(result, "status", 32);
         string state = status switch { "completed" => "succeeded", "blocked" or "failed" or "cancelled" or "reconciliation_required" => status, _ => throw new RequestError("invalid_companion_result") };
-        if (Protocol.Text(result, "provider", 32) != "voxcpm2_remote" || Protocol.Text(result, "narrator_id", 32) != "oxiegen-narrator" ||
+        if (Protocol.Text(result, "provider", 32) != (editor ? "openshot_native" : "voxcpm2_remote") ||
+            (!editor && Protocol.Text(result, "narrator_id", 32) != "oxiegen-narrator") ||
             !result.TryGetProperty("publication_eligible", out var eligible) || eligible.ValueKind != JsonValueKind.False) throw new RequestError("invalid_companion_result");
+        if (editor)
+        {
+            using var payload = JsonDocument.Parse((string)Scalar("SELECT payload FROM jobs WHERE id=$id", tx, ("$id", id))!);
+            if (Protocol.Text(result, "operation", 32) != payload.RootElement.GetProperty("inputs").GetProperty("operation").GetString())
+                throw new RequestError("invalid_companion_result");
+            if ((status == "completed" || result.TryGetProperty("revision", out _)) &&
+                (!result.TryGetProperty("revision", out var revision) || revision.ValueKind != JsonValueKind.Number || !revision.TryGetInt64(out long number) || number < 0))
+                throw new RequestError("invalid_companion_result");
+        }
         string? error = null;
         if (result.TryGetProperty("error", out _))
         {
             error = Protocol.Text(result, "error", 128);
             if (error.Any(c => c is not (>= 'A' and <= 'Z') && c is not (>= '0' and <= '9') && c != '_')) throw new RequestError("invalid_companion_result");
         }
-        foreach (string field in new[] { "narration_receipt_sha256", "audio_sha256" })
+        foreach (string field in editor ? new[] { "native_receipt_sha256" } : ["narration_receipt_sha256", "audio_sha256"])
         {
             if (status != "completed" && !result.TryGetProperty(field, out _)) continue;
             string digest = Protocol.Text(result, field, 64);
