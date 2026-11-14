@@ -138,9 +138,20 @@ class TransportTests(unittest.TestCase):
         self.exe.write_bytes(b'fixture executable'); self.sha=hashlib.sha256(self.exe.read_bytes()).hexdigest()
         canonical=patch('youtube_ops.collector_companion.CANONICAL_EXE',self.exe)
         canonical.start(); self.addCleanup(canonical.stop)
+        identity=patch('youtube_ops.collector_companion._current_identity',return_value=(1,'S-1-5-21-1-2-3-1001'))
+        identity.start(); self.addCleanup(identity.stop)
     def client(self):
         with patch('youtube_ops.collector_companion.verify_spool_acl') as acl:
             client=ServiceCLI(self.sha,self.spool); acl.assert_called_once_with(self.spool); return client
+    def test_session_zero_and_service_identities_denied_before_claim(self):
+        for identity in ((0,'S-1-5-21-1-2-3-1001'), (1,'S-1-5-18'), (1,'S-1-5-19'), (1,'S-1-5-20')):
+            with self.subTest(identity=identity), patch('youtube_ops.collector_companion._current_identity',return_value=identity), patch('youtube_ops.collector_companion.subprocess.Popen') as launch, patch('youtube_ops.collector_companion.verify_spool_acl') as acl:
+                with self.assertRaises(CompanionError): ServiceCLI(self.sha,self.spool).call('claim')
+                launch.assert_not_called(); acl.assert_not_called()
+    def test_failed_native_identity_check_denied_before_claim(self):
+        with patch('youtube_ops.collector_companion._current_identity',side_effect=CompanionError('COMPANION_IDENTITY_UNVERIFIED')), patch('youtube_ops.collector_companion.subprocess.Popen') as launch:
+            with self.assertRaises(CompanionError): ServiceCLI(self.sha,self.spool).call('claim')
+            launch.assert_not_called()
     def test_private_token_file_not_argv_and_cleanup(self):
         body={'job_id':JOB,'lease_token':TOKEN}
         def start(argv,**kw):

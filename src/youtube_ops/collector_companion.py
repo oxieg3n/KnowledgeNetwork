@@ -1,5 +1,7 @@
 """One claimed narration job in the current user session; no scheduler or publication."""
 import argparse
+import ctypes
+from ctypes import wintypes
 import json
 import os
 from pathlib import Path
@@ -28,6 +30,58 @@ class CompanionError(RuntimeError):
     pass
 
 
+
+def _current_identity():
+    if os.name != 'nt': raise CompanionError('COMPANION_WINDOWS_USER_SESSION_REQUIRED')
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    security = ctypes.WinDLL('advapi32', use_last_error=True)
+    kernel.GetCurrentProcessId.argtypes, kernel.GetCurrentProcessId.restype = [], wintypes.DWORD
+    kernel.GetCurrentProcess.argtypes, kernel.GetCurrentProcess.restype = [], wintypes.HANDLE
+    kernel.ProcessIdToSessionId.argtypes = [wintypes.DWORD, ctypes.POINTER(wintypes.DWORD)]
+    kernel.ProcessIdToSessionId.restype = wintypes.BOOL
+    kernel.CloseHandle.argtypes, kernel.CloseHandle.restype = [wintypes.HANDLE], wintypes.BOOL
+    kernel.LocalFree.argtypes, kernel.LocalFree.restype = [ctypes.c_void_p], ctypes.c_void_p
+    security.OpenProcessToken.argtypes = [wintypes.HANDLE, wintypes.DWORD, ctypes.POINTER(wintypes.HANDLE)]
+    security.OpenProcessToken.restype = wintypes.BOOL
+    security.GetTokenInformation.argtypes = [wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p,
+                                            wintypes.DWORD, ctypes.POINTER(wintypes.DWORD)]
+    security.GetTokenInformation.restype = wintypes.BOOL
+    security.ConvertSidToStringSidW.argtypes = [ctypes.c_void_p, ctypes.POINTER(wintypes.LPWSTR)]
+    security.ConvertSidToStringSidW.restype = wintypes.BOOL
+    session, token = wintypes.DWORD(), wintypes.HANDLE()
+    if not kernel.ProcessIdToSessionId(kernel.GetCurrentProcessId(), ctypes.byref(session)):
+        raise CompanionError('COMPANION_IDENTITY_UNVERIFIED')
+    if not security.OpenProcessToken(kernel.GetCurrentProcess(), 0x0008, ctypes.byref(token)):
+        raise CompanionError('COMPANION_IDENTITY_UNVERIFIED')
+    try:
+        length = wintypes.DWORD()
+        security.GetTokenInformation(token, 1, None, 0, ctypes.byref(length))
+        if ctypes.get_last_error() != 122 or not 1 <= length.value <= 65536:
+            raise CompanionError('COMPANION_IDENTITY_UNVERIFIED')
+        buffer = ctypes.create_string_buffer(length.value)
+        if not security.GetTokenInformation(token, 1, buffer, len(buffer), ctypes.byref(length)):
+            raise CompanionError('COMPANION_IDENTITY_UNVERIFIED')
+        # TOKEN_USER begins with SID_AND_ATTRIBUTES; its first member is the SID pointer.
+        sid = ctypes.cast(buffer, ctypes.POINTER(ctypes.c_void_p))[0]
+        text = wintypes.LPWSTR()
+        if not security.ConvertSidToStringSidW(sid, ctypes.byref(text)):
+            raise CompanionError('COMPANION_IDENTITY_UNVERIFIED')
+        try:
+            return session.value, text.value
+        finally:
+            kernel.LocalFree(ctypes.cast(text, ctypes.c_void_p))
+    finally:
+        kernel.CloseHandle(token)
+
+
+def _require_user_session():
+    session, sid = _current_identity()
+    if (type(session) is not int or session in (0, 0xffffffff) or not isinstance(sid, str) or
+            not re.fullmatch(r'S-1-(?:[0-9]+-)+[0-9]+', sid) or
+            sid in {'S-1-5-18', 'S-1-5-19', 'S-1-5-20'}):
+        raise CompanionError('COMPANION_WINDOWS_USER_SESSION_REQUIRED')
+
+
 def _json(raw):
     def pairs(items):
         result = {}
@@ -41,6 +95,7 @@ def _json(raw):
 
 class ServiceCLI:
     def __init__(self, sha256, spool):
+        _require_user_session()
         self.executable, self.sha256 = CANONICAL_EXE, sha256
         self.spool = local_spool(spool)
         verify_spool_acl(self.spool)
