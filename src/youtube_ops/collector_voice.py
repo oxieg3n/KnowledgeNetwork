@@ -478,7 +478,10 @@ class RemoteVoiceStudioProvider:
                     raise VoiceError('BLOCKED_VOICE_AUTH_NOT_VERIFIED')
                 schema, catalog = self.discover()
                 engine, projection, fingerprint = self.selected_capabilities(schema, catalog, engine_id, voice_id)
-                if fingerprint != evidence['capability_fingerprint'] or engine.get('active_model_id') not in (None, evidence['model_id']):
+                observed_model = engine.get('active_model_id')
+                if not isinstance(observed_model, str) or not observed_model.strip():
+                    raise VoiceError('BLOCKED_HOST_MODEL_UNVERIFIED')
+                if fingerprint != evidence['capability_fingerprint'] or observed_model != evidence['model_id']:
                     raise VoiceError('BLOCKED_HOST_MODEL_CHANGED')
                 if projection['execution']['evidence_state'] != 'loaded':
                     raise VoiceError('BLOCKED_VOICE_MODEL_NOT_LOADED')

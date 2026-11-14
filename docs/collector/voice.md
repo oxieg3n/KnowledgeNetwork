@@ -103,8 +103,12 @@ HTTPS `evidence_urls`, and actual reviewed `rights_reviewed`, `commercial_use`,
 
 These fields retain a substantive rights/model review; filling them does not
 grant rights. The API does not attest every host file digest. A trusted owner
-inspection record must establish the exact host files and fixed engine mapping;
-the live capability fingerprint detects exposed configuration changes. Generation
+inspection record must establish the exact host files; generation additionally
+requires a nonempty live `active_model_id` exactly matching reviewed `model_id`.
+A loaded engine with missing/null model identity is
+`BLOCKED_HOST_MODEL_UNVERIFIED`; a self-declared binding or fingerprint cannot
+substitute for the missing observation. The live capability fingerprint also
+detects exposed configuration changes. Generation
 requires a loaded engine to avoid implicit first-use downloads. App licensing
 does not authorize default noncommercial weights or a person's reference voice.
 

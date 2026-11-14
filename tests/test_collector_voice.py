@@ -248,6 +248,22 @@ class RemoteVoiceTests(unittest.TestCase):
                 self.provider.generate('5' * 32, 'Original.', self.evidence())
             request.assert_not_called()
 
+    def test_loaded_engine_without_observed_model_identity_never_posts(self):
+        self.auth()
+        for index, value in enumerate((None, '', ' ', 42)):
+            schema, catalog = self.catalog()
+            catalog['engines'][0]['active_model_id'] = value
+            with self.subTest(value=value), patch.object(self.provider, 'discover', return_value=(schema, catalog)), patch.object(self.provider, '_request') as request:
+                with self.assertRaisesRegex(VoiceError, 'BLOCKED_HOST_MODEL_UNVERIFIED'):
+                    self.provider.generate(f'{index + 8:032x}', 'Original.', self.evidence())
+                request.assert_not_called()
+        schema, catalog = self.catalog()
+        del catalog['engines'][0]['active_model_id']
+        with patch.object(self.provider, 'discover', return_value=(schema, catalog)), patch.object(self.provider, '_request') as request:
+            with self.assertRaisesRegex(VoiceError, 'BLOCKED_HOST_MODEL_UNVERIFIED'):
+                self.provider.generate('f' * 32, 'Original.', self.evidence())
+            request.assert_not_called()
+
     def test_prepared_request_can_be_adopted_without_losing_identity(self):
         self.auth()
         prepare_request(self.spool, '6' * 32, 'Original.')
