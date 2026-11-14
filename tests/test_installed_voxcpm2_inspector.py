@@ -20,7 +20,9 @@ class InventoryBoundsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'empty_snapshot'):
                 probe.catalog(snapshot, repo)
             (snapshot / 'config.json').write_text('{}')
-            result = probe.catalog(snapshot, repo)
+            # Python 3.11 lacks is_junction; inventory must not call it.
+            with patch.object(Path, 'is_junction', side_effect=AssertionError('3.12 API'), create=True):
+                result = probe.catalog(snapshot, repo)
             self.assertEqual(len(result), 1)
             self.assertEqual(result[0]['sha256'], probe.sha(snapshot / 'config.json'))
 
