@@ -28,6 +28,12 @@ lookup, shell, Python evaluator, arbitrary plugin, media URL, imported project,
 or unrestricted native command is accepted. Imported media and new outputs must
 be inside the configured private vault. The worker must own serialization and
 the vault/session-registry ACLs. This Python client is not an OS sandbox.
+Only sessions started and enrolled by this adapter can be controlled. The
+executable digest is rechecked for every invocation. Receipt-directory links and
+changed vault paths are rejected. An adversarial process under the same Windows
+identity can still race file changes between validation and native reads; private
+ACLs, a protected editor installation, and final source/hash rechecks remain
+required. Do not treat path validation as protection from that identity.
 
 Supported edits are native media import; clip placement, trimming, reorder via
 position/layer, split, removal, gain/transform, alpha/audio fades and keyframes;
@@ -49,11 +55,18 @@ managed-save receipt and exact current project hash, so changed external files
 are rejected rather than overwriting a human edit. Manual GUI editing within
 the shared live session still needs a fresh inspected revision before edits.
 The GUI/service user-session boundary remains an acceptance test.
+Before saves/exports, the adapter inspects the native file and clip readers and
+requires local sources matching exact prior-import hashes. Changed/unregistered
+GUI-added sources, unsupported readers and path escapes block those operations.
+Reopen also rechecks the source hashes in its managed-save receipt.
 
 Exports start once, asynchronously. Receipts preserve the pre-start context and
 native export job result. The native result's snapshot revision is authoritative;
-the pre-start inspection alone is not proof of the captured revision when the
-owner edits concurrently. Poll `export-status` for the same job ID. Timeouts do
+the adapter cancels the returned native job if its snapshot revision differs
+from the inspected/audited context and retains the pending intent. Native export
+start lacks an expected-revision option, so this detection is after start;
+the editor and source vault must remain under the trusted user's control.
+Poll `export-status` for the same job ID. Timeouts do
 not cancel native work. This adapter never promotes a render to approved status.
 
 ## Owned technical fixture
@@ -73,3 +86,22 @@ does not establish manual GUI edit preservation, audible narration, listening,
 bookend acceptance, or a complete V7 production demonstration.
 
 Unit tests use mocked native replies and never count as a real editor pass.
+
+## Minimal worker integration boundary
+
+Keep scheduling and durable job identity in the .NET worker. Register individual
+typed editor job types rather than exposing an arbitrary Python command, native
+CLI argument list, session ID, executable path or vault path to job input.
+Configure the pinned Python/editor locations and private vault once under the
+worker identity. Map project IDs to enrolled native sessions on the worker side.
+The same durable idempotency key owns the intent/result; pending native intent
+means reconciliation, not a second subprocess replay after restart.
+
+For visible/native desktop work, use an ACL-protected logged-in-user companion
+that calls this adapter. Do not run the desktop editor in Windows service session
+zero or claim a developer console proves that boundary. A service job finishes
+only when its native result/receipt is preserved. An export submission preserves
+the returned native job ID and exact `result.data.revision`; poll that job through
+completion and bind final QC/hash to it. Until this route is implemented and
+tested, advertise the editor as a separate local developer client, not as an
+already supported service job or integrated Collector editing UI.

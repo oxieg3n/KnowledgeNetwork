@@ -94,6 +94,7 @@ class OpenShot:
             raise ValueError('Executable SHA-256 required')
         if digest(self.executable) != executable_sha256:
             raise EditorError('executable_hash_mismatch')
+        self.executable_sha256 = executable_sha256
         self.vault = Path(vault).resolve(strict=True)
         if not self.vault.is_dir() or str(self.vault).startswith('\\\\'):
             raise ValueError('A local private vault directory is required')
@@ -102,6 +103,18 @@ class OpenShot:
         self.session = session
         self.receipts = self.vault / '.collector-editor'
         self.receipts.mkdir(exist_ok=True)
+        if self.receipts.resolve() != self.receipts:
+            raise ValueError('Editor receipts cannot be redirected through a link')
+
+    def _managed_session(self):
+        if not self.session or not (self.receipts / ('session-' + self.session + '.json')).is_file():
+            raise EditorError('unmanaged_native_session')
+        marker = self.receipts / ('session-' + self.session + '.json')
+        if marker.stat().st_size > 1024:
+            raise EditorError('unmanaged_native_session')
+        record = json.loads(marker.read_text())
+        if record != {'session_id': self.session, 'executable_sha256': self.executable_sha256}:
+            raise EditorError('unmanaged_native_session')
 
     def local_path(self, path, suffixes, exists=True):
         candidate = Path(path)
@@ -117,10 +130,13 @@ class OpenShot:
         return candidate
 
     def _invoke(self, arguments, session=True):
+        if self.vault.resolve() != self.vault or self.receipts.resolve() != self.receipts:
+            raise EditorError('vault_path_changed')
+        if digest(self.executable) != self.executable_sha256:
+            raise EditorError('executable_hash_mismatch')
         args = [str(self.executable), '--cli', '--timeout', '25']
         if session:
-            if not self.session:
-                raise ValueError('Native session required')
+            self._managed_session()
             args += ['--session', self.session]
         args += arguments
         env = dict(os.environ)
@@ -163,15 +179,56 @@ class OpenShot:
     def start(self):
         result = self._invoke(['session', 'start'], session=False)
         self.session = result['session_id']
+        if not isinstance(self.session, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', self.session):
+            raise EditorError('invalid_native_session')
+        write_json(self.receipts / ('session-' + self.session + '.json'),
+                   {'session_id': self.session, 'executable_sha256': self.executable_sha256})
         return {'session_id': self.session, 'review_only': True, 'publication_eligible': False}
 
     def inspect(self):
         return self._invoke(['project', 'get'])
 
     def _pending(self):
-        if not self.session:
-            raise ValueError('Native session required')
+        self._managed_session()
         return self.receipts / (self.session + '-pending.json')
+
+    def audit_sources(self):
+        """Check actual native readers, including changes made outside this adapter."""
+        if self._pending().exists():
+            raise EditorError('unresolved_native_operation')
+        approved = {}
+        for path in self.receipts.glob('*.json'):
+            if re.fullmatch('[0-9a-f]{32}', path.stem):
+                receipt = json.loads(path.read_text())
+                for asset in receipt.get('details', {}).get('imported_assets', []):
+                    approved.setdefault(asset['path'], set()).add(asset['sha256'])
+        checked = {}
+        def inspect_paths(value):
+            if isinstance(value, dict):
+                for key, child in value.items():
+                    if key == 'reader' and isinstance(child, dict) and child.get('type') not in {
+                            'FFmpegReader', 'QtImageReader', 'QtTextReader'}:
+                        raise EditorError('unsupported_native_reader')
+                    if key in {'path', 'resource', 'mask', 'url', 'font_path'} and child:
+                        path = str(self.local_path(child, MEDIA))
+                        if path not in checked:
+                            checked[path] = digest(path)
+                        if checked[path] not in approved.get(path, set()):
+                            raise EditorError('unregistered_or_changed_native_asset')
+                    inspect_paths(child)
+            elif isinstance(value, list):
+                for child in value:
+                    inspect_paths(child)
+        for kind in ('file', 'clip'):
+            rows = self._invoke([kind, 'list'])['data']
+            if not isinstance(rows, list) or len(rows) > 256:
+                raise EditorError('native_object_limit')
+            for row in rows:
+                object_id = row.get('id')
+                if not isinstance(object_id, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', object_id):
+                    raise EditorError('invalid_native_object_id')
+                inspect_paths(self._invoke([kind, 'get', object_id])['data'])
+        return checked
 
     def _intent(self, kind, details):
         path = self._pending()
@@ -212,7 +269,8 @@ class OpenShot:
             if method == 'file.import':
                 self.local_path(params.get('path', ''), MEDIA)
             if method == 'clip.set' and (not isinstance(params.get('values'), dict)
-                                        or set(params['values']) - CLIP_VALUES):
+                                        or set(params['values']) - CLIP_VALUES
+                                        or any(type(v) not in (int, float) for v in params['values'].values())):
                 raise ValueError('Unsupported clip property')
             if method == 'clip.keyframe.set' and params.get('property') not in CLIP_VALUES - {'layer', 'has_audio', 'has_video'}:
                 raise ValueError('Unsupported keyframe property')
@@ -220,7 +278,8 @@ class OpenShot:
                 raise ValueError('Unsupported effect')
             if method == 'effects.set' and (not isinstance(params.get('values'), dict)
                     or set(params['values']) - {'saturation', 'brightness', 'contrast', 'horizontal_radius',
-                                                'vertical_radius', 'left', 'right', 'top', 'bottom'}):
+                                                'vertical_radius', 'left', 'right', 'top', 'bottom'}
+                    or any(type(v) not in (int, float) for v in params['values'].values())):
                 raise ValueError('Unsupported effect property')
             if method == 'project.profile.set':
                 values = params.get('values')
@@ -247,20 +306,28 @@ class OpenShot:
 
     def save(self, path):
         path = self.local_path(path, {'.osp'}, exists=False)
+        revision = self.inspect()['revision']
+        sources = self.audit_sources()
         intent = self._intent('project.save', {'path': str(path)})
         result = self._invoke(['project', 'save', str(path)])
+        if result.get('revision') != revision:
+            raise EditorError('revision_changed_during_save_reconcile_required')
         result = {'native': result, 'path': str(path), 'sha256': digest(path),
-                  'review_only': True, 'publication_eligible': False}
+                  'assets': sources, 'review_only': True, 'publication_eligible': False}
         return self._complete(intent, result)
 
     def reopen(self, path, sha256):
         path = self.local_path(path, {'.osp'})
         receipts = [json.loads(p.read_text()) for p in self.receipts.glob('*.json')
                     if re.fullmatch('[0-9a-f]{32}', p.stem)]
-        if digest(path) != sha256 or not any(r['kind'] == 'project.save'
-                and r.get('result', {}).get('path') == str(path)
-                and r.get('result', {}).get('sha256') == sha256 for r in receipts):
+        saved = next((r['result'] for r in receipts if r.get('kind') == 'project.save'
+                      and r.get('result', {}).get('path') == str(path)
+                      and r.get('result', {}).get('sha256') == sha256), None)
+        if digest(path) != sha256 or saved is None:
             raise EditorError('untrusted_or_changed_project')
+        for asset, expected in saved.get('assets', {}).items():
+            if digest(self.local_path(asset, MEDIA)) != expected:
+                raise EditorError('unregistered_or_changed_native_asset')
         intent = self._intent('project.open', {'path': str(path), 'sha256': sha256})
         return self._complete(intent, self._invoke(['project', 'open', str(path)]))
 
@@ -269,11 +336,18 @@ class OpenShot:
         if type(end_frame) is not int or not 1 <= end_frame <= 108_000:
             raise ValueError('Export range must be 1..108000 inclusive frames')
         before = self.inspect()
+        sources = self.audit_sources()
         intent = self._intent('export.start', {'path': str(path), 'snapshot_context': before,
-                                              'end_frame': end_frame})
+                                              'assets': sources, 'end_frame': end_frame})
         # Never wait/retry start: preserve native job ID and inspect that same job.
-        return self._complete(intent, self._invoke(['export', 'start', str(path),
-                              '--start-frame', '1', '--end-frame', str(end_frame)]))
+        result = self._invoke(['export', 'start', str(path),
+                              '--start-frame', '1', '--end-frame', str(end_frame)])
+        if result.get('data', {}).get('revision') != before['revision']:
+            job_id = result.get('data', {}).get('job_id')
+            if isinstance(job_id, str) and re.fullmatch('[a-zA-Z0-9_-]{1,80}', job_id):
+                self._invoke(['export', 'cancel', job_id])
+            raise EditorError('revision_changed_during_export_reconcile_required')
+        return self._complete(intent, result)
 
     def export_status(self, job_id):
         if not isinstance(job_id, str) or not re.fullmatch('[a-zA-Z0-9_-]{1,80}', job_id):

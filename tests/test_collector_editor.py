@@ -21,6 +21,8 @@ class EditorTests(unittest.TestCase):
         self.vault = self.root / 'vault'
         self.vault.mkdir()
         self.client = OpenShot(self.exe, self.sha, self.vault, 'test-session')
+        (self.client.receipts / 'session-test-session.json').write_text(json.dumps({
+            'session_id': 'test-session', 'executable_sha256': self.sha}))
         self.media = self.vault / 'owned.mp4'
         self.media.write_bytes(b'synthetic test')
 
@@ -40,6 +42,16 @@ class EditorTests(unittest.TestCase):
             return process
         with patch('youtube_ops.collector_editor.subprocess.Popen', side_effect=launch):
             self.assertEqual(self.client.inspect(), {'revision': 3})
+
+    def test_unmanaged_native_session_and_replaced_executable_are_denied(self):
+        unmanaged = OpenShot(self.exe, self.sha, self.vault, 'another-users-session')
+        with patch('youtube_ops.collector_editor.subprocess.Popen') as launch:
+            with self.assertRaisesRegex(EditorError, 'unmanaged_native_session'):
+                unmanaged.inspect()
+            self.exe.write_bytes(b'replaced executable')
+            with self.assertRaisesRegex(EditorError, 'executable_hash_mismatch'):
+                self.client.inspect()
+            launch.assert_not_called()
 
     def test_native_errors_do_not_return_private_error_messages(self):
         def launch(args, **kwargs):
@@ -63,6 +75,7 @@ class EditorTests(unittest.TestCase):
             {'method': 'shell', 'params': {'command': 'whoami'}},
             {'method': 'clip.set', 'params': {'id': 'x', 'values': {'reader': {'path': 'https://evil'}}}},
             {'method': 'effects.add', 'params': {'clip_id': 'x', 'type': 'UnapprovedPlugin'}},
+            {'method': 'effects.set', 'params': {'id': 'x', 'values': {'saturation': {'path': 'evil'}}}},
             {'method': 'clip.keyframe.set', 'params': {'id': 'x', 'property': 'reader.path'}},
             {'method': 'text.add', 'params': {'text': 'okay', 'script': 'bad'}},
         ]
@@ -82,7 +95,7 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(args[-2:], ['--expect-revision', '7'])
         self.assertFalse(self.client._pending().exists())
         receipts = [json.loads(p.read_text()) for p in self.client.receipts.glob('*.json')
-                    if p.name != Path(args[3][1:]).name]
+                    if p.name not in {Path(args[3][1:]).name, 'session-test-session.json'}]
         self.assertEqual(len(receipts), 1)
         self.assertFalse(receipts[0]['publication_eligible'])
 
@@ -108,7 +121,8 @@ class EditorTests(unittest.TestCase):
         def native_save(args):
             project.write_text('{"native": "project"}')
             return {'revision': 4}
-        with patch.object(self.client, '_invoke', side_effect=native_save):
+        with patch.object(self.client, '_invoke', side_effect=native_save), \
+                patch.object(self.client, 'audit_sources', return_value={}):
             saved = self.client.save(project)
         with patch.object(self.client, '_invoke', return_value={'revision': 4}) as invoke:
             self.client.reopen(project, saved['sha256'])
@@ -118,14 +132,48 @@ class EditorTests(unittest.TestCase):
             self.client.reopen(project, saved['sha256'])
 
     def test_export_does_not_wait_or_repeat_and_binds_snapshot_context(self):
-        with patch.object(self.client, '_invoke', side_effect=[{'revision': 9}, {'job_id': 'export1'}]) as invoke:
+        with patch.object(self.client, '_invoke', side_effect=[{'revision': 9}, {
+                'revision': 9, 'data': {'job_id': 'export1', 'revision': 9}}]) as invoke, \
+                patch.object(self.client, 'audit_sources', return_value={}):
             self.client.export(self.vault / 'review.mp4', 1500)
         self.assertEqual(invoke.call_count, 2)
         args = invoke.call_args.args[0]
         self.assertNotIn('--wait', args)
         self.assertEqual(args[-4:], ['--start-frame', '1', '--end-frame', '1500'])
-        receipts = [json.loads(p.read_text()) for p in self.client.receipts.glob('*.json')]
+        receipts = [json.loads(p.read_text()) for p in self.client.receipts.glob('*.json')
+                    if p.name != 'session-test-session.json']
         self.assertEqual(receipts[0]['details']['snapshot_context'], {'revision': 9})
+
+    def test_concurrent_gui_edit_cancels_different_export_snapshot(self):
+        with patch.object(self.client, '_invoke', side_effect=[{'revision': 9}, {
+                'revision': 10, 'data': {'job_id': 'export1', 'revision': 10}}, {'data': {'state': 'cancelled'}}]) as invoke, \
+                patch.object(self.client, 'audit_sources', return_value={}):
+            with self.assertRaisesRegex(EditorError, 'revision_changed_during_export'):
+                self.client.export(self.vault / 'review.mp4', 1500)
+        self.assertEqual(invoke.call_args.args[0], ['export', 'cancel', 'export1'])
+        self.assertTrue(self.client._pending().exists())
+
+    def test_gui_added_external_or_changed_reader_paths_block_export(self):
+        outside = self.root / 'outside.mp4'
+        outside.write_bytes(b'existing private file outside vault')
+        asset_receipt = self.client.receipts / ('a' * 32 + '.json')
+        asset_receipt.write_text(json.dumps({'details': {'imported_assets': [{
+            'path': str(self.media), 'sha256': hashlib.sha256(self.media.read_bytes()).hexdigest()}]}}))
+        def reply(args):
+            if args == ['file', 'list']:
+                return {'data': [{'id': 'file1'}]}
+            if args == ['file', 'get', 'file1']:
+                return {'data': {'reader': {'type': 'FFmpegReader', 'path': str(self.media)}}}
+            return {'data': []}
+        with patch.object(self.client, '_invoke', side_effect=reply):
+            self.assertIn(str(self.media), self.client.audit_sources())
+            self.media.write_bytes(b'externally modified media')
+            with self.assertRaisesRegex(EditorError, 'unregistered_or_changed_native_asset'):
+                self.client.audit_sources()
+        with patch.object(self.client, '_invoke', side_effect=[{'data': [{'id': 'f'}]}, {
+                'data': {'reader': {'type': 'FFmpegReader', 'path': str(outside)}}}]):
+            with self.assertRaises(ValueError):
+                self.client.audit_sources()
 
     def test_owned_fixture_preserves_native_layers_and_labels_missing_acceptance(self):
         batches = []
