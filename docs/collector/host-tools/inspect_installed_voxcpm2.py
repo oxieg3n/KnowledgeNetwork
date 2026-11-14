@@ -1,0 +1,152 @@
+"""Owner-run read-only installed VoxCPM2 inventory; never imports inference code."""
+import hashlib
+import importlib.metadata
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / 'src'))
+from youtube_ops.collector_narrator_host import _system_powershell, verify_spool_acl
+
+PRIVATE_ACL = r'''
+$ErrorActionPreference = 'Stop'
+try {
+ $p = ([Console]::In.ReadToEnd() | ConvertFrom-Json).path
+ $user = [Security.Principal.WindowsIdentity]::GetCurrent().User
+ $acl = [Security.AccessControl.DirectorySecurity]::new()
+ $acl.SetOwner($user)
+ $acl.SetAccessRuleProtection($true, $false)
+ foreach ($sid in @($user.Value,'S-1-5-18','S-1-5-32-544')) {
+  $rule = [Security.AccessControl.FileSystemAccessRule]::new(
+   [Security.Principal.SecurityIdentifier]::new($sid), 'FullControl',
+   'ContainerInherit,ObjectInherit', 'None', 'Allow')
+  $acl.AddAccessRule($rule)
+ }
+ Set-Acl -LiteralPath $p -AclObject $acl
+ exit 0
+} catch { exit 1 }
+'''
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def catalog(snapshot, repository):
+    """Bound traversal and permit only HF blob links within this repository."""
+    repository = repository.resolve(strict=True)
+    snapshot = snapshot.resolve(strict=True)
+    if not snapshot.is_relative_to(repository):
+        raise ValueError('snapshot_escape')
+    files, visited = [], 0
+    for directory, dirs, names in os.walk(snapshot, followlinks=False):
+        visited += len(dirs) + len(names)
+        if visited > 256:
+            raise ValueError('model_inventory_limit')
+        for name in dirs:
+            item = Path(directory) / name
+            if item.is_symlink() or item.is_junction():
+                raise ValueError('linked_directory_denied')
+        for name in sorted(names):
+            logical = Path(directory) / name
+            target = logical.resolve(strict=True)
+            if not target.is_relative_to(repository) or not target.is_file():
+                raise ValueError('model_file_escape')
+            before = target.stat()
+            checksum = sha(target)
+            after = target.stat()
+            if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+                raise ValueError('model_changed_during_inspection')
+            files.append({'logical_path': str(logical), 'resolved_path': str(target),
+                          'bytes': after.st_size, 'sha256': checksum})
+    if not files:
+        raise ValueError('empty_snapshot')
+    return files
+
+
+def inspect():
+    from huggingface_hub.constants import HF_HUB_CACHE
+    dist = importlib.metadata.distribution('voxcpm')
+    repository = Path(HF_HUB_CACHE) / 'models--openbmb--VoxCPM2'
+    ref = repository / 'refs/main'
+    if not ref.resolve(strict=True).is_relative_to(repository.resolve(strict=True)):
+        raise ValueError('revision_ref_escape')
+    if ref.stat().st_size > 128:
+        raise ValueError('invalid_revision')
+    revision = ref.read_text(encoding='ascii').strip()
+    if not re.fullmatch('[a-f0-9]{40}', revision):
+        raise ValueError('invalid_revision')
+    snapshot = repository / 'snapshots' / revision
+    files = catalog(snapshot, repository)
+    if ref.read_text(encoding='ascii').strip() != revision:
+        raise ValueError('revision_changed_during_inspection')
+    package = []
+    for item in dist.files or []:
+        name = str(item).replace('\\', '/')
+        if (name.startswith('voxcpm/') and name.endswith('.py')) or (
+                '.dist-info/' in name and name.rsplit('/', 1)[-1] in
+                {'METADATA', 'LICENSE', 'entry_points.txt', 'WHEEL', 'INSTALLER'}):
+            if len(package) >= 256:
+                raise ValueError('package_inventory_limit')
+            path = Path(dist.locate_file(item)).resolve(strict=True)
+            package.append({'logical_path': name, 'resolved_path': str(path),
+                            'bytes': path.stat().st_size, 'sha256': sha(path)})
+    return {'schema_version': 1, 'status': 'inventory_only_owner_review_required',
+            'model_loaded': False, 'network_requested': False, 'rights_verified': False,
+            'python_version': sys.version.split()[0], 'python_executable': sys.executable,
+            'voxcpm_version': dist.version,
+            'entry_points': [{'name': e.name, 'value': e.value, 'group': e.group}
+                             for e in dist.entry_points],
+            'hf_hub_cache': str(HF_HUB_CACHE),
+            'cache_environment': {key: os.environ.get(key) for key in
+                ('HF_HOME', 'XDG_CACHE_HOME', 'HUGGINGFACE_HUB_CACHE', 'HF_HUB_CACHE')},
+            'offline_flag': os.environ.get('HF_HUB_OFFLINE'),
+            'revision_ref': str(ref),
+            'revision': revision, 'revision_ref_sha256': sha(ref),
+            'snapshot': str(snapshot), 'model_files': files, 'package_files': package,
+            'cli_defaults_from_prior_source_review': {'hf_model_id': 'openbmb/VoxCPM2',
+                'revision_argument': None, 'device': 'auto', 'seed': 'not_set',
+                'normalize': False, 'denoise': False},
+            'runtime_device': 'not_probed', 'voice_consent': 'owner_review_required'}
+
+
+def main():
+    print('Creating a NEW private report folder beside this inspector; applying its DACL only. '
+          'Reading and hashing installed cached model files sequentially; no inference or downloads.')
+    if len(sys.argv) != 1 or os.name != 'nt':
+        print('BLOCKED: Windows owner-run inspector accepts no arguments.')
+        return 1
+    folder = Path(__file__).resolve().parent / ('private-inventory-' + uuid.uuid4().hex)
+    try:
+        folder.mkdir(exist_ok=False)
+        result = subprocess.run([str(_system_powershell()), '-NoLogo', '-NoProfile',
+            '-NonInteractive', '-Command', PRIVATE_ACL], input=json.dumps({'path': str(folder)}),
+            text=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10,
+            shell=False, check=False)
+        if result.returncode:
+            raise ValueError('private_folder_acl_failed')
+        verify_spool_acl(folder)
+        report = inspect()
+        with (folder / 'inventory.partial').open('x', encoding='utf-8') as out:
+            json.dump(report, out, indent=2, ensure_ascii=True)
+            out.flush()
+            os.fsync(out.fileno())
+        (folder / 'inventory.partial').rename(folder / 'inventory.json')
+        print('PASS inventory only: ' + folder.name + '/inventory.json')
+        return 0
+    except Exception:
+        print('BLOCKED: inspection or private report validation failed; no model changes made.')
+        return 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

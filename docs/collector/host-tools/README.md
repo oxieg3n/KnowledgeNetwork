@@ -1,0 +1,7 @@
+﻿# Owner-run installed-model inspector
+
+Run `inspect_installed_voxcpm2.cmd` on BLACKHAT-BASE from the reviewed versioned host kit. It uses the existing canonical engine Python, imports package metadata and Hugging Face cache constants, and reads the exact cached `openbmb/VoxCPM2` `refs/main` snapshot selected by the existing CLI. It does not import Torch or VoxCPM, load a model, execute the narrator, download, or change original files.
+
+This is a potentially heavy sequential read of all snapshot files (at most 256 entries); run it only when no model job or other heavy hash is active. It creates a fresh `private-inventory-<uuid>` folder beside the inspector and applies a protected owner/SYSTEM/Administrators DACL **only to that new folder**, then reuses the host spool ACL verifier before writing `inventory.json`. Existing directory ACLs are never changed. Keep the kit in an owner-controlled directory; this check does not audit ancestors or defend against local administrators.
+
+Console output names only the relative report folder. The report contains private resolved cache/blob/package paths and must stay private, outside Git. A successful inventory is not model-license approval, voice consent, runtime GPU evidence, narration parity, or proof somebody listened. It records the currently selected cached revision; `refs/main` and the effective cache environment must remain bound to the reviewed manifest before any inference. No arbitrary input paths or arguments are accepted. Failures are redacted and do not produce a success report.
