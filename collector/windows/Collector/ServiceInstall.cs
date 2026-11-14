@@ -137,6 +137,12 @@ internal static class ServiceInstall
         var owner = ownerSid is null ? current : new SecurityIdentifier(ownerSid);
         if (owner.AccountDomainSid is null || !owner.Equals(current)) throw new RequestError("install_as_configured_owner_required");
         VerifyPackage(); bool existing = ExistingService();
+        bool companion = false;
+        if (existing)
+        {
+            using var key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\" + Name);
+            companion = System.Text.RegularExpressions.Regex.IsMatch(key?.GetValue("ImagePath") as string ?? "", @"(?:^|\s)--enable-companion(?:\s|$)");
+        }
         if (existing) Stop();
         System.IO.Directory.CreateDirectory(Data);
         if ((File.GetAttributes(Data) & FileAttributes.ReparsePoint) != 0) throw new RequestError("data_reparse_point_denied");
@@ -145,6 +151,7 @@ internal static class ServiceInstall
             acl.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(sid), FileSystemRights.FullControl, InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow));
         new DirectoryInfo(Data).SetAccessControl(acl);
         string command = '"' + Binary + "\" serve --data \"" + Data + "\" --client-sid " + owner.Value;
+        if (companion) command += " --enable-companion";
         string snapshot = Path.Combine(Data, "research-staging.json");
         if (File.Exists(snapshot))
         {

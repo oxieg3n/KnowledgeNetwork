@@ -36,7 +36,7 @@ internal static class SelfTest
         using (var connection = new SqliteConnection("Data Source=" + foreignDatabase + ";Pooling=False"))
         {
             connection.Open(); using var cmd = connection.CreateCommand();
-            cmd.CommandText = "CREATE TABLE metadata(key TEXT PRIMARY KEY,value TEXT); INSERT INTO metadata VALUES('schema_version','2')";
+            cmd.CommandText = "CREATE TABLE metadata(key TEXT PRIMARY KEY,value TEXT); INSERT INTO metadata VALUES('schema_version','3')";
             cmd.ExecuteNonQuery();
         }
         var foreignBytes = File.ReadAllBytes(foreignDatabase);
@@ -113,6 +113,7 @@ internal static class SelfTest
             cmd.CommandText = "UPDATE jobs SET result='{}' WHERE id=$id"; cmd.Parameters["$id"].Value = id; cmd.ExecuteNonQuery();
             Reject(() => store.Get(id), "result_digest_mismatch");
         }
+        checks += SelfTestCompanion.Run(Path.Combine(path, "companion"));
         // Evidence remains in a uniquely named temporary directory for the coordinator to inspect.
         Console.WriteLine(Protocol.Encode(new { status = "PASS", checks, evidence_directory = path }));
     }

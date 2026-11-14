@@ -9,7 +9,7 @@ internal sealed class RequestError(string code) : Exception(code);
 internal static class Protocol
 {
     public const string PipeName = "KnowledgeNetworkCollector-v1";
-    public const int MaxBytes = 65536;
+    public const int MaxBytes = 512 * 1024;
     public static readonly JsonSerializerOptions Json = new() { PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower };
     public static string Encode(object value) => JsonSerializer.Serialize(value, Json);
     public static string Hash(string value) => Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(value)));

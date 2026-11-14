@@ -5,14 +5,15 @@ using Microsoft.Data.Sqlite;
 
 namespace Collector;
 
-internal sealed class JobStore : IDisposable
+internal sealed partial class JobStore : IDisposable
 {
     private readonly SqliteConnection db;
     private readonly string? snapshotPath;
     private readonly string? snapshotHash;
     public string WorkerId { get; }
-    public JobStore(string directory, string? snapshotPath = null, string? snapshotHash = null)
+    public JobStore(string directory, string? snapshotPath = null, string? snapshotHash = null, bool enableCompanion = false)
     {
+        companionEnabled = enableCompanion;
         this.snapshotPath = snapshotPath; this.snapshotHash = snapshotHash;
         Directory.CreateDirectory(directory);
         db = new SqliteConnection(new SqliteConnectionStringBuilder { DataSource = Path.Combine(directory, "jobs.sqlite"), Pooling = false }.ToString());
@@ -20,9 +21,10 @@ internal sealed class JobStore : IDisposable
         try
         {
             bool hasMetadata = Scalar("SELECT name FROM sqlite_master WHERE type='table' AND name='metadata'") is string;
-            if (hasMetadata ? (string?)Scalar("SELECT value FROM metadata WHERE key='schema_version'") != "1" :
-                (long)Scalar("SELECT count(*) FROM sqlite_master WHERE type='table'")! != 0)
+            string? version = hasMetadata ? (string?)Scalar("SELECT value FROM metadata WHERE key='schema_version'") : null;
+            if (hasMetadata ? version is not ("1" or "2") : (long)Scalar("SELECT count(*) FROM sqlite_master WHERE type='table'")! != 0)
                 throw new RequestError("unsupported_database_schema");
+            if (version == "1") MigrateSchema1(directory);
         }
         catch { db.Dispose(); throw; }
         Run("PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA busy_timeout=5000; PRAGMA max_page_count=65536;");
@@ -34,7 +36,8 @@ internal sealed class JobStore : IDisposable
                     id TEXT PRIMARY KEY, idem TEXT NOT NULL UNIQUE, payload_hash TEXT NOT NULL,
                     payload TEXT NOT NULL, state TEXT NOT NULL, priority INTEGER NOT NULL,
                     created_at TEXT NOT NULL, expires_at TEXT NOT NULL, attempt INTEGER NOT NULL DEFAULT 0,
-                    result TEXT, result_hash TEXT, error TEXT);
+                    result TEXT, result_hash TEXT, error TEXT, job_type TEXT NOT NULL,
+                    cancel_requested INTEGER NOT NULL DEFAULT 0, lease_hash TEXT, lease_expires_at TEXT);
                 CREATE TABLE IF NOT EXISTS events (
                     sequence INTEGER PRIMARY KEY AUTOINCREMENT, job_id TEXT NOT NULL,
                     state TEXT NOT NULL, at TEXT NOT NULL, digest TEXT NOT NULL);
@@ -42,26 +45,29 @@ internal sealed class JobStore : IDisposable
                 CREATE TRIGGER IF NOT EXISTS events_no_delete BEFORE DELETE ON events BEGIN SELECT RAISE(ABORT,'append_only'); END;
                 CREATE INDEX IF NOT EXISTS jobs_pending ON jobs(state,priority,created_at);
                 """, initialization);
-            Run("INSERT OR IGNORE INTO metadata VALUES ('schema_version','1'); INSERT OR IGNORE INTO metadata VALUES ('worker_id',$id)", initialization, ("$id", Guid.NewGuid().ToString("N")));
+            Run("INSERT OR IGNORE INTO metadata VALUES ('schema_version','2'); INSERT OR IGNORE INTO metadata VALUES ('worker_id',$id)", initialization, ("$id", Guid.NewGuid().ToString("N")));
             initialization.Commit();
         }
-        if ((string?)Scalar("SELECT value FROM metadata WHERE key='schema_version'") != "1") throw new RequestError("unsupported_database_schema");
+        if ((string?)Scalar("SELECT value FROM metadata WHERE key='schema_version'") != "2") throw new RequestError("unsupported_database_schema");
         WorkerId = (string)Scalar("SELECT value FROM metadata WHERE key='worker_id'")!;
         // Only replay-safe read-only jobs are accepted. Side-effecting jobs must reconcile instead.
         using var tx = db.BeginTransaction();
-        var interrupted = new List<string>();
-        using (var cmd = Command("SELECT id FROM jobs WHERE state='running'", tx))
-        using (var reader = cmd.ExecuteReader()) while (reader.Read()) interrupted.Add(reader.GetString(0));
-        foreach (var id in interrupted)
+        var interrupted = new List<(string Id, string Type)>();
+        using (var cmd = Command("SELECT id,job_type FROM jobs WHERE state='running'", tx))
+        using (var reader = cmd.ExecuteReader()) while (reader.Read()) interrupted.Add((reader.GetString(0), reader.GetString(1)));
+        foreach (var (id, type) in interrupted)
         {
-            Run("UPDATE jobs SET state='queued' WHERE id=$id", tx, ("$id", id));
-            Event(id, "recovered_replay_safe", "", tx);
+            bool safe = type is "diagnostic.echo" or "research.snapshot";
+            Run("UPDATE jobs SET state=$state,error=$error,lease_hash=NULL,lease_expires_at=NULL WHERE id=$id", tx,
+                ("$id", id), ("$state", safe ? "queued" : "reconciliation_required"), ("$error", safe ? DBNull.Value : "COMPANION_RESTART_OUTCOME_UNKNOWN"));
+            Event(id, safe ? "recovered_replay_safe" : "reconciliation_required", "", tx);
         }
         tx.Commit();
     }
     public object Dispatch(JsonElement request)
     {
-        Protocol.Fields(request, "schema_version", "operation", "job", "job_id", "nonce");
+        ExpireLeases();
+        Protocol.Fields(request, "schema_version", "operation", "job", "job_id", "nonce", "lease_token", "result");
         if (!request.TryGetProperty("schema_version", out var version) || !version.TryGetInt32(out var number) || number != 1)
             throw new RequestError("unsupported_schema");
         var op = Protocol.Text(request, "operation", 64);
@@ -72,17 +78,25 @@ internal sealed class JobStore : IDisposable
             "research.snapshot" => ["schema_version", "operation"],
             "jobs.submit" => ["schema_version", "operation", "job"],
             "jobs.get" or "jobs.cancel" => ["schema_version", "operation", "job_id"],
+            "companion.claim" => ["schema_version", "operation"],
+            "companion.heartbeat" => ["schema_version", "operation", "job_id", "lease_token"],
+            "companion.complete" => ["schema_version", "operation", "job_id", "lease_token", "result"],
             _ => throw new RequestError("unsupported_operation")
         });
         return op switch
         {
             "health" => Health(request),
-            "capabilities" => new { schema_version = 1, operations = new[] { "health", "capabilities", "jobs.submit", "jobs.get", "jobs.cancel", "research.snapshot" }, job_types = new[] { "diagnostic.echo", "research.snapshot" }, research_snapshot_configured = snapshotPath is not null,
-                editor_jobs_enabled = false, narration_jobs_enabled = false, narration_block_reason = "remote_voice_provider_not_bound_to_service_identity", publication_paused = true, production_scheduler_enabled = false },
+            "capabilities" => new { schema_version = 1, operations = companionEnabled ? new[] { "health", "capabilities", "jobs.submit", "jobs.get", "jobs.cancel", "research.snapshot", "companion.claim", "companion.heartbeat", "companion.complete" } : ["health", "capabilities", "jobs.submit", "jobs.get", "jobs.cancel", "research.snapshot"],
+                job_types = companionEnabled ? new[] { "diagnostic.echo", "research.snapshot", "narration.generate" } : ["diagnostic.echo", "research.snapshot"], research_snapshot_configured = snapshotPath is not null,
+                editor_jobs_enabled = false, narration_jobs_enabled = companionEnabled, narration_backend_ready = false,
+                narration_block_reason = companionEnabled ? "remote_narrator_readiness_not_verified" : "user_session_companion_disabled", media_reconciliation_hold = MediaHeld(), publication_paused = true, production_scheduler_enabled = false },
             "research.snapshot" => ResearchSnapshot(),
             "jobs.submit" => Submit(request.GetProperty("job")),
             "jobs.get" => Get(Protocol.Text(request, "job_id", 32)),
             "jobs.cancel" => Cancel(Protocol.Text(request, "job_id", 32)),
+            "companion.claim" => Claim(),
+            "companion.heartbeat" => Heartbeat(request),
+            "companion.complete" => Complete(request),
             _ => throw new RequestError("unsupported_operation")
         };
     }
@@ -92,6 +106,7 @@ internal sealed class JobStore : IDisposable
         build = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unrecorded",
         status = "healthy", transport = "windows-local-named-pipe", nonce = Protocol.Text(request, "nonce", 256),
         execution_context = Microsoft.Extensions.Hosting.WindowsServices.WindowsServiceHelpers.IsWindowsService() ? "windows_service" : "interactive_console",
+        narration_companion_enabled = companionEnabled, media_reconciliation_hold = MediaHeld(),
         publication_paused = true, production_scheduler_enabled = false
     };
     public object Submit(JsonElement job)
@@ -99,10 +114,11 @@ internal sealed class JobStore : IDisposable
         Protocol.Fields(job, "schema_version", "job_type", "idempotency_key", "inputs", "created_at", "expires_at", "priority");
         if (!job.TryGetProperty("schema_version", out var v) || !v.TryGetInt32(out var schema) || schema != 1) throw new RequestError("unsupported_schema");
         var type = Protocol.Text(job, "job_type", 64);
-        if (type is not ("diagnostic.echo" or "research.snapshot")) throw new RequestError("unsupported_job_type");
+        if (type is not ("diagnostic.echo" or "research.snapshot") && !(companionEnabled && type == "narration.generate")) throw new RequestError("unsupported_job_type");
         var key = Protocol.Text(job, "idempotency_key", 128);
         var inputs = job.GetProperty("inputs");
         if (type == "diagnostic.echo") { Protocol.Fields(inputs, "nonce"); Protocol.Text(inputs, "nonce", 256); }
+        else if (type == "narration.generate") ValidateNarration(inputs);
         else Protocol.Fields(inputs);
         int priority = 0;
         if (job.TryGetProperty("priority", out var p) && (!p.TryGetInt32(out priority) || priority < 0 || priority > 9)) throw new RequestError("invalid_priority");
@@ -125,8 +141,8 @@ internal sealed class JobStore : IDisposable
         if (created > now.AddMinutes(5) || expires <= now || expires <= created || expires > now.AddDays(7)) throw new RequestError("expired_or_invalid_job_window");
         if ((long)Scalar("SELECT count(*) FROM jobs", tx)! >= 100000) throw new RequestError("job_capacity_reached");
         var jobId = Guid.NewGuid().ToString("N");
-        Run("INSERT INTO jobs (id,idem,payload_hash,payload,state,priority,created_at,expires_at) VALUES ($id,$key,$hash,$payload,'queued',$priority,$created,$expires)", tx,
-            ("$id", jobId), ("$key", key), ("$hash", digest), ("$payload", payload), ("$priority", priority), ("$created", created.ToString("O")), ("$expires", expires.ToString("O")));
+        Run("INSERT INTO jobs (id,idem,payload_hash,payload,state,priority,created_at,expires_at,job_type) VALUES ($id,$key,$hash,$payload,'queued',$priority,$created,$expires,$type)", tx,
+            ("$id", jobId), ("$key", key), ("$hash", digest), ("$payload", payload), ("$priority", priority), ("$created", created.ToString("O")), ("$expires", expires.ToString("O")), ("$type", type));
         Event(jobId, "queued", digest, tx);
         tx.Commit();
         return Get(jobId);
@@ -143,14 +159,14 @@ internal sealed class JobStore : IDisposable
     public object Get(string id)
     {
         if (id.Length != 32 || !Guid.TryParseExact(id, "N", out _)) throw new RequestError("invalid_job_id");
-        using var cmd = Command("SELECT state,payload_hash,result,result_hash,error,attempt,created_at,expires_at FROM jobs WHERE id=$id", null, ("$id", id));
+        using var cmd = Command("SELECT state,payload_hash,result,result_hash,error,attempt,created_at,expires_at,job_type,cancel_requested FROM jobs WHERE id=$id", null, ("$id", id));
         using var reader = cmd.ExecuteReader();
         if (!reader.Read()) throw new RequestError("job_not_found");
         if (!reader.IsDBNull(2) && (reader.IsDBNull(3) || Protocol.Hash(reader.GetString(2)) != reader.GetString(3)))
             throw new RequestError("result_digest_mismatch");
         return new
         {
-            job_id = id, state = reader.GetString(0), payload_sha256 = reader.GetString(1),
+            job_id = id, job_type = reader.GetString(8), state = reader.GetString(0), payload_sha256 = reader.GetString(1), cancel_requested = reader.GetInt32(9) != 0,
             result = reader.IsDBNull(2) ? (JsonElement?)null : JsonSerializer.Deserialize<JsonElement>(reader.GetString(2)),
             result_sha256 = reader.IsDBNull(3) ? null : reader.GetString(3), error = reader.IsDBNull(4) ? null : reader.GetString(4),
             attempt = reader.GetInt32(5), created_at = reader.GetString(6), expires_at = reader.GetString(7),
@@ -161,14 +177,16 @@ internal sealed class JobStore : IDisposable
     {
         Get(id);
         using var tx = db.BeginTransaction();
-        if (Run("UPDATE jobs SET state='cancelled' WHERE id=$id AND state='queued'", tx, ("$id", id)) > 0) Event(id, "cancelled", "", tx);
+        if (Run("UPDATE jobs SET state='cancelled',cancel_requested=1 WHERE id=$id AND state='queued'", tx, ("$id", id)) > 0) Event(id, "cancelled", "", tx);
+        if (Run("UPDATE jobs SET cancel_requested=1 WHERE id=$id AND job_type='narration.generate' AND state='running' AND cancel_requested=0", tx, ("$id", id)) > 0) Event(id, "cancel_requested", "", tx);
         tx.Commit();
         return Get(id);
     }
     public void ExecuteNext()
     {
+        ExpireLeases();
         string? id = null, payload = null, expires = null, digest = null;
-        using (var cmd = Command("SELECT id,payload,expires_at,payload_hash FROM jobs WHERE state='queued' ORDER BY priority DESC,created_at,id LIMIT 1"))
+        using (var cmd = Command("SELECT id,payload,expires_at,payload_hash FROM jobs WHERE state='queued' AND job_type IN ('diagnostic.echo','research.snapshot') ORDER BY priority DESC,created_at,id LIMIT 1"))
         using (var reader = cmd.ExecuteReader()) if (reader.Read()) { id = reader.GetString(0); payload = reader.GetString(1); expires = reader.GetString(2); digest = reader.GetString(3); }
         if (id is null) return;
         using (var tx = db.BeginTransaction())
@@ -251,6 +269,6 @@ internal sealed class JobStore : IDisposable
     }
     private int Run(string sql, params (string, object)[] values) => Run(sql, null, values);
     private int Run(string sql, SqliteTransaction? tx, params (string, object)[] values) { using var cmd = Command(sql, tx, values); return cmd.ExecuteNonQuery(); }
-    private object? Scalar(string sql, SqliteTransaction? tx = null) { using var cmd = Command(sql, tx); return cmd.ExecuteScalar(); }
+    private object? Scalar(string sql, SqliteTransaction? tx = null, params (string, object)[] values) { using var cmd = Command(sql, tx, values); return cmd.ExecuteScalar(); }
     public void Dispose() => db.Dispose();
 }

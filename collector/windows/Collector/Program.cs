@@ -1,4 +1,5 @@
 using System.IO.Pipes;
+using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,15 +29,18 @@ internal static class Program
                 string data = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KnowledgeNetworkCollector");
                 SecurityIdentifier? client = null;
                 string? snapshot = null, snapshotHash = null;
-                for (int i = 1; i < args.Length; i += 2)
+                bool companion = false;
+                for (int i = 1; i < args.Length; i++)
                 {
+                    if (args[i] == "--enable-companion") { companion = true; continue; }
                     if (i + 1 >= args.Length) throw new RequestError("missing_option_value");
-                    switch (args[i])
+                    string option = args[i], value = args[++i];
+                    switch (option)
                     {
-                        case "--data": data = Path.GetFullPath(args[i + 1]); break;
-                        case "--client-sid": client = new SecurityIdentifier(args[i + 1]); break;
-                        case "--research-snapshot": snapshot = Path.GetFullPath(args[i + 1]); break;
-                        case "--research-sha256": snapshotHash = args[i + 1]; break;
+                        case "--data": data = Path.GetFullPath(value); break;
+                        case "--client-sid": client = new SecurityIdentifier(value); break;
+                        case "--research-snapshot": snapshot = Path.GetFullPath(value); break;
+                        case "--research-sha256": snapshotHash = value; break;
                         default: throw new RequestError("unknown_option");
                     }
                 }
@@ -48,7 +52,7 @@ internal static class Program
                 LocalPipe.ProtectDirectory(data);
                 var builder = Host.CreateApplicationBuilder();
                 builder.Services.AddWindowsService(o => o.ServiceName = "KnowledgeNetworkCollector");
-                builder.Services.AddSingleton(new WorkerSettings(data, client, snapshot, snapshotHash));
+                builder.Services.AddSingleton(new WorkerSettings(data, client, snapshot, snapshotHash, companion));
                 builder.Services.AddHostedService<PipeWorker>();
                 await builder.Build().RunAsync(); return 0;
             }
@@ -60,6 +64,8 @@ internal static class Program
                 "submit" when args.Length == 2 => Protocol.Encode(new { schema_version = 1, operation = "jobs.submit", job = ReadJob(args[1]) }),
                 "get" when args.Length == 2 => Protocol.Encode(new { schema_version = 1, operation = "jobs.get", job_id = args[1] }),
                 "cancel" when args.Length == 2 => Protocol.Encode(new { schema_version = 1, operation = "jobs.cancel", job_id = args[1] }),
+                "companion-claim" when args.Length == 1 => Protocol.Encode(new { schema_version = 1, operation = "companion.claim" }),
+                "companion-heartbeat" or "companion-complete" when args.Length == 2 => CompanionRequest(args[0], args[1]),
                 _ => throw new RequestError("invalid_command_or_arguments")
             };
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(10));
@@ -78,19 +84,45 @@ internal static class Program
     }
     private static JsonElement ReadJob(string path)
     {
-        if (new FileInfo(path).Length > Protocol.MaxBytes / 2) throw new RequestError("job_file_too_large");
+        if (new FileInfo(path).Length > Protocol.MaxBytes) throw new RequestError("job_file_too_large");
         return JsonSerializer.Deserialize<JsonElement>(File.ReadAllText(path));
+    }
+    private static string CompanionRequest(string verb, string path)
+    {
+        var file = new FileInfo(path);
+        if (!Path.IsPathFullyQualified(path) || path.StartsWith(@"\\", StringComparison.Ordinal) ||
+            new DriveInfo(Path.GetPathRoot(path)!).DriveType == DriveType.Network ||
+            file.Length > Protocol.MaxBytes || (file.Attributes & FileAttributes.ReparsePoint) != 0)
+            throw new RequestError("private_companion_file_required");
+        using var identity = WindowsIdentity.GetCurrent();
+        ValidatePrivateCompanionAcl(file.GetAccessControl(), identity.User ?? throw new RequestError("windows_user_required"));
+        var request = ReadJob(path);
+        Protocol.Fields(request, verb == "companion-heartbeat" ? ["job_id", "lease_token"] : ["job_id", "lease_token", "result"]);
+        return verb == "companion-heartbeat"
+            ? Protocol.Encode(new { schema_version = 1, operation = "companion.heartbeat", job_id = request.GetProperty("job_id"), lease_token = request.GetProperty("lease_token") })
+            : Protocol.Encode(new { schema_version = 1, operation = "companion.complete", job_id = request.GetProperty("job_id"), lease_token = request.GetProperty("lease_token"), result = request.GetProperty("result") });
+    }
+    internal static void ValidatePrivateCompanionAcl(FileSecurity acl, SecurityIdentifier user)
+    {
+        var allowed = new[] { user, new SecurityIdentifier(WellKnownSidType.LocalSystemSid, null), new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null) };
+        if (new RawSecurityDescriptor(acl.GetSecurityDescriptorBinaryForm(), 0).DiscretionaryAcl is null ||
+            acl.GetOwner(typeof(SecurityIdentifier)) is not SecurityIdentifier owner || !allowed.Contains(owner))
+            throw new RequestError("private_companion_file_required");
+        var rules = acl.GetAccessRules(true, true, typeof(SecurityIdentifier)).Cast<FileSystemAccessRule>().ToArray();
+        if (!rules.Any(rule => (rule.FileSystemRights & FileSystemRights.ReadData) != 0) ||
+            rules.Any(rule => rule.AccessControlType != AccessControlType.Allow || !allowed.Contains(rule.IdentityReference)))
+            throw new RequestError("private_companion_file_required");
     }
 }
 
-internal sealed record WorkerSettings(string Data, SecurityIdentifier? Client, string? Snapshot, string? SnapshotHash);
+internal sealed record WorkerSettings(string Data, SecurityIdentifier? Client, string? Snapshot, string? SnapshotHash, bool CompanionEnabled);
 internal sealed class PipeWorker(WorkerSettings settings) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         // SQLite and job transitions have one authoritative writer, including pipe requests.
         using var singleton = new FileStream(Path.Combine(settings.Data, "worker.lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-        using var store = new JobStore(settings.Data, settings.Snapshot, settings.SnapshotHash);
+        using var store = new JobStore(settings.Data, settings.Snapshot, settings.SnapshotHash, settings.CompanionEnabled);
         while (!stoppingToken.IsCancellationRequested)
         {
             using var pipe = LocalPipe.Create(settings.Client);
