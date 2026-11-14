@@ -1,3 +1,5 @@
+SUPERSEDED FOR NARRATION on 2026-11-14. DO NOT USE THIS V8 VOICESTUDIO PROMPT. Use docs/collector/v9/START_HERE_DIRECT_VOXCPM2_CODEX.txt, and the v9 direct VoxCPM2 narrator architecture. V8 checkpoint-preservation content remains historical reference.
+
 You are continuing development of The Knowledge Network Collector on the FORGE Windows VM. This is a RESUME of the existing project, not a new build.
 
 Owner-reported saved state:
