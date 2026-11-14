@@ -390,6 +390,20 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(result['provenance'], receipt['provenance'])
         self.assertFalse(result['publication_eligible'])
 
+    def test_receipt_changed_after_validation_is_not_bound_to_native_edit(self):
+        path, receipt = self.remote_narration_fixture()
+        state, inspect, invoke, apply = self.fake_fixture_editor()
+        def changed_inspection():
+            changed = dict(receipt, text_sha256='e' * 64)
+            path.write_text(json.dumps(changed))
+            return inspect()
+        with patch.object(self.client, 'inspect', side_effect=changed_inspection), \
+                patch.object(self.client, '_invoke', side_effect=invoke), \
+                patch.object(self.client, 'apply', side_effect=apply):
+            with self.assertRaisesRegex(ValueError, 'changed after validation'):
+                attach_narration_to_fixture(self.client, path, 7, 'accent')
+        self.assertEqual(state['commands'], [])
+
     def test_historical_attachment_ownership_is_read_without_reexecuting_retired_provider(self):
         path, _ = self.remote_narration_fixture()
         state, inspect, invoke, apply = self.fake_fixture_editor()

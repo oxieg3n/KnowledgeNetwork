@@ -108,17 +108,23 @@ class SceneMotionTests(unittest.TestCase):
         with self.assertRaises(ValueError): scene_video_filter(30,(1920,1080),'bad;filter.ass')
 
 
-class TelemetryGuardTests(unittest.TestCase):
-    def test_piper_import_guard_precedes_import(self):
-        import inspect
-        from youtube_ops import render as module
-        code = inspect.getsource(module.render)
-        self.assertLess(code.index('ORT_DISABLE_TELEMETRY'), code.index('from piper import PiperVoice'))
-        self.assertIn('raise ValueError("Start Python with ORT_DISABLE_TELEMETRY=1', code)
-    def test_missing_opt_out_refuses_before_voice_load(self):
+class NarratorDefaultGuardTests(unittest.TestCase):
+    def test_legacy_body_model_is_rejected_without_loading_it(self):
         from unittest.mock import patch
-        from pathlib import Path
         from youtube_ops import render as module
-        with patch.dict('os.environ', {}, clear=True), patch.object(module, 'validate_spec'), patch.object(module, 'verify_voice'):
-            with self.assertRaisesRegex(ValueError, 'ORT_DISABLE_TELEMETRY=1'):
-                module.render({}, Path('/tmp/not-created-telemetry-test'), Path('/tmp/not-read-model'), {})
+        with tempfile.TemporaryDirectory() as directory, patch.object(module, 'verify_voice') as verify:
+            output = Path(directory) / 'not-created'
+            spec = {'format': 'short', 'scenes': [{'title': 'Test', 'narration': 'Test speech.', 'caption': 'Test'}]}
+            with self.assertRaisesRegex(ValueError, 'Legacy Piper body synthesis is disabled'):
+                module.render(spec, output, Path('missing-model'), {})
+            verify.assert_not_called()
+            self.assertFalse(output.exists())
+
+    def test_no_receipt_never_falls_back_to_local_speech(self):
+        from youtube_ops import render as module
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'not-created'
+            spec = {'format': 'short', 'scenes': [{'title': 'Test', 'narration': 'Test speech.', 'caption': 'Test'}]}
+            with self.assertRaisesRegex(ValueError, 'verified VoxCPM2 narration receipt'):
+                module.render(spec, output)
+            self.assertFalse(output.exists())

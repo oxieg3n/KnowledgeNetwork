@@ -38,6 +38,17 @@ class RenderQueueTests(unittest.TestCase):
    with self.assertRaises(RuntimeError):execute_reserved(s,r,**args)
    self.assertEqual(State(d).data['render_jobs']['a'*64]['status'],'execution_started')
    with self.assertRaises(RuntimeError):execute_reserved(s,r,**args)
+ def test_v9_receipts_reach_renderer_after_existing_durable_checkpoint(self):
+  with tempfile.TemporaryDirectory() as d:
+   s=State(d);r=self.request(s);cp=reserve_render(s,r,executor='dot-cloud-bounded');observed=[]
+   receipt=Path(d)/'narration.json'
+   def renderer(*args,**kwargs):observed.append((args,kwargs));return {'sha256':'c'*64,'publication_eligible':False}
+   execute_reserved(s,r,output=Path(d)/'out',narration_receipts=[receipt],commit_sha='b'*40,
+    readback_revision=s.data['revision'],expected_request_sha256=cp['request_sha256'],
+    readback_sha256=hashlib.sha256(s.original).hexdigest(),durable_checkpoint=lambda t:{'commit_sha':'b'*40,
+     'readback_revision':t.data['revision'],'readback_sha256':hashlib.sha256(t.original).hexdigest()},renderer=renderer)
+   self.assertEqual(observed[0][0][2:],(None,None))
+   self.assertEqual(observed[0][1]['narration_receipts'],[receipt])
  def test_wrong_remote_bytes_rejected(self):
   with tempfile.TemporaryDirectory() as d:
    s=State(d);r=self.request(s);cp=reserve_render(s,r,executor='dot-cloud-bounded')

@@ -1,5 +1,5 @@
 # Optional rendering environment, separate from lightweight monitoring dependencies.
-# Body narration arrives as verified direct VoxCPM2 receipts; no local TTS install.
+# Body narration is imported from verified host VoxCPM2 receipts, never synthesized here.
 Pillow==13.0.0
 
 numpy==2.3.5

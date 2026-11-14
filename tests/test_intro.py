@@ -30,8 +30,8 @@ class IntroValidationTests(unittest.TestCase):
         spec={'format':'short','scenes':[{'title':'Test','narration':'Test narration.','caption':'Test'}],
               'licensed_assets':{'source':{}},
               'brand_intro':{'template':TEMPLATE,'title':'Test'}}
-        with patch('youtube_ops.licensed.verify_local_assets') as verify,              patch('youtube_ops.intro.verify_intro'),              patch('youtube_ops.render.verify_voice',side_effect=ValueError('stop before voice')):
-            with self.assertRaisesRegex(ValueError,'stop before voice'):
+        with patch('youtube_ops.licensed.verify_local_assets') as verify, patch('youtube_ops.intro.verify_intro'):
+            with self.assertRaisesRegex(ValueError,'Legacy Piper body synthesis is disabled'):
                 render(spec,Path('unused'),Path('no-model'),{},
                        local_assets={'source':'local-source','poweredby_logo':'local-badge','unexpected':'extra'})
         verify.assert_called_once_with(spec,{'source':'local-source','unexpected':'extra'})

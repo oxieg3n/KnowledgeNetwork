@@ -12,71 +12,13 @@ import wave
 import zlib
 
 from .collector_editor import OpenShot, digest, write_json
-from .collector_narration_common import inspect_wav, MAX_WAV
+from .collector_narration_receipt import read_voxcpm2_receipt
 
 
 def narration_receipt(client, path):
-    """Validate the remote provider's Forge-local artifact; never fetch a host path."""
     path = client.local_path(path, {'.json'})
-    if path.name != 'narration.json':
-        raise ValueError('Expected the remote provider narration.json receipt')
-    with path.open('rb') as stream:
-        raw = stream.read(128 * 1024 + 1)
-    if len(raw) > 128 * 1024:
-        raise ValueError('Narration receipt exceeds limit')
-    receipt = json.loads(raw)
-    if not isinstance(receipt, dict) or receipt.get('provider') != 'voxcpm2_remote' \
-            or receipt.get('narrator_id') != 'oxiegen-narrator' or receipt.get('status') != 'generated_pending_review' \
-            or receipt.get('review_only') is not True or receipt.get('publication_eligible') is not False:
-        raise ValueError('A completed review-only VoxCPM2 Oxiegen-Narrator receipt is required')
-    if not isinstance(receipt.get('text_sha256'), str) or not re.fullmatch('[a-f0-9]{64}', receipt['text_sha256']):
-        raise ValueError('Narration script digest is missing')
-    provenance = receipt.get('provenance')
-    if not isinstance(provenance, dict):
-        raise ValueError('Narrator provenance evidence is missing')
-    for key in ('script_sha256', 'config_sha256', 'license_evidence_sha256'):
-        if not isinstance(provenance.get(key), str) or not re.fullmatch('[a-f0-9]{64}', provenance[key]):
-            raise ValueError('Narrator provenance evidence is missing')
-    if not isinstance(provenance.get('model_revision'), str) or not 1 <= len(provenance['model_revision']) <= 256:
-        raise ValueError('Narrator model revision is missing')
-    audio_path = client.local_path(path.with_name('narration.wav'), {'.wav'})
-    with audio_path.open('rb') as stream:
-        audio_bytes = stream.read(MAX_WAV + 1)
-    if len(audio_bytes) > MAX_WAV:
-        raise ValueError('Narration audio exceeds limit')
-    audio = inspect_wav(audio_bytes)
-    expected = receipt.get('audio')
-    if not isinstance(expected, dict):
-        raise ValueError('Narration PCM envelope missing')
-    for key in ('frames', 'sample_rate', 'channels', 'sample_width'):
-        if type(expected.get(key)) is not int or expected[key] != audio[key]:
-            raise ValueError('Narration PCM envelope does not match audio')
-    if expected.get('sha256') != audio['sha256']:
-        raise ValueError('Narration audio SHA-256 does not match receipt')
-    duration = expected.get('duration_seconds')
-    if type(duration) not in (int, float) or not math.isfinite(duration) \
-            or abs(duration - audio['duration_seconds']) > 1e-9 or not .1 <= duration <= 50:
-        raise ValueError('Narration duration is invalid or exceeds the 50-second fixture')
-    cues = receipt.get('cues', [])
-    if not isinstance(cues, list) or len(cues) > 16:
-        raise ValueError('Expected at most 16 actual measured speech cues')
-    last_end = 0
-    for cue in cues:
-        if not isinstance(cue, dict) or not isinstance(cue.get('text'), str) \
-                or not 1 <= len(cue['text']) <= 4096 or '\x00' in cue['text']:
-            raise ValueError('Invalid measured cue text')
-        first, end = cue.get('start_sample'), cue.get('end_sample')
-        if type(first) is not int or type(end) is not int or not last_end <= first < end <= audio['frames']:
-            raise ValueError('Cue samples are outside audio or overlap')
-        for key, sample in (('start', first), ('end', end)):
-            value = cue.get(key)
-            if type(value) not in (int, float) or not math.isfinite(value) \
-                    or abs(value - sample / audio['sample_rate']) > 1e-9:
-                raise ValueError('Cue seconds are not derived from actual PCM samples')
-        last_end = end
-    if sum(len(cue['text']) for cue in cues) > 4096:
-        raise ValueError('Measured cue text exceeds the provider script limit')
-    return path, audio_path, receipt, audio
+    client.local_path(path.with_name('narration.wav'), {'.wav'})
+    return read_voxcpm2_receipt(path, max_duration=50)
 
 
 def caption_fingerprint(client, clip_id):
@@ -154,7 +96,7 @@ def checked_music(client, clips, layer, previous):
 
 def attach_narration_to_fixture(client, receipt_path, base_revision, replace_clip_id=None):
     """Import verified remote audio into this fixture's dedicated third track."""
-    path, audio_path, receipt, audio = narration_receipt(client, receipt_path)
+    path, audio_path, receipt, audio, receipt_hash = narration_receipt(client, receipt_path)
     current = client.inspect()
     if current['revision'] != base_revision:
         raise ValueError('Fixture changed; inspect the new revision')
@@ -218,8 +160,10 @@ def attach_narration_to_fixture(client, receipt_path, base_revision, replace_cli
         alignment = 'MEASURED_SEGMENT_CUES_PENDING_REVIEW: sample boundaries quantized to native project frames'
     elif cues:
         alignment = 'BLOCKED: measured cue text too long; request shorter measured speech segments'
+    if digest(path) != receipt_hash or digest(audio_path) != audio['sha256']:
+        raise ValueError('Narration artifacts changed after validation; reconcile before editing')
     applied = client.apply(commands, base_revision)
-    result = {'provider': receipt['provider'], 'audio': audio, 'receipt_sha256': digest(path),
+    result = {'provider': receipt['provider'], 'audio': audio, 'receipt_sha256': receipt_hash,
         'text_sha256': receipt['text_sha256'],
         'narrator_id': receipt['narrator_id'], 'provenance': {key: receipt['provenance'][key] for key in (
             'script_sha256', 'config_sha256', 'model_revision', 'license_evidence_sha256')},
