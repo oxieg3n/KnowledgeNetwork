@@ -3,7 +3,9 @@ param(
     [Parameter(Mandatory=$true)][string]$HostAddress,
     [Parameter(Mandatory=$true)][string]$ForgeAddress,
     [Parameter(Mandatory=$true)][string]$PublicKeyFile,
+    [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{64}$')][string]$PublicKeySha256,
     [Parameter(Mandatory=$true)][string]$DispatcherFile,
+    [Parameter(Mandatory=$true)][string]$RuntimeArchiveFile,
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{64}$')][string]$DispatcherSha256
 )
 $ErrorActionPreference = 'Stop'
@@ -14,7 +16,8 @@ $firewall = 'KnowledgeNetworkHostExec-Forge'
 $blockFirewall = 'KnowledgeNetworkHostExec-OtherSources'
 $port = 22230
 $sshd = 'C:/Windows/System32/OpenSSH/sshd.exe'
-$python = 'D:/tools/audio/voicestudio/data/engines/voxcpm2/voxcpm2/.venv/Scripts/python.exe'
+$python = "$root/runtime/python/python.exe"
+$runtimeSha256 = '90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159'
 $powershell = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe'
 $commandShell = 'C:/Windows/System32/cmd.exe'
 $sharedConfig = 'C:/ProgramData/ssh/sshd_config'
@@ -42,7 +45,7 @@ foreach ($profile in $profiles) {
     if ($profile.Enabled.ToString() -ne 'True' -or $profile.AllowLocalFirewallRules.ToString() -notin @('True','NotConfigured') -or $profile.AllowInboundRules.ToString() -notin @('True','NotConfigured')) { throw 'Effective firewall enforcement/merge does not permit the restricted project rules; existing profiles were not changed.' }
 }
 foreach ($name in @('MpsSvc','BFE')) { if ((Get-Service -Name $name -ErrorAction Stop).Status -ne 'Running') { throw 'Effective firewall service is unavailable; existing services were not changed.' } }
-foreach ($file in @($sshd,$python,$powershell,$hostKey,$sharedConfig,$PublicKeyFile,$DispatcherFile)) {
+foreach ($file in @($sshd,$powershell,$hostKey,$sharedConfig,$PublicKeyFile,$DispatcherFile,$RuntimeArchiveFile)) {
     if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw 'Required inspected bootstrap file missing.' }
 }
 $shellSettings = if (Test-Path -LiteralPath HKLM:/SOFTWARE/OpenSSH) { Get-ItemProperty -LiteralPath HKLM:/SOFTWARE/OpenSSH -ErrorAction Stop } else { $null }
@@ -51,10 +54,28 @@ if ($shellSettings.DefaultShellCommandOption -and $shellSettings.DefaultShellCom
 $commandProcessor = Get-ItemProperty -LiteralPath 'HKLM:/SOFTWARE/Microsoft/Command Processor' -ErrorAction Stop
 if ($commandProcessor.AutoRun) { throw 'System cmd AutoRun would execute outside the dispatcher; it was not changed.' }
 if ((Get-FileHash -LiteralPath $DispatcherFile -Algorithm SHA256).Hash.ToLowerInvariant() -ne $DispatcherSha256) { throw 'Dispatcher pin mismatch.' }
-$key = [IO.File]::ReadAllText([IO.Path]::GetFullPath($PublicKeyFile)).Trim()
+$keyFile = [IO.File]::Open([IO.Path]::GetFullPath($PublicKeyFile),[IO.FileMode]::Open,[IO.FileAccess]::Read,[IO.FileShare]::Read)
+try {
+    if ($keyFile.Length -le 0 -or $keyFile.Length -gt 4096) { throw 'Dedicated public key exceeds bounds.' }
+    $keyMemory = [IO.MemoryStream]::new()
+    try { $keyFile.CopyTo($keyMemory); $keyBytes = $keyMemory.ToArray() } finally { $keyMemory.Dispose() }
+} finally { $keyFile.Dispose() }
+$keyHasher = [Security.Cryptography.SHA256]::Create()
+try { $keyDigest = ([BitConverter]::ToString($keyHasher.ComputeHash($keyBytes))).Replace('-','').ToLowerInvariant() } finally { $keyHasher.Dispose() }
+if ($keyDigest -cne $PublicKeySha256) { throw 'Dedicated public key pin mismatch.' }
+$key = [Text.UTF8Encoding]::new($false,$true).GetString($keyBytes).Trim()
 if ($key -notmatch '^ssh-ed25519 [A-Za-z0-9+/]+={0,3}(?: [^\r\n]*)?$') { throw 'Exactly one dedicated Ed25519 public key is required.' }
 $key = ($key -split ' ',3)[0..1] -join ' '
 $sharedHash = (Get-FileHash -LiteralPath $sharedConfig -Algorithm SHA256).Hash.ToLowerInvariant()
+$archiveFile = [IO.File]::Open([IO.Path]::GetFullPath($RuntimeArchiveFile),[IO.FileMode]::Open,[IO.FileAccess]::Read,[IO.FileShare]::Read)
+try {
+    if ($archiveFile.Length -le 0 -or $archiveFile.Length -gt 32MB) { throw 'Dispatcher runtime archive exceeds bounds.' }
+    $archiveMemory = [IO.MemoryStream]::new()
+    try { $archiveFile.CopyTo($archiveMemory); $archiveBytes = $archiveMemory.ToArray() } finally { $archiveMemory.Dispose() }
+} finally { $archiveFile.Dispose() }
+$archiveHasher = [Security.Cryptography.SHA256]::Create()
+try { $archiveDigest = ([BitConverter]::ToString($archiveHasher.ComputeHash($archiveBytes))).Replace('-','').ToLowerInvariant() } finally { $archiveHasher.Dispose() }
+if ($archiveDigest -cne $runtimeSha256) { throw 'Official dispatcher runtime archive SHA-256 mismatch; no files were extracted.' }
 
 function Assert-TrustedPath([string]$Path,[bool]$AncestorOnly=$false) {
     $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
@@ -84,17 +105,7 @@ function Assert-TrustedPath([string]$Path,[bool]$AncestorOnly=$false) {
     }
 }
 # -I -S prevents user environment, .pth and installed site-packages from executing.
-$venv = Split-Path -Parent (Split-Path -Parent $python)
-$venvConfig = Join-Path $venv 'pyvenv.cfg'
-$homeLine = @(Get-Content -LiteralPath $venvConfig | Where-Object { $_ -match '^home\s*=\s*' })
-if ($homeLine.Count -ne 1) { throw 'Cannot identify the canonical interpreter base.' }
-$base = ($homeLine[0] -replace '^home\s*=\s*','').Trim()
-foreach ($path in @($python,$venvConfig,$sshd,$powershell,$commandShell,$hostKey,$base,(Join-Path $base 'python.exe'),(Join-Path $base 'python311.dll'),(Join-Path $base 'Lib'),(Join-Path $base 'DLLs'),(Split-Path -Parent $python))) { Assert-TrustedPath $path }
-foreach ($item in Get-ChildItem -LiteralPath (Join-Path $base 'Lib') -Recurse -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
-foreach ($item in Get-ChildItem -LiteralPath (Join-Path $base 'DLLs') -Recurse -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
-foreach ($item in Get-ChildItem -LiteralPath $base -File -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
-foreach ($item in Get-ChildItem -LiteralPath (Split-Path -Parent $python) -Recurse -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
-foreach ($item in Get-ChildItem -LiteralPath $venv -File -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
+foreach ($path in @($sshd,$powershell,$commandShell,$hostKey)) { Assert-TrustedPath $path }
 $parent = Split-Path -Parent $root
 $parentWasMissing = -not (Test-Path -LiteralPath $parent)
 if (-not $parentWasMissing) { Assert-TrustedPath $parent } else { Assert-TrustedPath (Split-Path -Parent $parent) $true }
@@ -107,13 +118,56 @@ function Protect-Directory([string]$Path,[string]$ReadSid,[bool]$Writable) {
     if ($ReadSid) { $rights = if ($Writable) { 'Modify' } else { 'ReadAndExecute' }; $acl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new($ReadSid),$rights,'ContainerInherit,ObjectInherit','None','Allow')) }
     Set-Acl -LiteralPath $Path -AclObject $acl
 }
+function Expand-DispatcherRuntime([byte[]]$ArchiveBytes,[string]$Target) {
+    if ($ArchiveBytes.Length -le 0 -or $ArchiveBytes.Length -gt 32MB) { throw 'Runtime archive size invalid.' }
+    $directory = Get-Item -LiteralPath $Target -Force -ErrorAction Stop
+    if (-not $directory.PSIsContainer -or ($directory.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0 -or @(Get-ChildItem -LiteralPath $Target -Force -ErrorAction Stop).Count) { throw 'Runtime extraction requires a new empty regular protected directory.' }
+    $allowed = @('python.exe','pythonw.exe','python314.dll','python3.dll','vcruntime140.dll','vcruntime140_1.dll','LICENSE.txt','pyexpat.pyd','select.pyd','unicodedata.pyd','winsound.pyd','_asyncio.pyd','_bz2.pyd','_ctypes.pyd','_decimal.pyd','_elementtree.pyd','_hashlib.pyd','_lzma.pyd','_multiprocessing.pyd','_overlapped.pyd','_queue.pyd','_remote_debugging.pyd','_socket.pyd','_sqlite3.pyd','_ssl.pyd','_uuid.pyd','_wmi.pyd','_zoneinfo.pyd','_zstd.pyd','libcrypto-3.dll','libffi-8.dll','libssl-3.dll','libtommath.dll','sqlite3.dll','python314.zip','python314._pth','python.cat')
+    Add-Type -AssemblyName System.IO.Compression
+    $memory = [IO.MemoryStream]::new($ArchiveBytes,$false)
+    $archive = [IO.Compression.ZipArchive]::new($memory,[IO.Compression.ZipArchiveMode]::Read,$false)
+    $records = @()
+    try {
+        if ($archive.Entries.Count -ne $allowed.Count) { throw 'Unexpected runtime archive member count.' }
+        $seen = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+        $total = [long]0
+        foreach ($entry in $archive.Entries) {
+            $name = $entry.FullName
+            $type = ($entry.ExternalAttributes -shr 16) -band 0xF000
+            if ($name -cnotin $allowed -or $name -match '[\\/:]' -or -not $seen.Add($name) -or $type -notin @(0,0x8000) -or ($entry.ExternalAttributes -band 0x410) -ne 0 -or $entry.Length -le 0 -or $entry.Length -gt 32MB) { throw 'Unexpected or unsafe runtime archive member.' }
+            $total += $entry.Length
+            if ($total -gt 128MB) { throw 'Runtime expanded size exceeds bounds.' }
+        }
+        foreach ($entry in $archive.Entries) {
+            $bytes = New-Object byte[] ([int]$entry.Length)
+            $entryStream = $entry.Open()
+            try {
+                $offset = 0
+                while ($offset -lt $bytes.Length) {
+                    $count = $entryStream.Read($bytes,$offset,$bytes.Length-$offset)
+                    if ($count -le 0) { throw 'Runtime archive member truncated.' }
+                    $offset += $count
+                }
+                if ($entryStream.ReadByte() -ne -1) { throw 'Runtime archive member exceeds declared size.' }
+            } finally { $entryStream.Dispose() }
+            $hasher = [Security.Cryptography.SHA256]::Create()
+            try { $hash = ([BitConverter]::ToString($hasher.ComputeHash($bytes))).Replace('-','').ToLowerInvariant() } finally { $hasher.Dispose() }
+            $destination = Join-Path $Target $entry.FullName
+            $output = [IO.File]::Open($destination,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
+            try { $output.Write($bytes,0,$bytes.Length); $output.Flush($true) } finally { $output.Dispose() }
+            if ((Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) { throw 'Extracted runtime member hash mismatch.' }
+            $records += [ordered]@{name=$entry.FullName;sha256=$hash;bytes=$bytes.Length}
+        }
+    } finally { $archive.Dispose(); $memory.Dispose() }
+    return $records
+}
 if ($parentWasMissing) { New-Item -ItemType Directory -Path $parent -ErrorAction Stop | Out-Null; Protect-Directory $parent '' $false }
 Assert-TrustedPath $parent
 New-Item -ItemType Directory -Path $root -ErrorAction Stop | Out-Null
 Protect-Directory $root '' $false
 Assert-TrustedPath $root
 $encoding = [Text.UTF8Encoding]::new($false)
-$receipt = [ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service=$service;execution_sid=$null;account=$account;port=$port;host_address=$HostAddress;forge_address=$ForgeAddress;dispatcher_sha256=$DispatcherSha256;shared_config_sha256=$sharedHash;created_at=[DateTime]::UtcNow.ToString('o');gateway_service_restarted=$false;publication_paused=$true}
+$receipt = [ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service=$service;execution_sid=$null;account=$account;port=$port;host_address=$HostAddress;forge_address=$ForgeAddress;dispatcher_sha256=$DispatcherSha256;runtime_version='3.14.10';runtime_archive_sha256=$runtimeSha256;shared_config_sha256=$sharedHash;created_at=[DateTime]::UtcNow.ToString('o');gateway_service_restarted=$false;publication_paused=$true}
 [IO.File]::WriteAllText((Join-Path $root 'bootstrap-receipt.private.json'),($receipt | ConvertTo-Json),$encoding)
 $rollback = @'
 $ErrorActionPreference = 'Stop'
@@ -150,6 +204,22 @@ if ((Get-FileHash -LiteralPath C:/ProgramData/ssh/sshd_config -Algorithm SHA256)
 '@
 [IO.File]::WriteAllText((Join-Path $root 'rollback-bootstrap.ps1'),$rollback,$encoding)
 Copy-Item -LiteralPath $sharedConfig -Destination (Join-Path $root 'shared-sshd-config.before.private') -ErrorAction Stop
+New-Item -ItemType Directory -Path (Join-Path $root 'runtime') -ErrorAction Stop | Out-Null
+$pythonDirectory = Join-Path $root 'runtime/python'
+New-Item -ItemType Directory -Path $pythonDirectory -ErrorAction Stop | Out-Null
+Protect-Directory $pythonDirectory '' $false
+Assert-TrustedPath $pythonDirectory
+$runtimeRecords = @(Expand-DispatcherRuntime $archiveBytes $pythonDirectory)
+[IO.File]::WriteAllText((Join-Path $root 'runtime-files.private.json'),($runtimeRecords | ConvertTo-Json),$encoding)
+foreach ($file in @($python,(Join-Path $pythonDirectory 'python314.dll'))) {
+    $signature = Get-AuthenticodeSignature -LiteralPath $file -ErrorAction Stop
+    if ($signature.Status -ne 'Valid' -or -not $signature.SignerCertificate -or $signature.SignerCertificate.Subject -notmatch '(^|,\s*)O=Python Software Foundation(,|$)') { throw 'Protected dispatcher Python publisher signature is invalid; no interpreter was executed.' }
+}
+$pathLines = @([IO.File]::ReadAllLines((Join-Path $pythonDirectory 'python314._pth')) | Where-Object { $_.Trim() -and -not $_.Trim().StartsWith('#') })
+if ($pathLines.Count -ne 2 -or $pathLines[0] -cne 'python314.zip' -or $pathLines[1] -cne '.') { throw 'Embedded runtime import path differs from the isolated reviewed package.' }
+foreach ($file in Get-ChildItem -LiteralPath $pythonDirectory -Force -ErrorAction Stop) { Assert-TrustedPath $file.FullName }
+& $python -I -S -B -c 'import sys; assert sys.version_info[:3] == (3,14,10); assert sys.flags.isolated and sys.flags.no_site'
+if ($LASTEXITCODE -ne 0) { throw 'Protected dispatcher runtime isolation/version check failed.' }
 $passwordBytes = New-Object byte[] 48
 $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
 try { $rng.GetBytes($passwordBytes) } finally { $rng.Dispose() }
@@ -163,7 +233,9 @@ if (-not @($users | Where-Object { $_.SID.Value -eq $sid }).Count) { Add-LocalGr
 $adminMembers = @(Get-LocalGroupMember -SID 'S-1-5-32-544' -ErrorAction Stop)
 if (@($adminMembers | Where-Object { $_.SID.Value -eq $sid }).Count) { throw 'Dedicated account unexpectedly has administrator membership.' }
 Protect-Directory $root $sid $false
-foreach ($name in @('runtime','audit','receipts')) { New-Item -ItemType Directory -Path (Join-Path $root $name) -ErrorAction Stop | Out-Null }
+foreach ($name in @('audit','receipts')) { New-Item -ItemType Directory -Path (Join-Path $root $name) -ErrorAction Stop | Out-Null }
+Protect-Directory (Join-Path $root 'runtime') $sid $false
+Protect-Directory $pythonDirectory $sid $false
 Protect-Directory (Join-Path $root 'audit') $sid $true
 Copy-Item -LiteralPath $DispatcherFile -Destination (Join-Path $root 'runtime/collector_host_exec.py') -ErrorAction Stop
 if ((Get-FileHash -LiteralPath (Join-Path $root 'runtime/collector_host_exec.py') -Algorithm SHA256).Hash.ToLowerInvariant() -ne $DispatcherSha256) { throw 'Staged dispatcher mismatch.' }

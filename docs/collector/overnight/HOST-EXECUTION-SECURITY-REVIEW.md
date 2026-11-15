@@ -177,3 +177,72 @@ No remaining concrete must-fix source finding was identified at those digests
 within the stated initial-command scope. This verdict is not host deployment
 acceptance or a claim that broader standing-authorized operations are already
 implemented. Review drift if source changes before packaging/bootstrap.
+
+## Actual bootstrap trust failure and runtime isolation follow-up
+
+The owner-run bootstrap stopped at its trust guard before creating the project
+execution root, account, service or firewall rules. The subsequent private native
+ACL diagnostic identifies the canonical venv Python executable as broadly
+modifiable by Authenticated Users. This reviewer read the complete retained
+diagnostic: four access entries and no deny entry. The observed broad Modify
+permission is genuine exposure, not the earlier hypothetical conservative
+allow-versus-deny false positive. Private SDDL, owner identity and complete ACL
+contents are not reproduced here. No original ACL or narrator file was changed.
+
+The correct response is to keep the guard. A protected project-only interpreter
+can isolate the SSH dispatcher from the existing narrator environment; the
+canonical narrator keeps its original interpreter, script, model and settings.
+Do not claim that copying an unverified writable runtime establishes provenance.
+The proposed package must have an exact official source/hash, retained notices,
+strict archive validation and immutable administrative ownership before any
+execution. The existing protected-parent and loader-search-directory checks
+remain mandatory.
+
+Official [Windows release listing](https://www.python.org/downloads/windows/)
+and [embeddable runtime guidance](https://docs.python.org/3/using/windows.html#the-embeddable-package)
+were consulted. The embedded distribution is intended for application packaging
+and includes a restrictive `._pth` search-path configuration. Its exact contents
+must be reviewed, with no enabled site import or outside path. Current proposed
+runtime packaging/bootstrap changes still require independent source review and
+actual host acceptance; the earlier source digests are historical checkpoints.
+
+## Protected dispatcher runtime revision reviewed
+
+Reviewed revised bootstrap SHA-256
+`5f825db4a27320745d27cd556a93923444c2ba7a433188a95fae02fa08140940`.
+It uses official CPython3.14.10 Windows amd64 embeddable archive SHA-256
+`90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159`.
+This reviewer independently matched the digest to the
+[official release file table](https://www.python.org/downloads/release/python-31410/).
+It is a current maintenance/security binary release, unlike the superseded
+3.13 binary line. No narrator runtime or reference setting is replaced.
+
+The bootstrap captures bounded archive bytes under a read-only file lease and
+hashes those same bytes before archive parsing. It prevalidates all37 members
+against exact flat names, rejects separators/ADS, duplicate/case-variant names,
+directories/reparse/symlink attributes and oversized/count mismatches. Extraction
+writes only new regular files into a freshly protected project runtime directory,
+with per-member content hash readback. ZIP metadata is not applied as filesystem
+links or permissions. Existing runtime files cannot be overwritten.
+
+Protected parent/root checks precede extraction. Before interpreter execution,
+the bootstrap requires valid Python Software Foundation publisher signatures
+on the executable/core DLL, immutable runtime-file/ancestor ACLs, and precisely
+the two active `._pth` entries for its local standard-library ZIP and protected
+runtime directory, without site import. Original license/catalog files are
+retained. The dedicated nonadmin identity receives only read/execute runtime
+access; mutable audit files remain separate.
+
+No remaining concrete must-fix was found in this bounded archive/runtime review.
+The coordinator reports four passing native bootstrap-helper tests (including
+malicious archive/no-overwrite cases), production extraction of all37 official
+members, valid PSF signatures, and18 dispatcher tests using the actual new
+interpreter on FORGE. This reviewer reused those checks rather than duplicating
+them. Real host bootstrap, account access, separate SSH startup, remote identity
+and negative network tests remain NOT TESTED.
+
+This isolates the dispatcher only. The original narrator executable's broad
+write permission remains unchanged. A later privileged handler must not execute
+that original mutable environment as privileged code. The original narrator's
+local-code trust boundary and the pending narrator9443 policy restriction remain
+separate from this protected dispatcher-runtime remedy.

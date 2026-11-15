@@ -33,6 +33,8 @@ Runtime layout is fixed beneath
 `C:/ProgramData/KnowledgeNetworkCollector/HostExec`:
 
 - `runtime/collector_host_exec.py`: reviewed standalone standard-library code.
+- `runtime/python/`: separately pinned protected CPython embeddable runtime for
+  the dispatcher only; never the narrator environment.
 - `config.json`: exact expected execution SID, FORGE address and executable pins.
 - `authorized_keys`: only the newly generated project Ed25519 public key.
 - `sshd_config`: isolated server configuration, no subsystems or includes.
@@ -42,7 +44,7 @@ Runtime layout is fixed beneath
   script: retained private bootstrap evidence.
 
 All code/configuration is admin/SYSTEM-owned and read-only to the login identity.
-The forced command invokes only the canonical interpreter with `-I -S -B` and
+The forced command invokes only the protected dispatcher interpreter with `-I -S -B` and
 the fixed dispatcher file. No PYTHONPATH, user site, `.pth`, bytecode write or
 caller-selected script is involved. Only exact allowlisted SSH command tokens
 are accepted. Arbitrary shell/PowerShell, PTY, subsystems, client environment,
@@ -83,16 +85,41 @@ of actual host permissions. Resolve the exact evidence before retrying setup.
 `host-tools/Install-KnowledgeNetworkHostExec.ps1` is the one elevated host action
 when no existing independently authorized endpoint can perform account/service
 setup. Root supplies the actual private `HostAddress`/`ForgeAddress`, dedicated
-public-key file, reviewed dispatcher file and its exact SHA-256. No secret is
+public-key file and SHA-256, reviewed dispatcher file and its exact SHA-256,
+and staged `RuntimeArchiveFile`. No secret is
 accepted as a script argument. The account gets a cryptographically random
 unreported local password; SSH supports publickey only. FORGE retains its separate
 private key in a protected local store, never the emulator key.
 
 Preflight refuses preexisting project root/account/service/rules and occupied
-port. It audits the canonical interpreter, venv launcher/config/Scripts, base
-stdlib/DLLs and their owners/ancestors. Reparse points and nontrusted write,
-delete-child, ownership or DACL control stop setup; it does not repair existing
-interpreter or unrelated ACLs. It separately protects a newly created product
+port. The canonical narrator venv failed its native trust check because
+Authenticated Users can modify its launcher. That is a real boundary, not
+permission to change the working narrator ACLs or ignore the check. The
+dispatcher now uses a separate protected runtime; narrator files, settings and
+permissions remain intact.
+
+Bootstrap captures staged ZIP bytes once under a read lock, verifies the fixed
+official digest before parsing, and extracts only the exact 37 flat regular
+members into a new protected `runtime/python` directory. It rejects path/ADS/
+drive syntax, directory/symlink/reparse attributes, case-insensitive duplicate
+names, unexpected entries, oversized archives/members and existing target files.
+Every new file hash is compared with its entry bytes. No archive metadata or
+package installer is executed, and the original Python license is retained.
+
+Pinned runtime: [CPython 3.14.10 Windows x64 embeddable package](https://www.python.org/downloads/release/python-31410/),
+official URL `https://www.python.org/ftp/python/3.14.10/python-3.14.10-embed-amd64.zip`,
+SHA-256 `90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159`.
+The release page publishes that digest and a Sigstore bundle. Root's actual
+download matches; Authenticode on `python.exe` and `python314.dll` reports Valid
+with Python Software Foundation organization. Bootstrap repeats native publisher
+checks before executing the interpreter. The retained `python314._pth` is
+accepted only with `python314.zip` and `.` as active lines; `import site` remains
+commented. No external/user import path is permitted. File/path ownership and
+ACL checks precede a fixed version/no-site/isolated startup assertion. This
+runtime does not import VoxCPM2 or replace model inference.
+
+Reparse points and nontrusted write, delete-child, ownership or DACL control
+stop setup; it does not repair existing system or unrelated ACLs. It separately protects a newly created product
 parent and refuses an attacker-raced existing directory. Existing parent/data
 ACLs are never modified. Redirected-drive ACL metadata is not used as native
 proof. Actual native ACL checks must pass inside bootstrap.

@@ -1,5 +1,7 @@
 """Native checks of bootstrap helpers only; never install an account or service."""
 import os
+import re
+import zipfile
 from pathlib import Path
 import subprocess
 import tempfile
@@ -8,9 +10,11 @@ import unittest
 
 @unittest.skipUnless(os.name == 'nt', 'Windows ACL/PowerShell acceptance only')
 class HostBootstrapTests(unittest.TestCase):
-    def run_helpers(self, body):
+    def run_helpers(self, body, archives=None):
         source = Path(__file__).resolve().parents[1] / 'docs/collector/host-tools/Install-KnowledgeNetworkHostExec.ps1'
         with tempfile.TemporaryDirectory(prefix='kn-bootstrap-check-') as folder:
+            for name, data in (archives or {}).items():
+                (Path(folder) / name).write_bytes(data)
             # Load only named function ASTs. Top-level privileged bootstrap is never evaluated.
             script = r"""
 $ErrorActionPreference = 'Stop'
@@ -18,7 +22,7 @@ $current = [Security.Principal.WindowsIdentity]::GetCurrent()
 $tokens=$null; $errors=$null
 $tree=[Management.Automation.Language.Parser]::ParseFile($env:KN_TEST_SOURCE,[ref]$tokens,[ref]$errors)
 if ($errors.Count) { throw 'Bootstrap syntax error' }
-foreach ($name in @('Assert-TrustedPath','Protect-Directory','Ipv4-Text')) {
+foreach ($name in @('Assert-TrustedPath','Protect-Directory','Ipv4-Text','Expand-DispatcherRuntime')) {
     $fn=@($tree.FindAll({param($a) $a -is [Management.Automation.Language.FunctionDefinitionAst]},$false) | Where-Object Name -eq $name)
     if ($fn.Count -ne 1) { throw 'Expected one reviewed helper' }
     . ([scriptblock]::Create($fn[0].Extent.Text))
@@ -61,6 +65,43 @@ $denied=$false
 try { Assert-TrustedPath $loader } catch { $denied=$true }
 if (-not $denied) { throw 'Loader directory create-file rights were accepted' }
 """)
+
+    def test_runtime_archive_validation_and_no_overwrite(self):
+        import io
+        source = Path(__file__).resolve().parents[1] / 'docs/collector/host-tools/Install-KnowledgeNetworkHostExec.ps1'
+        allowed = re.search(r"\$allowed = @\(([^\n]+)\)", source.read_text()).group(1)
+        names = re.findall(r"'([^']+)'", allowed)
+        self.assertEqual(len(names), 37)
+        def archive(kind):
+            data = io.BytesIO()
+            with zipfile.ZipFile(data, 'w') as z:
+                for index, name in enumerate(names):
+                    if index == 0:
+                        name = {'traversal': '../python.exe', 'duplicate': names[1],
+                                'case': 'PYTHON.EXE', 'directory': 'python.exe/'}.get(kind, name)
+                    item = zipfile.ZipInfo(name)
+                    if index == 0 and kind == 'symlink':
+                        item.create_system = 3
+                        item.external_attr = 0o120777 << 16
+                    z.writestr(item, b'x')
+            return data.getvalue()
+        fixtures = {kind+'.zip': archive(kind) for kind in ('valid','traversal','duplicate','case','directory','symlink')}
+        self.run_helpers(r"""
+foreach ($kind in @('valid','traversal','duplicate','case','directory','symlink')) {
+    $target=Join-Path $fixture $kind
+    New-Item -ItemType Directory -Path $target | Out-Null
+    $bytes=[IO.File]::ReadAllBytes((Join-Path $fixture ($kind+'.zip')))
+    $denied=$false
+    try { $records=@(Expand-DispatcherRuntime $bytes $target) } catch { $denied=$true }
+    if ($kind -eq 'valid') {
+        if ($denied -or $records.Count -ne 37) { throw 'Expected valid bounded extraction' }
+        foreach ($record in $records) { if ($record.sha256 -ne '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881') { throw 'Extracted hash differs' } }
+        $denied=$false
+        try { Expand-DispatcherRuntime $bytes $target | Out-Null } catch { $denied=$true }
+        if (-not $denied) { throw 'Existing runtime was overwritten' }
+    } elseif (-not $denied -or @(Get-ChildItem -LiteralPath $target -Force).Count) { throw 'Unsafe archive was not rejected before extraction' }
+}
+""", fixtures)
 
     def test_ipv4_complement_ranges_exclude_only_forge(self):
         self.run_helpers(r"""

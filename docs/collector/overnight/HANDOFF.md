@@ -1,5 +1,57 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Genuine writable narrator Python identified — protected dispatcher runtime ready
+
+Owner returned `BLOCKED_TRUST_PATH_IDENTIFIED` at
+`private-service-v9-001/review/trust-check-731d3bcc94f64147a1bdc0321ee342cb.private.json`.
+Root and security specialist read the full private ACL: canonical venv
+`Scripts/python.exe` grants Authenticated Users Modify, with no denying ACE.
+This is a genuine trust failure, not grounds to weaken the guard. No account,
+service, firewall or existing ACL mutation occurred. Full DACL/owner details
+remain private. The original narrator environment is unchanged.
+
+The bridge now uses its own protected CPython3.14.10 embeddable runtime under
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/runtime/python` instead of
+executing the writable narrator interpreter. Official archive SHA-256:
+`90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159`,
+matched against https://www.python.org/downloads/release/python-31410/.
+Downloaded12619664bytes/37files; original licenses retained. Both python.exe and
+python314.dll have Valid Python Software Foundation Authenticode signatures.
+Dependency lock updated; no model/voice download or global Python installation.
+
+Updated bootstrap captures/pins ZIP and public-key bytes before parsing, requires
+exact37 bounded flat regular members, refuses traversal/links/case duplicates/
+overwrites, verifies extracted hashes and immutable native ACLs in a new protected
+directory, checks publisher signatures and restrictive._pth, then checks isolated
+version/no-site before use. No original runtime ACL repair. Dispatcher code and
+its four-command scope remain unchanged; this does not fix or promote the
+separate original narrator's local-code trust boundary. Never invoke that
+original environment through a future privileged/SYSTEM handler.
+
+New bootstrap SHA-256:
+`5f825db4a27320745d27cd556a93923444c2ba7a433188a95fae02fa08140940`.
+Staged archive, installer, unchanged dispatcher, dedicated public key and pinned
+private arguments under host `host-exec-bootstrap-v2`, preserving prior bundles.
+Owner next action: paste the complete eight-line contents of
+`C:/Admin/Projects/KnowledgeNetwork/output/Host-Exec-Protected-Runtime-Launch.txt`
+in the same elevated BLACKHAT-BASE PowerShell session. Launcher SHA-256:
+`b15187b27d97c011981c225fa93e244fa423fbbc343e0b4bdb7aed87fc8239f7`.
+It hashes captured installer/argument bytes and evaluates those same reviewed
+bytes, avoiding file re-read races. No secret arguments or policy bypass flag.
+Standing authorization already covers this; technical host execution remains
+unavailable until actual bootstrap acceptance. Do not rerun old bundles.
+
+PASS:18 dispatcher tests under the actual new3.14.10 runtime;4 native bootstrap
+helper tests including malicious ZIP/no-overwrite cases; actual official package
+through the production extraction helper, all37 members and both signatures;
+final324-test repository regression in62.980s with5 existing FFmpeg skips.
+Private logs under `C:/admin/collector-v9/host-exec-python-3.14.10`.
+Independent source security review found no remaining concrete must-fix at the
+new bootstrap digest. Native host extraction/trust/startup and SSH acceptance
+remain NOT TESTED. Gateway configuration/routes, narrator settings/reference/
+model, working FORGE installation and backups preserved; no new inference or
+render. PR20 draft/unmerged; publication PAUSED.
+
 ## Host bootstrap stopped at interpreter trust — diagnostic pending
 
 Owner ran the staged bootstrap on BLACKHAT-BASE and received the fixed
