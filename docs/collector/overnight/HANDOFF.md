@@ -1,5 +1,21 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Stage3 paste recovery — authentication still NOT TESTED
+
+Owner's pasted Stage3 arrived out of order and PowerShell raised ParserError
+while parsing Python text. No local-auth/listener/Serve/tailnet receipts exist
+in the protected spool, so no authentication result is inferred. Server restart,
+new inference or credential reprovisioning is unnecessary.
+
+Root extracted the same local-auth Python block, parsed it without execution,
+and created only `review/check-local-auth.py` in the existing private spool,
+with exclusive creation and byte readback. SHA-256
+`d147a2614609b6aad50a0e5dc9e223b2e7585b8e73aafb355884214f44d6bfb3`.
+Owner can invoke it directly with the canonical engine Python and kit PYTHONPATH,
+avoiding PowerShell here-string paste. It uses host CredMan internally and sends
+only local health/auth/invalid-schema tests; no valid narration or routing action.
+Actual execution remains owner-side and pending. Publication remains PAUSED.
+
 ## Host manifest PASS and loopback listener observed
 
 Owner reports Stage2 credential `SAVED` and a listener at127.0.0.1:39110,
