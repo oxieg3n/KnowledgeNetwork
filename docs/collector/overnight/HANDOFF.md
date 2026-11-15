@@ -44,7 +44,12 @@ correct byte length and ABI offsets. Four filename alignments each require real
 bytes, source disappearance and exact target/source physical ID. No source probe,
 inspector or trust check changed. Eleven probe tests PASS normally (3.471s) and
 through a real 8.3 TEMP alias (4.590s); independent diff review PASS. Fresh hosted
-validation is pending. The failed run is retained as FAILED.
+validation: run43762949968 passed all new recovery tests, Ubuntu and Windows
+build/190, but FAILED an unrelated old capture-test float comparison
+(90.00000000000006 versus90). The mocked clock is now deterministic1000 with
+exact deadline1090; no production timeout changes. Ten capture tests PASS2.047s.
+Both failed hosted runs are retained as FAILED. Fresh hosted validation awaits
+this test-only correction and the direct C-API fixtures below.
 Native receipt: `narrator-recovery-native-validation-v1.private.json`.
 
 Remaining trust prerequisite is precise: actual host task/owner/image/creation
@@ -56,6 +61,19 @@ that final atomic binding. PSS partial coverage and cooperative deadlines are
 not full process attestation or a hard watchdog. No live-ready stop/cutover is
 claimed; no repair/cutover approval is requested before these gaps and an exact
 procedure/rollback are resolved. Even a live writer lock requires owner approval.
+
+Direct helper-connection identity method now has three native C-API fixtures
+PASS1.404s: guard BEFORE an existing READWRITE database open; public file-control
+29 returns the borrowed main HANDLE whose FileID128 matches the guard; wrong
+same-name database+decoy does not match; exact connection's writer lock/contention
+and actual INSERT/ROLLBACK preserve the sentinel. No borrowed handle is closed
+by the probe. Independent C-API/capture combined suite PASS13 in3.289s. This
+requires a future reviewed production-helper integration; old V2/stdlb SQLite
+source and composed fixture are unchanged, so their integration gap is not
+retroactively marked passed. No PSS causal-delta pseudo-attestation was added.
+Actual protected host SQLite DLL metadata:3.50.4,1584864bytes, selected37-file
+inventory hash MATCH; no host execution/copy. Exact private receipt:
+`sqlite-public-capi-identity-a824f62c69d04075b94c684467450992.private.json`.
 
 Long-term minimum design: retain protected ProgramData execution code; evaluate
 only a separate private controller ledger/startup-log child there after a proven,

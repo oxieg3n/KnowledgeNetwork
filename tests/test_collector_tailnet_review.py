@@ -72,7 +72,7 @@ class TailnetReviewTests(unittest.TestCase):
         output = Path(folder.name)
         def api(path, secret, deadline):
             self.assertEqual(secret, TOKEN)
-            self.assertLessEqual(deadline - time.monotonic(), 90)
+            self.assertEqual(deadline, 1090.0)
             if path == review.DEVICES:
                 return b'{"devices":[{"id":"node-1","addresses":["100.64.0.1"]}]}'
             if path == review.POLICY:
@@ -83,7 +83,8 @@ class TailnetReviewTests(unittest.TestCase):
             return route_response
         with patch.object(review.credentials, 'read_secret', return_value=(TOKEN, 1)), \
                 patch.object(review, 'private_directory', return_value=output), \
-                patch.object(review, 'get', side_effect=api):
+                patch.object(review, 'get', side_effect=api), \
+                patch.object(review.time, 'monotonic', return_value=1000.0):
             result = review.capture(output)
         receipt = json.loads((output / 'capture.private.json').read_text())
         self.assertNotIn(TOKEN, ''.join(p.read_text() for p in output.iterdir()))

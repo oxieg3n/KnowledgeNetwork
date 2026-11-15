@@ -129,6 +129,22 @@ SQLite and takes BEGIN IMMEDIATE. It does not inspect that helper connection's
 native file handle. Consequently it does NOT prove atomic helper-connection to
 guarded-ledger binding against prior or transient replacement. This is a required
 remaining recovery prerequisite, not an approved exception to the old gate.
+A separate test-only public SQLite C-API fixture now proves the direct helper
+identity mechanism: acquire the namespace guard before READWRITE-only open of
+an existing database, obtain its borrowed main-file HANDLE through
+`SQLITE_FCNTL_WIN32_GET_HANDLE` (29), compare its volume/128-bit ID to the guard,
+and retain that connection through locking. SQLite owns and closes the borrowed
+handle. A wrong same-name database plus decoy handle cannot satisfy this test.
+Actual INSERT/ROLLBACK and competing-writer rejection pass. No private CPython
+connection layout is read and no generic PSS handle-delta attestation is added.
+
+The verified mechanism is not a production port: the legacy helper and its
+composed fixture still use stdlib SQLite. A complete reviewed helper integration
+and live controller evidence remain prerequisites before mutation approval.
+Protected host runtime metadata confirms an existing SQLite DLL version 3.50.4
+with its selected inventory hash unchanged; it was not executed or copied on the
+host. The private native receipt retains exact local DLL identity and hash.
+
 Results and exact run counts are recorded in HANDOFF. These tests do not establish
 a live-ready BLACKHAT-BASE recovery, safe installation, remote narration or a final
 video. Host inspection and any later mutation are separate acceptance stages.
@@ -138,7 +154,8 @@ Primary contracts: [PSS capture flags](https://learn.microsoft.com/en-us/windows
 [physical file identity](https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-file_id_info),
 [rename semantics](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ns-ntifs-_file_rename_information),
 [SQLite rollback locking](https://www.sqlite.org/lockingv3.html) and
-[WAL persistence](https://www.sqlite.org/wal.html).
+[WAL persistence](https://www.sqlite.org/wal.html) and
+[the public SQLite file-control handle](https://www.sqlite.org/c3ref/c_fcntl_begin_atomic_write.html).
 
 Hosted run43762391000 exposed a POSIX fixture control that returned success but
 left old target bytes. The fixture now terminates its UTF-16 filename explicitly,
@@ -146,3 +163,11 @@ asserts ABI offsets and exercises four lengths with exact bytes/source-absence /
 physical-ID controls. Eleven tests passed with normal and real 8.3 TEMP paths;
 production inspection code and host files are unchanged. New hosted validation
 is pending; the first run remains FAILED.
+
+Run43762949968 passed the strengthened POSIX tests, Ubuntu and Windows build/190.
+It FAILED one older mocked capture test: floating subtraction produced
+90.00000000000006 versus90. That fixture now freezes monotonic time at1000 and
+asserts the exact shared deadline1090. The production90-second limit is unchanged.
+The ten mocked capture tests pass; the three direct C-API tests pass separately
+(1.404s), and independent combined review/validation passed13tests in3.289s.
+Both failed runs remain recorded. Fresh hosted validation follows this source.
