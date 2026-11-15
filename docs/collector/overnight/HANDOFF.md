@@ -1,5 +1,26 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Host manifest PASS and loopback listener observed
+
+Owner reports Stage2 credential `SAVED` and a listener at127.0.0.1:39110,
+PID2068. The foreground terminal remaining occupied is consistent with the
+running narrator; do not rerun Stage2. Root read the actual host-private
+`manifest-validation.private.json`: status PASS, script98b75e...f189,
+model revision7936080b41163874f38610f46f438e2c0757f9fd,
+config SHA-256 `976d46c19601b07d17160f8edd1c716e51b85e5610ec163d8b4e49f9271e9bc9`,
+license evidence4f10acc...65e4. This establishes actual manifest validation;
+listener identity/health and authentication remain NOT TESTED until Stage3.
+
+Prepared exact syntax-checked Stage3 copy/paste file:
+`output/Narrator-Stage3-Local-Auth-And-Status.txt`, SHA-256
+`fa21ac2dd719c900ddbc8c3325607aa27033d4a30cde290f0830bb2cb336fb6b`.
+Run in a second BLACKHAT-BASE PowerShell window while the foreground server
+continues: loopback check, hidden in-process CredMan use, missing/wrong bearer
+denial, authenticated health/provenance and forbidden-schema check without
+inference, then read-only Serve/tailnet state capture. No routing change is in
+this stage. Owner should return only completion/status; raw private state can
+be inspected through the same protected spool. Publication remains PAUSED.
+
 ## Host spool accepted and reviewed files delivered
 
 Owner returned actual BLACKHAT-BASE Windows PowerShell5.1 Stage1 result:
