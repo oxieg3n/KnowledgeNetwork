@@ -16,6 +16,7 @@ class NarratorBootstrapTests(unittest.TestCase):
             if prepare: prepare(Path(folder))
             script = r'''
 $ErrorActionPreference='Stop'
+$OutputEncoding=[Text.UTF8Encoding]::new($false)
 $tokens=$null;$parseErrors=$null
 $tree=[Management.Automation.Language.Parser]::ParseFile($env:KN_BOOTSTRAP_SOURCE,[ref]$tokens,[ref]$parseErrors)
 if ($parseErrors.Count) { throw 'Bootstrap syntax failed' }
@@ -215,6 +216,26 @@ foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
     $denied=$false;try { $null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($text)) $env:KN_BOOTSTRAP_PYTHON } catch { $denied=$true }
     if (-not $denied) { throw 'Ambiguous JSON accepted' }
 }
+''')
+
+    def test_strict_json_caller_transport_requires_no_bom(self):
+        self.helpers(r'''
+$good='{"schema_version":1}'
+$probe='import json,sys;s=sys.stdin.read();print(json.dumps(dict(first=ord(s[0]),preamble=s.startswith(chr(65279)) or s.startswith(chr(239)+chr(187)+chr(191)))))'
+$previousEncoding=$OutputEncoding
+try {
+$OutputEncoding=[Text.UTF8Encoding]::new($true)
+$observed=($good | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $probe) | ConvertFrom-Json
+if(-not $observed.preamble -or $observed.first -notin @(65279,239)){throw 'Expected native transport BOM was not observed'}
+$denied=$false
+try{$null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($good)) $env:KN_BOOTSTRAP_PYTHON}catch{$denied=$true}
+if(-not $denied){throw 'Unexpected BOM transport acceptance'}
+$OutputEncoding=[Text.UTF8Encoding]::new($false)
+$observed=($good | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $probe) | ConvertFrom-Json
+if($observed.preamble -or $observed.first -ne 123){throw 'BOM-free caller transport differs'}
+$value=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($good)) $env:KN_BOOTSTRAP_PYTHON
+if($value.schema_version -ne 1){throw 'BOM-free valid JSON failed'}
+} finally {$OutputEncoding=$previousEncoding}
 ''')
 
     def test_task_xml_rejects_elevation_other_owner_extra_actions_or_triggers(self):

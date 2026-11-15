@@ -157,7 +157,10 @@ $packageMembers=@(Get-ChildItem -LiteralPath $package -Force -ErrorAction Stop)
 if($packageMembers.Count -ne 6 -or @($packageMembers|Where-Object{$_.PSIsContainer -or $_.Name -cnotin $files}).Count){throw 'Existing package shape differs.'}
 $bundle="$kit/narrator-control-update-v1"
 $manifestBytes=Read-RegularBytes "$bundle/narrator-control-deployment.json" 64KB $PinnedManifestSha256
-$deployment=Assert-DeploymentManifest (Convert-StrictJson $manifestBytes $python)
+$deployment = & {
+ $OutputEncoding=[Text.UTF8Encoding]::new($false)
+ Assert-DeploymentManifest (Convert-StrictJson $manifestBytes $python)
+}
 if($deployment.manifest_sha256 -cne $fixedManifestHash -or $deployment.server_python_sha256 -cne $oldConfig.server_python_sha256){throw 'Update cannot change runtime or narrator identity.'}
 $null=Read-RegularBytes $python 32MB $deployment.server_python_sha256
 $null=Read-RegularBytes $launcher 4KB $deployment.launcher_sha256

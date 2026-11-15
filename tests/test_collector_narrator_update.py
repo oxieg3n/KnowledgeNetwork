@@ -2,6 +2,7 @@
 import os
 from pathlib import Path
 import subprocess
+import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +23,14 @@ function Import-Helper([string]$Path,[string]$Name){
  if($matches.Count -ne 1){throw 'Helper missing.'}
  . ([ScriptBlock]::Create($matches[0].Extent.Text))
  Set-Item ('Function:script:'+$Name) (Get-Item ('Function:'+$Name)).ScriptBlock
+}
+function Invoke-FixtureSecurityStamp([string]$Temporary,[object]$Entry){
+ try {Set-NewReplacementSecurity $Temporary $Entry}
+ catch {
+  # Disposable fixture metadata only; production keeps its stable private-safe error.
+  $details=[ordered]@{expected=$Entry.sddl;temporary=(Get-Acl -LiteralPath $Temporary).Sddl;target=(Get-Acl -LiteralPath $Entry.path).Sddl}
+  throw ('Disposable security-stamp fixture mismatch: '+($details|ConvertTo-Json -Compress))
+ }
 }
 '''
         result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', header + body], capture_output=True, text=True, timeout=30)
@@ -46,6 +55,25 @@ if($null -eq $parent -or $parent.Name -cne 'Set-NewReplacementSecurity' -or $acl
         self.run_ps(f"Import-Helper '{SCRIPT}' 'Assert-DiagnosticTaskState'\n" + r'''
 foreach($state in @('Ready','Disabled','Running')) {if((Assert-DiagnosticTaskState ([pscustomobject]@{State=$state})) -cne $state){throw 'State changed'}}
 foreach($state in @('Queued','Unknown','')) {$denied=$false;try{$null=Assert-DiagnosticTaskState ([pscustomobject]@{State=$state})}catch{$denied=$true};if(-not $denied){throw 'Unsafe state accepted'}}
+''')
+
+    def test_actual_strict_json_child_scope_ignores_parent_bom_and_preserves_it(self):
+        self.run_ps(f"$updater='{SCRIPT}';$installer='{INSTALL}';$python='{sys.executable}'\n" + r'''
+foreach($name in @('Assert-DeploymentManifest','Convert-StrictJson')){Import-Helper $installer $name}
+$files=@('__init__.py','collector_narrator_pipe.py','collector_narrator_control.py','collector_narrator_host.py','collector_narration_common.py','collector_credentials.py')
+$oldDispatcherHash='a'*64
+$filePins=[ordered]@{};foreach($name in $files){$filePins[$name]='b'*64}
+$value=[ordered]@{schema_version=1;old_dispatcher_sha256=$oldDispatcherHash;dispatcher_sha256=('b'*64);files=$filePins;manifest_sha256=('b'*64);server_python_sha256=('b'*64);shared_config_sha256=('b'*64);launcher_sha256=('b'*64)}
+$manifestBytes=[Text.UTF8Encoding]::new($false).GetBytes(($value|ConvertTo-Json -Depth 5 -Compress))
+$t=$null;$e=$null;$tree=[Management.Automation.Language.Parser]::ParseFile($updater,[ref]$t,[ref]$e)
+$assignment=@($tree.FindAll({param($n)$n -is [Management.Automation.Language.AssignmentStatementAst] -and $n.Left.Extent.Text -ceq '$deployment'},$false))
+if($assignment.Count -ne 1){throw 'Strict deployment child-scope assignment differs'}
+$OutputEncoding=[Text.UTF8Encoding]::new($true);$parent=$OutputEncoding
+. ([ScriptBlock]::Create($assignment[0].Extent.Text))
+if($deployment.schema_version -ne 1 -or -not [Object]::ReferenceEquals($OutputEncoding,$parent) -or $OutputEncoding.GetPreamble().Length -ne 3){throw 'JSON child scope changed parent encoding or failed valid pinned manifest'}
+$manifestBytes=[Text.UTF8Encoding]::new($false).GetBytes('{"schema_version":1,"schema_version":1}')
+$denied=$false;try{. ([ScriptBlock]::Create($assignment[0].Extent.Text))}catch{$denied=$true}
+if(-not $denied -or -not [Object]::ReferenceEquals($OutputEncoding,$parent)){throw 'Duplicate JSON accepted or parent encoding changed'}
 ''')
 
     def test_file_repair_rollback_rejects_running_and_queued_tasks(self):
@@ -127,7 +155,7 @@ try {
  $entry=New-ChangedEntry $path 'control.py' $old $new $sddl
  Assert-UpdateFileState $entry (Get-BytesHash (Read-RegularBytes $entry.path 128KB $null)) ((Get-Acl -LiteralPath $entry.path).Sddl)
  $temporary=$path+'.rollback-next';[IO.File]::WriteAllBytes($temporary,$before)
- Set-NewReplacementSecurity $temporary $entry
+ Invoke-FixtureSecurityStamp $temporary $entry
  [IO.File]::Replace($temporary,$path,[System.Management.Automation.Language.NullString]::Value)
  $null=Read-RegularBytes $path 128KB $old
  if((Get-Item -LiteralPath $marker).Length -ne 0){throw 'Rollback changed the untouched empty marker'}
@@ -178,7 +206,7 @@ try {
   [IO.File]::WriteAllText($temporary,'reviewed-new')
   $denied=$false;try{Set-NewReplacementSecurity $entry.path $entry}catch{$denied=$true}
   if(-not $denied -or (Get-Acl -LiteralPath $entry.path).Sddl -cne $before){throw 'Stamp helper accepted existing target or rewrote it'}
-  Set-NewReplacementSecurity $temporary $entry
+  Invoke-FixtureSecurityStamp $temporary $entry
   if((Get-Acl -LiteralPath $temporary).Sddl -cne $before -or (Get-Acl -LiteralPath $entry.path).Sddl -cne $before){throw 'Pre-replace exact-security gate failed'}
   . ([ScriptBlock]::Create($call.Extent.Text))
   if([IO.File]::ReadAllText($entry.path) -cne 'reviewed-new' -or (Get-Acl -LiteralPath $entry.path).Sddl -cne $before){throw 'Stamped production replacement lost bytes or owner/group/DACL'}
@@ -206,7 +234,7 @@ try {
   [IO.File]::WriteAllText($entry.path,'old');$temporary=$entry.path+'.update-next';[IO.File]::WriteAllText($temporary,'new')
   $acl=(Get-Acl -LiteralPath $entry.path).Sddl
   $entry|Add-Member -NotePropertyName sddl -NotePropertyValue $acl
-  Set-NewReplacementSecurity $temporary $entry
+  Invoke-FixtureSecurityStamp $temporary $entry
   . ([ScriptBlock]::Create($call.Extent.Text))
   if([IO.File]::ReadAllText($entry.path) -cne 'new'){throw 'Atomic replacement bytes differ'}
   if(Test-Path -LiteralPath $temporary){throw 'Atomic replacement did not consume temporary source'}
