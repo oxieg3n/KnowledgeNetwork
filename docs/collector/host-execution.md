@@ -163,6 +163,14 @@ uncertain outcome stops this narrow resume; it is not a general repair mode.
 
 ## Acceptance and rollback
 
+Keep one current launcher and the payloads it actually references. After a
+replacement is verified, remove obsolete troubleshooting scripts and duplicate
+extracted test runtimes with exact project-path checks. Retain compact receipts,
+keys, active runtime/package, original backups and rollback evidence; never
+classify approved media or uncertain job output as disposable staging. Prefer
+a single-command owner launcher over multi-line pastes for unavoidable bootstrap
+work. The latest handoff names the active path and records completed cleanup.
+
 Record separately: bootstrap native ACL/config PASS; account nonadmin identity;
 source/key/host pin PASS; actual FORGE health/self-test; denied shell, PTY,
 forwarding, subsystem, malformed command and wrong-source/key cases; native

@@ -1,5 +1,38 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Reverse-order paste recovered; obsolete staging cleaned
+
+Owner pasted the multi-line launcher in reverse order, invoking the previous
+installer still present in `$bridgeSource` before loading the new bytes. The
+old serialized-manifest error/line therefore recurred; it is not execution
+evidence for the corrected comparison. Root read actual receipt/state again:
+BOOTSTRAP_IN_PROGRESS, null execution SID, no audit or sshd_config. No state
+clearing, repeat installation, service start or inference was performed.
+
+Staged a self-contained, syntax-checked single-command script:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-resume-v2/Resume-HostExec.ps1`.
+It loads and pins current installer/arguments internally in execution order,
+without relying on prior console variables. Owner runs that file with `&` in
+the elevated host PowerShell session; no multi-line copy is required. Actual
+continuation/remote SSH acceptance remains pending. Corrected source is still
+`1f769a2a71fd19ea344b6a2df89c7ecf457e205c1b83bb1ba889b7924ca45975`.
+
+At owner's explicit cleanup request, removed only obsolete created staging:
+host-exec-bootstrap-v1, host-exec-trust-diagnostic-v1, host-exec-resume-v1,
+superseded v2 fresh installer/arguments, old output launch text files and the
+redundant FORGE extracted test runtime. Nonrecursive native PowerShell deletion
+validated exact project paths, flat expected files and no reparse points.
+Reclaimed24,582,086bytes. Active v2 installer/arguments/single-command launcher,
+referenced host archive/key/dispatcher, installed protected runtime, private
+client key, receipts, evidence backups and rollback files remain. Active payload
+references and hashes were checked after cleanup and pass. No approved media,
+model/reference, original project backups or installed Collector was deleted.
+Private cleanup receipt:
+`C:/admin/collector-v9/host-exec-client-v1/obsolete-staging-cleanup.private.json`.
+Historical handoff paths below may now refer to deliberately removed obsolete
+staging; use the single-command path above. No source logic changed, so no
+whole-suite repeat. Publication PAUSED; PR20 draft/unmerged.
+
 ## PowerShell5.1 manifest round-trip corrected — host bytes unchanged
 
 Owner's checked resume stopped at runtime-manifest equality before account setup.
