@@ -231,13 +231,34 @@ foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
     def test_strict_json_accepts_optional_utf8_bom_and_restores_caller_encoding(self):
         self.helpers(r'''
 $good='{"schema_version":1}'
+function Convert-SyntheticPositive([byte[]]$Payload,[string]$Label,[object]$Mode){
+ try{return (Convert-StrictJson $Payload $env:KN_BOOTSTRAP_PYTHON)}catch{
+  $decoded=[Text.UTF8Encoding]::new($false,$true).GetString($Payload)
+  $summary=@{case=$Label;encoding=$Mode.WebName;codepage=$Mode.CodePage;preamble_length=$Mode.GetPreamble().Length;input_bytes=$Payload.Length;input_prefix=([BitConverter]::ToString($Payload[0..([Math]::Min(7,$Payload.Length-1))]));input_codepoints=@($decoded.ToCharArray()|Select-Object -First 8|ForEach-Object{[int]$_})}
+  $probe=@'
+import json,sys
+b=sys.stdin.buffer.read()
+r=dict(wire_prefix=b[:12].hex(),wire_length=len(b),stdin_encoding=sys.stdin.encoding)
+try:
+    s=b.decode('utf-8-sig')
+    json.loads(s)
+    r.update(parsed=True)
+except Exception as e:
+    r.update(error_class=type(e).__name__,error=getattr(e,'msg',None),pos=getattr(e,'pos',None))
+print(json.dumps(r))
+'@
+  if($decoded.Length -gt 0 -and $decoded[0] -eq [char]0xFEFF){$decoded=$decoded.Substring(1)}
+  try{$summary.wire_probe=($decoded|& $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $probe)|ConvertFrom-Json}catch{$summary.wire_probe='unavailable'}
+  throw ('Synthetic positive JSON failed: '+($summary|ConvertTo-Json -Compress -Depth 4))
+ }
+}
 $previousEncoding=$OutputEncoding
 try {
 foreach($encoding in @([Text.Encoding]::ASCII,[Text.UTF8Encoding]::new($false),[Text.UTF8Encoding]::new($true))){
  $OutputEncoding=$encoding
  $body=[Text.Encoding]::UTF8.GetBytes($good)
- foreach($payload in @($body,([byte[]](@(239,187,191)+$body)))){
-  $value=Convert-StrictJson $payload $env:KN_BOOTSTRAP_PYTHON
+ foreach($case in @(@{name='plain';payload=$body},@{name='one-input-signature';payload=([byte[]](@(239,187,191)+$body))})){
+  $value=Convert-SyntheticPositive $case.payload $case.name $encoding
   if($value.schema_version -ne 1){throw 'Optional input/transport BOM valid JSON failed'}
  }
  $denied=$false
@@ -245,7 +266,7 @@ foreach($encoding in @([Text.Encoding]::ASCII,[Text.UTF8Encoding]::new($false),[
  if(-not $denied){throw 'Double input BOM accepted'}
  if($encoding.CodePage -eq 65001){
   $inside='{"x":"'+[char]0xFEFF+'"}'
-  $value=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($inside)) $env:KN_BOOTSTRAP_PYTHON
+  $value=Convert-SyntheticPositive ([Text.Encoding]::UTF8.GetBytes($inside)) 'quoted-embedded-FEFF' $encoding
   if($value.x.Length -ne 1 -or [int][char]$value.x[0] -ne 65279){throw 'Signature character inside quoted value changed'}
  }
  foreach($invalid in @('{"x":1,"x":2}','{"x":NaN}')){
