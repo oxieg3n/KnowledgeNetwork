@@ -235,8 +235,19 @@ $previousEncoding=$OutputEncoding
 try {
 foreach($encoding in @([Text.Encoding]::ASCII,[Text.UTF8Encoding]::new($false),[Text.UTF8Encoding]::new($true))){
  $OutputEncoding=$encoding
- $value=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($good)) $env:KN_BOOTSTRAP_PYTHON
- if($value.schema_version -ne 1){throw 'Optional-BOM valid JSON failed'}
+ $body=[Text.Encoding]::UTF8.GetBytes($good)
+ foreach($payload in @($body,([byte[]](@(239,187,191)+$body)))){
+  $value=Convert-StrictJson $payload $env:KN_BOOTSTRAP_PYTHON
+  if($value.schema_version -ne 1){throw 'Optional input/transport BOM valid JSON failed'}
+ }
+ $denied=$false
+ try{$null=Convert-StrictJson ([byte[]](@(239,187,191,239,187,191)+$body)) $env:KN_BOOTSTRAP_PYTHON}catch{$denied=$true}
+ if(-not $denied){throw 'Double input BOM accepted'}
+ if($encoding.CodePage -eq 65001){
+  $inside='{"x":"'+[char]0xFEFF+'"}'
+  $value=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($inside)) $env:KN_BOOTSTRAP_PYTHON
+  if($value.x.Length -ne 1 -or [int][char]$value.x[0] -ne 65279){throw 'Signature character inside quoted value changed'}
+ }
  foreach($invalid in @('{"x":1,"x":2}','{"x":NaN}')){
   $denied=$false
   try{$null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($invalid)) $env:KN_BOOTSTRAP_PYTHON}catch{$denied=$true}

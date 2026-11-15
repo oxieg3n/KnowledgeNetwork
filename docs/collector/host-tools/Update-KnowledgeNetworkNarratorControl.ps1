@@ -132,7 +132,7 @@ if($item.PSIsContainer -or $item.Length -gt 128KB){throw 'Regular bounded bootst
 $source=[IO.File]::ReadAllBytes($bootstrap)
 $hasher=[Security.Cryptography.SHA256]::Create()
 try {$hash=([BitConverter]::ToString($hasher.ComputeHash($source))).Replace('-','').ToLowerInvariant()}finally{$hasher.Dispose()}
-if($hash -cne '13b311fb20442f35b9a1c605293c9bc70601fe961a8c7dbcd8b11ea7a77d9272'){throw 'Pinned bootstrap differs.'}
+if($hash -cne '6ea14bf52b55fa5a605edf86db8a594f882064263b06224c483d09fb770c4ce1'){throw 'Pinned bootstrap differs.'}
 $tokens=$null;$errors=$null;$tree=[Management.Automation.Language.Parser]::ParseInput($encoding.GetString($source),[ref]$tokens,[ref]$errors)
 if($errors.Count){throw 'Pinned helper syntax differs.'}
 $helperText=''
@@ -143,7 +143,7 @@ foreach($name in @('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes'
  . ([ScriptBlock]::Create($matches[0].Extent.Text))
 }
 Initialize-FileIdentity
-$null=Read-RegularBytes $bootstrap 128KB '13b311fb20442f35b9a1c605293c9bc70601fe961a8c7dbcd8b11ea7a77d9272'
+$null=Read-RegularBytes $bootstrap 128KB '6ea14bf52b55fa5a605edf86db8a594f882064263b06224c483d09fb770c4ce1'
 if(Test-Path -LiteralPath $upgrade){throw 'Update evidence already exists; preserve and reconcile.'}
 foreach($path in @($root,$runtime,$package,$python,$launcher,"$root/narrator-broker.json","$root/config.json","$root/runtime-files.private.json",$sharedConfig)){Assert-TrustedExecutionPath $path}
 $oldConfigBytes=Read-RegularBytes "$root/narrator-broker.json" 64KB $oldConfigHash

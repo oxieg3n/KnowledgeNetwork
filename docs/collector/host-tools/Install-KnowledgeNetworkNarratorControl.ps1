@@ -120,7 +120,12 @@ try:
     print(json.dumps(value,ensure_ascii=True))
 except Exception: sys.exit(1)
 '@
-    $json = [Text.UTF8Encoding]::new($false,$true).GetString($Bytes) | & $Python -I -S -B -c $validator 2>$null
+    $text = [Text.UTF8Encoding]::new($false,$true).GetString($Bytes)
+    if ($text.Length -gt 0 -and $text[0] -eq [char]0xFEFF) {
+        $text = $text.Substring(1)
+        if ($text.Length -gt 0 -and $text[0] -eq [char]0xFEFF) { throw 'Deployment JSON contains multiple input signatures.' }
+    }
+    $json = $text | & $Python -I -S -B -c $validator 2>$null
     if ($LASTEXITCODE -ne 0) { throw 'Deployment JSON contains duplicate fields or invalid syntax.' }
     return ($json | ConvertFrom-Json)
 }
