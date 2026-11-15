@@ -27,8 +27,17 @@ jobs:
       - name: Reject tracked media and credential files
         run: |
           python - <<'PY'
-          import pathlib, subprocess
+          import hashlib, pathlib, subprocess
           files=subprocess.check_output(['git','ls-files'],text=True).splitlines()
-          bad=[x for x in files if pathlib.Path(x).suffix.lower() in {'.mp4','.mp3','.wav','.onnx'} or 'client_secret' in x or 'token.json' in x]
+          # Owner-authorized brand source copies only; all other media stays forbidden.
+          approved = {
+              'sources/Powered-By-Outro-Portrait.mp4': '62496803360e377d81ab54b6970d94fcce3eee125f5d22c2fe08377dcf1b5c9b',
+              'sources/Powered-By-Outro-Landscape.mp4': '3720a160cd8acb46c828d448cca740252fb8c6a80eba892f1573dc5b56479ee3',
+              'sources/Powered-By-Plasma-With-Sound-Preview.mp4': '1eeec90cda8dec320e078e77d5a6c4b6034be6e9dd07e00220ccc601f688e781',
+          }
+          for path, digest in approved.items():
+              assert path in files, f'Missing approved brand source: {path}'
+              assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() == digest, f'Changed approved brand source: {path}'
+          bad=[x for x in files if (pathlib.Path(x).suffix.lower() in {'.mp4','.mp3','.wav','.onnx'} and x not in approved) or 'client_secret' in x or 'token.json' in x]
           assert not bad, 'Forbidden tracked files'
           PY
