@@ -1,3 +1,4 @@
 # Preserve exact bytes of scripts verified against host execution pins.
 docs/collector/host-tools/Stop-EmptyNarratorController.ps1 -text
 docs/collector/host-tools/Inspect-NarratorRepairTrust.ps1 -text
+docs/collector/host-tools/Inspect-NarratorRecoveryAncestors.ps1 -text

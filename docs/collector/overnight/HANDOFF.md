@@ -1,5 +1,66 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Recovery preparation: FORGE evidence PASS; live prerequisites still BLOCKED
+
+Continued from `dabd57ed70c5442cd4e0bff66a2c5f73dd956297` on
+`feature/collector-v7-overnight`. The blocked V2 repair is not rerun or edited.
+No host task, file, ACL, service, credential, narrator, model, Gateway, policy or
+Serve route was changed during this preparation. The four live SSH files remain
+at their protected user-profile paths. All new private FORGE evidence is under
+`C:/Admin/Projects/KnowledgeNetwork-Private`.
+
+New read-only full-ancestor inspector and internal ledger/namespace evidence
+library are source-only, not installed host operations. Detailed design,
+prerequisites, scope and rollback conditions:
+[V9-NARRATOR-RECOVERY-PREPARATION.md](V9-NARRATOR-RECOVERY-PREPARATION.md).
+The inspector observes all D: ancestors, same-handle ACL/identity, C: execution /
+report ancestry and task state; unknown/reparse descendants stay uninspected.
+It opens no SQLite and starts no Python or task action. Exact source SHA-256:
+`6b5a48514c0691cb46a637c7310af34c95ee3e79c1c08f6a36277501de482f8b`
+(12566 bytes, exact checkout bytes retained). A review bundle and concrete
+staging/rollback plan are prepared ONLY on FORGE in
+`KnowledgeNetwork-Private/narrator-recovery-readonly-v1`; nothing was host-staged
+or run. Native host execution needs an owner-side bootstrap because the fixed
+SSH command set cannot execute it. No general execution endpoint was added.
+
+Read-only preservation again verified the original prepared intent and all five
+backup/live old-pin pairs. No stop/start/completion markers were present. Receipt:
+`narrator-recovery-preservation-v1.private.json`. Original rollback retained.
+
+New tests: ancestor inspection 7 native + 1 byte-pin regression; ledger probe
+11 (9 native + 2 contracts). Independent security/Ponytail review PASS. Three
+serialized disposable FORGE Limited-task composition tests PASS in 27.741s:
+single confirmed native stop, fault before native stop with child still alive,
+and lost acknowledgement after actual native stop with held exit proof. Both
+uncertain cases retain one intent/attempt and never retry or call Ready/start.
+Four native rollback guards plus eight existing idle-stop tests PASS in 10.612s.
+Full local integration regression PASS: 449 tests in 131.426s, 437 passed and
+12 skipped. The three opt-in composed tests passed separately; skipped tests
+retain their original entitlements/scope. Fresh hosted validation awaits push.
+Native receipt: `narrator-recovery-native-validation-v1.private.json`.
+
+Remaining trust prerequisite is precise: actual host task/owner/image/creation
+must be bound to the canonical controller's persistent open SQLite file ID,
+matched to a protected namespace. The helper's own SQLite connection must also
+be physically bound to that same ledger with guard acquired BEFORE DB open.
+The composed fixture acquires its guard after helper DB open and does not prove
+that final atomic binding. PSS partial coverage and cooperative deadlines are
+not full process attestation or a hard watchdog. No live-ready stop/cutover is
+claimed; no repair/cutover approval is requested before these gaps and an exact
+procedure/rollback are resolved. Even a live writer lock requires owner approval.
+
+Long-term minimum design: retain protected ProgramData execution code; evaluate
+only a separate private controller ledger/startup-log child there after a proven,
+approved stop. Leave the running controller and D: narrator/job assets untouched;
+no broad D: permission changes or old trust-check exceptions are proposed.
+
+Automatic approval review rejected cleanup of four failed disposable test roots
+with 'blocked by policy'. Five files / 40960 bytes remain; no retry or bypass.
+Private exact inventory:
+`recovery-probe-fixture-cleanup-45dbe5cde8704b93a267a87f80703b14.private.json`.
+Successful fixture temp roots/tasks were cleaned normally. Original backups are
+excluded. Publication remains PAUSED; PR20 remains draft/unmerged.
+
 ## Current state: native trust blocker confirmed; FORGE evidence consolidated
 
 The owner executed the read-only trust check. Actual native result:

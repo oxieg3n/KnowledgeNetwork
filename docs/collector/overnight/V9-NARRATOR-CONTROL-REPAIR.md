@@ -4,6 +4,25 @@ Publication PAUSED. PR #20 remains draft/unmerged. Continue the existing branch;
 the accepted Collector worker, installed pipe-trust correction, database, native
 editor fixture, approved narration and recovered original branding are retained.
 
+## Recovery preparation only ? no live repair
+
+See [the recovery preparation](V9-NARRATOR-RECOVERY-PREPARATION.md) and latest
+HANDOFF for the new full-chain inspector, internal FileID/namespace probe,
+isolated native composition/uncertainty tests and unchanged rollback gates.
+Full local regression PASS: 449 tests / 12 skipped; three additional opt-in
+Limited-task cases passed separately. Fresh hosted validation awaits push.
+All old V2 bytes and live host state are untouched. The read-only inspector is
+prepared on FORGE only, not host-staged/executed. Original intent and five
+backups were rechecked intact. No stop/migration/ACL operation is approved.
+
+Remaining gap: prove both the exact live canonical controller connection and
+helper SQLite connection refer to the guarded same physical ledger; acquire
+namespace protection before helper DB open. PSS snapshot observations and the
+current composed fixture do not by themselves establish that atomic binding.
+Only after live read-only facts, isolated proof and exact rollback review may a
+host mutation be presented for approval. This does not authorize a live writer
+lock, stop intent, stop, disable, replacement or migration now.
+
 ## Current attempt: native trust blocker confirmed
 
 The owner ran the pinned read-only diagnostic. It identified inherited
