@@ -101,6 +101,23 @@ Rollback refuses a running broker or changed descriptors, does not kill audio,
 and preserves private evidence. No Gateway, existing service/configuration,
 firewall or Tailscale change belongs to this bootstrap.
 
+Windows PowerShell5.1 coerces a plain `$null` backup filename in the three-string
+`File.Replace` call to an empty path. The corrected installer and rollback use
+`[System.Management.Automation.Language.NullString]::Value`; actual native tests
+execute both production call shapes and verify bytes and ACL preservation.
+
+If installation stopped at that call with the original dispatcher intact and
+the pending `.next` retained, use only the checked
+`host-tools/Resume-KnowledgeNetworkNarratorControl.ps1` continuation. It requires
+the exact prepared receipt/runtime/package, unchanged original backup,41
+execution ACLs equal to original plus owner RX, and native proof of task absence.
+It does not rerun account/runtime preparation or rewrite existing ACLs. Before
+replacement it retains the failed original rollback and writes the separately
+named corrected `broker-upgrade-v1/rollback-source-v2.ps1`. Use that corrected
+rollback after completion; the original is forensic evidence. Any advanced or
+drifted state stops continuation. Do not rerun the full installer on prepared
+state or pick another folder to bypass its gates.
+
 Native cross-account task/pipe acceptance, existing-listener handoff, actual
 model validation under the limited owner, service lifecycle and credential
 access are NOT TESTED until that host bootstrap and acceptance run. Unit/native

@@ -130,6 +130,36 @@ foreach ($state in @('Ready','Disabled','Running','Queued','Unknown')) {
 if (@($rollback.FindAll({param($n) $n -is [Management.Automation.Language.CommandAst] -and $n.GetCommandName() -in @('Stop-ScheduledTask','Stop-Process','taskkill')},$true)).Count) { throw 'Rollback forcibly terminates owner work' }
 """)
 
+    def test_native_atomic_replace_uses_typed_null_in_deployment_and_rollback(self):
+        self.helpers(r'''
+$main=@($tree.FindAll({param($n) $n -is [Management.Automation.Language.InvokeMemberExpressionAst] -and $n.Expression.Extent.Text -ceq '[IO.File]' -and $n.Member.Value -ceq 'Replace'},$true))
+$literal=@($tree.FindAll({param($n) $n -is [Management.Automation.Language.StringConstantExpressionAst] -and $n.Value.StartsWith('$ErrorActionPreference') -and $n.Value.Contains('@OWNER@')},$true))
+if ($main.Count -ne 1 -or $literal.Count -ne 1) { throw 'Expected exact deployment and rollback call sites' }
+$rt=$null;$re=$null;$rollback=[Management.Automation.Language.Parser]::ParseInput($literal[0].Value,[ref]$rt,[ref]$re)
+$undo=@($rollback.FindAll({param($n) $n -is [Management.Automation.Language.InvokeMemberExpressionAst] -and $n.Expression.Extent.Text -ceq '[IO.File]' -and $n.Member.Value -ceq 'Replace'},$true))
+if ($re.Count -or $undo.Count -ne 1) { throw 'Expected one valid rollback replacement' }
+$root=$fixture;$runtime=Join-Path $root 'runtime';New-Item -ItemType Directory -Path $runtime | Out-Null
+$target=Join-Path $runtime 'collector_host_exec.py';$temp=Join-Path $runtime 'collector_host_exec.rollback'
+$old=[byte[]]@(1,2,3);$new=[byte[]]@(0,255,8,9)
+$calls=@($main[0],$undo[0])
+for ($i=0; $i -lt $calls.Count; $i++) {
+    $call=$calls[$i]
+    if ($call.Arguments.Count -ne 3 -or $call.Arguments[2].Extent.Text -cne '[System.Management.Automation.Language.NullString]::Value') { throw 'Replacement does not preserve an actual null backup argument' }
+    $source=if ($i -eq 0) { Join-Path $runtime 'collector_host_exec.next' } else { $temp }
+    [IO.File]::WriteAllBytes($target,$old);[IO.File]::WriteAllBytes($source,$new)
+    $acl=Get-Acl -LiteralPath $target;$acl.SetAccessRuleProtection($true,$true);Set-Acl -LiteralPath $target -AclObject $acl
+    $before=(Get-Acl -LiteralPath $target).Sddl
+    if ($i -eq 0) {
+        $rejected=$false
+        try { [IO.File]::Replace($source,$target,$null) } catch { $rejected=$_.Exception.InnerException -is [ArgumentException] }
+        if (-not $rejected -or (Get-BytesHash ([IO.File]::ReadAllBytes($target))) -cne (Get-BytesHash $old) -or -not [IO.File]::Exists($source)) { throw 'Original Windows PowerShell null binding failure did not reproduce safely' }
+    }
+    . ([ScriptBlock]::Create($call.Extent.Text))
+    if ((Get-BytesHash ([IO.File]::ReadAllBytes($target))) -cne (Get-BytesHash $new) -or [IO.File]::Exists($source) -or (Get-Acl -LiteralPath $target).Sddl -cne $before -or @(Get-ChildItem -LiteralPath $runtime -Force).Count -ne 1) { throw 'Atomic replacement changed bytes, ACL or backup behavior' }
+    [IO.File]::Delete($target)
+}
+''')
+
     def test_native_reparse_file_is_rejected(self):
         def prepare(folder):
             source = folder / 'original.py'; source.write_text('fixture only')

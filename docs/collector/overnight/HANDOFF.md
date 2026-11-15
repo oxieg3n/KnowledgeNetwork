@@ -1,5 +1,62 @@
 # V9 handoff - The Knowledge Network Collector
 
+## PowerShell5 atomic replacement corrected; checked continuation staged
+
+Owner ran the reviewed control bootstrap. It stopped before task registration:
+PowerShell5.1 bound the `File.Replace` backup `$null` as an empty filename and
+Windows rejected the path. This was an installer compatibility defect, not a
+changed model or pipe-trust regression. Root reproduced it on disposable FORGE
+files. Both deployment and rollback now use the actual typed-null value
+`[System.Management.Automation.Language.NullString]::Value`. The native
+regression executes both production AST calls and verifies new bytes, consumed
+temporary source, no extra backup, and exact destination ACL preservation.
+
+Actual host read-only reconciliation: live dispatcher remains old SHA637c92f...
+(17469bytes), pending `.next` remains new86b94a...(21347bytes). All6 package
+files, launcher, broker configuration,37 runtime files, private manifest and
+shared SSH config match their pins. Upgrade has exactly the original prepared
+receipt,41-entry ACL-before receipt, original dispatcher backup and failed
+rollback. None was deleted/recreated. No task absence or native ACL success is
+inferred from redirected storage; those are mandatory continuation gates.
+
+The narrow `host-tools/Resume-KnowledgeNetworkNarratorControl.ps1` checks that
+exact pre-replacement state, native task absence, fixed local source path and
+drive, exact owner/bridge/config/receipt types, all byte pins and all41 current
+ACLs equal to the recorded originals plus the already-applied owner RX rule.
+It rewrites no existing ACL and does not rerun account/runtime setup. It
+preserves the old rollback and creates the corrected
+`broker-upgrade-v1/rollback-source-v2.ps1` before atomic replacement, then runs
+only the fixed reviewed limited-task registration tail. Advanced/drifted state
+fails closed; do not rerun a failed or uncertain continuation.
+
+PASS:5 focused native continuation tests;12 corrected installer/helper tests
+(2 existing opt-in task fixture skips);60 combined regression tests in52.197s
+(the same2 skips). Root also tested the actual host's serialized prepared
+receipt/config and exact old-rollback derivation using production helpers,
+without claiming native host execution. Prior383-test and separate task/GPU/
+media evidence retain their original scopes; no unnecessary whole-suite repeat.
+Independent security/Ponytail FULL review PASS. No host task, inference,
+listener, networking, policy, Gateway, publication or Collector install action
+was performed by root this turn. The approved/post-verified v5 policy remains.
+
+Corrected bootstrap SHA-256:
+`ab682e594409f35f4650f1418a8541fe8d63b8e6e4b5981bfbe8c85ef702610c`.
+Continuation SHA-256:
+`eaf54f32301a50dbeb6d41b88e28e3bd2552fa900e565ed89465f33a1fd58e79`.
+Two source files staged under host kit `narrator-control-resume-v1` (49703bytes);
+original bundle96d39745... is reused. No runtime ZIP/package/model duplication.
+On FORGE open `%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Resume.txt`
+and run its single captured-byte/hash-checked line in the same elevated
+BLACKHAT-BASE PowerShell. Permission is already authorized; the existing closed
+four-command endpoint cannot perform this privileged continuation technically.
+Obsolete generated full-installer command files were removed after hash-checked
+replacement; original host source, prepared data, ACL evidence and rollback
+backups remain. Do not use the historical Setup command below.
+
+Actual host continuation/task/pipe acceptance remains NOT TESTED. HTTPS9443 is
+OFF; remote narration and finished native video remain pending. Publication
+PAUSED; PR20 stays draft/unmerged.
+
 ## V5 policy applied/post-verified; restricted narrator control staged
 
 Branch `feature/collector-v7-overnight`, continuing from accepted checkpoint

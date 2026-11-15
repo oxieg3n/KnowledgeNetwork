@@ -256,7 +256,7 @@ $bytes = [IO.File]::ReadAllBytes("$upgrade/dispatcher.before.py")
 $temp = "$root/runtime/collector_host_exec.rollback"
 $stream = [IO.File]::Open($temp,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
 try { $stream.Write($bytes,0,$bytes.Length); $stream.Flush($true) } finally { $stream.Dispose() }
-[IO.File]::Replace($temp,"$root/runtime/collector_host_exec.py",$null)
+[IO.File]::Replace($temp,"$root/runtime/collector_host_exec.py",[System.Management.Automation.Language.NullString]::Value)
 foreach ($entry in $before) { $acl = Get-Acl -LiteralPath $entry.path; $acl.SetSecurityDescriptorSddlForm($entry.sddl); Set-Acl -LiteralPath $entry.path -AclObject $acl }
 if ((Get-FileHash -LiteralPath "$root/runtime/collector_host_exec.py" -Algorithm SHA256).Hash.ToLowerInvariant() -cne '@OLD@') { throw 'Restored source did not verify.' }
 $receipt = '{"status":"SOURCE_ROLLBACK_PASS","task_disabled":true,"audio_stopped":false,"files_deleted":false}'
@@ -287,7 +287,7 @@ Set-Acl -LiteralPath "$root/narrator-broker.json" -AclObject $brokerAcl
 Write-NewBytes "$runtime/collector_host_exec.next" $sources['collector_host_exec.py']
 Assert-TrustedExecutionPath "$runtime/collector_host_exec.next"
 $null = Read-RegularBytes "$runtime/collector_host_exec.py" 128KB $oldDispatcherHash
-[IO.File]::Replace("$runtime/collector_host_exec.next","$runtime/collector_host_exec.py",$null)
+[IO.File]::Replace("$runtime/collector_host_exec.next","$runtime/collector_host_exec.py",[System.Management.Automation.Language.NullString]::Value)
 foreach ($path in @($launcher,"$root/narrator-broker.json","$runtime/collector_host_exec.py")) { Assert-TrustedExecutionPath $path }
 $null = Read-RegularBytes "$runtime/collector_host_exec.py" 128KB $deployment.dispatcher_sha256
 $taskArguments = "-I -S -B $launcher"
