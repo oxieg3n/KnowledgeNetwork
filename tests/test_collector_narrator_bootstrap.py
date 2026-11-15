@@ -205,12 +205,22 @@ try { $value=Convert-StrictJson $bytes $env:KN_BOOTSTRAP_PYTHON } catch {
         $details=@([Text.UTF8Encoding]::new($false,$true).GetString($bytes) | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $diagnostic 2>&1)
         $diagnosticExit=$LASTEXITCODE
         $version=@(& $env:KN_BOOTSTRAP_PYTHON -I -S -B -c 'import sys;print(sys.version_info.major,sys.version_info.minor,sys.version_info.micro)' 2>$null)
+        $inputProbe=@'
+import json,sys
+b=sys.stdin.buffer.read()
+s=b.decode(sys.stdin.encoding,errors='replace')
+r=dict(byte_length=len(b),length=len(s),first=ord(s[0]) if s else None,codepoints=[ord(c) for c in s[:8]],prefix_hex=b[:8].hex(),encoding=sys.stdin.encoding)
+try: json.loads(s)
+except json.JSONDecodeError as e: r.update(error=e.msg,line=e.lineno,pos=e.pos)
+print(json.dumps(r))
+'@
+        $observed=@([Text.UTF8Encoding]::new($false,$true).GetString($bytes) | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $inputProbe 2>$null)
     } finally {$ErrorActionPreference=$preference}
     $kind='unclassified'
     foreach($entry in $details){foreach($candidate in @('JSONDecodeError','SyntaxError','UnicodeDecodeError','ModuleNotFoundError','ImportError','IndentationError','NameError','TypeError')){if($entry.ToString().Contains($candidate)){$kind=$candidate}}}
     $safeVersion=($version -join ' ')
     if($safeVersion -notmatch '^\d+ \d+ \d+$'){$safeVersion='unverified'}
-    throw ('Strict JSON valid fixture failed: nativeExit='+$diagnosticExit+' python='+$safeVersion+' errorClass='+$kind)
+    throw ('Strict JSON valid fixture failed: nativeExit='+$diagnosticExit+' python='+$safeVersion+' errorClass='+$kind+' syntheticInputProbe='+($observed -join ' '))
 }
 foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
     $denied=$false;try { $null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($text)) $env:KN_BOOTSTRAP_PYTHON } catch { $denied=$true }
@@ -221,18 +231,26 @@ foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
     def test_strict_json_caller_transport_requires_no_bom(self):
         self.helpers(r'''
 $good='{"schema_version":1}'
-$probe='import json,sys;s=sys.stdin.read();print(json.dumps(dict(first=ord(s[0]),preamble=s.startswith(chr(65279)) or s.startswith(chr(239)+chr(187)+chr(191)))))'
+$probe=@'
+import json,sys
+b=sys.stdin.buffer.read()
+s=b.decode(sys.stdin.encoding,errors='replace')
+r=dict(first=ord(s[0]) if s else None,preamble=b.startswith(bytes((239,187,191))),byte_length=len(b),length=len(s),codepoints=[ord(c) for c in s[:8]],prefix_hex=b[:8].hex(),encoding=sys.stdin.encoding)
+try: json.loads(s)
+except json.JSONDecodeError as e: r.update(error=e.msg,line=e.lineno,pos=e.pos)
+print(json.dumps(r))
+'@
 $previousEncoding=$OutputEncoding
 try {
 $OutputEncoding=[Text.UTF8Encoding]::new($true)
 $observed=($good | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $probe) | ConvertFrom-Json
-if(-not $observed.preamble -or $observed.first -notin @(65279,239)){throw 'Expected native transport BOM was not observed'}
+if(-not $observed.preamble -or $observed.first -notin @(65279,239)){throw ('Expected native transport BOM was not observed; syntheticInputProbe='+($observed|ConvertTo-Json -Compress -Depth 3))}
 $denied=$false
 try{$null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($good)) $env:KN_BOOTSTRAP_PYTHON}catch{$denied=$true}
 if(-not $denied){throw 'Unexpected BOM transport acceptance'}
 $OutputEncoding=[Text.UTF8Encoding]::new($false)
 $observed=($good | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $probe) | ConvertFrom-Json
-if($observed.preamble -or $observed.first -ne 123){throw 'BOM-free caller transport differs'}
+if($observed.preamble -or $observed.first -ne 123){throw ('BOM-free caller transport differs; syntheticInputProbe='+($observed|ConvertTo-Json -Compress -Depth 3))}
 $value=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($good)) $env:KN_BOOTSTRAP_PYTHON
 if($value.schema_version -ne 1){throw 'BOM-free valid JSON failed'}
 } finally {$OutputEncoding=$previousEncoding}

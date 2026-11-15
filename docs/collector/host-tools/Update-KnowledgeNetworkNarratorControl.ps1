@@ -46,14 +46,23 @@ function Add-TaskBridgeRead([string]$Sddl,[string]$Owner,[string]$Bridge) {
  return $descriptor.GetSddlForm([Security.AccessControl.AccessControlSections]::All)
 }
 function Assert-UpdateFileState([object]$Entry,[string]$ActualHash,[string]$ActualSddl) {
+ Assert-SupportedReplacementSecurity $Entry.sddl
  if ($ActualHash -cne $Entry.old_sha256 -and $ActualHash -cne $Entry.new_sha256) {throw 'Updated file drift; no rollback.'}
  if ($ActualSddl -cne $Entry.sddl) {throw 'Updated file ACL drift; no rollback.'}
 }
+function Assert-SupportedReplacementSecurity([string]$Sddl) {
+ # ReplaceFile adds AI even to protected legacy ACLs. Block before stop or writes;
+ # an owner reviews affected metadata only if native host preflight fails.
+ $descriptor=[Security.AccessControl.RawSecurityDescriptor]::new($Sddl)
+ if($null -eq $descriptor.DiscretionaryAcl -or ($descriptor.ControlFlags -band [Security.AccessControl.ControlFlags]::DiscretionaryAclAutoInherited) -eq 0){throw 'Unsupported unprocessed security descriptor; no mutation.'}
+}
 function New-ChangedEntry([string]$Path,[string]$Backup,[string]$OldHash,[string]$NewHash,[string]$Sddl) {
  if($OldHash -ceq $NewHash){return $null}
+ Assert-SupportedReplacementSecurity $Sddl
  return [ordered]@{path=$Path;backup=$Backup;old_sha256=$OldHash;new_sha256=$NewHash;sddl=$Sddl}
 }
 function Set-NewReplacementSecurity([string]$Temporary,[object]$Entry) {
+ Assert-SupportedReplacementSecurity $Entry.sddl
  $actual=[IO.Path]::GetFullPath($Temporary)
  if($actual -ine [IO.Path]::GetFullPath($Entry.path+'.update-next') -and $actual -ine [IO.Path]::GetFullPath($Entry.path+'.rollback-next')){throw 'Only the new replacement temporary may receive recorded security.'}
  $null=Read-RegularBytes $Temporary 256KB $null
@@ -223,7 +232,7 @@ $rollbackVariables=@"
 `$ownerSid='$ownerSid';`$bridgeSid='$bridgeSid';`$taskPath='$taskPath';`$taskName='$taskName'
 "@
 $rollbackFunctions=''
-foreach($name in @('Assert-InactiveRepairTask','Assert-DisabledIdleTask','Assert-OnlyTaskEnabledChanged','Assert-UpdateFileState','Set-NewReplacementSecurity','Invoke-CheckedRollback')){$rollbackFunctions+="function $name {`n"+(Get-Command $name -CommandType Function).Definition+"`n}`n"}
+foreach($name in @('Assert-InactiveRepairTask','Assert-DisabledIdleTask','Assert-OnlyTaskEnabledChanged','Assert-SupportedReplacementSecurity','Assert-UpdateFileState','Set-NewReplacementSecurity','Invoke-CheckedRollback')){$rollbackFunctions+="function $name {`n"+(Get-Command $name -CommandType Function).Definition+"`n}`n"}
 Write-NewBytes "$upgrade/rollback-update.ps1" $encoding.GetBytes($rollbackVariables+"`n"+$helperText+"`n"+$rollbackFunctions+"`nInitialize-FileIdentity`nInvoke-CheckedRollback`n")
 if($taskState -ceq 'Running') {
  # The reviewed helper owns the zero-row SQLite lock and held process handle.

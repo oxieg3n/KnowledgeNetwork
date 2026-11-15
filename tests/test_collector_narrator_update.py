@@ -111,17 +111,18 @@ $denied=$false;try{$null=Add-TaskBridgeRead $after $owner $bridge}catch{$denied=
 ''')
 
     def test_rollback_accepts_only_recorded_bytes_and_unchanged_acl(self):
-        self.run_ps(f"Import-Helper '{SCRIPT}' 'Assert-UpdateFileState'\n" + r'''
-$e=[pscustomobject]@{old_sha256=('a'*64);new_sha256=('b'*64);sddl='recorded'}
-Assert-UpdateFileState $e ('a'*64) 'recorded'
-Assert-UpdateFileState $e ('b'*64) 'recorded'
-foreach($v in @(@(('c'*64),'recorded'),@(('b'*64),'changed'))) {$denied=$false;try{Assert-UpdateFileState $e $v[0] $v[1]}catch{$denied=$true};if(-not $denied){throw 'Drift accepted'}}
+        self.run_ps(f"Import-Helper '{SCRIPT}' 'Assert-SupportedReplacementSecurity'\nImport-Helper '{SCRIPT}' 'Assert-UpdateFileState'\n" + r'''
+$recorded='D:PAI(A;;FA;;;SY)'
+$e=[pscustomobject]@{old_sha256=('a'*64);new_sha256=('b'*64);sddl=$recorded}
+Assert-UpdateFileState $e ('a'*64) $recorded
+Assert-UpdateFileState $e ('b'*64) $recorded
+foreach($v in @(@(('c'*64),$recorded),@(('b'*64),'changed'))) {$denied=$false;try{Assert-UpdateFileState $e $v[0] $v[1]}catch{$denied=$true};if(-not $denied){throw 'Drift accepted'}}
 ''')
 
     def test_generated_rollback_functions_parse_without_lifecycle_actions(self):
         self.run_ps(f"$installer='{INSTALL}';$updater='{SCRIPT}'\n" + r'''
 $text=''
-foreach($source in @(@($installer,@('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes','Assert-TrustedExecutionPath','Assert-DeploymentManifest','Convert-StrictJson','Write-NewBytes','New-ProtectedDirectory','Assert-TaskXml','Assert-TaskSecurity')),@($updater,@('Assert-InactiveRepairTask','Assert-DisabledIdleTask','Assert-OnlyTaskEnabledChanged','Assert-UpdateFileState','Set-NewReplacementSecurity','Invoke-CheckedRollback')))){
+foreach($source in @(@($installer,@('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes','Assert-TrustedExecutionPath','Assert-DeploymentManifest','Convert-StrictJson','Write-NewBytes','New-ProtectedDirectory','Assert-TaskXml','Assert-TaskSecurity')),@($updater,@('Assert-InactiveRepairTask','Assert-DisabledIdleTask','Assert-OnlyTaskEnabledChanged','Assert-SupportedReplacementSecurity','Assert-UpdateFileState','Set-NewReplacementSecurity','Invoke-CheckedRollback')))){
  $t=$null;$e=$null;$tree=[Management.Automation.Language.Parser]::ParseFile($source[0],[ref]$t,[ref]$e)
  foreach($name in $source[1]){
   $function=@($tree.FindAll({param($n)$n -is [Management.Automation.Language.FunctionDefinitionAst]},$false)|Where-Object Name -ceq $name)
@@ -138,7 +139,7 @@ if($bad.Count){throw 'Rollback lifecycle mutation forbidden'}
     def test_native_empty_marker_preflight_skipped_and_changed_file_rollback(self):
         self.run_ps(f"$installer='{INSTALL}';$updater='{SCRIPT}'\n" + r'''
 foreach($name in @('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes')){Import-Helper $installer $name}
-foreach($name in @('New-ChangedEntry','Assert-UpdateFileState','Set-NewReplacementSecurity')){Import-Helper $updater $name}
+foreach($name in @('Assert-SupportedReplacementSecurity','New-ChangedEntry','Assert-UpdateFileState','Set-NewReplacementSecurity')){Import-Helper $updater $name}
 Initialize-FileIdentity
 $folder=Join-Path $env:TEMP ('kn-empty-marker-update-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $folder|Out-Null
@@ -150,6 +151,7 @@ try {
  $entry=New-ChangedEntry $marker '__init__.py' $empty $empty ((Get-Acl -LiteralPath $marker).Sddl)
  if($null -ne $entry){throw 'Unchanged empty marker must not enter rollback set'}
  $path=Join-Path $folder 'control.py';[IO.File]::WriteAllText($path,'new-control')
+ $processed=Get-Acl -LiteralPath $path;Set-Acl -LiteralPath $path -AclObject $processed
  $before=[Text.Encoding]::UTF8.GetBytes('old-control')
  $old=Get-BytesHash $before;$new=Get-BytesHash ([IO.File]::ReadAllBytes($path));$sddl=(Get-Acl -LiteralPath $path).Sddl
  $entry=New-ChangedEntry $path 'control.py' $old $new $sddl
@@ -171,6 +173,7 @@ try {
     def test_actual_stamp_replace_preserves_owner_group_protected_and_inherited_acl(self):
         self.run_ps(f"$updater='{SCRIPT}';$installer='{INSTALL}'\n" + r'''
 foreach($name in @('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes')){Import-Helper $installer $name}
+Import-Helper $updater 'Assert-SupportedReplacementSecurity'
 Import-Helper $updater 'Set-NewReplacementSecurity'
 Initialize-FileIdentity
 $t=$null;$e=$null;$tree=[Management.Automation.Language.Parser]::ParseFile($updater,[ref]$t,[ref]$e)
@@ -218,9 +221,57 @@ try {
 }
 ''')
 
+    def test_native_legacy_descriptor_denied_before_stop_or_temporary_creation(self):
+        self.run_ps(f"$updater='{SCRIPT}'\n" + r'''
+foreach($name in @('Assert-SupportedReplacementSecurity','New-ChangedEntry','Assert-UpdateFileState')){Import-Helper $updater $name}
+Add-Type -TypeDefinition @'
+using System.Runtime.InteropServices;
+public static class KNLegacyDescriptorTest {
+ [DllImport("advapi32.dll",CharSet=CharSet.Unicode,SetLastError=true)]
+ public static extern bool SetFileSecurity(string path,uint information,byte[] descriptor);
+}
+'@
+$folder=Join-Path $env:TEMP ('kn-legacy-descriptor-test-'+[guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $folder|Out-Null
+try {
+ $target=Join-Path $folder 'control.py';[IO.File]::WriteAllText($target,'unchanged')
+ $legacy=(Get-Acl -LiteralPath $target).Sddl.Replace('D:AI','D:')
+ $security=[Security.AccessControl.FileSecurity]::new();$security.SetSecurityDescriptorSddlForm($legacy)
+ if(-not [KNLegacyDescriptorTest]::SetFileSecurity($target,7,$security.GetSecurityDescriptorBinaryForm())){throw 'Native legacy fixture setup failed'}
+ $before=(Get-Acl -LiteralPath $target).Sddl
+ $raw=[Security.AccessControl.RawSecurityDescriptor]::new($before)
+ if(($raw.ControlFlags -band 0x1400) -ne 0){throw 'Fixture is not genuine unprotected no-AI metadata'}
+ $hash=(Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
+ $nextStageReached=$false;$denied=$false
+ try{$null=New-ChangedEntry $target 'control.py' ('a'*64) ('b'*64) $before;$nextStageReached=$true}catch{if($_.Exception.Message -cne 'Unsupported unprocessed security descriptor; no mutation.'){throw};$denied=$true}
+ if(-not $denied -or $nextStageReached){throw 'Legacy descriptor reached mutation/stop stage'}
+ $entry=[pscustomobject]@{sddl=$before;old_sha256=('a'*64);new_sha256=('b'*64)}
+ $denied=$false;try{Assert-UpdateFileState $entry ('a'*64) $before}catch{$denied=$true};if(-not $denied){throw 'Rollback accepted unsupported descriptor'}
+ if((Get-Acl -LiteralPath $target).Sddl -cne $before -or (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -cne $hash -or @(Get-ChildItem -LiteralPath $folder -Force).Count -ne 1){throw 'Legacy preflight changed original or created temporary/evidence'}
+ $protectedLegacy=$before.Replace('D:','D:P')
+ $security=[Security.AccessControl.FileSecurity]::new();$security.SetSecurityDescriptorSddlForm($protectedLegacy)
+ if(-not [KNLegacyDescriptorTest]::SetFileSecurity($target,7,$security.GetSecurityDescriptorBinaryForm())){throw 'Native protected legacy fixture setup failed'}
+ $protectedBefore=(Get-Acl -LiteralPath $target).Sddl
+ if($protectedBefore -cne $protectedLegacy){throw 'Fixture did not retain genuine protected no-AI metadata'}
+ $nextStageReached=$false;$denied=$false
+ try{$null=New-ChangedEntry $target 'control.py' ('a'*64) ('b'*64) $protectedBefore;$nextStageReached=$true}catch{$denied=$true}
+ if(-not $denied -or $nextStageReached){throw 'Protected no-AI metadata reached mutation stage'}
+ $entry.sddl=$protectedBefore
+ $denied=$false;try{Assert-UpdateFileState $entry ('a'*64) $protectedBefore}catch{$denied=$true};if(-not $denied){throw 'Rollback accepted protected no-AI metadata'}
+ if((Get-Acl -LiteralPath $target).Sddl -cne $protectedBefore -or (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -cne $hash -or @(Get-ChildItem -LiteralPath $folder -Force).Count -ne 1){throw 'Protected legacy preflight mutated fixture'}
+ Assert-SupportedReplacementSecurity 'D:PAI(A;;FA;;;SY)'
+ Assert-SupportedReplacementSecurity 'D:AI(A;ID;FA;;;SY)'
+}finally{
+ $resolved=[IO.Path]::GetFullPath($folder);$allowed=[IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')+'\'
+ if(-not $resolved.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase)){throw 'Cleanup escaped TEMP'}
+ Remove-Item -LiteralPath $resolved -Recurse -Force
+}
+''')
+
     def test_actual_production_atomic_replace_preserves_destination_acl(self):
         self.run_ps(f"$path='{SCRIPT}';$installer='{INSTALL}'\n" + r'''
 foreach($name in @('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes')){Import-Helper $installer $name}
+Import-Helper $path 'Assert-SupportedReplacementSecurity'
 Import-Helper $path 'Set-NewReplacementSecurity'
 Initialize-FileIdentity
 $t=$null;$e=$null;$tree=[Management.Automation.Language.Parser]::ParseFile($path,[ref]$t,[ref]$e)
@@ -232,6 +283,7 @@ try {
  foreach($call in $calls){
   $entry=[pscustomobject]@{path=(Join-Path $folder ([guid]::NewGuid().ToString('N')))}
   [IO.File]::WriteAllText($entry.path,'old');$temporary=$entry.path+'.update-next';[IO.File]::WriteAllText($temporary,'new')
+  $processed=Get-Acl -LiteralPath $entry.path;Set-Acl -LiteralPath $entry.path -AclObject $processed
   $acl=(Get-Acl -LiteralPath $entry.path).Sddl
   $entry|Add-Member -NotePropertyName sddl -NotePropertyValue $acl
   Invoke-FixtureSecurityStamp $temporary $entry
