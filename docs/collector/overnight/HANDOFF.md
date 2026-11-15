@@ -1,5 +1,33 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Host spool accepted and reviewed files delivered
+
+Owner returned actual BLACKHAT-BASE Windows PowerShell5.1 Stage1 result:
+`{"status":"PASS","scope":"host_spool_acl_only"}` for
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/private-service-v9-001`.
+This is owner-returned host ACL validation, not listener/auth/manifest acceptance.
+Do not repeat Stage1 or create a second spool.
+
+Root then delivered exactly three new files into that spool's `review` directory
+via authorized redirected storage, with exclusive create/no overwrite and
+readback SHA-256 verification against the private delivery receipt:
+`active-runtime-review.md`, `operational-review.private.json`, and
+`narrator-manifest.LOCAL-USE-CANDIDATE.private.json`. Candidate digest remains
+`42f270ac0232c24c200df0a02401df97b7f1c2796ddeb519ce35eda2a9924d84`.
+No private contents were added to Git; original drafts/assets are unchanged.
+
+Prepared exact syntax-checked Stage2 extraction:
+`C:/admin/projects/KnowledgeNetwork/output/Narrator-Stage2-Validate-And-Start.txt`,
+SHA-256 `b2cc281564675b885a6d6febb9d3efc32ac50f289ccc38a13fad37f31f5c5e31`.
+Owner runs this in the same host PowerShell session: actual manifest validation
+(including required model hashing), ACL recheck, refuse existing dedicated
+credential, hidden-prompt new scoped bearer, free-loopback-port check, foreground
+existing narrator process. No inference or Serve command is in this stage.
+The owner must retain the new secret securely for FORGE and never return its
+value in chat/logs. Actual host validation, credential provisioning, listener and
+local auth remain NOT TESTED until receipts arrive. No root host command was
+executed. Publication remains PAUSED; PR20 remains draft/unmerged.
+
 ## Badge follow-up — all branding sources available
 
 Owner supplied the original badge in main and reports creating/owning/licensing
