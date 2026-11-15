@@ -1,0 +1,92 @@
+# V9 branding and native readiness — November 15, 2026
+
+Publication remains **PAUSED**. This bounded review preserves the current native
+technical fixture and all original asset pins. No GUI, render, replacement asset
+or project mutation was performed.
+
+## PASS: preserved native artifacts
+
+Readback SHA-256 matches the existing handoff for both actual files:
+
+| Artifact under `C:/admin/collector-v9/editor-vault/service-editor-001/` | SHA-256 |
+| --- | --- |
+| `service-v9-reviewed-edit.osp` | `7d108fbe024e27fefe3e1373fc4ede4993b29ce8da3df4100996a2c410fe5e92` |
+| `service-v9-local-review.mp4` | `f453bd15c060ac590bfe8beb58c93898e3acc249df40c43310fe72978fa77c63` |
+
+Historical acceptance evidence remains applicable: native revision 59 export,
+50 seconds, portrait 1080x1920, 30 fps, three scenes, independent graphic/text
+layers, animated effect and separate synthetic audio tracks. The previous full
+decode, scans and sampled frame inspection are preserved, not rerun or claimed
+as new visual/listening acceptance. This file is still an unbranded synthetic
+technical fixture, not a finished narrated Short.
+
+## BLOCKED_ASSET: exact originals
+
+| Required original | Approved SHA-256 |
+| --- | --- |
+| `Neon Cosmic Oxieg3n Emblem.png` | `5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54` |
+| `Powered-By-Outro-Portrait.mp4` | `62496803360e377d81ab54b6970d94fcce3eee125f5d22c2fe08377dcf1b5c9b` |
+| `Powered-By-Outro-Landscape.mp4` | `3720a160cd8acb46c828d448cca740252fb8c6a80eba892f1573dc5b56479ee3` |
+
+The coordinator reports newly bounded host/VM Pictures/Videos checks (20 files,
+no matching names; `generated-image.png` did not match the badge digest), and
+connected Google Drive exact/broad name searches without the originals. These
+are coordinator observations, not independently repeated by this reviewer.
+The earlier 203-metadata-file/backups search and host project-root lookup remain
+preserved. They were not repeated.
+
+This reviewer inspected the current production configuration, branding docs,
+native fixture receipt and the existing bounded host lookup receipt. No new
+concrete source directory or downloadable Library identifier was established.
+The branding docs identify owner-selected Library deliverables and private
+`poweredby_logo` / `poweredby_outro` mappings, not an actual materialized path.
+The narrow owner action is to provide/materialize the exact badge and portrait
+outro in an authorized private source location (and landscape original for its
+separate orientation). Compare bytes with the pins before use; do not guess a
+Library URL or substitute media.
+
+## Native acceptance work once gates clear
+
+`collector_editor_fixture.py` supports a verified remote `--narration-receipt`,
+sample-derived frame-quantized captions, protected caption/music ownership,
+ducking, save/edit/save/reopen. Its builder explicitly creates a **fixed 50-second
+unbranded** body, places narration at zero and has no bookend option. It must not
+be described as already creating the complete branded acceptance Short.
+
+After real narration and approved assets exist, use the existing structured
+native editor operations for one new reviewed revision: place exactly one
+approved 1.6-second intro and 7.8-second portrait outro, offset body scenes,
+narration and captions, and bound body timing to keep the complete output at
+45–55 seconds. Preserve approved outro speech. Verify real asset durations and
+frame boundaries rather than assuming the nominal sum. Keep all tracks editable;
+do not flatten the body. Save, reopen, make a caption/graphic edit, save again and
+export that exact revision, then perform fresh final technical QC and owner
+visual/listening review. Existing 50-second body plus nominal bookends would be
+59.4 seconds, outside this acceptance target.
+
+The bounded source-level plan needs no new editor framework: verify the badge
+through `intro.verify_intro`, reuse `intro.render_intro` with the actual first
+body frame and current title to generate the approved 48-frame plasma component,
+and verify the exact portrait outro through the existing outro validation.
+Materialize these inputs in a new private native vault, preserving their digests.
+Use native `file.import` / `clip.add` for the two components and
+`clip.set` position/start/end for editable body clips; retain native text/effect
+and separate audio tracks. Source inspection confirms these existing bounded
+methods support the required positioning and import. Rebuild/retime the three
+body scenes to the measured available body interval instead of trimming speech
+or approved bookends. Caption positions must add the measured intro offset.
+Do not call the existing attachment helper after offsetting an already assembled
+project: that helper places speech/cues at zero and owns fixture music/caption
+fingerprints. Attach into the body first, then assemble the one final revision
+with explicit ownership/revision checks, preserving receipts and manual edits.
+The resulting placement, keyframes, intro reveal and final decode require real
+native acceptance; source support is not a tested assembly result.
+
+No source change was made while missing inputs prevent exercising that complete
+assembly. Existing fixture functionality and revisions remain intact. No UI
+changed and no new UI/UX Pro Max, Taste or browser/native interaction gate is
+claimed. Ponytail FULL and bounded source/diff review were applied.
+
+NOT TESTED: new native project assembly, GUI interaction, full branded export,
+preview/export parity or listening. Exact branding and real remote narration
+remain required; no completed branded Short or public upload is claimed.

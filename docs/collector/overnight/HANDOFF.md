@@ -1,5 +1,112 @@
 # V9 handoff - The Knowledge Network Collector
 
+## November 15 continuation — evidence and staging package
+
+Continued clean `feature/collector-v7-overnight` from exact source checkpoint
+`3353a24efa3473c0e375dfec96cdd4fd757e6158`. The continuation commit is the commit
+containing this section (`git log -1`); packaging uses the exact source checkpoint
+above. PR [#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20) stays draft
+and unmerged. Earlier receipts, worktrees, installers and backups are preserved.
+No runtime source change, service restart/deployment, host inference, host write,
+network change or public upload was performed in this continuation.
+
+**PASS — reuse:** installed worker EXE/DLL hashes were read again and match the
+pipe-repair values below. The corrected trust implementation and actual-context
+health evidence are reused; no new pipe diagnosis or 4.96 GB inventory. Current
+`state/operations.json` still hashes to
+`d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
+Publication remains **PAUSED** and production scheduler remains disabled by the
+preserved verified configuration; no new scheduled Assistant result is claimed.
+
+**PASS / BLOCKED — rights:** the new private declaration exists and was read
+through the already-authorized redirected host drive. Its actual SHA-256 is
+`bc7d82dac515aadd72c061eebf9088df138f1e9ec746dd9b1287914eb6ede006`.
+Canonical reference and saved original voice-design WAV both match
+`050db3aeca148b98dd2edbcdf77abcb12b7ebc1debb344879e81af6e49b7fe44`.
+Relevant text-controlled design/copy history and installed CLI source corroborate
+synthetic origin without reference-audio arguments. History is not an independent
+execution receipt. Private evidence and an intentionally fail-closed draft
+manifest retain the declaration as `consent_evidence`; no deployment-valid or
+fully reviewed manifest is asserted. See [rights review](V9-RIGHTS-CONTINUATION.md)
+for evidence hashes, limitations and remaining runtime/component review.
+Private draft: `C:/admin/collector-v9/rights-continuation-7d0ce6c8e5594529b3dfe85ea50d22bb/narrator-manifest.DRAFT.private.json`,
+SHA-256 `b6d1e866fb775c747122702b29e38f5a8ceb88d3b6bf280ccecce3902e04f04e`.
+Root independently rehashed the declaration, canonical reference, draft and new
+installer; all matched the specialist receipts. Only sanitized reports enter Git.
+
+Installed source supports the canonical no-denoiser branch avoiding ZipEnhancer;
+actual runtime imports remain **NOT TESTED**. The installed kaldiio restriction
+is unresolved until the real trace and call path are reviewed. No packages were
+removed, edited or replaced, and no stack-wide commercial clearance is claimed.
+
+**PASS — staging package:** new unsigned local installer, not deployed:
+`C:/admin/projects/KnowledgeNetwork/output/installer-v9-pipefix-002/The-Knowledge-Network-Collector-0.1.0-v9-pipefix-002-setup.exe`.
+SHA-256 `4149bd4c66347429f65a570925bc158cbc36a8b752c36c741d1cfabf4439517a`.
+Fresh worker identifies source build `0.1.0+3353a24efa3473c0e375dfec96cdd4fd757e6158`;
+190 self-tests PASS and all 481 package manifest records match. Product version
+remains 0.1.0; `v9-pipefix-002` identifies this staging release. Old Round5 package
+is preserved. [Packaging, license, install/rollback limits](V9-PACKAGING-CONTINUATION.md).
+Actual isolated install/upgrade is **NOT TESTED**: this installer uses the fixed
+live AppId/service/Program Files path. Do not run it over the working service as
+a test. Reuse an isolated Windows snapshot for installation acceptance first.
+Keep a consistent private database backup, service/companion settings and current
+patched binaries for rollback; never restore old data merely to roll back code.
+
+**PASS — focused and integration checks:** 22 host and 17 client tests using
+synthetic inference, 302 Python regression tests (5 existing FFmpeg skips), and
+190 fresh packaged-worker checks. Regression command:
+`$env:PYTHONPATH='src'; & ./.venv/Scripts/python.exe -m unittest discover -s tests -v`.
+Private log: `C:/admin/collector-v9/v9-continuation-regression.log`.
+Actual FORGE narrator status remains `BLOCKED_NARRATOR_CONFIG`, before network.
+[Transport review and exact next gates](V9-TRANSPORT-CONTINUATION.md).
+
+**BLOCKED — complete Short:** no exact approved branding recovered in the new
+bounded host/VM Pictures/Videos check (20 files) or connected Drive name searches.
+Earlier project/backup searches were reused. Existing native project/export
+hashes still match; [branding/native report](V9-BRANDING-CONTINUATION.md) preserves
+their paths and digests. The fixed 50-second unbranded fixture accepts narration
+but does not already assemble branded bookends. A fresh editable assembly must
+retime body/captions and use existing native operations once exact assets and
+real audio exist. Full branded assembly, export, GUI interaction and listening
+remain **NOT TESTED**. No completed narrated/branded Short is claimed.
+
+**Owner actions genuinely required:**
+
+- Approve/run exactly one canonical-script smoke from
+  [the existing procedure](NARRATOR-NEXT-INTEGRATION.md), after reviewing the new
+  rights evidence: new private `private-smoke-<guid>` folder under host kit004,
+  one short original sentence, unchanged narrator settings, private import logs,
+  WAV/exit/CUDA/PCM/hash evidence. This is evaluation evidence for unresolved
+  runtime licensing, not commercial release clearance. No automatic retry.
+  This continuation does not treat its preparation as inference authorization.
+- Separately authorize any loopback listener/credential and dedicated 9443 route
+  only after runtime/voice review and read-only Serve-state verification. No
+  approved host command channel exists here; redirected files are not execution.
+- Materialize the exact badge and portrait outro from Library into an authorized
+  private source path; landscape original remains required for that orientation.
+- Rotate the unrelated Hugging Face access token exposed in a helper tool output
+  during history inspection. Its value was not retained in evidence or Git.
+  Further history extraction was narrowed to relevant credential-screened lines.
+
+The working plain-English Assistant instruction remains the local-only request
+in [Assistant operations](../ASSISTANT-OPERATIONS.md), starting with the actually
+tested installed health command below. The full request must stop at these real
+prerequisites; no fabricated successful end-to-end command is provided. First
+remote acceptance should use one short unsegmented request; the prepared full
+13-segment demo entails 13 serialized canonical script/model invocations.
+
+**Skills/review:** Ponytail 5.3.3 FULL is explicitly active; its installed skill,
+plugin metadata, lifecycle hook configuration and review skill were inspected.
+No new plugin/hook trust or environment setting was needed. Specialists used
+nonoverlapping document paths; only root integrates. Prompt Sensei was not found
+in the installed catalog/local skill search and was not applied. Google Drive
+skill was read for connected exact-asset discovery. No UI changed: UI/UX Pro Max,
+Taste visual/native gates were not rerun or claimed. Final review checks evidence
+claims, private-data exclusion, package identity, unchanged controls and missing
+native tests. Reboot, scheduled Assistant reliability and forced native race
+faults remain later operational acceptance. The demo has **not** been publicly
+uploaded.
+
 ## Current continuation from pushed checkpoint6a76f44
 
 November14 continuation on `feature/collector-v7-overnight`; PR
