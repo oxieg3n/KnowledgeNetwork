@@ -87,8 +87,13 @@ against the expected ancestor, retaining the exact SID/masks and unchanged-ACL
 assertions. Four diagnostic tests PASS with normal TEMP (2.585 seconds) and an
 isolated protected 8.3 TEMP alias (2.619 seconds). An initial alias fixture also
 exposed its own unprotected parent; only that fresh disposable fixture was
-protected, then removed. No existing ACL or host script changed. Fresh hosted
-validation for this test correction is pending. Both failed runs remain FAILED.
+protected, then removed. No existing ACL or host script changed. [Fresh hosted run 43758577112](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43758577112)
+PASS for exact source `7d663a56f645fdf9640bdb6e39b68b0001945236`:
+Windows 427 tests (418 passed, 9 skipped; 40.445 seconds), Ubuntu 427 tests
+(362 passed, 65 skipped; 4.503 seconds), and Windows build/dashboard plus 190
+worker checks. Tracking guards passed. Independent final review PASS. Both
+preceding failed runs remain FAILED. This is source/checkout validation, not
+host repair, GPU, remote narration, native video or scheduled/reboot acceptance.
 
 ## V2 repair ready; full hosted validation PASS
 

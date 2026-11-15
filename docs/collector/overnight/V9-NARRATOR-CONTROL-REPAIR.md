@@ -36,7 +36,9 @@ passed. Run43758194484 confirmed the pin fix but failed one lexical path fixture
 A real 8.3 TEMP alias reproduced it locally; the assertion now checks physical
 volume/file ID instead of spelling, keeping exact SID/masks and unchanged-ACL
 proof. Four tests passed with normal and isolated protected 8.3 TEMP paths.
-Fresh hosted validation is pending; both failed runs remain retained.
+Fresh hosted run43758577112 PASS for source7d663a56f645fdf9640bdb6e39b68b0001945236:
+Windows427/9skipped, Ubuntu427/65skipped, build/dashboard190worker checks and
+tracking guards. Both failed runs remain retained; host repair stays BLOCKED.
 
 ## Historical v2 preparation and validation
 
