@@ -1,5 +1,105 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Standing host authorization — restricted bridge prepared, bootstrap pending
+
+Owner now explicitly authorizes a separate project execution channel and scoped
+routine host operations. Continued from clean source
+`7566fa2f848fe58fbd19519caadfe3e7b1d8f47b`; no reset/replacement/history rewrite.
+The commit containing this entry records implementation on the existing feature
+branch. PR20 remains draft/unmerged; publication remains PAUSED.
+
+**Existing access investigated:** redirected host files and the existing Gateway
+SSH/maintenance paths. No independently authorized KnowledgeNetwork management
+endpoint was found. Gateway maintenance pins exact entire SSH configuration
+templates and its Gateway-only allowlist, so extending the shared config would
+break it. No Gateway credential was read/reused, no existing config changed and
+no shared service restarted. Shared config remains SHA-256
+`39f452458c454ea6906015862774b3d73e2d71e16852de58c767ae178bd3794d`.
+
+**New implementation, not deployed:** separate `KnowledgeNetworkHostExec`
+Windows OpenSSH service, dedicated nonadmin `kncollector_exec`, separate
+tailnet-address-only TCP22230 listener/config, new FORGE Ed25519 key and strict
+pinned host key. Initial four exact operations: `health`, `self-test` (fixed
+PowerShell identity), `native-port-9443`, `narrator-status` (retained sanitized
+snapshot only; never live authenticated health). No arbitrary shell, caller
+scripts/paths/stdin, PTY, subsystem, forwarding or generic administration API.
+The service is SYSTEM only for SSH logon; dispatcher execution must be the exact
+nonadmin SID with no administrator group membership. No privileged operation
+handler is exposed. Broader authorized narrator/service work is not yet supplied
+by these four initial commands; add only concrete reviewed handlers and tests.
+
+Dispatcher SHA-256:
+`637c92f13126c2ccb5a2eeb888cc4ac48a8a540cf74652f96dc268ce12600bf2`.
+Bootstrap SHA-256:
+`29038f0827bb31f2673ae5c4fb360f900c664ced6ce9b578c75d7cd6e777d547`.
+See [architecture/bootstrap/rollback](../host-execution.md),
+[independent security review](HOST-EXECUTION-SECURITY-REVIEW.md) and root SECURITY.
+The bounded dispatcher owns child processes, limits time/output, caps serialized
+durable redacted audit at16MiB and fails closed on uncertain shutdown/audit fault.
+Bootstrap verifies interpreter/import/ancestor trust without changing existing
+ACLs, rejects unsafe global outer shell, validates actual isolated sshd config,
+requires effective enabled firewall enforcement, and adds only per-project
+FORGE allow plus complementary other-source block. Native start must match
+the dedicated SCM PID/LocalSystem/path and exact private bind. Gateway untouched.
+
+**Private client prepared:** `C:/admin/collector-v9/host-exec-client-v1` holds the
+separate key, actual-address bootstrap input, known_hosts, SSH config and receipts.
+Host public-key fingerprint independently read and pinned:
+`SHA256:2J+57GgzHCHO9QBtxbrOW1gGDs8rdWaoFbQ/xNK6qRU`.
+Native client `ssh -G` checks PASS for batch/key-only, strict host verification,
+exact key, no PTY/agent/forwarding. No private key transferred or put in Git.
+Future command form is OS-native
+`ssh -F C:/admin/collector-v9/host-exec-client-v1/ssh_config knowledgenetwork-host health`;
+it has NOT established a live connection yet.
+
+**One unavoidable owner bootstrap:** no existing authorized privileged execution
+path can create the account/service. Four reviewed files were copied with
+exclusive creation and hash-verified readback into
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-bootstrap-v1`.
+Run `Bootstrap-KnowledgeNetworkHostExec.ps1` there once in elevated host Windows
+PowerShell. Wrapper SHA-256
+`e722fd585f97b32942674c48610ee3c5174124e893b9983ffb332b5df7d91d44`.
+It pins bootstrap/dispatcher/public-key bytes and supplies actual private addresses;
+no secret argument or execution-policy bypass. Native preflight may legitimately
+stop on unsafe runtime ACL, shell, firewall or unsupported SSH settings. Preserve
+any partial receipt; do not reinstall under another identity/port to evade it.
+Rollback script and prior shared-config copy are created in protected
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec` before account/network changes;
+rollback validates exact project resource filters, disables the created identity
+and retains files/evidence, never restores unrelated config or deletes backups.
+
+**Validation scope:** specialist18 dispatcher tests PASS, including real isolated
+FORGE Windows fixed PowerShell identity, timeout/cancel/output cap, Job Object
+descendant teardown, command/source/PTY/path denials and bounded audit contention.
+Root2 bootstrap helper tests PASS: real temporary Windows ACL accept/deny and
+inherit-only handling, plus IPv4 complement boundaries. Bootstrap/embedded rollback
+and owner wrapper syntax PASS; dispatcher Python3.11 parse PASS. Independent
+review found/corrected native loader trust, filtered-admin, audit-link, directory
+race, firewall construction/effective-policy and listener-identity gaps. No
+remaining concrete must-fix at the above source digests in the four-command scope.
+Final frozen-source regression PASS:322 tests in100.545s,5 existing explicit
+FFmpeg skips, using `PYTHONPATH=src` and project venv `python -m unittest discover
+-s tests -v`. Private log:
+`C:/admin/collector-v9/host-exec-client-v1/regression-final.log`.
+An earlier319-test run also passed before the final cleanup/coverage additions;
+the322-test run is the authoritative current-source result. These tests do not
+prove deployed remote access.
+
+**Actual host status:** narrator loopback/auth/manifest evidence remains PASS;
+owner bearer stays in that owner's CredMan and is not available to the new SSH
+identity automatically. No bearer extraction/owner impersonation. Saved native
+9443 receipt now reports0 listeners and exclusive IPv4/IPv6 bind PASS, without
+starting a listener; it is a snapshot, not a route authorization. The complete
+tailnet-policy review remains BLOCKED by broad network permission; no policy or
+9443 route changed. All exact branding sources remain available and validated.
+Remote narration, new native video/export, installer isolation and scheduled
+Assistant/reboot acceptance remain incomplete; no new GPU work/render/reboot.
+
+Ponytail5.3.3 FULL and installed review applied; parallel dispatcher/bootstrap/
+security ownership was nonoverlapping and root integrates. No UI changed, so no
+new UI/UX Pro Max/Taste gate claimed. Existing model/reference/settings, protected
+backups, working installed Collector and old staging installer remain intact.
+
 ## Private tailnet policy reviewed — BLOCKED
 
 Read the complete owner-supplied private HuJSON policy through redirected
