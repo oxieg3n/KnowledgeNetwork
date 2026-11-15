@@ -20,6 +20,16 @@ commercial readiness. Do not populate reviewed-manifest booleans from this plan.
 
 ## Minimal proposed host smoke action
 
+November 15: the owner explicitly authorized exactly one diagnostic inference
+from checkpoint `eb5cb0e7f3a8132ab6628fa60a0348f3cf898240`, not a listener,
+credential, route or commercial release. FORGE has redirected-drive file access
+only; no authorized host execution channel was available. **Not executed.**
+The script/reference/CLI/saved-inventory/declaration pins below were rehashed
+through that drive and still match. Run only this first PowerShell block locally
+on BLACKHAT-BASE, once, when the GPU is free. Do not run the later deployment
+examples. After any attempted invocation, preserve its folder and reconcile the
+outcome before another run; this authorization does not grant a retry.
+
 Owner authorization is needed for **one local inference using the unchanged
 canonical script**, creating only a fresh private folder under kit004 and its
 logs/WAV. Run on BLACKHAT-BASE, in the same intended owner account/environment
@@ -36,11 +46,13 @@ $narratorKit = 'D:/projects/knowledgenetwork/collector-narrator-v9-004'
 $narratorPython = 'D:/tools/audio/voicestudio/data/engines/voxcpm2/voxcpm2/.venv/Scripts/python.exe'
 $narratorScript = 'D:/tools/audio/voices/Oxiegen-Narrator/narrate.ps1'
 $narratorReference = 'D:/tools/audio/voices/Oxiegen-Narrator/reference.wav'
+$narratorRights = 'D:/tools/audio/voices/Oxiegen-Narrator/reference-rights-private.md'
 $narratorCli = 'D:/tools/audio/voicestudio/data/engines/voxcpm2/voxcpm2/.venv/Scripts/voxcpm.exe'
 $narratorInventory = Join-Path $narratorKit 'docs/collector/host-tools/private-inventory-0fc6b750b895482c9421c2b5ae969066/inventory.json'
 $narratorPins = @{
     $narratorScript = '98b75e5313d72d7aa65d160b41ebcb8726968bb7044700e2cffb510b5a72f189'
     $narratorReference = '050db3aeca148b98dd2edbcdf77abcb12b7ebc1debb344879e81af6e49b7fe44'
+    $narratorRights = 'bc7d82dac515aadd72c061eebf9088df138f1e9ec746dd9b1287914eb6ede006'
     $narratorCli = '582115086868288000249adebbdfbf2de7db8392534d760fa9675ad9b0217492'
     $narratorInventory = '8db573cd5c002dd3e934f6b03dfbb6a78ad4245d263070a320a6db1914a08898'
 }
@@ -64,6 +76,7 @@ foreach ($narratorSid in @($narratorUser, 'S-1-5-18', 'S-1-5-32-544')) {
     $narratorAcl.AddAccessRule($narratorRule)
 }
 Set-Acl -LiteralPath $narratorRun -AclObject $narratorAcl
+$narratorRun
 $env:PYTHONPATH = Join-Path $narratorKit 'src'
 & $narratorPython -m youtube_ops.collector_narrator_host validate-spool --spool $narratorRun
 if ($LASTEXITCODE -ne 0) { throw 'Private folder validation failed.' }
@@ -101,6 +114,7 @@ try {
     $env:PYTHONPROFILEIMPORTTIME = $narratorPriorImportTime
     $ErrorActionPreference = 'Stop'
 }
+$narratorExit | Set-Content -LiteralPath (Join-Path $narratorRun 'exit-code.private.txt') -Encoding ASCII
 if ($narratorExit -ne 0) { throw 'Narrator failed; preserve logs, do not automatically retry.' }
 $narratorLog = Get-Content -LiteralPath (Join-Path $narratorRun 'stderr.private.txt') -Raw
 if ($narratorLog -notmatch 'Running on device: cuda(?:\:\d+)?, dtype:') {

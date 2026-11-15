@@ -1,5 +1,61 @@
 # V9 handoff - The Knowledge Network Collector
 
+## One-time diagnostic authorization — BLOCKED at host execution
+
+November 15: continued from clean checkpoint
+`eb5cb0e7f3a8132ab6628fa60a0348f3cf898240`. Owner authorized exactly one
+unchanged-script local diagnostic inference and its private output/logs.
+Available host access is redirected-drive file access only; no authorized host
+execution tool/channel exists in this session. No inference was attempted and
+the one authorized invocation remains unconsumed. No host directory, listener,
+credential, route, installer deployment or networking change was made.
+
+PASS: rehashed script, reference, CLI, saved inventory and rights declaration;
+all match the full recorded digests below. Read the canonical script again:
+CFG 2.0, ten steps, no denoiser/optimization, local-files-only, compile disabled,
+same reference conditioning. No expensive model inventory repeated. Effective
+model-ref/package revalidation requires the local host preflight; it is not
+claimed from saved inventory identity alone.
+
+Prepared the [existing first PowerShell block](NARRATOR-NEXT-INTEGRATION.md)
+for owner execution in Windows PowerShell on BLACKHAT-BASE, adding the verified
+rights-declaration pin and durable child exit-code record. Procedure was parsed
+locally without executing it or its embedded Python. Only the first block is
+authorized; later listener/credential/Serve examples remain unapproved.
+Copy-and-paste version on FORGE:
+`C:/admin/projects/KnowledgeNetwork/output/Narrator-One-Time-Diagnostic-eb5cb0e.txt`,
+SHA-256 `34acb427bf1f0a4a1749104a4066bb389a54680641c2f9437fdfdc4186f8c56c`.
+PowerShell and both embedded Python blocks parsed successfully; a self-check
+confirmed exactly one canonical invocation. This is syntax validation only.
+
+BLOCKED / NOT TESTED: actual new WAV path/format/duration/hash, CUDA selection,
+host exit status and FunASR/kaldiio runtime participation. No runtime error exists
+to report because execution was not attempted. Commercial questions remain the
+actual restricted-component participation, applicable transitive local-use
+obligations and any separate redistribution obligations; owner declaration and
+static no-denoiser branch do not resolve them. Existing private draft stays
+fail-closed. No new commercial clearance or listening assertion.
+
+After the one owner-run attempt, retain the printed `private-smoke-<guid>` path,
+`exit-code.private.txt`, stdout/stderr and `smoke.json` if produced. Keep raw logs
+private; do not paste credentials or full logs into GitHub/chat. With the same
+redirected drive available, FORGE can inspect that exact folder and report the
+runtime results without rerunning inference. A failure/uncertain outcome must
+be reconciled before any further authorization or execution.
+
+Listening: play the new WAV locally at a comfortable level, compare identity
+against the approved reference/known output, and note pronunciation, clipping,
+noise, truncation and naturalness. Record the exact WAV hash and review result
+privately. Listening does not establish commercial license compliance.
+
+Minimum next integration steps remain: review actual diagnostic/import evidence
+and voice quality; complete a truthful reviewed manifest; separately authorize
+the loopback listener/scoped bearer and, after route inspection, private HTTPS
+route; then test one short FORGE request with matching host/local WAV digests.
+PR #20 remains draft/unmerged and publication PAUSED. Existing checkpoints,
+backups and original narrator assets are preserved. Ponytail FULL applied;
+documentation-only change, no repeated runtime regression or media render.
+
 ## November 15 continuation — evidence and staging package
 
 Continued clean `feature/collector-v7-overnight` from exact source checkpoint
