@@ -32,7 +32,11 @@ The previous diagnostic commit's Windows CI failed because checkout converted
 its pinned LF stop-helper bytes to CRLF. The host copy/pin was correct. Two
 explicit `-text` attributes now preserve exact script bytes; no pin or host code
 is altered. Twelve focused tests and an isolated `core.autocrlf=true` checkout
-passed. New hosted validation is pending; the old failed run is retained.
+passed. Run43758194484 confirmed the pin fix but failed one lexical path fixture.
+A real 8.3 TEMP alias reproduced it locally; the assertion now checks physical
+volume/file ID instead of spelling, keeping exact SID/masks and unchanged-ACL
+proof. Four tests passed with normal and isolated protected 8.3 TEMP paths.
+Fresh hosted validation is pending; both failed runs remain retained.
 
 ## Historical v2 preparation and validation
 

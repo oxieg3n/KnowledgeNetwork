@@ -56,12 +56,15 @@ $before=(Get-Acl -LiteralPath $ancestor).Sddl;$failure=$null
 try{Assert-StopTrustedPath $leaf}catch{$failure=$_.Exception}
 if($null -eq $failure){throw 'Writable ancestor accepted'}
 $report=Get-RepairTrustFailure $failure $leaf
-if($report.path -ine $ancestor -or $report.principal_sid -cne 'S-1-1-0' -or $report.checked_mask -ne 0xD0040 -or $report.effective_mask -ne 0x10000){throw 'Incorrect original gate context'}
+# Windows TEMP may use an 8.3 alias; bind the expected object by native identity.
+$expectedIdentity=Get-RepairDiagnosticIdentity $ancestor
+foreach($key in @('volume','file_id_high','file_id_low')){if($report.identity_before[$key] -ne $expectedIdentity[$key]){throw 'Original gate identified the wrong physical ancestor'}}
+if($report.principal_sid -cne 'S-1-1-0' -or $report.checked_mask -ne 0xD0040 -or $report.effective_mask -ne 0x10000){throw 'Incorrect original gate SID/masks'}
 if($report.identity_changed -or $report.gate_acl_changed -or $report.identity_before.links -ne 1){throw 'Native identity/ACL snapshot mismatch'}
 if([Runtime.InteropServices.Marshal]::SizeOf([KNRepairTrust.Info]::new()) -ne 52){throw 'Native file identity packing differs'}
 $wrapped=[Management.Automation.MethodInvocationException]::new('fixture wrapper',[Management.Automation.RuntimeException]::new('fixture inner',$failure))
 $unwrapped=Get-RepairTrustFailure $wrapped $leaf
-if($unwrapped.path -ine $ancestor -or $unwrapped.effective_mask -ne 0x10000){throw 'Wrapped native gate context was lost'}
+if($unwrapped.path -ine $report.path -or $unwrapped.effective_mask -ne 0x10000){throw 'Wrapped native gate context was lost'}
 $tooDeep=$failure;for($i=0;$i -lt 8;$i++){$tooDeep=[Management.Automation.RuntimeException]::new('bounded fixture',$tooDeep)}
 if((Get-RepairTrustFailure $tooDeep $leaf).error -cne 'trust_failure_without_write_ace_context'){throw 'Exception walk exceeded bound'}
 if((Get-Acl -LiteralPath $ancestor).Sddl -cne $before){throw 'Diagnostic repaired the broad ACL'}

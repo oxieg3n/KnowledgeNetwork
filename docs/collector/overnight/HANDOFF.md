@@ -79,8 +79,16 @@ helper from 23371 to 23715 bytes; the real host copy and its pin were correct.
 stop scripts. No script bytes or integrity checks were changed. A cross-platform
 raw-hash regression plus the native/related fixtures PASS: 12 tests in 10.130
 seconds. An isolated checkout with `core.autocrlf=true` preserved both exact
-hashes and its temporary directory was removed. New hosted verification is
-pending push; the preceding failed run remains recorded as FAILED.
+hashes and its temporary directory was removed. [Run 43758194484](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43758194484)
+resolved all pin failures; Ubuntu and Windows build/190 passed, but one Windows
+fixture still FAILED its lexical path comparison. Actual 8.3 TEMP alias injection
+reproduced that failure locally. The fixture now compares native volume/file ID
+against the expected ancestor, retaining the exact SID/masks and unchanged-ACL
+assertions. Four diagnostic tests PASS with normal TEMP (2.585 seconds) and an
+isolated protected 8.3 TEMP alias (2.619 seconds). An initial alias fixture also
+exposed its own unprotected parent; only that fresh disposable fixture was
+protected, then removed. No existing ACL or host script changed. Fresh hosted
+validation for this test correction is pending. Both failed runs remain FAILED.
 
 ## V2 repair ready; full hosted validation PASS
 
