@@ -1,5 +1,74 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Dedicated host SSH: actual FORGE acceptance PASS
+
+November 15, 2026: owner ran the checked completion launcher. It reported
+PROJECT_SSH_LISTENER_STARTED_PENDING_REMOTE_ACCEPTANCE. Root then connected
+from FORGE with the dedicated private key and pinned BLACKHAT-BASE host key.
+Actual remote `health`, `self-test` and `native-port-9443` returned PASS.
+The reported SID matches the configured dedicated `kncollector_exec` identity;
+the token is nonadmin, and the fixed PowerShell child returned the same SID.
+Native9443 has zero listeners and exclusive IPv4/IPv6 binds succeeded without
+starting a listener. This is a current availability snapshot, not a reservation.
+
+Ten native rejection cases passed: empty shell, unknown shell command, extra
+arguments, path command, PTY, SFTP subsystem, direct forwarding, reverse
+forwarding, unrelated authentication key and an unpinned host alias. Forwarding
+was confirmed with actual SSH channel requests and server refusal. The first
+reverse-forward probe was suppressed by the production client's
+ClearAllForwardings setting and timed out; it is NOT a server test result.
+A corrected test-only override requested forwarding and received refusal.
+Production client configuration was unchanged. The temporary negative-test
+key was removed. Wrong-source rejection from another peer remains NOT TESTED.
+
+Private receipts/logs are in
+`C:/admin/collector-v9/host-exec-client-v1`: remote-health.private.json,
+remote-acceptance.private.json, remote-key-negative.private.json,
+direct_forward_denied.private.log, remote-reverse-negative.private.json,
+post-start-bootstrap-receipt.private.json and post-start-audit.private.jsonl.
+Host redacted audit remains under
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/audit/execution.jsonl`.
+The original rollback-bootstrap.ps1 and account/service configuration remain.
+Do not rerun completed bootstrap launchers. Host bootstrap receipt deliberately
+retains CONFIGURED_PENDING_NATIVE_CONNECTION; the separate client receipts
+establish acceptance without rewriting installation evidence.
+
+Shared Gateway SSH configuration still matches its recorded SHA-256; no
+Gateway/shared-sshd restart or route edit was performed. The complete private
+tailnet policy bytes still match the reviewed digest. HTTPS9443 remains
+BLOCKED: its broad all-peer grant permits unauthorized peers. Native port
+availability and restricted SSH22230 do not satisfy this separate policy gate.
+The owner must narrow the effective overlapping grant before route activation;
+adding a narrow allow while retaining the broad grant is insufficient.
+
+Scope remains four fixed diagnostic operations. This is real remote execution
+of the fixed project PowerShell self-test, not arbitrary PowerShell access or
+completed narrator/service management. No privileged remote handler, owner
+Credential Manager access, live authenticated narrator handler or WAV transfer
+is supplied by this dispatcher. Next development needs concrete reviewed
+handlers and credentials provisioned for their actual execution identity.
+Do not copy the owner's bearer or invoke the writable narrator venv as SYSTEM.
+No new inference, narrator route, installer deployment or media export ran.
+
+An SSH probe's closed output channel produced a health PASS audit followed by
+operation_unverified for the same request. Source records PASS before flushing
+stdout; failed response delivery is the likely cause, not directly recorded.
+That request is not counted as a successful client receipt. The separate
+received health/self-test/port responses are valid. Host disconnect/long timeout,
+restart/reboot, rollback execution, runtime tamper and another-source peer tests
+remain NOT TESTED; reuse the 18 isolated native process tests at their scope.
+
+Cleanup: after verifying all37 installed runtime files, dispatcher hash and
+retained official archive, removed seven explicitly named completed staging
+files (12,690,627bytes) from host-exec-bootstrap-v2/host-exec-complete-v1.
+Compact completion evidence was copied and byte-verified privately first;
+original rollback, keys, installed runtime, receipts, backups, media and model
+files remain. Empty staging directories may remain. Automatic review rejected
+an earlier computed-path cleanup; the successful cleanup used exact literal
+file paths. No source logic changed this turn; reuse328-test regression and8
+bootstrap tests. Ponytail FULL/review plus independent security and dispatcher
+reviews applied. PR20 draft/unmerged; publication PAUSED.
+
 ## Native firewall Program path fixed — checked networking completion staged
 
 Owner's single-command continuation passed account/config/native SSH preparation

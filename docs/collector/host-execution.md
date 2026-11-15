@@ -5,6 +5,16 @@ authorized project-scoped host execution on November 15, 2026. Authorization
 does not create credentials, native execution access or a security-test result.
 Publication remains PAUSED, and PR20 stays draft/unmerged.
 
+November 15 native acceptance: the dedicated service is installed and FORGE
+successfully received `health`, `self-test` and `native-port-9443` results using
+its separate key and pinned host identity. Fixed PowerShell execution matches
+the nonadministrator account SID. Ten command/authentication/protocol rejection
+cases passed; see the current handoff for receipts and explicit limits. The
+endpoint still exposes only the four diagnostic operations below. It does not
+yet provide narrator execution, credential provisioning or service management.
+Completed staging payloads were removed after installed-runtime verification;
+the protected runtime, compact evidence and original rollback remain.
+
 ## Endpoint and identity
 
 Use the installed official Windows OpenSSH executable as a **second** Windows
@@ -209,6 +219,13 @@ identity drift stops rollback for review rather than overwriting external edits.
 An incomplete account-creation receipt is a manual reconciliation condition.
 
 ## Remaining production gates
+
+The actual SSH checks do not prove wrong-source network rejection, host restart,
+rollback execution or long-running remote cancellation. Isolated FORGE timeout
+and process-ownership tests retain their original scope. A closed response
+channel can leave a PASS audit followed by operation_unverified for one request;
+only a received response establishes successful client acceptance. Future
+mutating handlers must preserve durable uncertain-outcome reconciliation.
 
 The reviewed private tailnet policy currently permits more than FORGE to reach
 the proposed narrator9443 route. That route remains BLOCKED irrespective of

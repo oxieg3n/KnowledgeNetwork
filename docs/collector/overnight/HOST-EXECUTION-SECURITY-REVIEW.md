@@ -1,5 +1,27 @@
 # KnowledgeNetwork host execution: independent security review
 
+## Update: actual installed endpoint accepted from FORGE
+
+November 15: coordinator executed the native client tests after owner bootstrap.
+Health, fixed PowerShell SID self-test and native9443 availability returned PASS.
+Empty/unknown/argument/path commands, PTY, subsystem, direct/reverse forwarding,
+wrong authentication key and missing host pin were rejected. Independent review
+read installed configuration and private receipt evidence without executing host
+commands. The forwarding test explicitly overrode client ClearAllForwardings
+only for the negative probe; production configuration remained unchanged.
+Shared Gateway config digest and reviewed private policy digest are unchanged.
+
+Accepted scope is four diagnostic operations under the dedicated nonadmin SID.
+The remote narrator/service-management objective remains incomplete; no generic
+shell or privilege extension was added. A real wrong-source peer test, host
+disconnect/long-running timeout, reboot/restart and rollback remain NOT TESTED.
+One closed-channel request has PASS then generic response-delivery failure in
+audit and is not counted as received success. HTTPS9443 remains BLOCKED by the
+existing broad grant; SSH acceptance does not override that access-control gate.
+
+The investigation below is the preserved pre-bootstrap baseline, not a statement
+that no subsequent native connection occurred.
+
 November 15, 2026. Read-only investigation of authorized project files and the
 existing host SSH configuration through redirected storage. No SSH connection,
 credential read, host command, account/service/configuration change or inference
