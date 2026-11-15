@@ -1,5 +1,17 @@
 # Narrator recovery preparation — no live mutation
 
+## Current continuation ? integration completed in isolation, not live-ready
+
+See [retention and recovery continuation](V9-RETENTION-AND-RECOVERY-CONTINUATION.md)
+for the owner's actual full-ancestor report, integrated C-API helper, five native
+Limited-task results, fixed ProgramData data-plan/rollback design and archival
+manifest. Guard-before-open helper identity is now implemented and tested in
+isolation; earlier statements that only a test-only mechanism exists are retained
+as checkpoint history. The public helper remains disabled. Actual D: namespace
+fails trust at all four ancestors; live persistent controller binding, protected
+new-module deployment and hard watchdog are unresolved. No host mutation or live
+SQLite access occurred. Historical tests below are reused, not repeated.
+
 Publication PAUSED. PR20 stays draft/unmerged. The blocked V2 repair is held;
 its bytes, prepared intent, five backups and rollback are not changed or rerun.
 The running BLACKHAT-BASE task, narrator, Gateway, SSH authentication, policy and

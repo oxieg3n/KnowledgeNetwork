@@ -7,6 +7,7 @@ private; this client is not a sandbox for an unrestricted desktop connection.
 from __future__ import annotations
 
 import argparse
+import ctypes
 import hashlib
 import json
 import math
@@ -14,6 +15,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import sys
 import tempfile
 import time
 import uuid
@@ -46,6 +48,56 @@ class EditorError(RuntimeError):
     def __init__(self, code, native_session_id=None):
         super().__init__(code)
         self.native_session_id = native_session_id
+
+
+def _receipt_metadata(path):
+    before = path.lstat()
+    if (path.is_symlink() or getattr(before, 'st_file_attributes', 0) & 0x400
+            or not path.is_file() or before.st_nlink != 1 or before.st_size > MAX_JSON):
+        raise EditorError('pending_retention_source_unverified')
+    security = None
+    if os.name == 'nt':
+        api = ctypes.WinDLL('advapi32', use_last_error=True).GetFileSecurityW
+        api.argtypes = [ctypes.c_wchar_p, ctypes.c_uint32, ctypes.c_void_p,
+                        ctypes.c_uint32, ctypes.POINTER(ctypes.c_uint32)]
+        api.restype = ctypes.c_int
+        size = ctypes.c_uint32()
+        api(str(path), 7, None, 0, ctypes.byref(size))
+        if not 0 < size.value <= 65536:
+            raise EditorError('pending_retention_security_unverified')
+        data = ctypes.create_string_buffer(size.value)
+        if not api(str(path), 7, data, len(data), ctypes.byref(size)):
+            raise EditorError('pending_retention_security_unverified')
+        security = hashlib.sha256(data.raw[:size.value]).hexdigest()
+    with path.open('rb') as stream:
+        raw = stream.read(MAX_JSON + 1)
+    if len(raw) > MAX_JSON:
+        raise EditorError('pending_retention_source_unverified')
+    value = {'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': before.st_size,
+             'file_identity': [before.st_dev, before.st_ino], 'mode': before.st_mode,
+             'owner_group_dacl_sha256': security}
+    after = path.lstat()
+    if any(getattr(before, key) != getattr(after, key) for key in ('st_dev', 'st_ino', 'st_size', 'st_mtime_ns')):
+        raise EditorError('pending_retention_source_changed')
+    return value
+
+
+def _move_receipt(source, target):
+    # Both paths are in the same private receipt directory; no replace/copy fallback.
+    if os.name == 'nt':
+        move = ctypes.WinDLL('kernel32', use_last_error=True).MoveFileExW
+        move.argtypes, move.restype = [ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32], ctypes.c_int
+        succeeded = move(str(source), str(target), 0)
+    elif sys.platform.startswith('linux'):
+        move = getattr(ctypes.CDLL(None, use_errno=True), 'renameat2', None)
+        if move is None:
+            raise EditorError('pending_retention_move_unavailable')
+        move.argtypes, move.restype = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint], ctypes.c_int
+        succeeded = move(-100, os.fsencode(source), -100, os.fsencode(target), 1) == 0
+    else:
+        raise EditorError('pending_retention_move_unavailable')
+    if not succeeded:
+        raise EditorError('pending_retention_move_unverified')
 
 
 def digest(path):
@@ -195,6 +247,7 @@ class OpenShot:
             return reply['result']
 
     def start(self):
+        self._retention_ready()
         pending = self.receipts / 'start-pending.json'
         intent = {'id': uuid.uuid4().hex, 'kind': 'session.start', 'session_id': None}
         try:
@@ -213,7 +266,7 @@ class OpenShot:
             raise
         self._enroll(result['session_id'])
         write_json(self.receipts / (intent['id'] + '.json'), {**intent, 'result': result})
-        pending.unlink()
+        self._retain_completed_pending(pending, intent)
         return {'session_id': self.session, 'review_only': True, 'publication_eligible': False}
 
     def _enroll(self, session_id):
@@ -239,7 +292,7 @@ class OpenShot:
         if status.get('data', {}).get('session_id') != session_id:
             raise EditorError('startup_identity_mismatch')
         write_json(self.receipts / (intent['id'] + '.json'), {**intent, 'result': status})
-        pending.unlink()
+        self._retain_completed_pending(pending, intent)
         return {'session_id': session_id, 'native': status, 'review_only': True, 'publication_eligible': False}
 
     def inspect(self):
@@ -288,6 +341,7 @@ class OpenShot:
         return checked
 
     def _intent(self, kind, details):
+        self._retention_ready()
         path = self._pending()
         intent = {'id': uuid.uuid4().hex, 'kind': kind, 'session': self.session,
                   'details': details, 'review_only': True, 'publication_eligible': False}
@@ -302,13 +356,83 @@ class OpenShot:
 
     def _complete(self, intent, result):
         write_json(self.receipts / (intent['id'] + '.json'), {**intent, 'result': result})
-        self._pending().unlink()
+        self._retain_completed_pending(self._pending(), intent)
         return result
+
+    def _retention_state(self):
+        marker = self.receipts / 'pending-retention.json'
+        try:
+            marker.with_suffix('.tmp').lstat()
+        except FileNotFoundError:
+            pass
+        else:
+            return {'status': 'unverified_write'}
+        try:
+            info = marker.lstat()
+        except FileNotFoundError:
+            return None
+        if (marker.is_symlink() or getattr(info, 'st_file_attributes', 0) & 0x400
+                or not marker.is_file() or info.st_nlink != 1 or info.st_size > 4096):
+            return {'status': 'unverified_file'}
+        try:
+            state = json.loads(marker.read_text(encoding='utf-8'))
+        except (ValueError, OSError):
+            return {'status': 'unverified_json'}
+        return state if isinstance(state, dict) else {'status': 'unverified_json'}
+
+    def _retention_ready(self):
+        state = self._retention_state()
+        if state is None:
+            return
+        if (not isinstance(state, dict) or state.get('status') != 'completed'
+                or not re.fullmatch('[a-f0-9]{32}', str(state.get('intent_id', '')))
+                or not re.fullmatch('[a-f0-9]{64}', str(state.get('sha256', '')))
+                or type(state.get('bytes')) is not int or not 0 < state['bytes'] <= MAX_JSON
+                or state.get('retained') != 'terminal-' + state['intent_id'] + '.json'):
+            raise EditorError('pending_retention_requires_reconciliation')
+
+    def _retain_completed_pending(self, pending, intent):
+        from .collector_narration_common import VoiceError, voice_lease
+        try:
+            # Reuse the retained cross-process lease; one whole retirement at a time.
+            with voice_lease(self.receipts):
+                self._retain_completed_pending_locked(pending, intent)
+        except VoiceError as error:
+            raise EditorError('pending_retention_busy') from error
+
+    def _retain_completed_pending_locked(self, pending, intent):
+        self._retention_ready()
+        if pending.parent != self.receipts or not re.fullmatch('[a-f0-9]{32}', intent.get('id', '')):
+            raise EditorError('pending_retention_source_unverified')
+        before = _receipt_metadata(pending)
+        with pending.open('rb') as stream:
+            raw = stream.read(MAX_JSON + 1)
+        if json.loads(raw) != intent or hashlib.sha256(raw).hexdigest() != before['sha256']:
+            raise EditorError('pending_retention_source_changed')
+        target = self.receipts / ('terminal-' + intent['id'] + '.json')
+        record = target.with_suffix('.retained.json')
+        if target.exists() or record.exists():
+            raise EditorError('pending_retention_collision')
+        marker = self.receipts / 'pending-retention.json'
+        state = {'status': 'pending', 'intent_id': intent['id'], 'source': pending.name,
+                 'retained': target.name, 'sha256': before['sha256'], 'bytes': before['bytes']}
+        write_json(marker, state)
+        _move_receipt(pending, target)
+        if _receipt_metadata(target) != before:
+            raise EditorError('pending_retention_requires_reconciliation')
+        # Terminal intents remain referenced operational evidence, not obsolete archives.
+        evidence = {**state, **before, 'status': 'retained_terminal_evidence',
+                    'reason': 'definite native completion', 'retained_at_ns': time.time_ns()}
+        with record.open('x', encoding='utf-8') as stream:
+            json.dump(evidence, stream, sort_keys=True)
+            stream.flush(); os.fsync(stream.fileno())
+        write_json(marker, {**state, 'status': 'completed'})
 
     def reconcile(self):
         """Inspect only; uncertain mutations are never automatically replayed/cleared."""
         pending = json.loads(self._pending().read_text()) if self._pending().exists() else None
         return {'pending': pending, 'project': self.inspect(),
+                'pending_retention': self._retention_state(),
                 'exports': self._invoke(['export', 'list']),
                 'operations': self._invoke(['operation', 'list'])}
 
@@ -421,6 +545,67 @@ class OpenShot:
             raise ValueError('Invalid native export ID')
         return self._invoke(['export', 'status', job_id])
 
+    def thumbnail(self, path, frame=1, width=None, height=None):
+        """Capture the actual composed native frame for intro reveal and local QC."""
+        from PIL import Image
+        path = self.local_path(path, {'.png'}, exists=False)
+        if type(frame) is not int or not 1 <= frame <= 108000:
+            raise ValueError('Timeline frame must be 1..108000')
+        before = self.inspect()
+        if type(before.get('revision')) is not int or before['revision'] < 0:
+            raise EditorError('thumbnail_context_unverified_reconcile_required')
+        profile = before['data']
+        width = profile['width'] if width is None else width
+        height = profile['height'] if height is None else height
+        if (any(type(value) is not int or not 1 <= value <= 4096 for value in (width, height))
+                or width * height > 8 * 1024 * 1024):
+            raise ValueError('Thumbnail dimensions exceed the native inspection limit')
+        ratio = profile.get('fps')
+        if not isinstance(ratio, dict) or any(type(ratio.get(key)) is not int or not 1 <= ratio[key] <= 1000000
+                                              for key in ('num', 'den')):
+            raise ValueError('Native project FPS is invalid')
+        fps = ratio['num'] / ratio['den']
+        sources = self.audit_sources()
+        intent = self._intent('timeline.thumbnail', {'path': str(path), 'frame': frame,
+            'width': width, 'height': height, 'revision': before['revision'], 'assets': sources})
+        result = self._invoke(['timeline', 'thumbnail', '--frame', str(frame),
+            '--width', str(width), '--height', str(height), '--output', str(path)])
+        data = result.get('data', {})
+        if not isinstance(data, dict):
+            raise EditorError('thumbnail_context_unverified_reconcile_required')
+        tiles = data.get('tiles')
+        if (result.get('revision') != before['revision'] or data.get('timebase') != 'timeline'
+                or self.local_path(data.get('path', ''), {'.png'}) != path
+                or any(type(data.get(key)) is not int or data[key] != value
+                       for key, value in (('width', width), ('height', height)))
+                or type(data.get('fps')) not in (int, float) or not math.isfinite(data['fps']) or abs(data['fps'] - fps) > 1e-9
+                or not isinstance(tiles, list) or len(tiles) != 1 or not isinstance(tiles[0], dict)
+                or type(tiles[0].get('frame')) is not int or tiles[0]['frame'] != frame
+                or type(tiles[0].get('seconds')) not in (int, float)
+                or not math.isfinite(tiles[0]['seconds']) or abs(tiles[0]['seconds'] - (frame - 1) / fps) > 1e-9):
+            raise EditorError('thumbnail_context_unverified_reconcile_required')
+        info = path.lstat()
+        if (path.is_symlink() or getattr(info, 'st_file_attributes', 0) & 0x400
+                or info.st_nlink != 1 or info.st_size > 64 * 1024 * 1024 or data.get('image_bytes') != info.st_size):
+            raise EditorError('thumbnail_artifact_unverified_reconcile_required')
+        try:
+            with Image.open(path) as picture:
+                if picture.format != 'PNG' or picture.size != (width, height):
+                    raise EditorError('thumbnail_artifact_unverified_reconcile_required')
+                picture.verify()
+        except (OSError, ValueError, Image.DecompressionBombError):
+            raise EditorError('thumbnail_artifact_unverified_reconcile_required') from None
+        if self.inspect()['revision'] != before['revision'] or self.audit_sources() != sources:
+            raise EditorError('thumbnail_revision_changed_reconcile_required')
+        artifact_hash = digest(path)
+        after = path.lstat()
+        if any(getattr(info, key) != getattr(after, key) for key in ('st_dev', 'st_ino', 'st_size', 'st_mtime_ns')):
+            raise EditorError('thumbnail_artifact_changed_reconcile_required')
+        result['artifact'] = {'sha256': artifact_hash, 'bytes': info.st_size, 'frame': frame,
+                              'revision': before['revision'], 'review_only': True,
+                              'publication_eligible': False}
+        return self._complete(intent, result)
+
 
 def main():
     parser = argparse.ArgumentParser(description='The Knowledge Network Collector: local OpenShot adapter')
@@ -428,7 +613,7 @@ def main():
     parser.add_argument('--executable-sha256', required=True)
     parser.add_argument('--vault', required=True)
     parser.add_argument('--session')
-    parser.add_argument('operation', choices=['start', 'recover-start', 'inspect', 'apply', 'save', 'reopen', 'export', 'export-status', 'reconcile'])
+    parser.add_argument('operation', choices=['start', 'recover-start', 'inspect', 'apply', 'save', 'reopen', 'export', 'export-status', 'thumbnail', 'reconcile'])
     parser.add_argument('--request', help='Local JSON request file, at most 128 KiB')
     args = parser.parse_args()
     try:
@@ -442,7 +627,7 @@ def main():
             request = json.loads(raw)
         methods = {'start': client.start, 'recover-start': client.recover_start, 'inspect': client.inspect, 'apply': client.apply,
                    'save': client.save, 'reopen': client.reopen, 'export': client.export,
-                   'export-status': client.export_status, 'reconcile': client.reconcile}
+                   'export-status': client.export_status, 'thumbnail': client.thumbnail, 'reconcile': client.reconcile}
         result = methods[args.operation](**request)
         print(json.dumps({'status': 'PASS', 'result': result, 'review_only': True, 'publication_eligible': False}))
         return 0

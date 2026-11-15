@@ -15,10 +15,18 @@ from .collector_editor import OpenShot, digest, write_json
 from .collector_narration_receipt import read_voxcpm2_receipt
 
 
-def narration_receipt(client, path):
+def body_timing(body_frames=1500):
+    if type(body_frames) is not int or not (body_frames == 1500 or 1068 <= body_frames <= 1368):
+        raise ValueError('Body requires the legacy 1500 frames or a 45–55 second Short bookend budget')
+    edges = [0, 480, 990, 1500] if body_frames == 1500 else [0, body_frames // 3, 2 * body_frames // 3, body_frames]
+    return edges, Fraction(body_frames, 30)
+
+
+def narration_receipt(client, path, body_frames=1500):
+    _, duration = body_timing(body_frames)
     path = client.local_path(path, {'.json'})
     client.local_path(path.with_name('narration.wav'), {'.wav'})
-    return read_voxcpm2_receipt(path, max_duration=50)
+    return read_voxcpm2_receipt(path, max_duration=float(duration))
 
 
 def caption_fingerprint(client, clip_id):
@@ -94,9 +102,12 @@ def checked_music(client, clips, layer, previous):
     return result
 
 
-def attach_narration_to_fixture(client, receipt_path, base_revision, replace_clip_id=None):
+def attach_narration_to_fixture(client, receipt_path, base_revision, replace_clip_id=None, body_frames=1500):
     """Import verified remote audio into this fixture's dedicated third track."""
-    path, audio_path, receipt, audio, receipt_hash = narration_receipt(client, receipt_path)
+    _, duration = body_timing(body_frames)
+    path, audio_path, receipt, audio, receipt_hash = narration_receipt(client, receipt_path, body_frames)
+    if Fraction(audio['frames'], audio['sample_rate']) > duration:
+        raise ValueError('Measured narration exceeds the available body; preserve speech and revise timing')
     current = client.inspect()
     if current['revision'] != base_revision:
         raise ValueError('Fixture changed; inspect the new revision')
@@ -202,16 +213,19 @@ def png(path, width, height, color, transparent=False):
 
 def tone(path, frequency, seconds=50):
     rate = 16000
+    frames = round(seconds * rate)
     samples = bytearray()
-    for i in range(seconds * rate):
-        envelope = min(1, i / rate, (seconds * rate - i - 1) / rate)
+    for i in range(frames):
+        envelope = min(1, i / rate, (frames - i - 1) / rate)
         samples.extend(struct.pack('<h', int(1000 * envelope * math.sin(2 * math.pi * frequency * i / rate))))
     with wave.open(str(path), 'wb') as stream:
         stream.setparams((1, 2, rate, 0, 'NONE', 'not compressed'))
         stream.writeframes(samples)
 
 
-def build(client, directory, width=360, height=640, reuse_session=False, narration_path=None):
+def build(client, directory, width=360, height=640, reuse_session=False, narration_path=None, body_frames=1500):
+    edges, exact_duration = body_timing(body_frames)
+    body_seconds = float(exact_duration)
     directory = Path(directory).resolve()
     if not directory.is_relative_to(client.vault) or directory.exists():
         raise ValueError('Fixture requires a new directory inside the private vault')
@@ -225,8 +239,8 @@ def build(client, directory, width=360, height=640, reuse_session=False, narrati
     png(graphic, width, height, (51, 124, 151), transparent=True)
     bed = directory / 'original-ambient.wav'
     accent = directory / 'original-accent.wav'
-    tone(bed, 165)
-    tone(accent, 220)
+    tone(bed, 165, body_seconds)
+    tone(accent, 220, body_seconds)
     started = {'session_id': client.session} if reuse_session else client.start()
     current = client.inspect()
     layers = sorted(layer['number'] for layer in current['data']['layers'])
@@ -235,9 +249,11 @@ def build(client, directory, width=360, height=640, reuse_session=False, narrati
     commands = [{'method': 'project.profile.set', 'params': {'values': {
         'width': width, 'height': height, 'fps': {'num': 30, 'den': 1},
         'display_ratio': {'num': 9, 'den': 16}, 'pixel_ratio': {'num': 1, 'den': 1}}}}]
-    scenes = [(0, 16, 'Research', 'Original technical fixture'),
-              (16, 17, 'Editable timeline', 'Research > edit > voice > review'),
-              (33, 17, 'Local review only', 'Shorts / recap / blog adaptations')]
+    labels = [('Research', 'Original technical fixture'),
+              ('Editable timeline', 'Research > edit > voice > review'),
+              ('Local review only', 'Shorts / recap / blog adaptations')]
+    scenes = [(edges[index] / 30, (edges[index + 1] - edges[index]) / 30, *label)
+              for index, label in enumerate(labels)]
     for index, (position, duration, title, caption) in enumerate(scenes):
         commands.extend([
             {'method': 'file.import', 'as': 'scene' + str(index), 'params': {'path': str(backgrounds[index])}},
@@ -257,41 +273,41 @@ def build(client, directory, width=360, height=640, reuse_session=False, narrati
     commands.extend([
         {'method': 'text.add', 'as': 'review_label', 'params': {
             'text': 'LOCAL REVIEW ONLY\nUnbranded technical test', 'layer': layers[4],
-            'position': 0, 'duration': 50, 'font_family': 'Segoe UI',
+            'position': 0, 'duration': body_seconds, 'font_family': 'Segoe UI',
             'font_size': int(width / 28), 'color': '#b5c4cf',
             'width': int(width * .85), 'place': 'bottom'}},
         {'method': 'file.import', 'as': 'graphic', 'params': {'path': str(graphic)}},
         {'method': 'clip.add', 'as': 'overlay', 'params': {'file_id': {'$ref': 'graphic.id'},
-            'layer': layers[3], 'position': 0, 'end': 50}},
+            'layer': layers[3], 'position': 0, 'end': body_seconds}},
         {'method': 'clip.set', 'params': {'id': {'$ref': 'overlay.id'},
             'values': {'scale_x': .55, 'scale_y': .18, 'rotation': -5}}},
         {'method': 'clip.fade', 'params': {'id': {'$ref': 'overlay.id'}, 'fade_in': 1, 'fade_out': 1}},
         {'method': 'clip.keyframe.set', 'params': {'id': {'$ref': 'overlay.id'}, 'property': 'location_x',
             'space': 'clip', 'unit': 'seconds', 'at': 0, 'value': -.15}},
         {'method': 'clip.keyframe.set', 'params': {'id': {'$ref': 'overlay.id'}, 'property': 'location_x',
-            'space': 'clip', 'unit': 'seconds', 'at': 49, 'value': .15}},
+            'space': 'clip', 'unit': 'seconds', 'at': body_seconds - 1, 'value': .15}},
         {'method': 'effects.add', 'params': {'clip_id': {'$ref': 'overlay.id'}, 'type': 'Saturation'}},
         {'method': 'file.import', 'as': 'bed', 'params': {'path': str(bed)}},
         {'method': 'clip.add', 'as': 'bedclip', 'params': {'file_id': {'$ref': 'bed.id'},
-            'layer': layers[1], 'position': 0, 'end': 50, 'audio_only': True, 'volume': .25}},
+            'layer': layers[1], 'position': 0, 'end': body_seconds, 'audio_only': True, 'volume': .25}},
         {'method': 'clip.fade', 'params': {'id': {'$ref': 'bedclip.id'}, 'property': 'volume',
             'fade_in': 1, 'fade_out': 2, 'value': .25}},
         {'method': 'file.import', 'as': 'accent', 'params': {'path': str(accent)}},
         {'method': 'clip.add', 'as': 'accentclip', 'params': {'file_id': {'$ref': 'accent.id'},
-            'layer': layers[2], 'position': 0, 'end': 50, 'audio_only': True, 'volume': .15}},
+            'layer': layers[2], 'position': 0, 'end': body_seconds, 'audio_only': True, 'volume': .15}},
         {'method': 'clip.keyframe.set', 'params': {'id': {'$ref': 'accentclip.id'}, 'property': 'volume',
             'space': 'clip', 'unit': 'seconds', 'at': 1, 'value': .15}},
         {'method': 'clip.keyframe.set', 'params': {'id': {'$ref': 'accentclip.id'}, 'property': 'volume',
-            'space': 'clip', 'unit': 'seconds', 'at': 16, 'value': .03}},
+            'space': 'clip', 'unit': 'seconds', 'at': edges[1] / 30, 'value': .03}},
         {'method': 'clip.keyframe.set', 'params': {'id': {'$ref': 'accentclip.id'}, 'property': 'volume',
-            'space': 'clip', 'unit': 'seconds', 'at': 33, 'value': .15}},
+            'space': 'clip', 'unit': 'seconds', 'at': edges[2] / 30, 'value': .15}},
     ])
     applied = client.apply(commands, current['revision'])
     capture_music_baseline(client, applied['refs']['bedclip']['id'], applied['revision'])
     narration = None
     if narration_path is not None:
         narration = attach_narration_to_fixture(client, narration_path, applied['revision'],
-                                                applied['refs']['accentclip']['id'])
+                                                applied['refs']['accentclip']['id'], body_frames)
     first = client.save(directory / 'technical-v1.osp')
     edit = [{'method': 'text.set', 'params': {'id': applied['refs']['title2']['clip']['id'],
              'text': 'Local review only\nRevision 2'}}]
@@ -300,7 +316,10 @@ def build(client, directory, width=360, height=640, reuse_session=False, narrati
     reopened = client.reopen(second['path'], second['sha256'])
     return {'session_id': started['session_id'], 'first_project': first, 'project': second,
             'reopened': reopened, 'changed': changed, 'directory': str(directory),
-            'end_frame': 1500, 'expected_duration_seconds': 50,
+            'end_frame': body_frames, 'expected_duration_seconds': body_seconds,
+            'scene_frame_edges': edges,
+            'bookend_budget': {'intro_frames': 48, 'outro_frames': 234,
+                              'assembled_frames': body_frames + 282, 'assembled': False},
             'voice': narration or 'BLOCKED: verified VoxCPM2 Oxiegen-Narrator body WAV not supplied',
             'branding': 'BLOCKED: unbranded technical fixture; approved bookends not supplied',
             'caption_alignment': narration['caption_alignment'] if narration else 'NOT TESTED: timed technical text is not speech alignment',
@@ -316,10 +335,12 @@ def main():
     parser.add_argument('--session', help='Reuse an already enrolled, reconciled native session')
     parser.add_argument('--width', type=int, choices=[360, 1080], default=360)
     parser.add_argument('--narration-receipt', help='Verified VoxCPM2 Oxiegen-Narrator narration.json inside the private editor vault')
+    parser.add_argument('--body-frames', type=int, default=1500,
+                        help='1500 for the retained technical fixture; 1218 reserves bookends inside a 50s Short')
     args = parser.parse_args()
     client = OpenShot(args.executable, args.executable_sha256, args.vault, args.session)
     result = build(client, args.directory, args.width, args.width * 16 // 9,
-                   bool(args.session), args.narration_receipt)
+                   bool(args.session), args.narration_receipt, args.body_frames)
     print(json.dumps(result, indent=2))
 
 

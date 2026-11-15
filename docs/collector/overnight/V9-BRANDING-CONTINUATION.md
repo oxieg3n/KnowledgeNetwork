@@ -1,5 +1,19 @@
 # V9 branding and native readiness — November 15, 2026
 
+## Current native assembly continuation
+
+All exact brand originals remain recovered; older missing-badge statements below
+are superseded. New source supports1218 body frames (40.6s), three406-frame scenes
+and exact48/234-frame bookend budget for50s total. Synthetic defaults remain intact;
+this is not an assembled branded video. Same-ID real-narration integration and
+retention-safe editor receipt/thumbnail contracts have focused tests. The one
+native existing-session thumbnail attempt failed initial connection before any
+thumbnail RPC; no OpenShot process was running. Existing project hash is unchanged,
+no new PNG/export exists and no session restart/render was attempted. Native
+startup/save/export cleanup still needs archive-policy review. Detailed evidence:
+[current continuation](V9-RETENTION-AND-RECOVERY-CONTINUATION.md).
+Real host-to-FORGE narration and final native video acceptance remain BLOCKED.
+
 ## Original badge recovered — branding sources complete
 
 Owner reports creating the badge using Dot and declares ownership/licensing.

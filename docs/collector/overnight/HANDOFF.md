@@ -1,5 +1,58 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Current continuation: retention persisted; integrated fixtures PASS; live recovery BLOCKED
+
+Continue from `0ef8525cccaa875f4a077ae39ed1d6e150dae075` on
+`feature/collector-v7-overnight`. PR20 remains draft/unmerged; publication PAUSED.
+Current changes, precise evidence, archival paths/hashes and rollback conditions:
+[V9-RETENTION-AND-RECOVERY-CONTINUATION.md](V9-RETENTION-AND-RECOVERY-CONTINUATION.md).
+This section supersedes historical staging/integration gaps below.
+
+- PASS: owner ran the pinned read-only inspector. All four D: ancestors through
+  the kit grant Authenticated Users Modify/DELETE. Spool/ledger leaf and inspected
+  C: execution/report chains pass. The task was Running; no SQLite opened or task,
+  ACL, service, model/reference, Gateway, policy or route changed.
+- PASS, isolated only: new helper integrates guard-before-open C-API physical
+  connection identity, retaining exact task/process/ledger checks. Five native
+  Limited-task cases passed49.632s, including wrong-ledger, active writer and both
+  shutdown uncertainties. Public live entry stays disabled pending protected
+  deployment, watchdog, actual host binding and separate mutation approval.
+- PASS: focused50 discovered,45 passed/5 skipped18.816s; those five native opt-in
+  cases passed separately. Independent security/Ponytail review passed. Original
+  intent, all five backup/live old-pin pairs and rollback reverified unchanged.
+- PASS: AGENTS permanent archive policy, `/old/` ignore, retained fixture indexes,
+  existing-installer-output refusal. One inactive never-run951-byte draft archived
+  with exact SHA/security/physical identity; active/protected and previously
+  denied cleanup targets remain untouched. FORGE diagnostic reports/indexes and
+  fresh data fixtures stay in `C:/Admin/Projects/KnowledgeNetwork-Private`. The
+  native host report remains protected in ProgramData; executed task fixtures
+  remain in their separately checked protected TEMP roots. Four SSH auth files
+  stay put. Exact exceptions/evidence are documented in the continuation.
+- Prepared only: fixed ProgramData controller-data review plan, no migration
+  executor or live move. Current ledger/code pins remain unresolved.
+- PASS, synthetic/source scope: same-ID WAV/checkpoint recovery, retained partials,
+  serialized editor receipt finalization, bounded native-thumbnail contract and
+  40.6s body budget (1.6 +40.6 +7.8 =50s). Original approved branding reused.
+- BLOCKED: native single-frame attempt found existing OpenShot session unavailable
+  before thumbnail RPC; no running OpenShot process, new artifact, project change,
+  render or retry. Existing .osp SHA remains7d108fbe?fe5e92. Real remote narration
+  and completed editable narrated Short are still outstanding. No new listening
+  claim or `REMOTE_NARRATION_PASS`.
+- CI: legacy suite deliberately held by read-only retention preflight (110 deletion
+  sites); separate focused Windows/Linux checks validate new work. Previous full
+  hosted452-test/190-worker acceptance retains its historical scope. Hosted current
+  results will be appended after push; overall CI is not represented as green.
+- NOT TESTED: isolated installer fresh/upgrade/rollback, scheduled Assistant and
+  reboot acceptance. Pipefix002 installer and installed IPC correction reused;
+  no rebuild/deployment or unnecessary190-check rerun. No reboot authorized.
+
+No repair/migration approval is requested yet. Precise remaining prerequisite:
+prove the real controller's persistent ledger file ID and helper connection match
+under a protected namespace despite unsafe D: ancestry, with bounded shutdown and
+rollback evidence. ProgramData is the future data proposal, not a current fix.
+No complete end-to-end Short command has passed these missing live stages; reuse
+existing documented interfaces rather than inventing a success command.
+
 ## Recovery preparation: FORGE evidence PASS; live prerequisites still BLOCKED
 
 Continued from `dabd57ed70c5442cd4e0bff66a2c5f73dd956297` on

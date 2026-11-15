@@ -102,7 +102,7 @@ Read the actual installed skill. **Apply Taste's reusable visual judgment to eve
 - **Direct VoxCPM2 + Oxiegen-Narrator (remote host):** VoiceStudio is no longer an active Collector dependency. On BLACKHAT-BASE, reuse installed VoxCPM2 from `D:\tools\audio\voicestudio\data\engines\voxcpm2\` and canonical existing `D:\tools\audio\voices\Oxiegen-Narrator\narrate.ps1` with its owner-approved default narrator settings, per `docs/collector/v9/DIRECT_VOXCPM2_ARCHITECTURE.md`. FORGE must call a NEW verified, private, authenticated narrow narrator service, not VoiceStudio endpoints; Forge's `localhost` never means BLACKHAT-BASE. The script's actual voice reference/config is the source of truth. A direct persistent Python model call is allowed only after validating narrator parity. Use real WAV bytes, decoded duration/hash checks, caption alignment and revision support. Never change host GUI, Gateway, Tailscale Serve, firewall or unrelated host state without scoped owner authorization, and never allow arbitrary command execution.
 - **Brand:** approved `poweredby-plasma-v1` intro (~1.6s) and `poweredby-plasma-outro-v1` outro (~7.8s), each orientation-specific and exact-asset checked. Intro/outro appear exactly once in *new* videos. Protect older approved video requests and unchanged outro speech. If approved local media is absent, state the blocker; do not forge equivalent assets or hashes. Finished Shorts count both bookends inside length limits.
 - **Research/API:** official YouTube API and permitted public RSS for discovery, separate OAuth for owner-channel uploads; persistent queues. Read only published articles from the separate `oxieg3n/poweredby` blog. Never modify that repository.
-- **Storage:** VM-local private media/vault/credentials; small sanitized public metadata only in GitHub. Temporary media can be deleted only after an exact, durable, verified publication receipt and safe cleanup checks. Public repo is not a secret store or an unrestricted GitHub Actions video farm.
+- **Storage:** VM-local private media/vault/credentials; small sanitized public metadata only in GitHub. The owner retention policy below supersedes earlier automatic file-cleanup instructions, including after publication. Public repo is not a secret store or an unrestricted GitHub Actions video farm.
 - **Build:** use pinned official upstream releases, documented licenses, verified checksums/signatures where supplied and a reproducible Windows installer. Use the VM's actual CPU/GPU capabilities, not assumed GPU passthrough.
 
 ## 6. Required editing features and app acceptance
@@ -158,3 +158,51 @@ Write `docs/collector/overnight/HANDOFF.md` on the implementation feature branch
 - State clearly that publication remains paused and the demo has **not** been publicly uploaded.
 
 The objective is a useful, runnable, reviewable Windows Collector and honest evidence by the next owner review, not an impressive-looking plan.
+
+## 11. Project Archive and Retention Policy — permanent owner directive
+
+Do not automatically delete obsolete project files, scripts, test results, failed
+experiments, previous builds or development artifacts. The owner alone reviews
+and permanently deletes retained artifacts after the project is finished. This
+also applies to helper agents, test fixtures, cleanup scripts, builds, installers,
+maintenance and low-disk handling; do not introduce a deletion fallback.
+
+Use these archive roots only after the checks below:
+
+- Public local project artifacts: `C:/Admin/Projects/KnowledgeNetwork/old/`.
+- Private project artifacts: `C:/Admin/Projects/KnowledgeNetwork-Private/old/`.
+- BLACKHAT-BASE project artifacts: `D:/projects/knowledgenetwork/old/`, only when
+  native permissions and trust boundaries permit the specific move safely.
+
+Identify a bounded set of genuinely superseded files first. Check current process,
+service, test, build, configuration and recovery references before moving them.
+Preserve relative structure, optionally beneath a dated/versioned subfolder.
+Resolve and verify exact absolute source/destination paths, prevent collisions,
+and never overwrite an archive entry. Record original path, archived path,
+SHA-256, byte size, reason and archive date in an appropriate private receipt.
+Verify destination bytes and appropriate permissions; preserve existing security
+descriptors where required. Private files, logs, credentials and sensitive
+evidence must never enter the public repository or its local public archive.
+
+Do not move active source, tracked files, original approved assets, protected
+backups, referenced receipts, live SQLite/sidecars, credentials, runtime code or
+trusted execution files merely because they are old. Manage tracked source
+versions through Git history; never delete history, tags, branches or commits as
+cleanup. Preserve the four live SSH authentication files at their existing
+protected user-profile paths. Never weaken host ACLs or relocate active runtime
+files to satisfy archive placement.
+
+A previously rejected deletion does not authorize an equivalent move. An archive
+needs its own legitimate authorization, exact reference/property checks and
+security review. If blocked or required properties cannot be preserved, leave
+the source in place and report the blocker. Do not build broad file-moving
+automation or scan-and-move cleanup jobs; archive only verified obsolete items
+as work proceeds. Local `/old/` is ignored by Git.
+
+Before running a test/build/installer procedure that deletes project artifacts,
+review its teardown. For touched fixtures, retain the exact owned outputs after
+processes, tasks, database connections and native handles close; archive only
+when their specific reference and property checks pass. Unrelated OS resource
+teardown (closing handles or unregistering a disposable test task) does not
+authorize deleting its files. If safe retention is unavailable, leave files in
+place or report the check NOT TESTED instead of running destructive teardown.

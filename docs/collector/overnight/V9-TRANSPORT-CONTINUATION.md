@@ -1,5 +1,15 @@
 # V9 transport continuation — November 15, 2026
 
+## Current retention and uncertainty changes
+
+Failed partial WAV downloads now remain retained. An existing completed joined WAV
+can recover the original job only after decoded PCM/digest agreement with the
+previously verified segments; mismatches hold and no new POST/ID is used. Focused
+synthetic tests pass; they do not establish a real host transfer. Editor protocol
+receipt finalization is serialized and preserves evidence on uncertainty. Host
+recovery remains blocked by native D: namespace trust;9443 remains inactive.
+See [current continuation](V9-RETENTION-AND-RECOVERY-CONTINUATION.md).
+
 Reviewed source checkpoint `3353a24efa3473c0e375dfec96cdd4fd757e6158` on
 `feature/collector-v7-overnight`. Publication remains **PAUSED**. No inference,
 host process, installation, credential provisioning or route change was performed

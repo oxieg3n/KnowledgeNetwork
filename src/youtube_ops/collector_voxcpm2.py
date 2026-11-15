@@ -63,6 +63,39 @@ def request_identity(job_id, text, segments):
     return parts
 
 
+def retain_partial(path, reason):
+    """Keep this attempt's closed artifact; reconciliation decides its later fate."""
+    try:
+        before = path.lstat()
+    except FileNotFoundError:
+        return
+    if not re.fullmatch(r'(download|joined)-[a-f0-9]{32}\.partial', path.name):
+        raise VoiceError('NARRATION_PARTIAL_RETENTION_UNVERIFIED')
+    artifact_hash, evidence = None, 'not_measured'
+    if (not path.is_symlink() and not getattr(before, 'st_file_attributes', 0) & 0x400
+            and path.is_file() and before.st_nlink == 1 and before.st_size <= MAX_WAV):
+        measured, total, deadline = hashlib.sha256(), 0, time.monotonic() + 5
+        try:
+            with path.open('rb') as stream:
+                while total <= MAX_WAV and time.monotonic() < deadline:
+                    block = stream.read(min(1024 * 1024, MAX_WAV - total + 1))
+                    if not block:
+                        after = path.lstat()
+                        if total == before.st_size and all(getattr(before, key) == getattr(after, key)
+                                for key in ('st_dev', 'st_ino', 'st_size', 'st_mtime_ns')):
+                            artifact_hash, evidence = measured.hexdigest(), 'measured_stable'
+                        break
+                    total += len(block); measured.update(block)
+        except OSError:
+            evidence = 'unavailable'
+    record = {'status': 'retained_for_reconciliation', 'artifact': path.name,
+              'sha256': artifact_hash, 'bytes': before.st_size, 'hash_evidence': evidence, 'hold_reason': reason,
+              'review_only': True, 'publication_eligible': False}
+    with path.with_suffix('.retained.json').open('x', encoding='utf-8') as stream:
+        json.dump(record, stream, sort_keys=True)
+        stream.flush(); os.fsync(stream.fileno())
+
+
 class RemoteVoxCPM2Provider:
     def __init__(self, base_url, route, spool):
         if not isinstance(base_url, str) or not isinstance(route, dict):
@@ -248,7 +281,7 @@ class RemoteVoxCPM2Provider:
             if source != path: os.replace(source, path)
             return path, audio
         finally:
-            temporary.unlink(missing_ok=True)
+            retain_partial(temporary, 'download_outcome_requires_reconciliation')
 
     def generate(self, job_id, text, *, segments=None, cancel=None):
         parts = request_identity(job_id, text, segments)
@@ -326,10 +359,20 @@ class RemoteVoxCPM2Provider:
                             with wave.open(str(path), 'rb') as source:
                                 for block in iter(lambda: source.readframes(16384), b''): joined.writeframesraw(block)
                     with output.open('r+b') as stream: stream.flush(); os.fsync(stream.fileno())
-                    if (directory / 'narration.wav').exists(): raise VoiceError('NARRATION_LOCAL_OUTPUT_REQUIRES_RECONCILIATION')
-                    os.replace(output, directory / 'narration.wav')
+                    final = directory / 'narration.wav'
+                    try:
+                        info = final.lstat()
+                    except FileNotFoundError:
+                        info = None
+                    if info is not None:
+                        if (final.is_symlink() or getattr(info, 'st_file_attributes', 0) & 0x400
+                                or not final.is_file() or info.st_nlink != 1 or info.st_size > MAX_WAV
+                                or inspect_wav(final) != inspect_wav(output)):
+                            raise VoiceError('NARRATION_LOCAL_OUTPUT_REQUIRES_RECONCILIATION')
+                    else:
+                        os.replace(output, final)
                 finally:
-                    output.unlink(missing_ok=True)
+                    retain_partial(output, 'join_outcome_requires_reconciliation')
                 intent.update(status='generated_pending_review', cues=cues, audio=inspect_wav(directory / 'narration.wav'))
                 intent.pop('error', None); checkpoint(receipt, intent)
                 return intent

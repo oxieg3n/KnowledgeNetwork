@@ -1,5 +1,19 @@
 # V9 narrator control pipe acceptance and repair
 
+## Current continuation ? read-only host result and integrated source
+
+The owner executed the staged inspector successfully: all four ancestors from
+D: through the kit fail inherited Authenticated Users Modify/DELETE; spool/ledger
+leaf and C: runtime/report chains pass. The task remains observed Running. New
+source integrates the public SQLite C-API guard-before-open method; five isolated
+native Limited-task cases pass. The live entry is deliberately disabled, and the
+original V2 helper/update remain untouched. No live database open/lock, stop,
+replacement, ACL change or migration occurred. Full evidence/limits and permanent
+archive policy: [current continuation](V9-RETENTION-AND-RECOVERY-CONTINUATION.md).
+Earlier 'not staged' and 'integration missing' statements below are historical.
+Actual protected namespace and real controller connection binding, new pinned
+code deployment/watchdog and separate mutation approval remain prerequisites.
+
 Publication PAUSED. PR #20 remains draft/unmerged. Continue the existing branch;
 the accepted Collector worker, installed pipe-trust correction, database, native
 editor fixture, approved narration and recovered original branding are retained.
