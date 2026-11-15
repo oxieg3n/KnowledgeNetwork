@@ -4,6 +4,46 @@ Publication PAUSED. PR #20 remains draft/unmerged. Continue the existing branch;
 the accepted Collector worker, installed pipe-trust correction, database, native
 editor fixture, approved narration and recovered original branding are retained.
 
+## Current v2 stage and validation
+
+Source `d7a1050455559fb91048553b98189d6c168b8888` passed all jobs in
+[hosted run 43751928202](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43751928202):
+Windows 423 tests with 9 skips, Ubuntu 423 with 62 skips, and Windows worker/dashboard
+build plus 190 worker checks. Earlier failed runs remain recorded failures.
+The v2 repair is staged and NOT executed; it is not host/API acceptance.
+
+Use the one-line command in FORGE's protected profile:
+`KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.txt`.
+Run only on BLACKHAT-BASE in elevated owner PowerShell. The restricted SSH
+identity cannot change protected code/task permissions. Earlier commands and
+updater are HELD. Any existing/uncertain attempt must be reconciled first.
+
+The original 9-file bundle is reused, SHA-256
+`e957fdff5af63b9ae6cfad732635221478536cebc8b787d9e80ae2fd8f0c1d2d`.
+Tools v2 adds only 2 source files/53708 bytes; no model/interpreter copy:
+
+- Updater `7af50035b582349ea273c45c16a0dfd915f261765e6a50cffdd8a32ee2dc0cff`.
+- Captured v2 helper `98cc2d6b712901dd956f8265701b18c8dfe58900c979ff5579d22b0189342838`.
+- Reused v1 idle-stop helper `3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb`.
+
+File.Replace can change owner/group and inherited metadata. V2 stamps only NEW
+replacement files with the recorded full descriptor and verifies before/after
+replacement; it never rewrites an existing target ACL. Changed legacy descriptors
+without AutoInherited (AI), even if protected, block BEFORE intent/stop/write.
+Native negative fixtures prove the unchanged legacy failure case. Existing
+descriptors are not normalized to satisfy this restriction.
+
+JSON transport uses an ASCII Base64 stdin carrier, separating optional native
+transport signatures from raw UTF-8 input. Input double signatures, malformed
+UTF-8, duplicate keys and nonfinite tokens still fail; quoted Unicode survives
+all tested writer encodings. This replaces the temporary encoding workarounds.
+The historical private ab682... bootstrap bytes remain unchanged.
+
+Automatic approval review blocked later disposable probe cleanup with only
+"blocked by policy". The exact private inventory records 19 tiny files/67 logical
+bytes and their known directories; original runtime/backups/media are excluded.
+See the latest HANDOFF for its protected receipt and remaining acceptance.
+
 ## Actual host acceptance
 
 The owner completed the checked continuation from ce79a341. The protected

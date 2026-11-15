@@ -1,24 +1,73 @@
 # V9 handoff - The Knowledge Network Collector
 
-## Repair HOLD while descriptor preservation is corrected
+## V2 repair ready; full hosted validation PASS
 
-Do not execute the earlier repair command yet. Hosted CI exposed that
-File.Replace can change destination owner/group and inherited DACLs. The strict
-post-check detects it; a native FORGE reproduction confirmed three descriptor
-variants. The correction stamps only the NEW temporary file with the captured
-destination descriptor before replacement, preserving all existing trust checks.
-Source and regression work is in progress. No host repair intent was observed.
-The old staged updater and generated command were renamed `.HOLD` with exact
-byte checks; their original bytes and staging receipts are retained. Existing
-runtime, owner task, narrator, models, routes and worker were not changed.
-Do not rerun anything if the owner reports an attempted/uncertain repair.
+Source checkpoint `d7a1050455559fb91048553b98189d6c168b8888` on
+`feature/collector-v7-overnight`. PR #20 draft/unmerged; publication PAUSED.
+V2 is READY FOR OWNER BOOTSTRAP, NOT EXECUTED. Installed dispatcher86b94a... and
+broker config2b38... were rechecked unchanged before releasing its command;
+no host `broker-update-v1` execution state was present at that check.
 
-CI run43745671360 passed the Windows worker/dashboard build but failed Python
-tests on both systems. The Linux issue is a test fixture using a symlinked
-runner interpreter; it is being isolated without weakening production path
-trust. Windows descriptor and older helper-fixture failures are under review.
-Do not call current CI green. The following staged section records the preceding
-checkpoint and will be superseded by the final corrected command/pins.
+[Hosted run 43751928202](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43751928202)
+passed all three jobs for that exact source: Windows 423 tests (414 passed,
+9 skipped), Ubuntu 423 tests (361 passed, 62 skipped), and Windows worker/dashboard
+build with 190 worker checks. Media/credential tracking guards passed. Prior
+failed runs remain failure evidence. This does not establish actual host repair,
+GPU execution, remote narration or native editor acceptance.
+
+CI exposed real File.Replace owner/group and inheritance-metadata changes.
+Both forward repair and rollback now stamp ONLY new temporary files with the
+recorded destination security and retain strict whole-descriptor/byte checks.
+Changed files lacking the processed AutoInherited (AI) descriptor flag, including
+protected-without-AI files, are refused BEFORE any intent, stop or write. Existing
+target descriptors are never normalized to make this pass. Genuine native legacy
+negative fixtures remain unchanged; supported processed-descriptor fixtures pass.
+
+Native text piping can add one or two UTF-8 signatures despite caller settings.
+Strict JSON now carries raw bytes as ASCII Base64 on stdin, separates transport
+signatures from input, then validates strict UTF-8 with one optional input BOM.
+Duplicate keys, nonfinite tokens, malformed UTF-8 and double input BOMs remain
+rejected. Unicode survives ASCII/UTF-8 writers. Intermediate diagnostics and
+encoding workarounds were replaced with the smaller shared helper. Historical
+private installer ab682... and resume evidence are unchanged.
+
+The original 9-file bundle is reused, SHA-256:
+`e957fdff5af63b9ae6cfad732635221478536cebc8b787d9e80ae2fd8f0c1d2d`.
+New host tools folder `narrator-control-update-tools-v2` has 2 files/53708 bytes;
+no interpreter, model or media duplicate. Exact current pins:
+
+- Updater: `7af50035b582349ea273c45c16a0dfd915f261765e6a50cffdd8a32ee2dc0cff`.
+- V2 installer/helper: `98cc2d6b712901dd956f8265701b18c8dfe58900c979ff5579d22b0189342838`.
+- Reused v1 stop helper: `3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb`.
+
+On FORGE open
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.txt`
+and run its single captured-byte/hash-checked line in elevated BLACKHAT-BASE
+PowerShell. Standing authorization covers this; the SSH identity cannot modify
+protected code/task security technically. Earlier commands/updater remain HELD.
+Preserve any blocked/uncertain result and reconcile instead of rerunning or
+selecting another directory. V2 starts no narration and changes no Serve route
+or credential. After its result, perform actual FORGE task/pipe/lifecycle tests.
+
+The original narrator/ref/model/settings, rights flags, worker database and
+installation, exact brand sources, GPU/listening evidence and backups are
+preserved. No new WAV, native project/export, installer deployment or scheduled/
+reboot proof was produced. No 9443 route was activated. Software redistribution
+clearance remains separate from the retained private-use rights findings.
+
+Cleanup: obsolete generated Resume command and disposable startup probe were
+removed after their receipts/replacement were verified. Automatic approval review
+rejected later File.Replace fixture cleanup, returning only "blocked by policy".
+No bypass or later deletion attempt was made. Private inventory: 6 exact known
+roots, 19 files, 11 child directories, 67 logical data bytes. Receipt:
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/FileReplace-Known-Leftovers-7ff88279e8a94271b39b30f9d7ff554f.private.json`,
+SHA-256 `965fa69481b450c891be7afcdd5dc8d7b38911b527cc386c89a49821e81f464f`.
+Original source, working runtime, models and rollback backups are excluded.
+
+Ponytail FULL source/security/diff review completed, including the final carrier
+and descriptor precondition. New checks addressed observed failures; prior
+passed GPU/media evidence retains its scope. All following sections are history;
+the v2 pins and command above supersede the initial staged repair.
 
 ## Owner task running; narrator control pipe correction staged
 

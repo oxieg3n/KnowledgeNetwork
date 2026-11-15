@@ -1,5 +1,17 @@
 # KnowledgeNetwork host execution: independent security review
 
+## Current v2: hosted validation passed; host bootstrap pending
+
+Source d7a1050... passed Windows/Ubuntu Python tests and Windows worker/dashboard
+build in run43751928202. The final v2 repair remains NOT EXECUTED on the host.
+It stamps only NEW temporary replacement descriptors, requires processed AI
+metadata before any mutation, retains exact post-checks and inactive rollback,
+and uses an encoding-independent ASCII carrier for strict raw JSON validation.
+Native negative tests retain legacy descriptor and malformed input failures.
+The historical private installer and original model/voice files remain intact.
+Use only the v2 command/pins in [the current handoff](HANDOFF.md); the earlier
+staged command is held. No authentication, ownership or rights gate was removed.
+
 ## Latest: owner task started; new control pipe repair pending
 
 The checked continuation installed dispatcher 86b94a...; FORGE health passed with
