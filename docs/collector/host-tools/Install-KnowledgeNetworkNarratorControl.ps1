@@ -116,7 +116,7 @@ def unique(pairs):
     return result
 def invalid(value): raise ValueError()
 try:
-    value=json.loads(sys.stdin.read(),object_pairs_hook=unique,parse_constant=invalid)
+    value=json.loads(sys.stdin.buffer.read().decode('utf-8-sig'),object_pairs_hook=unique,parse_constant=invalid)
     print(json.dumps(value,ensure_ascii=True))
 except Exception: sys.exit(1)
 '@

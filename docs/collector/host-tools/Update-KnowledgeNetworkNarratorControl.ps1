@@ -120,7 +120,7 @@ function Invoke-CheckedRollback {
 
 $current=[Security.Principal.WindowsIdentity]::GetCurrent();$ownerSid=$current.User.Value
 if ($ownerSid -eq 'S-1-5-18' -or -not ([Security.Principal.WindowsPrincipal]::new($current)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {throw 'Intended owner elevated, never SYSTEM required.'}
-$bootstrap="$kit/narrator-control-resume-v1/Install-KnowledgeNetworkNarratorControl.ps1"
+$bootstrap="$kit/narrator-control-update-tools-v2/Install-KnowledgeNetworkNarratorControl.ps1"
 if ([IO.DriveInfo]::new('D:\').DriveType -ne [IO.DriveType]::Fixed) {throw 'Fixed local staging drive required.'}
 $item=Get-Item -LiteralPath $bootstrap -Force -ErrorAction Stop
 $ancestor=$item
@@ -132,7 +132,7 @@ if($item.PSIsContainer -or $item.Length -gt 128KB){throw 'Regular bounded bootst
 $source=[IO.File]::ReadAllBytes($bootstrap)
 $hasher=[Security.Cryptography.SHA256]::Create()
 try {$hash=([BitConverter]::ToString($hasher.ComputeHash($source))).Replace('-','').ToLowerInvariant()}finally{$hasher.Dispose()}
-if($hash -cne 'ab682e594409f35f4650f1418a8541fe8d63b8e6e4b5981bfbe8c85ef702610c'){throw 'Pinned bootstrap differs.'}
+if($hash -cne '13b311fb20442f35b9a1c605293c9bc70601fe961a8c7dbcd8b11ea7a77d9272'){throw 'Pinned bootstrap differs.'}
 $tokens=$null;$errors=$null;$tree=[Management.Automation.Language.Parser]::ParseInput($encoding.GetString($source),[ref]$tokens,[ref]$errors)
 if($errors.Count){throw 'Pinned helper syntax differs.'}
 $helperText=''
@@ -143,7 +143,7 @@ foreach($name in @('Get-BytesHash','Initialize-FileIdentity','Read-RegularBytes'
  . ([ScriptBlock]::Create($matches[0].Extent.Text))
 }
 Initialize-FileIdentity
-$null=Read-RegularBytes $bootstrap 128KB 'ab682e594409f35f4650f1418a8541fe8d63b8e6e4b5981bfbe8c85ef702610c'
+$null=Read-RegularBytes $bootstrap 128KB '13b311fb20442f35b9a1c605293c9bc70601fe961a8c7dbcd8b11ea7a77d9272'
 if(Test-Path -LiteralPath $upgrade){throw 'Update evidence already exists; preserve and reconcile.'}
 foreach($path in @($root,$runtime,$package,$python,$launcher,"$root/narrator-broker.json","$root/config.json","$root/runtime-files.private.json",$sharedConfig)){Assert-TrustedExecutionPath $path}
 $oldConfigBytes=Read-RegularBytes "$root/narrator-broker.json" 64KB $oldConfigHash
