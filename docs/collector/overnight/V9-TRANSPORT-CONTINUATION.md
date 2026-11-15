@@ -10,6 +10,13 @@ receipt finalization is serialized and preserves evidence on uncertainty. Host
 recovery remains blocked by native D: namespace trust;9443 remains inactive.
 See [current continuation](V9-RETENTION-AND-RECOVERY-CONTINUATION.md).
 
+## Historical checkpoint review ? superseded smoke instructions
+
+The remaining sections retain earlier checkpoint evidence. Their proposed smoke
+and approval instructions are historical: the diagnostic was completed and the
+owner approved its exact audio. Do not rerun it. Current host recovery/transport
+gates are in HANDOFF and the continuation linked above.
+
 Reviewed source checkpoint `3353a24efa3473c0e375dfec96cdd4fd757e6158` on
 `feature/collector-v7-overnight`. Publication remains **PAUSED**. No inference,
 host process, installation, credential provisioning or route change was performed
