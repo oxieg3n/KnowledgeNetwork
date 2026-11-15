@@ -171,3 +171,12 @@ asserts the exact shared deadline1090. The production90-second limit is unchange
 The ten mocked capture tests pass; the three direct C-API tests pass separately
 (1.404s), and independent combined review/validation passed13tests in3.289s.
 Both failed runs remain recorded. Fresh hosted validation follows this source.
+
+Final hosted validation: [run43763988119](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43763988119)
+PASS for source959f8ce2d9459410fda41e5b229cc58eec4866b4. Windows452 tests/12skipped,
+Ubuntu452/87skipped, Windows build/dashboard and190worker checks plus tracking
+guards passed. This includes the strengthened POSIX controls, deterministic
+capture clock and three direct C-API fixtures; opt-in Limited-task composition
+was run separately on FORGE. Actual host inspection and integrated recovery
+remain BLOCKED. The inspector is prepared on FORGE only; staging approval is
+pending. No approval to stop, open the live database or change host ACLs is sought.

@@ -9,8 +9,12 @@ editor fixture, approved narration and recovered original branding are retained.
 See [the recovery preparation](V9-NARRATOR-RECOVERY-PREPARATION.md) and latest
 HANDOFF for the new full-chain inspector, internal FileID/namespace probe,
 isolated native composition/uncertainty tests and unchanged rollback gates.
-Full local regression PASS: 449 tests / 12 skipped; three additional opt-in
-Limited-task cases passed separately. Fresh hosted validation awaits push.
+Full local regression PASS:449 tests/12 skipped; three opt-in Limited-task cases
+passed separately. Direct public SQLite C-API connection identity has three
+additional native fixtures. Hosted run43763988119 PASS for source959f8ce:
+Windows452/12skipped, Ubuntu452/87skipped, build/dashboard190worker checks and
+tracking guards. The old stdlib helper remains unmodified; the direct C-API
+method still needs reviewed production integration before live recovery.
 All old V2 bytes and live host state are untouched. The read-only inspector is
 prepared on FORGE only, not host-staged/executed. Original intent and five
 backups were rechecked intact. No stop/migration/ACL operation is approved.

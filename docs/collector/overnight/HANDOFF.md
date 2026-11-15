@@ -48,8 +48,14 @@ validation: run43762949968 passed all new recovery tests, Ubuntu and Windows
 build/190, but FAILED an unrelated old capture-test float comparison
 (90.00000000000006 versus90). The mocked clock is now deterministic1000 with
 exact deadline1090; no production timeout changes. Ten capture tests PASS2.047s.
-Both failed hosted runs are retained as FAILED. Fresh hosted validation awaits
-this test-only correction and the direct C-API fixtures below.
+Both failed hosted runs are retained as FAILED.
+[Hosted run43763988119](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43763988119)
+PASS for exact source `959f8ce2d9459410fda41e5b229cc58eec4866b4`:
+Windows452 tests (440 passed/12 skipped,43.961s), Ubuntu452 tests
+(365 passed/87 skipped,4.387s), Windows build/dashboard and190worker checks;
+media/credential tracking guards passed. Three opt-in Limited-task cases were
+accepted separately on FORGE; hosted CI does not exercise their entitlement.
+No host inspection, live repair or media acceptance is implied.
 Native receipt: `narrator-recovery-native-validation-v1.private.json`.
 
 Remaining trust prerequisite is precise: actual host task/owner/image/creation
@@ -68,7 +74,7 @@ PASS1.404s: guard BEFORE an existing READWRITE database open; public file-contro
 same-name database+decoy does not match; exact connection's writer lock/contention
 and actual INSERT/ROLLBACK preserve the sentinel. No borrowed handle is closed
 by the probe. Independent C-API/capture combined suite PASS13 in3.289s. This
-requires a future reviewed production-helper integration; old V2/stdlb SQLite
+requires a future reviewed production-helper integration; old V2/stdlib SQLite
 source and composed fixture are unchanged, so their integration gap is not
 retroactively marked passed. No PSS causal-delta pseudo-attestation was added.
 Actual protected host SQLite DLL metadata:3.50.4,1584864bytes, selected37-file
