@@ -6,7 +6,8 @@ param(
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{64}$')][string]$PublicKeySha256,
     [Parameter(Mandatory=$true)][string]$DispatcherFile,
     [Parameter(Mandatory=$true)][string]$RuntimeArchiveFile,
-    [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{64}$')][string]$DispatcherSha256
+    [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{64}$')][string]$DispatcherSha256,
+    [switch]$ResumePreparedRuntime
 )
 $ErrorActionPreference = 'Stop'
 $root = 'C:/ProgramData/KnowledgeNetworkCollector/HostExec'
@@ -33,11 +34,14 @@ foreach ($address in @($HostAddress,$ForgeAddress)) {
 }
 if ($HostAddress -eq $ForgeAddress) { throw 'Host and FORGE addresses must differ.' }
 if (-not @(Get-NetIPAddress -AddressFamily IPv4 -IPAddress $HostAddress -ErrorAction Stop).Count) { throw 'Host tailnet address is not local.' }
-if (Test-Path -LiteralPath $root) { throw 'Project execution root already exists; preserve it and reconcile instead of reinstalling.' }
-if (Get-LocalUser -Name $account -ErrorAction SilentlyContinue) { throw 'Dedicated account already exists; do not repurpose it.' }
-if (Get-Service -Name $service -ErrorAction SilentlyContinue) { throw 'Dedicated service already exists; preserve its state.' }
-if (Get-NetFirewallRule -Name $firewall -ErrorAction SilentlyContinue) { throw 'Dedicated firewall rule already exists; do not overwrite it.' }
-if (Get-NetFirewallRule -Name $blockFirewall -ErrorAction SilentlyContinue) { throw 'Dedicated block rule already exists; do not overwrite it.' }
+$rootExists = Test-Path -LiteralPath $root
+if ($rootExists -and -not $ResumePreparedRuntime) { throw 'Project execution root already exists; preserve it and reconcile instead of reinstalling.' }
+if ($ResumePreparedRuntime -and -not $rootExists) { throw 'Prepared runtime resume requires the existing reconciled project root.' }
+if (@(Get-LocalUser -ErrorAction Stop | Where-Object Name -eq $account).Count) { throw 'Dedicated account already exists; do not repurpose it.' }
+if (@(Get-Service -ErrorAction Stop | Where-Object Name -eq $service).Count) { throw 'Dedicated service already exists; preserve its state.' }
+foreach ($store in @('PersistentStore','ActiveStore')) {
+    if (@(Get-NetFirewallRule -PolicyStore $store -ErrorAction Stop | Where-Object { $_.Name -in @($firewall,$blockFirewall) }).Count) { throw 'Dedicated firewall state already exists; do not overwrite it.' }
+}
 if (@(Get-NetTCPConnection -State Listen -ErrorAction Stop | Where-Object LocalPort -eq $port).Count) { throw 'Dedicated port is occupied.' }
 $profiles = @(Get-NetFirewallProfile -PolicyStore ActiveStore -ErrorAction Stop)
 if ($profiles.Count -ne 3) { throw 'Cannot establish effective Windows firewall profiles.' }
@@ -118,11 +122,16 @@ function Protect-Directory([string]$Path,[string]$ReadSid,[bool]$Writable) {
     if ($ReadSid) { $rights = if ($Writable) { 'Modify' } else { 'ReadAndExecute' }; $acl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new($ReadSid),$rights,'ContainerInherit,ObjectInherit','None','Allow')) }
     Set-Acl -LiteralPath $Path -AclObject $acl
 }
-function Expand-DispatcherRuntime([byte[]]$ArchiveBytes,[string]$Target) {
+function Expand-DispatcherRuntime([byte[]]$ArchiveBytes,[string]$Target,[switch]$VerifyExisting) {
     if ($ArchiveBytes.Length -le 0 -or $ArchiveBytes.Length -gt 32MB) { throw 'Runtime archive size invalid.' }
     $directory = Get-Item -LiteralPath $Target -Force -ErrorAction Stop
-    if (-not $directory.PSIsContainer -or ($directory.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0 -or @(Get-ChildItem -LiteralPath $Target -Force -ErrorAction Stop).Count) { throw 'Runtime extraction requires a new empty regular protected directory.' }
+    if (-not $directory.PSIsContainer -or ($directory.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) { throw 'Runtime requires a regular protected directory.' }
     $allowed = @('python.exe','pythonw.exe','python314.dll','python3.dll','vcruntime140.dll','vcruntime140_1.dll','LICENSE.txt','pyexpat.pyd','select.pyd','unicodedata.pyd','winsound.pyd','_asyncio.pyd','_bz2.pyd','_ctypes.pyd','_decimal.pyd','_elementtree.pyd','_hashlib.pyd','_lzma.pyd','_multiprocessing.pyd','_overlapped.pyd','_queue.pyd','_remote_debugging.pyd','_socket.pyd','_sqlite3.pyd','_ssl.pyd','_uuid.pyd','_wmi.pyd','_zoneinfo.pyd','_zstd.pyd','libcrypto-3.dll','libffi-8.dll','libssl-3.dll','libtommath.dll','sqlite3.dll','python314.zip','python314._pth','python.cat')
+    $existing = @(Get-ChildItem -LiteralPath $Target -Force -ErrorAction Stop)
+    if ($VerifyExisting) {
+        if ($existing.Count -ne $allowed.Count) { throw 'Prepared runtime member count differs.' }
+        foreach ($item in $existing) { if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0 -or $item.Name -cnotin $allowed) { throw 'Prepared runtime contains an unexpected or linked member.' } }
+    } elseif ($existing.Count) { throw 'Runtime extraction requires a new empty regular protected directory.' }
     Add-Type -AssemblyName System.IO.Compression
     $memory = [IO.MemoryStream]::new($ArchiveBytes,$false)
     $archive = [IO.Compression.ZipArchive]::new($memory,[IO.Compression.ZipArchiveMode]::Read,$false)
@@ -153,22 +162,40 @@ function Expand-DispatcherRuntime([byte[]]$ArchiveBytes,[string]$Target) {
             $hasher = [Security.Cryptography.SHA256]::Create()
             try { $hash = ([BitConverter]::ToString($hasher.ComputeHash($bytes))).Replace('-','').ToLowerInvariant() } finally { $hasher.Dispose() }
             $destination = Join-Path $Target $entry.FullName
-            $output = [IO.File]::Open($destination,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
-            try { $output.Write($bytes,0,$bytes.Length); $output.Flush($true) } finally { $output.Dispose() }
+            if (-not $VerifyExisting) {
+                $output = [IO.File]::Open($destination,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
+                try { $output.Write($bytes,0,$bytes.Length); $output.Flush($true) } finally { $output.Dispose() }
+            }
             if ((Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) { throw 'Extracted runtime member hash mismatch.' }
             $records += [ordered]@{name=$entry.FullName;sha256=$hash;bytes=$bytes.Length}
         }
     } finally { $archive.Dispose(); $memory.Dispose() }
     return $records
 }
-if ($parentWasMissing) { New-Item -ItemType Directory -Path $parent -ErrorAction Stop | Out-Null; Protect-Directory $parent '' $false }
-Assert-TrustedPath $parent
-New-Item -ItemType Directory -Path $root -ErrorAction Stop | Out-Null
-Protect-Directory $root '' $false
+function Assert-PreparedRuntimeReceipt([object]$Receipt,[string]$HostAddress,[string]$ForgeAddress,[string]$DispatcherSha256,[string]$SharedConfigSha256) {
+    $keys = @('schema_version','status','service','execution_sid','account','port','host_address','forge_address','dispatcher_sha256','runtime_version','runtime_archive_sha256','shared_config_sha256','created_at','gateway_service_restarted','publication_paused')
+    if ($null -eq $Receipt -or @($Receipt.PSObject.Properties).Count -ne $keys.Count -or @($Receipt.PSObject.Properties | Where-Object Name -cnotin $keys).Count) { throw 'Prepared receipt schema differs; no resume.' }
+    foreach ($name in @('status','service','account','host_address','forge_address','dispatcher_sha256','runtime_version','runtime_archive_sha256','shared_config_sha256','created_at')) { if ($Receipt.$name -isnot [string]) { throw 'Prepared receipt field type differs; no resume.' } }
+    if ($Receipt.schema_version -isnot [int] -or $Receipt.port -isnot [int] -or $Receipt.gateway_service_restarted -isnot [bool] -or $Receipt.publication_paused -isnot [bool]) { throw 'Prepared receipt field type differs; no resume.' }
+    if ($Receipt.schema_version -ne 1 -or $Receipt.status -cne 'BOOTSTRAP_IN_PROGRESS' -or $null -ne $Receipt.execution_sid -or $Receipt.account -cne 'kncollector_exec' -or $Receipt.service -cne 'KnowledgeNetworkHostExec' -or $Receipt.port -ne 22230 -or $Receipt.host_address -cne $HostAddress -or $Receipt.forge_address -cne $ForgeAddress -or $Receipt.dispatcher_sha256 -cne $DispatcherSha256 -or $Receipt.runtime_version -cne '3.14.10' -or $Receipt.runtime_archive_sha256 -cne '90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159' -or $Receipt.shared_config_sha256 -cne $SharedConfigSha256 -or $Receipt.gateway_service_restarted -ne $false -or $Receipt.publication_paused -ne $true) { throw 'Prepared receipt is not the exact reconciled pre-account state.' }
+    $date = [DateTimeOffset]::MinValue
+    if (-not [DateTimeOffset]::TryParse($Receipt.created_at,[ref]$date)) { throw 'Prepared receipt creation time is invalid.' }
+    $result = [ordered]@{}
+    foreach ($property in $Receipt.PSObject.Properties) { $result[$property.Name] = $property.Value }
+    return $result
+}
+if (-not $ResumePreparedRuntime) {
+    if ($parentWasMissing) { New-Item -ItemType Directory -Path $parent -ErrorAction Stop | Out-Null; Protect-Directory $parent '' $false }
+    Assert-TrustedPath $parent
+    New-Item -ItemType Directory -Path $root -ErrorAction Stop | Out-Null
+    Protect-Directory $root '' $false
+}
 Assert-TrustedPath $root
 $encoding = [Text.UTF8Encoding]::new($false)
-$receipt = [ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service=$service;execution_sid=$null;account=$account;port=$port;host_address=$HostAddress;forge_address=$ForgeAddress;dispatcher_sha256=$DispatcherSha256;runtime_version='3.14.10';runtime_archive_sha256=$runtimeSha256;shared_config_sha256=$sharedHash;created_at=[DateTime]::UtcNow.ToString('o');gateway_service_restarted=$false;publication_paused=$true}
-[IO.File]::WriteAllText((Join-Path $root 'bootstrap-receipt.private.json'),($receipt | ConvertTo-Json),$encoding)
+if (-not $ResumePreparedRuntime) {
+    $receipt = [ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service=$service;execution_sid=$null;account=$account;port=$port;host_address=$HostAddress;forge_address=$ForgeAddress;dispatcher_sha256=$DispatcherSha256;runtime_version='3.14.10';runtime_archive_sha256=$runtimeSha256;shared_config_sha256=$sharedHash;created_at=[DateTime]::UtcNow.ToString('o');gateway_service_restarted=$false;publication_paused=$true}
+    [IO.File]::WriteAllText((Join-Path $root 'bootstrap-receipt.private.json'),($receipt | ConvertTo-Json),$encoding)
+}
 $rollback = @'
 $ErrorActionPreference = 'Stop'
 $root = 'C:/ProgramData/KnowledgeNetworkCollector/HostExec'
@@ -202,15 +229,37 @@ if ($user) {
 if ((Get-FileHash -LiteralPath C:/ProgramData/ssh/sshd_config -Algorithm SHA256).Hash.ToLowerInvariant() -ne $receipt.shared_config_sha256) { throw 'Gateway configuration differs externally; it was not restored or modified.' }
 @{status='PROJECT_ENDPOINT_REMOVED_IDENTITY_DISABLED_EVIDENCE_RETAINED';publication_paused=$true} | ConvertTo-Json
 '@
-[IO.File]::WriteAllText((Join-Path $root 'rollback-bootstrap.ps1'),$rollback,$encoding)
-Copy-Item -LiteralPath $sharedConfig -Destination (Join-Path $root 'shared-sshd-config.before.private') -ErrorAction Stop
-New-Item -ItemType Directory -Path (Join-Path $root 'runtime') -ErrorAction Stop | Out-Null
 $pythonDirectory = Join-Path $root 'runtime/python'
-New-Item -ItemType Directory -Path $pythonDirectory -ErrorAction Stop | Out-Null
-Protect-Directory $pythonDirectory '' $false
+if ($ResumePreparedRuntime) {
+    $expectedRoot = @('bootstrap-receipt.private.json','rollback-bootstrap.ps1','runtime','runtime-files.private.json','shared-sshd-config.before.private')
+    $rootItems = @(Get-ChildItem -LiteralPath $root -Force -ErrorAction Stop)
+    if ($rootItems.Count -ne $expectedRoot.Count) { throw 'Prepared root contains unexpected state; no resume.' }
+    foreach ($item in $rootItems) { if ($item.Name -cnotin $expectedRoot -or $item.PSIsContainer -ne ($item.Name -ceq 'runtime')) { throw 'Prepared root shape differs; no resume.' } }
+    foreach ($item in Get-ChildItem -LiteralPath $root -Recurse -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
+    $runtimeChildren = @(Get-ChildItem -LiteralPath (Join-Path $root 'runtime') -Force -ErrorAction Stop)
+    if ($runtimeChildren.Count -ne 1 -or $runtimeChildren[0].Name -cne 'python' -or -not $runtimeChildren[0].PSIsContainer) { throw 'Prepared runtime directory shape differs; no resume.' }
+    $receiptPath = Join-Path $root 'bootstrap-receipt.private.json'
+    if ((Get-Item -LiteralPath $receiptPath).Length -gt 16KB) { throw 'Prepared receipt exceeds bounds.' }
+    $loaded = Get-Content -LiteralPath $receiptPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $receipt = Assert-PreparedRuntimeReceipt $loaded $HostAddress $ForgeAddress $DispatcherSha256 $sharedHash
+    $rollbackPath = Join-Path $root 'rollback-bootstrap.ps1'
+    if ((Get-FileHash -LiteralPath $rollbackPath -Algorithm SHA256).Hash.ToLowerInvariant() -cne '3ea650c9f46f9e77d4cf3dca88393e91c22098936170080e3b1173acc59869ed' -or [IO.File]::ReadAllText($rollbackPath).Replace("`r`n","`n") -cne $rollback.Replace("`r`n","`n")) { throw 'Prepared rollback evidence differs; no resume.' }
+    if ((Get-FileHash -LiteralPath (Join-Path $root 'shared-sshd-config.before.private') -Algorithm SHA256).Hash.ToLowerInvariant() -cne $sharedHash) { throw 'Prepared shared SSH backup differs; no resume.' }
+} else {
+    [IO.File]::WriteAllText((Join-Path $root 'rollback-bootstrap.ps1'),$rollback,$encoding)
+    Copy-Item -LiteralPath $sharedConfig -Destination (Join-Path $root 'shared-sshd-config.before.private') -ErrorAction Stop
+    New-Item -ItemType Directory -Path (Join-Path $root 'runtime') -ErrorAction Stop | Out-Null
+    New-Item -ItemType Directory -Path $pythonDirectory -ErrorAction Stop | Out-Null
+    Protect-Directory $pythonDirectory '' $false
+}
 Assert-TrustedPath $pythonDirectory
-$runtimeRecords = @(Expand-DispatcherRuntime $archiveBytes $pythonDirectory)
-[IO.File]::WriteAllText((Join-Path $root 'runtime-files.private.json'),($runtimeRecords | ConvertTo-Json),$encoding)
+$runtimeRecords = @(Expand-DispatcherRuntime $archiveBytes $pythonDirectory -VerifyExisting:$ResumePreparedRuntime)
+if ($ResumePreparedRuntime) {
+    $recordsPath = Join-Path $root 'runtime-files.private.json'
+    if ((Get-Item -LiteralPath $recordsPath).Length -gt 64KB) { throw 'Prepared runtime manifest exceeds bounds.' }
+    $recorded = @(Get-Content -LiteralPath $recordsPath -Raw -Encoding UTF8 | ConvertFrom-Json)
+    if (($recorded | ConvertTo-Json -Compress) -cne ($runtimeRecords | ConvertTo-Json -Compress)) { throw 'Prepared runtime manifest differs from actual package bytes.' }
+} else { [IO.File]::WriteAllText((Join-Path $root 'runtime-files.private.json'),($runtimeRecords | ConvertTo-Json),$encoding) }
 foreach ($file in @($python,(Join-Path $pythonDirectory 'python314.dll'))) {
     $signature = Get-AuthenticodeSignature -LiteralPath $file -ErrorAction Stop
     if ($signature.Status -ne 'Valid' -or -not $signature.SignerCertificate -or $signature.SignerCertificate.Subject -notmatch '(^|,\s*)O=Python Software Foundation(,|$)') { throw 'Protected dispatcher Python publisher signature is invalid; no interpreter was executed.' }
@@ -224,7 +273,7 @@ $passwordBytes = New-Object byte[] 48
 $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
 try { $rng.GetBytes($passwordBytes) } finally { $rng.Dispose() }
 $password = ConvertTo-SecureString ([Convert]::ToBase64String($passwordBytes)) -AsPlainText -Force
-try { $user = New-LocalUser -Name $account -Password $password -AccountNeverExpires -PasswordNeverExpires -UserMayNotChangePassword -Description 'The Knowledge Network Collector fixed-operation SSH identity' } finally { [Array]::Clear($passwordBytes,0,$passwordBytes.Length); $password.Dispose() }
+try { $user = New-LocalUser -Name $account -Password $password -AccountNeverExpires -PasswordNeverExpires -UserMayNotChangePassword -Description 'The Knowledge Network Collector SSH' } finally { [Array]::Clear($passwordBytes,0,$passwordBytes.Length); $password.Dispose() }
 $sid = $user.SID.Value
 $receipt.execution_sid = $sid
 [IO.File]::WriteAllText((Join-Path $root 'bootstrap-receipt.private.json'),($receipt | ConvertTo-Json),$encoding)

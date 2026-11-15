@@ -145,6 +145,22 @@ stops only the new service. On any failed/uncertain bootstrap, preserve receipt
 and files and reconcile before another attempt; do not select another identity
 or port to bypass the outcome.
 
+One observed partial preparation is explicitly resumable with
+`-ResumePreparedRuntime`: the protected runtime was completely extracted and
+verified, then Windows rejected the original account-description length before
+creating any account. The corrected full-product description fits the native
+48-character limit. Resume is accepted only for that pre-account state: exact
+five root entries, one `runtime/python` child, 37 original runtime files, exact
+in-progress receipt with null execution SID, matching host/source/dispatcher/
+archive/shared-config pins, unchanged rollback/backup/runtime manifests, trusted
+owners/ACLs, and actual absence of the account, service, project firewall rules
+and listener. Query errors fail rather than counting as absence. Existing bytes
+are rehashed against the same official ZIP using verification-only mode; no
+runtime, receipt or rollback artifact is overwritten during verification. The
+publisher/import-isolation checks run again before continuing at new-account
+creation. Any later-stage artifact, changed field/byte, existing identity or
+uncertain outcome stops this narrow resume; it is not a general repair mode.
+
 ## Acceptance and rollback
 
 Record separately: bootstrap native ACL/config PASS; account nonadmin identity;

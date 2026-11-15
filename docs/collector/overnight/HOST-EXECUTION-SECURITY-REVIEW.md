@@ -246,3 +246,36 @@ write permission remains unchanged. A later privileged handler must not execute
 that original mutable environment as privileged code. The original narrator's
 local-code trust boundary and the pending narrator9443 policy restriction remain
 separate from this protected dispatcher-runtime remedy.
+
+## Narrow prepared-runtime continuation review
+
+The next owner-run bootstrap prepared its protected runtime, then Windows
+rejected the account description because it exceeded the actual48-character
+parameter limit. No account SID was recorded. This is a bounded interrupted
+pre-account stage, not a completed execution endpoint or permission to delete
+and reinstall its evidence.
+
+Reviewed continuation source SHA-256
+`e93be3b374735c1c039d094c1f640ee20926cc5c63142e6fe14c66d39391599f`.
+The product-preserving description is now34 characters. Explicit
+`-ResumePreparedRuntime` accepts only the exact15-field pre-account receipt,
+null SID, approved addresses/source digests/version/status and unchanged shared
+SSH backup. Current account/service and both persistent/effective firewall
+inventories are queried with terminating errors; provider failures cannot count
+as absence. Any actual dedicated resource already present stops continuation.
+
+The root must contain exactly its five expected pre-account entries; runtime
+must contain only its Python directory and37 approved members. Native ownership,
+ACLs and reparse checks run again. `VerifyExisting` independently hashes existing
+bytes against the captured official archive, compares retained runtime metadata,
+and preserves changed files rather than repairing them. The pinned rollback,
+shared backup, runtime and original metadata are not overwritten during resume.
+Signatures, import isolation and version gates still precede account creation.
+This switch is not a general installer-repair or progressed-state retry mode.
+
+No remaining concrete must-fix was found in this bounded continuation review.
+Coordinator reports six passing native helper checks, including the real Windows
+description limit, invalid receipt fields and corrupted-runtime rejection without
+repair; prior dispatcher checks remain unchanged. Actual host continuation and
+remote connection/identity/denial tests remain NOT TESTED. This reviewer made no
+source or host changes and did not run the continuation.

@@ -22,7 +22,7 @@ $current = [Security.Principal.WindowsIdentity]::GetCurrent()
 $tokens=$null; $errors=$null
 $tree=[Management.Automation.Language.Parser]::ParseFile($env:KN_TEST_SOURCE,[ref]$tokens,[ref]$errors)
 if ($errors.Count) { throw 'Bootstrap syntax error' }
-foreach ($name in @('Assert-TrustedPath','Protect-Directory','Ipv4-Text','Expand-DispatcherRuntime')) {
+foreach ($name in @('Assert-TrustedPath','Protect-Directory','Ipv4-Text','Expand-DispatcherRuntime','Assert-PreparedRuntimeReceipt')) {
     $fn=@($tree.FindAll({param($a) $a -is [Management.Automation.Language.FunctionDefinitionAst]},$false) | Where-Object Name -eq $name)
     if ($fn.Count -ne 1) { throw 'Expected one reviewed helper' }
     . ([scriptblock]::Create($fn[0].Extent.Text))
@@ -66,6 +66,39 @@ try { Assert-TrustedPath $loader } catch { $denied=$true }
 if (-not $denied) { throw 'Loader directory create-file rights were accepted' }
 """)
 
+    def test_account_description_matches_native_parameter_limit(self):
+        self.run_helpers(r"""
+$calls=@($tree.FindAll({param($a) $a -is [Management.Automation.Language.CommandAst] -and $a.GetCommandName() -eq 'New-LocalUser'},$true))
+if ($calls.Count -ne 1) { throw 'Expected one fixed account creation site' }
+$elements=$calls[0].CommandElements
+$description=$null
+for ($i=0; $i -lt $elements.Count-1; $i++) {
+    if ($elements[$i] -is [Management.Automation.Language.CommandParameterAst] -and $elements[$i].ParameterName -eq 'Description') { $description=$elements[$i+1].SafeGetValue() }
+}
+$limits=@((Get-Command New-LocalUser -ErrorAction Stop).Parameters['Description'].Attributes | Where-Object { $_ -is [Management.Automation.ValidateLengthAttribute] })
+if ($limits.Count -ne 1 -or -not $description -or $description.Length -gt $limits[0].MaxLength -or $description.Length -lt $limits[0].MinLength) { throw 'Account description exceeds native cmdlet limit' }
+""")
+
+    def test_resume_accepts_only_exact_pre_account_receipt(self):
+        self.run_helpers(r"""
+$valid=[ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service='KnowledgeNetworkHostExec';execution_sid=$null;account='kncollector_exec';port=22230;host_address='100.100.100.20';forge_address='100.100.100.10';dispatcher_sha256=('a'*64);runtime_version='3.14.10';runtime_archive_sha256='90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159';shared_config_sha256=('b'*64);created_at='2026-11-15T00:00:00Z';gateway_service_restarted=$false;publication_paused=$true}
+function Check-Receipt($value) { Assert-PreparedRuntimeReceipt $value '100.100.100.20' '100.100.100.10' ('a'*64) ('b'*64) }
+$accepted=Check-Receipt ($valid | ConvertTo-Json | ConvertFrom-Json)
+$accepted.block_sources=@('one','two')
+if ($accepted.block_sources.Count -ne 2) { throw 'Resumed receipt cannot retain new fields' }
+foreach ($field in @('status','execution_sid','account','port','host_address','forge_address','dispatcher_sha256','runtime_version','runtime_archive_sha256','shared_config_sha256','created_at','gateway_service_restarted','publication_paused','schema_version','extra')) {
+    $bad=$valid | ConvertTo-Json | ConvertFrom-Json
+    if ($field -eq 'extra') { $bad | Add-Member -NotePropertyName extra -NotePropertyValue 'untrusted' }
+    elseif ($field -eq 'gateway_service_restarted') { $bad.$field=$true }
+    elseif ($field -eq 'publication_paused') { $bad.$field=$false }
+    elseif ($field -eq 'schema_version') { $bad.$field=$true }
+    else { $bad.$field='wrong' }
+    $denied=$false
+    try { Check-Receipt $bad | Out-Null } catch { $denied=$true }
+    if (-not $denied) { throw ('Invalid prepared field accepted: '+$field) }
+}
+""")
+
     def test_runtime_archive_validation_and_no_overwrite(self):
         import io
         source = Path(__file__).resolve().parents[1] / 'docs/collector/host-tools/Install-KnowledgeNetworkHostExec.ps1'
@@ -96,9 +129,14 @@ foreach ($kind in @('valid','traversal','duplicate','case','directory','symlink'
     if ($kind -eq 'valid') {
         if ($denied -or $records.Count -ne 37) { throw 'Expected valid bounded extraction' }
         foreach ($record in $records) { if ($record.sha256 -ne '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881') { throw 'Extracted hash differs' } }
+        if (@(Expand-DispatcherRuntime $bytes $target -VerifyExisting).Count -ne 37) { throw 'Existing prepared runtime did not verify' }
         $denied=$false
         try { Expand-DispatcherRuntime $bytes $target | Out-Null } catch { $denied=$true }
         if (-not $denied) { throw 'Existing runtime was overwritten' }
+        [IO.File]::WriteAllText((Join-Path $target 'python.exe'),'changed')
+        $denied=$false
+        try { Expand-DispatcherRuntime $bytes $target -VerifyExisting | Out-Null } catch { $denied=$true }
+        if (-not $denied -or [IO.File]::ReadAllText((Join-Path $target 'python.exe')) -ne 'changed') { throw 'Changed prepared runtime was accepted or repaired' }
     } elseif (-not $denied -or @(Get-ChildItem -LiteralPath $target -Force).Count) { throw 'Unsafe archive was not rejected before extraction' }
 }
 """, fixtures)

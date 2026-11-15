@@ -1,5 +1,52 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Account-description interruption — checked continuation prepared
+
+Owner's v2 bootstrap reached local account creation, then Windows rejected the
+description for exceeding48characters. This was a bootstrap defect, reproduced
+by a new regression test against the installed cmdlet's actual ValidateLength
+metadata. Description is now the full product name plus SSH,34characters.
+
+Actual protected host state read privately: BOOTSTRAP_IN_PROGRESS receipt with
+execution_sid=null, prepared37-file Python3.14.10 runtime, runtime manifest,
+original rollback and shared-config backup; no audit directory or sshd_config.
+Root independently hashed all37 host runtime files against the pinned official
+ZIP; all match. Four partial-state evidence files were hash-verified into
+`C:/admin/collector-v9/host-exec-client-v1/pre-resume-description-failure` and
+remain unchanged on the host. Shared Gateway configuration is unchanged.
+Parameter validation failed before account creation; native account/service/
+firewall absence must still be positively checked on continuation.
+
+Added only a narrow `-ResumePreparedRuntime` path for this exact pre-account
+state. It fails closed on inventory errors or any account/service/firewall/
+listener already present, progressed/extra/mismatched receipt fields or files,
+unsafe ACLs, changed runtime, rollback or shared configuration. Existing runtime
+is reverified read-only against captured official ZIP bytes; no repair, extraction
+overwrites, receipt recreation, state clearing or second identity. Existing
+publisher/import-path/native trust gates run again before continuing. Ordinary
+fresh mode still refuses preexisting roots. No bootstrap was retried by root.
+
+New installer SHA-256:
+`e93be3b374735c1c039d094c1f640ee20926cc5c63142e6fe14c66d39391599f`.
+New source and private resume arguments staged in host `host-exec-resume-v1`,
+referencing preserved v2 archive/key/dispatcher. Owner next action is pasting
+the complete eight-line `output/Host-Exec-Resume-Prepared-Runtime.txt` into the
+same elevated host PowerShell session. Launcher SHA-256:
+`767cfcad7fa86789be6c4f301c8ca6948e0cadb6683fdf24c28b8fadd210031b`.
+It verifies captured installer/argument bytes, then enables only that checked
+continuation. Do not rerun the v1/v2 fresh installers or delete prepared files.
+
+PASS:6 focused native bootstrap tests, including real description metadata,
+15 invalid receipt fields rejected, ordered receipt continuation, valid existing
+runtime verification and corrupted bytes rejected without repair; independent
+source security review and launcher/parser checks. Full regression PASS:326tests
+in58.971s with5 existing skips; private log under
+`C:/admin/collector-v9/host-exec-python-3.14.10/resume-regression.log`.
+Actual native resume/remote SSH acceptance remains
+NOT TESTED. No current service, firewall, ACL or narrator change by root; no
+inference or media render. Ponytail FULL applied, PR20 remains draft/unmerged,
+publication PAUSED, all prior bundles/backups preserved.
+
 ## Genuine writable narrator Python identified — protected dispatcher runtime ready
 
 Owner returned `BLOCKED_TRUST_PATH_IDENTIFIED` at
