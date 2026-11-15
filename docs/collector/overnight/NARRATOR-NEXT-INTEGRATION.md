@@ -1,5 +1,12 @@
 # Next narrator integration: owner-run gates
 
+**One authorized diagnostic now completed by the owner. Do not rerun this smoke.**
+Run `private-smoke-9c04d8494b2945c8ac8d2c4ee6e3727d` passed exit/PCM/CUDA checks;
+the import trace supports inactive FunASR/kaldiio/ModelScope/ZipEnhancer paths.
+See [the latest handoff](HANDOFF.md) for exact evidence and limitations. Listening,
+commercial acceptance and all listener/credential/route approvals remain pending.
+The procedure below is preserved as the historical executed procedure.
+
 Prepared from checkpoint `6a76f44`. Inventory revision
 `7936080b41163874f38610f46f438e2c0757f9fd` already PASSED; do not rerun the
 inspector or rebuild/reinstall the Collector. Publication remains PAUSED.

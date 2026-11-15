@@ -1,5 +1,82 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Owner-run diagnostic received — PASS, host smoke only
+
+November 15: owner supplied host run directory
+`D:/Projects/knowledgenetwork/collector-narrator-v9-004/private-smoke-9c04d8494b2945c8ac8d2c4ee6e3727d`.
+This supersedes the execution blocker immediately below. The single authorized
+diagnostic has been performed by the owner; do not rerun it. FORGE inspected
+only this exact directory over the existing redirected drive. No host command,
+listener, credential, network/installer change or additional inference was run.
+
+**PASS:** saved child exit code 0; no Python traceback marker in private stderr.
+New `narration.wav`: 291,884 bytes, 3.04 seconds, 48,000 Hz, mono PCM16,
+145,920 decoded frames. SHA-256:
+`1083cd235598378fe4c7fc0556dcba1f9d3a9334b48620d522c2e826134dc6b7`.
+FORGE independently decoded every PCM frame, recomputed the digest and matched
+the host smoke receipt. This is file inspection/copy, not narrator API transfer.
+
+**PASS device evidence:** canonical stderr reports
+`Running on device: cuda, dtype: bfloat16`; successful exit and decoded output
+support completed CUDA-selected inference. This is not GPU kernel profiling,
+proof of a particular GPU ordinal/model, listening or performance acceptance.
+
+**PASS bindings:** canonical script/reference/CLI/declaration hashes still match
+their recorded pins. Current selected revision ref and all 39 small inventoried
+package files were independently rehashed through redirected storage and match
+the saved inventory at revision
+`7936080b41163874f38610f46f438e2c0757f9fd`. No 4.96 GB model re-inventory.
+The unchanged script retains CFG 2.0, ten steps, no denoiser/optimization,
+local-files-only, compile disabled and original reference conditioning.
+
+**Observed runtime scope:** parsed 2,485 named Python import records. None are
+`kaldiio`, `funasr`, `modelscope`, `voxcpm.zipenhancer` or their submodules.
+The log says `zipenhancer_model_path: None, enable_denoiser: False`; its one
+ZipEnhancer-name occurrence is a settings report, not an import. Together with
+the inspected lazy source branch, this supports those denoising components not
+participating in this successful canonical no-denoiser run. Absence from one
+trace is not a full transitive license audit or permission to enable denoising.
+
+**Private evidence preserved:** five source files were copied into an ACL-protected
+FORGE directory and each copy hash verified:
+`C:/admin/collector-v9/smoke-review-9c04d8494b2945c8ac8d2c4ee6e3727d`.
+Host originals remain unchanged. Private stderr SHA-256:
+`c8e3348f161691bf5cf9a1900750d0af056c2c642ab3a9794f19b103c8249208`;
+host smoke receipt SHA-256:
+`3c8b88157ff217afa920f501e382d928edd48bb3c8b7df8631f4dc62e3ce3283`.
+Raw logs/audio/rights documents remain outside Git. No credential value is
+included in this report. The bounded log credential-pattern check found none;
+this does not replace the previously requested token rotation.
+
+**Remaining commercial questions:** reconcile the observed active modules with
+the prior component/notices inventory for actual local operation, including
+bundled NVIDIA and LGPL components; separately review any runtime redistribution.
+The installed kaldiio restriction is unchanged, but this trace/source evidence
+supports excluding its inactive denoising path from this exact diagnostic's
+runtime scope. No package deletion, broad rights certification or approved
+manifest flag promotion follows automatically. Original voice-design history
+corroborates synthetic provenance but remains distinct from authenticated
+generation receipts. Commercial approval remains **BLOCKED pending final review**.
+
+**Owner listening remains NOT TESTED:** play this exact WAV locally at a
+comfortable level and compare identity with the approved reference/known output.
+Note pronunciation, naturalness, noise, clipping and truncated onset/ending;
+record the above digest with the private result. Automated PCM checks do not
+establish speech intelligibility, voice identity or quality.
+
+**Minimum next steps:** review listening and active-component obligations;
+complete a truthful reviewed manifest; separately approve the loopback host
+listener/scoped bearer, then a dedicated private HTTPS route after read-only
+Serve/port/policy inspection. Authenticate locally before one FORGE request;
+match host/local hashes and provenance. Remote API/transfer remains **NOT TESTED**.
+Exact branding and final editable branded Short remain blocked as documented.
+
+Ponytail FULL/review applied to receipt/source boundaries and unsupported claims.
+PASS: private copy/hash checks, sample decode, receipt equality, ref/package pins
+and bounded import-log parsing. No runtime source changed, so no repeated full
+regression, GPU job or media render. PR #20 stays draft/unmerged; publication
+remains **PAUSED**, with no public audio/video upload.
+
 ## One-time diagnostic authorization — BLOCKED at host execution
 
 November 15: continued from clean checkpoint

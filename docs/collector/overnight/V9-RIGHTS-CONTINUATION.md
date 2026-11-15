@@ -1,5 +1,14 @@
 # V9 narrator rights continuation
 
+Subsequent owner-run diagnostic: **PASS host smoke only**. See the newest
+[handoff entry](HANDOFF.md) for exact run/WAV/log hashes. Exit 0, valid 3.04-second
+PCM and CUDA/bfloat16 selection were observed. The parsed trace has no kaldiio,
+FunASR, ModelScope or VoxCPM ZipEnhancer imports and confirms denoising disabled.
+Together with the source branch this supports those components being inactive
+in this exact run, superseding the missing-runtime-evidence blocker below.
+Active-component/redistribution review and listening remain separate; no blanket
+commercial clearance, manifest promotion or remote API success is asserted.
+
 November 15, 2026. Read-only BLACKHAT-BASE file inspection from FORGE through
 the previously used redirected drive; no host execution, inference, environment
 change, service, route or model inventory rerun. Publication remains **PAUSED**.
