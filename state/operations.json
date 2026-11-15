@@ -176,6 +176,14 @@
       "url": "https://www.youtube.com/watch?v=AFclxMTQ2hI",
       "video_id": "AFclxMTQ2hI"
     },
+    "video:AMzAVKKZCWA": {
+      "created_at": "2026-11-15T06:26:05.370303+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Leaf Blower Co. is OUT NOW on XBOX Series X|S!",
+      "url": "https://www.youtube.com/watch?v=AMzAVKKZCWA",
+      "video_id": "AMzAVKKZCWA"
+    },
     "video:ANljgCRnrKA": {
       "created_at": "2026-11-13T11:21:38.368053+00:00",
       "kind": "new_video",
@@ -439,6 +447,14 @@
       "title": "Bus Simulator 27 - BYD Bus Pack Trailer | PS5 Games",
       "url": "https://www.youtube.com/watch?v=O5CPlL-1rYg",
       "video_id": "O5CPlL-1rYg"
+    },
+    "video:OVlnNeKotNE": {
+      "created_at": "2026-11-15T06:26:05.370294+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Thanks to all who joined us at XBOX FanFest!",
+      "url": "https://www.youtube.com/watch?v=OVlnNeKotNE",
+      "video_id": "OVlnNeKotNE"
     },
     "video:OZ5KXB6kHUg": {
       "created_at": "2026-11-12T21:57:13.626758+00:00",
@@ -1184,6 +1200,14 @@
       "url": "https://www.youtube.com/watch?v=wvs2M144Y5g",
       "video_id": "wvs2M144Y5g"
     },
+    "video:xDfP2DVtNI8": {
+      "created_at": "2026-11-15T06:26:04.858484+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "UEFA Champions League Challenge | PlayStation Tournaments",
+      "url": "https://www.youtube.com/watch?v=xDfP2DVtNI8",
+      "video_id": "xDfP2DVtNI8"
+    },
     "video:xQVTlPZILa0": {
       "created_at": "2026-11-12T23:07:36.462910+00:00",
       "kind": "new_video",
@@ -1278,8 +1302,8 @@
         "https://www.youtube.com/@PlayStation",
         "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
       ],
-      "last_attempt_at": "2026-11-14T00:19:46.137381+00:00",
-      "last_monitored_at": "2026-11-14T00:19:46.137253+00:00",
+      "last_attempt_at": "2026-11-15T06:26:04.939502+00:00",
+      "last_monitored_at": "2026-11-15T06:26:04.939396+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "PlayStation",
@@ -1533,8 +1557,8 @@
         "https://www.youtube.com/@Xbox",
         "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
       ],
-      "last_attempt_at": "2026-11-14T00:19:46.879295+00:00",
-      "last_monitored_at": "2026-11-14T00:19:46.879163+00:00",
+      "last_attempt_at": "2026-11-15T06:26:05.370529+00:00",
+      "last_monitored_at": "2026-11-15T06:26:05.370415+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Xbox",
@@ -4403,6 +4427,26 @@
         "url": "https://www.youtube.com/watch?v=AFclxMTQ2hI",
         "video_id": "AFclxMTQ2hI"
       },
+      "AMzAVKKZCWA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-15T06:26:05.370300+00:00",
+        "id": "AMzAVKKZCWA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-14T19:26:32Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Leaf Blower Co. is OUT NOW on XBOX Series X|S!",
+        "url": "https://www.youtube.com/watch?v=AMzAVKKZCWA",
+        "video_id": "AMzAVKKZCWA"
+      },
       "ANljgCRnrKA": {
         "api_verification": "verified",
         "attempts": 0,
@@ -5084,6 +5128,26 @@
         "title": "Bus Simulator 27 - BYD Bus Pack Trailer | PS5 Games",
         "url": "https://www.youtube.com/watch?v=O5CPlL-1rYg",
         "video_id": "O5CPlL-1rYg"
+      },
+      "OVlnNeKotNE": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-15T06:26:05.370276+00:00",
+        "id": "OVlnNeKotNE",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-14T21:00:25Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Thanks to all who joined us at XBOX FanFest!",
+        "url": "https://www.youtube.com/watch?v=OVlnNeKotNE",
+        "video_id": "OVlnNeKotNE"
       },
       "OZ5KXB6kHUg": {
         "api_verification": "verified",
@@ -7027,6 +7091,26 @@
         "url": "https://www.youtube.com/watch?v=wvs2M144Y5g",
         "video_id": "wvs2M144Y5g"
       },
+      "xDfP2DVtNI8": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-15T06:26:04.858466+00:00",
+        "id": "xDfP2DVtNI8",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-14T18:00:22Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "UEFA Champions League Challenge | PlayStation Tournaments",
+        "url": "https://www.youtube.com/watch?v=xDfP2DVtNI8",
+        "video_id": "xDfP2DVtNI8"
+      },
       "xQVTlPZILa0": {
         "api_verification": "verified",
         "attempts": 0,
@@ -7102,7 +7186,7 @@
       "upload": 0
     },
     "2026-11-14": {
-      "general": 18,
+      "general": 26,
       "search": 0,
       "upload": 0
     }
@@ -7558,7 +7642,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 369,
+  "revision": 380,
   "rights_ledger": {},
   "runs": [
     {
@@ -8493,6 +8577,21 @@
         "new_leads": 0
       },
       "run_id": "43655498757-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-15T06:26:04.303699+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 3
+      },
+      "run_id": "43685401760-1",
       "status": "BLOCKED"
     }
   ],
