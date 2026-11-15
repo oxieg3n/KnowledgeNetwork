@@ -1,5 +1,27 @@
 # KnowledgeNetwork host execution: independent security review
 
+## Latest: owner task started; new control pipe repair pending
+
+The checked continuation installed dispatcher 86b94a...; FORGE health passed with
+twelve fixed commands, the accepted nonadmin bridge SID and unchanged host pin.
+The owner reports the limited task Running. Actual pipe reconciliation was
+BLOCKED before transmission. A genuine restricted-token test identified the
+missing FILE_READ_ATTRIBUTES grant: 0x120103 fails with Win32 error 5; 0x120183
+succeeds and still denies actual additional pipe-instance creation.
+
+Source fixes cover that grant, early-disconnect handling, unread-reply retention,
+and exclusive Windows HTTP binding. Two fixed task status/start commands use
+native definition/DACL checks and a nonconnecting pipe probe. New private startup
+evidence is redacted and bounded. These fixes are not yet deployed; see the
+[current repair and evidence](V9-NARRATOR-CONTROL-REPAIR.md).
+
+The repair's privileged bootstrap is limited to a never-used controller: native
+identity/task association, a held process handle, and a zero-row SQLite writer
+lock are required through one stop and confirmed exit. No direct kill or stop
+retry is provided. File replacement/rollback require a disabled task with zero
+instances. Existing unmanaged narration, Gateway, routes and worker data remain
+outside that transaction. Earlier sections below retain their historical scopes.
+
 ## Current continuation: controller source reviewed; approved policy applied
 
 Eight fixed narrator-control operations are implemented and source-tested with

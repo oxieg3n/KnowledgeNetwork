@@ -7,13 +7,17 @@ Publication remains PAUSED; PR20 remains draft/unmerged.
 
 ## Fixed operations
 
-These source operations are implemented and tested, **not deployed or accepted
-on BLACKHAT-BASE**. The live endpoint still has its accepted four-command scope.
-After the separately checked protected update, use the existing SSH alias with
-one exact argumentless operation:
+The checked continuation installed the twelve-command dispatcher and requested
+the limited-owner task; its Running state is owner-reported. Actual FORGE pipe
+acceptance is BLOCKED by the new control pipe's missing read-attributes grant.
+The tested correction and two fixed task-management commands await the checked
+repair. See [the current acceptance and repair](overnight/V9-NARRATOR-CONTROL-REPAIR.md).
+Use the existing SSH alias with one exact argumentless operation:
 
 | Operation | Scope |
 | --- | --- |
+| `narrator-control-status` | After repair: verify the fixed native task and report state/result plus nonconnecting pipe availability; never claim authenticated readiness. |
+| `narrator-control-start` | After repair: request the verified Ready task once; refuse other states and retain uncertain outcomes without retry. |
 | `narrator-health` | Actual authenticated loopback health of this broker's owned server; fixed identity/provenance required. |
 | `narrator-validate` | Pinned private manifest plus actual artifact and model/ref validation. |
 | `narrator-start` | Validate and start the existing loopback server inside the limited owner broker; refuse an occupied/unowned listener or unresolved jobs. |
@@ -42,17 +46,22 @@ reports bounded retained UUIDs for inspection. It supplies no unsafe hold reset.
 One limited InteractiveToken scheduled task runs the fixed protected CPython
 launcher as the owner. The owner must be logged on; sign-out/reboot recovery is
 not accepted. The task has no automatic execution deadline or restart trigger
-that would kill active speech. The dedicated bridge cannot edit its task or code.
+that would kill active speech. After repair, the dedicated bridge has only
+read-execute access to this task and folder; it cannot edit the task or code.
 No writable narrator Python/CLI is invoked as SYSTEM or elevated administrator.
 The protected runtime hosts standard-library control/API code; the original
 script still launches the unchanged original inference environment.
 
 The fixed local named pipe rejects remote clients and duplicate first instances.
 Its DACL permits only owner/admin/SYSTEM and the exact bridge SID. Bridge access
-omits FILE_CREATE_PIPE_INSTANCE. Only bounded JSON messages cross it; no pickle
+omits FILE_CREATE_PIPE_INSTANCE. The corrected access mask is 0x120183, including
+FILE_READ_ATTRIBUTES required by Windows; the old 0x120103 fails for an actual
+restricted bridge token. Only bounded JSON messages cross it; no pickle
 or general file-transfer protocol is present. The client checks pipe owner,
 server PID, exact protected interpreter path/hash, owner token and elevation,
 with repeated PID verification before transmitting. Query failures fail closed.
+An early disconnected client does not terminate the corrected server. The server
+waits boundedly for client closure after sending, preserving unread replies.
 Only query-limited access to this broker process and query access to its primary
 token are added for the exact bridge SID; no duplicate/impersonate/write rights.
 The server reads one bounded frame before identifying its sender through Windows
