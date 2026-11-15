@@ -1,5 +1,26 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Badge follow-up — all branding sources available
+
+Owner supplied the original badge in main and reports creating/owning/licensing
+it through Dot. Fetched main to `74224b5cc1b1f5c0ec703957dd6236de5aa02d47`
+without merge/rebase. Binary Git recovery of the PNG yields exactly
+`5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`;
+2,211,740 bytes,1254x1254 RGB, PNG integrity and existing production intro
+validator PASS. Local original:
+`C:/admin/collector-v9/approved-badge-main-74224b5cc1b1/Neon Cosmic Oxieg3n Emblem.png`.
+The three exact videos recovered below remain unchanged. **BLOCKED_ASSET is
+resolved for all required branding sources.** No replacement or changed pin.
+The4s preview is still reference-only; dynamic1.6s intro and complete native
+export await the actual body and verified remote narration. No new render was
+performed merely to repeat old technical evidence.
+
+The remaining immediate action is still owner-side Stage1 protected-spool
+creation described below; host execution is unavailable from this session.
+No host service, credential, route or new inference was run. No completed
+narrated/branded project/export exists yet. PR20 stays draft/unmerged and
+publication PAUSED. This follow-up supersedes the badge blocker in older entries.
+
 ## Final integration continuation — recovered branding and authorized deployment
 
 November 15: resumed clean `feature/collector-v7-overnight` at

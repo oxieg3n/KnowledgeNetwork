@@ -1,5 +1,25 @@
 # V9 branding and native readiness — November 15, 2026
 
+## Original badge recovered — branding sources complete
+
+Owner reports creating the badge using Dot and declares ownership/licensing.
+Fetched main again to `74224b5cc1b1f5c0ec703957dd6236de5aa02d47`, without merge
+or rebase, and recovered only `sources/Neon Cosmic Oxieg3n Emblem.png` via binary
+Git subprocess output. Actual SHA-256 exactly matches the unchanged production
+pin: `5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`.
+Actual file: 2,211,740 bytes, 1254x1254 RGB PNG. Pillow full PNG integrity check
+and existing `intro.verify_intro` pass. No artwork was recreated or extracted
+from video. Ownership is owner-reported; byte identity is independently checked.
+
+Local original:
+`C:/admin/collector-v9/approved-badge-main-74224b5cc1b1/Neon Cosmic Oxieg3n Emblem.png`.
+Recovery receipt is beside it. Combined with the three verified videos below,
+**all required branding sources are present**. This supersedes historical
+badge/missing-assets blockers. The 4s preview remains reference-only; the actual
+1.6s dynamic intro must use this exact badge and reveal the actual first body
+frame. Native assembly/export still awaits verified remote narration. No final
+branded video or new intro render is claimed from source validation alone.
+
 ## Recovered approved videos — PASS
 
 Fetched `origin/main` without merging/rebasing the implementation branch. Source
