@@ -28,6 +28,54 @@ class ControlTests(unittest.TestCase):
     def request(self, operation='narrator-health', request_id='a'*32):
         return {'schema_version': 1, 'request_id': request_id, 'operation': operation}
 
+    def test_startup_stages_and_private_error_redaction(self):
+        from youtube_ops import collector_narrator_pipe as pipe
+        review = self.spool / 'review'
+        review.mkdir()
+        self.helper.load_config.return_value = {'owner_sid': 'owner'}
+        self.helper.BrokerError = pipe.BrokerError
+        self.helper.allow_bridge_inspection.side_effect = OSError('private-token-reference')
+        with patch.object(control, 'NarratorControl', return_value=self.broker):
+            with self.assertRaises(OSError):
+                control.main()
+        logs = list(review.glob('narrator-control-startup-*.private.jsonl'))
+        self.assertEqual(len(logs), 1)
+        raw = logs[0].read_text()
+        self.assertNotIn('private-token-reference', raw)
+        events = [json.loads(line) for line in raw.splitlines()]
+        self.assertEqual([e['stage'] for e in events], ['inspection_acl', 'failed'])
+        self.assertEqual(events[-1]['error'], 'startup_unverified')
+        self.helper.serve.assert_not_called()
+
+    def test_startup_reparse_path_denied_before_log_creation(self):
+        review = self.spool / 'review'
+        review.mkdir()
+        self.helper.load_config.return_value = {'owner_sid': 'owner'}
+        with patch.object(control, 'NarratorControl', return_value=self.broker), \
+                patch.object(Path, 'is_symlink', return_value=True):
+            with self.assertRaisesRegex(control.ControlBlocked, 'startup_log_path_denied'):
+                control.main()
+        self.assertEqual(list(review.iterdir()), [])
+
+    def test_startup_ready_callback_and_evidence_limit(self):
+        from youtube_ops import collector_narrator_pipe as pipe
+        review = self.spool / 'review'
+        review.mkdir()
+        self.helper.load_config.return_value = {'owner_sid': 'owner'}
+        self.helper.BrokerError = pipe.BrokerError
+        self.helper.serve.side_effect = lambda config, handler, cancel, ready: ready()
+        with patch.object(control, 'NarratorControl', return_value=self.broker):
+            control.main()
+        log = next(review.glob('narrator-control-startup-*.private.jsonl'))
+        self.assertEqual([json.loads(line)['stage'] for line in log.read_text().splitlines()],
+                         ['inspection_acl', 'pipe_create', 'pipe_ready', 'stopped'])
+        for index in range(99):
+            (review / ('narrator-control-startup-fixture%d.private.jsonl' % index)).touch()
+        with patch.object(control, 'NarratorControl', return_value=self.broker):
+            with self.assertRaisesRegex(control.ControlBlocked, 'startup_evidence_limit'):
+                control.main()
+        self.assertEqual(len(list(review.iterdir())), 100)
+
     def test_exact_envelope_and_replay(self):
         with patch.object(self.broker, '_execute', return_value={'ready': True}) as run:
             result = self.broker.handle(self.request())

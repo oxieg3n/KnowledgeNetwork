@@ -148,6 +148,125 @@ class HostExecTests(unittest.TestCase):
             code, response = self.run_broker_main(audit=host.Denied('audit_busy'))
         self.assertEqual(code, 1); forward.assert_not_called()
 
+    @unittest.skipUnless(os.name == 'nt' and os.environ.get('KN_CONTROL_TASK_FIXTURE') == '1', 'opt-in isolated native Task Scheduler fixture')
+    def test_native_control_task_validation_and_single_start(self):
+        receipt = Path(__file__).resolve().parents[1] / 'output/host-exec-control-task-fixture-v2.json'
+        if receipt.exists(): self.skipTest('Native fixture receipt already preserved')
+        with tempfile.TemporaryDirectory(prefix='kn-control-task-') as folder:
+            base=Path(folder); (base/'runtime').mkdir()
+            marker=base/'marker.txt'
+            (base/'runtime/narrator-control-launch.py').write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("limited fixture only")\n')
+            ps = r'''
+$ErrorActionPreference='Stop'
+$fixture=$env:KN_CONTROL_FIXTURE.Replace('\','/');$exe=$env:KN_CONTROL_PYTHON.Replace('\','/')
+$owner=[Security.Principal.WindowsIdentity]::GetCurrent().User.Value;$fake='S-1-5-21-1-2-3-1002'
+foreach ($item in @(Get-Item -LiteralPath $fixture)+@(Get-ChildItem -LiteralPath $fixture -Recurse -Force)) {
+ $acl=Get-Acl -LiteralPath $item.FullName
+ $acl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new($owner),'FullControl','Allow'))
+ Set-Acl -LiteralPath $item.FullName -AclObject $acl
+}
+@{owner_sid=$owner;bridge_sid=$fake} | ConvertTo-Json | Set-Content -LiteralPath "$fixture/narrator-broker.json" -Encoding UTF8
+$id='KNCollectorControlDispatchTest-'+[guid]::NewGuid().ToString('N')
+if ($id -cnotmatch '^KNCollectorControlDispatchTest-[a-f0-9]{32}$') { throw 'Fixture name' }
+$path='\'+$id+'\';$name='NarratorControl'
+$service=New-Object -ComObject Schedule.Service;$service.Connect();$top=$service.GetFolder('\')
+$sddl="O:${owner}G:SYD:P(A;;FA;;;SY)(A;;FA;;;BA)(A;;FA;;;${owner})(A;;0x1200a9;;;${fake})"
+$folder=$null;$registered=$false;$started=$false
+$script=$env:KN_CONTROL_SCRIPT.Replace('C:/ProgramData/KnowledgeNetworkCollector/HostExec',$fixture).Replace("[Security.Principal.WindowsIdentity]::GetCurrent().User.Value",("'"+$fake+"'")).Replace("'\KnowledgeNetworkCollector'",("'\"+$id+"'"))
+# Replace the literal source expression, not its expanded caller variable.
+$script=$script.Replace('$python="$root/runtime/python/python.exe"',('$python="'+$exe+'"'))
+function Invoke-Fixture([string]$Action) {
+ $out=[IO.StringWriter]::new();$saved=[Console]::Out
+ try { [Console]::SetOut($out);. ([ScriptBlock]::Create($script.Replace('__ACTION__',$Action))) } finally { [Console]::SetOut($saved) }
+ return ($out.ToString() | ConvertFrom-Json)
+}
+function Register-Fixture([string]$Mode) {
+ $action=New-ScheduledTaskAction -Execute $exe -Argument "-I -S -B $fixture/runtime/narrator-control-launch.py" -WorkingDirectory "$fixture/runtime"
+ if ($Mode -eq 'action') { $action=New-ScheduledTaskAction -Execute $exe -Argument '-V' -WorkingDirectory "$fixture/runtime" }
+ if ($Mode -eq 'extra') { $action=@($action,$action) }
+ $level=if ($Mode -eq 'elevated') {'Highest'} else {'Limited'}
+ $principal=New-ScheduledTaskPrincipal -UserId $owner -LogonType Interactive -RunLevel $level
+ $settings=New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -DisallowHardTerminate
+ Register-ScheduledTask -TaskPath $path -TaskName $name -InputObject (New-ScheduledTask -Action $action -Principal $principal -Settings $settings) -Force | Out-Null
+ $folder.GetTask($name).SetSecurityDescriptor($sddl,16)
+}
+try {
+ $folder=$top.CreateFolder($id,$sddl)
+ Register-Fixture good;$registered=$true
+ $result=Invoke-Fixture ''
+ if ($result.state -ne 3 -or $result.start_requested) { throw 'Actual status failed' }
+ foreach ($mode in @('action','elevated','extra')) {
+  Register-Fixture $mode;$denied=$false
+  try { $null=Invoke-Fixture '' } catch { $denied=$true }
+  if (-not $denied) { throw 'Changed native task accepted' }
+ }
+ Register-Fixture good
+ $start='if ($state -ne 3) { throw "task_not_ready" };$null=$t.Run($null);$requested=$true'
+ $result=Invoke-Fixture $start
+ $started=$true
+ if (-not $result.start_requested) { throw 'Run not requested' }
+ $deadline=[DateTime]::UtcNow.AddSeconds(20)
+ while (-not (Test-Path -LiteralPath "$fixture/marker.txt") -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 100 }
+ if (-not (Test-Path -LiteralPath "$fixture/marker.txt")) { throw ('Benign marker missing, native result '+$folder.GetTask($name).LastTaskResult) }
+ while ($folder.GetTask($name).State -eq 4 -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 100 }
+ if ($folder.GetTask($name).State -eq 4) { throw 'Fixture still running' }
+} finally {
+ if ($registered) { Unregister-ScheduledTask -TaskPath $path -TaskName $name -Confirm:$false }
+ if ($null -ne $folder) { $top.DeleteFolder($id,0) }
+}
+if (@(Get-ScheduledTask | Where-Object TaskPath -ceq $path).Count) { throw 'Cleanup failed' }
+@{status='PASS_FORGE_NATIVE_FIXED_TASK_VALIDATOR';positive_status=$true;invalid_action_denied=$true;elevation_denied=$true;extra_action_denied=$true;benign_start=$started;cleaned=$true} | ConvertTo-Json -Compress
+'''
+            result=subprocess.run(['C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe','-NoLogo','-NoProfile','-NonInteractive','-Command',ps], env=dict(os.environ,KN_CONTROL_FIXTURE=folder,KN_CONTROL_PYTHON=sys.executable,KN_CONTROL_SCRIPT=host.CONTROL_TASK_SCRIPT),capture_output=True,text=True,timeout=60)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            with receipt.open('x',encoding='utf-8') as stream: stream.write(result.stdout)
+
+    @patch.dict(sys.modules, {'_winapi': Mock()})
+    def test_control_task_fixed_commands_and_closed_results(self):
+        for operation in host.CONTROL_OPERATIONS:
+            start = operation.endswith('-start')
+            result = {'state': 3, 'last_result': 0, 'start_requested': start}
+            with patch.object(host, 'fixed_powershell', return_value=json.dumps(result)) as runner:
+                if start:
+                    value = host.perform(operation, self.config, SID, threading.Event())
+                    self.assertTrue(value['start_requested']); self.assertFalse(value['broker_ready'])
+                    self.assertEqual(runner.call_args.args[0].count('$t.Run('), 1)
+                else:
+                    import _winapi
+                    with patch.object(_winapi, 'WaitNamedPipe') as waited, patch.object(_winapi, 'CreateFile') as opened:
+                        value = host.perform(operation, self.config, SID, threading.Event())
+                    self.assertEqual(value['pipe_snapshot'], 'available_not_authenticated')
+                    self.assertEqual(value['pipe_winerror'], 0)
+                    waited.assert_called_once_with(r'\\.\pipe\KnowledgeNetworkCollectorNarratorControlV1', 0); opened.assert_not_called()
+                    self.assertNotIn('$t.Run(', runner.call_args.args[0])
+                runner.assert_called_once()
+        import _winapi
+        for code, category in ((2, 'absent'), (121, 'busy'), (231, 'busy'), (5, 'access_denied')):
+            error=OSError('private diagnostic must not be returned');error.winerror=code
+            raw=json.dumps({'state': 4, 'last_result': 0, 'start_requested': False})
+            with patch.object(host, 'fixed_powershell', return_value=raw), patch.object(_winapi, 'WaitNamedPipe', side_effect=error), patch.object(_winapi, 'CreateFile') as opened:
+                value=host.control_task_operation('narrator-control-status', self.config, threading.Event())
+            self.assertEqual(value['pipe_snapshot'], category);self.assertEqual(value['pipe_winerror'], code)
+            self.assertNotIn('private', json.dumps(value));opened.assert_not_called()
+        for response in ({'state': True, 'last_result': 0, 'start_requested': True},
+                         {'state': 4, 'last_result': 0, 'start_requested': True},
+                         {'state': 3, 'last_result': 0, 'start_requested': True, 'secret': 'denied'}):
+            with patch.object(host, 'fixed_powershell', return_value=json.dumps(response)) as runner:
+                with self.assertRaisesRegex(host.Denied, 'control_start_outcome_unknown'):
+                    host.control_task_operation('narrator-control-start', self.config, threading.Event())
+                runner.assert_called_once()
+        for error in ('operation_timeout', 'cancelled', 'operation_failed'):
+            with patch.object(host, 'fixed_powershell', side_effect=host.Denied(error)) as runner:
+                with self.assertRaisesRegex(host.Denied, 'control_start_outcome_unknown'):
+                    host.control_task_operation('narrator-control-start', self.config, threading.Event())
+                runner.assert_called_once()
+        with self.assertRaisesRegex(host.Denied, 'command_denied'):
+            host.control_task_operation('narrator-control-start anything', self.config, threading.Event())
+        script=host.CONTROL_TASK_SCRIPT
+        for guard in ('InteractiveToken','LeastPrivilege','IgnoreNew','ExecutionTimeLimit','AllowHardTerminate',
+                      'DisallowStartIfOnBatteries','RestartOnFailure','GetSecurityDescriptor(7)','0x1200A9'):
+            self.assertIn(guard, script)
+
     def test_snapshot_is_fixed_and_never_claims_live_auth(self):
         with self.assertRaisesRegex(host.Denied, 'narrator_snapshot_missing'):
             host.perform('narrator-status', self.config, SID, threading.Event())

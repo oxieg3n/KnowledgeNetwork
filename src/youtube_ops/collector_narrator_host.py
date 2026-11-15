@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import socket
 import sqlite3
 import subprocess
 import threading
@@ -517,6 +518,12 @@ def unique_object(pairs):
 class NarratorHTTPServer(HTTPServer):
     # shortcut: sequential requests can delay health/cancel up to30s; revisit for concurrent operators.
     request_queue_size = 8
+    def server_bind(self):
+        if os.name == 'nt':
+            # Windows SO_REUSEADDR permits another listener to intercept requests.
+            self.allow_reuse_address = False
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
     def __init__(self, address, store, credential):
         if address[0] != '127.0.0.1' or not isinstance(credential, str) or not 32 <= len(credential) <= 2048 or any(ord(c) < 33 or ord(c) > 126 for c in credential):
             raise NarratorError('private_host_auth_configuration_required')

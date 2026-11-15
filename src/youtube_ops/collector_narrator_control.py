@@ -8,6 +8,7 @@ import hmac
 import hashlib
 import http.client
 import json
+import os
 from pathlib import Path
 import re
 import secrets
@@ -16,6 +17,7 @@ import sqlite3
 import subprocess
 import threading
 import time
+import uuid
 
 from . import collector_credentials as credentials
 from .collector_narration_common import digest, inspect_wav, socket_deadline
@@ -380,12 +382,43 @@ def main():
     helper = _helpers()
     config = helper.load_config()
     control = NarratorControl(config)
+    # A separate, exclusive private receipt preserves failed starts without secret text.
+    review = SPOOL / 'review'
+    if not review.is_dir() or review.is_symlink() or getattr(review.lstat(), 'st_file_attributes', 0) & 0x400:
+        raise ControlBlocked('startup_log_path_denied')
+    verify_private_paths([review], config['owner_sid'])
+    if sum(1 for _ in review.glob('narrator-control-startup-*.private.jsonl')) >= 100:
+        raise ControlBlocked('startup_evidence_limit')
+    log = review / ('narrator-control-startup-' + uuid.uuid4().hex + '.private.jsonl')
+    with log.open('xb', buffering=0) as stream:
+        def record(stage, error=None):
+            value = {'stage': stage, 'pid': os.getpid(), 'time_ns': time.time_ns()}
+            if error is not None:
+                value['error_class'] = type(error).__name__
+                code = error.code if isinstance(error, helper.BrokerError) else None
+                value['error'] = code if code in {'broker_inspection_acl_unverified',
+                    'broker_pipe_acl_unverified', 'broker_owner_context_required',
+                    'broker_windows_required', 'broker_identity_unverified'} else 'startup_unverified'
+                if type(getattr(error, 'winerror', None)) is int:
+                    value['winerror'] = error.winerror
+            stream.write((json.dumps(value, separators=(',', ':')) + '\n').encode('ascii'))
+            os.fsync(stream.fileno())
+        return _serve(control, helper, config, record)
+
+
+def _serve(control, helper, config, record):
     cancel = threading.Event()
     for sig in (signal.SIGINT, signal.SIGTERM):
         signal.signal(sig, lambda *_: cancel.set())
-    helper.allow_bridge_inspection(config)
     try:
-        helper.serve(config, control.handle, cancel)
+        record('inspection_acl')
+        helper.allow_bridge_inspection(config)
+        record('pipe_create')
+        helper.serve(config, control.handle, cancel, ready=lambda: record('pipe_ready'))
+        record('stopped')
+    except Exception as error:
+        record('failed', error)
+        raise
     finally:
         if control.server is not None:
             try:

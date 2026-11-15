@@ -371,6 +371,40 @@ class HostHTTPTests(HostFixture):
             with self.assertRaises(NarratorError):
                 NarratorHTTPServer(address, self.store_value, token)
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows exclusive socket ownership')
+    def test_windows_listener_rejects_competing_reuse_address_bind(self):
+        self.assertFalse(self.server.allow_reuse_address)
+        self.assertEqual(self.server.socket.getsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE), 1)
+        self.assertEqual(self.server.socket.getsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR), 0)
+        with socket.socket() as competitor:
+            competitor.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            with self.assertRaises(OSError):
+                competitor.bind(self.server.server_address)
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows exclusive socket ownership')
+    def test_windows_existing_reusable_listener_is_preserved_and_rejected(self):
+        with socket.socket() as existing:
+            existing.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            existing.bind(('127.0.0.1', 0))
+            existing.listen(1)
+            address = existing.getsockname()
+            with self.assertRaises(OSError):
+                NarratorHTTPServer(address, self.store_value, self.token)
+            self.assertEqual(existing.getsockname(), address)
+            with socket.create_connection(address, timeout=2) as client:
+                accepted, _ = existing.accept()
+                accepted.close()
+
+    def test_nonwindows_bind_keeps_existing_httpserver_behavior(self):
+        server = NarratorHTTPServer.__new__(NarratorHTTPServer)
+        server.socket = Mock()
+        with patch('youtube_ops.collector_narrator_host.os.name', 'posix'), \
+                patch('http.server.HTTPServer.server_bind') as bind:
+            server.server_bind()
+        bind.assert_called_once()
+        server.socket.setsockopt.assert_not_called()
+        self.assertTrue(server.allow_reuse_address)
+
 
 def native_runner_smoke(output_directory):
     """Opt-in Forge process-boundary proof only. Never calls the host narrator."""

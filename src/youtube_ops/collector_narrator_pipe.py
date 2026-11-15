@@ -16,6 +16,7 @@ ROOT = Path('C:/ProgramData/KnowledgeNetworkCollector/HostExec')
 PIPE = r'\\.\pipe\KnowledgeNetworkCollectorNarratorControlV1'
 MAX_MESSAGE = 65536
 DEADLINE = 180
+BRIDGE_ACCESS = 0x120183  # CreateFile also requires FILE_READ_ATTRIBUTES; excludes pipe-instance creation.
 OPERATIONS = frozenset('narrator-health narrator-validate narrator-start narrator-stop '
     'narrator-credential-ensure narrator-verify narrator-diagnostics narrator-reconcile'.split())
 FILES = frozenset(('__init__.py', 'collector_narrator_pipe.py', 'collector_narrator_control.py',
@@ -308,7 +309,7 @@ def broker_request(operation, request_id, cancel):
             if cancel.is_set() or time.monotonic() >= deadline:
                 raise BrokerError('broker_outcome_unknown')
             try:
-                handle = _winapi.CreateFile(PIPE, 0x120103, 0, 0, 3,
+                handle = _winapi.CreateFile(PIPE, BRIDGE_ACCESS, 0, 0, 3,
                     0x40000000 | 0x100000 | 0x10000, 0)  # Overlapped + identification-only SQOS.
             except OSError as exc:
                 if exc.winerror != 231:
@@ -327,7 +328,7 @@ def broker_request(operation, request_id, cancel):
             _winapi.CloseHandle(handle)
 
 
-def serve(config, handler, cancel):
+def serve(config, handler, cancel, ready=None):
     import _winapi
     kernel, advapi = _apis()
     descriptor = ctypes.c_void_p()
@@ -335,7 +336,7 @@ def serve(config, handler, cancel):
         ctypes.POINTER(ctypes.c_void_p), ctypes.c_void_p]
     # No other local user and no network pipe client may enter this boundary.
     sddl = ('O:' + config['owner_sid'] + 'D:P(A;;GA;;;' + config['owner_sid'] + ')'
-            '(A;;0x120103;;;' + config['bridge_sid'] + ')(A;;GA;;;SY)(A;;GA;;;BA)')
+            '(A;;0x' + format(BRIDGE_ACCESS, 'x') + ';;;' + config['bridge_sid'] + ')(A;;GA;;;SY)(A;;GA;;;BA)')
     if not advapi.ConvertStringSecurityDescriptorToSecurityDescriptorW(sddl, 1, ctypes.byref(descriptor), None):
         raise BrokerError('broker_pipe_acl_unverified')
     class Attributes(ctypes.Structure):
@@ -345,15 +346,19 @@ def serve(config, handler, cancel):
     try:
         handle = _winapi.CreateNamedPipe(PIPE, 3 | 0x40000000 | 0x80000,
             4 | 2 | 8, 1, MAX_MESSAGE, MAX_MESSAGE, 0, ctypes.addressof(attributes))
+        if ready is not None:
+            ready()
         while not cancel.is_set():
-            ov = _winapi.ConnectNamedPipe(handle, overlapped=True)
             try:
+                ov = _winapi.ConnectNamedPipe(handle, overlapped=True)
                 _wait(ov, float('inf'), cancel)
                 request = receive(handle, time.monotonic() + 10, cancel)
                 verify_client(handle, config)  # Impersonation identifies the last message read.
                 request = validate_request(request)
                 response = handler(request)
                 send(handle, response, time.monotonic() + 10, cancel)
+                # DisconnectNamedPipe discards unread replies; wait boundedly for client close.
+                receive(handle, time.monotonic() + 10, cancel)
             except (BrokerError, OSError, ValueError):
                 pass  # No untrusted request body or private exception enters logs.
             finally:

@@ -24,7 +24,8 @@ import uuid
 ROOT = Path('C:/ProgramData/KnowledgeNetworkCollector/HostExec')
 BROKER_OPERATIONS = frozenset(('narrator-health', 'narrator-validate', 'narrator-start', 'narrator-stop',
                               'narrator-credential-ensure', 'narrator-verify', 'narrator-diagnostics', 'narrator-reconcile'))
-OPERATIONS = frozenset(('health', 'native-port-9443', 'narrator-status', 'self-test')) | BROKER_OPERATIONS
+CONTROL_OPERATIONS = frozenset(('narrator-control-status', 'narrator-control-start'))
+OPERATIONS = CONTROL_OPERATIONS | frozenset(('health', 'native-port-9443', 'narrator-status', 'self-test')) | BROKER_OPERATIONS
 MAX_OUTPUT = 65536
 MAX_AUDIT = 16 * 1024 * 1024
 TIMEOUT = 20
@@ -298,7 +299,75 @@ def broker_operation(operation, request_id, cancel):
     raise BrokerDenied('broker_response_invalid', request_id)
 
 
+CONTROL_TASK_SCRIPT = r"""
+$ErrorActionPreference='Stop'
+$root='C:/ProgramData/KnowledgeNetworkCollector/HostExec'
+$c=Get-Content -LiteralPath "$root/narrator-broker.json" -Raw | ConvertFrom-Json
+$bridge=[Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+if ($c.owner_sid -isnot [string] -or $c.owner_sid -notmatch '^S-1-5-21-(?:\d+-){3}\d+$' -or $c.bridge_sid -cne $bridge) { throw 'configuration' }
+$s=New-Object -ComObject 'Schedule.Service';$s.Connect()
+$f=$s.GetFolder('\KnowledgeNetworkCollector');$t=$f.GetTask('NarratorControl')
+foreach ($d in @($f.GetSecurityDescriptor(7),$t.GetSecurityDescriptor(7))) {
+ $r=[Security.AccessControl.RawSecurityDescriptor]::new($d)
+ if ($null -eq $r.DiscretionaryAcl -or $r.Owner.Value -cne $c.owner_sid -or ($r.ControlFlags -band 4096) -eq 0) { throw 'security' }
+ foreach ($a in $r.DiscretionaryAcl) {
+  if ($a.AceType -ne 'AccessAllowed' -or $a.SecurityIdentifier.Value -notin @($c.owner_sid,$bridge,'S-1-5-18','S-1-5-32-544')) { throw 'security' }
+  if ($a.SecurityIdentifier.Value -ceq $bridge -and ($a.AccessMask -band (-bnot 0x1200A9)) -ne 0) { throw 'security' }
+ }
+}
+[xml]$x=$t.Xml;$n=[Xml.XmlNamespaceManager]::new($x.NameTable);$n.AddNamespace('t',$x.DocumentElement.NamespaceURI)
+$principals=@($x.SelectNodes('/t:Task/t:Principals/t:Principal',$n))
+if ($principals.Count -ne 1) { throw 'principals' };$p=$principals[0]
+$context=$x.SelectSingleNode('/t:Task/t:Actions',$n).Context
+if ($context -and $context -cne $p.id) { throw 'context' }
+$a=@($x.SelectNodes('/t:Task/t:Actions/*',$n))
+if ($p.UserId -cne $c.owner_sid -or $p.LogonType -cne 'InteractiveToken' -or $t.Definition.Principal.RunLevel -ne 0 -or ($p.RunLevel -and $p.RunLevel -cne 'LeastPrivilege') -or $a.Count -ne 1 -or $a[0].LocalName -cne 'Exec') { throw 'identity' }
+$python="$root/runtime/python/python.exe";$launcher="$root/runtime/narrator-control-launch.py"
+if ($a[0].Command.Replace('\','/') -ine $python -or $a[0].Arguments -cne "-I -S -B $launcher" -or $a[0].WorkingDirectory.Replace('\','/') -ine "$root/runtime" -or @($x.SelectNodes('/t:Task/t:Triggers/*',$n)).Count) { throw 'action' }
+$settings=$x.SelectSingleNode('/t:Task/t:Settings',$n)
+if ($settings.MultipleInstancesPolicy -cne 'IgnoreNew' -or [Xml.XmlConvert]::ToTimeSpan($settings.ExecutionTimeLimit).Ticks -ne 0 -or $settings.AllowHardTerminate -cne 'false' -or $settings.StopIfGoingOnBatteries -cne 'false' -or $settings.DisallowStartIfOnBatteries -cne 'false' -or $settings.RestartOnFailure) { throw 'settings' }
+$state=[int]$t.State;$last=[long]$t.LastTaskResult
+$requested=$false
+# Fixed reviewed suffix selects status or exactly one Run; no caller text is evaluated.
+__ACTION__
+[Console]::Out.Write((@{state=$state;last_result=$last;start_requested=$requested} | ConvertTo-Json -Compress))
+"""
+
+
+def control_task_operation(operation, config, cancel):
+    if operation not in CONTROL_OPERATIONS:
+        raise Denied('command_denied')
+    start = operation == 'narrator-control-start'
+    action = "if ($state -ne 3) { throw 'task_not_ready' };$null=$t.Run($null);$requested=$true" if start else ''
+    try:
+        raw = fixed_powershell(CONTROL_TASK_SCRIPT.replace('__ACTION__', action), config, cancel)
+        value = json.loads(raw)
+        if (not isinstance(value, dict) or set(value) != {'state', 'last_result', 'start_requested'}
+                or type(value['state']) is not int or value['state'] not in range(5)
+                or type(value['last_result']) is not int or not -0x80000000 <= value['last_result'] <= 0xffffffff
+                or type(value['start_requested']) is not bool or value['start_requested'] != start
+                or (start and value['state'] != 3)):
+            raise ValueError()
+    except (Denied, ValueError, TypeError) as exc:
+        # A Run may have reached Scheduler before timeout/transport loss. Never retry here.
+        raise Denied('control_start_outcome_unknown' if start else 'control_task_unverified') from exc
+    value.update(scope='owner_task_only', broker_ready=False)
+    if not start:
+        import _winapi
+        try:
+            _winapi.WaitNamedPipe(r'\\.\pipe\KnowledgeNetworkCollectorNarratorControlV1', 0)
+        except OSError as exc:
+            value['pipe_winerror'] = exc.winerror
+            value['pipe_snapshot'] = {2: 'absent', 5: 'access_denied', 121: 'busy', 231: 'busy'}.get(exc.winerror, 'unverified')
+        else:
+            value['pipe_winerror'] = 0
+            value['pipe_snapshot'] = 'available_not_authenticated'
+    return value
+
+
 def perform(operation, config, identity, cancel, request_id=None):
+    if operation in CONTROL_OPERATIONS:
+        return control_task_operation(operation, config, cancel)
     if operation in BROKER_OPERATIONS:
         return broker_operation(operation, request_id or uuid.uuid4().hex, cancel)
     if operation == 'health':
