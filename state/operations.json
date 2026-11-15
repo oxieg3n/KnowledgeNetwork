@@ -1401,8 +1401,8 @@
         "https://www.youtube.com/@NVIDIA",
         "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
       ],
-      "last_attempt_at": "2026-11-14T19:55:43.408130+00:00",
-      "last_monitored_at": "2026-11-14T19:55:43.408025+00:00",
+      "last_attempt_at": "2026-11-15T14:44:40.140885+00:00",
+      "last_monitored_at": "2026-11-15T14:44:40.140775+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "NVIDIA",
@@ -1458,8 +1458,8 @@
         "https://www.youtube.com/@GoogleDeepMind",
         "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
       ],
-      "last_attempt_at": "2026-11-14T19:55:43.001249+00:00",
-      "last_monitored_at": "2026-11-14T19:55:43.001135+00:00",
+      "last_attempt_at": "2026-11-15T14:44:39.734393+00:00",
+      "last_monitored_at": "2026-11-15T14:44:39.734293+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google DeepMind",
@@ -7399,6 +7399,11 @@
       "general": 38,
       "search": 0,
       "upload": 0
+    },
+    "2026-11-15": {
+      "general": 6,
+      "search": 0,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -7852,7 +7857,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 404,
+  "revision": 413,
   "rights_ledger": {},
   "runs": [
     {
@@ -8928,6 +8933,21 @@
         "verified_sources": 10
       },
       "run_id": "43691051468-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-15T14:44:39.270679+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "43725993013-1",
       "status": "BLOCKED"
     }
   ],
