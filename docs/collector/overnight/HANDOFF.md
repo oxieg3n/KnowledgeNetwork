@@ -1,5 +1,24 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Current Serve evidence received — policy export still missing
+
+Owner returned PASS_READ_ONLY_STATE_CAPTURE; root read the two saved private
+JSON files. Host identity matches BLACKHAT-BASE and exactly one FORGE peer is
+present. Current Serve has TCP443 and8443 entries and no configured9443 entry;
+no route was changed. This does not establish native port availability or
+effective access restrictions. Existing routes must remain intact.
+Serve JSON SHA-256:
+`ad0ba0fe2b1d010bebb99749a2cfed346cb7fc90bdf0cc2ff48a8e4e1c121ec5`;
+tailnet JSON SHA-256:
+`ed016cc7bc37901b58011080bcf987edfac075fa200f84fadc74cf9e23c9bd3c`.
+Actual addresses/peer metadata remain private.
+
+`tailnet-policy.private.hujson` is not present in the protected spool. The
+remaining immediate owner action is saving the current effective policy there
+for review, not another state capture or auth test. Do not rerun completed
+stages or create9443 before that prerequisite passes. No new inference or
+remote transfer occurred; publication remains PAUSED.
+
 ## Local authentication PASS — route prerequisites next
 
 Owner ran the direct auth check successfully. Root read the actual retained
