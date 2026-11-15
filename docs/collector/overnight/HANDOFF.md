@@ -1,5 +1,27 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Local authentication PASS — route prerequisites next
+
+Owner ran the direct auth check successfully. Root read the actual retained
+`local-auth.private.json`, SHA-256
+`a7209570a221f35909e3af74373e03aff485e2c64e56a9bca22ec7001be08c58`:
+PASS_LOCAL_AUTH_ONLY, missing/wrong bearer401, authenticated health200 with exact
+reviewed provenance, forbidden fields400, inference_submitted=false. No credential
+value was returned or read by root. This supersedes local-auth pending below.
+
+Prepared private `review/capture-tailnet-state.py` in the existing host spool,
+SHA-256 `a25b4f059675a7ccd31eabe1c550b95372a15a20e920c48c089a819b415603be`.
+AST parsed and exclusive write/readback checked, not executed. It captures only
+`tailscale serve status --json` and `tailscale status --json` into new private
+files, refuses overwrite, checks command exits/JSON and prints no addresses.
+Owner executes it locally; no route, credentials or inference are changed.
+
+Still required before9443: actual current Serve/unused-port review and effective
+tailnet access policy including broad/additive grants and intended FORGE identity.
+Owner must provide a private exported policy file for review; peer/state capture
+alone does not establish restricted access. No route command has been run.
+Remote narration remains BLOCKED and publication PAUSED.
+
 ## Stage3 paste recovery — authentication still NOT TESTED
 
 Owner's pasted Stage3 arrived out of order and PowerShell raised ParserError
