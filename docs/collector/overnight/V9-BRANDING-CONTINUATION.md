@@ -1,5 +1,43 @@
 # V9 branding and native readiness — November 15, 2026
 
+## Recovered approved videos — PASS
+
+Fetched `origin/main` without merging/rebasing the implementation branch. Source
+commit: `0ec0c05cb2fa6976fc87cfcb321c60d1a747c10d`. Used binary `git archive`
+stdout through Python subprocess/tarfile, extracting only the three requested
+video members into a new directory; no PowerShell binary redirection, replacement
+of old media, changed pins, new tracked media or renderer substitution.
+
+Recovered directory:
+`C:/admin/collector-v9/approved-brand-main-0ec0c05cb2fa`.
+
+| Original | Actual SHA-256, matches that commit's `.github/workflows/ci.yml` |
+| --- | --- |
+| `Powered-By-Plasma-With-Sound-Preview.mp4` | `1eeec90cda8dec320e078e77d5a6c4b6034be6e9dd07e00220ccc601f688e781` |
+| `Powered-By-Outro-Portrait.mp4` | `62496803360e377d81ab54b6970d94fcce3eee125f5d22c2fe08377dcf1b5c9b` |
+| `Powered-By-Outro-Landscape.mp4` | `3720a160cd8acb46c828d448cca740252fb8c6a80eba892f1573dc5b56479ee3` |
+
+FFprobe: preview 1080x1920, 4.0s; portrait outro 1080x1920, 7.8s; landscape
+outro 1920x1080, 7.8s. All H.264, 30/1 average FPS, AAC stereo 48kHz audio.
+Each passed complete video+audio decode with FFmpeg `-xerror`. Both original
+outros also passed the existing production `outro.verify_outro` validator.
+Unchanged source hashes preserve the approved spoken CTA; no resynthesis or
+new listening claim. Private recovery/QC receipts are beside the source copies.
+
+The four-second preview remains the approved visual/audio **reference only**.
+It is not the 48-frame/1.6-second dynamic production intro and is not inserted
+as its replacement. Original badge SHA-256 remains
+`5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`.
+The fetched main tree contains no PNG badge; bounded Git path history found no
+recorded PNG/Emblem deliverable. Prior exhausted local/connected searches below
+are reused rather than repeated. **Only the original badge remains BLOCKED_ASSET**
+for portrait branding. Owner must materialize the exact Library PNG or provide
+its private source path. A frame recovered from video would not match/replace it.
+
+This section supersedes the historical missing-outros statements below. Real
+remote narration and new native assembly/export still require acceptance; no
+completed branded Short is claimed. Existing technical project/export unchanged.
+
 Publication remains **PAUSED**. This bounded review preserves the current native
 technical fixture and all original asset pins. No GUI, render, replacement asset
 or project mutation was performed.

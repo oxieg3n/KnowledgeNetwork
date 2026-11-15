@@ -1,5 +1,124 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Final integration continuation — recovered branding and authorized deployment
+
+November 15: resumed clean `feature/collector-v7-overnight` at
+`89b134a85e094b2b2a584e2c719f6ef2a5a07a00`. Fetched main to
+`0ec0c05cb2fa6976fc87cfcb321c60d1a747c10d` without merge/rebase. The commit
+containing this section records the continuation; `git rev-parse HEAD` gives its
+exact ID. No runtime implementation was restarted or replaced. PR #20 remains
+draft/unmerged, publication PAUSED, and existing backups/worktrees/installers
+and original narrator files are preserved.
+
+**Owner listening approval recorded:** owner reports the narrator sounds perfect
+and approves project use, tied to exact diagnostic WAV SHA-256
+`1083cd235598378fe4c7fc0556dcba1f9d3a9334b48620d522c2e826134dc6b7`.
+This supersedes historical listening-pending statements below. It is an
+owner-reported positive review, not an automated assessment or invented detailed
+observations. The completed diagnostic was not rerun.
+
+**PASS — recovered approved videos:** extracted only the three owner-requested
+video members through binary-safe `git archive` into
+`C:/admin/collector-v9/approved-brand-main-0ec0c05cb2fa`.
+All match main's exact `.github/workflows/ci.yml` pins:
+
+| File | SHA-256 |
+| --- | --- |
+| `Powered-By-Plasma-With-Sound-Preview.mp4` | `1eeec90cda8dec320e078e77d5a6c4b6034be6e9dd07e00220ccc601f688e781` |
+| `Powered-By-Outro-Portrait.mp4` | `62496803360e377d81ab54b6970d94fcce3eee125f5d22c2fe08377dcf1b5c9b` |
+| `Powered-By-Outro-Landscape.mp4` | `3720a160cd8acb46c828d448cca740252fb8c6a80eba892f1573dc5b56479ee3` |
+
+All decode completely with FFmpeg `-xerror`: H.264 30fps, AAC stereo 48kHz.
+Preview is 1080x1920/4.0s, portrait outro 1080x1920/7.8s and landscape outro
+1920x1080/7.8s. Both outros pass the existing production validator. Exact bytes
+retain original CTA speech. No old media overwritten or pins changed, and no
+new media tracked on this branch. [Full branding update](V9-BRANDING-CONTINUATION.md).
+
+**BLOCKED_ASSET — original badge only:** no PNG badge is in fetched main or the
+examined Git path history; prior exhausted searches were not repeated. Required
+`Neon Cosmic Oxieg3n Emblem.png` must match
+`5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`.
+An owner-provided private path/Library materialization remains necessary. The
+4-second preview stays a reference, never a substitute for the 48-frame/1.6s
+dynamic production intro. The older missing-outros blocker is resolved.
+
+**PASS review / NOT HOST-VALIDATED:** [active-runtime review](V9-ACTIVE-RUNTIME-REVIEW.md)
+separates fixed private no-denoiser use, generated commercial audio and packaged
+dependency redistribution. NVIDIA install/use and retained BSD/LGPL notices
+are reviewed at that bounded scope; redistribution of the narrator environment
+remains uncleared. Successful trace/source support inactive kaldiio/FunASR/
+ModelScope/ZipEnhancer in this path; their installed restrictions remain intact.
+No dependency changed or new license accepted.
+
+A new private 57-artifact local-use manifest candidate binds actual reviewed
+evidence and owner listening. Private delivery directory:
+`C:/admin/collector-v9/local-use-review-v9-001`; manifest SHA-256
+`42f270ac0232c24c200df0a02401df97b7f1c2796ddeb519ce35eda2a9924d84`.
+Supported review fields reflect the scoped evidence, while publication and
+dependency-redistribution approval stay false. Existing drafts are preserved.
+Actual host validator/cache/artifact checks remain mandatory; no validation PASS
+is invented from the candidate's existence.
+
+**BLOCKED execution / deployment:** owner now authorizes the one protected spool,
+truthful validated manifest, dedicated CredMan bearer, existing loopback process
+on 127.0.0.1:39110, local auth tests and private HTTPS9443 only after all stated
+preconditions. Authorization is sufficient; the remaining blocker is absence of
+host command execution in this session. Redirected storage does not grant it.
+[Owner-side deployment and FORGE acceptance](V9-DEPLOYMENT-ACCEPTANCE.md) prepares
+the actual current implementation, not a second server. No listener, credential,
+Serve route, firewall/Gateway change or inference was executed here.
+Actual local authentication, current Serve/9443/effective-tailnet-policy proof,
+HTTPS transport and `REMOTE_NARRATION_PASS` remain **NOT TESTED/BLOCKED**.
+FORGE status still fails before network with `BLOCKED_NARRATOR_CONFIG`.
+
+Next exact owner-side action is the syntax-checked first stage only:
+`C:/admin/projects/KnowledgeNetwork/output/Narrator-Stage1-Create-Private-Spool.txt`,
+SHA-256 `04ffe4ba0655687283c07feb913e433457c928248cb659d34923329515b7e088`.
+Paste its contents once into local BLACKHAT-BASE Windows PowerShell in the
+intended narrator account, then return the printed spool path. It verifies kit
+source pins/free39110, creates `private-service-v9-001` with protected ACL and
+validates it; no inference, bearer, listener or route is created by this stage.
+After that, root can deliver the three reviewed files via redirected storage.
+Root checked all57 manifest references by file existence: only the two newly
+declared review artifacts are absent before materialization;55 existing paths
+are present. This is not a substitute for host validator/hash acceptance.
+Full numbered procedure:
+`output/Narrator-Restricted-Deployment-Owner.txt`, SHA-256
+`3cf6f0b80f780ff5c7c89370b015f282fef8849eb65c82e042823712ef4d9fbf`.
+Independent security review found and corrected a free-port error-handling gap;
+current Serve JSON/9443 checks and all listener queries now fail closed. Actual
+tailnet policy review remains a hard stop before the route command. No further
+permission question is needed for authorized actions; actual host execution and
+prerequisite evidence are what is missing.
+
+**Native video:** preserved prior editable project/export and receipts. No real
+remote receipt exists to attach; the host diagnostic file copy cannot be labeled
+a successful API transfer. The first real receipt enables a fresh unbranded
+local review project; the complete branded project additionally needs the badge.
+For a 50s final target, nominal bookends reserve 9.4s, leaving 40.6s/1218 frames
+at30fps for measured body timing. Use actual audio/bookend durations and retime
+three editable scenes/cues, never append bookends to the old50s body or truncate
+speech to force acceptance. No final narrated/branded `.osp` or MP4 is claimed.
+
+**Installer/operations:** existing staging installer hash still
+`4149bd4c66347429f65a570925bc158cbc36a8b752c36c741d1cfabf4439517a`;
+481 package checks/190 worker tests reused, no rebuild/install. No disposable
+Windows target exists here: Sandbox/Hyper-V disabled, vmms and tested VM tools
+absent. Fixed AppId/path/service prevents safe alternate-directory install.
+[Operational matrix and bounded scheduled/restart checks](V9-OPERATIONAL-ACCEPTANCE.md)
+are prepared, not executed. Working service observed Running/Automatic; no
+scheduled Assistant, restart/reboot or new installer lifecycle PASS is claimed.
+
+Ponytail5.3.3 FULL applied with parallel, nonoverlapping rights/transport/QA
+documents; root owns integration and asset checks. No UI changed, so no new
+UI/UX Pro Max/Taste visual gate is claimed. No source defect justified a new
+implementation or repeating the full model/editor/regression suites. Checks
+new to this continuation are binary recovery/hash comparison, full asset decode,
+existing outro validation, bounded license/manifest review, source parity and
+owner-procedure syntax checks. Independent security review is recorded in the
+deployment report. No private audio, credentials, declaration or generated media
+was added to Git. Nothing was publicly published.
+
 ## Owner-run diagnostic received — PASS, host smoke only
 
 November 15: owner supplied host run directory
