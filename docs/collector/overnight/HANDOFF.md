@@ -2,6 +2,16 @@
 
 ## Current continuation: retention persisted; integrated fixtures PASS; live recovery BLOCKED
 
+Validated source checkpoint `4b7042281f116f0235e16892ed1126ae488d24cf`
+(code integration `c63065f`); this later update records evidence only.
+[Hosted run43772046214](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43772046214)
+completed: focused Windows50 discovered/45 passed/5 skipped11.365s; focused
+Ubuntu50/35 passed/15 skipped0.388s; tracking guards and unchanged-worker source
+comparison PASS. No new190 checks ran. Both legacy full jobs FAILED at the intended
+retention preflight before dependency installation/test execution, so the overall
+workflow is FAILED/BLOCKED_RETENTION_PREFLIGHT, not green. Private receipt:
+`KnowledgeNetwork-Private/retention-ci-run-43772046214.private.json`.
+
 Continue from `0ef8525cccaa875f4a077ae39ed1d6e150dae075` on
 `feature/collector-v7-overnight`. PR20 remains draft/unmerged; publication PAUSED.
 Current changes, precise evidence, archival paths/hashes and rollback conditions:
@@ -41,7 +51,7 @@ This section supersedes historical staging/integration gaps below.
 - CI: legacy suite deliberately held by read-only retention preflight (110 deletion
   sites); separate focused Windows/Linux checks validate new work. Previous full
   hosted452-test/190-worker acceptance retains its historical scope. Hosted current
-  results will be appended after push; overall CI is not represented as green.
+  results are recorded above; overall CI is not represented as green.
 - NOT TESTED: isolated installer fresh/upgrade/rollback, scheduled Assistant and
   reboot acceptance. Pipefix002 installer and installed IPC correction reused;
   no rebuild/deployment or unnecessary190-check rerun. No reboot authorized.

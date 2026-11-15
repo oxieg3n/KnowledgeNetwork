@@ -177,3 +177,15 @@ then establish a separately reviewed live namespace/ledger-binding procedure and
 protected deployment/watchdog. Only after those facts support a concrete safe
 operation should owner approval be requested. Do not rerun V2, relax D: checks,
 start9443 or request an unsafe stop to make progress.
+
+## Hosted validation receipt
+
+[Run43772046214](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43772046214)
+for4b7042281f116f0235e16892ed1126ae488d24cf completed: retention-safe focused
+Windows50 discovered/45 passed/5 skipped11.365s; Ubuntu50/35 passed/15 skipped
+0.388s. Privacy guards passed. Worker Git objects matched prior accepted evidence;
+no fresh build/self-tests ran. Both legacy jobs failed exactly at retention
+preflight and skipped installation/full tests; overall workflow FAILED, with the
+legacy acceptance scope BLOCKED. No unexpected focused failure occurred. Private
+summary: `retention-ci-run-43772046214.private.json`. This does not change the live
+host or media acceptance limits above.

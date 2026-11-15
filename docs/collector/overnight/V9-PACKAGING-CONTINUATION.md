@@ -1,5 +1,16 @@
 # V9 pipefix-002 installer preparation
 
+## Current retention continuation ? existing installer retained
+
+Build-Installer now rejects an existing canonical InstallerDirectory before any
+build; a focused source contract test passes. No installer was rebuilt, deployed
+or run. Pipefix002 and its recorded hash below remain the accepted staging
+artifact. Fresh/upgrade/uninstall/rollback acceptance still requires an isolated
+Windows environment and retention-safe procedures; it is NOT TESTED. CI confirms
+unchanged worker source objects against prior190-check evidence, not a new build.
+See [current continuation](V9-RETENTION-AND-RECOVERY-CONTINUATION.md). All historical
+packaging/rollback assets below remain protected; no automatic cleanup is allowed.
+
 November 15, 2026. Branch `feature/collector-v7-overnight`, source HEAD
 `3353a24efa3473c0e375dfec96cdd4fd757e6158`. No source changes, deployment,
 service restart, registry change or live database operation was performed.
