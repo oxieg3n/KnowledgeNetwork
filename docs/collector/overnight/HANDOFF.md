@@ -1,5 +1,49 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Host bootstrap stopped at interpreter trust — diagnostic pending
+
+Owner ran the staged bootstrap on BLACKHAT-BASE and received the fixed
+`Execution trust chain is writable by a nontrusted principal; no ACL was changed`
+error from `Assert-TrustedPath`. Source flow places this rejection before
+directory/account/service/firewall mutations. Root independently checked that
+the HostExec directory and bootstrap receipt are absent. The exact rejected
+path/ACE is still unknown; no runtime/drive/narrator ACL was modified, no
+guard bypassed and no bootstrap retry or remote connection attempted.
+
+Added structured private exception context while preserving the trust masks
+and fixed console error. Security review also identified a separate omission:
+loader directory roots `base/DLLs` and venv `Scripts` now receive full target
+checks, including create-file rights, before descendant enumeration. This closes
+a gap; it is not assumed to explain the actual host error.
+
+Prepared read-only native diagnostic and staged it with the enriched bootstrap
+source in `D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-trust-diagnostic-v1`.
+Original bootstrap bundle remains unchanged. Diagnostic hashes captured source
+bytes once, then uses that same text for reviewed helper/preflight evaluation;
+it does not execute privileged bootstrap setup. First failure's complete applied
+DACL/SDDL, owner, target/ancestor path and rights are written only to a new
+private JSON in the existing protected narrator spool's review directory. The
+console returns only status/evidence path. No credentials or policy contents.
+
+Owner action: paste the complete six-line contents of
+`C:/admin/projects/KnowledgeNetwork/output/Host-Exec-Trust-Diagnostic-Launch.txt`
+into the same elevated BLACKHAT-BASE PowerShell window, then return only its
+status/evidence path. The launcher pins captured diagnostic bytes before use.
+Launcher SHA-256 `ee0ae0f06ab4e5d53594d95447bb15e1c9c278b193b150d1735873d356a471ae`;
+diagnostic SHA-256 `88bbaadfc79616a75e55d478316c126b0eee739bde0ad826e7f18eed7c363900`;
+updated bootstrap SHA-256 `abb317e75933cfc2b7a4a0f8d9f0203ad00a3e5c6e7989e58662a8b9c7bad6a3`.
+
+PASS:3 focused native FORGE tests, including full ACL/create-only/inherit-only
+denial, private exception context, source-pin mismatch/size bounds and captured
+text stability; PowerShell source/launcher syntax checked. Prior322-test result
+remains historical baseline; no repeated whole-suite or runtime-source change
+for this preflight/diagnostic correction. Ponytail FULL and independent bounded
+security review applied; review caught and corrected a source-reread race.
+Actual blocked host ACL, diagnostic execution, bootstrap and SSH acceptance
+remain BLOCKED/NOT TESTED. Standing authorization remains valid; unavailable
+technical host execution still requires this native diagnostic. Publication
+PAUSED, Gateway/443/8443 and original narrator untouched; no new inference.
+
 ## Standing host authorization — restricted bridge prepared, bootstrap pending
 
 Owner now explicitly authorizes a separate project execution channel and scoped

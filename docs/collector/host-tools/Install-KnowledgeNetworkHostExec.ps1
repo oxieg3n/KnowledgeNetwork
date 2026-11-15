@@ -69,7 +69,13 @@ function Assert-TrustedPath([string]$Path,[bool]$AncestorOnly=$false) {
             $mask = if ($first) { 0x000D0156 } else { 0x000D0040 }
             if ($ace.AccessControlType -eq 'Allow' -and ($ace.FileSystemRights -band $mask) -ne 0) {
                 if ($ace.IdentityReference.Value -notin $trusted) {
-                    throw 'Execution trust chain is writable by a nontrusted principal; no ACL was changed.'
+                    $failure = [Security.SecurityException]::new('Execution trust chain is writable by a nontrusted principal; no ACL was changed.')
+                    # Native diagnostic reads Data privately; console errors retain the fixed message.
+                    $failure.Data['checked_path'] = $item.FullName
+                    $failure.Data['principal_sid'] = $ace.IdentityReference.Value
+                    $failure.Data['rights'] = [int]$ace.FileSystemRights
+                    $failure.Data['checked_mask'] = $mask
+                    throw $failure
                 }
             }
         }
@@ -83,7 +89,7 @@ $venvConfig = Join-Path $venv 'pyvenv.cfg'
 $homeLine = @(Get-Content -LiteralPath $venvConfig | Where-Object { $_ -match '^home\s*=\s*' })
 if ($homeLine.Count -ne 1) { throw 'Cannot identify the canonical interpreter base.' }
 $base = ($homeLine[0] -replace '^home\s*=\s*','').Trim()
-foreach ($path in @($python,$venvConfig,$sshd,$powershell,$commandShell,$hostKey,$base,(Join-Path $base 'python.exe'),(Join-Path $base 'python311.dll'),(Join-Path $base 'Lib'))) { Assert-TrustedPath $path }
+foreach ($path in @($python,$venvConfig,$sshd,$powershell,$commandShell,$hostKey,$base,(Join-Path $base 'python.exe'),(Join-Path $base 'python311.dll'),(Join-Path $base 'Lib'),(Join-Path $base 'DLLs'),(Split-Path -Parent $python))) { Assert-TrustedPath $path }
 foreach ($item in Get-ChildItem -LiteralPath (Join-Path $base 'Lib') -Recurse -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
 foreach ($item in Get-ChildItem -LiteralPath (Join-Path $base 'DLLs') -Recurse -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }
 foreach ($item in Get-ChildItem -LiteralPath $base -File -Force -ErrorAction Stop) { Assert-TrustedPath $item.FullName }

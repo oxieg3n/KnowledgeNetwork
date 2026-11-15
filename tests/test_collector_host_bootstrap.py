@@ -42,13 +42,24 @@ $acl=Get-Acl -LiteralPath $bad
 $rule=[Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new('S-1-1-0'),'Modify','ContainerInherit,ObjectInherit','None','Allow')
 $acl.AddAccessRule($rule); Set-Acl -LiteralPath $bad -AclObject $acl
 $denied=$false
-try { Assert-TrustedPath $bad } catch { $denied=$true }
+try { Assert-TrustedPath $bad } catch {
+    $denied=$true
+    if ($_.Exception.Data['checked_path'] -ne $bad -or $_.Exception.Data['principal_sid'] -ne 'S-1-1-0') { throw 'Private trust diagnostic context missing' }
+}
 if (-not $denied) { throw 'Untrusted write was accepted' }
 Protect-Directory $bad $current.User.Value $true
 $acl=Get-Acl -LiteralPath $bad
 $inherit=[Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new('S-1-1-0'),'Modify','ContainerInherit,ObjectInherit','InheritOnly','Allow')
 $acl.AddAccessRule($inherit); Set-Acl -LiteralPath $bad -AclObject $acl
 Assert-TrustedPath $bad
+$loader=Join-Path $fixture 'loader'
+New-Item -ItemType Directory -Path $loader | Out-Null
+$acl=Get-Acl -LiteralPath $loader
+$create=[Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new('S-1-1-0'),'CreateFiles','Allow')
+$acl.AddAccessRule($create); Set-Acl -LiteralPath $loader -AclObject $acl
+$denied=$false
+try { Assert-TrustedPath $loader } catch { $denied=$true }
+if (-not $denied) { throw 'Loader directory create-file rights were accepted' }
 """)
 
     def test_ipv4_complement_ranges_exclude_only_forge(self):
@@ -62,6 +73,29 @@ foreach ($number in @([uint64]1677721601,[uint64]1681915903,[uint64]1686109950))
         if ($actual -ne [uint64]$entry[1]) { throw 'Complement endpoint differs' }
     }
 }
+""")
+
+    def test_diagnostic_uses_bounded_hash_verified_captured_text(self):
+        self.run_helpers(r"""
+$diagnostic=Join-Path (Split-Path -Parent $env:KN_TEST_SOURCE) 'Inspect-KnowledgeNetworkHostExecTrust.ps1'
+$source=[IO.File]::ReadAllText($diagnostic)
+$begin=$source.IndexOf('$stream=')
+$end=$source.IndexOf('$current =',$begin)
+if ($begin -lt 0 -or $end -le $begin) { throw 'Expected source capture block' }
+$capture=[scriptblock]::Create($source.Substring($begin,$end-$begin))
+$bootstrap=Join-Path $fixture 'captured-source.ps1'
+[IO.File]::WriteAllText($bootstrap,'# reviewed source',[Text.UTF8Encoding]::new($false))
+$BootstrapSha256=(Get-FileHash -LiteralPath $bootstrap -Algorithm SHA256).Hash.ToLowerInvariant()
+. $capture
+[IO.File]::WriteAllText($bootstrap,'# replaced source')
+if ($text -cne '# reviewed source') { throw 'Captured source was reread' }
+$denied=$false
+try { . $capture } catch { $denied=$true }
+if (-not $denied) { throw 'Source pin mismatch was accepted' }
+[IO.File]::WriteAllBytes($bootstrap,(New-Object byte[] 262145))
+$denied=$false
+try { . $capture } catch { $denied=$true }
+if (-not $denied) { throw 'Oversized source was accepted' }
 """)
 
 

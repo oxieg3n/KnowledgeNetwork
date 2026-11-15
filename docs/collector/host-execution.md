@@ -70,6 +70,16 @@ denials, timeout and output bounds. Local tests are not remote SSH acceptance.
 
 ## One-time privileged bootstrap
 
+If the trust preflight rejects a writable path, stop rather than changing the
+trusted-principal set or narrator/drive ACLs. The read-only
+`host-tools/Inspect-KnowledgeNetworkHostExecTrust.ps1` can identify the first
+blocked path and full applied DACL privately. Its reviewed bootstrap bytes are
+captured once, hash-verified and reused for both AST parsing and the read-only
+preflight; it never evaluates account/service/firewall setup. The AST command
+check is a regression guard, not a general PowerShell sandbox. A pinned launcher
+is staged for native host execution; redirected-drive ACL metadata is not proof
+of actual host permissions. Resolve the exact evidence before retrying setup.
+
 `host-tools/Install-KnowledgeNetworkHostExec.ps1` is the one elevated host action
 when no existing independently authorized endpoint can perform account/service
 setup. Root supplies the actual private `HostAddress`/`ForgeAddress`, dedicated
