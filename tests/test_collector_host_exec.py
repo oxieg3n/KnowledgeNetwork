@@ -120,7 +120,10 @@ class HostExecTests(unittest.TestCase):
 
     def run_broker_main(self, *, audit=None):
         (self.root / 'config.json').write_text(json.dumps(self.config))
-        with patch.object(host, '__file__', str(self.root / 'runtime/collector_host_exec.py')), \
+        executable = self.root / 'runtime/python-fixture.exe'
+        executable.write_bytes(b'regular test interpreter identity; never executed')
+        with patch.object(host.sys, 'executable', str(executable)), \
+             patch.object(host, '__file__', str(self.root / 'runtime/collector_host_exec.py')), \
              patch.object(host.sys, 'argv', ['dispatcher.py']), \
              patch.dict(host.os.environ, dict(self.env, SSH_ORIGINAL_COMMAND='narrator-start'), clear=True), \
              patch.object(host, 'windows_identity', return_value=(SID, False)), \
@@ -133,6 +136,19 @@ class HostExecTests(unittest.TestCase):
             else:
                 code = host.main()
         return code, json.loads(output.getvalue())
+
+    def test_broker_main_fixture_uses_regular_executable_not_runner_symlink(self):
+        self.broker_fixture(error='broker_timeout_outcome_unknown')
+        original = host.sys.executable
+        with patch.object(host.sys, 'executable', str(self.root / 'missing-runner-link')):
+            code, response = self.run_broker_main()
+            self.assertEqual(host.sys.executable, str(self.root / 'missing-runner-link'))
+        self.assertEqual(host.sys.executable, original)
+        executable = self.root / 'runtime/python-fixture.exe'
+        self.assertTrue(executable.is_file()); self.assertFalse(executable.is_symlink())
+        self.assertEqual(host.local_path(executable), executable)
+        self.assertEqual(code, 1)
+        self.assertEqual(response['error'], 'broker_timeout_outcome_unknown')
 
     def test_broker_main_audits_same_request_and_never_exposes_permission_error(self):
         self.broker_fixture(error='broker_timeout_outcome_unknown')

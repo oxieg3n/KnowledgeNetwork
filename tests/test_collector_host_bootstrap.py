@@ -45,10 +45,18 @@ New-Item -ItemType Directory -Path $bad | Out-Null
 $acl=Get-Acl -LiteralPath $bad
 $rule=[Security.AccessControl.FileSystemAccessRule]::new([Security.Principal.SecurityIdentifier]::new('S-1-1-0'),'Modify','ContainerInherit,ObjectInherit','None','Allow')
 $acl.AddAccessRule($rule); Set-Acl -LiteralPath $bad -AclObject $acl
+$expectedDiagnosticPath=(Get-Item -LiteralPath $bad -Force).FullName
 $denied=$false
 try { Assert-TrustedPath $bad } catch {
     $denied=$true
-    if ($_.Exception.Data['checked_path'] -ne $bad -or $_.Exception.Data['principal_sid'] -ne 'S-1-1-0') { throw 'Private trust diagnostic context missing' }
+    $context=$_.Exception
+    while($null -ne $context -and -not $context.Data.Contains('checked_path')){$context=$context.InnerException}
+    if ($null -eq $context) { throw 'Private trust diagnostic context missing in exception chain' }
+    $actualDiagnosticPath=(Get-Item -LiteralPath ([string]$context.Data['checked_path']) -Force).FullName
+    if ($actualDiagnosticPath -ne $expectedDiagnosticPath -or $context.Data['principal_sid'] -ne 'S-1-1-0') {
+        $principalKind=switch([string]$context.Data['principal_sid']){'S-1-1-0'{'Everyone'};'S-1-5-11'{'AuthenticatedUsers'};'S-1-5-32-545'{'BuiltinUsers'};default{'Other'}}
+        throw ('Private trust diagnostic differs: sameFixturePath='+($actualDiagnosticPath -eq $expectedDiagnosticPath)+' principalKind='+$principalKind)
+    }
 }
 if (-not $denied) { throw 'Untrusted write was accepted' }
 Protect-Directory $bad $current.User.Value $true

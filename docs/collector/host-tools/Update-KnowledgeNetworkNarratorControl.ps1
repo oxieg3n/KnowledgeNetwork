@@ -53,6 +53,17 @@ function New-ChangedEntry([string]$Path,[string]$Backup,[string]$OldHash,[string
  if($OldHash -ceq $NewHash){return $null}
  return [ordered]@{path=$Path;backup=$Backup;old_sha256=$OldHash;new_sha256=$NewHash;sddl=$Sddl}
 }
+function Set-NewReplacementSecurity([string]$Temporary,[object]$Entry) {
+ $actual=[IO.Path]::GetFullPath($Temporary)
+ if($actual -ine [IO.Path]::GetFullPath($Entry.path+'.update-next') -and $actual -ine [IO.Path]::GetFullPath($Entry.path+'.rollback-next')){throw 'Only the new replacement temporary may receive recorded security.'}
+ $null=Read-RegularBytes $Temporary 256KB $null
+ if((Get-Acl -LiteralPath $Entry.path).Sddl -cne $Entry.sddl){throw 'Existing target security changed; no replacement.'}
+ # ReplaceFile does not retain owner/group reliably. Stamp only the new file.
+ $security=[Security.AccessControl.FileSecurity]::new()
+ $security.SetSecurityDescriptorSddlForm($Entry.sddl)
+ Set-Acl -LiteralPath $Temporary -AclObject $security -ErrorAction Stop
+ if((Get-Acl -LiteralPath $Temporary).Sddl -cne $Entry.sddl -or (Get-Acl -LiteralPath $Entry.path).Sddl -cne $Entry.sddl){throw 'Replacement security differs; existing target was not rewritten.'}
+}
 function Invoke-CheckedRollback {
  $identity=[Security.Principal.WindowsIdentity]::GetCurrent()
  if ($identity.User.Value -cne $ownerSid -or -not ([Security.Principal.WindowsPrincipal]::new($identity)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {throw 'Original owner elevated required.'}
@@ -85,7 +96,8 @@ function Invoke-CheckedRollback {
   $bytes=Read-RegularBytes (Join-Path $upgrade $entry.backup) 256KB $entry.old_sha256
   $temporary=$entry.path+'.rollback-next'
   Write-NewBytes $temporary $bytes
-  $null=Read-RegularBytes $entry.path 256KB $null
+  Assert-UpdateFileState $entry (Get-BytesHash (Read-RegularBytes $entry.path 256KB $null)) ((Get-Acl -LiteralPath $entry.path).Sddl)
+  Set-NewReplacementSecurity $temporary $entry
   [IO.File]::Replace($temporary,$entry.path,[System.Management.Automation.Language.NullString]::Value)
   if ((Get-BytesHash (Read-RegularBytes $entry.path 256KB $entry.old_sha256)) -cne $entry.old_sha256 -or (Get-Acl -LiteralPath $entry.path).Sddl -cne $entry.sddl) {throw 'Rollback verification failed; preserve evidence.'}
  }
@@ -208,7 +220,7 @@ $rollbackVariables=@"
 `$ownerSid='$ownerSid';`$bridgeSid='$bridgeSid';`$taskPath='$taskPath';`$taskName='$taskName'
 "@
 $rollbackFunctions=''
-foreach($name in @('Assert-InactiveRepairTask','Assert-DisabledIdleTask','Assert-OnlyTaskEnabledChanged','Assert-UpdateFileState','Invoke-CheckedRollback')){$rollbackFunctions+="function $name {`n"+(Get-Command $name -CommandType Function).Definition+"`n}`n"}
+foreach($name in @('Assert-InactiveRepairTask','Assert-DisabledIdleTask','Assert-OnlyTaskEnabledChanged','Assert-UpdateFileState','Set-NewReplacementSecurity','Invoke-CheckedRollback')){$rollbackFunctions+="function $name {`n"+(Get-Command $name -CommandType Function).Definition+"`n}`n"}
 Write-NewBytes "$upgrade/rollback-update.ps1" $encoding.GetBytes($rollbackVariables+"`n"+$helperText+"`n"+$rollbackFunctions+"`nInitialize-FileIdentity`nInvoke-CheckedRollback`n")
 if($taskState -ceq 'Running') {
  # The reviewed helper owns the zero-row SQLite lock and held process handle.
@@ -227,6 +239,7 @@ foreach($entry in $entries){
  if((Get-Acl -LiteralPath $entry.path).Sddl -cne $entry.sddl){throw 'Execution ACL changed before replacement.'}
  if($entry.old_sha256 -cne $entry.new_sha256){
   $temporary=$entry.path+'.update-next';Write-NewBytes $temporary $newBytes[$entry.path]
+  Set-NewReplacementSecurity $temporary $entry
   [IO.File]::Replace($temporary,$entry.path,[System.Management.Automation.Language.NullString]::Value)
  }
  $null=Read-RegularBytes $entry.path 256KB $entry.new_sha256

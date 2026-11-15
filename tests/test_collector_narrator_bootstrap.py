@@ -32,7 +32,7 @@ $files=@('__init__.py','collector_narrator_pipe.py','collector_narrator_control.
             result = subprocess.run(['C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe',
                                      '-NoLogo', '-NoProfile', '-NonInteractive', '-Command', script],
                                     env=dict(os.environ, KN_BOOTSTRAP_SOURCE=str(source), KN_BOOTSTRAP_FIXTURE=folder,
-                                             KN_BOOTSTRAP_PYTHON=sys.executable,
+                                             KN_BOOTSTRAP_PYTHON=getattr(sys, '_base_executable', sys.executable),
                                              KN_BOOTSTRAP_OUTPUT=str(source.parents[3] / 'output')),
                                     capture_output=True, text=True, timeout=45)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
@@ -193,7 +193,24 @@ foreach ($case in @('old','bool','extra','path','hash','file')) {
     if (-not $denied) { throw 'Malformed deployment accepted' }
 }
 $bytes=[Text.Encoding]::UTF8.GetBytes($text)
-$value=Convert-StrictJson $bytes $env:KN_BOOTSTRAP_PYTHON
+try { $value=Convert-StrictJson $bytes $env:KN_BOOTSTRAP_PYTHON } catch {
+    # Diagnose only this synthetic fixture without printing JSON, local paths or stderr.
+    $parser=@($tree.FindAll({param($a) $a -is [Management.Automation.Language.StringConstantExpressionAst] -and $a.Value.StartsWith('import json,sys')},$true))
+    if($parser.Count -ne 1){throw 'Strict JSON fixture failed; validator diagnostic unavailable'}
+    $diagnostic=$parser[0].Value.Replace('except Exception: sys.exit(1)','except Exception as error: print(type(error).__name__,file=sys.stderr); sys.exit(1)')
+    $preference=$ErrorActionPreference
+    try {
+        $ErrorActionPreference='Continue'
+        $details=@([Text.UTF8Encoding]::new($false,$true).GetString($bytes) | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $diagnostic 2>&1)
+        $diagnosticExit=$LASTEXITCODE
+        $version=@(& $env:KN_BOOTSTRAP_PYTHON -I -S -B -c 'import sys;print(sys.version_info.major,sys.version_info.minor,sys.version_info.micro)' 2>$null)
+    } finally {$ErrorActionPreference=$preference}
+    $kind='unclassified'
+    foreach($entry in $details){foreach($candidate in @('JSONDecodeError','SyntaxError','UnicodeDecodeError','ModuleNotFoundError','ImportError','IndentationError','NameError','TypeError')){if($entry.ToString().Contains($candidate)){$kind=$candidate}}}
+    $safeVersion=($version -join ' ')
+    if($safeVersion -notmatch '^\d+ \d+ \d+$'){$safeVersion='unverified'}
+    throw ('Strict JSON valid fixture failed: nativeExit='+$diagnosticExit+' python='+$safeVersion+' errorClass='+$kind)
+}
 foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
     $denied=$false;try { $null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($text)) $env:KN_BOOTSTRAP_PYTHON } catch { $denied=$true }
     if (-not $denied) { throw 'Ambiguous JSON accepted' }

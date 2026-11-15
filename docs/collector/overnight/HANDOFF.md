@@ -1,5 +1,25 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Repair HOLD while descriptor preservation is corrected
+
+Do not execute the earlier repair command yet. Hosted CI exposed that
+File.Replace can change destination owner/group and inherited DACLs. The strict
+post-check detects it; a native FORGE reproduction confirmed three descriptor
+variants. The correction stamps only the NEW temporary file with the captured
+destination descriptor before replacement, preserving all existing trust checks.
+Source and regression work is in progress. No host repair intent was observed.
+The old staged updater and generated command were renamed `.HOLD` with exact
+byte checks; their original bytes and staging receipts are retained. Existing
+runtime, owner task, narrator, models, routes and worker were not changed.
+Do not rerun anything if the owner reports an attempted/uncertain repair.
+
+CI run43745671360 passed the Windows worker/dashboard build but failed Python
+tests on both systems. The Linux issue is a test fixture using a symlinked
+runner interpreter; it is being isolated without weakening production path
+trust. Windows descriptor and older helper-fixture failures are under review.
+Do not call current CI green. The following staged section records the preceding
+checkpoint and will be superseded by the final corrected command/pins.
+
 ## Owner task running; narrator control pipe correction staged
 
 Branch `feature/collector-v7-overnight`; source/test checkpoint
