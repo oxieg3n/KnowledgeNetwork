@@ -22,7 +22,7 @@ $current = [Security.Principal.WindowsIdentity]::GetCurrent()
 $tokens=$null; $errors=$null
 $tree=[Management.Automation.Language.Parser]::ParseFile($env:KN_TEST_SOURCE,[ref]$tokens,[ref]$errors)
 if ($errors.Count) { throw 'Bootstrap syntax error' }
-foreach ($name in @('Assert-TrustedPath','Protect-Directory','Ipv4-Text','Expand-DispatcherRuntime','Assert-PreparedRuntimeReceipt')) {
+foreach ($name in @('Assert-TrustedPath','Protect-Directory','Ipv4-Text','Expand-DispatcherRuntime','Assert-PreparedRuntimeReceipt','Assert-RuntimeManifest')) {
     $fn=@($tree.FindAll({param($a) $a -is [Management.Automation.Language.FunctionDefinitionAst]},$false) | Where-Object Name -eq $name)
     if ($fn.Count -ne 1) { throw 'Expected one reviewed helper' }
     . ([scriptblock]::Create($fn[0].Extent.Text))
@@ -77,6 +77,31 @@ for ($i=0; $i -lt $elements.Count-1; $i++) {
 }
 $limits=@((Get-Command New-LocalUser -ErrorAction Stop).Parameters['Description'].Attributes | Where-Object { $_ -is [Management.Automation.ValidateLengthAttribute] })
 if ($limits.Count -ne 1 -or -not $description -or $description.Length -gt $limits[0].MaxLength -or $description.Length -lt $limits[0].MinLength) { throw 'Account description exceeds native cmdlet limit' }
+""")
+
+    def test_runtime_manifest_native_json_roundtrip_and_tampering(self):
+        self.run_helpers(r"""
+$actual=@([ordered]@{name='python.exe';sha256=('a'*64);bytes=123},[ordered]@{name='python314.dll';sha256=('b'*64);bytes=456})
+$json=$actual | ConvertTo-Json
+$file=Join-Path $fixture 'runtime-files.json'
+$json | Set-Content -LiteralPath $file -Encoding UTF8
+$recorded=Get-Content -LiteralPath $file -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-RuntimeManifest $recorded $actual
+foreach ($case in @('hash','bytes','type','extra','duplicate','missing','wrapper')) {
+    $bad=$json | ConvertFrom-Json
+    switch ($case) {
+        'hash' { $bad[0].sha256='c'*64 }
+        'bytes' { $bad[0].bytes=124 }
+        'type' { $bad[0].bytes='123' }
+        'extra' { $bad[0] | Add-Member -NotePropertyName extra -NotePropertyValue 'unexpected' }
+        'duplicate' { $bad[1]=$bad[0] }
+        'missing' { $bad=@($bad[0]) }
+        'wrapper' { $bad=@(Write-Output -NoEnumerate $bad) }
+    }
+    $denied=$false
+    try { Assert-RuntimeManifest $bad $actual } catch { $denied=$true }
+    if (-not $denied) { throw ('Changed manifest accepted: '+$case) }
+}
 """)
 
     def test_resume_accepts_only_exact_pre_account_receipt(self):

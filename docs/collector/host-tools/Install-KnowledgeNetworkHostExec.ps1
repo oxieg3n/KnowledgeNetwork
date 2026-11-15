@@ -172,6 +172,16 @@ function Expand-DispatcherRuntime([byte[]]$ArchiveBytes,[string]$Target,[switch]
     } finally { $archive.Dispose(); $memory.Dispose() }
     return $records
 }
+function Assert-RuntimeManifest([object]$Recorded,[object[]]$Actual) {
+    if ($Recorded -isnot [array] -or $Recorded.Count -ne $Actual.Count) { throw 'Prepared runtime manifest member count differs.' }
+    $seen = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    foreach ($item in $Recorded) {
+        $keys = @($item.PSObject.Properties.Name)
+        if ($keys.Count -ne 3 -or @($keys | Where-Object { $_ -cnotin @('name','sha256','bytes') }).Count -or $item.name -isnot [string] -or $item.sha256 -isnot [string] -or $item.bytes -isnot [int] -or -not $seen.Add($item.name)) { throw 'Prepared runtime manifest schema differs.' }
+        $expected = @($Actual | Where-Object { $_.name -ceq $item.name })
+        if ($expected.Count -ne 1 -or $item.sha256 -cne $expected[0].sha256 -or $item.bytes -ne $expected[0].bytes) { throw 'Prepared runtime manifest differs from actual package bytes.' }
+    }
+}
 function Assert-PreparedRuntimeReceipt([object]$Receipt,[string]$HostAddress,[string]$ForgeAddress,[string]$DispatcherSha256,[string]$SharedConfigSha256) {
     $keys = @('schema_version','status','service','execution_sid','account','port','host_address','forge_address','dispatcher_sha256','runtime_version','runtime_archive_sha256','shared_config_sha256','created_at','gateway_service_restarted','publication_paused')
     if ($null -eq $Receipt -or @($Receipt.PSObject.Properties).Count -ne $keys.Count -or @($Receipt.PSObject.Properties | Where-Object Name -cnotin $keys).Count) { throw 'Prepared receipt schema differs; no resume.' }
@@ -257,8 +267,8 @@ $runtimeRecords = @(Expand-DispatcherRuntime $archiveBytes $pythonDirectory -Ver
 if ($ResumePreparedRuntime) {
     $recordsPath = Join-Path $root 'runtime-files.private.json'
     if ((Get-Item -LiteralPath $recordsPath).Length -gt 64KB) { throw 'Prepared runtime manifest exceeds bounds.' }
-    $recorded = @(Get-Content -LiteralPath $recordsPath -Raw -Encoding UTF8 | ConvertFrom-Json)
-    if (($recorded | ConvertTo-Json -Compress) -cne ($runtimeRecords | ConvertTo-Json -Compress)) { throw 'Prepared runtime manifest differs from actual package bytes.' }
+    $recorded = Get-Content -LiteralPath $recordsPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    Assert-RuntimeManifest $recorded $runtimeRecords
 } else { [IO.File]::WriteAllText((Join-Path $root 'runtime-files.private.json'),($runtimeRecords | ConvertTo-Json),$encoding) }
 foreach ($file in @($python,(Join-Path $pythonDirectory 'python314.dll'))) {
     $signature = Get-AuthenticodeSignature -LiteralPath $file -ErrorAction Stop

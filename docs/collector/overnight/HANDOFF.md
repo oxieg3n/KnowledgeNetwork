@@ -1,5 +1,39 @@
 # V9 handoff - The Knowledge Network Collector
 
+## PowerShell5.1 manifest round-trip corrected — host bytes unchanged
+
+Owner's checked resume stopped at runtime-manifest equality before account setup.
+Root reproduced the cause under Windows PowerShell5.1: wrapping decoded JSON in
+`@(... | ConvertFrom-Json)` retains a nested array, whose serialized pipeline
+form differs from the extraction records despite identical fields. This was a
+bootstrap comparison defect, not evidence of changed runtime bytes.
+
+Removed the wrapper and serialized-text comparison. `Assert-RuntimeManifest`
+now checks decoded array/count, exact three fields/types, unique case-sensitive
+names and each hash/size against independently verified official ZIP records.
+No existing manifest is rewritten or accepted merely because decoding succeeds.
+All pre-account receipt/ACL/resource-absence/rollback/publisher gates remain.
+
+PASS:7 focused native bootstrap tests, including the exact file/JSON round-trip
+and rejection of changed hash/size/type, extra/duplicate/missing/wrapped entries.
+Root also ran the corrected production extraction/manifest helpers against the
+actual host files over redirected storage: all37 files and the unchanged actual
+manifest match the pinned official ZIP. This was read-only, not host execution.
+Independent source security review PASS at installer SHA-256
+`1f769a2a71fd19ea344b6a2df89c7ecf457e205c1b83bb1ba889b7924ca45975`.
+Prior326-test full suite remains the baseline; no whole-suite repeat for this
+targeted PowerShell comparison fix. No runtime dispatcher source changed.
+
+New installer/private arguments staged in host `host-exec-resume-v2`, preserving
+prior bundles and all prepared state. Owner next action: paste complete contents
+of `output/Host-Exec-Resume-Manifest-Fix.txt` in the same elevated host PowerShell.
+Launcher SHA-256
+`dd37939a79fd0f38b53e2bc093865672a589f0b2be3709687367660e1c073fb7`.
+Captured bytes remain pinned before evaluation. Do not rerun old launchers,
+delete files or bypass the manifest gate. Actual host continuation/remote SSH
+acceptance remain NOT TESTED; no account/service/firewall action by root,
+no inference/render, publication PAUSED and PR20 draft/unmerged.
+
 ## Account-description interruption — checked continuation prepared
 
 Owner's v2 bootstrap reached local account creation, then Windows rejected the
