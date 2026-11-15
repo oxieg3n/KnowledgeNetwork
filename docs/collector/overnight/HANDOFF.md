@@ -1,5 +1,38 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Private tailnet policy reviewed — BLOCKED
+
+Read the complete owner-supplied private HuJSON policy through redirected
+storage, SHA-256 `a143952dfa2a51062e4bf003801b597c47fcc4edcb80d5ada9a4992c3b7fd86c`.
+Parsed comments/trailing commas without printing raw contents or identities.
+Reviewed every top-level section and active rule. The active network permission
+is broad enough to allow other tailnet peers to reach host TCP9443; there are no
+ACL/group/tag-owner definitions narrowing it. SSH access is a separate boundary
+and does not restrict that HTTPS network grant. Adding a narrow FORGE grant
+would not remove the broad permission. No policy snippet or private identifiers
+are included in this report. Official policy syntax reference was consulted.
+
+Result **BLOCKED**: the stated FORGE-only route prerequisite is not satisfied.
+No policy modification, route start, weakening, credential change or inference.
+Existing443/8443 routes and Gateway are untouched. Publication remains PAUSED.
+The retained Serve snapshot has no configured9443, but that is not a native
+port availability test. Root lacks host command execution, so native availability
+is still NOT TESTED independently of policy/Serve.
+
+Prepared private `review/check-native-port.py` for one owner-run native-only
+check: query current Windows9443 listeners with fail-closed errors, then if none
+attempt exclusive IPv4/IPv6 binds and immediately release them without ever
+calling listen. Writes `native-9443.private.json` once; no route/firewall change.
+AST syntax/readback checked on FORGE only, not executed on host. Any native PASS
+is a point-in-time snapshot and does not resolve the policy blocker; recheck
+before any future separately reviewed route mutation.
+
+Policy remediation is outside this read-only review. A future concrete proposal
+must remove/restructure the overlapping broad permission for this destination/
+port while preserving approved access to443/8443 and unrelated services, and
+include positive FORGE/negative other-peer tests. Do not apply changes without
+the owner's scoped authorization and review of the exact proposed policy.
+
 ## Current Serve evidence received — policy export still missing
 
 Owner returned PASS_READ_ONLY_STATE_CAPTURE; root read the two saved private
