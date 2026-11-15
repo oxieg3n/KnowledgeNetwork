@@ -47,7 +47,7 @@
     "source": "https://www.python.org/downloads/release/python-31410/",
     "archive_url": "https://www.python.org/ftp/python/3.14.10/python-3.14.10-embed-amd64.zip",
     "archive_sha256": "90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159",
-    "scope": "Isolated project SSH dispatcher only; no change to canonical VoxCPM2 Python, dependencies, model or ACLs",
+    "scope": "Protected project SSH dispatcher and limited-owner stdlib narrator control/API; canonical VoxCPM2 inference Python, dependencies, model and ACLs unchanged",
     "license": "PSF and bundled notices retained in the original embeddable archive",
     "verification": "Official release SHA-256 and valid Python Software Foundation Authenticode signatures on python.exe and python314.dll; 18 dispatcher tests pass on FORGE"
   },

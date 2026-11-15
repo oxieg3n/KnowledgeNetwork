@@ -1,5 +1,32 @@
 # KnowledgeNetwork host execution: independent security review
 
+## Current continuation: controller source reviewed; approved policy applied
+
+Eight fixed narrator-control operations are implemented and source-tested with
+one identity-checked local pipe and a limited-owner task bootstrap. Protected
+source/interpreter/metadata, owner-only private descendants, anti-spoof checks,
+query-only process/token grants, no unowned listener adoption and durable
+uncertain UUID recovery were independently reviewed. Native FORGE task fixtures
+verified actual descriptor/default RunLevel behavior and limited-owner query
+permissions; all disposable tasks/folders were removed. New BLACKHAT-BASE
+controller installation/pipe acceptance remains NOT TESTED; the live dispatcher
+still has four diagnostic operations. See [the contract](../narrator-control.md).
+
+The owner separately approved exact v5 tailnet policy. One ETag-conditional API
+update was applied and post-verified. Approved/stored byte hashes differ only
+through verified exact typed-object normalization. Official20 tests/400 valid
+assertions and10 post-apply previews pass. Current permissions and explicit
+maintenance/port0 limitations are documented in the
+[policy review](V9-TAILNET-REMEDIATION.md). No narrator route, host process,
+Gateway/configuration or firewall was changed. Publication stays PAUSED.
+
+The approved API write succeeded, proving the supplied credential is not
+read-only despite its target name; replace/revoke it for ongoing least-privilege
+audits. No other mutation is authorized. New private API/policy evidence and an
+unchanged-key/pinned controller config use a protected owner-profile namespace;
+the unsafe C:/admin ancestor was not silently modified. All prior evidence and
+rollback remain. The earlier sections retain their historical stage labels.
+
 ## Update: actual installed endpoint accepted from FORGE
 
 November 15: coordinator executed the native client tests after owner bootstrap.

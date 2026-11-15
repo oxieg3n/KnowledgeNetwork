@@ -1,5 +1,103 @@
 # V9 handoff - The Knowledge Network Collector
 
+## V5 policy applied/post-verified; restricted narrator control staged
+
+Branch `feature/collector-v7-overnight`, continuing from accepted checkpoint
+`18006d9df188a486ee334f484fe4d9daf6d75ffc`. PR20 draft/unmerged; publication
+PAUSED. No Collector rebuild/install, inference, render or public upload.
+
+**PASS actual tailnet remediation after explicit owner approval.** Original
+`grants[0]` allowed wildcard source/destination/IP permissions; no overlapping
+network ACL/group/tag rule restricted9443. Actual Admin API collection confirmed
+five devices/ten addresses and all five advertised/enabled route array pairs
+explicitly empty, including no exit defaults. Missing tags were not interpreted
+as proof of no tags. SSH and identity configuration were preserved.
+
+V5 passed20 official tests/400 valid same-family assertions and independent
+review of10 previews. Owner explicitly answered "Approve v5 policy only",
+accepting static-inventory maintenance and reserved TCP destination-port0 limits.
+Approved candidate SHA-256:
+`c96c6e7c4682625ae1b6e0aba21e52bd9d697b6c76b71d539a8f0cc986235d19`.
+Inside-script fresh inventory/routes/baseline checks preceded ONE conditional
+POST with live ETag/If-Match and fsynced intent. HTTP200; no update retry or
+automatic rollback. Tailscale normalized representation. Stored SHA-256:
+`35697bcb6e06a9b2047d6056ab847fcff31f2d054ca8da7ba8e6a97222b10335`.
+Independent recursive typed equality proved all approved/returned/stored values,
+array orders and five sections equal. Original normalization-blocked receipt
+remains intact. Actual stored-policy validation passed again;10 post-apply
+previews match approved semantics. Current443/8443/Gateway permissions preserved.
+Original rollback policy SHA-256:
+`a143952dfa2a51062e4bf003801b597c47fcc4edcb80d5ada9a4992c3b7fd86c`.
+See [the full current policy review](V9-TAILNET-REMEDIATION.md).
+
+New/renumbered destinations and approved subnets need reviewed policy updates;
+remove/update the FORGE allowance before IP reassignment. This is not preserved
+future wildcard behavior or all-raw-packet equivalence. Native ICMP/live
+unauthorized-peer rejection are NOT TESTED. **HTTPS9443 remains OFF.** No Serve,
+Funnel, firewall, Gateway, narrator process or shared SSH configuration changed.
+
+Private evidence: `%USERPROFILE%/KnowledgeNetworkCollector-Private/` directories
+`tailnet-api-live-002`, `policy-validate-004`, `policy-apply-001`,
+`policy-postapply-001`. Host review pack:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/private-service-v9-001/review/tailnet-remediation-v5`.
+Original/candidate/diffs and failed diagnostic attempts retained privately.
+The successful approved POST proves the API key has write capability despite
+its ReadOnly target name. Replace/revoke it with a strictly read-only OAuth
+access token for continuing audits; no further mutation is authorized. The
+earlier exposed key must be revoked if not already done; root never used it.
+No credential value entered source/Git.
+
+**PASS source preparation; NOT DEPLOYED host control.** Eight exact operations
+are implemented through one fixed identity-checked local pipe: narrator-health,
+narrator-validate, narrator-start, narrator-stop, narrator-credential-ensure,
+narrator-verify, narrator-diagnostics, narrator-reconcile. The limited owner
+runner reuses the existing HTTP/store/manifest/credentials. It never runs the
+writable inference environment as SYSTEM/elevated, adopts an unowned39110
+listener, sends it a bearer or cancels active work on control shutdown. Durable
+UUID history includes lost finished replies; no hold-clear/replay operation.
+Source/artifact pins, private child ACLs, PCM receipts and audit are checked.
+Details: [narrator control](../narrator-control.md).
+
+One elevated host-owner bootstrap remains technically necessary: the accepted
+four-command endpoint cannot write protected code/register the task. Standing
+authorization already supplies permission. Reviewed sources are staged in host
+kit `narrator-control-setup-v1` and `narrator-control-deploy-v1` (139499bytes;
+no model/runtime ZIP duplication). Installer SHA-256:
+`689a32707edb995b2d6f81d83e7e59aa7fe60ecf89384d0d8572bc1dbd5f2761`;
+bundle-manifest SHA-256:
+`96d39745cb4e31bc9121a5836f1b73f1e3718e8cfda74541f898e6ac049b004d`.
+Run the captured-byte/hash-checked single line in FORGE's
+`output/Host-Narrator-Control-Setup.txt` from elevated BLACKHAT-BASE PowerShell.
+It starts only the limited controller task, not narration or a route. Preserve
+any failure; never blindly rerun. Existing rollback/source remain intact; the
+new bootstrap creates checked source/ACL rollback before mutation and refuses
+running/queued-task rollback.
+
+PASS:383 repository tests in107.160s;7 skips (5 preexisting FFmpeg,2 opt-in task
+fixtures). Both isolated FORGE task fixtures separately PASS: registration/
+export/security and actual limited-owner process/token query grants. All created
+tasks/folders removed. Native platform normalization defects were fixed before
+host staging. Pinned CPython3.14.10 passed72 compatibility checks; its temporary
+37-file extraction was removed. Independent security/Ponytail FULL review
+applied. No UI/design gate or unavailable Prompt Sensei usage claimed.
+
+Private-output guards correctly rejected C:/admin's delete-capable untrusted
+ancestor. No unrelated ACL was changed. New API evidence and unchanged-key,
+independently pinned client config use the protected owner-profile project root:
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/host-exec-client-v1/ssh_config`.
+Post-policy actual SSH health PASS, nonadmin/four live capabilities. Old copies
+retained for rollback. Reference/script/declaration/57-artifact manifest small
+pins match; no4.96GB inventory rerun. Local-use/monetized-audio findings remain
+separate from uncleared narrator dependency redistribution.
+
+BLOCKED/NOT TESTED: new host task/pipe/controller acceptance, deliberate handoff
+from existing foreground39110, managed lifecycle, FORGE bearer/route setup and
+REMOTE_NARRATION_PASS. Exact approved brand originals including badge remain
+recovered. Native plan:48 intro +1218 body +234 outro =1500frames/50s; actual
+speech/caption timing awaits remote PCM. Existing synthetic .osp/MP4 preserved;
+no completed branded Short claimed. Installer pipefix-002 remains unchanged/
+undeployed; isolated upgrade and scheduled Assistant/reboot limits unchanged.
+
 ## Dedicated host SSH: actual FORGE acceptance PASS
 
 November 15, 2026: owner ran the checked completion launcher. It reported

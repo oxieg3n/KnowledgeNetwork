@@ -15,6 +15,13 @@ yet provide narrator execution, credential provisioning or service management.
 Completed staging payloads were removed after installed-runtime verification;
 the protected runtime, compact evidence and original rollback remain.
 
+Subsequent source work adds eight fixed operations through a local, identity-
+checked limited-owner narrator controller. This update is prepared separately;
+it has not changed the accepted live four-command endpoint. See
+[narrator control](narrator-control.md) for operations, fixed pipe/security
+boundaries, protected task bootstrap and untested host acceptance. No generic
+script, file-reading or privileged shell operation is added.
+
 ## Endpoint and identity
 
 Use the installed official Windows OpenSSH executable as a **second** Windows
@@ -227,10 +234,12 @@ channel can leave a PASS audit followed by operation_unverified for one request;
 only a received response establishes successful client acceptance. Future
 mutating handlers must preserve durable uncertain-outcome reconciliation.
 
-The reviewed private tailnet policy currently permits more than FORGE to reach
-the proposed narrator9443 route. That route remains BLOCKED irrespective of
-whether project SSH works or native9443 is free. Preserve routes443/8443 and
-Gateway; no Funnel, public firewall, TLS bypass or policy weakening. Once a
+The originally broad tailnet policy was subsequently corrected with explicit
+owner approval; v5 is applied and post-verified at the current-inventory scope
+described in the [policy review](overnight/V9-TAILNET-REMEDIATION.md). Narrator
+route deployment remains unperformed, with separate host/authentication/port/
+Serve acceptance required. Preserve routes443/8443 and Gateway; no Funnel,
+public firewall, TLS bypass or policy weakening. Once a
 secure project endpoint is actually accepted, use only its supported handlers
 for remaining project work. Privileged narrator-service/network handlers require
 their own closed implementation and evidence before use. Reboots, publication

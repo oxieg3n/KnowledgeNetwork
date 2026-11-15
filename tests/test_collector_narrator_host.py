@@ -82,6 +82,14 @@ class HostFixture(unittest.TestCase):
 
 
 class HostStoreTests(HostFixture):
+    def test_manifest_deadline_blocks_before_script_execution(self):
+        with patch('youtube_ops.collector_narrator_host.time.monotonic', side_effect=(0, 121)):
+            with self.assertRaisesRegex(NarratorError, 'manifest_verification_deadline'):
+                NarratorManifest(self.manifest_path)
+        with patch('youtube_ops.collector_narration_common.time.monotonic', return_value=2):
+            with self.assertRaisesRegex(VoiceError, 'VOICE_HASH_DEADLINE'):
+                sha256_file(self.checkpoint, deadline=1)
+
     def test_manifest_requires_reviewed_canonical_files_and_settings(self):
         verified = NarratorManifest(self.manifest_path)
         self.assertEqual(set(verified.provenance), {'script_sha256', 'config_sha256', 'model_revision', 'license_evidence_sha256'})

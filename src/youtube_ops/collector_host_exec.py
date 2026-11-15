@@ -18,10 +18,13 @@ import sys
 import tempfile
 import threading
 import time
+import types
 import uuid
 
 ROOT = Path('C:/ProgramData/KnowledgeNetworkCollector/HostExec')
-OPERATIONS = frozenset(('health', 'native-port-9443', 'narrator-status', 'self-test'))
+BROKER_OPERATIONS = frozenset(('narrator-health', 'narrator-validate', 'narrator-start', 'narrator-stop',
+                              'narrator-credential-ensure', 'narrator-verify', 'narrator-diagnostics', 'narrator-reconcile'))
+OPERATIONS = frozenset(('health', 'native-port-9443', 'narrator-status', 'self-test')) | BROKER_OPERATIONS
 MAX_OUTPUT = 65536
 MAX_AUDIT = 16 * 1024 * 1024
 TIMEOUT = 20
@@ -31,6 +34,12 @@ PORT_SCRIPT = "[Console]::Out.Write(@([Net.NetworkInformation.IPGlobalProperties
 
 class Denied(RuntimeError):
     pass
+
+
+class BrokerDenied(Denied):
+    def __init__(self, code, request_id):
+        super().__init__(code)
+        self.request_id = request_id
 
 
 def digest(path):
@@ -58,7 +67,17 @@ def read_object(path):
         raw = stream.read(MAX_OUTPUT + 1)
     if len(raw) > MAX_OUTPUT:
         raise Denied('file_limit')
-    value = json.loads(raw.decode('utf-8-sig'))
+    def unique_pairs(pairs):
+        value = {}
+        for key, item in pairs:
+            if key in value:
+                raise Denied('duplicate_json_field')
+            value[key] = item
+        return value
+    def invalid_constant(_):
+        raise Denied('invalid_object')
+    value = json.loads(raw.decode('utf-8-sig'), object_pairs_hook=unique_pairs,
+                       parse_constant=invalid_constant)
     if not isinstance(value, dict):
         raise Denied('invalid_object')
     return value, hashlib.sha256(raw).hexdigest()
@@ -233,7 +252,55 @@ def ensure_quiescent(handle):
         raise Denied('owned_children_active')
 
 
-def perform(operation, config, identity, cancel):
+def broker_operation(operation, request_id, cancel):
+    if operation not in BROKER_OPERATIONS or not re.fullmatch('[a-f0-9]{32}', request_id):
+        raise BrokerDenied('broker_request_denied', request_id)
+    if cancel.is_set():
+        raise BrokerDenied('broker_cancelled_before_request', request_id)
+    metadata, _ = read_object(ROOT / 'narrator-broker.json')
+    files = metadata.get('files')
+    expected = files.get('collector_narrator_pipe.py') if isinstance(files, dict) else None
+    if type(metadata.get('schema_version')) is not int or metadata['schema_version'] != 1 or not re.fullmatch('[a-f0-9]{64}', str(expected)):
+        raise BrokerDenied('broker_configuration_unverified', request_id)
+    path = local_path(ROOT / 'runtime/youtube_ops/collector_narrator_pipe.py')
+    with path.open('rb') as stream:
+        source = stream.read(MAX_OUTPUT + 1)
+    if len(source) > MAX_OUTPUT or hashlib.sha256(source).hexdigest() != expected:
+        raise BrokerDenied('broker_transport_changed', request_id)
+    # Execute the exact pinned capture, never a second lookup of potentially replaced bytes.
+    module = types.ModuleType('collector_narrator_pipe')
+    module.__file__ = str(path)
+    try:
+        exec(compile(source, str(path), 'exec'), module.__dict__)
+        response = module.broker_request(operation, request_id, cancel)
+    except Exception as exc:
+        code = getattr(exc, 'code', None)
+        if not isinstance(code, str) or not re.fullmatch('[a-z][a-z0-9_]{0,79}', code):
+            code = 'broker_request_unverified'
+        raise BrokerDenied(code, request_id) from exc
+    if not isinstance(response, dict) or response.get('schema_version') != 1 or type(response['schema_version']) is not int:
+        raise BrokerDenied('broker_response_invalid', request_id)
+    common = {'schema_version', 'request_id', 'operation', 'status'}
+    if response.get('request_id') != request_id or response.get('operation') != operation:
+        raise BrokerDenied('broker_response_mismatch', request_id)
+    try:
+        if len(json.dumps(response, ensure_ascii=True).encode()) > MAX_OUTPUT:
+            raise ValueError()
+    except (TypeError, ValueError):
+        raise BrokerDenied('broker_response_invalid', request_id)
+    if response.get('status') == 'PASS' and set(response) == common | {'result'} and isinstance(response['result'], dict):
+        return {'scope': 'owner_context_broker', 'request_id': request_id, 'result': response['result']}
+    if response.get('status') == 'BLOCKED' and set(response) in (common | {'error'}, common | {'error', 'result'}):
+        code = response.get('error')
+        if isinstance(code, str) and re.fullmatch('[a-z][a-z0-9_]{0,79}', code) and (
+                'result' not in response or isinstance(response['result'], dict)):
+            raise BrokerDenied(code, request_id)
+    raise BrokerDenied('broker_response_invalid', request_id)
+
+
+def perform(operation, config, identity, cancel, request_id=None):
+    if operation in BROKER_OPERATIONS:
+        return broker_operation(operation, request_id or uuid.uuid4().hex, cancel)
     if operation == 'health':
         return {'execution_sid': identity, 'elevated': False, 'capabilities': sorted(OPERATIONS)}
     if operation == 'self-test':
@@ -330,13 +397,13 @@ def main():
         owner = own_process_tree()
         audit({'event': 'start', 'request_id': request, 'execution_sid': identity,
                'operation': operation, 'config_sha256': config_sha})
-        result = perform(operation, config, identity, cancel)
+        result = perform(operation, config, identity, cancel, request)
         ensure_quiescent(owner)
         audit({'event': 'finish', 'request_id': request, 'execution_sid': identity,
                'operation': operation, 'outcome': 'PASS',
                'result_sha256': hashlib.sha256(json.dumps(result, sort_keys=True).encode()).hexdigest(),
                'duration_ms': round((time.monotonic() - started) * 1000)})
-        print(json.dumps({'status': 'PASS', 'operation': operation, 'result': result}), flush=True)
+        print(json.dumps({'status': 'PASS', 'request_id': request, 'operation': operation, 'result': result}), flush=True)
         return 0
     except Exception as exc:
         code = str(exc) if isinstance(exc, Denied) else 'operation_unverified'
@@ -345,7 +412,7 @@ def main():
                    'operation': operation, 'outcome': code, 'duration_ms': round((time.monotonic() - started) * 1000)})
         except Exception:
             code = 'audit_unavailable'
-        print(json.dumps({'status': 'BLOCKED', 'error': code}), flush=True)
+        print(json.dumps({'status': 'BLOCKED', 'request_id': request, 'error': code}), flush=True)
         return 1
 
 

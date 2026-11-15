@@ -1,5 +1,6 @@
 """Forced-command framing and bounded handlers; no host deployment or inference."""
 import io
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -55,6 +56,97 @@ class HostExecTests(unittest.TestCase):
         path.write_text('{}')
         with patch.object(Path, 'is_symlink', return_value=True):
             with self.assertRaisesRegex(host.Denied, 'untrusted_path'): host.read_object(path)
+        for raw in ('{"status":"ready","status":"blocked"}', '{"status":NaN}'):
+            path.write_text(raw)
+            with self.assertRaises(host.Denied): host.read_object(path)
+
+    def broker_fixture(self, body=None, *, error=None):
+        folder = self.root / 'runtime/youtube_ops'; folder.mkdir(exist_ok=True)
+        source = ('def broker_request(operation, request_id, cancel):\n' +
+                  ('    raise Error()\n' if error else
+                   '    return {"schema_version":1,"request_id":request_id,"operation":operation,"status":"PASS","result":{"live_authenticated":True}}\n'))
+        if error:
+            source = f'class Error(Exception):\n    code={error!r}\n' + source
+        if body:
+            source = 'def broker_request(operation, request_id, cancel):\n    ' + body + '\n'
+        path = folder / 'collector_narrator_pipe.py'; path.write_bytes(source.encode())
+        (self.root / 'narrator-broker.json').write_text(json.dumps({
+            'schema_version': 1, 'files': {'collector_narrator_pipe.py': hashlib.sha256(source.encode()).hexdigest()}}))
+        return path
+
+    def test_broker_operations_and_original_request_identity(self):
+        self.broker_fixture()
+        request_id = 'a' * 32
+        for operation in host.BROKER_OPERATIONS:
+            result = host.perform(operation, self.config, SID, threading.Event(), request_id)
+            self.assertEqual(result['request_id'], request_id)
+            self.assertTrue(result['result']['live_authenticated'])
+        for operation in ('narrator-start x', 'narrator-start;whoami', '../narrator-start'):
+            with self.assertRaisesRegex(host.Denied, 'broker_request_denied'):
+                host.broker_operation(operation, request_id, threading.Event())
+
+    def test_broker_transport_replacement_and_pinned_capture(self):
+        path = self.broker_fixture()
+        path.write_text('raise RuntimeError("unreviewed replacement")')
+        with self.assertRaisesRegex(host.BrokerDenied, 'broker_transport_changed'):
+            host.broker_operation('narrator-health', 'a' * 32, threading.Event())
+        self.broker_fixture()
+        original_compile = compile
+        def replace_after_capture(source, filename, mode):
+            path.write_text('raise RuntimeError("unreviewed replacement")')
+            return original_compile(source, filename, mode)
+        with patch('builtins.compile', side_effect=replace_after_capture):
+            result = host.broker_operation('narrator-health', 'a' * 32, threading.Event())
+        self.assertTrue(result['result']['live_authenticated'])
+
+    def test_broker_cancellation_timeout_permission_and_response_checks(self):
+        request_id = 'a' * 32
+        cancel = threading.Event(); cancel.set()
+        with self.assertRaisesRegex(host.BrokerDenied, 'broker_cancelled_before_request'):
+            host.broker_operation('narrator-start', request_id, cancel)
+        for code in ('broker_timeout_outcome_unknown', 'broker_cancelled_outcome_unknown', 'broker_permission_denied'):
+            self.broker_fixture(error=code)
+            with self.assertRaisesRegex(host.BrokerDenied, code) as failure:
+                host.broker_operation('narrator-start', request_id, threading.Event())
+            self.assertEqual(failure.exception.request_id, request_id)
+        for body, error in (
+                ('return {"schema_version":1,"request_id":"b"*32,"operation":operation,"status":"PASS","result":{}}', 'broker_response_mismatch'),
+                ('return {"schema_version":1,"request_id":request_id,"operation":operation,"status":"PASS","result":{"text":"x"*65536}}', 'broker_response_invalid'),
+                ('return {"schema_version":1,"request_id":request_id,"operation":operation,"status":"BLOCKED","error":"private token and path"}', 'broker_response_invalid'),
+                ('return {"schema_version":1,"request_id":request_id,"operation":operation,"status":"BLOCKED","error":"narrator_unmanaged"}', 'narrator_unmanaged')):
+            self.broker_fixture(body)
+            with self.assertRaisesRegex(host.BrokerDenied, error):
+                host.broker_operation('narrator-health', request_id, threading.Event())
+
+    def run_broker_main(self, *, audit=None):
+        (self.root / 'config.json').write_text(json.dumps(self.config))
+        with patch.object(host, '__file__', str(self.root / 'runtime/collector_host_exec.py')), \
+             patch.object(host.sys, 'argv', ['dispatcher.py']), \
+             patch.dict(host.os.environ, dict(self.env, SSH_ORIGINAL_COMMAND='narrator-start'), clear=True), \
+             patch.object(host, 'windows_identity', return_value=(SID, False)), \
+             patch.object(host, 'digest', return_value='1' * 64), \
+             patch.object(host, 'own_process_tree', return_value=1), \
+             patch.object(host, 'ensure_quiescent'), \
+             patch.object(host.sys, 'stdout', new_callable=io.StringIO) as output:
+            if audit:
+                with patch.object(host, 'audit', side_effect=audit): code = host.main()
+            else:
+                code = host.main()
+        return code, json.loads(output.getvalue())
+
+    def test_broker_main_audits_same_request_and_never_exposes_permission_error(self):
+        self.broker_fixture(error='broker_timeout_outcome_unknown')
+        code, response = self.run_broker_main()
+        self.assertEqual(code, 1); self.assertEqual(response['error'], 'broker_timeout_outcome_unknown')
+        records = [json.loads(x) for x in (self.root / 'audit/execution.jsonl').read_text().splitlines()]
+        self.assertEqual({r['request_id'] for r in records}, {response['request_id']})
+        self.assertEqual(records[-1]['operation'], 'narrator-start')
+        with patch.object(host, 'broker_operation', side_effect=PermissionError('SECRET must not be returned')):
+            _, response = self.run_broker_main()
+        self.assertEqual(response['error'], 'operation_unverified'); self.assertNotIn('SECRET', json.dumps(response))
+        with patch.object(host, 'broker_operation') as forward:
+            code, response = self.run_broker_main(audit=host.Denied('audit_busy'))
+        self.assertEqual(code, 1); forward.assert_not_called()
 
     def test_snapshot_is_fixed_and_never_claims_live_auth(self):
         with self.assertRaisesRegex(host.Denied, 'narrator_snapshot_missing'):

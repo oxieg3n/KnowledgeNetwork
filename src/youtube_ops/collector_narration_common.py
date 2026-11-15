@@ -69,10 +69,14 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
 
-def sha256_file(path):
+def sha256_file(path, *, deadline=None):
+    if deadline is not None and time.monotonic() >= deadline:
+        raise VoiceError('VOICE_HASH_DEADLINE')
     result = hashlib.sha256()
     with Path(path).open('rb') as stream:
         for block in iter(lambda: stream.read(65536), b''):
+            if deadline is not None and time.monotonic() >= deadline:
+                raise VoiceError('VOICE_HASH_DEADLINE')
             result.update(block)
     return result.hexdigest()
 

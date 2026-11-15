@@ -169,6 +169,7 @@ class NarratorManifest:
         self.verify()
 
     def verify(self):
+        deadline = time.monotonic() + 120
         artifacts = self.value['artifacts']
         refs = [item for item in artifacts if item['role'] == 'model_revision_ref']
         effective = _effective_model_ref()
@@ -196,7 +197,13 @@ class NarratorManifest:
                 raise NarratorError('invalid_manifest_digest')
             if not path.is_file() or path.is_symlink() or getattr(path.stat(), 'st_file_attributes', 0) & 0x400:
                 raise NarratorError('narrator_artifact_unavailable')
-            if sha256_file(path) != item['sha256']:
+            if time.monotonic() >= deadline:
+                raise NarratorError('manifest_verification_deadline')
+            try:
+                actual = sha256_file(path, deadline=deadline)
+            except VoiceError as exc:
+                raise NarratorError('manifest_verification_deadline') from exc
+            if actual != item['sha256']:
                 raise NarratorError('narrator_artifact_changed')
 
 

@@ -1,5 +1,14 @@
 # Restricted direct Oxiegen-Narrator host worker
 
+Current continuation: the canonical diagnostic, owner listening approval,
+private host manifest validation and original loopback authentication passed;
+reuse the latest [handoff](overnight/HANDOFF.md) at that exact scope. The
+[owner-context control extension](narrator-control.md) prepares restricted
+lifecycle/verification handlers, without changing the live narrator or implying
+their deployment. HTTPS9443 and real FORGE narration remain blocked by policy
+and deployment gates. Historical untested statements below describe the initial
+source baseline, not a new failure of the completed local diagnostic.
+
 This V9 worker belongs on BLACKHAT-BASE. FORGE remains the Collector/editor.
 The worker calls only the existing canonical
 `D:\tools\audio\voices\Oxiegen-Narrator\narrate.ps1` through the Windows system
