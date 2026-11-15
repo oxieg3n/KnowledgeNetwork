@@ -17,6 +17,7 @@ $firewall = 'KnowledgeNetworkHostExec-Forge'
 $blockFirewall = 'KnowledgeNetworkHostExec-OtherSources'
 $port = 22230
 $sshd = 'C:/Windows/System32/OpenSSH/sshd.exe'
+$firewallProgram = [IO.Path]::GetFullPath($sshd)
 $python = "$root/runtime/python/python.exe"
 $runtimeSha256 = '90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159'
 $powershell = 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe'
@@ -348,8 +349,8 @@ if ($otherSources.Count -ne 2) { throw 'Source complement construction failed.' 
 $receipt.block_sources = $otherSources
 [IO.File]::WriteAllText((Join-Path $root 'bootstrap-receipt.private.json'),($receipt | ConvertTo-Json),$encoding)
 # Explicit block precedence also closes any pre-existing broad program allow.
-New-NetFirewallRule -Name $blockFirewall -DisplayName 'The Knowledge Network Collector SSH deny other sources' -Direction Inbound -Action Block -Protocol TCP -LocalPort $port -LocalAddress $HostAddress -RemoteAddress $otherSources -Program $sshd -Profile Any -ErrorAction Stop | Out-Null
-New-NetFirewallRule -Name $firewall -DisplayName 'The Knowledge Network Collector SSH from FORGE only' -Direction Inbound -Action Allow -Protocol TCP -LocalPort $port -LocalAddress $HostAddress -RemoteAddress $ForgeAddress -Program $sshd -Profile Any -ErrorAction Stop | Out-Null
+New-NetFirewallRule -Name $blockFirewall -DisplayName 'The Knowledge Network Collector SSH deny other sources' -Direction Inbound -Action Block -Protocol TCP -LocalPort $port -LocalAddress $HostAddress -RemoteAddress $otherSources -Program $firewallProgram -Profile Any -ErrorAction Stop | Out-Null
+New-NetFirewallRule -Name $firewall -DisplayName 'The Knowledge Network Collector SSH from FORGE only' -Direction Inbound -Action Allow -Protocol TCP -LocalPort $port -LocalAddress $HostAddress -RemoteAddress $ForgeAddress -Program $firewallProgram -Profile Any -ErrorAction Stop | Out-Null
 foreach ($ruleName in @($firewall,$blockFirewall)) {
     $rule = Get-NetFirewallRule -Name $ruleName -PolicyStore ActiveStore -ErrorAction Stop
     $addresses = $rule | Get-NetFirewallAddressFilter -ErrorAction Stop

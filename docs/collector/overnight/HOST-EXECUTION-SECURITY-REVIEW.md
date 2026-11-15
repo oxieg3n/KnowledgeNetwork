@@ -279,3 +279,35 @@ description limit, invalid receipt fields and corrupted-runtime rejection withou
 repair; prior dispatcher checks remain unchanged. Actual host continuation and
 remote connection/identity/denial tests remain NOT TESTED. This reviewer made no
 source or host changes and did not run the continuation.
+
+## Exact pre-network completion review
+
+After account/configuration preparation, Windows rejected the firewall Program
+path format. The coordinator reproduced that failure with disabled temporary
+FORGE rules and confirmed canonical backslash paths succeed; those probe rules
+were removed. This is separate from the still-pending live host completion.
+
+Reviewed `Complete-KnowledgeNetworkHostExec.ps1` SHA-256
+`080bbe62410d1e44c0bef146aa4c09e05e35819141fee1c05e5a5b30980d5705`.
+It admits only the exact reconciled pre-network state, not arbitrary progressed
+or repair states. It requires the existing enabled account's matching SID and
+nonadmin/Users membership; exact scalar receipt/config fields; expected root,
+runtime and empty output directories; unchanged rollback/shared backup; verified
+runtime/dispatcher/key bytes; matching SSH config/effective restrictions; and
+absence of project services and rules in persistent/effective inventories.
+Mutable audit ACLs are validated separately against their exact protected three-
+entry contract instead of weakening immutable-code trust checks.
+
+Two concrete draft issues were corrected during independent review: the old
+PowerShell JSON-array wrapper comparison was replaced with the pinned strict
+semantic runtime-manifest helper, and scalar/date/range type checks now reject
+collection-shaped values that PowerShell comparison coercion could otherwise
+accept. No retained manifest is rewritten to make a comparison pass.
+
+The only mutation tail is captured from the same hash-pinned reviewed bootstrap:
+canonical-program firewall rules, their effective checks, and the new dedicated
+service. It recreates no account or runtime and overwrites no key/configuration.
+Existing Gateway daemon/configuration and tailnet policy remain untouched.
+No remaining concrete must-fix was identified at that digest. Actual host
+completion, effective wrong-source denial and authenticated remote identity are
+still NOT TESTED; source review is not operational acceptance.

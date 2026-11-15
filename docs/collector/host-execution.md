@@ -161,6 +161,28 @@ publisher/import-isolation checks run again before continuing at new-account
 creation. Any later-stage artifact, changed field/byte, existing identity or
 uncertain outcome stops this narrow resume; it is not a general repair mode.
 
+The next observed stop occurred after account/configuration preparation but
+before any project service or firewall rule: NetSecurity rejected the forward-
+slash `Program` path. A native disabled-rule experiment reproduced that failure
+and accepted the canonical Windows backslash path, including source-range filter
+readback. The installer now uses a separate canonical firewall program variable;
+SSH/SCM/rollback image strings remain unchanged.
+
+For this exact reconciled **pre-network** state, use
+`host-tools/Complete-KnowledgeNetworkHostExec.ps1`, not another bootstrap or the
+pre-account resume switch. Completion captures pinned bootstrap source bytes,
+imports only its fixed trust/archive/manifest helpers, and validates the actual
+existing account SID, nonadmin/Users membership, exact receipt/config types,
+protected root shape, empty audit/receipts and exact audit DACL. It rechecks all
+37 runtime bytes against the official ZIP, original backups/rollback, dispatcher,
+dedicated key/source pin, derived SSH configuration and native `sshd -t/-T`.
+Actual service/rule/listener absence and effective firewall prerequisites remain
+mandatory. It creates no account/runtime/configuration, rewrites no old evidence
+or ACL, and invokes only the reviewed networking tail from that pinned source.
+Any advanced, drifted or uncertain state stops completion rather than being
+silently repaired. This is a one-time owner bootstrap continuation, not a remote
+arbitrary-script operation exposed by the endpoint.
+
 ## Acceptance and rollback
 
 Keep one current launcher and the payloads it actually references. After a

@@ -1,5 +1,55 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Native firewall Program path fixed — checked networking completion staged
+
+Owner's single-command continuation passed account/config/native SSH preparation
+then `New-NetFirewallRule` rejected its application path. Root reproduced on
+FORGE with disabled temporary rules: forward-slash Program rejected, canonical
+Windows backslash Program accepted. A second disabled probe confirmed exact
+complement-source filter readback. All probes were removed by exact names;
+none was enabled or changed effective traffic. Installer now normalizes only
+the firewall Program value, preserving SSH/SCM/rollback path strings.
+
+Actual private host receipt has BOOTSTRAP_IN_PROGRESS, recorded execution SID
+and block-source ranges; config, authorized_keys, effective SSH state and empty
+audit/receipts directories exist. Source failure occurred before service setup.
+Root retained five hash-verified pre-networking evidence copies under
+`C:/admin/collector-v9/host-exec-client-v1/pre-networking-failure`.
+Do not use pre-account resume again: its prerequisite is no longer satisfied.
+
+Added a narrow `Complete-KnowledgeNetworkHostExec.ps1`, which validates exact
+pre-network root/receipt/config/account SID/nonadmin membership, mutable audit
+ACL separately from immutable code, actual absent service/rules/listener,
+effective firewall policy, all runtime bytes and signatures, key/source binding,
+current native SSH syntax/effective config and shared/rollback evidence. Only
+the pinned bootstrap networking tail then executes; no account/runtime/config
+recreation, ACL rewrite, evidence clearing or Gateway restart. Security review
+caught and corrected the old serialized-JSON comparison and scalar-array type
+looseness in the draft before staging; strict tests cover both.
+
+PASS:8 focused native bootstrap tests; direct Windows firewall-provider format
+and filter tests; production completion data helper against the actual unchanged
+host receipt/config/key formatting; independent source review and parsers.
+Installer SHA-256 `07096d7f2f81bd6d6291a47819f9aab3e27ebdb55c1b16265b570e423877396b`;
+completion SHA-256 `080bbe62410d1e44c0bef146aa4c09e05e35819141fee1c05e5a5b30980d5705`.
+Final repository regression PASS:328tests in72.951s,5 existing skips; private
+log `C:/admin/collector-v9/host-exec-python-3.14.10/network-completion-regression.log`.
+
+Staged one self-contained owner command in host `host-exec-complete-v1`:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-complete-v1/Complete-HostExec.ps1`.
+Launcher SHA-256 `8301178d26459ae109692edc6d673b3a3775b59c546b27d4dcba87cc5ce845cc`.
+Run only this file from elevated host PowerShell. It pins captured completion
+code/arguments; no multi-line paste or prior variables required. Actual host
+completion/remote identity remains NOT TESTED. Remove/disable nothing manually
+if it stops; preserve outcome for reconciliation.
+
+Cleaned the obsolete host-exec-resume-v2 launcher/source/arguments after verifying
+replacement and payload references. Active archive/key/dispatcher, protected
+runtime/account/config, audit/receipts, evidence backups and rollback preserved.
+No host firewall/service action was executed by root, no new speech/render or
+9443 policy/route change. Publication PAUSED; PR20 draft/unmerged. Ponytail FULL
+and independent security review applied; no UI or narrator-setting change.
+
 ## Reverse-order paste recovered; obsolete staging cleaned
 
 Owner pasted the multi-line launcher in reverse order, invoking the previous

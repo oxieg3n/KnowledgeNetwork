@@ -104,6 +104,39 @@ foreach ($case in @('hash','bytes','type','extra','duplicate','missing','wrapper
 }
 """)
 
+    def test_network_completion_requires_exact_pre_service_state(self):
+        self.run_helpers(r"""
+$path=Join-Path (Split-Path -Parent $env:KN_TEST_SOURCE) 'Complete-KnowledgeNetworkHostExec.ps1'
+$netTree=[Management.Automation.Language.Parser]::ParseFile($path,[ref]$tokens,[ref]$errors)
+if ($errors.Count) { throw 'Networking completion syntax differs' }
+$fn=@($netTree.FindAll({param($a) $a -is [Management.Automation.Language.FunctionDefinitionAst] -and $a.Name -eq 'Assert-PreparedNetworkingReceipt'},$true))
+if ($fn.Count -ne 1) { throw 'Expected one networking guard' }
+. ([scriptblock]::Create($fn[0].Extent.Text))
+$sid='S-1-5-21-100-200-300-1001'
+$ranges=@('0.0.0.0-100.100.100.9','100.100.100.11-255.255.255.255')
+$good=[ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service='KnowledgeNetworkHostExec';execution_sid=$sid;account='kncollector_exec';port=22230;host_address='100.100.100.20';forge_address='100.100.100.10';dispatcher_sha256=('a'*64);runtime_version='3.14.10';runtime_archive_sha256='90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159';shared_config_sha256=('b'*64);created_at='2026-11-15T00:00:00Z';gateway_service_restarted=$false;publication_paused=$true;block_sources=$ranges}
+$configuration=[ordered]@{schema_version=1;execution_sid=$sid;forge_address='100.100.100.10';python_sha256=('c'*64);powershell_sha256=('d'*64)}
+function Check-NetworkState($r,$c) { Assert-PreparedNetworkingReceipt $r $c '100.100.100.20' '100.100.100.10' ('a'*64) ('b'*64) $sid ('c'*64) ('d'*64) $ranges }
+Check-NetworkState ($good | ConvertTo-Json | ConvertFrom-Json) ($configuration | ConvertTo-Json | ConvertFrom-Json) | Out-Null
+foreach ($case in @('sid','progress','ranges','extra','status_array','config_array','config_hash','date')) {
+    $r=$good | ConvertTo-Json | ConvertFrom-Json
+    $c=$configuration | ConvertTo-Json | ConvertFrom-Json
+    switch ($case) {
+        'sid' { $r.execution_sid=$null }
+        'progress' { $r.status='CONFIGURED_PENDING_NATIVE_CONNECTION' }
+        'ranges' { $r.block_sources=@('*','*') }
+        'extra' { $r | Add-Member -NotePropertyName unexpected -NotePropertyValue $true }
+        'status_array' { $r.status=@('BOOTSTRAP_IN_PROGRESS','BOOTSTRAP_IN_PROGRESS') }
+        'config_array' { $c.forge_address=@('100.100.100.10','100.100.100.10') }
+        'config_hash' { $c.python_sha256='f'*64 }
+        'date' { $r.created_at='not-a-date' }
+    }
+    $denied=$false
+    try { Check-NetworkState $r $c | Out-Null } catch { $denied=$true }
+    if (-not $denied) { throw ('Unsafe networking state accepted: '+$case) }
+}
+""")
+
     def test_resume_accepts_only_exact_pre_account_receipt(self):
         self.run_helpers(r"""
 $valid=[ordered]@{schema_version=1;status='BOOTSTRAP_IN_PROGRESS';service='KnowledgeNetworkHostExec';execution_sid=$null;account='kncollector_exec';port=22230;host_address='100.100.100.20';forge_address='100.100.100.10';dispatcher_sha256=('a'*64);runtime_version='3.14.10';runtime_archive_sha256='90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159';shared_config_sha256=('b'*64);created_at='2026-11-15T00:00:00Z';gateway_service_restarted=$false;publication_paused=$true}
