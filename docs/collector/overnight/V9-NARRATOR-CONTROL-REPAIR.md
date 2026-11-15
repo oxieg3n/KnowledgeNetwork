@@ -4,17 +4,36 @@ Publication PAUSED. PR #20 remains draft/unmerged. Continue the existing branch;
 the accepted Collector worker, installed pipe-trust correction, database, native
 editor fixture, approved narration and recovered original branding are retained.
 
-## Current v2 stage and validation
+## Current attempt: BLOCKED before stop
+
+The owner executed the checked v2 repair. The pinned stop helper rejected a
+writable trust path before launching Python, opening SQLite or requesting a
+stop. Reconciliation found the prepared intent/backups, unchanged live pins and
+no stop/start/completion/replacement markers. Do not retry the repair or relax
+the trust mask. The exact native path and ACE remain unknown.
+
+A read-only check is staged in `narrator-control-trust-review-v1` on BLACKHAT-BASE.
+Source: `docs/collector/host-tools/Inspect-NarratorRepairTrust.ps1`; SHA-256
+`3cc1713813ecf49028d129adb92a711242027ab1bd2881ab4354fe74692b78c2`.
+FORGE's private `Host-Narrator-Control-Trust-Check.txt` contains the checked
+owner-side command. It reports the original gate's first blocked path, ACE and
+native identity/ACL race flags privately, and queries task state. It neither
+repairs ACLs nor executes the stop program. Eleven focused Windows tests passed;
+independent review found no required change. Host diagnostic execution remains
+NOT TESTED. See HANDOFF for exact evidence locations and limitations.
+
+## Historical v2 preparation and validation
 
 Source `d7a1050455559fb91048553b98189d6c168b8888` passed all jobs in
 [hosted run 43751928202](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43751928202):
 Windows 423 tests with 9 skips, Ubuntu 423 with 62 skips, and Windows worker/dashboard
 build plus 190 worker checks. Earlier failed runs remain recorded failures.
-The v2 repair is staged and NOT executed; it is not host/API acceptance.
+At this preceding checkpoint the v2 repair was staged and NOT executed; the
+blocked attempt above supersedes that status. It is not host/API acceptance.
 
-Use the one-line command in FORGE's protected profile:
-`KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.txt`.
-Run only on BLACKHAT-BASE in elevated owner PowerShell. The restricted SSH
+The attempted command is preserved in FORGE's protected profile as
+`KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+Do not rerun it. The current read-only command is described above. The restricted SSH
 identity cannot change protected code/task permissions. Earlier commands and
 updater are HELD. Any existing/uncertain attempt must be reconciled first.
 

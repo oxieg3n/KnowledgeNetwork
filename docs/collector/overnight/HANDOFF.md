@@ -1,10 +1,64 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Current owner attempt BLOCKED in stop-helper trust preflight
+
+The owner ran the exact v2 command. It stopped with
+`Stop trust path is writable by another identity` inside the native PowerShell
+trust function, before the protected Python stop program was launched. Do not
+rerun the full repair or choose another directory.
+
+Read-only reconciliation: `broker-update-v1` contains exactly the prepared intent,
+five original backups and generated rollback. All five live-file/backup hash pairs
+still equal the old pins; all six installed package pins are unchanged. There
+are no empty-stop intent/result, task-start, update-completed or update-next
+markers. The source ordering confirms no SQLite lock, process discovery,
+Task.Stop, task disable, replacement or task-ACL update was reached. This does
+not claim a fresh native task-state observation.
+
+Prepared intent SHA-256:
+`e0b4d95234d48b784d53379af46b82582887f9b7256cedfda45f795a32f2a1d5`.
+Private reconciliation receipt:
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/narrator-repair-v2-trust-block-reconciliation.private.json`.
+The executed command is preserved as `Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+
+The exact native blocked path/principal/mask is not yet known. Redirected storage
+is not native ACL proof. A writable ancestor can permit renaming the whole data
+directory and substituting a fake empty ledger; the gate must not be relaxed.
+Copying SQLite to protected C: would not lock the live controller's database.
+A bounded read-only diagnostic is staged, NOT EXECUTED:
+`docs/collector/host-tools/Inspect-NarratorRepairTrust.ps1`, SHA-256
+`3cc1713813ecf49028d129adb92a711242027ab1bd2881ab4354fe74692b78c2`.
+The host copy is in `narrator-control-trust-review-v1` (one file, 9471 bytes).
+On FORGE open
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Trust-Check.txt`
+and execute its captured-byte/hash-checked line in elevated BLACKHAT-BASE
+PowerShell. It imports only the pinned original trust function, preserves its
+masks/branches and adds failure context; it does not execute the stop program.
+The private report is written exclusively under protected
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/broker-update-v1/` as
+`review-trust-<guid>.private.json`; stdout contains only status and report path.
+It records native file identity, gate/current ACLs, offending ACE and actual
+read-only task state. Changed identity/ACL flags make the observation uncertain.
+No ACL repair, stop, inference, route, credential or installed-code change is
+authorized by an assumed cause.
+
+Validation PASS: 11 focused Windows tests in 9.128 seconds (three diagnostic
+fixtures plus eight related idle-stop tests). Native fixtures identify a writable
+ancestor despite a protected leaf, ignore InheritOnly rules, preserve ACLs,
+unwrap bounded exceptions and verify native metadata structure size. Independent
+security/Ponytail review found no required change. Full hosted results below
+apply to the preceding repair source, not this new diagnostic. Host execution of
+the diagnostic, the exact blocked ACE and actual repair acceptance remain NOT
+TESTED. The bridge's fixed operations cannot run arbitrary owner PowerShell;
+redirected-drive staging does not grant native execution.
+The following v2 section records the preceding ready checkpoint, now superseded
+by this pre-stop blocker. Publication remains PAUSED; PR20 draft/unmerged.
+
 ## V2 repair ready; full hosted validation PASS
 
 Source checkpoint `d7a1050455559fb91048553b98189d6c168b8888` on
 `feature/collector-v7-overnight`. PR #20 draft/unmerged; publication PAUSED.
-V2 is READY FOR OWNER BOOTSTRAP, NOT EXECUTED. Installed dispatcher86b94a... and
+Historical pre-attempt state: V2 was READY FOR OWNER BOOTSTRAP, NOT EXECUTED. Installed dispatcher86b94a... and
 broker config2b38... were rechecked unchanged before releasing its command;
 no host `broker-update-v1` execution state was present at that check.
 
@@ -40,10 +94,10 @@ no interpreter, model or media duplicate. Exact current pins:
 - V2 installer/helper: `98cc2d6b712901dd956f8265701b18c8dfe58900c979ff5579d22b0189342838`.
 - Reused v1 stop helper: `3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb`.
 
-On FORGE open
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.txt`
-and run its single captured-byte/hash-checked line in elevated BLACKHAT-BASE
-PowerShell. Standing authorization covers this; the SSH identity cannot modify
+The former ready command is now preserved as
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+Do not rerun it; the current read-only command is above. At the preceding
+checkpoint it was intended for elevated BLACKHAT-BASE PowerShell. Standing authorization covers this; the SSH identity cannot modify
 protected code/task security technically. Earlier commands/updater remain HELD.
 Preserve any blocked/uncertain result and reconcile instead of rerunning or
 selecting another directory. V2 starts no narration and changes no Serve route
