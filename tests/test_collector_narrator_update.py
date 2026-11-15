@@ -78,7 +78,7 @@ $denied=$false;try{. ([ScriptBlock]::Create($assignment[0].Extent.Text))}catch{$
 if(-not $denied -or -not [Object]::ReferenceEquals($OutputEncoding,$parent)){throw 'Duplicate JSON accepted or parent encoding changed'}
 ''')
 
-    def test_actual_validator_decodes_bom_bytes_with_cp1252_wrapper_strictly(self):
+    def test_actual_validator_base64_carrier_keeps_raw_json_strict_under_cp1252(self):
         encoded = self.run_ps(f"$installer='{INSTALL}'\n" + r'''
 $t=$null;$e=$null;$tree=[Management.Automation.Language.Parser]::ParseFile($installer,[ref]$t,[ref]$e)
 $function=@($tree.FindAll({param($n)$n -is [Management.Automation.Language.FunctionDefinitionAst]},$false)|Where-Object Name -ceq 'Convert-StrictJson')
@@ -92,15 +92,24 @@ $program=$literal[0].Value
 ''')
         validator = base64.b64decode(encoded.strip()).decode('utf-8')
         program = "import sys\nsys.stdin.reconfigure(encoding='cp1252')\n" + validator
-        result = subprocess.run([sys.executable, '-I', '-S', '-B', '-c', program],
-                                input=b'\xef\xbb\xbf{"value":"\xc3\xa9"}', capture_output=True, timeout=10)
-        self.assertEqual(result.returncode, 0)
-        self.assertEqual(json.loads(result.stdout), {'value': '\u00e9'})
-        for payload in (b'{"value":"\xc3("}', b'{"x":1,"x":2}', b'{"x":NaN}', b'{"x":Infinity}'):
+        bom = b'\xef\xbb\xbf'
+        for input_boms in (0, 1):
+            for transport_boms in (0, 1, 2):
+                with self.subTest(input_boms=input_boms, transport_boms=transport_boms):
+                    raw = bom * input_boms + b'{"value":"\xc3\xa9"}'
+                    wire = bom * transport_boms + base64.b64encode(raw)
+                    result = subprocess.run([sys.executable, '-I', '-S', '-B', '-c', program],
+                                            input=wire, capture_output=True, timeout=10)
+                    self.assertEqual(result.returncode, 0)
+                    self.assertEqual(json.loads(result.stdout), {'value': '\u00e9'})
+        for payload in (bom * 2 + b'{"x":1}', b'{"value":"\xc3("}', b'{"x":1,"x":2}', b'{"x":NaN}', b'{"x":Infinity}'):
             with self.subTest(payload=payload):
                 result = subprocess.run([sys.executable, '-I', '-S', '-B', '-c', program],
-                                        input=payload, capture_output=True, timeout=10)
+                                        input=bom * 2 + base64.b64encode(payload), capture_output=True, timeout=10)
                 self.assertNotEqual(result.returncode, 0)
+        result = subprocess.run([sys.executable, '-I', '-S', '-B', '-c', program],
+                                input=bom * 2 + b'not!base64', capture_output=True, timeout=10)
+        self.assertNotEqual(result.returncode, 0)
 
     def test_file_repair_rollback_rejects_running_and_queued_tasks(self):
         self.run_ps(f"Import-Helper '{SCRIPT}' 'Assert-InactiveRepairTask'\n" + r'''

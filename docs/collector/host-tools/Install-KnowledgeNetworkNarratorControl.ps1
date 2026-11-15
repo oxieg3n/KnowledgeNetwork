@@ -107,7 +107,7 @@ function Assert-RuntimeLayout([string]$Path) {
 }
 function Convert-StrictJson([byte[]]$Bytes,[string]$Python) {
     $validator = @'
-import json,sys
+import base64,json,sys
 def unique(pairs):
     result={}
     for key,value in pairs:
@@ -116,16 +116,13 @@ def unique(pairs):
     return result
 def invalid(value): raise ValueError()
 try:
-    value=json.loads(sys.stdin.buffer.read().decode('utf-8-sig'),object_pairs_hook=unique,parse_constant=invalid)
+    carrier=sys.stdin.buffer.read().decode('utf-8').lstrip(chr(65279)).strip()
+    raw=base64.b64decode(carrier,validate=True)
+    value=json.loads(raw.decode('utf-8-sig'),object_pairs_hook=unique,parse_constant=invalid)
     print(json.dumps(value,ensure_ascii=True))
 except Exception: sys.exit(1)
 '@
-    $text = [Text.UTF8Encoding]::new($false,$true).GetString($Bytes)
-    if ($text.Length -gt 0 -and $text[0] -eq [char]0xFEFF) {
-        $text = $text.Substring(1)
-        if ($text.Length -gt 0 -and $text[0] -eq [char]0xFEFF) { throw 'Deployment JSON contains multiple input signatures.' }
-    }
-    $json = $text | & $Python -I -S -B -c $validator 2>$null
+    $json = [Convert]::ToBase64String($Bytes) | & $Python -I -S -B -c $validator 2>$null
     if ($LASTEXITCODE -ne 0) { throw 'Deployment JSON contains duplicate fields or invalid syntax.' }
     return ($json | ConvertFrom-Json)
 }

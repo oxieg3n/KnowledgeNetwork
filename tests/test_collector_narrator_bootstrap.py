@@ -194,35 +194,8 @@ foreach ($case in @('old','bool','extra','path','hash','file')) {
     if (-not $denied) { throw 'Malformed deployment accepted' }
 }
 $bytes=[Text.Encoding]::UTF8.GetBytes($text)
-try { $value=Convert-StrictJson $bytes $env:KN_BOOTSTRAP_PYTHON } catch {
-    # Diagnose only this synthetic fixture without printing JSON, local paths or stderr.
-    $parser=@($tree.FindAll({param($a) $a -is [Management.Automation.Language.StringConstantExpressionAst] -and $a.Value.StartsWith('import json,sys')},$true))
-    if($parser.Count -ne 1){throw 'Strict JSON fixture failed; validator diagnostic unavailable'}
-    $diagnostic=$parser[0].Value.Replace('except Exception: sys.exit(1)','except Exception as error: print(type(error).__name__,file=sys.stderr); sys.exit(1)')
-    $preference=$ErrorActionPreference
-    try {
-        $ErrorActionPreference='Continue'
-        $details=@([Text.UTF8Encoding]::new($false,$true).GetString($bytes) | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $diagnostic 2>&1)
-        $diagnosticExit=$LASTEXITCODE
-        $version=@(& $env:KN_BOOTSTRAP_PYTHON -I -S -B -c 'import sys;print(sys.version_info.major,sys.version_info.minor,sys.version_info.micro)' 2>$null)
-        $inputProbe=@'
-import json,sys
-b=sys.stdin.buffer.read()
-s=b.decode(sys.stdin.encoding,errors='replace')
-r=dict(byte_length=len(b),length=len(s),first=ord(s[0]) if s else None,codepoints=[ord(c) for c in s[:8]],prefix_hex=b[:8].hex(),encoding=sys.stdin.encoding)
-try: json.loads(s)
-except json.JSONDecodeError as e: r.update(error=e.msg,line=e.lineno,pos=e.pos)
-print(json.dumps(r))
-'@
-        $observed=@([Text.UTF8Encoding]::new($false,$true).GetString($bytes) | & $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $inputProbe 2>$null)
-    } finally {$ErrorActionPreference=$preference}
-    $kind='unclassified'
-    foreach($entry in $details){foreach($candidate in @('JSONDecodeError','SyntaxError','UnicodeDecodeError','ModuleNotFoundError','ImportError','IndentationError','NameError','TypeError')){if($entry.ToString().Contains($candidate)){$kind=$candidate}}}
-    $safeVersion=($version -join ' ')
-    if($safeVersion -notmatch '^\d+ \d+ \d+$'){$safeVersion='unverified'}
-    throw ('Strict JSON valid fixture failed: nativeExit='+$diagnosticExit+' python='+$safeVersion+' errorClass='+$kind+' syntheticInputProbe='+($observed -join ' '))
-}
-foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
+$value=Convert-StrictJson $bytes $env:KN_BOOTSTRAP_PYTHON
+foreach ($text in @('{"x":1,"x":2}','{"x":NaN}','{"x":Infinity}')) {
     $denied=$false;try { $null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($text)) $env:KN_BOOTSTRAP_PYTHON } catch { $denied=$true }
     if (-not $denied) { throw 'Ambiguous JSON accepted' }
 }
@@ -233,23 +206,7 @@ foreach ($text in @('{"x":1,"x":2}','{"x":NaN}')) {
 $good='{"schema_version":1}'
 function Convert-SyntheticPositive([byte[]]$Payload,[string]$Label,[object]$Mode){
  try{return (Convert-StrictJson $Payload $env:KN_BOOTSTRAP_PYTHON)}catch{
-  $decoded=[Text.UTF8Encoding]::new($false,$true).GetString($Payload)
-  $summary=@{case=$Label;encoding=$Mode.WebName;codepage=$Mode.CodePage;preamble_length=$Mode.GetPreamble().Length;input_bytes=$Payload.Length;input_prefix=([BitConverter]::ToString($Payload[0..([Math]::Min(7,$Payload.Length-1))]));input_codepoints=@($decoded.ToCharArray()|Select-Object -First 8|ForEach-Object{[int]$_})}
-  $probe=@'
-import json,sys
-b=sys.stdin.buffer.read()
-r=dict(wire_prefix=b[:12].hex(),wire_length=len(b),stdin_encoding=sys.stdin.encoding)
-try:
-    s=b.decode('utf-8-sig')
-    json.loads(s)
-    r.update(parsed=True)
-except Exception as e:
-    r.update(error_class=type(e).__name__,error=getattr(e,'msg',None),pos=getattr(e,'pos',None))
-print(json.dumps(r))
-'@
-  if($decoded.Length -gt 0 -and $decoded[0] -eq [char]0xFEFF){$decoded=$decoded.Substring(1)}
-  try{$summary.wire_probe=($decoded|& $env:KN_BOOTSTRAP_PYTHON -I -S -B -c $probe)|ConvertFrom-Json}catch{$summary.wire_probe='unavailable'}
-  throw ('Synthetic positive JSON failed: '+($summary|ConvertTo-Json -Compress -Depth 4))
+  throw ('Synthetic positive JSON failed: case='+$Label+' encoding='+$Mode.WebName+' preambleLength='+$Mode.GetPreamble().Length)
  }
 }
 $previousEncoding=$OutputEncoding
@@ -264,12 +221,11 @@ foreach($encoding in @([Text.Encoding]::ASCII,[Text.UTF8Encoding]::new($false),[
  $denied=$false
  try{$null=Convert-StrictJson ([byte[]](@(239,187,191,239,187,191)+$body)) $env:KN_BOOTSTRAP_PYTHON}catch{$denied=$true}
  if(-not $denied){throw 'Double input BOM accepted'}
- if($encoding.CodePage -eq 65001){
-  $inside='{"x":"'+[char]0xFEFF+'"}'
-  $value=Convert-SyntheticPositive ([Text.Encoding]::UTF8.GetBytes($inside)) 'quoted-embedded-FEFF' $encoding
-  if($value.x.Length -ne 1 -or [int][char]$value.x[0] -ne 65279){throw 'Signature character inside quoted value changed'}
- }
- foreach($invalid in @('{"x":1,"x":2}','{"x":NaN}')){
+ $unicode=([string][char]0xFEFF)+[char]0x00E9+[char]0xD83D+[char]0xDE80
+ $inside='{"x":"'+$unicode+'"}'
+ $value=Convert-SyntheticPositive ([Text.Encoding]::UTF8.GetBytes($inside)) 'quoted-Unicode' $encoding
+ if([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($value.x)) -cne [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($unicode))){throw 'Quoted Unicode changed'}
+ foreach($invalid in @('{"x":1,"x":2}','{"x":NaN}','{"x":Infinity}')){
   $denied=$false
   try{$null=Convert-StrictJson ([Text.Encoding]::UTF8.GetBytes($invalid)) $env:KN_BOOTSTRAP_PYTHON}catch{$denied=$true}
   if(-not $denied){throw 'Duplicate or nonfinite JSON accepted'}
