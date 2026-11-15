@@ -36,7 +36,15 @@ uncertain cases retain one intent/attempt and never retry or call Ready/start.
 Four native rollback guards plus eight existing idle-stop tests PASS in 10.612s.
 Full local integration regression PASS: 449 tests in 131.426s, 437 passed and
 12 skipped. The three opt-in composed tests passed separately; skipped tests
-retain their original entitlements/scope. Fresh hosted validation awaits push.
+retain their original entitlements/scope. Hosted run43762391000 passed Ubuntu
+and Windows build/190, but Windows tests FAILED one POSIX positive control
+(449 run, 1 failed/12 skipped): BOOL success did not change the expected target.
+The fixture's Win32 filename buffer now has an explicit UTF-16 terminator with
+correct byte length and ABI offsets. Four filename alignments each require real
+bytes, source disappearance and exact target/source physical ID. No source probe,
+inspector or trust check changed. Eleven probe tests PASS normally (3.471s) and
+through a real 8.3 TEMP alias (4.590s); independent diff review PASS. Fresh hosted
+validation is pending. The failed run is retained as FAILED.
 Native receipt: `narrator-recovery-native-validation-v1.private.json`.
 
 Remaining trust prerequisite is precise: actual host task/owner/image/creation

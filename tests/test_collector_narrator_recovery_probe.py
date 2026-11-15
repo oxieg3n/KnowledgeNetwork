@@ -233,8 +233,13 @@ class NativeRecoveryProbeTests(unittest.TestCase):
             return False, c.get_last_error()
         name = str(target).encode('utf-16-le')
         class Rename(c.Structure):
-            _fields_ = [('flags', probe.U32), ('root', probe.HANDLE), ('length', probe.U32), ('name', c.c_ubyte * len(name))]
-        info = Rename(3, None, len(name), (c.c_ubyte * len(name)).from_buffer_copy(name))
+            _fields_ = [('flags', probe.U32), ('root', probe.HANDLE), ('length', probe.U32), ('name', c.c_ubyte * (len(name) + 2))]
+        self.assertEqual((Rename.root.offset, Rename.length.offset, Rename.name.offset), (8, 16, 20))
+        # Terminate the Win32 name explicitly; alignment padding varies with path length.
+        terminated = (c.c_ubyte * (len(name) + 2))()
+        c.memmove(terminated, name, len(name))
+        info = Rename(3, None, len(name), terminated)
+        self.assertEqual(bytes(info.name)[-2:], b'\0\0')
         try:
             succeeded = bool(self.native.k.SetFileInformationByHandle(handle, 22, c.byref(info), c.sizeof(info)))
             return succeeded, 0 if succeeded else c.get_last_error()
@@ -243,13 +248,34 @@ class NativeRecoveryProbeTests(unittest.TestCase):
 
     def test_posix_rename_capability_and_guarded_source_and_targets(self):
         # A successful unguarded replacement proves flags/structure/API support.
-        control_source, control_target = self.root/'control-source', self.root/'control-target'
-        control_source.write_bytes(b'new');control_target.write_bytes(b'old')
-        supported, error = self.rename_posix(control_source, control_target)
-        if not supported and error in (1, 50, 87):
-            self.skipTest('POSIX rename API/flags unavailable on this Windows fixture')
-        self.assertTrue(supported, 'Unguarded POSIX rename positive control failed: ' + str(error))
-        self.assertEqual(control_target.read_bytes(), b'new')
+        boundary_covered = False
+        for suffix in range(4):
+            control_source = self.root/('control-source' + '_' * suffix)
+            control_target = self.root/('control-target' + '_' * suffix)
+            payload = b'new-' + str(suffix).encode('ascii')
+            control_source.write_bytes(payload);control_target.write_bytes(b'old')
+            with probe.NamespaceGuard(control_source) as source_guard:
+                source_identity = probe.identity(source_guard.ledger)
+            # The old exact-length WCHAR payload has no implicit trailing padding here.
+            byte_length = len(str(control_target).encode('utf-16-le'))
+            if (20 + byte_length) % 8 == 0:
+                class LegacyUnterminated(c.Structure):
+                    _fields_ = [('flags', probe.U32), ('root', probe.HANDLE), ('length', probe.U32),
+                                ('name', c.c_ubyte * byte_length)]
+                legacy = LegacyUnterminated(3, None, byte_length,
+                    (c.c_ubyte * byte_length).from_buffer_copy(str(control_target).encode('utf-16-le')))
+                self.assertEqual(c.sizeof(legacy), 20 + byte_length)
+                self.assertNotEqual(bytes(legacy.name)[-2:], b'\0\0')
+                boundary_covered = True
+            supported, error = self.rename_posix(control_source, control_target)
+            if suffix == 0 and not supported and error in (1, 50, 87):
+                self.skipTest('POSIX rename API/flags unavailable on this Windows fixture')
+            self.assertTrue(supported, 'Unguarded POSIX rename positive control failed: ' + str(error))
+            self.assertEqual(control_target.read_bytes(), payload)
+            self.assertFalse(control_source.exists())
+            with probe.NamespaceGuard(control_target) as target_guard:
+                self.assertEqual(probe.identity(target_guard.ledger), source_identity)
+        self.assertTrue(boundary_covered, 'Positive controls must exercise the no-padding WCHAR boundary')
         source = self.spool / 'replacement.sqlite'
         source.write_bytes(b'replacement fixture')
         replacement_directory = self.root / 'replacement-directory'

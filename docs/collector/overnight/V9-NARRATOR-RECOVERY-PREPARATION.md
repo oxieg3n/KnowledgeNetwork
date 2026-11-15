@@ -139,3 +139,10 @@ Primary contracts: [PSS capture flags](https://learn.microsoft.com/en-us/windows
 [rename semantics](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/ns-ntifs-_file_rename_information),
 [SQLite rollback locking](https://www.sqlite.org/lockingv3.html) and
 [WAL persistence](https://www.sqlite.org/wal.html).
+
+Hosted run43762391000 exposed a POSIX fixture control that returned success but
+left old target bytes. The fixture now terminates its UTF-16 filename explicitly,
+asserts ABI offsets and exercises four lengths with exact bytes/source-absence /
+physical-ID controls. Eleven tests passed with normal and real 8.3 TEMP paths;
+production inspection code and host files are unchanged. New hosted validation
+is pending; the first run remains FAILED.
