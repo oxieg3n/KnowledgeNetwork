@@ -1,5 +1,6 @@
 """Read-only trust diagnostics exercise the unchanged pinned native gate."""
 import os
+import hashlib
 from pathlib import Path
 import subprocess
 import unittest
@@ -7,6 +8,14 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 DIAGNOSTIC = ROOT / 'docs/collector/host-tools/Inspect-NarratorRepairTrust.ps1'
 STOP = ROOT / 'docs/collector/host-tools/Stop-EmptyNarratorController.ps1'
+
+
+class PinnedTrustDiagnosticSourceTests(unittest.TestCase):
+    def test_source_bytes_match_pins_without_checkout_newline_conversion(self):
+        self.assertEqual(hashlib.sha256(STOP.read_bytes()).hexdigest(),
+                         '3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb')
+        self.assertEqual(hashlib.sha256(DIAGNOSTIC.read_bytes()).hexdigest(),
+                         '3cc1713813ecf49028d129adb92a711242027ab1bd2881ab4354fe74692b78c2')
 
 
 @unittest.skipUnless(os.name == 'nt', 'Native Windows ACLs')

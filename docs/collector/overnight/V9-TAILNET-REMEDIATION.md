@@ -58,6 +58,20 @@ V5 retains all twenty TCP/UDP test cases and all 400 physically valid same-famil
 
 V5 SHA-256: `c96c6e7c4682625ae1b6e0aba21e52bd9d697b6c76b71d539a8f0cc986235d19`. The protected owner-profile proposal, diff and review receipt retain the complete reasoning and earlier versions. Official v5 validation/preview remain pending. Nothing has been applied.
 
+## FORGE evidence relocation; historical command examples HELD
+
+Private project evidence now resides at
+`C:/Admin/Projects/KnowledgeNetwork-Private` (outside Git). The three archive
+paths below are updated so they no longer recreate the old user-profile evidence
+tree. These capture/validation examples are HELD, not current runnable steps:
+`collector_tailnet_review` correctly rejects the writable C:/Admin ancestor
+namespace even when the archive leaf is protected. No guard is weakened and no
+new API request was made. Retained v5 validation/application evidence keeps its
+original scope; this archive move does not repeat or invalidate that past run.
+Future live API staging needs a verified trusted execution namespace before use.
+Only four active SSH authentication files stay at their original protected
+user-profile location. Historical receipts preserve their exact original bytes.
+
 ## Read-only Admin API fallback
 
 The bounded FORGE helper is `src/youtube_ops/collector_tailnet_review.py`. It implements credential-save, capture, and hash-pinned non-applying validation/preview. It never applies a policy, changes routes, provisions OAuth clients, accepts arbitrary URLs/methods, or starts host services. The owner saved a new dedicated credential. The coordinator's first actual capture authenticated successfully and retained five device records and five route responses, then returned BLOCKED at the policy-format guard. That guard incorrectly rejected legal leading HuJSON comments and is now fixed with a regression fixture. Preserve that failed receipt; only a fresh coordinator-run capture can establish completed capture acceptance. Ten mocked HTTP/Credential Manager tests pass; no live API result is implied.
@@ -72,10 +86,10 @@ $env:PYTHONPATH = 'src'
 & '.venv/Scripts/python.exe' -m youtube_ops.collector_tailnet_review credential-save
 ```
 
-After the dedicated token is saved, capture into a **new** child directory of an existing private local folder. Use the protected owner-profile project directory established and checked by the coordinator; the child below must not already exist. Do not use the older C:/admin proposal directory for fresh API evidence: native review found an unsafe ancestor replacement permission. Original proposals there remain preserved and hash-pinned; no unrelated ACL is changed. The helper rejects UNC/reparse paths, unsafe parent ACLs, existing targets and unsafe ancestor replacement permissions. It creates a protected owner/SYSTEM/Administrators-only output directory and exclusive files.
+Historical procedure (HELD after archive relocation): after the dedicated token is saved, capture into a **new** child directory of an existing private local folder. Use the protected owner-profile project directory established and checked by the coordinator; the child below must not already exist. Do not use the older C:/admin proposal directory for fresh API evidence: native review found an unsafe ancestor replacement permission. Original proposals there remain preserved and hash-pinned; no unrelated ACL is changed. The helper rejects UNC/reparse paths, unsafe parent ACLs, existing targets and unsafe ancestor replacement permissions. It creates a protected owner/SYSTEM/Administrators-only output directory and exclusive files.
 
 ```powershell
-$tailnetReviewOutput = Join-Path $env:USERPROFILE ('KnowledgeNetworkCollector-Private/api-capture-' + [guid]::NewGuid().ToString('N'))
+$tailnetReviewOutput = Join-Path 'C:/Admin/Projects/KnowledgeNetwork-Private' ('api-capture-' + [guid]::NewGuid().ToString('N'))
 & '.venv/Scripts/python.exe' -m youtube_ops.collector_tailnet_review capture --output $tailnetReviewOutput
 ```
 
@@ -89,11 +103,11 @@ Raw successful API responses, exact file hashes and route coverage remain privat
 
 For a JSON candidate with embedded tests, the helper derives at most twenty unique literal destination IP:9443 previews from those pinned tests, then posts the same captured bytes to `/acl/preview?type=ipport&previewFor=<encoded-target>`. Responses must echo the expected target/type and contain matches; complete response bytes stay private for rule review. A successful preview capture is **not** an automatic access-security PASS. HuJSON that cannot be decoded by the strict standard-library JSON parser can still be sent for official validation, but preview target derivation remains blocked. The helper never retries, never submits POST `/acl` without a validation/preview suffix, and never follows redirects.
 
-The coordinator must first stage an exact hash-verified candidate in the safe protected owner-profile project folder; do not weaken the ACL guard to read the older C:/admin location. Example syntax, with the exact reviewed hash and actual protected path supplied by the coordinator:
+The coordinator must first stage an exact hash-verified candidate in the safe protected owner-profile project folder; do not weaken the ACL guard to read the older C:/admin location. Historical syntax (HELD; the relocated archive is rejected by the unchanged ancestor guard):
 
 ```powershell
-$tailnetPolicyFile = Join-Path $env:USERPROFILE 'KnowledgeNetworkCollector-Private/proposed-inventory-v5.private.hujson'
-$tailnetValidationOutput = Join-Path $env:USERPROFILE ('KnowledgeNetworkCollector-Private/validation-' + [guid]::NewGuid().ToString('N'))
+$tailnetPolicyFile = 'C:/Admin/Projects/KnowledgeNetwork-Private/proposed-inventory-v5.private.hujson'
+$tailnetValidationOutput = Join-Path 'C:/Admin/Projects/KnowledgeNetwork-Private' ('validation-' + [guid]::NewGuid().ToString('N'))
 & '.venv/Scripts/python.exe' -m youtube_ops.collector_tailnet_review validate --policy-file $tailnetPolicyFile --policy-sha256 'c96c6e7c4682625ae1b6e0aba21e52bd9d697b6c76b71d539a8f0cc986235d19' --output $tailnetValidationOutput
 ```
 

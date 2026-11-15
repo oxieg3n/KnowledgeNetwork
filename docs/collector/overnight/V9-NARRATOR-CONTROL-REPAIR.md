@@ -4,23 +4,35 @@ Publication PAUSED. PR #20 remains draft/unmerged. Continue the existing branch;
 the accepted Collector worker, installed pipe-trust correction, database, native
 editor fixture, approved narration and recovered original branding are retained.
 
-## Current attempt: BLOCKED before stop
+## Current attempt: native trust blocker confirmed
 
-The owner executed the checked v2 repair. The pinned stop helper rejected a
-writable trust path before launching Python, opening SQLite or requesting a
-stop. Reconciliation found the prepared intent/backups, unchanged live pins and
-no stop/start/completion/replacement markers. Do not retry the repair or relax
-the trust mask. The exact native path and ACE remain unknown.
+The owner ran the pinned read-only diagnostic. It identified inherited
+Authenticated Users Modify/DELETE on the D: narrator kit directory; native
+identity and ACL snapshots were stable, and the controller task was Running.
+Protected C: checks preceding it passed. Higher D: ancestors remain unverified.
+The original repair stopped before Python/SQLite/Task.Stop; retained backup and
+live-file hashes were unchanged. No host mutation followed this result.
 
-A read-only check is staged in `narrator-control-trust-review-v1` on BLACKHAT-BASE.
-Source: `docs/collector/host-tools/Inspect-NarratorRepairTrust.ps1`; SHA-256
-`3cc1713813ecf49028d129adb92a711242027ab1bd2881ab4354fe74692b78c2`.
-FORGE's private `Host-Narrator-Control-Trust-Check.txt` contains the checked
-owner-side command. It reports the original gate's first blocked path, ACE and
-native identity/ACL race flags privately, and queries task state. It neither
-repairs ACLs nor executes the stop program. Eleven focused Windows tests passed;
-independent review found no required change. Host diagnostic execution remains
-NOT TESTED. See HANDOFF for exact evidence locations and limitations.
+Do not weaken the trust mask, copy the ledger as a shutdown substitute, or
+change drive permissions. A safe recovery needs proof of the exact running
+controller's ledger identity, protected namespace and the existing empty-ledger
+lock/held-process conditions. A namespace guard alone cannot prove historical
+ledger binding. No untested recovery script has been released. See HANDOFF for
+the precise private report path and retained rollback state.
+
+FORGE evidence and commands were consolidated to
+`C:/Admin/Projects/KnowledgeNetwork-Private`: 148 files moved with SHA-256 and
+security-descriptor verification. Only four live SSH authentication files remain
+in their original protected user-profile chain. Existing `health` passed after
+the move. The public repository and host runtime were not moved. Historical
+receipts retain original paths. Eight focused tests passed after changing all
+three test artifact-output paths to the project sibling directory.
+
+The previous diagnostic commit's Windows CI failed because checkout converted
+its pinned LF stop-helper bytes to CRLF. The host copy/pin was correct. Two
+explicit `-text` attributes now preserve exact script bytes; no pin or host code
+is altered. Twelve focused tests and an isolated `core.autocrlf=true` checkout
+passed. New hosted validation is pending; the old failed run is retained.
 
 ## Historical v2 preparation and validation
 
@@ -31,9 +43,10 @@ build plus 190 worker checks. Earlier failed runs remain recorded failures.
 At this preceding checkpoint the v2 repair was staged and NOT executed; the
 blocked attempt above supersedes that status. It is not host/API acceptance.
 
-The attempted command is preserved in FORGE's protected profile as
-`KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
-Do not rerun it. The current read-only command is described above. The restricted SSH
+The attempted command is preserved in FORGE's project evidence directory as
+`C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+Do not rerun it. The read-only diagnostic above has already completed; no new
+repair command is released. The restricted SSH
 identity cannot change protected code/task permissions. Earlier commands and
 updater are HELD. Any existing/uncertain attempt must be reconciled first.
 
@@ -69,7 +82,7 @@ The owner completed the checked continuation from ce79a341. The protected
 dispatcher is SHA256 `86b94ada8cc7097fee5b8d0a095826bfb4932526d8a2ab5ea4da7b70ee68c3ef`.
 FORGE's pinned SSH health passed with all 12 fixed capabilities, nonadministrator
 bridge identity and the unchanged host key. Private request receipt:
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/host-exec-client-v1/after-control-upgrade-health.private.json`.
+`C:/Admin/Projects/KnowledgeNetwork-Private/host-exec-client-v1/after-control-upgrade-health.private.json`.
 
 The owner reports the Limited InteractiveToken task Running. FORGE's first
 read-only `narrator-reconcile` attempt was BLOCKED before request transmission:

@@ -177,7 +177,7 @@ class IdleStopTests(unittest.TestCase):
         result = subprocess.run([str(ps), '-NoLogo', '-NoProfile', '-NonInteractive', '-Command', command],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10)
         if result.returncode:
-            private = Path.home() / 'KnowledgeNetworkCollector-Private'; private.mkdir(exist_ok=True)
+            private = Path(__file__).resolve().parents[2] / 'KnowledgeNetwork-Private'; private.mkdir(exist_ok=True)
             with (private / ('idle-stop-entry-' + uuid.uuid4().hex + '.private.json')).open('x') as stream:
                 json.dump({'stdout': result.stdout.decode('utf-8', errors='replace'),
                            'stderr': result.stderr.decode('utf-8', errors='replace')}, stream)
@@ -244,7 +244,7 @@ Start-ScheduledTask -TaskPath $path -TaskName NativeFixture
                 while not marker.exists() and time.monotonic() < deadline: time.sleep(.05)
                 if not marker.exists():
                     diagnostic = ps("$ErrorActionPreference='Stop';$t=Get-ScheduledTask -TaskPath '\\" + name + "\\' -TaskName NativeFixture;$i=$t|Get-ScheduledTaskInfo;@{state=$t.State.ToString();last_result=$i.LastTaskResult}|ConvertTo-Json -Compress")
-                    private = Path.home() / 'KnowledgeNetworkCollector-Private'
+                    private = Path(__file__).resolve().parents[2] / 'KnowledgeNetwork-Private'
                     private.mkdir(exist_ok=True)
                     with (private / (name + '-startup.private.json')).open('x') as stream:
                         json.dump({**diagnostic, 'task_xml': metadata['xml'], 'launcher': str(launcher),
@@ -281,7 +281,7 @@ try{$null=$t.Run($null)}catch{$e=$_.Exception;while($null -ne $e){if($e.HResult 
 @{disabled_run_denied=$denied}|ConvertTo-Json -Compress
 '''.replace('@NAME@', name))
                 self.assertTrue(disabled['disabled_run_denied'])
-                private = Path.home() / 'KnowledgeNetworkCollector-Private'
+                private = Path(__file__).resolve().parents[2] / 'KnowledgeNetwork-Private'
                 private.mkdir(exist_ok=True)
                 with (private / (name + '.private.json')).open('x') as stream:
                     json.dump({'scope': 'FORGE_BENIGN_LIMITED_FIXTURE_ONLY', 'snapshot': snapshot,

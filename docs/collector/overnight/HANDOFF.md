@@ -1,58 +1,86 @@
 # V9 handoff - The Knowledge Network Collector
 
-## Current owner attempt BLOCKED in stop-helper trust preflight
+## Current state: native trust blocker confirmed; FORGE evidence consolidated
 
-The owner ran the exact v2 command. It stopped with
-`Stop trust path is writable by another identity` inside the native PowerShell
-trust function, before the protected Python stop program was launched. Do not
-rerun the full repair or choose another directory.
+The owner executed the read-only trust check. Actual native result:
+`BLOCKED_TRUST_PATH_IDENTIFIED`. The rejected ancestor is
+`D:/projects/knowledgenetwork/collector-narrator-v9-004`: inherited Authenticated
+Users Modify includes DELETE (`0x10000`, checked ancestor mask `0xD0040`). Native
+file identity and ACL were stable across the observation. The fixed NarratorControl
+task was Running with LastTaskResult 267009 (`0x41301`, still running). The check
+changed no ACL, opened no SQLite database, launched no Python or stop operation.
+The full private native evidence remains at
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/broker-update-v1/review-trust-9f9b3fd8efec42eb83cbc7690e034280.private.json`
+on BLACKHAT-BASE; it is not committed. The six preceding protected targets passed.
+Higher D: ancestors remain unverified because the original gate stops at its
+first rejection. Do not weaken that gate or change unrelated drive permissions.
 
-Read-only reconciliation: `broker-update-v1` contains exactly the prepared intent,
-five original backups and generated rollback. All five live-file/backup hash pairs
-still equal the old pins; all six installed package pins are unchanged. There
-are no empty-stop intent/result, task-start, update-completed or update-next
-markers. The source ordering confirms no SQLite lock, process discovery,
-Task.Stop, task disable, replacement or task-ACL update was reached. This does
-not claim a fresh native task-state observation.
-
-Prepared intent SHA-256:
+The failed v2 repair itself remains held. Reconciliation retained exactly its
+prepared intent, five original backups and generated rollback; live old pins
+were unchanged and no stop/start/completion/replacement markers existed. It
+stopped before protected Python, SQLite locking, process discovery, Task.Stop,
+task disable, replacement or task-ACL changes. Prepared intent SHA-256:
 `e0b4d95234d48b784d53379af46b82582887f9b7256cedfda45f795a32f2a1d5`.
-Private reconciliation receipt:
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/narrator-repair-v2-trust-block-reconciliation.private.json`.
-The executed command is preserved as `Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+Do not rerun the repair or choose another evidence directory.
 
-The exact native blocked path/principal/mask is not yet known. Redirected storage
-is not native ACL proof. A writable ancestor can permit renaming the whole data
-directory and substituting a fake empty ledger; the gate must not be relaxed.
-Copying SQLite to protected C: would not lock the live controller's database.
-A bounded read-only diagnostic is staged, NOT EXECUTED:
-`docs/collector/host-tools/Inspect-NarratorRepairTrust.ps1`, SHA-256
-`3cc1713813ecf49028d129adb92a711242027ab1bd2881ab4354fe74692b78c2`.
-The host copy is in `narrator-control-trust-review-v1` (one file, 9471 bytes).
-On FORGE open
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Trust-Check.txt`
-and execute its captured-byte/hash-checked line in elevated BLACKHAT-BASE
-PowerShell. It imports only the pinned original trust function, preserves its
-masks/branches and adds failure context; it does not execute the stop program.
-The private report is written exclusively under protected
-`C:/ProgramData/KnowledgeNetworkCollector/HostExec/broker-update-v1/` as
-`review-trust-<guid>.private.json`; stdout contains only status and report path.
-It records native file identity, gate/current ACLs, offending ACE and actual
-read-only task state. Changed identity/ACL flags make the observation uncertain.
-No ACL repair, stop, inference, route, credential or installed-code change is
-authorized by an assumed cause.
+Independent security review: tightening only the kit does not prove its entire
+ancestor chain is safe. A no-delete-sharing namespace guard alone cannot prove
+that the already-running controller still uses the current ledger pathname.
+Copying SQLite elsewhere does not lock its live database. Any bounded recovery
+must prove the exact held controller's ledger file identity, protect that same
+namespace through the existing empty-ledger lock and stop, and pass native
+replacement/race/SQLite tests before use. No speculative guard, process-kill
+fallback, new endpoint or ACL change was implemented. Host repair/API acceptance
+remains BLOCKED; no further owner command is released on an untested assumption.
 
-Validation PASS: 11 focused Windows tests in 9.128 seconds (three diagnostic
-fixtures plus eight related idle-stop tests). Native fixtures identify a writable
-ancestor despite a protected leaf, ignore InheritOnly rules, preserve ACLs,
-unwrap bounded exceptions and verify native metadata structure size. Independent
-security/Ponytail review found no required change. Full hosted results below
-apply to the preceding repair source, not this new diagnostic. Host execution of
-the diagnostic, the exact blocked ACE and actual repair acceptance remain NOT
-TESTED. The bridge's fixed operations cannot run arbitrary owner PowerShell;
-redirected-drive staging does not grant native execution.
-The following v2 section records the preceding ready checkpoint, now superseded
-by this pre-stop blocker. Publication remains PAUSED; PR20 draft/unmerged.
+At the owner's request, FORGE commands/review evidence now live together at
+`C:/Admin/Projects/KnowledgeNetwork-Private`, outside the public repository.
+148 files (601482 bytes) were moved on the same volume, not copied; every file's
+SHA-256 and security descriptor were compared before/after. A receipt-only
+Measure-Object error occurred after those verifications; the state/counts were
+reconciled and the receipt written without repeating file moves. Full private
+inventory: `private-evidence-consolidation.private.json`. No original evidence
+was deleted or rewritten.
+
+Only four live SSH authentication/configuration files remain under
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/host-exec-client-v1`:
+`id_ed25519`, its public key, `known_hosts`, and `ssh_config`. The native Projects
+ancestor grants Authenticated Users Modify; a protected sibling vault alone
+cannot establish trusted ancestry. Keeping the existing authentication chain
+avoids reducing its protection. No ancestor ACL was changed. FORGE SSH `health`
+PASS after the move: pinned host, dedicated nonadministrator identity and the
+same twelve fixed capabilities. Windows Credential Manager is unchanged.
+Historical receipts and the already-applied policy script retain original bytes
+and old paths as historical evidence, not runnable current instructions. The
+new evidence directory is an archive, not a privileged execution root; command
+files are held historical records, not trusted new instructions. Future command
+authorization/integrity must come from reviewed source and an out-of-band hash.
+Tailnet API capture/validation examples are HELD at the archive location because
+the unchanged helper correctly rejects its writable ancestor namespace. No API
+call or policy action was attempted; existing v5 receipts retain their scope.
+
+Current FORGE private command files, attempted-command records and review
+receipts are under `C:/Admin/Projects/KnowledgeNetwork-Private`. Source test
+artifact outputs now use the sibling `KnowledgeNetwork-Private`, preventing
+new diagnostic outputs in the old home directory. Eight related unit tests PASS
+in 5.616 seconds; the prior eleven-test diagnostic/idle-stop validation remains
+applicable. Ponytail FULL review checked all three output callers, native move
+verification, private/public separation and untouched SSH references. No UI,
+installer, GPU, inference, native render, route, credential, reboot or publishing
+operation occurred. The repository remains `C:/Admin/Projects/KnowledgeNetwork`.
+PR20 remains draft/unmerged and publication remains PAUSED.
+
+CI follow-up: [run 43755999700](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43755999700)
+for preceding commit `7e64c89` FAILED on Windows: three diagnostic tests rejected
+checkout bytes against the original source hash. Ubuntu and the Windows build/
+190 worker checks passed. Git's CRLF conversion changed the LF-pinned stop
+helper from 23371 to 23715 bytes; the real host copy and its pin were correct.
+`.gitattributes` now preserves exact bytes for only the two pinned diagnostic/
+stop scripts. No script bytes or integrity checks were changed. A cross-platform
+raw-hash regression plus the native/related fixtures PASS: 12 tests in 10.130
+seconds. An isolated checkout with `core.autocrlf=true` preserved both exact
+hashes and its temporary directory was removed. New hosted verification is
+pending push; the preceding failed run remains recorded as FAILED.
 
 ## V2 repair ready; full hosted validation PASS
 
@@ -95,7 +123,7 @@ no interpreter, model or media duplicate. Exact current pins:
 - Reused v1 stop helper: `3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb`.
 
 The former ready command is now preserved as
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+`C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
 Do not rerun it; the current read-only command is above. At the preceding
 checkpoint it was intended for elevated BLACKHAT-BASE PowerShell. Standing authorization covers this; the SSH identity cannot modify
 protected code/task security technically. Earlier commands/updater remain HELD.
@@ -114,7 +142,7 @@ removed after their receipts/replacement were verified. Automatic approval revie
 rejected later File.Replace fixture cleanup, returning only "blocked by policy".
 No bypass or later deletion attempt was made. Private inventory: 6 exact known
 roots, 19 files, 11 child directories, 67 logical data bytes. Receipt:
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/FileReplace-Known-Leftovers-7ff88279e8a94271b39b30f9d7ff554f.private.json`,
+`C:/Admin/Projects/KnowledgeNetwork-Private/FileReplace-Known-Leftovers-7ff88279e8a94271b39b30f9d7ff554f.private.json`,
 SHA-256 `965fa69481b450c891be7afcdd5dc8d7b38911b527cc386c89a49821e81f464f`.
 Original source, working runtime, models and rollback backups are excluded.
 
@@ -175,7 +203,7 @@ reused. Canonical narrator/ref/model/settings and rights flags were not changed.
 
 The repair requires the already authorized owner-side elevated bootstrap because
 the restricted SSH identity cannot write protected code/task permissions. Open
-`%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Repair.txt`
+`C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Repair.txt`
 on FORGE and run its one captured-byte/hash-checked line on BLACKHAT-BASE. It
 refuses another machine. Preserve any blocked/uncertain result; never retry
 blindly. The source repair is concrete and independently reviewed; this is a
@@ -259,7 +287,7 @@ Continuation SHA-256:
 `eaf54f32301a50dbeb6d41b88e28e3bd2552fa900e565ed89465f33a1fd58e79`.
 Two source files staged under host kit `narrator-control-resume-v1` (49703bytes);
 original bundle96d39745... is reused. No runtime ZIP/package/model duplication.
-On FORGE open `%USERPROFILE%/KnowledgeNetworkCollector-Private/Host-Narrator-Control-Resume.txt`
+On FORGE open `C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Resume.txt`
 and run its single captured-byte/hash-checked line in the same elevated
 BLACKHAT-BASE PowerShell. Permission is already authorized; the existing closed
 four-command endpoint cannot perform this privileged continuation technically.
@@ -307,7 +335,7 @@ future wildcard behavior or all-raw-packet equivalence. Native ICMP/live
 unauthorized-peer rejection are NOT TESTED. **HTTPS9443 remains OFF.** No Serve,
 Funnel, firewall, Gateway, narrator process or shared SSH configuration changed.
 
-Private evidence: `%USERPROFILE%/KnowledgeNetworkCollector-Private/` directories
+Private evidence (relocated): `C:/Admin/Projects/KnowledgeNetwork-Private/` directories
 `tailnet-api-live-002`, `policy-validate-004`, `policy-apply-001`,
 `policy-postapply-001`. Host review pack:
 `D:/projects/knowledgenetwork/collector-narrator-v9-004/private-service-v9-001/review/tailnet-remediation-v5`.
