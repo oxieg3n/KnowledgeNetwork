@@ -1096,6 +1096,14 @@
       "url": "https://www.youtube.com/watch?v=sSyzj08Cy2U",
       "video_id": "sSyzj08Cy2U"
     },
+    "video:soNLXvgUqNY": {
+      "created_at": "2026-11-16T18:30:18.164369+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "La Cousinade",
+      "url": "https://www.youtube.com/watch?v=soNLXvgUqNY",
+      "video_id": "soNLXvgUqNY"
+    },
     "video:sv1pTURzX_c": {
       "created_at": "2026-11-12T21:57:23.629934+00:00",
       "kind": "new_video",
@@ -1175,6 +1183,14 @@
       "title": "Building with Gemini in Google Antigravity",
       "url": "https://www.youtube.com/watch?v=vLAegkGGWrM",
       "video_id": "vLAegkGGWrM"
+    },
+    "video:vVVdxMwPBuA": {
+      "created_at": "2026-11-16T18:30:18.164358+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Check Point speeds up vulnerability research with Daybreak | OpenAI for Cybersecurity",
+      "url": "https://www.youtube.com/watch?v=vVVdxMwPBuA",
+      "video_id": "vVVdxMwPBuA"
     },
     "video:vdBDMj2UhDg": {
       "created_at": "2026-11-12T21:57:04.667509+00:00",
@@ -1470,8 +1486,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-15T07:41:26.995657+00:00",
-      "last_monitored_at": "2026-11-15T07:41:26.995547+00:00",
+      "last_attempt_at": "2026-11-16T18:30:18.622244+00:00",
+      "last_monitored_at": "2026-11-16T18:30:18.622082+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -1557,8 +1573,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-15T07:41:26.518748+00:00",
-      "last_monitored_at": "2026-11-15T07:41:26.518642+00:00",
+      "last_attempt_at": "2026-11-16T18:30:18.164585+00:00",
+      "last_monitored_at": "2026-11-16T18:30:18.164472+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -7287,6 +7303,28 @@
         "url": "https://www.youtube.com/watch?v=sSyzj08Cy2U",
         "video_id": "sSyzj08Cy2U"
       },
+      "soNLXvgUqNY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-16T18:30:18.164366+00:00",
+        "id": "soNLXvgUqNY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-16T05:00:26Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "La Cousinade",
+        "url": "https://www.youtube.com/watch?v=soNLXvgUqNY",
+        "video_id": "soNLXvgUqNY"
+      },
       "sv1pTURzX_c": {
         "api_verification": "verified",
         "attempts": 0,
@@ -7492,6 +7530,28 @@
         "title": "Building with Gemini in Google Antigravity",
         "url": "https://www.youtube.com/watch?v=vLAegkGGWrM",
         "video_id": "vLAegkGGWrM"
+      },
+      "vVVdxMwPBuA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-16T18:30:18.164337+00:00",
+        "id": "vVVdxMwPBuA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-16T16:55:56Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Check Point speeds up vulnerability research with Daybreak | OpenAI for Cybersecurity",
+        "url": "https://www.youtube.com/watch?v=vVVdxMwPBuA",
+        "video_id": "vVVdxMwPBuA"
       },
       "vdBDMj2UhDg": {
         "api_verification": "verified",
@@ -7724,6 +7784,11 @@
     },
     "2026-11-15": {
       "general": 26,
+      "search": 0,
+      "upload": 0
+    },
+    "2026-11-16": {
+      "general": 6,
       "search": 0,
       "upload": 0
     }
@@ -8179,7 +8244,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 444,
+  "revision": 453,
   "rights_ledger": {},
   "runs": [
     {
@@ -9351,6 +9416,21 @@
         "new_leads": 0
       },
       "run_id": "43827520752-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-16T18:30:17.599445+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 2
+      },
+      "run_id": "43929473457-1",
       "status": "BLOCKED"
     }
   ],
