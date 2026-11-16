@@ -344,6 +344,14 @@
       "url": "https://www.youtube.com/watch?v=HD75JDFaYvg",
       "video_id": "HD75JDFaYvg"
     },
+    "video:Hz9lmh9NBp0": {
+      "created_at": "2026-11-16T01:00:11.753735+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Fortnite - Treasure Hunters: Week 3 Gameplay Trailer | PS5 & PS4 Games",
+      "url": "https://www.youtube.com/watch?v=Hz9lmh9NBp0",
+      "video_id": "Hz9lmh9NBp0"
+    },
     "video:IOcODanTpN0": {
       "created_at": "2026-11-14T19:55:43.408006+00:00",
       "kind": "new_video",
@@ -487,6 +495,14 @@
       "title": "How Mozilla uses GPT-6 Cyber to find and fix Firefox vulnerabilities",
       "url": "https://www.youtube.com/watch?v=PkAmyub12K8",
       "video_id": "PkAmyub12K8"
+    },
+    "video:Q747LpUuLTA": {
+      "created_at": "2026-11-16T01:00:11.753724+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Once Human - Season 5: Dissonant Resonance Gameplay Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=Q747LpUuLTA",
+      "video_id": "Q747LpUuLTA"
     },
     "video:QRA_JmNiLnk": {
       "created_at": "2026-11-12T23:07:37.009522+00:00",
@@ -863,6 +879,14 @@
       "title": "Building with GPT-Live and Image Generation | DevDay 2026",
       "url": "https://www.youtube.com/watch?v=jDxKzlGLCas",
       "video_id": "jDxKzlGLCas"
+    },
+    "video:jTbZmTO4auk": {
+      "created_at": "2026-11-16T01:00:12.391996+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Once Human Season 5: Dissonant Resonance - Gameplay Trailer",
+      "url": "https://www.youtube.com/watch?v=jTbZmTO4auk",
+      "video_id": "jTbZmTO4auk"
     },
     "video:jp0cNm3xpcs": {
       "created_at": "2026-11-12T21:57:23.629978+00:00",
@@ -1254,15 +1278,19 @@
     "https://poweredby.oxieg3n.com/blog/a2ui-native-component-catalog/": "8fd5919c33001bc38f493dfefa2c9edf006a17a76b279734595afb672336af03",
     "https://poweredby.oxieg3n.com/blog/ai-memory-correction-test/": "accb85819d8cab6394ed45eb5fdce153be778476c64ff728a1e62c12ec0fc71d",
     "https://poweredby.oxieg3n.com/blog/aws-emulator-local-testing/": "d39c278549b5c9945a9fed511bf180da2e8b22dde3bc618b8b5df3faf83eba55",
+    "https://poweredby.oxieg3n.com/blog/browser-use-run-judge-evidence/": "6ec05015a246f599c87de6cbaa23bfadd8d74aaba331d9929a43024247427a4a",
     "https://poweredby.oxieg3n.com/blog/choose-your-website-visual-direction/": "8ae8b21d77fdfe8392938c4808dfcf14e9e27596f5575e317af79981e3b84ac5",
     "https://poweredby.oxieg3n.com/blog/claude-personal-finance-beta/": "98ce38a23c903c89fff3001112083a87c8895455482eda407b3a12fef232b83a",
     "https://poweredby.oxieg3n.com/blog/cloudflare-agent-markdown-review/": "efdee40550d26ee03acd53de0149b52f35546dee47f7ae471fcda8d9643653b6",
     "https://poweredby.oxieg3n.com/blog/cloudflare-personal-agent-website-access/": "83162047a7396236c6992d46a6188ecdd4ea27b871a6324519d5b4e1dea1a686",
     "https://poweredby.oxieg3n.com/blog/cloudflare-workflow-backlog-test/": "fe82b74215351b78ebaf925b5034295c73235b597eb88eafcdef9e1101b431a5",
     "https://poweredby.oxieg3n.com/blog/codex-weekly-allowance/": "5c7506cccd3313648eb0e7d058a230ba8ab8ef7a463628e153e6aef72737b56c",
+    "https://poweredby.oxieg3n.com/blog/copilot-december-model-retirement-plan/": "ae212ea5b68a5e61f724ac05819aa7ba4915559d0ea616b7133c6cf2da24cf04",
+    "https://poweredby.oxieg3n.com/blog/copilot-ghes-account-boundary/": "a2eca95815563f79f4c8977ae6ebc876ca90a5f81806247a3a991e086d8fe9b7",
     "https://poweredby.oxieg3n.com/blog/cursor-live-apps-small-business/": "c43eaef042e0be97c1ad368be9510f332c3441a0fb4c3128e83acc65e70b40fd",
     "https://poweredby.oxieg3n.com/blog/cursor-voice-chat-coding-agents/": "6c62a3df84ea533493ecf0c92cfca2b0cf1daaa61f1037e5584ad8882f0ba26a",
     "https://poweredby.oxieg3n.com/blog/custom-websites-vs-templates/": "aacf225ff3adeae546ce8aada43fa4701409984f1ba1d19d8bbdc010b5493acd",
+    "https://poweredby.oxieg3n.com/blog/docling-docx-structure-patch/": "903bdf1d9b3bb981ab3ee3403d95b30352e9a73356e42d581363c586dfc29954",
     "https://poweredby.oxieg3n.com/blog/executorch-webgpu-browser-evaluation/": "9abf5221aef8fa90b54145f3bd53a1384d47fd38c4046af513ad7c74e3848de2",
     "https://poweredby.oxieg3n.com/blog/fable-model-cost-accepted-result/": "b8fd754b0a8f31090301200fb13fa430968d37f45a9c2b34776f2dd01634d1e0",
     "https://poweredby.oxieg3n.com/blog/figma-3d-transforms-design-handoff/": "9f675953d24312789b189335ca272bcf8cc3c247b6db950143990e19450e6014",
@@ -1277,28 +1305,41 @@
     "https://poweredby.oxieg3n.com/blog/google-agent-anomaly-detection/": "7c880fb1cc3fa946fb232287678c03c6cafccee030f52a4b8ac7d91b01037138",
     "https://poweredby.oxieg3n.com/blog/gputaskman-tmog-local-ai-monitoring/": "28464343a38d56b87bcd2f1b7c3666adde3db6e2e4d2ceba481a8537088fe720",
     "https://poweredby.oxieg3n.com/blog/grok-bot-shared-account-check/": "595ea5363eddd6f9537f68c4011d4e40a259bd1f798f82603b6faeeb65f62ab6",
+    "https://poweredby.oxieg3n.com/blog/hedy-topic-files-meeting-context/": "a1800577096230de7acf3896a7df90e6c8507d8b536916ce7e381a4e8cb8ce63",
+    "https://poweredby.oxieg3n.com/blog/langgraph-child-stream-events-restored/": "72e1e324f6df11687ce81ea7aeef7798cd88219394f49d5074a662165418cb3e",
     "https://poweredby.oxieg3n.com/blog/litellm-11086-request-fields-upgrade-check/": "4442403f7ac4b487d63326798d17427a6b5ac20b6d33c9b3ad3b55eae209a543",
+    "https://poweredby.oxieg3n.com/blog/llama-cpp-november-14-platform-fixes/": "f2c56c5d1cc9d92832d30a2afe6066b21be1525ca2f7e6b0d7ae329b6f1b5a03",
     "https://poweredby.oxieg3n.com/blog/make-lead-fields-retry-fixes/": "3c0fb0b4eede2a39ceafce682b038a86af16a5b55549b74c8fd98d3353426ce8",
     "https://poweredby.oxieg3n.com/blog/make-module-run-panel-search/": "818263d5dbfa898ad8145e98134ce19f315c61f9052f04e4d7b161a8d205b6ea",
     "https://poweredby.oxieg3n.com/blog/meta-muse-spaces-client-work/": "1cd81d40e8ce2ae290f03c354ea9e26792ea6888fd97efe556b33cb8dffdcf37",
+    "https://poweredby.oxieg3n.com/blog/microsoft-release-planner-deadline/": "5e1c90b4a6c6eef1c13799ac450edd2e868600072c0975826093be36e6fdc793",
     "https://poweredby.oxieg3n.com/blog/mistral-studio-small-business-automation/": "2fdf6c1b64f2f6aad07af1f72463dd3264b6d52aa5481a67ec2363597deb75fb",
     "https://poweredby.oxieg3n.com/blog/motive-fleet-agent-demo/": "bca2ca146309e3cf3102ceba0e1e09cd9bf3e1179299f7bfeb9d43b7ad01219e",
     "https://poweredby.oxieg3n.com/blog/n8n-contract-approval-handoff/": "6c99cd21a5636a7e114437fcd532eb26c7aacd9badd747dd36262f01d2aaef0a",
+    "https://poweredby.oxieg3n.com/blog/nextjs-canary-rsc-cache-miss/": "3c7d27d35837ad6294558defb500a9d81e45135a8cf8eac6b1e5deef73106c5c",
     "https://poweredby.oxieg3n.com/blog/nod-local-agent-first-test/": "970c34ad755c7328f9e97b2f33fb9ac3eb213038ad0fba04a9d5546e4e5e1133",
+    "https://poweredby.oxieg3n.com/blog/nvidia-agent-memory-context-compaction/": "97f1f3a1216b58e2e4060f68b4d8a128a692b84b425a4bcce82cc2bbedb2c668",
     "https://poweredby.oxieg3n.com/blog/openhands-140-agent-workspace/": "e6b980e56d5459f37270835357305a7cb7dd0e838e70ee77ab082521349acd07",
     "https://poweredby.oxieg3n.com/blog/original-xbox-pc-compatibility-achievements/": "fb9016538935074b13e8f668e45b5b0447c5ad175b0851c9db977d0947a8d372",
     "https://poweredby.oxieg3n.com/blog/practical-ai-automation-small-business/": "6f29c3fe615878529e8a372d0722dbfa2bab32ff32d024a507a70a65ea53de2f",
     "https://poweredby.oxieg3n.com/blog/ps5-qssr-spider-man-rollout/": "67dd974deb5dd6176c62e1410c75138f592c9685044504236a5363288fe69dc8",
     "https://poweredby.oxieg3n.com/blog/qwen-code-repository-event-filter/": "31afcfb9e43ad6ded67fe8be2afa8f7d2b01bb86409d716c6d06bf007155d340",
     "https://poweredby.oxieg3n.com/blog/replit-agent-commerce-ad-spending-approval/": "6e8e02fff6ef56152d8f6baa02107e28c1880cdd7b4d0e33d7f03561a18cfd12",
+    "https://poweredby.oxieg3n.com/blog/secure-enterprise-ai-chat-case-study-analysis/": "c989b33502f0c0ab21540bf9fb0ba10a42478e097606a68ead0c15952fd93b6b",
+    "https://poweredby.oxieg3n.com/blog/shopify-admin-api-ip-allowlist-deadline/": "9cd55b25aef652ecac1fa00aad57f3a91ce31ad377d40f4d7bdd57282959ff3f",
     "https://poweredby.oxieg3n.com/blog/slay-the-spire-2-beta-fool-blitz-dread/": "6f10d9b3fb5658a0e581ed77de9733aef358637999b145c6af857e622fd273dd",
+    "https://poweredby.oxieg3n.com/blog/sons-sparta-ps4-hermes-erebus/": "c158b7a1cfd708568f73eee6d21d7bdedc2199d644f3aa402dd5d8cf72f73c93",
+    "https://poweredby.oxieg3n.com/blog/taste-ui-ux-pro-max-ai-design/": "6e67d327d2fed71d145a17284e5f1e2e3006c0193e285b33fc5faf16bb53409d",
     "https://poweredby.oxieg3n.com/blog/todays-gaming-recap-2026-11-14/": "8d387b745abb0312e03c6ae8cc04c5f9be650e6739b0d4da8c822a089cafb9ab",
+    "https://poweredby.oxieg3n.com/blog/vercel-daemon-traces-export-path/": "919fa5605fca0f20f7a4fb8111b5d57547d8899facfa427e23fd5c964a695000",
     "https://poweredby.oxieg3n.com/blog/vercel-five-gb-build-cache/": "e04bbfe7a72f6f14670094968c242a7f9e2018c784affc64627388b1b4639c45",
     "https://poweredby.oxieg3n.com/blog/vercel-tracing-website-slowdowns/": "52cad508f87b2a19d6780d05c4fe0074b5a2926276720cf3cd7b46baeadb8fb7",
     "https://poweredby.oxieg3n.com/blog/webflow-comment-search-filters/": "daf4cdb4f0fa538e3a943874d51c4b00b6f51e888aeda5043d162a2f954e1304",
     "https://poweredby.oxieg3n.com/blog/webflow-copied-component-ownership/": "b0fe2785c20e85e6cf5709085a464ae8d7eaae57b5d05eed494b1a5a90b08de5",
     "https://poweredby.oxieg3n.com/blog/website-project-brief-checklist/": "252851c5880ebb6a9ba81e0d5a852e69f8befe9901a384adad3c5fe568ceb963",
-    "https://poweredby.oxieg3n.com/blog/workspace-mcp-oauth-client-cutoff/": "9b21c822756077033c6f72fb7c39d30c34c27677f76dd37082ea4eb250644dc2"
+    "https://poweredby.oxieg3n.com/blog/windmill-fairness-reserve-upgrade-check/": "9c7b32da47c57fdedbda18da211e78402bb032722ee2833bd8f9e167a25726b7",
+    "https://poweredby.oxieg3n.com/blog/workspace-mcp-oauth-client-cutoff/": "9b21c822756077033c6f72fb7c39d30c34c27677f76dd37082ea4eb250644dc2",
+    "https://poweredby.oxieg3n.com/blog/wow-forever-dungeon-xp-party-levels/": "90aeca037b48ebd069516ff1350dc99a042ab99f68227afc8de28eeb0f93e0fa"
   },
   "cadence_authorization_amendment": {
     "owner_evidence": "Owner November13,2026: \"if its something i told you, ignore that. Post as many videos as you have time to post every day.\" Revokes the owner-imposed three-Short daily cadence cap, not platform quotas or rights/QC/deduplication controls.",
@@ -1317,8 +1358,8 @@
         "https://www.youtube.com/@PlayStation",
         "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
       ],
-      "last_attempt_at": "2026-11-15T06:26:04.939502+00:00",
-      "last_monitored_at": "2026-11-15T06:26:04.939396+00:00",
+      "last_attempt_at": "2026-11-16T01:00:11.855026+00:00",
+      "last_monitored_at": "2026-11-16T01:00:11.854890+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "PlayStation",
@@ -1572,8 +1613,8 @@
         "https://www.youtube.com/@Xbox",
         "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
       ],
-      "last_attempt_at": "2026-11-15T06:26:05.370529+00:00",
-      "last_monitored_at": "2026-11-15T06:26:05.370415+00:00",
+      "last_attempt_at": "2026-11-16T01:00:12.392258+00:00",
+      "last_monitored_at": "2026-11-16T01:00:12.392122+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Xbox",
@@ -2858,6 +2899,19 @@
         "status": "needs_editorial_review",
         "title": "How to Choose a Visual Direction for Your Business Website"
       },
+      "029efd7777f15190506629bcb9f544ea0f792d0b56e225edccd89508d56acfc3": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/copilot-december-model-retirement-plan/",
+        "discovered_at": "2026-11-16T01:00:14.759447+00:00",
+        "id": "029efd7777f15190506629bcb9f544ea0f792d0b56e225edccd89508d56acfc3",
+        "live_verified_at": "2026-11-16T01:00:14.759427+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 17:41:04 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "ae212ea5b68a5e61f724ac05819aa7ba4915559d0ea616b7133c6cf2da24cf04",
+        "status": "needs_editorial_review",
+        "title": "Copilot's December model retirements: check your workflow before switching"
+      },
       "0340d90ec0f5d1ed12ae72cd1e19068f0283728f38d5b76f8560caa3ce4c26a0": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/fable-model-cost-accepted-result/",
@@ -2910,6 +2964,19 @@
         "status": "needs_editorial_review",
         "title": "A2UI 1.0: build agent interfaces from your own components"
       },
+      "0b2d4724b21d42164df5cc330bf1262e2ae6067c28d356d25373d2389e515192": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/docling-docx-structure-patch/",
+        "discovered_at": "2026-11-16T01:00:14.479772+00:00",
+        "id": "0b2d4724b21d42164df5cc330bf1262e2ae6067c28d356d25373d2389e515192",
+        "live_verified_at": "2026-11-16T01:00:14.479752+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 23:36:07 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "903bdf1d9b3bb981ab3ee3403d95b30352e9a73356e42d581363c586dfc29954",
+        "status": "needs_editorial_review",
+        "title": "Docling 2.150.1 fixes document structure that AI retrieval can lose"
+      },
       "0c9c5a01021e46504f5099c68c3bed99e7c827a0ea031fab2a3e0ed69491e22c": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/gputaskman-tmog-local-ai-monitoring/",
@@ -2922,6 +2989,32 @@
         "source_version": "28464343a38d56b87bcd2f1b7c3666adde3db6e2e4d2ceba481a8537088fe720",
         "status": "needs_editorial_review",
         "title": "GPU Task Manager and TMOG: A Useful Pair for Local AI Monitoring"
+      },
+      "116e311a4ed3df83e04337aaff7bbef0d51d9a477240617ce38051a033499381": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/microsoft-release-planner-deadline/",
+        "discovered_at": "2026-11-16T01:00:14.008302+00:00",
+        "id": "116e311a4ed3df83e04337aaff7bbef0d51d9a477240617ce38051a033499381",
+        "live_verified_at": "2026-11-16T01:00:14.008280+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 23:39:42 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "5e1c90b4a6c6eef1c13799ac450edd2e868600072c0975826093be36e6fdc793",
+        "status": "needs_editorial_review",
+        "title": "Microsoft\u2019s Release Planner deadline arrives: check your planning links"
+      },
+      "1606f442b3fcf0a4090e41f6560558380a5e03fd41429583c35e55c6c95f53ed": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/langgraph-child-stream-events-restored/",
+        "discovered_at": "2026-11-16T01:00:14.251033+00:00",
+        "id": "1606f442b3fcf0a4090e41f6560558380a5e03fd41429583c35e55c6c95f53ed",
+        "live_verified_at": "2026-11-16T01:00:14.251013+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 23:33:36 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "72e1e324f6df11687ce81ea7aeef7798cd88219394f49d5074a662165418cb3e",
+        "status": "needs_editorial_review",
+        "title": "LangGraph 1.2.22 restores events from separately threaded child graphs"
       },
       "168dd8a0bfb0b31e85f505ecb11cef32d605229110d461bb3b462c862f173076": {
         "attempts": 0,
@@ -3014,6 +3107,32 @@
         "status": "needs_editorial_review",
         "title": "Workspace MCP's OAuth cutoff: check the client, not just the login"
       },
+      "29afc73211d47cfca47c143f95f441c1f8ede8b057747b5a78bdccffec71c90a": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/hedy-topic-files-meeting-context/",
+        "discovered_at": "2026-11-16T01:00:14.377210+00:00",
+        "id": "29afc73211d47cfca47c143f95f441c1f8ede8b057747b5a78bdccffec71c90a",
+        "live_verified_at": "2026-11-16T01:00:14.377189+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 14:40:41 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "a1800577096230de7acf3896a7df90e6c8507d8b536916ce7e381a4e8cb8ce63",
+        "status": "needs_editorial_review",
+        "title": "Hedy 3.16 adds reusable Topic files for recurring meetings"
+      },
+      "305d0f358a9480ad9ec4e62ab30f8aa2a69c02e9724cddd1f6f35bd36d712a15": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/taste-ui-ux-pro-max-ai-design/",
+        "discovered_at": "2026-11-16T01:00:12.727132+00:00",
+        "id": "305d0f358a9480ad9ec4e62ab30f8aa2a69c02e9724cddd1f6f35bd36d712a15",
+        "live_verified_at": "2026-11-16T01:00:12.727112+00:00",
+        "original_published_at": "Mon, 16 Nov 2026 00:05:14 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "6e67d327d2fed71d145a17284e5f1e2e3006c0193e285b33fc5faf16bb53409d",
+        "status": "needs_editorial_review",
+        "title": "Taste and UI UX Pro Max: Give AI Design a Better Brief"
+      },
       "30af784cf3d1da13113e2286de0380f54aed5b97cfb17b121a5491841f735c57": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/replit-agent-commerce-ad-spending-approval/",
@@ -3092,6 +3211,19 @@
         "status": "needs_editorial_review",
         "title": "Slay the Spire 2: where to find The Fool, Blitz and Dread"
       },
+      "45fc077fff9bc62d9d7be3ceeaf08b7f402577008dbf4ddcd4943ef2421a5c4a": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/nextjs-canary-rsc-cache-miss/",
+        "discovered_at": "2026-11-16T01:00:13.877824+00:00",
+        "id": "45fc077fff9bc62d9d7be3ceeaf08b7f402577008dbf4ddcd4943ef2421a5c4a",
+        "live_verified_at": "2026-11-16T01:00:13.877804+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 14:33:05 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "3c7d27d35837ad6294558defb500a9d81e45135a8cf8eac6b1e5deef73106c5c",
+        "status": "needs_editorial_review",
+        "title": "Next.js canary fixes an RSC cache-miss navigation failure"
+      },
       "49ca49be7d8722ec13aef78dbd4c76e8bba2937db305b5bba4102707c200149e": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/github-chat-code-handoff/",
@@ -3118,6 +3250,19 @@
         "status": "needs_editorial_review",
         "title": "Cheaper AI Video Makes a Clear Style Brief More Valuable"
       },
+      "546d5c54b63af678f0908f32f7ccc13f6cda6b001537fae9026d6b8b167ab6a8": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/windmill-fairness-reserve-upgrade-check/",
+        "discovered_at": "2026-11-16T01:00:12.983575+00:00",
+        "id": "546d5c54b63af678f0908f32f7ccc13f6cda6b001537fae9026d6b8b167ab6a8",
+        "live_verified_at": "2026-11-16T01:00:12.983555+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 17:39:04 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "9c7b32da47c57fdedbda18da211e78402bb032722ee2833bd8f9e167a25726b7",
+        "status": "needs_editorial_review",
+        "title": "Windmill 1.875 makes reserve workers visible, with an upgrade catch"
+      },
       "552b96944c17727d2f4b6fcc2d2cdbcd5271fcd8e774ee546e9e0a1c1da588dc": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/webflow-comment-search-filters/",
@@ -3143,6 +3288,19 @@
         "source_version": "d39c278549b5c9945a9fed511bf180da2e8b22dde3bc618b8b5df3faf83eba55",
         "status": "needs_editorial_review",
         "title": "AWS Emulator: what to test locally, and what still needs AWS"
+      },
+      "58c958940dd528d15b6111bacec6ab6135cbd4ab444b96c6ac7932a8cec9f913": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/sons-sparta-ps4-hermes-erebus/",
+        "discovered_at": "2026-11-16T01:00:13.385042+00:00",
+        "id": "58c958940dd528d15b6111bacec6ab6135cbd4ab444b96c6ac7932a8cec9f913",
+        "live_verified_at": "2026-11-16T01:00:13.385022+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 14:47:36 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "c158b7a1cfd708568f73eee6d21d7bdedc2199d644f3aa402dd5d8cf72f73c93",
+        "status": "needs_editorial_review",
+        "title": "Sons of Sparta comes to PS4 with two new ways to replay"
       },
       "5a547ea9f0bf5420b1559f0aeb3a07f3f2c1ea27f7b607b03e3a4aec8918971f": {
         "attempts": 0,
@@ -3183,6 +3341,32 @@
         "status": "needs_editorial_review",
         "title": "Claude Personal Finance Beta: What to Check Before Connecting Your Accounts"
       },
+      "65070d724bfd6f729273434eb5b9d1ecfbc5b56f6d0887193a513224d1ef1755": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/shopify-admin-api-ip-allowlist-deadline/",
+        "discovered_at": "2026-11-16T01:00:13.498819+00:00",
+        "id": "65070d724bfd6f729273434eb5b9d1ecfbc5b56f6d0887193a513224d1ef1755",
+        "live_verified_at": "2026-11-16T01:00:13.498798+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 14:45:16 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "9cd55b25aef652ecac1fa00aad57f3a91ce31ad377d40f4d7bdd57282959ff3f",
+        "status": "needs_editorial_review",
+        "title": "Shopify's November 20 app deadline is about where tokens work"
+      },
+      "65fffab6c716693f68bbe7a222124e0674fa31414c5b37b748f0d38f553fe41a": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/nvidia-agent-memory-context-compaction/",
+        "discovered_at": "2026-11-16T01:00:13.733006+00:00",
+        "id": "65fffab6c716693f68bbe7a222124e0674fa31414c5b37b748f0d38f553fe41a",
+        "live_verified_at": "2026-11-16T01:00:13.732985+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 18:50:29 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "97f1f3a1216b58e2e4060f68b4d8a128a692b84b425a4bcce82cc2bbedb2c668",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA's agent-memory findings: shorter context has conditions"
+      },
       "691b7f9baf3147966159a21f91c9b5991d0a18b83186307ddd40815e361fb41c": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/executorch-webgpu-browser-evaluation/",
@@ -3222,6 +3406,19 @@
         "status": "needs_editorial_review",
         "title": "Practical AI Automation Opportunities for Small Businesses"
       },
+      "96d5c41485df46021ae9820680bf52ddb1e4b6c23475fb6fdb918c60a257ad0c": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/llama-cpp-november-14-platform-fixes/",
+        "discovered_at": "2026-11-16T01:00:14.133310+00:00",
+        "id": "96d5c41485df46021ae9820680bf52ddb1e4b6c23475fb6fdb918c60a257ad0c",
+        "live_verified_at": "2026-11-16T01:00:14.133290+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 17:37:19 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "f2c56c5d1cc9d92832d30a2afe6066b21be1525ca2f7e6b0d7ae329b6f1b5a03",
+        "status": "needs_editorial_review",
+        "title": "llama.cpp's November 14 fixes target Hexagon vision and 32-bit builds"
+      },
       "9ae2bd67edb91d321f64971c3c3d2d51bdbfdca9ef6de7ee4fd56eda3e428e72": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/cursor-voice-chat-coding-agents/",
@@ -3247,6 +3444,19 @@
         "source_version": "52cad508f87b2a19d6780d05c4fe0074b5a2926276720cf3cd7b46baeadb8fb7",
         "status": "needs_editorial_review",
         "title": "Vercel Tracing: Investigate Website Slowdowns and Check the Cost"
+      },
+      "a58f7673209268116e496d318a56d557b7161972afa3625336eb63d8f3610e99": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/wow-forever-dungeon-xp-party-levels/",
+        "discovered_at": "2026-11-16T01:00:12.853382+00:00",
+        "id": "a58f7673209268116e496d318a56d557b7161972afa3625336eb63d8f3610e99",
+        "live_verified_at": "2026-11-16T01:00:12.853362+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 17:44:26 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "90aeca037b48ebd069516ff1350dc99a042ab99f68227afc8de28eeb0f93e0fa",
+        "status": "needs_editorial_review",
+        "title": "WoW Forever changes dungeon XP for mixed-level parties"
       },
       "aefe81cbad20ea575637689db7f725c7df50a96c555c9bf1393f330958a8fafc": {
         "attempts": 0,
@@ -3286,6 +3496,19 @@
         "source_version": "41156743e2d8e8fd6887327895c28a12b5ac9f3b6783521fec815e3baeac9bbd",
         "status": "needs_editorial_review",
         "title": "GitHub\u2019s New Pull Request Overview: Find the Next Review Task"
+      },
+      "bff4e7b63bb3410081fe0d54123b3066a2ec53fbb89c6cd1d5f8e22561bc281f": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/vercel-daemon-traces-export-path/",
+        "discovered_at": "2026-11-16T01:00:13.113430+00:00",
+        "id": "bff4e7b63bb3410081fe0d54123b3066a2ec53fbb89c6cd1d5f8e22561bc281f",
+        "live_verified_at": "2026-11-16T01:00:13.113406+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 17:42:38 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "919fa5605fca0f20f7a4fb8111b5d57547d8899facfa427e23fd5c964a695000",
+        "status": "needs_editorial_review",
+        "title": "Vercel Daemons gain tracing: check where worker spans go"
       },
       "c2e8338bbca163da4e2f6ea575f3476f37c15464cdeb295cefc83b1066e34d03": {
         "attempts": 0,
@@ -3391,6 +3614,19 @@
         "status": "needs_editorial_review",
         "title": "Make updates lead fields, Shopify starting points and HubSpot retry guidance"
       },
+      "e288b8492254d38783b3c7c4582eb0e72ef0a029df8d014795e9287d92173df6": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/secure-enterprise-ai-chat-case-study-analysis/",
+        "discovered_at": "2026-11-16T01:00:13.603636+00:00",
+        "id": "e288b8492254d38783b3c7c4582eb0e72ef0a029df8d014795e9287d92173df6",
+        "live_verified_at": "2026-11-16T01:00:13.603615+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 13:37:07 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "c989b33502f0c0ab21540bf9fb0ba10a42478e097606a68ead0c15952fd93b6b",
+        "status": "needs_editorial_review",
+        "title": "Secure enterprise AI chat: what the delivered pilot proves"
+      },
       "e711bf4e3da34fce610480df6cb361fcb78264c7a2f8e0953bda34d3b6bec5f9": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/github-ai-scan-rest-api/",
@@ -3416,6 +3652,19 @@
         "source_version": "8d387b745abb0312e03c6ae8cc04c5f9be650e6739b0d4da8c822a089cafb9ab",
         "status": "needs_editorial_review",
         "title": "Today's Gaming Recap"
+      },
+      "ea6907196480518bc8ff54499dcadf021f4cdf0e1118ca4832bbe476c4f70256": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/browser-use-run-judge-evidence/",
+        "discovered_at": "2026-11-16T01:00:14.899725+00:00",
+        "id": "ea6907196480518bc8ff54499dcadf021f4cdf0e1118ca4832bbe476c4f70256",
+        "live_verified_at": "2026-11-16T01:00:14.899704+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 23:37:44 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "6ec05015a246f599c87de6cbaa23bfadd8d74aaba331d9929a43024247427a4a",
+        "status": "needs_editorial_review",
+        "title": "Browser Use 1.0.5 adds a second look at completed browser tasks"
       },
       "eaf5863a2fbbf65e8ec6c784744eeec8cdede1dc8890c105aeb990205082d184": {
         "attempts": 0,
@@ -3468,6 +3717,19 @@
         "source_version": "6c99cd21a5636a7e114437fcd532eb26c7aacd9badd747dd36262f01d2aaef0a",
         "status": "needs_editorial_review",
         "title": "Contract automation: keep approval attached to the right document"
+      },
+      "fd50d537301ffd9279e3b4a0f9f859e27b648343374b0c54352b3b8e783baa7d": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/copilot-ghes-account-boundary/",
+        "discovered_at": "2026-11-16T01:00:14.606251+00:00",
+        "id": "fd50d537301ffd9279e3b4a0f9f859e27b648343374b0c54352b3b8e783baa7d",
+        "live_verified_at": "2026-11-16T01:00:14.606231+00:00",
+        "original_published_at": "Sun, 15 Nov 2026 14:42:51 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "a2eca95815563f79f4c8977ae6ebc876ca90a5f81806247a3a991e086d8fe9b7",
+        "status": "needs_editorial_review",
+        "title": "Copilot app adds GHES: check the account and session boundaries"
       }
     },
     "DAILY_TECH_RECAP": {
@@ -5073,6 +5335,26 @@
         "url": "https://www.youtube.com/watch?v=HD75JDFaYvg",
         "video_id": "HD75JDFaYvg"
       },
+      "Hz9lmh9NBp0": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-16T01:00:11.753731+00:00",
+        "id": "Hz9lmh9NBp0",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-15T14:15:20Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Fortnite - Treasure Hunters: Week 3 Gameplay Trailer | PS5 & PS4 Games",
+        "url": "https://www.youtube.com/watch?v=Hz9lmh9NBp0",
+        "video_id": "Hz9lmh9NBp0"
+      },
       "IOcODanTpN0": {
         "api_verification": "verified",
         "attempts": 0,
@@ -5441,6 +5723,26 @@
         "title": "How Mozilla uses GPT-6 Cyber to find and fix Firefox vulnerabilities",
         "url": "https://www.youtube.com/watch?v=PkAmyub12K8",
         "video_id": "PkAmyub12K8"
+      },
+      "Q747LpUuLTA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-16T01:00:11.753702+00:00",
+        "id": "Q747LpUuLTA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-15T18:00:11Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Once Human - Season 5: Dissonant Resonance Gameplay Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=Q747LpUuLTA",
+        "video_id": "Q747LpUuLTA"
       },
       "QRA_JmNiLnk": {
         "api_verification": "verified",
@@ -6424,6 +6726,26 @@
         "url": "https://www.youtube.com/watch?v=jDxKzlGLCas",
         "video_id": "jDxKzlGLCas"
       },
+      "jTbZmTO4auk": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-16T01:00:12.391978+00:00",
+        "id": "jTbZmTO4auk",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-15T18:00:26Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Once Human Season 5: Dissonant Resonance - Gameplay Trailer",
+        "url": "https://www.youtube.com/watch?v=jTbZmTO4auk",
+        "video_id": "jTbZmTO4auk"
+      },
       "jp0cNm3xpcs": {
         "api_verification": "verified",
         "attempts": 0,
@@ -7401,7 +7723,7 @@
       "upload": 0
     },
     "2026-11-15": {
-      "general": 12,
+      "general": 20,
       "search": 0,
       "upload": 0
     }
@@ -7857,7 +8179,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 422,
+  "revision": 435,
   "rights_ledger": {},
   "runs": [
     {
@@ -8963,6 +9285,57 @@
         "new_leads": 0
       },
       "run_id": "43757821011-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-16T01:00:10.958901+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 3
+      },
+      "run_id": "43783641220-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-16T01:00:12.405640+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 17
+      },
+      "run_id": "43783641220-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "YouTube uploader OAuth not configured",
+        "Operational email destination/route unconfirmed",
+        "Persistent production runner not verified"
+      ],
+      "checked_at": "2026-11-16T01:00:21.005678+00:00",
+      "command": "report",
+      "details": {
+        "control": {
+          "production_host_verified": false,
+          "publication_paused": true
+        },
+        "pending_alerts": 157,
+        "publication_count": 0,
+        "queues": {
+          "BLOG_VIDEO": 65,
+          "DAILY_TECH_RECAP": 2,
+          "EVERGREEN_TOP10": 42,
+          "FRESH_UPLOAD": 157
+        },
+        "verified_sources": 10
+      },
+      "run_id": "43783641220-1",
       "status": "BLOCKED"
     }
   ],
