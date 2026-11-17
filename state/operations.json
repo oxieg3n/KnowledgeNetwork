@@ -1298,6 +1298,16 @@
     }
   },
   "archive_progress": {
+    "UCELSb-IYi_d5rYFOxWeOz5g": {
+      "checked_at": "2026-11-17T11:48:42.364739+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    },
+    "UCHuiy8bXnmK5nisYHUd1J5g": {
+      "checked_at": "2026-11-17T11:48:41.926154+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    },
     "UCK8sQmJBp8GCxrOtXWBpyEA": {
       "checked_at": "2026-11-12T22:14:56.131938+00:00",
       "count": 10,
@@ -1305,6 +1315,11 @@
     },
     "UCP7jMXSY2xbc3KCAE0MHQ-A": {
       "checked_at": "2026-11-12T22:14:56.599402+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    },
+    "UCW5gUZ7lKGrAbLOkHv2xfbw": {
+      "checked_at": "2026-11-17T11:48:42.749147+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1426,8 +1441,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-15T20:23:45.724280+00:00",
-      "last_monitored_at": "2026-11-15T20:23:45.724150+00:00",
+      "last_attempt_at": "2026-11-17T11:48:40.806761+00:00",
+      "last_monitored_at": "2026-11-17T11:48:40.806614+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -1567,8 +1582,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-15T20:23:46.380537+00:00",
-      "last_monitored_at": "2026-11-15T20:23:46.380400+00:00",
+      "last_attempt_at": "2026-11-17T11:48:41.478471+00:00",
+      "last_monitored_at": "2026-11-17T11:48:41.478321+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -3799,6 +3814,42 @@
       }
     },
     "EVERGREEN_TOP10": {
+      "-qD3KOfBjZE": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749097+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749101+00:00",
+        "id": "-qD3KOfBjZE",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Framer for Enterprise: Built for teams who think big and move fast.",
+        "url": "https://www.youtube.com/watch?v=-qD3KOfBjZE",
+        "video_id": "-qD3KOfBjZE",
+        "view_count": 25689565
+      },
+      "0NBILspM4c4": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926119+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926121+00:00",
+        "id": "0NBILspM4c4",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA Live at CES with CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=0NBILspM4c4",
+        "video_id": "0NBILspM4c4",
+        "view_count": 23939449
+      },
       "1QNsdr-Qx_I": {
         "attempts": 0,
         "categories": [
@@ -3912,6 +3963,60 @@
         "video_id": "6aFdEhEZQjE",
         "view_count": 117145680
       },
+      "6cc6M36Mzfg": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364734+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364736+00:00",
+        "id": "6cc6M36Mzfg",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Friday afternoon \"ask\" \u2014 Webflow",
+        "url": "https://www.youtube.com/watch?v=6cc6M36Mzfg",
+        "video_id": "6cc6M36Mzfg",
+        "view_count": 793575
+      },
+      "6xJWQRVl9nw": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749115+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749118+00:00",
+        "id": "6xJWQRVl9nw",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Framer: All Design, No Code, Real Websites",
+        "url": "https://www.youtube.com/watch?v=6xJWQRVl9nw",
+        "video_id": "6xJWQRVl9nw",
+        "view_count": 18261561
+      },
+      "8AHPXm9Y6mI": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749065+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749091+00:00",
+        "id": "8AHPXm9Y6mI",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "That\u2019s Framer: The pro site builder loved by designers",
+        "url": "https://www.youtube.com/watch?v=8AHPXm9Y6mI",
+        "video_id": "8AHPXm9Y6mI",
+        "view_count": 32978757
+      },
       "AIZ_v_Xfb2k": {
         "attempts": 0,
         "categories": [
@@ -3951,6 +4056,42 @@
         "url": "https://www.youtube.com/watch?v=DQacCB9tDaw",
         "video_id": "DQacCB9tDaw",
         "view_count": 4926107
+      },
+      "DiGB5uAYKAg": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926124+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926126+00:00",
+        "id": "DiGB5uAYKAg",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "GTC 2023 Keynote with NVIDIA CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=DiGB5uAYKAg",
+        "video_id": "DiGB5uAYKAg",
+        "view_count": 22577559
+      },
+      "E5WGzdnR2Gw": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364729+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364731+00:00",
+        "id": "E5WGzdnR2Gw",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Webflow University 2.0: Learn web design, development, and time travel \u2014\u00a0visually",
+        "url": "https://www.youtube.com/watch?v=E5WGzdnR2Gw",
+        "video_id": "E5WGzdnR2Gw",
+        "view_count": 1573853
       },
       "EqboAI-Vk-U": {
         "attempts": 0,
@@ -4029,6 +4170,96 @@
         "video_id": "HK6y8DAPN_0",
         "view_count": 4224331
       },
+      "Hm0A2O30gWY": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749110+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749112+00:00",
+        "id": "Hm0A2O30gWY",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Framer Creators: How Designers Earn Money & Build Passive Income with Framer",
+        "url": "https://www.youtube.com/watch?v=Hm0A2O30gWY",
+        "video_id": "Hm0A2O30gWY",
+        "view_count": 18873950
+      },
+      "K10oZZmsqn8": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749143+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749145+00:00",
+        "id": "K10oZZmsqn8",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Framer Convert: Understand, Test, and Optimize.",
+        "url": "https://www.youtube.com/watch?v=K10oZZmsqn8",
+        "video_id": "K10oZZmsqn8",
+        "view_count": 7303550
+      },
+      "OgwNhN8bki8": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749133+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749135+00:00",
+        "id": "OgwNhN8bki8",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Get Unlimited Design For Free With Framer",
+        "url": "https://www.youtube.com/watch?v=OgwNhN8bki8",
+        "video_id": "OgwNhN8bki8",
+        "view_count": 8963523
+      },
+      "Ojiv9Smi4XE": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364703+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364705+00:00",
+        "id": "Ojiv9Smi4XE",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "If life were like web design \u2014 Webflow",
+        "url": "https://www.youtube.com/watch?v=Ojiv9Smi4XE",
+        "video_id": "Ojiv9Smi4XE",
+        "view_count": 7938945
+      },
+      "PWcNlRI00jo": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926134+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926136+00:00",
+        "id": "PWcNlRI00jo",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "GTC Sept 2022 Keynote with NVIDIA CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=PWcNlRI00jo",
+        "video_id": "PWcNlRI00jo",
+        "view_count": 19326270
+      },
       "PqVbypvxDto": {
         "attempts": 0,
         "categories": [
@@ -4048,6 +4279,24 @@
         "video_id": "PqVbypvxDto",
         "view_count": 10711300
       },
+      "QWfcE7ATlnU": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749127+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749129+00:00",
+        "id": "QWfcE7ATlnU",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Framer: Ship Faster. Build Smarter.",
+        "url": "https://www.youtube.com/watch?v=QWfcE7ATlnU",
+        "video_id": "QWfcE7ATlnU",
+        "view_count": 11968641
+      },
       "Qyiautg41h8": {
         "attempts": 0,
         "categories": [
@@ -4065,6 +4314,24 @@
         "url": "https://www.youtube.com/watch?v=Qyiautg41h8",
         "video_id": "Qyiautg41h8",
         "view_count": 73058538
+      },
+      "RTmSrIFZanc": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926150+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926152+00:00",
+        "id": "RTmSrIFZanc",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA GTC Live 2026 Keynote Pregame",
+        "url": "https://www.youtube.com/watch?v=RTmSrIFZanc",
+        "video_id": "RTmSrIFZanc",
+        "view_count": 9203386
       },
       "TnhKznlJfTM": {
         "attempts": 0,
@@ -4162,6 +4429,42 @@
         "video_id": "WXuK6gekU1Y",
         "view_count": 38559227
       },
+      "Y2F8yisiS6E": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926104+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926108+00:00",
+        "id": "Y2F8yisiS6E",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "GTC March 2024 Keynote with NVIDIA CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=Y2F8yisiS6E",
+        "video_id": "Y2F8yisiS6E",
+        "view_count": 27391107
+      },
+      "YZr1nP-GGfg": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364719+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364721+00:00",
+        "id": "YZr1nP-GGfg",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Don't just design websites, build them.",
+        "url": "https://www.youtube.com/watch?v=YZr1nP-GGfg",
+        "video_id": "YZr1nP-GGfg",
+        "view_count": 2274497
+      },
       "ZRCdORJiUgU": {
         "attempts": 0,
         "categories": [
@@ -4180,6 +4483,24 @@
         "video_id": "ZRCdORJiUgU",
         "view_count": 156806741
       },
+      "ZzjqgEw9HxI": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364708+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364710+00:00",
+        "id": "ZzjqgEw9HxI",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Figma to Webflow course \u2014\u00a0Official trailer \u2014 Webflow University",
+        "url": "https://www.youtube.com/watch?v=ZzjqgEw9HxI",
+        "video_id": "ZzjqgEw9HxI",
+        "view_count": 6647754
+      },
       "_fuimO6ErKI": {
         "attempts": 0,
         "categories": [
@@ -4197,6 +4518,24 @@
         "url": "https://www.youtube.com/watch?v=_fuimO6ErKI",
         "video_id": "_fuimO6ErKI",
         "view_count": 55662517
+      },
+      "_waPvOwL9Z8": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926069+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926093+00:00",
+        "id": "_waPvOwL9Z8",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "GTC March 2025 Keynote with NVIDIA CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=_waPvOwL9Z8",
+        "video_id": "_waPvOwL9Z8",
+        "view_count": 39961397
       },
       "aSY_vFFmkW0": {
         "attempts": 0,
@@ -4234,6 +4573,24 @@
         "url": "https://www.youtube.com/watch?v=b9qPMHpyZ5Q",
         "video_id": "b9qPMHpyZ5Q",
         "view_count": 118909253
+      },
+      "bv936eeoxmQ": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749104+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749107+00:00",
+        "id": "bv936eeoxmQ",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Framer Design: Design on an intuitive Canvas",
+        "url": "https://www.youtube.com/watch?v=bv936eeoxmQ",
+        "video_id": "bv936eeoxmQ",
+        "view_count": 21903118
       },
       "bxJkxBUFeEE": {
         "attempts": 0,
@@ -4401,6 +4758,78 @@
         "status": "rendered_pending_review",
         "title": "The hidden cost of leaving a platform"
       },
+      "drMI379TIB4": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749122+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749124+00:00",
+        "id": "drMI379TIB4",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Startups are hard, Framer makes one part easy. Your website.",
+        "url": "https://www.youtube.com/watch?v=drMI379TIB4",
+        "video_id": "drMI379TIB4",
+        "view_count": 12561028
+      },
+      "hGizn_843Mo": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364664+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364685+00:00",
+        "id": "hGizn_843Mo",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Meet the design tool from the future \u2014 Webflow",
+        "url": "https://www.youtube.com/watch?v=hGizn_843Mo",
+        "video_id": "hGizn_843Mo",
+        "view_count": 25732537
+      },
+      "ji8VijpvrBA": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "collected_at": "2026-11-17T11:48:42.749138+00:00",
+        "discovered_at": "2026-11-17T11:48:42.749140+00:00",
+        "id": "ji8VijpvrBA",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Ship websites with enterprise needs, at startup speeds",
+        "url": "https://www.youtube.com/watch?v=ji8VijpvrBA",
+        "video_id": "ji8VijpvrBA",
+        "view_count": 8489402
+      },
+      "lQHK61IDFH4": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926144+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926147+00:00",
+        "id": "lQHK61IDFH4",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA GTC Washington, D.C. Keynote with CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=lQHK61IDFH4",
+        "video_id": "lQHK61IDFH4",
+        "view_count": 9822062
+      },
       "meUr8fjy8lQ": {
         "attempts": 0,
         "categories": [
@@ -4419,6 +4848,42 @@
         "url": "https://www.youtube.com/watch?v=meUr8fjy8lQ",
         "video_id": "meUr8fjy8lQ",
         "view_count": 174767199
+      },
+      "nx_2KIwYEWA": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364714+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364716+00:00",
+        "id": "nx_2KIwYEWA",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "A new era of no-code",
+        "url": "https://www.youtube.com/watch?v=nx_2KIwYEWA",
+        "video_id": "nx_2KIwYEWA",
+        "view_count": 2294544
+      },
+      "o0KmjcGd6jw": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364691+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364694+00:00",
+        "id": "o0KmjcGd6jw",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Design, build, and launch \u2014 with Webflow",
+        "url": "https://www.youtube.com/watch?v=o0KmjcGd6jw",
+        "video_id": "o0KmjcGd6jw",
+        "view_count": 19484992
       },
       "q118B_QdP2k-switching-costs": {
         "attempts": 0,
@@ -4450,6 +4915,42 @@
         "video_id": "rokGy0huYEA",
         "view_count": 244432667
       },
+      "sJTN0g4Bx0I": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364724+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364726+00:00",
+        "id": "sJTN0g4Bx0I",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "We have a typo \u2014 Webflow",
+        "url": "https://www.youtube.com/watch?v=sJTN0g4Bx0I",
+        "video_id": "sJTN0g4Bx0I",
+        "view_count": 1860752
+      },
+      "v-NGxyPjcrE": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926129+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926131+00:00",
+        "id": "v-NGxyPjcrE",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA GTC Berlin 2026 Keynote With CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=v-NGxyPjcrE",
+        "video_id": "v-NGxyPjcrE",
+        "view_count": 19418512
+      },
       "vFr3K2DORc8": {
         "attempts": 0,
         "categories": [
@@ -4468,6 +4969,60 @@
         "url": "https://www.youtube.com/watch?v=vFr3K2DORc8",
         "video_id": "vFr3K2DORc8",
         "view_count": 3138561
+      },
+      "w22rNRCoV7Y": {
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "collected_at": "2026-11-17T11:48:42.364698+00:00",
+        "discovered_at": "2026-11-17T11:48:42.364700+00:00",
+        "id": "w22rNRCoV7Y",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing Webflow CMS",
+        "url": "https://www.youtube.com/watch?v=w22rNRCoV7Y",
+        "video_id": "w22rNRCoV7Y",
+        "view_count": 8343851
+      },
+      "wSp6AiNIrsY": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926112+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926115+00:00",
+        "id": "wSp6AiNIrsY",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA GTC Taipei 2026 Keynote | Full Replay",
+        "url": "https://www.youtube.com/watch?v=wSp6AiNIrsY",
+        "video_id": "wSp6AiNIrsY",
+        "view_count": 23992873
+      },
+      "wX9ybkEYDc0": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-17T11:48:41.926139+00:00",
+        "discovered_at": "2026-11-17T11:48:41.926141+00:00",
+        "id": "wX9ybkEYDc0",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "DGX Spark Arrives at SpaceX: Jensen Huang and Elon Musk Launch AI Future",
+        "url": "https://www.youtube.com/watch?v=wX9ybkEYDc0",
+        "video_id": "wX9ybkEYDc0",
+        "view_count": 14287695
       },
       "yyvVUEPSCu0": {
         "attempts": 0,
@@ -7875,6 +8430,11 @@
       "general": 12,
       "search": 0,
       "upload": 0
+    },
+    "2026-11-17": {
+      "general": 9,
+      "search": 3,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -8328,7 +8888,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 462,
+  "revision": 478,
   "rights_ledger": {},
   "runs": [
     {
@@ -9531,6 +10091,31 @@
       },
       "run_id": "44003211173-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-17T11:48:40.100272+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "44077330176-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-17T11:48:41.495999+00:00",
+      "command": "archive",
+      "details": {
+        "candidates": 30
+      },
+      "run_id": "44077330176-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
