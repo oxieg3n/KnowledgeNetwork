@@ -1,15 +1,10 @@
 {
-  "command": "monitor",
-  "run_id": "44226509068-1",
-  "checked_at": "2026-11-18T02:53:34.045882+00:00",
-  "status": "BLOCKED",
+  "command": "archive",
+  "run_id": "44296385232-1",
+  "checked_at": "2026-11-18T11:37:37.747104+00:00",
+  "status": "PASS",
   "details": {
-    "channels_registered": 10,
-    "channels_attempted": 2,
-    "new_leads": 3,
-    "api_enabled": true
+    "candidates": 30
   },
-  "blockers": [
-    "Bounded rotating batch; not all sources checked this run"
-  ]
+  "blockers": []
 }
