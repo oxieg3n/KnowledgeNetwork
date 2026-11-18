@@ -768,6 +768,14 @@
       "url": "https://www.youtube.com/watch?v=_eST776E7Vo",
       "video_id": "_eST776E7Vo"
     },
+    "video:aRIFzzr_Mi0": {
+      "created_at": "2026-11-18T02:53:35.187861+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "EmbeddingGemma 2: How natively multimodal embeddings work",
+      "url": "https://www.youtube.com/watch?v=aRIFzzr_Mi0",
+      "video_id": "aRIFzzr_Mi0"
+    },
     "video:adD2SUJtKEw": {
       "created_at": "2026-11-12T23:07:37.009570+00:00",
       "kind": "new_video",
@@ -1064,6 +1072,14 @@
       "url": "https://www.youtube.com/watch?v=nAubbmlhPfI",
       "video_id": "nAubbmlhPfI"
     },
+    "video:nKRxwgwSEqI": {
+      "created_at": "2026-11-18T02:53:34.617974+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "A Little to the Left Nintendo Switch 2 Edition \u2013 Launch Trailer",
+      "url": "https://www.youtube.com/watch?v=nKRxwgwSEqI",
+      "video_id": "nKRxwgwSEqI"
+    },
     "video:nR1Yi78jj9A": {
       "created_at": "2026-11-13T18:30:13.374120+00:00",
       "kind": "new_video",
@@ -1175,6 +1191,14 @@
       "title": "BALL x PIT: Risen Ballbylon | Launch Trailer",
       "url": "https://www.youtube.com/watch?v=qiZEzSyw6fo",
       "video_id": "qiZEzSyw6fo"
+    },
+    "video:s-P09UGp4eE": {
+      "created_at": "2026-11-18T02:53:34.617955+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Fortnite Treasure Hunters \u2013 Gameplay Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=s-P09UGp4eE",
+      "video_id": "s-P09UGp4eE"
     },
     "video:sDLjFDQpy_o": {
       "created_at": "2026-11-12T21:57:26.204186+00:00",
@@ -1589,8 +1613,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-16T07:58:12.409952+00:00",
-      "last_monitored_at": "2026-11-16T07:58:12.409846+00:00",
+      "last_attempt_at": "2026-11-18T02:53:34.618179+00:00",
+      "last_monitored_at": "2026-11-18T02:53:34.618021+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -1760,8 +1784,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-16T07:58:12.763524+00:00",
-      "last_monitored_at": "2026-11-16T07:58:12.763387+00:00",
+      "last_attempt_at": "2026-11-18T02:53:35.188006+00:00",
+      "last_monitored_at": "2026-11-18T02:53:35.187873+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -7141,6 +7165,26 @@
         "url": "https://www.youtube.com/watch?v=_eST776E7Vo",
         "video_id": "_eST776E7Vo"
       },
+      "aRIFzzr_Mi0": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "channel_name": "Google for Developers",
+        "discovered_at": "2026-11-18T02:53:35.187844+00:00",
+        "id": "aRIFzzr_Mi0",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-17T17:00:29Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "EmbeddingGemma 2: How natively multimodal embeddings work",
+        "url": "https://www.youtube.com/watch?v=aRIFzzr_Mi0",
+        "video_id": "aRIFzzr_Mi0"
+      },
       "adD2SUJtKEw": {
         "api_verification": "verified",
         "attempts": 0,
@@ -7908,6 +7952,26 @@
         "url": "https://www.youtube.com/watch?v=nAubbmlhPfI",
         "video_id": "nAubbmlhPfI"
       },
+      "nKRxwgwSEqI": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-18T02:53:34.617967+00:00",
+        "id": "nKRxwgwSEqI",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-17T17:00:13Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "A Little to the Left Nintendo Switch 2 Edition \u2013 Launch Trailer",
+        "url": "https://www.youtube.com/watch?v=nKRxwgwSEqI",
+        "video_id": "nKRxwgwSEqI"
+      },
       "nR1Yi78jj9A": {
         "api_verification": "verified",
         "attempts": 0,
@@ -8196,6 +8260,26 @@
         "title": "BALL x PIT: Risen Ballbylon | Launch Trailer",
         "url": "https://www.youtube.com/watch?v=qiZEzSyw6fo",
         "video_id": "qiZEzSyw6fo"
+      },
+      "s-P09UGp4eE": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-18T02:53:34.617936+00:00",
+        "id": "s-P09UGp4eE",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-17T23:00:01Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Fortnite Treasure Hunters \u2013 Gameplay Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=s-P09UGp4eE",
+        "video_id": "s-P09UGp4eE"
       },
       "sDLjFDQpy_o": {
         "api_verification": "verified",
@@ -8852,7 +8936,7 @@
       "upload": 0
     },
     "2026-11-17": {
-      "general": 15,
+      "general": 21,
       "search": 3,
       "upload": 0
     }
@@ -9308,7 +9392,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 487,
+  "revision": 496,
   "rights_ledger": {},
   "runs": [
     {
@@ -10550,6 +10634,21 @@
         "new_leads": 15
       },
       "run_id": "44173929292-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-18T02:53:34.045882+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 3
+      },
+      "run_id": "44226509068-1",
       "status": "BLOCKED"
     }
   ],
