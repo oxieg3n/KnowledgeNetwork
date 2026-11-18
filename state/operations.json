@@ -56,6 +56,14 @@
       "url": "https://www.youtube.com/watch?v=2M9lXIT55lM",
       "video_id": "2M9lXIT55lM"
     },
+    "video:2Y3e3RYNjFk": {
+      "created_at": "2026-11-18T20:28:33.645811+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "AI is getting better at figuring out how software works. Even when the code is hidden.",
+      "url": "https://www.youtube.com/watch?v=2Y3e3RYNjFk",
+      "video_id": "2Y3e3RYNjFk"
+    },
     "video:2eVPrGJPy30": {
       "created_at": "2026-11-12T23:07:36.462892+00:00",
       "kind": "new_video",
@@ -359,6 +367,14 @@
       "title": "NVIDIA cuPhoton Brings Real-Time Black Hole Science to GPUs",
       "url": "https://www.youtube.com/watch?v=E3Hy-WRJbXE",
       "video_id": "E3Hy-WRJbXE"
+    },
+    "video:EDp4IoAUsXY": {
+      "created_at": "2026-11-18T20:28:33.194958+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Project Genie: Create and explore interactive worlds with Genie 4",
+      "url": "https://www.youtube.com/watch?v=EDp4IoAUsXY",
+      "video_id": "EDp4IoAUsXY"
     },
     "video:ErOVIC-MGVA": {
       "created_at": "2026-11-14T15:02:28.697067+00:00",
@@ -944,6 +960,14 @@
       "url": "https://www.youtube.com/watch?v=gaF0dsDkiLc",
       "video_id": "gaF0dsDkiLc"
     },
+    "video:gn_LIY2D2Ag": {
+      "created_at": "2026-11-18T20:28:33.645829+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The AI Podcast is back.",
+      "url": "https://www.youtube.com/watch?v=gn_LIY2D2Ag",
+      "video_id": "gn_LIY2D2Ag"
+    },
     "video:h78a3MUvXsw": {
       "created_at": "2026-11-12T23:07:36.462948+00:00",
       "kind": "new_video",
@@ -1184,6 +1208,14 @@
       "url": "https://www.youtube.com/watch?v=pV_8XKMK3Aw",
       "video_id": "pV_8XKMK3Aw"
     },
+    "video:pVc6KkjeCfU": {
+      "created_at": "2026-11-18T20:28:33.194939+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Behind the scenes with Genie 4",
+      "url": "https://www.youtube.com/watch?v=pVc6KkjeCfU",
+      "video_id": "pVc6KkjeCfU"
+    },
     "video:pbKZ3IzvB4Q": {
       "created_at": "2026-11-14T00:19:46.041840+00:00",
       "kind": "new_video",
@@ -1352,6 +1384,14 @@
       "url": "https://www.youtube.com/watch?v=uGZO6I-CJtM",
       "video_id": "uGZO6I-CJtM"
     },
+    "video:uJG53ligJt4": {
+      "created_at": "2026-11-18T20:28:33.645822+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "NVIDIA SC26 Special Address",
+      "url": "https://www.youtube.com/watch?v=uJG53ligJt4",
+      "video_id": "uJG53ligJt4"
+    },
     "video:uND6iY2qp_c": {
       "created_at": "2026-11-12T21:57:11.050584+00:00",
       "kind": "new_video",
@@ -1495,6 +1535,14 @@
       "title": "Making marketing feel local across 40 markets | Revolut\u2019s Kim Maniovich",
       "url": "https://www.youtube.com/watch?v=xkeXefmxArU",
       "video_id": "xkeXefmxArU"
+    },
+    "video:y9AALMeAeGI": {
+      "created_at": "2026-11-18T20:28:33.645836+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Can Open Source Make AI Agents Safer?",
+      "url": "https://www.youtube.com/watch?v=y9AALMeAeGI",
+      "video_id": "y9AALMeAeGI"
     },
     "video:y9jP_T-BO8g": {
       "created_at": "2026-11-12T21:57:16.149697+00:00",
@@ -1736,8 +1784,8 @@
         "https://www.youtube.com/@NVIDIA",
         "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
       ],
-      "last_attempt_at": "2026-11-17T02:28:22.294697+00:00",
-      "last_monitored_at": "2026-11-17T02:28:22.294620+00:00",
+      "last_attempt_at": "2026-11-18T20:28:33.646039+00:00",
+      "last_monitored_at": "2026-11-18T20:28:33.645879+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "NVIDIA",
@@ -1793,8 +1841,8 @@
         "https://www.youtube.com/@GoogleDeepMind",
         "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
       ],
-      "last_attempt_at": "2026-11-17T02:28:21.460724+00:00",
-      "last_monitored_at": "2026-11-17T02:28:21.460651+00:00",
+      "last_attempt_at": "2026-11-18T20:28:33.195165+00:00",
+      "last_monitored_at": "2026-11-18T20:28:33.194967+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google DeepMind",
@@ -5968,6 +6016,26 @@
         "url": "https://www.youtube.com/watch?v=2M9lXIT55lM",
         "video_id": "2M9lXIT55lM"
       },
+      "2Y3e3RYNjFk": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-18T20:28:33.645790+00:00",
+        "id": "2Y3e3RYNjFk",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T20:00:13Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "AI is getting better at figuring out how software works. Even when the code is hidden.",
+        "url": "https://www.youtube.com/watch?v=2Y3e3RYNjFk",
+        "video_id": "2Y3e3RYNjFk"
+      },
       "2eVPrGJPy30": {
         "api_verification": "verified",
         "attempts": 0,
@@ -6745,6 +6813,27 @@
         "title": "NVIDIA cuPhoton Brings Real-Time Black Hole Science to GPUs",
         "url": "https://www.youtube.com/watch?v=E3Hy-WRJbXE",
         "video_id": "E3Hy-WRJbXE"
+      },
+      "EDp4IoAUsXY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "channel_name": "Google DeepMind",
+        "discovered_at": "2026-11-18T20:28:33.194952+00:00",
+        "id": "EDp4IoAUsXY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T18:12:21Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Project Genie: Create and explore interactive worlds with Genie 4",
+        "url": "https://www.youtube.com/watch?v=EDp4IoAUsXY",
+        "video_id": "EDp4IoAUsXY"
       },
       "ErOVIC-MGVA": {
         "api_verification": "verified",
@@ -8263,6 +8352,26 @@
         "url": "https://www.youtube.com/watch?v=gaF0dsDkiLc",
         "video_id": "gaF0dsDkiLc"
       },
+      "gn_LIY2D2Ag": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-18T20:28:33.645826+00:00",
+        "id": "gn_LIY2D2Ag",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T14:41:35Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The AI Podcast is back.",
+        "url": "https://www.youtube.com/watch?v=gn_LIY2D2Ag",
+        "video_id": "gn_LIY2D2Ag"
+      },
       "h78a3MUvXsw": {
         "api_verification": "verified",
         "attempts": 0,
@@ -8884,6 +8993,27 @@
         "url": "https://www.youtube.com/watch?v=pV_8XKMK3Aw",
         "video_id": "pV_8XKMK3Aw"
       },
+      "pVc6KkjeCfU": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "channel_name": "Google DeepMind",
+        "discovered_at": "2026-11-18T20:28:33.194911+00:00",
+        "id": "pVc6KkjeCfU",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T18:12:24Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Behind the scenes with Genie 4",
+        "url": "https://www.youtube.com/watch?v=pVc6KkjeCfU",
+        "video_id": "pVc6KkjeCfU"
+      },
       "pbKZ3IzvB4Q": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9322,6 +9452,26 @@
         "url": "https://www.youtube.com/watch?v=uGZO6I-CJtM",
         "video_id": "uGZO6I-CJtM"
       },
+      "uJG53ligJt4": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-18T20:28:33.645818+00:00",
+        "id": "uJG53ligJt4",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T18:36:18Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "NVIDIA SC26 Special Address",
+        "url": "https://www.youtube.com/watch?v=uJG53ligJt4",
+        "video_id": "uJG53ligJt4"
+      },
       "uND6iY2qp_c": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9701,6 +9851,26 @@
         "url": "https://www.youtube.com/watch?v=xkeXefmxArU",
         "video_id": "xkeXefmxArU"
       },
+      "y9AALMeAeGI": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-18T20:28:33.645832+00:00",
+        "id": "y9AALMeAeGI",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T11:00:32Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Can Open Source Make AI Agents Safer?",
+        "url": "https://www.youtube.com/watch?v=y9AALMeAeGI",
+        "video_id": "y9AALMeAeGI"
+      },
       "y9jP_T-BO8g": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9796,7 +9966,7 @@
       "upload": 0
     },
     "2026-11-18": {
-      "general": 9,
+      "general": 15,
       "search": 3,
       "upload": 0
     }
@@ -10252,7 +10422,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 512,
+  "revision": 521,
   "rights_ledger": {},
   "runs": [
     {
@@ -11535,6 +11705,21 @@
       },
       "run_id": "44296385232-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-18T20:28:32.776098+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 6
+      },
+      "run_id": "44391385828-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1
