@@ -232,6 +232,14 @@
       "url": "https://www.youtube.com/watch?v=9YLbugt3RxE",
       "video_id": "9YLbugt3RxE"
     },
+    "video:9aCVhYoLZ7s": {
+      "created_at": "2026-11-19T11:35:38.280990+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Poppy Playtime: Toybox 1 Bundle - Out Now | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=9aCVhYoLZ7s",
+      "video_id": "9aCVhYoLZ7s"
+    },
     "video:9qOjJaeKTAQ": {
       "created_at": "2026-11-12T23:07:36.462886+00:00",
       "kind": "new_video",
@@ -1104,6 +1112,14 @@
       "url": "https://www.youtube.com/watch?v=ketIuVCUI8k",
       "video_id": "ketIuVCUI8k"
     },
+    "video:lH5wnQ2S5jA": {
+      "created_at": "2026-11-19T11:35:38.691150+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Bluey's Happy Snaps \u2013 Accolades Trailer",
+      "url": "https://www.youtube.com/watch?v=lH5wnQ2S5jA",
+      "video_id": "lH5wnQ2S5jA"
+    },
     "video:ldG-EdLPW28": {
       "created_at": "2026-11-12T23:07:37.009509+00:00",
       "kind": "new_video",
@@ -1599,7 +1615,7 @@
       "ranking": "best_available"
     },
     "UCK8sQmJBp8GCxrOtXWBpyEA": {
-      "checked_at": "2026-11-12T22:14:56.131938+00:00",
+      "checked_at": "2026-11-19T11:35:39.635505+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1614,7 +1630,12 @@
       "ranking": "best_available"
     },
     "UCXZCJLdBC09xxGZ6gcdrc6A": {
-      "checked_at": "2026-11-12T22:14:55.785729+00:00",
+      "checked_at": "2026-11-19T11:35:39.287229+00:00",
+      "count": 10,
+      "ranking": "best_available"
+    },
+    "UC_x5XG1OV2P6uZZ5FSM9Ttw": {
+      "checked_at": "2026-11-19T11:35:39.008016+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1708,8 +1729,8 @@
         "https://www.youtube.com/@PlayStation",
         "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
       ],
-      "last_attempt_at": "2026-11-17T20:52:57.824363+00:00",
-      "last_monitored_at": "2026-11-17T20:52:57.824252+00:00",
+      "last_attempt_at": "2026-11-19T11:35:38.281195+00:00",
+      "last_monitored_at": "2026-11-19T11:35:38.281104+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "PlayStation",
@@ -1963,8 +1984,8 @@
         "https://www.youtube.com/@Xbox",
         "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
       ],
-      "last_attempt_at": "2026-11-17T20:52:58.268654+00:00",
-      "last_monitored_at": "2026-11-17T20:52:58.268527+00:00",
+      "last_attempt_at": "2026-11-19T11:35:38.691340+00:00",
+      "last_monitored_at": "2026-11-19T11:35:38.691234+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Xbox",
@@ -4109,6 +4130,24 @@
       }
     },
     "EVERGREEN_TOP10": {
+      "-NgqTMLRhKU": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.007987+00:00",
+        "discovered_at": "2026-11-19T11:35:39.007989+00:00",
+        "id": "-NgqTMLRhKU",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "\ud83d\udca1\ud83d\udd27 Gemini API and Gemma just got some awesome updates!",
+        "url": "https://www.youtube.com/watch?v=-NgqTMLRhKU",
+        "video_id": "-NgqTMLRhKU",
+        "view_count": 15569120
+      },
       "-qD3KOfBjZE": {
         "attempts": 0,
         "categories": [
@@ -4162,6 +4201,24 @@
         "url": "https://www.youtube.com/watch?v=0tUqIHwHDEc",
         "video_id": "0tUqIHwHDEc",
         "view_count": 18479506
+      },
+      "0uVRHl9gAco": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-19T11:35:39.635447+00:00",
+        "discovered_at": "2026-11-19T11:35:39.635469+00:00",
+        "id": "0uVRHl9gAco",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Meet AI Mode - Try a whole new way to search",
+        "url": "https://www.youtube.com/watch?v=0uVRHl9gAco",
+        "video_id": "0uVRHl9gAco",
+        "view_count": 447423383
       },
       "1QNsdr-Qx_I": {
         "attempts": 0,
@@ -4293,6 +4350,24 @@
         "url": "https://www.youtube.com/watch?v=4lSQnrMC6nY",
         "video_id": "4lSQnrMC6nY",
         "view_count": 6024377
+      },
+      "61JHONRXhjs": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-19T11:35:39.635483+00:00",
+        "discovered_at": "2026-11-19T11:35:39.635485+00:00",
+        "id": "61JHONRXhjs",
+        "rank": 4,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2024 \u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=61JHONRXhjs",
+        "video_id": "61JHONRXhjs",
+        "view_count": 347681478
       },
       "6aFdEhEZQjE": {
         "attempts": 0,
@@ -4514,6 +4589,24 @@
         "video_id": "E5WGzdnR2Gw",
         "view_count": 1573853
       },
+      "EMZuKqr69Y8": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.007952+00:00",
+        "discovered_at": "2026-11-19T11:35:39.007970+00:00",
+        "id": "EMZuKqr69Y8",
+        "rank": 1,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "#GoogleIO 2025 Developer Keynote Recap",
+        "url": "https://www.youtube.com/watch?v=EMZuKqr69Y8",
+        "video_id": "EMZuKqr69Y8",
+        "view_count": 46096687
+      },
       "EqboAI-Vk-U": {
         "attempts": 0,
         "categories": [
@@ -4681,6 +4774,24 @@
         "video_id": "HK6y8DAPN_0",
         "view_count": 4224331
       },
+      "HKr58R69EI4": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.007996+00:00",
+        "discovered_at": "2026-11-19T11:35:39.007998+00:00",
+        "id": "HKr58R69EI4",
+        "rank": 6,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What\u2019s new in Web (Google I/O 2025 recap)",
+        "url": "https://www.youtube.com/watch?v=HKr58R69EI4",
+        "video_id": "HKr58R69EI4",
+        "view_count": 14123778
+      },
       "Hm0A2O30gWY": {
         "attempts": 0,
         "categories": [
@@ -4788,6 +4899,42 @@
         "url": "https://www.youtube.com/watch?v=Lnrj6UwDE2w",
         "video_id": "Lnrj6UwDE2w",
         "view_count": 5502930
+      },
+      "Lq8JRE2YqTU": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.008008+00:00",
+        "discovered_at": "2026-11-19T11:35:39.008010+00:00",
+        "id": "Lq8JRE2YqTU",
+        "rank": 9,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What\u2019s new in Android (Google I/O 2025 recap)",
+        "url": "https://www.youtube.com/watch?v=Lq8JRE2YqTU",
+        "video_id": "Lq8JRE2YqTU",
+        "view_count": 11033918
+      },
+      "MnLRlu3Ob8Y": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.008004+00:00",
+        "discovered_at": "2026-11-19T11:35:39.008006+00:00",
+        "id": "MnLRlu3Ob8Y",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "What\u2019s new in Gemini (Google I/O 2025 recap)",
+        "url": "https://www.youtube.com/watch?v=MnLRlu3Ob8Y",
+        "video_id": "MnLRlu3Ob8Y",
+        "view_count": 13088892
       },
       "OgwNhN8bki8": {
         "attempts": 0,
@@ -5029,6 +5176,24 @@
         "video_id": "U9mJuUkhUzk",
         "view_count": 2715662
       },
+      "Vv_sjpclsZ8": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-19T11:35:39.635474+00:00",
+        "discovered_at": "2026-11-19T11:35:39.635477+00:00",
+        "id": "Vv_sjpclsZ8",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "2025 \u2014 Year in Search",
+        "url": "https://www.youtube.com/watch?v=Vv_sjpclsZ8",
+        "video_id": "Vv_sjpclsZ8",
+        "view_count": 375697430
+      },
       "WXuK6gekU1Y": {
         "attempts": 0,
         "categories": [
@@ -5192,6 +5357,24 @@
         "url": "https://www.youtube.com/watch?v=aSY_vFFmkW0",
         "video_id": "aSY_vFFmkW0",
         "view_count": 6295157
+      },
+      "anPsS6huQk0": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.008012+00:00",
+        "discovered_at": "2026-11-19T11:35:39.008014+00:00",
+        "id": "anPsS6huQk0",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing EmbeddingGemma 2: An open model for natively multimodal embeddings",
+        "url": "https://www.youtube.com/watch?v=anPsS6huQk0",
+        "video_id": "anPsS6huQk0",
+        "view_count": 9795176
       },
       "b9qPMHpyZ5Q": {
         "attempts": 0,
@@ -5449,6 +5632,60 @@
         "video_id": "hGizn_843Mo",
         "view_count": 25732537
       },
+      "hleLlcHwQLM": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.007982+00:00",
+        "discovered_at": "2026-11-19T11:35:39.007985+00:00",
+        "id": "hleLlcHwQLM",
+        "rank": 3,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google I/O 2023 Developer Keynote in 5 minutes",
+        "url": "https://www.youtube.com/watch?v=hleLlcHwQLM",
+        "video_id": "hleLlcHwQLM",
+        "view_count": 21290390
+      },
+      "htG27DW5ju4": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.007992+00:00",
+        "discovered_at": "2026-11-19T11:35:39.007994+00:00",
+        "id": "htG27DW5ju4",
+        "rank": 5,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google I/O 2022 Developer Keynote in 8 minutes",
+        "url": "https://www.youtube.com/watch?v=htG27DW5ju4",
+        "video_id": "htG27DW5ju4",
+        "view_count": 14673006
+      },
+      "i3X7Fv0Z3Uc": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.008000+00:00",
+        "discovered_at": "2026-11-19T11:35:39.008002+00:00",
+        "id": "i3X7Fv0Z3Uc",
+        "rank": 7,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Turning raw hardware sensor data into music with Gemini",
+        "url": "https://www.youtube.com/watch?v=i3X7Fv0Z3Uc",
+        "video_id": "i3X7Fv0Z3Uc",
+        "view_count": 13230101
+      },
       "iNX8QCeymFM": {
         "attempts": 0,
         "categories": [
@@ -5678,6 +5915,24 @@
         "video_id": "sJTN0g4Bx0I",
         "view_count": 1860752
       },
+      "tFq6Q_muwG0": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "collected_at": "2026-11-19T11:35:39.635501+00:00",
+        "discovered_at": "2026-11-19T11:35:39.635503+00:00",
+        "id": "tFq6Q_muwG0",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "A Google documentary | Trillions of questions, no easy answers",
+        "url": "https://www.youtube.com/watch?v=tFq6Q_muwG0",
+        "video_id": "tFq6Q_muwG0",
+        "view_count": 93859239
+      },
       "tj5PV-cz804": {
         "attempts": 0,
         "categories": [
@@ -5822,6 +6077,24 @@
         "url": "https://www.youtube.com/watch?v=wX9ybkEYDc0",
         "video_id": "wX9ybkEYDc0",
         "view_count": 14287695
+      },
+      "xKmEOXZsU_0": {
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "collected_at": "2026-11-19T11:35:39.007976+00:00",
+        "discovered_at": "2026-11-19T11:35:39.007979+00:00",
+        "id": "xKmEOXZsU_0",
+        "rank": 2,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google I/O 2024 Developer keynote in 5 minutes",
+        "url": "https://www.youtube.com/watch?v=xKmEOXZsU_0",
+        "video_id": "xKmEOXZsU_0",
+        "view_count": 36971274
       },
       "xuXHrHRZzLk": {
         "attempts": 0,
@@ -6471,6 +6744,26 @@
         "title": "Component properties, variants, and slots in Webflow",
         "url": "https://www.youtube.com/watch?v=9YLbugt3RxE",
         "video_id": "9YLbugt3RxE"
+      },
+      "9aCVhYoLZ7s": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-19T11:35:38.280970+00:00",
+        "id": "9aCVhYoLZ7s",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T17:00:37Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Poppy Playtime: Toybox 1 Bundle - Out Now | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=9aCVhYoLZ7s",
+        "video_id": "9aCVhYoLZ7s"
       },
       "9qOjJaeKTAQ": {
         "api_verification": "verified",
@@ -8733,6 +9026,26 @@
         "url": "https://www.youtube.com/watch?v=ketIuVCUI8k",
         "video_id": "ketIuVCUI8k"
       },
+      "lH5wnQ2S5jA": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-19T11:35:38.691133+00:00",
+        "id": "lH5wnQ2S5jA",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T20:22:26Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Bluey's Happy Snaps \u2013 Accolades Trailer",
+        "url": "https://www.youtube.com/watch?v=lH5wnQ2S5jA",
+        "video_id": "lH5wnQ2S5jA"
+      },
       "ldG-EdLPW28": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9997,6 +10310,11 @@
       "general": 21,
       "search": 3,
       "upload": 0
+    },
+    "2026-11-19": {
+      "general": 9,
+      "search": 3,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -10450,7 +10768,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 530,
+  "revision": 546,
   "rights_ledger": {},
   "runs": [
     {
@@ -11763,6 +12081,31 @@
       },
       "run_id": "44445126504-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-19T11:35:37.824255+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 2
+      },
+      "run_id": "44516198214-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-19T11:35:38.711058+00:00",
+      "command": "archive",
+      "details": {
+        "candidates": 30
+      },
+      "run_id": "44516198214-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
