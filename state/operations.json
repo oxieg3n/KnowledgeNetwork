@@ -912,6 +912,14 @@
       "url": "https://www.youtube.com/watch?v=enLchT36ens",
       "video_id": "enLchT36ens"
     },
+    "video:fJxUKVpiU6A": {
+      "created_at": "2026-11-19T02:33:05.935109+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Shared Libraries to use components & variables across a Workspace \u2014 Webflow tutorial",
+      "url": "https://www.youtube.com/watch?v=fJxUKVpiU6A",
+      "video_id": "fJxUKVpiU6A"
+    },
     "video:fOJFlgLL6rY": {
       "created_at": "2026-11-12T23:07:37.009528+00:00",
       "kind": "new_video",
@@ -1728,8 +1736,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-17T11:48:40.806761+00:00",
-      "last_monitored_at": "2026-11-17T11:48:40.806614+00:00",
+      "last_attempt_at": "2026-11-19T02:33:05.935236+00:00",
+      "last_monitored_at": "2026-11-19T02:33:05.935119+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -1869,8 +1877,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-17T11:48:41.478471+00:00",
-      "last_monitored_at": "2026-11-17T11:48:41.478321+00:00",
+      "last_attempt_at": "2026-11-19T02:33:06.536311+00:00",
+      "last_monitored_at": "2026-11-19T02:33:06.536204+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -8227,6 +8235,26 @@
         "url": "https://www.youtube.com/watch?v=enLchT36ens",
         "video_id": "enLchT36ens"
       },
+      "fJxUKVpiU6A": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-19T02:33:05.935087+00:00",
+        "id": "fJxUKVpiU6A",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T16:30:48Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Shared Libraries to use components & variables across a Workspace \u2014 Webflow tutorial",
+        "url": "https://www.youtube.com/watch?v=fJxUKVpiU6A",
+        "video_id": "fJxUKVpiU6A"
+      },
       "fOJFlgLL6rY": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9966,7 +9994,7 @@
       "upload": 0
     },
     "2026-11-18": {
-      "general": 15,
+      "general": 21,
       "search": 3,
       "upload": 0
     }
@@ -10422,7 +10450,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 521,
+  "revision": 530,
   "rights_ledger": {},
   "runs": [
     {
@@ -11719,6 +11747,21 @@
         "new_leads": 6
       },
       "run_id": "44391385828-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-19T02:33:04.879853+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "44445126504-1",
       "status": "BLOCKED"
     }
   ],
