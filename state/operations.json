@@ -120,6 +120,14 @@
       "url": "https://www.youtube.com/watch?v=3gNaAp_KPV0",
       "video_id": "3gNaAp_KPV0"
     },
+    "video:4PfZ_aAMrSY": {
+      "created_at": "2026-11-19T20:32:43.990828+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Disney Dreamlight Valley: The Keepsake Sea \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=4PfZ_aAMrSY",
+      "video_id": "4PfZ_aAMrSY"
+    },
     "video:4RhGJIUKb-w": {
       "created_at": "2026-11-17T20:52:58.268420+00:00",
       "kind": "new_video",
@@ -151,6 +159,14 @@
       "title": "Build Your Dream Squad & Explore the Streets of Tokyo | This Week on XBOX",
       "url": "https://www.youtube.com/watch?v=5c21oaFNRW8",
       "video_id": "5c21oaFNRW8"
+    },
+    "video:5hzd1TDisTw": {
+      "created_at": "2026-11-19T20:32:43.990839+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Rayman Legends Retold \u2013 \"Dynamite\" Musical Map Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=5hzd1TDisTw",
+      "video_id": "5hzd1TDisTw"
     },
     "video:5ibgnmypP8I": {
       "created_at": "2026-11-14T19:55:43.408001+00:00",
@@ -919,6 +935,14 @@
       "title": "Rayman Legends Retold - Vortex Outfit Trailer (XBOX-Exclusive)",
       "url": "https://www.youtube.com/watch?v=enLchT36ens",
       "video_id": "enLchT36ens"
+    },
+    "video:f2bpv9mFUeE": {
+      "created_at": "2026-11-19T20:32:44.474031+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad",
+      "url": "https://www.youtube.com/watch?v=f2bpv9mFUeE",
+      "video_id": "f2bpv9mFUeE"
     },
     "video:fJxUKVpiU6A": {
       "created_at": "2026-11-19T02:33:05.935109+00:00",
@@ -1785,8 +1809,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-18T02:53:34.618179+00:00",
-      "last_monitored_at": "2026-11-18T02:53:34.618021+00:00",
+      "last_attempt_at": "2026-11-19T20:32:43.990967+00:00",
+      "last_monitored_at": "2026-11-19T20:32:43.990861+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -1956,8 +1980,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-18T02:53:35.188006+00:00",
-      "last_monitored_at": "2026-11-18T02:53:35.187873+00:00",
+      "last_attempt_at": "2026-11-19T20:32:44.474168+00:00",
+      "last_monitored_at": "2026-11-19T20:32:44.474042+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -6459,6 +6483,26 @@
         "url": "https://www.youtube.com/watch?v=3gNaAp_KPV0",
         "video_id": "3gNaAp_KPV0"
       },
+      "4PfZ_aAMrSY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-19T20:32:43.990809+00:00",
+        "id": "4PfZ_aAMrSY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T20:00:12Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Disney Dreamlight Valley: The Keepsake Sea \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=4PfZ_aAMrSY",
+        "video_id": "4PfZ_aAMrSY"
+      },
       "4RhGJIUKb-w": {
         "api_verification": "verified",
         "attempts": 0,
@@ -6542,6 +6586,26 @@
         "title": "Build Your Dream Squad & Explore the Streets of Tokyo | This Week on XBOX",
         "url": "https://www.youtube.com/watch?v=5c21oaFNRW8",
         "video_id": "5c21oaFNRW8"
+      },
+      "5hzd1TDisTw": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-19T20:32:43.990835+00:00",
+        "id": "5hzd1TDisTw",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T17:00:30Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Rayman Legends Retold \u2013 \"Dynamite\" Musical Map Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=5hzd1TDisTw",
+        "video_id": "5hzd1TDisTw"
       },
       "5ibgnmypP8I": {
         "api_verification": "verified",
@@ -8528,6 +8592,26 @@
         "url": "https://www.youtube.com/watch?v=enLchT36ens",
         "video_id": "enLchT36ens"
       },
+      "f2bpv9mFUeE": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "channel_name": "Google for Developers",
+        "discovered_at": "2026-11-19T20:32:44.474014+00:00",
+        "id": "f2bpv9mFUeE",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T20:00:24Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad",
+        "url": "https://www.youtube.com/watch?v=f2bpv9mFUeE",
+        "video_id": "f2bpv9mFUeE"
+      },
       "fJxUKVpiU6A": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10312,7 +10396,7 @@
       "upload": 0
     },
     "2026-11-19": {
-      "general": 9,
+      "general": 15,
       "search": 3,
       "upload": 0
     }
@@ -10768,7 +10852,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 546,
+  "revision": 555,
   "rights_ledger": {},
   "runs": [
     {
@@ -12106,6 +12190,21 @@
       },
       "run_id": "44516198214-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-19T20:32:43.617868+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 3
+      },
+      "run_id": "44609733872-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1
