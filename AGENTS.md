@@ -206,3 +206,13 @@ when their specific reference and property checks pass. Unrelated OS resource
 teardown (closing handles or unregistering a disposable test task) does not
 authorize deleting its files. If safe retention is unavailable, leave files in
 place or report the check NOT TESTED instead of running destructive teardown.
+
+## 12. November 20 owner authorization: finish the app and real video
+
+This explicit owner authorization supersedes older *permission-pending* commentary for **project-scoped** BLACKHAT-BASE work, but does not assert that a technical capability exists, that a blocked legacy repair is safe, or that a new video has been produced. Read the complete current owner handoff at [FINALIZE-APP-AND-VIDEO-CODEX.md](docs/collector/overnight/FINALIZE-APP-AND-VIDEO-CODEX.md) and the top of [HANDOFF.md](docs/collector/overnight/HANDOFF.md).
+
+The owner authorizes Codex to perform necessary Knowledge Network work on FORGE and BLACKHAT-BASE autonomously: approved narrator inference, narrowly scoped PowerShell/Python tests, authenticated service/credential setup, project-specific Windows firewall and ACL changes, task/service operations, private narrator HTTPS 9443 when verified, and isolated application/video installation and export. Before an operation, check the actual effective OS permission and state; perform it when technically available rather than repeatedly requesting approval. Existing Gateway, shared SSH, unrelated services and 443/8443 routes remain protected. Broad tailnet changes affecting unrelated users are not authorized. No Funnel or public ingestion.
+
+BLACKHAT-BASE is the owner's accepted development environment. Inherited Authenticated Users Modify on the D: ancestors is an **accepted local risk**, not a reason to block unrelated project progress or demand broad drive-ACL repair. It is also **not a security proof** for privileged code or an actively held SQLite database. Preserve fail-closed authentication/integrity checks; do not run user-writable narrator code as SYSTEM, stop an uncertain controller, use old V2 repair, or manufacture ledger identity. Prefer a minimal independent owner-context path and mark historical recovery DEFERRED. If a legitimately privileged one-time bootstrap is technically unavailable to the restricted SSH identity, give one bounded owner step and finish unaffected tasks.
+
+**Priority:** real FORGE-to-host narration, measured 50-second editable OpenShot video using exact approved dynamic intro and original outro, application UI/worker integration, retention-safe CI, and owner-reviewable local files. No automatic deletions: section 11 still applies. No forced pushes, PR merge or publishing. **Publication remains PAUSED.**
