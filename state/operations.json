@@ -296,6 +296,14 @@
       "url": "https://www.youtube.com/watch?v=AQc8khSSd-4",
       "video_id": "AQc8khSSd-4"
     },
+    "video:AhmCKHNqhB8": {
+      "created_at": "2026-11-20T02:18:22.069587+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Introducing ChatGPT for Accounting",
+      "url": "https://www.youtube.com/watch?v=AhmCKHNqhB8",
+      "video_id": "AhmCKHNqhB8"
+    },
     "video:B07PpsJGZEg": {
       "created_at": "2026-11-12T21:57:23.629924+00:00",
       "kind": "new_video",
@@ -367,6 +375,14 @@
       "title": "STRANGER THAN HEAVEN - Suzy Day (Portrayed by Tori Kelly) \"Mr. Bee\" In-Game Performance",
       "url": "https://www.youtube.com/watch?v=DLHEr67OWT0",
       "video_id": "DLHEr67OWT0"
+    },
+    "video:Di8ntBu1ouY": {
+      "created_at": "2026-11-20T02:18:22.500501+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Creativity is a team sport | Walter Isaacson & Kent Walker",
+      "url": "https://www.youtube.com/watch?v=Di8ntBu1ouY",
+      "video_id": "Di8ntBu1ouY"
     },
     "video:DrmTMGp7O6U": {
       "created_at": "2026-11-17T20:52:57.824083+00:00",
@@ -1071,6 +1087,14 @@
       "title": "Star Trek Online | Rediscovered Launch Trailer",
       "url": "https://www.youtube.com/watch?v=iXG8wL03W00",
       "video_id": "iXG8wL03W00"
+    },
+    "video:ikNf7eW8CHk": {
+      "created_at": "2026-11-20T02:18:22.069577+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Meet Brian and Beast, the dots at work at Holiday Extras",
+      "url": "https://www.youtube.com/watch?v=ikNf7eW8CHk",
+      "video_id": "ikNf7eW8CHk"
     },
     "video:is1iINNnzuw": {
       "created_at": "2026-11-12T23:07:36.462915+00:00",
@@ -1865,8 +1889,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-18T11:37:37.725373+00:00",
-      "last_monitored_at": "2026-11-18T11:37:37.725193+00:00",
+      "last_attempt_at": "2026-11-20T02:18:22.500577+00:00",
+      "last_monitored_at": "2026-11-20T02:18:22.500510+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -1952,8 +1976,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-18T11:37:37.325740+00:00",
-      "last_monitored_at": "2026-11-18T11:37:37.325620+00:00",
+      "last_attempt_at": "2026-11-20T02:18:22.069748+00:00",
+      "last_monitored_at": "2026-11-20T02:18:22.069641+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -6931,6 +6955,28 @@
         "url": "https://www.youtube.com/watch?v=AQc8khSSd-4",
         "video_id": "AQc8khSSd-4"
       },
+      "AhmCKHNqhB8": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-20T02:18:22.069584+00:00",
+        "id": "AhmCKHNqhB8",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-18T21:01:26Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Introducing ChatGPT for Accounting",
+        "url": "https://www.youtube.com/watch?v=AhmCKHNqhB8",
+        "video_id": "AhmCKHNqhB8"
+      },
       "B07PpsJGZEg": {
         "api_verification": "verified",
         "attempts": 0,
@@ -7118,6 +7164,26 @@
         "title": "STRANGER THAN HEAVEN - Suzy Day (Portrayed by Tori Kelly) \"Mr. Bee\" In-Game Performance",
         "url": "https://www.youtube.com/watch?v=DLHEr67OWT0",
         "video_id": "DLHEr67OWT0"
+      },
+      "Di8ntBu1ouY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "channel_name": "Google",
+        "discovered_at": "2026-11-20T02:18:22.500488+00:00",
+        "id": "Di8ntBu1ouY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T17:00:31Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Creativity is a team sport | Walter Isaacson & Kent Walker",
+        "url": "https://www.youtube.com/watch?v=Di8ntBu1ouY",
+        "video_id": "Di8ntBu1ouY"
       },
       "DrmTMGp7O6U": {
         "api_verification": "verified",
@@ -8945,6 +9011,28 @@
         "url": "https://www.youtube.com/watch?v=iXG8wL03W00",
         "video_id": "iXG8wL03W00"
       },
+      "ikNf7eW8CHk": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-20T02:18:22.069557+00:00",
+        "id": "ikNf7eW8CHk",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T11:38:57Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Meet Brian and Beast, the dots at work at Holiday Extras",
+        "url": "https://www.youtube.com/watch?v=ikNf7eW8CHk",
+        "video_id": "ikNf7eW8CHk"
+      },
       "is1iINNnzuw": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10396,7 +10484,7 @@
       "upload": 0
     },
     "2026-11-19": {
-      "general": 15,
+      "general": 21,
       "search": 3,
       "upload": 0
     }
@@ -10852,7 +10940,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 555,
+  "revision": 564,
   "rights_ledger": {},
   "runs": [
     {
@@ -12204,6 +12292,21 @@
         "new_leads": 3
       },
       "run_id": "44609733872-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-20T02:18:21.503874+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 3
+      },
+      "run_id": "44659789307-1",
       "status": "BLOCKED"
     }
   ],
