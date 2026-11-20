@@ -13,3 +13,8 @@ __pycache__/
 *client_secret*.json
 output/
 /old/
+
+# Owner-approved reusable brand bookends (exact-path CI allowlist).
+!sources/Powered-By-Outro-Portrait.mp4
+!sources/Powered-By-Outro-Landscape.mp4
+!sources/Powered-By-Plasma-With-Sound-Preview.mp4
