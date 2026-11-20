@@ -432,6 +432,14 @@
       "url": "https://www.youtube.com/watch?v=FNTz0CdqL6g",
       "video_id": "FNTz0CdqL6g"
     },
+    "video:FORdPIWOH5k": {
+      "created_at": "2026-11-20T11:33:59.426853+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Gemini and the path to AGI with Koray Kavukcuoglu",
+      "url": "https://www.youtube.com/watch?v=FORdPIWOH5k",
+      "video_id": "FORdPIWOH5k"
+    },
     "video:FOqxuzEr4R4": {
       "created_at": "2026-11-12T21:57:26.204168+00:00",
       "kind": "new_video",
@@ -495,6 +503,14 @@
       "title": "Delta Force | Official Season \"Aurora\" Cinematic Trailer",
       "url": "https://www.youtube.com/watch?v=HD75JDFaYvg",
       "video_id": "HD75JDFaYvg"
+    },
+    "video:Hgv4wjYXHKw": {
+      "created_at": "2026-11-20T11:33:59.828515+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "AI is more than a better way to search.",
+      "url": "https://www.youtube.com/watch?v=Hgv4wjYXHKw",
+      "video_id": "Hgv4wjYXHKw"
     },
     "video:Hz9lmh9NBp0": {
       "created_at": "2026-11-16T01:00:11.753735+00:00",
@@ -591,6 +607,14 @@
       "title": "Meet the Startup: Aegiq, A Full-Stack Photonic Quantum Computing Company",
       "url": "https://www.youtube.com/watch?v=N5YLi8Ar3Wg",
       "video_id": "N5YLi8Ar3Wg"
+    },
+    "video:N5YwZjN4_oI": {
+      "created_at": "2026-11-20T11:33:59.828524+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Europe\u2019s AI Future With Judith Dada | Pub Conversations",
+      "url": "https://www.youtube.com/watch?v=N5YwZjN4_oI",
+      "video_id": "N5YwZjN4_oI"
     },
     "video:NS220dAaRMo": {
       "created_at": "2026-11-12T21:57:04.667495+00:00",
@@ -1600,6 +1624,14 @@
       "url": "https://www.youtube.com/watch?v=xQVTlPZILa0",
       "video_id": "xQVTlPZILa0"
     },
+    "video:xkSVuGruhgE": {
+      "created_at": "2026-11-20T11:33:59.828529+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Think childproofing, but for AI.",
+      "url": "https://www.youtube.com/watch?v=xkSVuGruhgE",
+      "video_id": "xkSVuGruhgE"
+    },
     "video:xkeXefmxArU": {
       "created_at": "2026-11-18T11:37:37.325542+00:00",
       "kind": "new_video",
@@ -1648,7 +1680,7 @@
       "ranking": "best_available"
     },
     "UCELSb-IYi_d5rYFOxWeOz5g": {
-      "checked_at": "2026-11-17T11:48:42.364739+00:00",
+      "checked_at": "2026-11-20T11:34:00.891338+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1658,7 +1690,7 @@
       "ranking": "best_available"
     },
     "UCHuiy8bXnmK5nisYHUd1J5g": {
-      "checked_at": "2026-11-17T11:48:41.926154+00:00",
+      "checked_at": "2026-11-20T11:34:00.556230+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1668,7 +1700,7 @@
       "ranking": "best_available"
     },
     "UCP7jMXSY2xbc3KCAE0MHQ-A": {
-      "checked_at": "2026-11-12T22:14:56.599402+00:00",
+      "checked_at": "2026-11-20T11:34:00.231616+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1861,8 +1893,8 @@
         "https://www.youtube.com/@NVIDIA",
         "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
       ],
-      "last_attempt_at": "2026-11-18T20:28:33.646039+00:00",
-      "last_monitored_at": "2026-11-18T20:28:33.645879+00:00",
+      "last_attempt_at": "2026-11-20T11:33:59.828759+00:00",
+      "last_monitored_at": "2026-11-20T11:33:59.828632+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "NVIDIA",
@@ -1918,8 +1950,8 @@
         "https://www.youtube.com/@GoogleDeepMind",
         "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
       ],
-      "last_attempt_at": "2026-11-18T20:28:33.195165+00:00",
-      "last_monitored_at": "2026-11-18T20:28:33.194967+00:00",
+      "last_attempt_at": "2026-11-20T11:33:59.427014+00:00",
+      "last_monitored_at": "2026-11-20T11:33:59.426870+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google DeepMind",
@@ -4305,6 +4337,24 @@
         "url": "https://www.youtube.com/watch?v=1tBUsXIkG1A",
         "video_id": "1tBUsXIkG1A",
         "view_count": 6126634
+      },
+      "39ubNuxnrK8": {
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "collected_at": "2026-11-20T11:34:00.556220+00:00",
+        "discovered_at": "2026-11-20T11:34:00.556222+00:00",
+        "id": "39ubNuxnrK8",
+        "rank": 8,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "GTC 2022 Spring Keynote with NVIDIA CEO Jensen Huang",
+        "url": "https://www.youtube.com/watch?v=39ubNuxnrK8",
+        "video_id": "39ubNuxnrK8",
+        "view_count": 10387169
       },
       "3KtWfp0UopM": {
         "attempts": 0,
@@ -7262,7 +7312,7 @@
         "published_at": "2026-11-18T18:12:21Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
-        "title": "Project Genie: Create and explore interactive worlds with Genie 4",
+        "title": "Introducing the new Project Genie, powered by Genie 4",
         "url": "https://www.youtube.com/watch?v=EDp4IoAUsXY",
         "video_id": "EDp4IoAUsXY"
       },
@@ -7309,6 +7359,27 @@
         "title": "Kuken Industries searches 70 years of drawings in minutes",
         "url": "https://www.youtube.com/watch?v=FNTz0CdqL6g",
         "video_id": "FNTz0CdqL6g"
+      },
+      "FORdPIWOH5k": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "channel_name": "Google DeepMind",
+        "discovered_at": "2026-11-20T11:33:59.426831+00:00",
+        "id": "FORdPIWOH5k",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T19:58:06Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Gemini and the path to AGI with Koray Kavukcuoglu",
+        "url": "https://www.youtube.com/watch?v=FORdPIWOH5k",
+        "video_id": "FORdPIWOH5k"
       },
       "FOqxuzEr4R4": {
         "api_verification": "verified",
@@ -7474,6 +7545,26 @@
         "title": "Delta Force | Official Season \"Aurora\" Cinematic Trailer",
         "url": "https://www.youtube.com/watch?v=HD75JDFaYvg",
         "video_id": "HD75JDFaYvg"
+      },
+      "Hgv4wjYXHKw": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-20T11:33:59.828492+00:00",
+        "id": "Hgv4wjYXHKw",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T20:15:21Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "AI is more than a better way to search.",
+        "url": "https://www.youtube.com/watch?v=Hgv4wjYXHKw",
+        "video_id": "Hgv4wjYXHKw"
       },
       "Hz9lmh9NBp0": {
         "api_verification": "verified",
@@ -7716,6 +7807,26 @@
         "title": "Meet the Startup: Aegiq, A Full-Stack Photonic Quantum Computing Company",
         "url": "https://www.youtube.com/watch?v=N5YLi8Ar3Wg",
         "video_id": "N5YLi8Ar3Wg"
+      },
+      "N5YwZjN4_oI": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-20T11:33:59.828521+00:00",
+        "id": "N5YwZjN4_oI",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T20:00:07Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Europe\u2019s AI Future With Judith Dada | Pub Conversations",
+        "url": "https://www.youtube.com/watch?v=N5YwZjN4_oI",
+        "video_id": "N5YwZjN4_oI"
       },
       "NS220dAaRMo": {
         "api_verification": "verified",
@@ -10342,6 +10453,26 @@
         "url": "https://www.youtube.com/watch?v=xQVTlPZILa0",
         "video_id": "xQVTlPZILa0"
       },
+      "xkSVuGruhgE": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-20T11:33:59.828527+00:00",
+        "id": "xkSVuGruhgE",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T17:00:13Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Think childproofing, but for AI.",
+        "url": "https://www.youtube.com/watch?v=xkSVuGruhgE",
+        "video_id": "xkSVuGruhgE"
+      },
       "xkeXefmxArU": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10485,6 +10616,11 @@
     },
     "2026-11-19": {
       "general": 21,
+      "search": 3,
+      "upload": 0
+    },
+    "2026-11-20": {
+      "general": 9,
       "search": 3,
       "upload": 0
     }
@@ -10940,7 +11076,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 564,
+  "revision": 580,
   "rights_ledger": {},
   "runs": [
     {
@@ -12308,6 +12444,31 @@
       },
       "run_id": "44659789307-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-20T11:33:58.894075+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 4
+      },
+      "run_id": "44728629610-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-20T11:33:59.851130+00:00",
+      "command": "archive",
+      "details": {
+        "candidates": 30
+      },
+      "run_id": "44728629610-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
