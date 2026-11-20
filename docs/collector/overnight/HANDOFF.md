@@ -1,5 +1,19 @@
 # V9 handoff - The Knowledge Network Collector
 
+## CURRENT OWNER DIRECTIVE — November 20, 2026: finish the application and video
+
+**Read and execute [FINALIZE-APP-AND-VIDEO-CODEX.md](FINALIZE-APP-AND-VIDEO-CODEX.md) as the current master Codex continuation prompt.** The November 20 owner authorization is also recorded in AGENTS.md section 12. The older entries below remain preserved checkpoint evidence, not instructions to rerun blocked work.
+
+**Standing authorization:** The owner accepts BLACKHAT-BASE and its drives as the personal development environment, including the documented inherited D: ACL risk. For KnowledgeNetwork only, Codex may perform required PowerShell/Python operations and targeted project-specific Windows ACL, firewall, task/service, private-host narrator and Tailscale HTTPS 9443 setup **without repeated approval** once actual permissions, effective scope, access restrictions and rollback are verified. Preserve Gateway, unrelated host settings and existing Serve 443/8443. This is not authorization to bypass existing authentication, execute mutable files as SYSTEM, ignore a live SQLite ledger, broaden public exposure or publish.
+
+**Old V2 narrator-controller repair is DEFERRED.** Do not rerun held V2, stop the uncertain controller, mutate its ledger, or change broad D: permissions. Choose the smallest independent owner-context, properly isolated working narrator API and prove real FORGE-to-host audio with original job-ID recovery and exact provenance. Where the fixed restricted SSH bridge lacks a necessary operation, add a reviewed fixed handler or use a legitimate owner context; ask for only a one-time technical bootstrap if unavoidable.
+
+**End-to-end deliverable:** a real 50.0-second portrait OpenShot edit (1500 frames at 30 fps: 48 dynamic intro, 1218 narrated body, 234 original approved outro) with the exact recovered emblem and outro, natural VoxCPM2 voice, captions, animated effects, layering and ducked music. Save/reopen/revise/export/QC; deliver an editable .osp and final local MP4 with hashes. Reuse the existing brand, owner-approved voice, v5 tailnet policy, installed Collector and prior tests. Restore full retention-safe CI (110 legacy delete sites), review main conflicts but **do not merge PR #20**, and archive old files rather than deleting. Do not call historical mock/fixed-fixture results final acceptance.
+
+**Status at this documentation-only handoff update:** the referenced finalization prompt and owner authorization are written to the feature branch; no host command, network change, API transfer, GPU run, editor session or new MP4 was performed by this GitHub edit. Later Codex execution must report observed PASS / FAILED / BLOCKED / NOT TESTED results. Publication remains **PAUSED**.
+
+---
+
 ## Current continuation: retention persisted; integrated fixtures PASS; live recovery BLOCKED
 
 Validated source checkpoint `4b7042281f116f0235e16892ed1126ae488d24cf`
