@@ -13,7 +13,7 @@ import time
 
 from .collector_narration_common import VoiceError, local_spool, read_json, sha256_file
 from .collector_narration_receipt import read_voxcpm2_receipt
-from .collector_narrator_host import verify_spool_acl
+from .collector_narrator_host import NarratorError, verify_spool_acl
 from .collector_voxcpm2 import RemoteVoxCPM2Provider, request_identity
 from .collector_editor_job import execute as execute_editor, outcome as editor_outcome
 
@@ -275,13 +275,21 @@ def main(argv=None):
     parser.add_argument('--collector-sha256', required=True)
     parser.add_argument('--private-spool', required=True, type=Path)
     args = parser.parse_args(argv)
+    constructed = False
     try:
-        result = run_once(ServiceCLI(args.collector_sha256, args.private_spool))
+        service = ServiceCLI(args.collector_sha256, args.private_spool)
+        constructed = True
+        result = run_once(service)
         print(json.dumps(result, sort_keys=True))
         return 0 if result['status'] in ('idle', 'completed') else 1
     except Exception as exc:
-        code = str(exc) if isinstance(exc, CompanionError) else 'COMPANION_TRANSPORT_UNCERTAIN'
-        print(json.dumps(_result('reconciliation_required', code)))
+        if not constructed and isinstance(exc, (VoiceError, CompanionError, NarratorError)):
+            code = str(exc).upper() if isinstance(exc, NarratorError) else str(exc)
+            result = _result('blocked', code)
+        else:
+            code = str(exc) if isinstance(exc, CompanionError) else 'COMPANION_TRANSPORT_UNCERTAIN'
+            result = _result('reconciliation_required', code)
+        print(json.dumps(result))
         return 1
 
 

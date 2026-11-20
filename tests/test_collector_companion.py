@@ -6,8 +6,9 @@ from pathlib import Path
 import unittest
 from unittest.mock import Mock, patch
 import wave
-from youtube_ops.collector_companion import CompanionError, ServiceCLI, run_once
+from youtube_ops.collector_companion import CompanionError, ServiceCLI, main, run_once
 from youtube_ops.collector_narration_common import VoiceError, inspect_wav
+from youtube_ops.collector_narrator_host import NarratorError
 
 JOB, TOKEN, TEXT = 'a'*32, 'b'*32, 'Actual measured segment.'
 
@@ -201,5 +202,41 @@ class TransportTests(unittest.TestCase):
             self.bad_reply(b'{"ok":false,"error":"private host URL and token"}')
     def test_duplicate_reply_keys_denied(self):
         with self.assertRaises(ValueError): self.bad_reply(b'{"ok":true,"ok":true,"result":{}}')
+
+class MainFailureTests(unittest.TestCase):
+    arguments = ['--once', '--collector-sha256', 'a' * 64, '--private-spool', 'missing-spool']
+
+    def test_known_constructor_errors_are_blocked_before_any_claim(self):
+        for error, code in ((VoiceError('BLOCKED_LOCAL_VOICE_SPOOL'), 'BLOCKED_LOCAL_VOICE_SPOOL'),
+                            (CompanionError('COMPANION_WINDOWS_USER_SESSION_REQUIRED'), 'COMPANION_WINDOWS_USER_SESSION_REQUIRED'),
+                            (NarratorError('spool_acl_unverified'), 'SPOOL_ACL_UNVERIFIED'),
+                            (NarratorError('private host URL and bearer'), 'COMPANION_OPERATION_FAILED')):
+            with self.subTest(error=type(error).__name__), \
+                    patch('youtube_ops.collector_companion.ServiceCLI', side_effect=error), \
+                    patch.object(ServiceCLI, 'call') as claim, \
+                    patch('youtube_ops.collector_companion.run_once') as run, \
+                    patch('builtins.print') as output:
+                self.assertEqual(main(self.arguments), 1)
+                result = json.loads(output.call_args.args[0])
+                self.assertEqual(result['status'], 'blocked')
+                self.assertEqual(result['error'], code)
+                self.assertFalse(result['publication_eligible'])
+                run.assert_not_called()
+                claim.assert_not_called()
+
+    def test_errors_after_construction_keep_existing_uncertainty(self):
+        for error, code in ((VoiceError('BLOCKED_LOCAL_VOICE_SPOOL'), 'COMPANION_TRANSPORT_UNCERTAIN'),
+                            (CompanionError('COMPANION_TRANSPORT_UNCERTAIN'), 'COMPANION_TRANSPORT_UNCERTAIN'),
+                            (NarratorError('spool_acl_unverified'), 'COMPANION_TRANSPORT_UNCERTAIN')):
+            with self.subTest(error=type(error).__name__), \
+                    patch('youtube_ops.collector_companion.ServiceCLI') as factory, \
+                    patch('youtube_ops.collector_companion.run_once', side_effect=error) as run, \
+                    patch('builtins.print') as output:
+                self.assertEqual(main(self.arguments), 1)
+                result = json.loads(output.call_args.args[0])
+                self.assertEqual(result['status'], 'reconciliation_required')
+                self.assertEqual(result['error'], code)
+                run.assert_called_once_with(factory.return_value)
+
 
 if __name__=='__main__': unittest.main()

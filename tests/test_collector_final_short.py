@@ -4,6 +4,7 @@ from fractions import Fraction
 from pathlib import Path
 import unittest
 from unittest.mock import Mock, patch
+import wave
 
 from youtube_ops import collector_final_short as short
 from youtube_ops import collector_editor as editor
@@ -26,6 +27,17 @@ class FinalShortTests(unittest.TestCase):
         self.assertGreater(len(' '.join(short.SEGMENTS).split()), 75)
         self.assertLess(len(' '.join(short.SEGMENTS).split()), 110)
 
+    def test_music_headroom_does_not_extend_the_body_timeline(self):
+        with FixtureDirectory(prefix='kn-music-headroom-') as folder:
+            path = Path(folder)/'original.wav'
+            short._music(path)
+            with wave.open(str(path)) as source:
+                body_samples = short.BODY_FRAMES * source.getframerate() // short.FPS
+                self.assertEqual(source.getnframes(), body_samples + source.getframerate())
+                source.setpos(body_samples)
+                self.assertEqual(source.readframes(source.getframerate()), bytes(source.getframerate()*2))
+            self.assertEqual(short.BODY_FRAMES, 1218)
+
     def test_finalization_does_not_replay_an_existing_intent(self):
         with FixtureDirectory(prefix='kn-final-short-') as folder:
             directory = Path(folder)
@@ -44,6 +56,7 @@ class FinalShortTests(unittest.TestCase):
             vault = root/'vault'; vault.mkdir()
             client = editor.OpenShot(exe, editor.digest(exe), vault)
             def launch(args, **kwargs):
+                self.assertEqual(kwargs['env']['KN_COLLECTOR_RETAIN_ARTIFACTS'], '1')
                 kwargs['stdout'].write(b'{"ok":true,"result":{"session_id":"owned"}}')
                 kwargs['stderr'].write(b'private diagnostic preserved')
                 process = Mock(returncode=0)
@@ -68,6 +81,35 @@ class FinalShortTests(unittest.TestCase):
             invoke.assert_called_once_with(['session', 'start', '--show'], session=False)
             with self.assertRaises(ValueError):
                 client.start(show='yes')
+
+    def test_thumbnail_post_audit_accepts_only_its_exact_existing_pending(self):
+        with FixtureDirectory(prefix='kn-thumbnail-pending-') as folder:
+            root = Path(folder).resolve()
+            exe = root/'openshot-qt-cmd.exe'; exe.write_bytes(b'not executed')
+            vault = root/'vault'; vault.mkdir()
+            client = editor.OpenShot(exe, editor.digest(exe), vault)
+            client._enroll('owned')
+            intent = client._intent('timeline.thumbnail', {'frame': 1})
+            with patch.object(client, '_invoke', return_value={'data': []}):
+                with self.assertRaisesRegex(editor.EditorError, 'unresolved_native_operation'):
+                    client.audit_sources()
+                self.assertEqual(client.audit_sources(pending_intent=intent), {})
+                with self.assertRaisesRegex(editor.EditorError, 'unresolved_native_operation'):
+                    client.audit_sources(pending_intent={**intent, 'kind': 'edit.apply'})
+
+    def test_pending_hardlink_is_rejected_before_decoding_its_contents(self):
+        with FixtureDirectory(prefix='kn-thumbnail-hardlink-') as folder:
+            root = Path(folder).resolve()
+            exe = root/'openshot-qt-cmd.exe'; exe.write_bytes(b'not executed')
+            vault = root/'vault'; vault.mkdir()
+            client = editor.OpenShot(exe, editor.digest(exe), vault)
+            client._enroll('owned')
+            intent = client._intent('timeline.thumbnail', {'frame': 1})
+            pending = client._pending()
+            (root/'retained-hardlink').hardlink_to(pending)
+            pending.write_bytes(b'\xff not JSON; metadata must reject before decode')
+            with self.assertRaisesRegex(editor.EditorError, 'pending_retention_source_unverified'):
+                client.audit_sources(pending_intent=intent)
 
 
 if __name__ == '__main__':

@@ -202,6 +202,7 @@ class OpenShot:
         args += arguments
         env = dict(os.environ)
         env.pop('OPENSHOT_SESSION', None)
+        env['KN_COLLECTOR_RETAIN_ARTIFACTS'] = '1'
         if self.font_directory is not None:
             # Qt's Windows offscreen export uses FreeType, not the Windows font database.
             env['QT_QPA_FONTDIR'] = str(self.font_directory)
@@ -308,10 +309,19 @@ class OpenShot:
         self._managed_session()
         return self.receipts / (self.session + '-pending.json')
 
-    def audit_sources(self):
+    def audit_sources(self, *, pending_intent=None):
         """Check actual native readers, including changes made outside this adapter."""
-        if self._pending().exists():
-            raise EditorError('unresolved_native_operation')
+        pending = self._pending()
+        if pending.exists() or pending_intent is not None:
+            if (not isinstance(pending_intent, dict) or pending_intent.get('kind') != 'timeline.thumbnail'
+                    or not pending.is_file()):
+                raise EditorError('unresolved_native_operation')
+            metadata = _receipt_metadata(pending)
+            with pending.open('rb') as stream:
+                raw = stream.read(MAX_JSON + 1)
+            if (len(raw) > MAX_JSON or hashlib.sha256(raw).hexdigest() != metadata['sha256']
+                    or json.loads(raw) != pending_intent or _receipt_metadata(pending) != metadata):
+                raise EditorError('unresolved_native_operation')
         approved = {}
         for path in self.receipts.glob('*.json'):
             if re.fullmatch('[0-9a-f]{32}', path.stem):
@@ -601,7 +611,7 @@ class OpenShot:
                 picture.verify()
         except (OSError, ValueError, Image.DecompressionBombError):
             raise EditorError('thumbnail_artifact_unverified_reconcile_required') from None
-        if self.inspect()['revision'] != before['revision'] or self.audit_sources() != sources:
+        if self.inspect()['revision'] != before['revision'] or self.audit_sources(pending_intent=intent) != sources:
             raise EditorError('thumbnail_revision_changed_reconcile_required')
         artifact_hash = digest(path)
         after = path.lstat()

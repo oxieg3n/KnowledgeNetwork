@@ -76,7 +76,9 @@ def _music(path):
         samples.extend(struct.pack('<h', round(8000 * envelope * value)))
     with wave.open(str(path), 'wb') as output:
         output.setparams((1, 2, rate, 0, 'NONE', 'not compressed'))
-        output.writeframes(samples)
+        # libopenshot can round an audio reader's duration to packet boundaries.
+        # A silent source tail keeps the exact 1218-frame music clip in range.
+        output.writeframes(samples + bytes(rate * 2))
 
 
 def _assets(directory):
@@ -166,6 +168,9 @@ def prepare_body(client, directory):
         {'method': 'clip.add', 'as': 'music', 'params': {'file_id': {'$ref': 'musicfile.id'},
             'layer': layers[1], 'position': 0, 'end': BODY_FRAMES/FPS, 'audio_only': True, 'volume': .15}},
     ]
+    write_json(directory/'body-prepare-intent.json', {'session_id': client.session,
+        'revision': current['revision'], 'commands': commands, 'script': list(SEGMENTS),
+        'source': SOURCE, 'status': 'PREPARED_NOT_ACCEPTED'})
     applied = client.apply(commands, current['revision'])
     capture_music_baseline(client, applied['refs']['music']['id'], applied['revision'])
     state = {'status': 'INCOMPLETE_BODY_ONLY', 'session_id': client.session,
