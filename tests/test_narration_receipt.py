@@ -1,3 +1,4 @@
+from tests.fixture_retention import FixtureDirectory
 import builtins
 import hashlib
 import json
@@ -5,7 +6,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -18,7 +18,7 @@ from youtube_ops.render import render
 
 class NarrationReceiptTests(unittest.TestCase):
     def setUp(self):
-        self.temporary = tempfile.TemporaryDirectory()
+        self.temporary = FixtureDirectory()
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name).resolve()
         self.text = 'First part. Second part.'

@@ -452,7 +452,10 @@ class RemoteVoiceStudioProvider:
                 offset += audio['frames']
                 checkpoint(receipt, intent)
                 # Only validated, durably recorded audio resolves this host call.
-                hold.unlink()
+                resolved = directory / f'segment-{index:02d}.resolved-hold.json'
+                if resolved.exists() or resolved.is_symlink():
+                    raise VoiceError('BLOCKED_VOICE_REMOTE_OUTCOME_UNCERTAIN')
+                hold.rename(resolved)  # Retained definite outcome; the active marker alone blocks later calls.
         finally:
             if joined is not None:
                 joined.close()

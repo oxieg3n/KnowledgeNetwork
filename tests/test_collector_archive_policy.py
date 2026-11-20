@@ -63,12 +63,15 @@ class ArchivePolicyTests(unittest.TestCase):
         with patch.object(check.subprocess, 'run', side_effect=OSError()):
             self.assertEqual(check.worker_scope()['status'], 'BLOCKED_WORKER_PROVENANCE_UNAVAILABLE')
 
-    def test_legacy_full_ci_stays_gated_and_focused_scope_is_named_separately(self):
+    def test_full_ci_stays_gated_and_preserves_meaningful_build_and_evidence(self):
         root = Path(__file__).resolve().parents[1]
         workflow = (root / '.github/workflows/ci.yml').read_text(encoding='utf-8-sig')
-        self.assertLess(workflow.index('--scope legacy-tests'), workflow.index('unittest discover -s tests'))
-        self.assertIn('Retention-safe focused checks', workflow)
-        self.assertIn('not full legacy acceptance', workflow)
+        self.assertLess(workflow.index('--scope legacy-tests'), workflow.index("'unittest','discover','-s','tests'"))
+        self.assertIn('Full retention-safe regression', workflow)
+        self.assertIn('dotnet run --project collector/windows/Collector/Collector.csproj', workflow)
+        self.assertIn('retention-days: 90', workflow)
+        self.assertIn('fixture-retention/*.private.json', workflow)
+        self.assertIn('runner fixture bytes are ephemeral, not permanently archived', workflow)
         self.assertNotIn('continue-on-error: true', workflow)
 
 

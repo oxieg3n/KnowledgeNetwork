@@ -1,4 +1,5 @@
 """Synthetic manifests and mocked execution; not BLACKHAT-BASE narrator proof."""
+from tests.fixture_retention import FixtureDirectory
 from contextlib import ExitStack, closing
 from contextlib import redirect_stdout
 import base64
@@ -13,7 +14,6 @@ from pathlib import Path
 import socket
 import sqlite3
 import subprocess
-import tempfile
 import threading
 import time
 import unittest
@@ -36,7 +36,7 @@ def wav_bytes():
 
 class HostFixture(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = FixtureDirectory(); self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         self.spool = self.root / 'spool'; self.spool.mkdir()
         self.stack = ExitStack(); self.addCleanup(self.stack.close)

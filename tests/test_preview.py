@@ -1,3 +1,4 @@
+from tests.fixture_retention import FixtureDirectory
 import hashlib,json,tempfile,unittest
 from pathlib import Path
 from test_licensed import fixture
@@ -20,7 +21,7 @@ class PreviewTests(unittest.TestCase):
    s=self.spec();s['licensed_assets']['source'][k]=v
    with self.assertRaises(ValueError):validate_licensed(s,review_only=True)
  def test_queue_and_checkpoint_are_preview_only(self):
-  with tempfile.TemporaryDirectory() as d:
+  with FixtureDirectory() as d:
    s=State(d);s.enqueue('EVERGREEN_TOP10','fixture',{'status':'preview_requested'});spec=self.spec()
    r={'schema_version':1,'queue':'EVERGREEN_TOP10','item_id':'fixture','production_key':'a'*64,'rights_path':'licensed_cc_by_review_preview','purpose':'owner_private_review','script':spec,'primary_sources':spec['sources'],'distinct_value':'Fixture original value','reviewed_script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),'editorial':{k:{'status':'pass','evidence':'Fixture exact private-preview review'} for k in ('facts','sources','originality','usefulness')}}
    validate_request(r,s);cp=reserve_render(s,r,executor='dot-cloud-bounded')
@@ -29,7 +30,7 @@ class PreviewTests(unittest.TestCase):
    self.assertEqual(s.data['queues']['EVERGREEN_TOP10']['fixture']['status'],'preview_rendered_pending_review')
    self.assertFalse(s.data['render_jobs']['a'*64]['publication_eligible'])
  def test_uploader_rejects_retained_preview_hash_or_key_despite_flags(self):
-  with tempfile.TemporaryDirectory() as d:
+  with FixtureDirectory() as d:
    s=State(d);s.data['render_jobs']={'a':{'production_key':'a','render_sha256':'b'*64,'review_only':True}}
    u=Uploader(None,{'destination_channel_id':'UCAaukaaw1tGA1-pP_JdkU7Q'},lambda _:None)
    for item in ({'production_key':'a','render_sha256':'c'*64},{'production_key':'other','render_sha256':'b'*64},{'review_only':True},{'review_purpose':'owner_private_review'}):

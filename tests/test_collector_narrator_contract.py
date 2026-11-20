@@ -1,6 +1,6 @@
 """MOCK inference over real FORGE loopback HTTP; not host, TLS or speech proof."""
+from tests.fixture_retention import FixtureDirectory
 import http.client
-import tempfile
 import threading
 import unittest
 from pathlib import Path
@@ -27,7 +27,7 @@ class NarratorContractTests(unittest.TestCase):
                 audio.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
                 audio.writeframes(b'\x01\x00' * (1600 if text == 'First.' else 3200))
 
-        with tempfile.TemporaryDirectory() as temporary:
+        with FixtureDirectory() as temporary:
             root = Path(temporary)
             host, forge = root / 'host', root / 'forge'
             host.mkdir(); forge.mkdir()

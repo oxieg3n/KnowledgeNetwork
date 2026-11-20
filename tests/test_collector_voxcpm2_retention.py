@@ -1,4 +1,5 @@
 """Synthetic transport and retained artifacts; no host inference or deletion."""
+from tests.fixture_retention import FixtureDirectory
 import hashlib
 import io
 import json
@@ -7,7 +8,6 @@ import unittest
 from unittest.mock import patch
 import wave
 
-from tests.fixture_retention import FixtureDirectory
 from youtube_ops import collector_voxcpm2 as voice
 from youtube_ops.collector_narration_common import inspect_wav
 

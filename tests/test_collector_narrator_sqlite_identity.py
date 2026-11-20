@@ -1,10 +1,10 @@
 """Disposable public SQLite C-API identity proof; no production helper changes."""
+from tests.fixture_retention import FixtureDirectory
 import ctypes as c
 from contextlib import closing
 import os
 from pathlib import Path
 import sqlite3
-import tempfile
 import unittest
 
 from youtube_ops import collector_narrator_recovery_probe as probe
@@ -68,7 +68,7 @@ class FixtureConnection:
 @unittest.skipUnless(os.name == 'nt' and c.sizeof(c.c_void_p) == 8, 'Windows x64 bundled SQLite VFS')
 class SqliteConnectionIdentityTests(unittest.TestCase):
     def setUp(self):
-        self.folder = tempfile.TemporaryDirectory(prefix='kn-sqlite-identity-')
+        self.folder = FixtureDirectory(prefix='kn-sqlite-identity-', trusted_execution=True)
         self.addCleanup(self.folder.cleanup)
         self.root = Path(self.folder.name)
         self.path = self.root / 'narrator-control.sqlite'

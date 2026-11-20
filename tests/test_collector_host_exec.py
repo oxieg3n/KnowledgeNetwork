@@ -1,4 +1,5 @@
 """Forced-command framing and bounded handlers; no host deployment or inference."""
+from tests.fixture_retention import FixtureDirectory
 import io
 import hashlib
 import json
@@ -6,7 +7,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-import tempfile
 import threading
 import time
 import unittest
@@ -19,7 +19,7 @@ SID = 'S-1-5-21-100-200-300-1001'
 
 class HostExecTests(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = FixtureDirectory(trusted_execution=True); self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         (self.root / 'runtime').mkdir(); (self.root / 'audit').mkdir(); (self.root / 'receipts').mkdir()
         self.patch = patch.object(host, 'ROOT', self.root); self.patch.start(); self.addCleanup(self.patch.stop)
@@ -168,7 +168,7 @@ class HostExecTests(unittest.TestCase):
     def test_native_control_task_validation_and_single_start(self):
         receipt = Path(__file__).resolve().parents[1] / 'output/host-exec-control-task-fixture-v2.json'
         if receipt.exists(): self.skipTest('Native fixture receipt already preserved')
-        with tempfile.TemporaryDirectory(prefix='kn-control-task-') as folder:
+        with FixtureDirectory(prefix='kn-control-task-', trusted_execution=True) as folder:
             base=Path(folder); (base/'runtime').mkdir()
             marker=base/'marker.txt'
             (base/'runtime/narrator-control-launch.py').write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("limited fixture only")\n')

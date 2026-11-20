@@ -1,9 +1,9 @@
 """Editor bridge source tests with simulated native calls, never live editor acceptance."""
+from tests.fixture_retention import FixtureDirectory
 import hashlib
 import json
 import os
 from pathlib import Path
-import tempfile
 import threading
 import unittest
 from unittest.mock import Mock, patch
@@ -17,7 +17,7 @@ COMMANDS = [{'method':'text.add','params':{'text':'Private caption','layer':4000
 
 class EditorJobTests(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.temp=FixtureDirectory(); self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name); self.vault=self.root/'vault'; self.vault.mkdir()
         exe=self.root/'openshot-qt-cmd.exe'; exe.write_bytes(b'unit fixture executable never launched')
         self.client=OpenShot(exe,hashlib.sha256(exe.read_bytes()).hexdigest(),self.vault,SESSION)

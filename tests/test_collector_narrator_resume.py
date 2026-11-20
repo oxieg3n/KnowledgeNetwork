@@ -1,8 +1,8 @@
 """Checked continuation helpers only; no task, service, host or deployment run."""
+from tests.fixture_retention import FixtureDirectory
 import os
 from pathlib import Path
 import subprocess
-import tempfile
 import unittest
 
 
@@ -10,7 +10,7 @@ import unittest
 class NarratorResumeTests(unittest.TestCase):
     def helpers(self, body):
         root = Path(__file__).resolve().parents[1]
-        with tempfile.TemporaryDirectory(prefix='kn-narrator-resume-', dir='C:/ProgramData') as folder:
+        with FixtureDirectory(prefix='kn-narrator-resume-', trusted_execution=True, dir='C:/ProgramData') as folder:
             script = r'''
 $ErrorActionPreference='Stop'
 $tokens=$null;$errors=$null
@@ -103,7 +103,7 @@ Assert-ResumeLayout $runtime $upgrade
 $extra=Join-Path $upgrade 'resume.prepared.private.json';[IO.File]::WriteAllText($extra,'advanced')
 $denied=$false;try { Assert-ResumeLayout $runtime $upgrade } catch { $denied=$true }
 if (-not $denied -or -not (Test-Path -LiteralPath $extra)) { throw 'Advanced state accepted or deleted' }
-[IO.File]::Delete($extra)
+[IO.File]::Move($extra,(Join-Path $fixture 'retained-resume.prepared.private.json'))
 $extra=Join-Path $runtime 'ctypes.py';[IO.File]::WriteAllText($extra,'untrusted')
 $denied=$false;try { Assert-ResumeLayout $runtime $upgrade } catch { $denied=$true }
 if (-not $denied -or -not (Test-Path -LiteralPath $extra)) { throw 'Shadow module accepted or deleted' }

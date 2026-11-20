@@ -210,8 +210,9 @@ def fixed_powershell(script, config, cancel, *, timeout=TIMEOUT):
         raise Denied('powershell_changed')
     environment = {'SystemRoot': 'C:/Windows', 'WINDIR': 'C:/Windows',
                    'PATH': 'C:/Windows/System32', 'PSModulePath': 'C:/Windows/System32/WindowsPowerShell/v1.0/Modules'}
-    # Regular files bound memory even if a helper unexpectedly floods either stream.
-    with tempfile.TemporaryFile(dir=ROOT / 'audit') as output, tempfile.TemporaryFile(dir=ROOT / 'audit') as error:
+    # Private retained regular files bound memory; never delete command evidence.
+    with tempfile.NamedTemporaryFile(prefix='command-output-', suffix='.private.log', dir=ROOT / 'audit', delete=False) as output, \
+            tempfile.NamedTemporaryFile(prefix='command-error-', suffix='.private.log', dir=ROOT / 'audit', delete=False) as error:
         process = subprocess.Popen([str(executable), '-NoLogo', '-NoProfile', '-NonInteractive', '-Command', script],
             stdin=subprocess.DEVNULL, stdout=output, stderr=error, cwd=str(ROOT / 'runtime'),
             env=environment, shell=False, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))

@@ -1,10 +1,10 @@
 """Native fixtures; FORGE task checks are opt-in and never deploy on the host."""
+from tests.fixture_retention import FixtureDirectory
 import os
 import json
 from pathlib import Path
 import subprocess
 import sys
-import tempfile
 import unittest
 
 
@@ -12,7 +12,7 @@ import unittest
 class NarratorBootstrapTests(unittest.TestCase):
     def helpers(self, body, prepare=None):
         source = Path(__file__).resolve().parents[1] / 'docs/collector/host-tools/Install-KnowledgeNetworkNarratorControl.ps1'
-        with tempfile.TemporaryDirectory(prefix='kn-narrator-bootstrap-') as folder:
+        with FixtureDirectory(prefix='kn-narrator-bootstrap-', trusted_execution=True) as folder:
             if prepare: prepare(Path(folder))
             script = r'''
 $ErrorActionPreference='Stop'
@@ -157,7 +157,7 @@ for ($i=0; $i -lt $calls.Count; $i++) {
     }
     . ([ScriptBlock]::Create($call.Extent.Text))
     if ((Get-BytesHash ([IO.File]::ReadAllBytes($target))) -cne (Get-BytesHash $new) -or [IO.File]::Exists($source) -or (Get-Acl -LiteralPath $target).Sddl -cne $before -or @(Get-ChildItem -LiteralPath $runtime -Force).Count -ne 1) { throw 'Atomic replacement changed bytes, ACL or backup behavior' }
-    [IO.File]::Delete($target)
+    [IO.File]::Move($target,(Join-Path $fixture ('retained-replace-'+$i+'.py')))
 }
 ''')
 

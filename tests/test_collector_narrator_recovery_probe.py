@@ -1,4 +1,5 @@
 """Isolated Windows evidence fixtures; never inspect or stop the live host task."""
+from tests.fixture_retention import FixtureDirectory
 import ctypes as c
 from contextlib import closing
 import os
@@ -6,7 +7,6 @@ from pathlib import Path
 import sqlite3
 import subprocess
 import sys
-import tempfile
 import time
 import unittest
 from unittest.mock import patch
@@ -49,7 +49,7 @@ class ProbeContractTests(unittest.TestCase):
 @unittest.skipUnless(os.name == 'nt' and c.sizeof(c.c_void_p) == 8, 'Native Windows x64 evidence')
 class NativeRecoveryProbeTests(unittest.TestCase):
     def setUp(self):
-        self.folder = tempfile.TemporaryDirectory(prefix='kn-recovery-probe-')
+        self.folder = FixtureDirectory(prefix='kn-recovery-probe-', trusted_execution=True)
         self.addCleanup(self.folder.cleanup)
         self.root = Path(self.folder.name)
         self.spool = self.root / 'kit' / 'spool'
@@ -139,11 +139,11 @@ class NativeRecoveryProbeTests(unittest.TestCase):
             os.link(self.path, linked)
             with self.assertRaisesRegex(probe.ProbeBlocked, 'held_namespace_changed'):
                 guard.verify()
-        linked.unlink()
+        linked.rename(self.spool / 'linked-first.sqlite')
         os.link(self.path, linked)
         with self.assertRaisesRegex(probe.ProbeBlocked, 'namespace_object_unverified'):
             probe.NamespaceGuard(self.path)
-        linked.unlink()
+        self.assertTrue(linked.exists())  # Retain both hardlink fault controls.
 
     def test_contention_and_exit_are_blocked_without_replay_or_task_action(self):
         self.command('lock')
@@ -223,7 +223,7 @@ class NativeRecoveryProbeTests(unittest.TestCase):
             with self.assertRaisesRegex(probe.ProbeBlocked, 'reparse_object_denied'):
                 probe.NamespaceGuard(junction/'narrator-control.sqlite')
         finally:
-            os.rmdir(junction)
+            self.assertTrue(junction.exists())  # Retain the junction without traversing it.
 
     def rename_posix(self, source, target):
         self.native.k.SetFileInformationByHandle.argtypes = [probe.HANDLE, c.c_int, probe.HANDLE, probe.U32]

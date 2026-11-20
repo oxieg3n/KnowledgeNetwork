@@ -1,10 +1,10 @@
 """Owner policy: fixture teardown preserves bytes instead of deleting them."""
+from tests.fixture_retention import FixtureDirectory, retain_fixture_entry
 import hashlib
 import json
 from pathlib import Path
 import unittest
 
-from tests.fixture_retention import FixtureDirectory
 
 
 class FixtureRetentionTests(unittest.TestCase):
@@ -33,3 +33,16 @@ class FixtureRetentionTests(unittest.TestCase):
         receipt = json.loads(fixture.receipt.read_text(encoding='utf-8'))
         self.assertEqual(receipt['status'], 'RETAINED_INSPECTION_INCOMPLETE')
         self.assertFalse(receipt['deletion_performed'])
+
+    def test_absence_fault_retains_exact_owned_entry_and_rejects_unowned_path(self):
+        with FixtureDirectory() as folder:
+            original = Path(folder) / 'source.bin'
+            original.write_bytes(b'fault control retained')
+            identity = original.stat().st_dev, original.stat().st_ino
+            retained = retain_fixture_entry(original)
+            self.assertFalse(original.exists())
+            self.assertEqual(retained.read_bytes(), b'fault control retained')
+            self.assertEqual((retained.stat().st_dev, retained.stat().st_ino), identity)
+            self.assertTrue((retained.parent / 'retention.private.json').is_file())
+        with self.assertRaisesRegex(ValueError, 'freshly owned fixture'):
+            retain_fixture_entry(Path(__file__))

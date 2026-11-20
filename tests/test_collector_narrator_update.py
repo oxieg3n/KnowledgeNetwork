@@ -201,7 +201,7 @@ try {
 }finally{
  $resolved=[IO.Path]::GetFullPath($folder);$allowed=[IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')+'\'
  if(-not $resolved.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase)){throw 'Cleanup escaped TEMP'}
- Remove-Item -LiteralPath $resolved -Recurse -Force
+ [IO.File]::WriteAllText((Join-Path $resolved 'fixture-retained.private.json'),('{"status":"RETAINED_NATIVE_FIXTURE","deletion_performed":false}'))
 }
 ''')
 
@@ -252,7 +252,7 @@ try {
 }finally{
  $resolved=[IO.Path]::GetFullPath($folder);$allowed=[IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')+'\'
  if(-not $resolved.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase)){throw 'Cleanup escaped TEMP'}
- Remove-Item -LiteralPath $resolved -Recurse -Force
+ [IO.File]::WriteAllText((Join-Path $resolved 'fixture-retained.private.json'),('{"status":"RETAINED_NATIVE_FIXTURE","deletion_performed":false}'))
 }
 ''')
 
@@ -299,7 +299,7 @@ try {
 }finally{
  $resolved=[IO.Path]::GetFullPath($folder);$allowed=[IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')+'\'
  if(-not $resolved.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase)){throw 'Cleanup escaped TEMP'}
- Remove-Item -LiteralPath $resolved -Recurse -Force
+ [IO.File]::WriteAllText((Join-Path $resolved 'fixture-retained.private.json'),('{"status":"RETAINED_NATIVE_FIXTURE","deletion_performed":false}'))
 }
 ''')
 
@@ -331,7 +331,7 @@ try {
 }finally{
  $resolved=[IO.Path]::GetFullPath($folder);$allowed=[IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')+'\'
  if(-not $resolved.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase)){throw 'Fixture cleanup path escaped TEMP'}
- Remove-Item -LiteralPath $resolved -Recurse -Force
+ [IO.File]::WriteAllText((Join-Path $resolved 'fixture-retained.private.json'),('{"status":"RETAINED_NATIVE_FIXTURE","deletion_performed":false}'))
 }
 ''')
 

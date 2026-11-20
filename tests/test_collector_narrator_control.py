@@ -1,6 +1,6 @@
+from tests.fixture_retention import FixtureDirectory
 import json
 import sqlite3
-import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch, Mock
@@ -10,7 +10,7 @@ from youtube_ops import collector_narrator_control as control
 
 class ControlTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory()
+        self.temp = FixtureDirectory(trusted_execution=True)
         self.addCleanup(self.temp.cleanup)
         self.spool = Path(self.temp.name)
         self.helper = Mock()
@@ -281,7 +281,7 @@ class NativePrivateAclTests(unittest.TestCase):
             self.skipTest('Windows native ACL test')
         from youtube_ops.collector_narrator_pipe import windows_identity
         sid, _ = windows_identity()
-        with tempfile.TemporaryDirectory() as temporary:
+        with FixtureDirectory(trusted_execution=True) as temporary:
             root = Path(temporary)
             script = r"""
 $ErrorActionPreference='Stop'

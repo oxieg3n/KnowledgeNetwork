@@ -1,7 +1,8 @@
+from tests.fixture_retention import retain_fixture_entry
+from tests.fixture_retention import FixtureDirectory
 import hashlib
 import json
 from pathlib import Path
-import tempfile
 import unittest
 from unittest.mock import patch
 import wave
@@ -14,7 +15,7 @@ from youtube_ops.collector_narration_common import inspect_wav
 
 class EditorTests(unittest.TestCase):
     def setUp(self):
-        self.temporary = tempfile.TemporaryDirectory()
+        self.temporary = FixtureDirectory()
         self.addCleanup(self.temporary.cleanup)
         # Match the canonical paths recorded by the native adapter, including Windows 8.3 TEMP aliases.
         self.root = Path(self.temporary.name).resolve()
@@ -118,8 +119,12 @@ class EditorTests(unittest.TestCase):
         self.assertFalse(self.client._pending().exists())
         receipts = [json.loads(p.read_text()) for p in self.client.receipts.glob('*.json')
                     if p.name not in {Path(args[3][1:]).name, 'session-test-session.json'}]
-        self.assertEqual(len(receipts), 1)
-        self.assertFalse(receipts[0]['publication_eligible'])
+        operations = [item for item in receipts if item.get('kind') == 'edit.apply' and 'result' in item]
+        self.assertEqual(len(operations), 1)
+        self.assertFalse(operations[0]['publication_eligible'])
+        terminal = self.client.receipts / ('terminal-' + operations[0]['id'] + '.json')
+        self.assertEqual(json.loads(terminal.read_text())['id'], operations[0]['id'])
+        self.assertEqual(json.loads((self.client.receipts / 'pending-retention.json').read_text())['status'], 'completed')
 
     def test_uncertain_edit_blocks_replay_even_after_client_restart(self):
         edits = [{'method': 'clip.split', 'params': {'id': 'c', 'at': 1}}]
@@ -529,7 +534,7 @@ class EditorTests(unittest.TestCase):
 
     def test_fixture_music_baseline_is_recorded_from_native_volume_readback(self):
         state, inspect, invoke, _ = self.fake_fixture_editor()
-        (self.client.receipts / ('d' * 32 + '.json')).unlink()
+        retain_fixture_entry(self.client.receipts / ('d' * 32 + '.json'))
         with patch.object(self.client, 'inspect', side_effect=inspect), \
                 patch.object(self.client, '_invoke', side_effect=invoke):
             capture_music_baseline(self.client, 'music', 7)

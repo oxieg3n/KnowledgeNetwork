@@ -1,4 +1,5 @@
 """Retained native-editor protocol fixtures; no editor process or media render."""
+from tests.fixture_retention import FixtureDirectory
 from fractions import Fraction
 import json
 from pathlib import Path
@@ -7,7 +8,6 @@ from unittest.mock import Mock, patch
 import wave
 
 from PIL import Image
-from tests.fixture_retention import FixtureDirectory
 from youtube_ops import collector_editor as editor
 from youtube_ops import collector_editor_fixture as fixture
 

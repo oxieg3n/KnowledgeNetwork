@@ -1,10 +1,10 @@
+from tests.fixture_retention import FixtureDirectory
 import contextlib
 import io
 import hashlib
 import json
 from pathlib import Path
 import ssl
-import tempfile
 import time
 import unittest
 from unittest.mock import patch
@@ -67,7 +67,7 @@ class TailnetReviewTests(unittest.TestCase):
             api.assert_not_called()
 
     def capture_fixture(self, route_response):
-        folder = tempfile.TemporaryDirectory()
+        folder = FixtureDirectory()
         self.addCleanup(folder.cleanup)
         output = Path(folder.name)
         def api(path, secret, deadline):
@@ -108,7 +108,7 @@ class TailnetReviewTests(unittest.TestCase):
             self.assertTrue(any(x['file'] == 'policy.private.hujson' for x in receipt['files']))
 
     def test_exclusive_files_preserve_prior_evidence(self):
-        with tempfile.TemporaryDirectory() as folder:
+        with FixtureDirectory() as folder:
             output = Path(folder)
             review.write(output, 'receipt.json', b'original')
             with self.assertRaises(FileExistsError):
@@ -179,7 +179,7 @@ class TailnetReviewTests(unittest.TestCase):
         for body, expected in [(b'{}', 'PASS_OFFICIAL_VALIDATION_ONLY'),
                                (b'{"message":"test(s) failed"}', 'BLOCKED'),
                                (b'{"data":[{"errors":["private test failure"]}]}', 'BLOCKED')]:
-            with tempfile.TemporaryDirectory() as folder:
+            with FixtureDirectory() as folder:
                 root = Path(folder)
                 policy = root / 'policy.json'
                 raw = b'{"tests":[{"src":"100.64.0.1","accept":["100.64.0.2:9443"]}]}'

@@ -1,4 +1,5 @@
 """Mocks and local synthetic socket fixtures; never host API acceptance."""
+from tests.fixture_retention import FixtureDirectory
 from contextlib import contextmanager
 import io
 import ctypes
@@ -9,7 +10,6 @@ import socket
 import socketserver
 import subprocess
 import sys
-import tempfile
 import threading
 import time
 import unittest
@@ -102,7 +102,7 @@ def slow_http_fixture(mode):
 
 class RemoteVoiceTests(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
+        self.tmp = FixtureDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.spool = Path(self.tmp.name)
         self.url = 'https://voice-fixture.invalid:443'

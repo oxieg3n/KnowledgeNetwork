@@ -1,4 +1,6 @@
 """Empty-controller stop tests; no BLACKHAT-BASE operations or inference."""
+from tests.fixture_retention import retain_fixture_entry
+from tests.fixture_retention import FixtureDirectory
 import contextlib
 import base64
 import ctypes
@@ -10,7 +12,6 @@ from pathlib import Path
 import sqlite3
 import subprocess
 import sys
-import tempfile
 import time
 import unittest
 from unittest.mock import patch
@@ -29,7 +30,7 @@ def embedded():
 
 class IdleStopTests(unittest.TestCase):
     def setUp(self):
-        self.folder = tempfile.TemporaryDirectory(); self.addCleanup(self.folder.cleanup)
+        self.folder = FixtureDirectory(trusted_execution=True); self.addCleanup(self.folder.cleanup)
         self.root = Path(self.folder.name)
         self.code = embedded()
         self.code.update(ROOT=self.root, SPOOL=self.root / 'spool',
@@ -103,7 +104,7 @@ class IdleStopTests(unittest.TestCase):
         journal = Path(str(self.dbpath) + '-journal'); journal.write_bytes(b'unknown')
         with self.assertRaisesRegex(self.code['Blocked'], 'control_database_journal_uncertain'):
             self.code['stop_empty'](self.expected)
-        journal.unlink()
+        retain_fixture_entry(journal)
         self.snapshot['listener_pids'] = [123]
         with self.assertRaisesRegex(self.code['Blocked'], 'controller_owns_api_listener'):
             self.code['stop_empty'](self.expected)
@@ -195,7 +196,7 @@ class IdleStopTests(unittest.TestCase):
 class NativeIdleStopTests(unittest.TestCase):
     def test_native_limited_task_association_stop_and_disabled_run_denial(self):
         code = embedded()
-        with tempfile.TemporaryDirectory() as folder:
+        with FixtureDirectory(trusted_execution=True) as folder:
             root = Path(folder)
             system = ctypes.create_unicode_buffer(32768)
             self.assertGreater(ctypes.windll.kernel32.GetSystemDirectoryW(system, len(system)), 0)

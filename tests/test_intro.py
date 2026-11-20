@@ -1,4 +1,4 @@
-import tempfile
+from tests.fixture_retention import FixtureDirectory
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -23,7 +23,7 @@ class IntroValidationTests(unittest.TestCase):
         from youtube_ops.render import render
         spec={'format':'short','scenes':[{'title':'Test','narration':'Test narration.','caption':'Test'}],
               'brand_intro':{'template':TEMPLATE,'title':'Test'}}
-        with tempfile.TemporaryDirectory() as tmp, self.assertRaisesRegex(ValueError,'poweredby_logo'):
+        with FixtureDirectory() as tmp, self.assertRaisesRegex(ValueError,'poweredby_logo'):
             render(spec,Path(tmp)/'output',Path('no-model'),{})
     def test_licensed_validation_keeps_exact_source_scope_separate(self):
         from youtube_ops.render import render

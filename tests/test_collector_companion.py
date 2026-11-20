@@ -1,8 +1,8 @@
 """Mock service/provider tests only; no live host or installed-service acceptance."""
+from tests.fixture_retention import FixtureDirectory
 import hashlib
 import json
 from pathlib import Path
-import tempfile
 import unittest
 from unittest.mock import Mock, patch
 import wave
@@ -52,7 +52,7 @@ class Provider:
 
 class CompanionTests(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.temp=FixtureDirectory(); self.addCleanup(self.temp.cleanup)
         self.spool=Path(self.temp.name); self.service=Service(); self.provider=Provider(self.spool)
     def run_job(self,**kw): return run_once(self.service,lambda:self.provider,**kw)
     def test_actual_pcm_hash_and_receipt_verified_completed(self):
@@ -140,7 +140,7 @@ class CompanionTests(unittest.TestCase):
 
 class TransportTests(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.temp=FixtureDirectory(); self.addCleanup(self.temp.cleanup)
         self.spool=Path(self.temp.name); self.exe=self.spool/'kn-collector.exe'
         self.exe.write_bytes(b'fixture executable'); self.sha=hashlib.sha256(self.exe.read_bytes()).hexdigest()
         canonical=patch('youtube_ops.collector_companion.CANONICAL_EXE',self.exe)
@@ -159,7 +159,7 @@ class TransportTests(unittest.TestCase):
         with patch('youtube_ops.collector_companion._current_identity',side_effect=CompanionError('COMPANION_IDENTITY_UNVERIFIED')), patch('youtube_ops.collector_companion.subprocess.Popen') as launch:
             with self.assertRaises(CompanionError): ServiceCLI(self.sha,self.spool).call('claim')
             launch.assert_not_called()
-    def test_private_token_file_not_argv_and_cleanup(self):
+    def test_private_token_file_not_argv_and_transport_evidence_retained(self):
         body={'job_id':JOB,'lease_token':TOKEN}
         def start(argv,**kw):
             self.assertEqual(argv[:2],[str(self.exe),'companion-heartbeat']); self.assertNotIn(TOKEN,' '.join(argv))
@@ -168,7 +168,11 @@ class TransportTests(unittest.TestCase):
             return Mock(returncode=0,poll=Mock(return_value=0))
         with patch('youtube_ops.collector_companion.subprocess.Popen',side_effect=start):
             self.assertEqual(self.client().call('heartbeat',body),{'cancel_requested':False})
-        self.assertEqual(list(self.spool.iterdir()),[self.exe])
+        retained = list(self.spool.glob('companion-*'))
+        self.assertEqual(len(retained), 1)
+        self.assertEqual(json.loads((retained[0] / 'request.json').read_text()), body)
+        self.assertEqual(json.loads((retained[0] / 'retention.json').read_text())['deletion_performed'], False)
+        self.assertEqual(json.loads((retained[0] / 'reply.json').read_text()), {'ok': True, 'result': {'cancel_requested': False}})
     def test_executable_replaced_after_construction_denied(self):
         client=self.client(); self.exe.write_bytes(b'changed')
         with patch('youtube_ops.collector_companion.subprocess.Popen') as launch:

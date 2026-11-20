@@ -16,7 +16,6 @@ from pathlib import Path
 import re
 import subprocess
 import sys
-import tempfile
 import time
 import uuid
 
@@ -207,7 +206,12 @@ class OpenShot:
             # Qt's Windows offscreen export uses FreeType, not the Windows font database.
             env['QT_QPA_FONTDIR'] = str(self.font_directory)
         # Retain the installed user's registry; never return its authentication record.
-        with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
+        # Native failures can contain useful private evidence; retain exact owned
+        # output files instead of deleting them when the subprocess closes.
+        invocation = self.receipts / ('invoke-' + uuid.uuid4().hex)
+        invocation.mkdir()
+        with (invocation / 'stdout.private.log').open('x+b') as stdout, \
+                (invocation / 'stderr.private.log').open('x+b') as stderr:
             process = subprocess.Popen(args, cwd=self.vault, env=env, shell=False,
                                        stdout=stdout, stderr=stderr,
                                        creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
@@ -246,7 +250,9 @@ class OpenShot:
                 raise EditorError('invalid_native_response')
             return reply['result']
 
-    def start(self):
+    def start(self, show=False):
+        if type(show) is not bool:
+            raise ValueError('Explicit native GUI selection required')
         self._retention_ready()
         pending = self.receipts / 'start-pending.json'
         intent = {'id': uuid.uuid4().hex, 'kind': 'session.start', 'session_id': None}
@@ -257,7 +263,7 @@ class OpenShot:
         except FileExistsError:
             raise EditorError('startup_reconciliation_required') from None
         try:
-            result = self._invoke(['session', 'start'], session=False)
+            result = self._invoke(['session', 'start'] + (['--show'] if show else []), session=False)
         except EditorError as exc:
             if exc.native_session_id:
                 intent['session_id'] = exc.native_session_id

@@ -1,4 +1,5 @@
 """Proposed recovery on retained owned fixtures; no BLACKHAT-BASE execution."""
+from tests.fixture_retention import FixtureDirectory
 import ctypes as c
 import base64
 from contextlib import closing
@@ -16,7 +17,6 @@ from unittest.mock import patch
 
 from youtube_ops import collector_narrator_recovery as recovery
 from youtube_ops import collector_narrator_recovery_probe as probe
-from tests.fixture_retention import FixtureDirectory
 
 
 SOURCE = Path(__file__).resolve().parents[1]/'docs/collector/host-tools/Stop-EmptyNarratorController.ps1'
@@ -340,10 +340,9 @@ class NativeBoundRecoveryTests(unittest.TestCase):
                 # Do not prevent the original cooperative exit/task teardown if an assertion fails.
             return write_text(path, text, *arguments, **kwargs)
 
-        retained_temp = types.SimpleNamespace(TemporaryDirectory=lambda: FixtureDirectory(prefix='kn-integrated-task-', trusted_execution=True))
         fixture = idle.NativeIdleStopTests('test_native_limited_task_association_stop_and_disabled_run_denial')
         try:
-            with patch.object(idle, 'embedded', instrumented), patch.object(idle, 'tempfile', retained_temp), \
+            with patch.object(idle, 'embedded', instrumented), patch.object(idle, 'FixtureDirectory', lambda **_: FixtureDirectory(prefix='kn-integrated-task-', trusted_execution=True)), \
                     patch.object(Path, 'write_text', fixture_write):
                 if fault is None:
                     fixture.test_native_limited_task_association_stop_and_disabled_run_denial()

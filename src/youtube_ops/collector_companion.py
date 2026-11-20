@@ -120,40 +120,43 @@ class ServiceCLI:
             raise CompanionError('COMPANION_OPERATION_INVALID')
         self._verify()
         # Tokens never enter argv or inherited console streams. The directory inherits the verified DACL.
-        with tempfile.TemporaryDirectory(prefix='companion-', dir=self.spool) as temporary:
-            directory = local_spool(temporary)
-            argv = [str(self.executable), 'companion-' + operation]
-            if body is not None:
-                request = directory / 'request.json'
-                with request.open('x', encoding='utf-8') as stream:
-                    json.dump(body, stream, allow_nan=False)
-                argv.append(str(request))
-            with (directory / 'reply.json').open('w+b') as output:
-                process = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=output,
-                    stderr=subprocess.DEVNULL, shell=False,
-                    creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-                try:
-                    deadline = time.monotonic() + 8
-                    while process.poll() is None:
-                        if os.fstat(output.fileno()).st_size > MAX_REPLY or time.monotonic() >= deadline:
-                            raise CompanionError('COMPANION_TRANSPORT_UNCERTAIN')
-                        time.sleep(.02)
-                    output.seek(0)
-                    raw = output.read(MAX_REPLY + 1)
-                    if len(raw) > MAX_REPLY: raise CompanionError('COMPANION_REPLY_INVALID')
-                    reply = _json(raw)
-                    if isinstance(reply, dict) and reply.get('ok') is False:
-                        code = reply.get('error')
-                        if isinstance(code, str) and re.fullmatch('[A-Za-z][A-Za-z0-9_]{0,95}', code):
-                            raise CompanionError('COMPANION_SERVICE_' + code.upper())
-                    if process.returncode or not isinstance(reply, dict) or reply.get('ok') is not True:
-                        raise CompanionError('COMPANION_SERVICE_REJECTED')
-                    if set(reply) != {'ok', 'result'}: raise CompanionError('COMPANION_REPLY_INVALID')
-                    return reply['result']
-                finally:
-                    if process.poll() is None:
-                        process.kill()
-                        process.wait(timeout=3)
+        temporary = tempfile.mkdtemp(prefix='companion-', dir=self.spool)
+        directory = local_spool(temporary)
+        # Keep scoped transport evidence; only the owner retires these private files.
+        with (directory / 'retention.json').open('x', encoding='utf-8') as record:
+            json.dump({'operation': operation, 'status': 'retained_transport_evidence', 'deletion_performed': False}, record)
+        argv = [str(self.executable), 'companion-' + operation]
+        if body is not None:
+            request = directory / 'request.json'
+            with request.open('x', encoding='utf-8') as stream:
+                json.dump(body, stream, allow_nan=False)
+            argv.append(str(request))
+        with (directory / 'reply.json').open('w+b') as output:
+            process = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=output,
+                stderr=subprocess.DEVNULL, shell=False,
+                creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+            try:
+                deadline = time.monotonic() + 8
+                while process.poll() is None:
+                    if os.fstat(output.fileno()).st_size > MAX_REPLY or time.monotonic() >= deadline:
+                        raise CompanionError('COMPANION_TRANSPORT_UNCERTAIN')
+                    time.sleep(.02)
+                output.seek(0)
+                raw = output.read(MAX_REPLY + 1)
+                if len(raw) > MAX_REPLY: raise CompanionError('COMPANION_REPLY_INVALID')
+                reply = _json(raw)
+                if isinstance(reply, dict) and reply.get('ok') is False:
+                    code = reply.get('error')
+                    if isinstance(code, str) and re.fullmatch('[A-Za-z][A-Za-z0-9_]{0,95}', code):
+                        raise CompanionError('COMPANION_SERVICE_' + code.upper())
+                if process.returncode or not isinstance(reply, dict) or reply.get('ok') is not True:
+                    raise CompanionError('COMPANION_SERVICE_REJECTED')
+                if set(reply) != {'ok', 'result'}: raise CompanionError('COMPANION_REPLY_INVALID')
+                return reply['result']
+            finally:
+                if process.poll() is None:
+                    process.kill()
+                    process.wait(timeout=3)
 
 
 def _result(status, error=None, **hashes):

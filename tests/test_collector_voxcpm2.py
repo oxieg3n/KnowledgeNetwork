@@ -1,4 +1,5 @@
 """Simulated host protocol tests; no host synthesis or narrator license acceptance."""
+from tests.fixture_retention import FixtureDirectory
 import ctypes
 import hashlib
 import io
@@ -6,7 +7,6 @@ import json
 import os
 from pathlib import Path
 import socket
-import tempfile
 import time
 import unittest
 from unittest.mock import Mock, patch
@@ -44,7 +44,7 @@ class Connection:
 
 class DirectNarratorTests(unittest.TestCase):
     def setUp(self):
-        temporary = tempfile.TemporaryDirectory(); self.addCleanup(temporary.cleanup)
+        temporary = FixtureDirectory(); self.addCleanup(temporary.cleanup)
         self.spool = Path(temporary.name)
         self.provenance = {'script_sha256': 'a' * 64, 'config_sha256': 'b' * 64,
                            'model_revision': 'fixture-only', 'license_evidence_sha256': 'c' * 64}
@@ -217,19 +217,29 @@ class DirectNarratorTests(unittest.TestCase):
                 self.provider.generate('4' * 32, 'Original.')
             download.assert_not_called()
 
-    def test_invalid_audio_or_nan_duration_cleans_only_unverified_partial(self):
+    def test_invalid_audio_or_nan_duration_retains_unverified_partial_without_final(self):
         job = self.job('5' * 32, 'Original.')
         job['audio']['duration'] = float('nan')
         with patch.object(self.provider, '_request', side_effect=self.download):
             with self.assertRaisesRegex(VoiceError, 'AUDIO_MISMATCH'):
                 self.provider._audio(self.spool, 0, job, None)
-        self.assertFalse(list(self.spool.glob('download-*')))
+        retained = list(self.spool.glob('download-*.partial'))
+        self.assertEqual(len(retained), 1)
+        first = retained[0].read_bytes()
+        self.assertEqual(first, wav())
         self.assertFalse((self.spool / 'segment-00.wav').exists())
         connection = Connection(Response(wav(), mime='audio/wav'))
         with patch.object(self.provider, '_connect', return_value=connection), patch('youtube_ops.collector_voxcpm2.MAX_WAV', 100):
             with self.assertRaisesRegex(VoiceError, 'TOO_LARGE'):
                 self.provider._audio(self.spool, 0, job, None)
-        self.assertFalse(list(self.spool.glob('download-*')))
+        self.assertEqual(retained[0].read_bytes(), first)
+        partials = list(self.spool.glob('download-*.partial'))
+        self.assertEqual(len(partials), 2)
+        for path in partials:
+            receipt = json.loads(path.with_suffix('.retained.json').read_text())
+            self.assertEqual(receipt['status'], 'retained_for_reconciliation')
+            self.assertFalse(receipt['publication_eligible'])
+        self.assertFalse((self.spool / 'segment-00.wav').exists())
 
     def test_cancel_only_known_host_job_and_reports_observed_state(self):
         key = '6' * 32; self.jobs[key] = self.job(key, 'Original.'); self.jobs[key]['state'] = 'running'

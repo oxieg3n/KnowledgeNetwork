@@ -1,4 +1,4 @@
-import tempfile
+from tests.fixture_retention import FixtureDirectory
 import importlib.util
 import os
 import wave
@@ -19,7 +19,7 @@ class RenderTests(unittest.TestCase):
     def test_spec_rejects_empty(self):
         with self.assertRaises(ValueError): validate_spec({'format':'short','scenes':[]})
     def test_rights_and_hash_fail_closed(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             p=Path(tmp)/'model';p.write_bytes(b'test')
             with self.assertRaises(ValueError): verify_voice(p,{})
             rights={'rights_reviewed':True,'license':'CC0','proof_url':'https://example.org','rights_holder':'test','model_sha256':sha256(p),'commercial_use':True,'youtube_use':True}
@@ -41,7 +41,7 @@ class CaptionTests(unittest.TestCase):
             def synthesize_wav(self, text, out):
                 out.setnchannels(1); out.setsampwidth(2); out.setframerate(1000)
                 out.writeframes(b'\x00\x00' * (300 if text == 'short' else 1700))
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             wav = Path(tmp) / 'speech.wav'
             cues = synthesize_phrases(FakeVoice(), ['short', 'longer phrase'], wav)
             self.assertEqual(cues[0]['start'], 0)
@@ -62,7 +62,7 @@ class CaptionTests(unittest.TestCase):
         self.assertTrue(all(len(p.split())<=10 for p in phrases))
         with self.assertRaises(ValueError):
             caption_phrases('A {control} word',font_path=font,width=860,px=48)
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             path=Path(tmp)/'captions.ass'
             write_captions(path,[{'start':0,'end':3,'text':phrases[0]}],(1080,1920),font)
             content=path.read_text()
@@ -83,7 +83,7 @@ class SubjectGraphicsTests(unittest.TestCase):
     def test_landscape_graphic_modes_and_overflow(self):
         from youtube_ops.render import card
         font=TEST_FONT
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             for kind in ['flow','comparison','timeline']:
                 scene={'title':'A technical schematic, not a news report','caption':'Original diagram for layout validation.','graphic':{'kind':kind,'items':[{'label':'Source','detail':'Read the primary document'},{'label':'Evidence','detail':'Check the actual claim'},{'label':'Review','detail':'Inspect final output'}],'emphasis':1}}
                 card(scene,Path(tmp)/f'{kind}.png',(1920,1080),0,1,technical_test=True,font_path=font)
@@ -112,7 +112,7 @@ class NarratorDefaultGuardTests(unittest.TestCase):
     def test_legacy_body_model_is_rejected_without_loading_it(self):
         from unittest.mock import patch
         from youtube_ops import render as module
-        with tempfile.TemporaryDirectory() as directory, patch.object(module, 'verify_voice') as verify:
+        with FixtureDirectory() as directory, patch.object(module, 'verify_voice') as verify:
             output = Path(directory) / 'not-created'
             spec = {'format': 'short', 'scenes': [{'title': 'Test', 'narration': 'Test speech.', 'caption': 'Test'}]}
             with self.assertRaisesRegex(ValueError, 'Legacy Piper body synthesis is disabled'):
@@ -122,7 +122,7 @@ class NarratorDefaultGuardTests(unittest.TestCase):
 
     def test_no_receipt_never_falls_back_to_local_speech(self):
         from youtube_ops import render as module
-        with tempfile.TemporaryDirectory() as directory:
+        with FixtureDirectory() as directory:
             output = Path(directory) / 'not-created'
             spec = {'format': 'short', 'scenes': [{'title': 'Test', 'narration': 'Test speech.', 'caption': 'Test'}]}
             with self.assertRaisesRegex(ValueError, 'verified VoxCPM2 narration receipt'):

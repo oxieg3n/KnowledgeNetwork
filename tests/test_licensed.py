@@ -1,3 +1,4 @@
+from tests.fixture_retention import FixtureDirectory
 import copy,hashlib,json,tempfile,unittest
 from pathlib import Path
 from youtube_ops.licensed import validate_licensed,verify_local_assets
@@ -42,12 +43,12 @@ class LicensedTests(unittest.TestCase):
    s=fixture();s['scenes']=[s['scenes'][i] for i in scenes]
    with self.assertRaises(ValueError):validate_licensed(s)
  def test_hash_verified_without_fetch(self):
-  with tempfile.TemporaryDirectory() as d:
+  with FixtureDirectory() as d:
    p=Path(d)/'source';p.write_bytes(b'fixture');verify_local_assets(fixture(),{'source':p})
    p.write_bytes(b'changed')
    with self.assertRaises(ValueError):verify_local_assets(fixture(),{'source':p})
  def test_queue_binding_and_checkpoint_retained(self):
-  with tempfile.TemporaryDirectory() as d:
+  with FixtureDirectory() as d:
    s=State(d);s.enqueue('FRESH_UPLOAD','lead',{'status':'ready'});spec=fixture()
    r={'schema_version':1,'queue':'FRESH_UPLOAD','item_id':'lead','production_key':'a'*64,'rights_path':'licensed_cc_by_excerpt','script':spec,
       'primary_sources':spec['sources'],'distinct_value':'Unit fixture','reviewed_script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),

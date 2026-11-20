@@ -1,10 +1,10 @@
 """Native checks of bootstrap helpers only; never install an account or service."""
+from tests.fixture_retention import FixtureDirectory
 import os
 import re
 import zipfile
 from pathlib import Path
 import subprocess
-import tempfile
 import unittest
 
 
@@ -12,7 +12,7 @@ import unittest
 class HostBootstrapTests(unittest.TestCase):
     def run_helpers(self, body, archives=None):
         source = Path(__file__).resolve().parents[1] / 'docs/collector/host-tools/Install-KnowledgeNetworkHostExec.ps1'
-        with tempfile.TemporaryDirectory(prefix='kn-bootstrap-check-') as folder:
+        with FixtureDirectory(prefix='kn-bootstrap-check-', trusted_execution=True) as folder:
             for name, data in (archives or {}).items():
                 (Path(folder) / name).write_bytes(data)
             # Load only named function ASTs. Top-level privileged bootstrap is never evaluated.

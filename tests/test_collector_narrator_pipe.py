@@ -1,8 +1,8 @@
+from tests.fixture_retention import FixtureDirectory
 import hashlib
 import json
 import os
 from pathlib import Path
-import tempfile
 import threading
 import time
 import unittest
@@ -158,14 +158,14 @@ class NarratorPipeTests(unittest.TestCase):
         return config
 
     def test_config_pins_and_replacements(self):
-        with tempfile.TemporaryDirectory() as folder, patch.object(pipe, 'ROOT', Path(folder)):
+        with FixtureDirectory() as folder, patch.object(pipe, 'ROOT', Path(folder)):
             root = Path(folder); expected = self.make_config(root)
             self.assertEqual(pipe.load_config(), expected)
             (root / 'runtime/youtube_ops/collector_narrator_control.py').write_bytes(b'replaced')
             with self.assertRaisesRegex(pipe.BrokerError, 'broker_source_changed'): pipe.load_config()
 
     def test_config_types_and_extra_fields(self):
-        with tempfile.TemporaryDirectory() as folder, patch.object(pipe, 'ROOT', Path(folder)):
+        with FixtureDirectory() as folder, patch.object(pipe, 'ROOT', Path(folder)):
             root = Path(folder); good = self.make_config(root)
             for edit in ({'schema_version': True}, {'files': {}}, {'owner_sid': good['bridge_sid']},
                          {'path': 'C:/anywhere'}, {'server_python_sha256': ['a' * 64]}):
@@ -173,7 +173,7 @@ class NarratorPipeTests(unittest.TestCase):
                 with self.assertRaises(pipe.BrokerError): pipe.load_config()
 
     def test_hardlink_denied(self):
-        with tempfile.TemporaryDirectory() as folder:
+        with FixtureDirectory() as folder:
             first, second = Path(folder) / 'first', Path(folder) / 'second'
             first.write_bytes(b'x'); os.link(first, second)
             with self.assertRaises(pipe.BrokerError): pipe.local_file(first)
