@@ -48,6 +48,14 @@
       "url": "https://www.youtube.com/watch?v=25X9nalEXg0",
       "video_id": "25X9nalEXg0"
     },
+    "video:2EgJDihn1D4": {
+      "created_at": "2026-11-20T20:12:34.650906+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "@plain-support switch from MP4s to Coded Animations using Framer MCP",
+      "url": "https://www.youtube.com/watch?v=2EgJDihn1D4",
+      "video_id": "2EgJDihn1D4"
+    },
     "video:2M9lXIT55lM": {
       "created_at": "2026-11-17T20:52:58.268414+00:00",
       "kind": "new_video",
@@ -1837,8 +1845,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-19T02:33:05.935236+00:00",
-      "last_monitored_at": "2026-11-19T02:33:05.935119+00:00",
+      "last_attempt_at": "2026-11-20T20:12:34.132148+00:00",
+      "last_monitored_at": "2026-11-20T20:12:34.132003+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -1978,8 +1986,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-19T02:33:06.536311+00:00",
-      "last_monitored_at": "2026-11-19T02:33:06.536204+00:00",
+      "last_attempt_at": "2026-11-20T20:12:34.651043+00:00",
+      "last_monitored_at": "2026-11-20T20:12:34.650911+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -6375,6 +6383,26 @@
         "url": "https://www.youtube.com/watch?v=25X9nalEXg0",
         "video_id": "25X9nalEXg0"
       },
+      "2EgJDihn1D4": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "channel_name": "Framer",
+        "discovered_at": "2026-11-20T20:12:34.650888+00:00",
+        "id": "2EgJDihn1D4",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-19T14:33:01Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "@plain-support switch from MP4s to Coded Animations using Framer MCP",
+        "url": "https://www.youtube.com/watch?v=2EgJDihn1D4",
+        "video_id": "2EgJDihn1D4"
+      },
       "2M9lXIT55lM": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10620,7 +10648,7 @@
       "upload": 0
     },
     "2026-11-20": {
-      "general": 9,
+      "general": 15,
       "search": 3,
       "upload": 0
     }
@@ -11076,7 +11104,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 580,
+  "revision": 589,
   "rights_ledger": {},
   "runs": [
     {
@@ -12469,6 +12497,21 @@
       },
       "run_id": "44728629610-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-20T20:12:32.869159+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "44809231281-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1
