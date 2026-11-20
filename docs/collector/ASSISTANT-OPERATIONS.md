@@ -1,5 +1,24 @@
 # Assistant operations — installed staging build
 
+## November20 current acceptance
+
+See [verified execution results](overnight/FINALIZATION-RESULTS-2026-11-20.md).
+Installed service health and17 native dashboard checks passed; a real queued
+editor inspect passed through the owner-session companion. The new editable
+body is saved/reopened/edited, but has no real narration or bookends yet.
+The complete50-second command is therefore not accepted. Host SSH is unreachable;
+one reviewed independent limited-owner bootstrap is staged, with fresh route
+proof expiry enforced. Old V2 recovery is DEFERRED. Publication stays PAUSED.
+
+For the current body use the environment-reopened-v2/body-state-reviewed-v2
+private records, not the historical session below. Companion transport spool
+must already exist with its private protected ACL. Keep the normal Windows
+USERPROFILE for companion validation; use its project-specific editor vault and
+OPENSHOT_SESSION_DIR. Missing/invalid pre-claim configuration now reports blocked
+without claiming an uncertain media dispatch. Later uncertainty still holds.
+These are Codex/user-context manual results; scheduled Dot connection, separate
+Computer Use and human final listening remain unverified.
+
 Run on FORGE, not on Dot's cloud localhost or BLACKHAT-BASE. A real scheduled
 Assistant connection remains unverified. Publication is paused.
 

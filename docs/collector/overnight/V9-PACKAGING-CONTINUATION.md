@@ -1,5 +1,14 @@
 # V9 pipefix-002 installer preparation
 
+## November20 execution scope
+
+Actual full hosted worker190checks and WPF build passed again. The installed
+working service was started and retained its worker identity; no installer was
+rebuilt or deployed. No ready disposable Windows environment was established
+(Sandbox executable absent), so isolated installation/upgrade/rollback remains
+NOT TESTED. Existing pipefix002 and rollback assets are retained. See
+[execution results](FINALIZATION-RESULTS-2026-11-20.md).
+
 ## Current retention continuation ? existing installer retained
 
 Build-Installer now rejects an existing canonical InstallerDirectory before any

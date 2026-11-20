@@ -1,5 +1,43 @@
 # V9 handoff - The Knowledge Network Collector
 
+## November20 execution: full CI and native body PASS; host bootstrap BLOCKED
+
+Current verified application source `f7ccdb43fa7d509eae636948fd7dce4c43434dcf`.
+[Execution results](FINALIZATION-RESULTS-2026-11-20.md) contain actual paths,
+hashes, logs, launch instructions and the one required technical host action.
+
+- Full supported CI restored: Windows516/499 passed/17 skipped, Ubuntu516/412
+  passed/104 skipped, actual190worker checks and WPF build PASS in run44835027428.
+  Main conflicts resolved by ordinary merge, preserving owner instructions and
+  exact approved sources. PR20 remains draft/unmerged; publication PAUSED.
+- FORGE Tailscale/Collector existing services restored. Same worker identity,
+  authenticated health, paused publication and disabled scheduler retained.
+  Actual native dashboard17checks PASS; real Collector-to-OpenShot inspect job
+  `543e1edb7a694dda96995186431cadd3` succeeded through the user companion.
+- Real1080x1920/30FPS/40.6s editable body built; four native frames inspected.
+  Actual restart/reopen/graphic edit/save PASS. Current body-only .osp SHA
+  `820f8a3f0e41d844af7cdde654aba7111b93d7e500d5099357bbb9ce805161b0`.
+  New session `ead88b5f4ebe441983045e9c15809b9d`, revision4, PID6856 idle at
+  acceptance. Read latest body state/environment before continuing.
+- Old V2 recovery DEFERRED. The blocker is actual host execution, not accepted
+  D: ACL risk: SSH22230 times out; redirected drives cannot execute commands.
+  A reviewed independent limited-owner narrator bootstrap is staged at the host
+  kit's `narrator-standalone-v3`, with one owner command supplied. No new host
+  task/route/credential transfer/inference ran. Policy/inventory drift review and
+  official validation PASS, without policy changes; proof expires00:23:34UTC
+  November21. Do not skip expiry or blindly retry an uncertain bootstrap.
+- No new WAV, REMOTE_NARRATION_PASS, narration/captions/bookend assembly or final
+  MP4. Do not call the body project a completed50-second Short. Final mix owner
+  listening remains pending. All exact branding inputs and approved diagnostic
+  evidence are reused; no model inventory/smoke or broad branding search repeated.
+- Retention policy preserved. Ten conditional installed editor retention edits
+  retain source/rollback evidence; initial startup's fresh empty-cache removal
+  was identified and corrected. Known native failures and source fixes are
+  recorded, not hidden. No original assets/backups/controller data were removed.
+- Installer isolation, scheduled Assistant/reboot and separate Dot/CUA operation
+  remain NOT TESTED. Existing installer/IPC evidence retained; no live reinstall,
+  reboot, Gateway change or public upload.
+
 ## CURRENT OWNER DIRECTIVE — November 20, 2026: finish the application and video
 
 **Read and execute [FINALIZE-APP-AND-VIDEO-CODEX.md](FINALIZE-APP-AND-VIDEO-CODEX.md) as the current master Codex continuation prompt.** The November 20 owner authorization is also recorded in AGENTS.md section 12. The older entries below remain preserved checkpoint evidence, not instructions to rerun blocked work.

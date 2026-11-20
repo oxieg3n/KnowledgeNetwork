@@ -1,5 +1,15 @@
 # Restricted direct Oxiegen-Narrator host worker
 
+## November20 execution continuation
+
+The old controller recovery is DEFERRED. An independently reviewed standalone
+bootstrap reuses this API under a limited owner task and new protected data,
+without stopping/replacing the old controller. It is staged, not executed;
+FORGE's dedicated host SSH connection currently times out. Fresh policy review
+passed, but no9443 route or new speech transfer is claimed. See the
+[actual results and one technical bootstrap](overnight/FINALIZATION-RESULTS-2026-11-20.md).
+Historical deployment/permission-pending descriptions below retain their scope.
+
 Current continuation: the canonical diagnostic, owner listening approval,
 private host manifest validation and original loopback authentication passed;
 reuse the latest [handoff](overnight/HANDOFF.md) at that exact scope. The

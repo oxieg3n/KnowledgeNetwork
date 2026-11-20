@@ -1,5 +1,13 @@
 # V9 branding and native readiness — November 15, 2026
 
+## November20 actual native body
+
+All original brand assets remain present. New actual editable portrait body,
+40.6s/30FPS, has been saved/reopened/graphically revised and inspected through
+native frames. It is body-only: real speech, captions and exact bookends await
+host execution; no final MP4 exists. See [execution results](FINALIZATION-RESULTS-2026-11-20.md)
+for paths/hashes and current session. No new asset search or substitute artwork.
+
 ## Current native assembly continuation
 
 All exact brand originals remain recovered; older missing-badge statements below

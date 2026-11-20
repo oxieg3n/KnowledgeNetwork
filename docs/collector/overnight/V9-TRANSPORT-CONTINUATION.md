@@ -1,5 +1,14 @@
 # V9 transport continuation — November 15, 2026
 
+## November20 actual transport state
+
+FORGE Tailscale was stopped and is restored; the host peer is online, while
+project SSH22230 remains unreachable. One reviewed limited-owner standalone
+bootstrap is staged; the original controller is DEFERRED. The current policy,
+ID/address inventory and official validation passed fresh drift checks without
+policy writes. No new host listener/route, bearer transfer, GPU job or WAV was
+created. Prepared request IDs remain unsubmitted. See [execution results](FINALIZATION-RESULTS-2026-11-20.md).
+
 ## Current retention and uncertainty changes
 
 Failed partial WAV downloads now remain retained. An existing completed joined WAV
