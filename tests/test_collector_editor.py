@@ -183,7 +183,9 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(args[-4:], ['--start-frame', '1', '--end-frame', '1500'])
         receipts = [json.loads(p.read_text()) for p in self.client.receipts.glob('*.json')
                     if p.name != 'session-test-session.json']
-        self.assertEqual(receipts[0]['details']['snapshot_context'], {'revision': 9})
+        exports = [item for item in receipts if item.get('kind') == 'export.start' and 'result' in item]
+        self.assertEqual(len(exports), 1)
+        self.assertEqual(exports[0]['details']['snapshot_context'], {'revision': 9})
 
     def test_old_windows_session_cannot_claim_new_offscreen_font_configuration(self):
         if self.client.font_directory is None:
