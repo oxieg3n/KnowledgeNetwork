@@ -123,8 +123,11 @@ def retain_fixture_entry(path):
     This is explicit test fault injection, not an obsolete-file archive or a
     cleanup operation. Only namespaces created by this process are eligible.
     """
+    path = Path(path)
+    if '..' in path.parts:
+        raise ValueError('Fixture traversal denied')
     import ctypes
-    path = Path(path).absolute()
+    path = path.absolute()
     roots = [root for root in OWNED_ROOTS if path.is_relative_to(root) and path != root]
     if not roots:
         raise ValueError('Entry is not in a freshly owned fixture')

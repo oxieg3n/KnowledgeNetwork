@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 
 
@@ -46,3 +47,17 @@ class FixtureRetentionTests(unittest.TestCase):
             self.assertTrue((retained.parent / 'retention.private.json').is_file())
         with self.assertRaisesRegex(ValueError, 'freshly owned fixture'):
             retain_fixture_entry(Path(__file__))
+
+    def test_parent_traversal_is_rejected_before_any_filesystem_access(self):
+        with FixtureDirectory() as folder:
+            escape = Path(folder) / '..' / 'unregistered-sibling.bin'
+            with patch.object(Path, 'absolute', side_effect=AssertionError('unexpected absolute')) as absolute, \
+                    patch.object(Path, 'lstat', side_effect=AssertionError('unexpected inspection')) as inspected, \
+                    patch.object(Path, 'open', side_effect=AssertionError('unexpected open')) as opened, \
+                    patch.object(Path, 'rename', side_effect=AssertionError('unexpected rename')) as renamed:
+                with self.assertRaisesRegex(ValueError, 'Fixture traversal denied'):
+                    retain_fixture_entry(escape)
+                absolute.assert_not_called()
+                inspected.assert_not_called()
+                opened.assert_not_called()
+                renamed.assert_not_called()
