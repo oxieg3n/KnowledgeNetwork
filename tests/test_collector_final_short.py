@@ -82,6 +82,36 @@ class FinalShortTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 client.start(show='yes')
 
+    def test_cold_start_has_bounded_import_headroom_other_commands_keep_40_seconds(self):
+        with FixtureDirectory(prefix='kn-native-deadline-') as folder:
+            root = Path(folder).resolve()
+            exe = root/'openshot-qt-cmd.exe'; exe.write_bytes(b'not executed')
+            vault = root/'vault'; vault.mkdir()
+            client = editor.OpenShot(exe, editor.digest(exe), vault)
+            def launched(process):
+                def launch(args, **kwargs):
+                    kwargs['stdout'].write(b'{"ok":true,"result":{"session_id":"owned"}}')
+                    return process
+                return launch
+            process = Mock(returncode=0)
+            process.poll.side_effect = [None, None, 0]
+            with patch.object(editor.subprocess, 'Popen', side_effect=launched(process)), \
+                    patch.object(editor.time, 'monotonic', side_effect=[0, 41, 89]), \
+                    patch.object(editor.time, 'sleep'):
+                self.assertEqual(client._invoke(['session', 'start'], session=False)['session_id'], 'owned')
+            process.kill.assert_not_called()
+            client._enroll('owned')
+            for session, elapsed in ((False, 91), (True, 41)):
+                process = Mock()
+                process.poll.return_value = None
+                with self.subTest(session=session), \
+                        patch.object(editor.subprocess, 'Popen', side_effect=launched(process)), \
+                        patch.object(editor.time, 'monotonic', side_effect=[0, elapsed]):
+                    with self.assertRaisesRegex(editor.EditorError, '^native_timeout_reconcile_required$'):
+                        client._invoke(['session', 'status'], session=session)
+                process.kill.assert_called_once()
+                process.wait.assert_called_once()
+
     def test_thumbnail_post_audit_accepts_only_its_exact_existing_pending(self):
         with FixtureDirectory(prefix='kn-thumbnail-pending-') as folder:
             root = Path(folder).resolve()

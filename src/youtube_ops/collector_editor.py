@@ -216,7 +216,9 @@ class OpenShot:
             process = subprocess.Popen(args, cwd=self.vault, env=env, shell=False,
                                        stdout=stdout, stderr=stderr,
                                        creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-            deadline = time.monotonic() + 40
+            # Cold frozen imports precede the native start command's own 30s
+            # readiness window. Preserve its structured timeout/session identity.
+            deadline = time.monotonic() + (90 if not session else 40)
             while process.poll() is None:
                 if max(os.fstat(stdout.fileno()).st_size, os.fstat(stderr.fileno()).st_size) > MAX_JSON:
                     process.kill(); process.wait()

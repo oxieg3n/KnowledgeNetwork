@@ -229,7 +229,7 @@ def finish(client, state, receipt_path, badge_path, outro_path, font_path):
     revision1 = client.save(directory/'knowledge-network-review-v1.osp')
     client.reopen(revision1['path'], revision1['sha256'])
     revised = client.apply([{'method': 'text.set', 'params': {
-        'id': state['refs']['title2']['clip']['id'], 'text': 'Verify bytes. Verify sources.'}}], client.inspect()['revision'])
+        'id': state['refs']['title2']['clip']['id'], 'text': 'Verify the bytes. Check the source.'}}], client.inspect()['revision'])
     revision2 = client.save(directory/'knowledge-network-review-v2.osp')
     reopened = client.reopen(revision2['path'], revision2['sha256'])
     result = {'status': 'NATIVE_PROJECT_READY_FOR_EXPORT', 'session_id': client.session,
