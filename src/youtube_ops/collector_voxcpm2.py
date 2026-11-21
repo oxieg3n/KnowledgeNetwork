@@ -32,6 +32,7 @@ NAMESPACE = 'VoxCPM2'
 POLL_SECONDS = 600
 BATCH_POLL_SECONDS = 1230  # Host manifest300 + bounded runner900 + response headroom.
 BATCH_MODE = 'segment_batch_v1'
+BATCH_EXECUTION_MODE = 'cli_segment_batch_v1'
 BATCH_MAX_BODY = 131072  # Full UTF-8 text plus its segments are both transmitted.
 REQUEST_SECONDS = 30
 STATES = ('queued', 'running', 'completed', 'failed', 'cancelled')
@@ -266,21 +267,24 @@ class RemoteVoxCPM2Provider:
                 'execution_hold': health['execution_hold'], 'publication_eligible': False}
 
     @staticmethod
-    def _job(value, key, text_hash, expected):
+    def _job(value, key, text_hash, expected, *, execution_mode=None):
         if (value.get('id') != key or value.get('state') not in STATES or
                 value.get('text_sha256') != text_hash or provenance(value.get('provenance')) != expected):
             raise VoiceError('NARRATION_HOST_RECEIPT_MISMATCH')
+        if execution_mode is not None and value.get('execution_mode') != execution_mode:
+            raise VoiceError('NARRATION_HOST_EXECUTION_MODE_MISMATCH')
         return value
 
-    def _complete(self, key, text_hash, expected, initial, cancel, *, poll_seconds=None):
-        job = self._job(initial, key, text_hash, expected)
+    def _complete(self, key, text_hash, expected, initial, cancel, *, poll_seconds=None, execution_mode=None):
+        job = self._job(initial, key, text_hash, expected, execution_mode=execution_mode)
         deadline = time.monotonic() + (POLL_SECONDS if poll_seconds is None else poll_seconds)
         while job['state'] in ('queued', 'running'):
             if cancel and cancel.is_set(): raise VoiceError('NARRATION_CANCELLED_HOST_STATUS_UNVERIFIED')
             if time.monotonic() >= deadline: raise VoiceError('NARRATION_POLL_DEADLINE')
             if cancel: cancel.wait(.25)
             else: time.sleep(.25)
-            job = self._job(self._json('GET', '/v1/narrations/' + key, cancel=cancel), key, text_hash, expected)
+            job = self._job(self._json('GET', '/v1/narrations/' + key, cancel=cancel), key,
+                            text_hash, expected, execution_mode=execution_mode)
         if job['state'] != 'completed':
             raise VoiceError('NARRATION_' + job['state'].upper())
         return job
@@ -347,7 +351,8 @@ class RemoteVoxCPM2Provider:
         else:
             # Capability drift never turns an uncertain batch into another POST.
             initial = self._json('GET', '/v1/narrations/' + job_id, cancel=cancel)
-        job = self._complete(job_id, text_hash, expected, initial, cancel, poll_seconds=BATCH_POLL_SECONDS)
+        job = self._complete(job_id, text_hash, expected, initial, cancel,
+                             poll_seconds=BATCH_POLL_SECONDS, execution_mode=BATCH_EXECUTION_MODE)
         if not isinstance(job.get('audio'), dict): raise VoiceError('INVALID_NARRATION_AUDIO_RECEIPT')
         checked_cues(job.get('cues'), parts, job['audio'])
         intent['host_jobs'] = [{name: job[name] for name in ('id', 'state', 'text_sha256')}]
@@ -355,7 +360,8 @@ class RemoteVoxCPM2Provider:
         _, audio = self._audio(directory, 0, job, cancel, final=True)
         cues = checked_cues(job.get('cues'), parts, audio)
         intent['host_jobs'][0]['audio_sha256'] = job['audio']['sha256']
-        intent.update(status='generated_pending_review', cues=cues, audio=audio)
+        intent.update(status='generated_pending_review', cues=cues, audio=audio,
+                      execution_mode=job['execution_mode'])
         intent.pop('error', None); checkpoint(receipt, intent)
         return intent
 
@@ -387,6 +393,7 @@ class RemoteVoxCPM2Provider:
                     checked_cues(intent.get('cues'), parts, audio, 'NARRATION_LOCAL_RECEIPT_CHANGED')
                     if intent.get('request_mode') == BATCH_MODE and (
                             len(intent['host_jobs']) != 1 or intent['host_jobs'][0].get('state') != 'completed'
+                            or intent.get('execution_mode') != BATCH_EXECUTION_MODE
                             or intent['host_jobs'][0].get('audio_sha256') != audio['sha256']):
                         raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
                     return intent
@@ -477,7 +484,9 @@ class RemoteVoxCPM2Provider:
             if job.get('state') in ('submission_intent', 'queued', 'running'):
                 key = job.get('id')
                 if not isinstance(key, str) or not ID.fullmatch(key): raise VoiceError('INVALID_NARRATION_RECEIPT')
-                result = self._job(self._json('POST', '/v1/narrations/' + key + '/cancel', {}), key, job.get('text_sha256'), expected)
+                mode = BATCH_EXECUTION_MODE if receipt.get('request_mode') == BATCH_MODE else None
+                result = self._job(self._json('POST', '/v1/narrations/' + key + '/cancel', {}), key,
+                                   job.get('text_sha256'), expected, execution_mode=mode)
                 results.append({'id': key, 'state': result['state']})
         return {'provider': PROVIDER, 'collector_job_id': job_id, 'host_jobs': results,
                 'status': 'HOST_STATUS_OBSERVED' if results else 'NO_ACTIVE_HOST_JOB', 'publication_eligible': False}

@@ -51,6 +51,7 @@ class BatchClientTests(unittest.TestCase):
         audio = inspect_wav(self.data)
         audio['duration'] = audio.pop('duration_seconds'); audio['bytes'] = len(self.data)
         return {'id': payload['idempotency_key'], 'state': 'completed',
+                'execution_mode': voice.BATCH_EXECUTION_MODE,
                 'text_sha256': hashlib.sha256(payload['text'].encode()).hexdigest(),
                 'provenance': self.proof, 'audio': audio,
                 'cues': [{'text': self.parts[0], 'start_sample': 0, 'end_sample': 800, 'start': 0, 'end': .1},
@@ -89,6 +90,7 @@ class BatchClientTests(unittest.TestCase):
                                      'narrator_id': voice.NARRATOR, 'segments': self.parts}])
         self.assertEqual(len(self.downloads), 1)
         self.assertEqual(result['request_mode'], voice.BATCH_MODE)
+        self.assertEqual(result['execution_mode'], 'cli_segment_batch_v1')
         self.assertEqual([job['id'] for job in result['host_jobs']], [self.key])
         self.assertEqual(result['host_jobs'][0]['audio_sha256'], result['audio']['sha256'])
         path = self.spool / self.key / 'narration.wav'
@@ -172,6 +174,43 @@ class BatchClientTests(unittest.TestCase):
                 self.mutate = mutate
                 with self.assertRaisesRegex(voice.VoiceError, 'RECEIPT_MISMATCH'): self.generate()
         self.assertEqual(self.downloads, [])
+
+    def test_missing_or_wrong_host_execution_mode_blocks_before_poll_or_download(self):
+        for index, mode in enumerate((None, 'canonical_narrate_ps1', True)):
+            with self.subTest(mode=mode):
+                self.key = f'{index + 80:032x}'
+                def mutate(value):
+                    value.update(state='running')
+                    if mode is None: value.pop('execution_mode')
+                    else: value['execution_mode'] = mode
+                    return value
+                self.mutate = mutate
+                with self.assertRaisesRegex(voice.VoiceError, 'HOST_EXECUTION_MODE_MISMATCH'): self.generate()
+        self.assertEqual(self.gets, [])
+        self.assertEqual(self.downloads, [])
+        self.assertEqual(len(self.posts), 3)  # Each distinct job got one batch attempt, never a fan-out.
+
+    def test_polled_execution_mode_drift_remains_same_job_without_fallback(self):
+        def host(method, path, payload=None, cancel=None):
+            value = self.json_host(method, path, payload, cancel)
+            if method == 'POST':
+                self.jobs[self.key]['execution_mode'] = 'canonical_narrate_ps1'
+                return {**value, 'state': 'running'}
+            return value
+        with patch.object(self.provider, '_json', side_effect=host), patch.object(voice.time, 'sleep'):
+            with self.assertRaisesRegex(voice.VoiceError, 'HOST_EXECUTION_MODE_MISMATCH'): self.generate()
+        self.assertEqual(len(self.posts), 1)
+        self.assertEqual(self.gets, ['/v1/narrations/' + self.key])
+        self.assertEqual(self.downloads, [])
+
+    def test_completed_receipt_cannot_relabel_cli_batch_as_canonical_script_execution(self):
+        self.generate()
+        path = self.spool / self.key / 'narration.json'
+        receipt = json.loads(path.read_text()); receipt['execution_mode'] = 'canonical_narrate_ps1'
+        checkpoint(path, receipt)
+        with patch.object(self.provider, '_json') as network:
+            with self.assertRaisesRegex(voice.VoiceError, 'LOCAL_RECEIPT_CHANGED'): self.generate()
+            network.assert_not_called()
 
     def test_checkpoint_failure_after_verified_batch_wav_recovers_without_second_download(self):
         original_checkpoint = voice.checkpoint
