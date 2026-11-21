@@ -1,5 +1,71 @@
 # November 20 finalization execution results
 
+## November21 final acceptance: background API and real remote batch PASS
+
+Current source checkpoint `d48b18232718a98315fc2ad086421c084465a9e9`, branch
+`feature/collector-v7-overnight`; this documentation commit follows it.
+The owner completed the checked windowless startup. Strict same-ledger,
+limited-owner task/process and zero-child checks passed, as did loopback
+401/401/200 authentication. Protected pythonw.exe hosts only the lightweight API;
+the canonical inference interpreter, reference, model and settings are unchanged.
+The setup PowerShell window can close after PASS. Windows sign-out/reboot
+acceptance remains NOT TESTED. Never replay older blocked recovery scripts.
+
+One new FORGE request `28edfa96a8744a15800b6963c56c1665` generated two segments
+in one CUDA/bfloat16 model session and returned real WAV through private
+authenticated HTTPS9443. Host log shows exactly one model load and2/2 outputs;
+owned process exit0, zero active owned processes,347.074s. Full client call
+412.156s. Authenticated status remains PASS afterward with no execution hold.
+Host physical WAV, host API receipt and downloaded FORGE bytes match. Full PCM
+decode and exact segment concatenation PASS; cues cover0–3.68–7.68s using actual
+sample boundaries0–176640–368640. Native editor's existing receipt caller and
+shared validation accept the actual schema3 receipt; independent source review
+found no missing integration. No new project/render modification was needed.
+
+**REMOTE_BATCH_NARRATION_PASS**.48000Hz mono PCM16,368640frames,7.68s;
+SHA `06a7fc3b7188c5eadbe9f1ef3ce918bac218527fbf51877ab470d2347062151c`.
+WAV and narration.json:
+`C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87/remote-narration-v1/28edfa96a8744a15800b6963c56c1665/`.
+Diagnostic listening NOT TESTED; the owner-approved final video below is unchanged.
+Private proof, original intent, authenticated host receipt, process/log and
+read-only verifier: `KnowledgeNetwork-Private/narrator-remote-batch-acceptance-v1/`.
+Acceptance SHA `d8c8f5ef8f0052ccace55dc074a64356908fa24b6e49a310bba551064702ec1c`.
+
+Canonical script SHA98b75e53...72f189, config976d46c1...1e9bc9,
+model7936080b41163874f38610f46f438e2c0757f9fd and license4f10acc2...65e4
+match the reviewed manifest. CFG2/ten steps/no denoiser/no optimization/local-only
+settings remain. Earlier actual no-denoiser import trace scoped kaldiio/FunASR
+inactivity to that tested path; no new import instrumentation was asserted.
+Private execution/generated-output rights review and dependency redistribution
+remain distinct. Packaged NVIDIA/LGPL/dependency redistribution is not accepted.
+
+Fresh worker health: healthy windows_service, original worker ID, companion
+enabled, no media hold, publication paused and production scheduler disabled.
+Final approved MP4/project hashes rechecked unchanged:
+`b77d0d341eabae4e36c38048673ea09269b0dfd00705062ad6691b87aa214fe8` /
+`033a328c119523b6fa764c79242f858a4df364509e81572c47a6a443952d88d9`.
+Playback/edit/launch paths below remain authoritative. No new render was run.
+
+PASS:7 focused windowless tests including2 native Windows, independent security
+review and CI [push44899271604](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/44899271604)
+/[PR44899274736](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/44899274736).
+Windows606 tests575 passed/31 skipped, Ubuntu606 tests487 passed/119 skipped;
+worker190 self-checks and native WPF build PASS. No current failed check; earlier
+failed operations remain historical below. NOT TESTED: sign-out/reboot, scheduled
+Assistant reliability, isolated installer upgrade/uninstall/rollback and new
+diagnostic listening. Manual rollback evidence is retained; no rollback was run.
+No installer rebuild/deployment or unrelated network/service change.
+
+Prior10 obsolete FORGE-private staging code copies remain safely archived with
+exact hashes/physical IDs/SDDL receipt. No automatic deletion. Active runtime,
+approved media/assets, original evidence, backups and four SSH files stay intact.
+PR20 draft/unmerged. **Publication remains PAUSED.**
+
+## Historical continuation records
+
+The pending/blocked statements and checked commands below describe earlier
+checkpoints, not instructions to rerun them against the accepted running service.
+
 ## Disabled-task checkpoint correction
 
 Offline-v3 backed up code/task and disabled the stopped task, then rejected stale

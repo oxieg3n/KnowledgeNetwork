@@ -1,6 +1,61 @@
 # V9 handoff - The Knowledge Network Collector
 
-## Current result: real batch parity passed; windowless supervisor pending
+## Current result: windowless API and real FORGE batch PASS
+
+November21 continuation, branch `feature/collector-v7-overnight`, source checkpoint
+`d48b18232718a98315fc2ad086421c084465a9e9` (this receipt update follows it).
+The checked windowless startup completed on BLACKHAT-BASE. Limited-owner
+pythonw.exe supervisor runs in the background; loopback authentication returned
+401 missing bearer /401 incorrect bearer /200 valid bearer. Same physical
+schema2 ledger, strict task/process proof including zero children at startup,
+reviewed manifest and accepted parity passed. No new bearer/route/policy change.
+The successful setup PowerShell window can close; keep the owner's Windows
+session signed in. Sign-out/reboot recovery has not been accepted.
+
+**REMOTE_BATCH_NARRATION_PASS:** FORGE submitted exactly one request with durable
+ID `28edfa96a8744a15800b6963c56c1665` through authenticated private HTTPS9443.
+Host completed both segments with exactly one logged model load, CUDA/bfloat16,
+exit0 and owned_active_processes0. Batch-process runtime347.074s; full client
+request412.156s including integrity checks and transfer. Supervisor remains ready
+after the model exits. This implements load once per complete job, all segments,
+then process exit/unload; it does not keep the GPU model resident between jobs.
+
+Returned WAV:48000Hz mono PCM16,368640frames,7.68s, SHA
+`06a7fc3b7188c5eadbe9f1ef3ce918bac218527fbf51877ab470d2347062151c`.
+Host physical bytes, host authenticated receipt and FORGE downloaded bytes match.
+Full PCM decode and exact two-segment PCM concatenation PASS. Cues0–176640 and
+176640–368640 are contiguous and sample-derived. Shared receipt validator and
+the actual native editor receipt caller accept this schema3 output without a
+source change. Independent caller review PASS. This new diagnostic has no human
+listening approval; the previously approved final video remains unchanged.
+
+FORGE output is under
+`C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87/remote-narration-v1/28edfa96a8744a15800b6963c56c1665/`
+(`narration.wav` and `narration.json`). Private acceptance/logs are retained in
+`C:/Admin/Projects/KnowledgeNetwork-Private/narrator-remote-batch-acceptance-v1/`;
+acceptance SHA `d8c8f5ef8f0052ccace55dc074a64356908fa24b6e49a310bba551064702ec1c`.
+Windowless startup receipts/rollback are retained in the private
+`narrator-windowless-v1/live-acceptance/` and protected host
+`NarratorStandaloneV1/batch-update-v1/windowless-start-a44952a00068437ca5ac5daef34b1073-review`.
+Do not rerun old recovery/updater/startup scripts against the running service.
+
+Installed Collector health was rechecked: same worker
+`cb6ce3cd482148e7b8b0c8661ec8c6e9`, windows_service, companion enabled,
+no media reconciliation hold, publication_paused=true, production scheduler=false.
+Approved final MP4 and native project were rehashed unchanged. Paths, full hashes,
+launch instructions and remaining release limitations are in
+[finalization results](FINALIZATION-RESULTS-2026-11-20.md).
+
+PASS:7 focused windowless checks including2 native Windows; independent security
+review; full push/PR CI44899271604/44899274736 at d48b182. Windows606 tests:
+575 passed/31 skipped; Ubuntu606:487 passed/119 skipped; worker190 checks and
+WPF build PASS. Platform skips are not live host acceptance. No new render,
+inference retry, installer deployment, Gateway or443/8443 change occurred.
+Archive-only retention remains mandatory; prior10 verified private staging copies
+remain archived, active runtime/media/backups/SSH/evidence remain in place.
+PR20 stays draft/unmerged. **Publication remains PAUSED.**
+
+## Historical checkpoint: parity passed, before windowless startup
 
 V4 generated two segments in one real CUDA/bfloat16 model session. Joined WAV:
 9.44s,48000Hz mono PCM16,453120frames, SHA
