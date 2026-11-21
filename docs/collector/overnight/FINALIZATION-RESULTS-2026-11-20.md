@@ -1,5 +1,179 @@
 # November 20 finalization execution results
 
+## Current verified result: completed local video, owner preview approved
+
+The owner reported watching and approving the exact MP4 below. The private
+`qc-real-final-v4/owner-preview-approval.private.json` binds that statement to
+its SHA and the rendered project. No detailed listening observations are
+invented. This approval **does not authorize publication**. PR20 is draft and
+unmerged. Older blocked/pending entries below are historical evidence; never
+rerun their bootstrap commands against the now-running service.
+
+### Actual host and FORGE acceptance
+
+The V5 owner bootstrap completed. The fixed standalone service runs as the
+recorded limited owner, bound to127.0.0.1:39110. Its native startup receipt
+records401 missing bearer,401 incorrect bearer and200 authenticated health with
+the expected model/script/config/license provenance. Independent source/task/
+receipt review passed. The dedicated nonadmin, key-pinned SSH health passed.
+
+Private HTTPS9443 has normal CA/hostname TLS verification and literal private
+address pins. FORGE status PASS; absent/incorrect bearer401; command/model/path/
+voice fields400. Before/after Serve comparison shows only the new9443 proxy;
+443/8443 and Gateway are unchanged, Funnel absent. The existing approved v5
+policy and official ten-preview review were reused. An unauthorized-peer packet
+probe was not performed; policy-level restriction is the recorded evidence.
+The bearer was transferred only as an RSA-wrapped envelope and saved in the
+owner-scoped VoxCPM2 Credential Manager namespace. Four nonsecret user variables
+now point to the verified configuration; no token is in environment, Git or logs.
+
+First real remote request `331bd2e40aff46b790256bf156204c12` returned48000Hz
+mono PCM16/192000frames/4.00s, SHA
+`b484dce32179e079b4b428d831e4294ea42839fdb99479747325e59c2aef9e46`.
+Host and FORGE bytes match; reference/script pre/post hashes are unchanged.
+This is `REMOTE_NARRATION_PASS`, not a fixture or file-copy substitute.
+
+Actual installed Collector job `632b3b9a21b34e92a944aae80b478a81` succeeded
+through the owner-session companion at attempt1. Its eight measured segments
+are3.84/4.16/5.76/6.72/4.80/4.96/4.16/3.36s. All host/FORGE WAV hashes match;
+joined PCM equals their exact concatenation. Body audio:37.76s,48000Hz mono
+PCM16,1812480frames, SHA
+`77a1448af4a4c4251afdd7498e19a93cb70735eb3917a2d0bd41a82ee3e070d4`.
+Receipt SHA `c7703a97860fd3efd3b7b2e70385b11946e05ea0949834df6ec8caaa28b1cd11`.
+Approved prior CUDA/bfloat16/import evidence is reused; this new run was not
+separately instrumented for device/import tracing. Canonical settings/reference
+and model revision were validated by the actual host manifest path.
+
+### Actual final media
+
+Vault: `C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87`.
+Paths below are relative to that vault.
+
+| Artifact | Bytes / SHA-256 |
+| --- | --- |
+| `project-final-real-v4/knowledge-network-50s-local-review.mp4` |38590437 / `b77d0d341eabae4e36c38048673ea09269b0dfd00705062ad6691b87aa214fe8` |
+| `project-final-real-v4/knowledge-network-review-v2.osp` |930165 / `033a328c119523b6fa764c79242f858a4df364509e81572c47a6a443952d88d9` |
+
+Actual native project:24 editable clips, five independent layers, three body
+scenes/three native effects, titles/lower thirds, animated graphics, eight
+sample-derived captions and separate ducked music. Exactly48 intro frames,
+1218 body frames and234 original portrait-outro frames:1500frames/50.0s.
+Exact badge/outro source pins passed; the four-second preview was not inserted.
+Original outro source, speech and gain1 are preserved. Save/reopen/real graphic
+edit/save/reopen passed; final heading is “Verify the bytes. Check the source.”
+Single export job `e98ae02ddd7640c1aaf5d5cddcc31ce4` completed at revision71.
+
+PASS: both streams50.000000s;1080x1920/30/1FPS/1500decoded frames; H264/AAC48k
+stereo; full decode exit0 and empty errors; no black interval at the recorded
+threshold. One0.685s quiet interval at41.613–42.298 spans the final music fade
+and original outro lead-in. Peak−5.88dBFS; integrated loudness−28.5LUFS. Signal
+metrics do not substitute for listening. Seventeen exported representative
+frames were inspected; root independently inspected intro, all three body
+scenes/captions and original CTA. The owner subsequently approved the preview.
+
+QC/launch instructions and exact source/timeline hashes are under
+`qc-real-final-v4/`. The OpenShot GUI was left clean with the final project.
+Keep the complete vault together and save future edits under a new version;
+edits invalidate this exact render's approval. Local playback:
+
+```powershell
+Start-Process 'C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87/project-final-real-v4/knowledge-network-50s-local-review.mp4'
+```
+
+### Program changes and remaining operational gate
+
+The observed music ownership false-positive was JSON integer0→float0.0 on
+position/start after native save/reopen. Retained pre-save native output matches
+the original baseline; volume/keyframes were identical. The shared fix accepts
+only exact integral numeric encoding equivalents, never rounded timing or gain
+changes. Four new negative/positive tests and independent review passed. The
+failed pre-mutation intent remains in place; a new reconciled output revision
+was used. Original83aa/820f projects remain unchanged. Native autosave updated
+the active preflight working project, but exact1283 bytes remain in its retained
+recovery ZIP and an exclusive QC copy; no checkpoint data was lost.
+
+The owner requested job-scoped model lifetime: load once, generate every
+segment, unload after that job. Existing VoxCPM2 CLI batch is reused with the
+same voice/settings, one owned process, strict complete-output checks, private
+bounded logs, durable single-job/cue receipts, cancellation and uncertain-outcome
+holds. Client recovery keeps legacy IDs; new batches require advertised support
+and never fall back to repeated submissions. Model remains unloaded while idle.
+Source/focused tests and isolated native process tests passed. **Live new-batch
+parity/activation is not yet accepted.** The nonadmin bridge cannot update
+administrator-protected code/task action. The reviewed updater is staged below.
+No old V2 recovery, D: ACL alteration or extra server is required.
+
+Full local supported regression:565 tests,546 passed/19 skipped in266.668s.
+Initial hosted run44866552307 exposed the old cross-component fixture expecting
+two host jobs; it was updated to exercise one real loopback HTTP batch, keeping
+PCM/caption/idempotency assertions and asserting one executor call/host row.
+Focused integration then passed. Hosted push44867598017 and PR44867601802
+passed at536828a: Windows565/546 passed/19 skipped; Ubuntu565/458 passed/107
+skipped; worker190 checks and native WPF build PASS. Durable synthetic logs and
+hashes are retained in `KnowledgeNetwork-Private/ci-durable-44867598017/`.
+New updater-only hosted acceptance is tracked separately after the final push.
+
+Existing pipefix002 installer/hash/rollback and installed worker identity are
+retained, without reinstall or rebuild. Isolated install/upgrade/rollback,
+scheduled Assistant/reboot and separate Dot/CUA operation remain NOT TESTED.
+Local-use/media rights review and actual manifest42f270ac…9d84 remain applicable;
+kaldiio's tested inactivity is scoped, and dependency redistribution remains
+uncleared. Original declarations/licenses/model/reference files are unchanged.
+
+The owner requests cleanup after finalization under the permanent archive-only
+policy. Archive inventory is bounded to confirmed superseded staging copies;
+no cleanup move or deletion is claimed here. Active media, credentials, trusted
+runtime, referenced receipts, original assets and rollback backups stay put.
+
+## Current batch activation: one required elevated host step
+
+The final updater source is `docs/collector/host-tools/Update-KnowledgeNetworkNarratorBatch.ps1`,
+SHA `5002de3dd3680cbd89ab55915f211cf816e8d8c07b30e42ef049024b2413ba46`.
+Independent security review PASS, including the final bounded private failure-log
+change. Focused tests16:12 passed/4 opt-in native skipped in15.033s. The four
+native cases were separately accepted before the diagnostic-only follow-up:
+physical SQLite identity/mismatch/rename/writer contention; exact child/PID/raw
+FILETIME/held-exit binding; PowerShell parsing; Restricted-policy captured,
+SHA-verified strict UTF8 execution with negative controls. Fixtures are retained.
+
+The exact seven-file bundle is staged on both computers with identical bytes:
+
+- FORGE: `C:/Admin/Projects/KnowledgeNetwork-Private/narrator-batch-update-v1/`.
+- Host: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-batch-update-v1/`.
+- Private bundle SHA: `c372224c6299419ea4575cb303a640708ab3cbbcc696e9a017c01a66b1159a5d`.
+- Checked command: FORGE stage's `Host-Narrator-Batch-Update.txt`; supplied to owner.
+
+Run that captured-byte command once in Administrator PowerShell on BLACKHAT-BASE
+as its recorded owner. The restricted SSH identity deliberately cannot perform
+this protected task/code update. This is an OS privilege prerequisite, not a new
+permission request. A failed/uncertain run must preserve `batch-update-v1` for
+reconciliation; never rerun it or select another work directory.
+
+The updater revalidates installed protected Python3.14.10 and37 runtime files,
+original source/manifest/audio, exact task/owner/PID/raw creation time and the
+same physical ledger under a held protected namespace. It commits its own idle
+maintenance fence, retains a writer lock through confirmed old-process exit,
+backs up the original consistent database/code/task/descriptors, then tests one
+new two-segment batch under a Limited owner task. Only a successful complete
+batch/process-exit/parity receipt permits capability activation. No route,
+Gateway, firewall, canonical script/reference/model or old controller changes.
+The original nine completed host jobs must remain intact. Idle model memory is
+released by the owned batch CLI process exiting, not an always-resident model.
+
+New task registration/switch, actual batch CUDA/parity, a real FORGE batch and
+manual rollback remain **NOT TESTED live** until execution. A rollback is a
+reviewed new-code configuration with batching disabled and a fresh startup
+receipt directory, preserving the current database; never restore schema1 over
+new schema2 records. Unknown task/exit/fence outcomes stay held for review.
+The original working service and approved final video are preserved while this
+step is pending. No media job is automatically retried.
+
+## Historical execution log: earlier bootstrap commands are superseded
+
+Everything below is retained development history. The standalone service and
+final video now pass; earlier absent-root, missing-media and bootstrap commands
+must not be treated as current instructions. Do not rerun V3/V4/V5 installation.
+
 ## V5 bootstrap: missing-task regression fixed
 
 The V4 owner attempt reported FileNotFoundException/0x80070002. Native read-only

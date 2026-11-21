@@ -1,5 +1,64 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Current result: real Short complete and owner-approved
+
+The owner watched and approved MP4 SHA
+`b77d0d341eabae4e36c38048673ea09269b0dfd00705062ad6691b87aa214fe8`.
+This is exact-render preview approval; **publication remains PAUSED**. PR20
+remains draft/unmerged. [Current execution results](FINALIZATION-RESULTS-2026-11-20.md)
+supersede all older blocked-bootstrap, missing-asset and pending-preview notes.
+Do not rerun any historical V3/V4/V5 installer command below.
+
+Real service deployment, local401/401/200 authentication, normal verified TLS,
+remote401/401/status PASS and forbidden-schema400 passed. Only private9443 was
+added; existing443/8443 and Gateway are unchanged. Pinned dedicated SSH health
+also works. No new policy change or Funnel/public endpoint.
+
+The actual Collector narration job `632b3b9a21b34e92a944aae80b478a81` succeeded
+at attempt1. All eight host/FORGE segment hashes match; joined PCM is exactly
+their concatenation:37.76s,48000Hz mono PCM16,1812480frames, WAV SHA
+`77a1448af4a4c4251afdd7498e19a93cb70735eb3917a2d0bd41a82ee3e070d4`.
+
+Final files are beneath
+`C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87/project-final-real-v4/`:
+
+- `knowledge-network-50s-local-review.mp4`: exact50s/1500frames/1080x1920/30FPS;
+  full decode PASS. H264/AAC48k stereo, no detected black span.
+- `knowledge-network-review-v2.osp`: SHA
+  `033a328c119523b6fa764c79242f858a4df364509e81572c47a6a443952d88d9`;
+ 24 editable clips/five layers/three scenes/effects/eight measured captions,
+  ducked music, one48-frame dynamic intro and one234-frame original outro.
+  Save/reopen/real graphic edit/save/reopen PASS. Export job
+  `e98ae02ddd7640c1aaf5d5cddcc31ce4`, revision71, completed once.
+
+The owner's additional requirement is **one model load per complete narration
+job, all segments sequentially, then unload on completion/failure/cancellation**.
+Batch host/client source and focused/native synthetic tests passed; local full
+regression565/546 passed/19 skipped. Live batch parity/activation is still pending
+the reviewed elevated-owner updater: the nonadmin SSH identity cannot change
+the protected task/code. Current deployed host still uses canonical one-shot
+calls. New client multi-segment requests fail before submission until batch
+support is advertised; existing legacy receipts recover their original IDs.
+Reviewed updater SHA5002de3d...ba46 and private bundle SHA c372224c...59a5d
+are staged in `narrator-batch-update-v1` on both computers; the checked command
+requires one elevated recorded-owner run on BLACKHAT-BASE. Original nine jobs
+are fenced/backed up before a tested two-segment parity task. Actual batch
+activation/remote acceptance remains NOT TESTED; never retry an uncertain update.
+Full hosted source regression44867598017/44867601802 passed (Windows565/546,
+Ubuntu565/458, worker190 and WPF build). Final updater16 tests:12 passed/4
+opt-in native skipped; those native cases passed separately before logging-only
+changes. Independent security review PASS.
+No second server, idle-resident model or automatic replay was introduced.
+
+Archive-only cleanup is authorized after finalization. Active media, receipts,
+credentials, runtime and rollback assets remain protected. Old controller/V2
+recovery remains deferred; no mutation of its task, ledger or five backups.
+
+## Historical log: do not rerun superseded bootstrap commands
+
+The following entries are preserved history. Current acceptance and the only
+remaining elevated batch step are above and in the linked execution results.
+
 ## V5 bootstrap: native missing-task check corrected
 
 The owner's V4 attempt reported FileNotFoundException/0x80070002. A read-only
