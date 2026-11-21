@@ -30,6 +30,9 @@ NARRATOR = 'oxiegen-narrator'
 PROVIDER = 'voxcpm2_remote'
 NAMESPACE = 'VoxCPM2'
 POLL_SECONDS = 600
+BATCH_POLL_SECONDS = 1230  # Host manifest300 + bounded runner900 + response headroom.
+BATCH_MODE = 'segment_batch_v1'
+BATCH_MAX_BODY = 131072  # Full UTF-8 text plus its segments are both transmitted.
 REQUEST_SECONDS = 30
 STATES = ('queued', 'running', 'completed', 'failed', 'cancelled')
 HASH = re.compile('[a-f0-9]{64}')
@@ -61,6 +64,28 @@ def request_identity(job_id, text, segments):
             ' '.join(text.split()) != ' '.join(' '.join(parts).split())):
         raise VoiceError('INVALID_NARRATION_SEGMENTS')
     return parts
+
+
+def checked_cues(cues, parts, audio, error='NARRATION_BATCH_CUES_INVALID'):
+    frames, rate = audio.get('frames'), audio.get('sample_rate')
+    if (type(frames) is not int or not 0 < frames <= MAX_WAV
+            or type(rate) is not int or not 8000 <= rate <= 192000
+            or frames > rate * 600 or not isinstance(cues, list) or len(cues) != len(parts)):
+        raise VoiceError(error)
+    last, result = 0, []
+    for cue, part in zip(cues, parts):
+        if (not isinstance(cue, dict) or cue.get('text') != part
+                or type(cue.get('start_sample')) is not int or type(cue.get('end_sample')) is not int
+                or cue['start_sample'] != last or not last < cue['end_sample'] <= frames
+                or any(type(cue.get(key)) not in (int, float) or not math.isfinite(cue[key])
+                       or abs(cue[key] - sample / rate) > 1e-9
+                       for key, sample in (('start', last), ('end', cue['end_sample'])))):
+            raise VoiceError(error)
+        result.append({key: cue[key] for key in ('text', 'start_sample', 'end_sample', 'start', 'end')})
+        last = cue['end_sample']
+    if last != frames:
+        raise VoiceError(error)
+    return result
 
 
 def retain_partial(path, reason):
@@ -157,7 +182,8 @@ class RemoteVoxCPM2Provider:
                    'Accept': 'audio/wav' if destination is not None else 'application/json'}
         body = json.dumps(payload, ensure_ascii=False).encode() if post else None
         if body is not None:
-            if len(body) > 65536:
+            limit = BATCH_MAX_BODY if path == '/v1/narrations' and 'segments' in payload else 65536
+            if len(body) > limit:
                 raise VoiceError('NARRATOR_INPUT_TOO_LARGE')
             headers['Content-Type'] = 'application/json'
         deadline = time.monotonic() + REQUEST_SECONDS
@@ -246,9 +272,9 @@ class RemoteVoxCPM2Provider:
             raise VoiceError('NARRATION_HOST_RECEIPT_MISMATCH')
         return value
 
-    def _complete(self, key, text_hash, expected, initial, cancel):
+    def _complete(self, key, text_hash, expected, initial, cancel, *, poll_seconds=None):
         job = self._job(initial, key, text_hash, expected)
-        deadline = time.monotonic() + POLL_SECONDS
+        deadline = time.monotonic() + (POLL_SECONDS if poll_seconds is None else poll_seconds)
         while job['state'] in ('queued', 'running'):
             if cancel and cancel.is_set(): raise VoiceError('NARRATION_CANCELLED_HOST_STATUS_UNVERIFIED')
             if time.monotonic() >= deadline: raise VoiceError('NARRATION_POLL_DEADLINE')
@@ -259,15 +285,23 @@ class RemoteVoxCPM2Provider:
             raise VoiceError('NARRATION_' + job['state'].upper())
         return job
 
-    def _audio(self, directory, index, job, cancel):
-        path = directory / f'segment-{index:02d}.wav'
+    def _audio(self, directory, index, job, cancel, *, final=False):
+        path = directory / ('narration.wav' if final else f'segment-{index:02d}.wav')
         temporary = directory / ('download-' + uuid.uuid4().hex + '.partial')
         try:
-            if not path.exists():
+            try:
+                info = path.lstat()
+            except FileNotFoundError:
+                info = None
+            if info is None:
                 self._request('GET', '/v1/narrations/' + job['id'] + '/audio', destination=temporary, cancel=cancel)
                 source = temporary
             else: source = path
-            if source.stat().st_size > MAX_WAV: raise VoiceError('NARRATION_AUDIO_TOO_LARGE')
+            info = source.lstat()
+            if (source.is_symlink() or getattr(info, 'st_file_attributes', 0) & 0x400
+                    or not source.is_file() or info.st_nlink != 1):
+                raise VoiceError('NARRATION_LOCAL_OUTPUT_REQUIRES_RECONCILIATION')
+            if info.st_size > MAX_WAV: raise VoiceError('NARRATION_AUDIO_TOO_LARGE')
             audio = inspect_wav(source)
             expected = job.get('audio')
             if not isinstance(expected, dict): raise VoiceError('INVALID_NARRATION_AUDIO_RECEIPT')
@@ -283,6 +317,48 @@ class RemoteVoxCPM2Provider:
         finally:
             retain_partial(temporary, 'download_outcome_requires_reconciliation')
 
+    @staticmethod
+    def _batch_identity(intent, job_id, text_hash):
+        jobs = intent.get('host_jobs')
+        if not isinstance(jobs, list) or len(jobs) > 1:
+            raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
+        if jobs and (not isinstance(jobs[0], dict) or jobs[0].get('id') != job_id
+                     or jobs[0].get('text_sha256') != text_hash
+                     or jobs[0].get('state') not in (*STATES, 'submission_intent')):
+            raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
+        return jobs
+
+    def _batch(self, directory, receipt, intent, text, parts, expected, health, cancel):
+        job_id, text_hash = intent['collector_job_id'], intent['text_sha256']
+        jobs = self._batch_identity(intent, job_id, text_hash)
+        if not jobs:
+            if health.get('segment_batches') is not True:
+                raise VoiceError('BLOCKED_NARRATOR_SEGMENT_BATCH_UNSUPPORTED')
+            if health['execution_hold'] or health['status'] != 'ready':
+                raise VoiceError('BLOCKED_NARRATOR_EXECUTION_HOLD')
+            if shutil.disk_usage(self.spool).free < MAX_WAV * 3:
+                raise VoiceError('NARRATOR_DISK_RESERVE')
+            payload = {'idempotency_key': job_id, 'text': text, 'narrator_id': NARRATOR, 'segments': parts}
+            if len(json.dumps(payload, ensure_ascii=False).encode()) > BATCH_MAX_BODY:
+                raise VoiceError('NARRATOR_INPUT_TOO_LARGE')
+            intent['host_jobs'] = [{'id': job_id, 'text_sha256': text_hash, 'state': 'submission_intent'}]
+            intent.update(status='submission_intent'); checkpoint(receipt, intent)
+            initial = self._json('POST', '/v1/narrations', payload, cancel)
+        else:
+            # Capability drift never turns an uncertain batch into another POST.
+            initial = self._json('GET', '/v1/narrations/' + job_id, cancel=cancel)
+        job = self._complete(job_id, text_hash, expected, initial, cancel, poll_seconds=BATCH_POLL_SECONDS)
+        if not isinstance(job.get('audio'), dict): raise VoiceError('INVALID_NARRATION_AUDIO_RECEIPT')
+        checked_cues(job.get('cues'), parts, job['audio'])
+        intent['host_jobs'] = [{name: job[name] for name in ('id', 'state', 'text_sha256')}]
+        checkpoint(receipt, intent)
+        _, audio = self._audio(directory, 0, job, cancel, final=True)
+        cues = checked_cues(job.get('cues'), parts, audio)
+        intent['host_jobs'][0]['audio_sha256'] = job['audio']['sha256']
+        intent.update(status='generated_pending_review', cues=cues, audio=audio)
+        intent.pop('error', None); checkpoint(receipt, intent)
+        return intent
+
     def generate(self, job_id, text, *, segments=None, cancel=None):
         parts = request_identity(job_id, text, segments)
         expected = provenance(self.route.get('expected_provenance'))
@@ -294,37 +370,44 @@ class RemoteVoxCPM2Provider:
             receipt = directory / 'narration.json'
             if receipt.exists():
                 intent = read_json(receipt)
+                if intent.get('request_mode') == BATCH_MODE:
+                    identity = digest({'request_identity': identity, 'request_mode': BATCH_MODE})
                 if intent.get('request_sha256') != identity: raise VoiceError('NARRATION_IDEMPOTENCY_CONFLICT')
                 header = {'schema_version': 3, 'provider': PROVIDER, 'narrator_id': NARRATOR,
                     'collector_job_id': job_id, 'text_sha256': hashlib.sha256(text.encode()).hexdigest(),
                     'provenance': expected, 'review_only': True, 'publication_eligible': False}
                 if any(intent.get(key) != value for key, value in header.items()): raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
+                if 'request_mode' in intent and (intent['request_mode'] != BATCH_MODE or len(parts) < 2):
+                    raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
+                if intent.get('request_mode') == BATCH_MODE:
+                    self._batch_identity(intent, job_id, header['text_sha256'])
                 if intent.get('status') == 'generated_pending_review':
                     audio = inspect_wav(directory / 'narration.wav')
                     if audio != intent.get('audio'): raise VoiceError('NARRATION_LOCAL_AUDIO_CHANGED')
-                    cues, last = intent.get('cues'), 0
-                    if not isinstance(cues, list) or len(cues) != len(parts): raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
-                    for cue, part in zip(cues, parts):
-                        if (not isinstance(cue, dict) or cue.get('text') != part or type(cue.get('start_sample')) is not int or
-                                type(cue.get('end_sample')) is not int or cue['start_sample'] != last or
-                                not last < cue['end_sample'] <= audio['frames'] or
-                                any(type(cue.get(key)) not in (int, float) or not math.isfinite(cue[key]) or
-                                    abs(cue[key]-sample/audio['sample_rate']) > 1e-9 for key, sample in
-                                    (('start', last), ('end', cue['end_sample'])))):
-                            raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
-                        last = cue['end_sample']
-                    if last != audio['frames']: raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
+                    checked_cues(intent.get('cues'), parts, audio, 'NARRATION_LOCAL_RECEIPT_CHANGED')
+                    if intent.get('request_mode') == BATCH_MODE and (
+                            len(intent['host_jobs']) != 1 or intent['host_jobs'][0].get('state') != 'completed'
+                            or intent['host_jobs'][0].get('audio_sha256') != audio['sha256']):
+                        raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
                     return intent
             else:
+                if len(parts) > 1:
+                    identity = digest({'request_identity': identity, 'request_mode': BATCH_MODE})
                 intent = {'schema_version': 3, 'provider': PROVIDER, 'narrator_id': NARRATOR,
                     'collector_job_id': job_id, 'request_sha256': identity, 'text_sha256': hashlib.sha256(text.encode()).hexdigest(),
                     'provenance': expected, 'host_jobs': [], 'cues': [], 'review_only': True,
                     'publication_eligible': False, 'listening': 'NOT_TESTED', 'status': 'prepared'}
+                if len(parts) > 1: intent['request_mode'] = BATCH_MODE
                 checkpoint(directory / 'request.json', {'text': text, 'segments': parts, 'request_sha256': identity})
                 checkpoint(receipt, intent)
             try:
                 health = self._health(cancel)
                 if provenance(health.get('provenance')) != expected: raise VoiceError('BLOCKED_NARRATOR_PROVENANCE_CHANGED')
+                if intent.get('request_mode') == BATCH_MODE:
+                    if (' '.join(parts) != text or any(part != part.strip()
+                            or any(ord(c) < 32 or ord(c) == 127 for c in part) for part in parts)):
+                        raise VoiceError('INVALID_NARRATION_BATCH_SEGMENTS')
+                    return self._batch(directory, receipt, intent, text, parts, expected, health, cancel)
                 audio_parts, cues, offset, format_key = [], [], 0, None
                 for index, part in enumerate(parts):
                     if shutil.disk_usage(self.spool).free < MAX_WAV * 3: raise VoiceError('NARRATOR_DISK_RESERVE')

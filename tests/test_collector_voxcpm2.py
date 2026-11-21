@@ -15,7 +15,7 @@ import wave
 from youtube_ops.collector_voxcpm2 import RemoteVoxCPM2Provider, VoiceError, SERVICE, NARRATOR
 from youtube_ops.collector_credentials import (Credential, credential_target, read_secret,
                                                read_credential, write_credential)
-from youtube_ops.collector_narration_common import checkpoint, inspect_wav
+from youtube_ops.collector_narration_common import checkpoint, inspect_wav, digest
 
 
 def wav(frames=16000, rate=16000):
@@ -158,7 +158,24 @@ class DirectNarratorTests(unittest.TestCase):
                 self.provider._request('GET', '/health')
         self.assertLess(time.monotonic() - started, 1)
 
-    def test_measured_segments_join_without_estimated_word_times(self):
+    def test_legacy_measured_segments_recover_without_estimated_word_times(self):
+        # Explicit old schema3 intent: those original host IDs must stay recoverable.
+        job_id, text, parts = '1' * 32, 'First. Second.', ['First.', 'Second.']
+        directory = self.spool / job_id; directory.mkdir()
+        identity = digest({'job_id': job_id, 'text': text, 'segments': parts,
+                           'endpoint': digest(self.url), 'provenance': self.provenance})
+        jobs = []
+        for index, part in enumerate(parts):
+            key = hashlib.sha256((job_id + '/' + str(index)).encode()).hexdigest()[:32]
+            self.posts.append({'idempotency_key': key, 'text': part, 'narrator_id': NARRATOR})
+            self.jobs[key] = self.job(key, part, 8000 if index == 0 else 24000)
+            jobs.append({name: self.jobs[key][name] for name in ('id', 'state', 'text_sha256')})
+        checkpoint(directory / 'request.json', {'text': text, 'segments': parts, 'request_sha256': identity})
+        checkpoint(directory / 'narration.json', {'schema_version': 3, 'provider': 'voxcpm2_remote',
+            'narrator_id': NARRATOR, 'collector_job_id': job_id, 'request_sha256': identity,
+            'text_sha256': hashlib.sha256(text.encode()).hexdigest(), 'provenance': self.provenance,
+            'host_jobs': jobs, 'cues': [], 'review_only': True, 'publication_eligible': False,
+            'listening': 'NOT_TESTED', 'status': 'submission_intent'})
         with patch.object(self.provider, '_json', side_effect=self.json_host), patch.object(self.provider, '_request', side_effect=self.download):
             result = self.provider.generate('1' * 32, 'First. Second.', segments=['First.', 'Second.'])
             repeated = self.provider.generate('1' * 32, 'First. Second.', segments=['First.', 'Second.'])
