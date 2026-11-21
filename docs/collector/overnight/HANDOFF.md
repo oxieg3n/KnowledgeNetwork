@@ -12,8 +12,17 @@ in WORK/old-code and task-before.*. Captured private copy:
 
 A disposable native Scheduler test confirmed the bug: after setting Enabled=false,
 the same COM object's Xml is stale; fresh GetTask returns the correct disabled XML.
-The task was never run in that fixture. A fresh-task refresh and exact checkpoint
-continuation are being prepared. Do not rerun v3, re-enable/start the old launcher,
+The task was never run in that fixture. The exact checkpoint continuation is tested/staged as offline-v4, SHA
+`1d5276a4945a2588f013fbb9bf4bab2fd58a8cd216517fb0491aea57cfcc9b0a`.
+Checked owner command: private narrator-batch-offline-v4/Host-Offline-Continuation.txt.
+It pins six f226 receipts, exact disabled XML/SDDL and eight original/backup files,
+rejects later stages and reuses backups without repeating backup/disable.
+A hash-bound task-operation refresh fixes stale COM metadata for switch/start.
+All owner/lease/namespace/physical-ledger/model/parity gates and optional GPU
+handling remain. Thirteen focused checks PASS6.521s, including4 native Windows;
+independent review PASS. Actual recovery/parity/remote batch remain pending.
+Rollback remains manual, reviewed new source with batching disabled plus fresh
+startup UUID, preserving current DB; never restore schema1 over new records. Do not rerun v3, re-enable/start the old launcher,
 remove backups, or restart unrelated services. The installed Collector Windows
 service remains healthy, same workerID cb6ce3cd482148e7b8b0c8661ec8c6e9,
 companion enabled, no media hold, publication paused/scheduler disabled.

@@ -1,5 +1,16 @@
 # November 20 finalization execution results
 
+## Disabled-task checkpoint correction
+
+Offline-v3 backed up code/task and disabled the stopped task, then rejected stale
+COM XML. No DB/fence/model/code switch occurred. Native fixtures confirmed caching
+and fresh GetTask correction. Checked offline-v4 resumes only pinned f226 receipts,
+exact disabled task and original backups; no repeat backup/disable. Source SHA
+1d5276a4945a2588f013fbb9bf4bab2fd58a8cd216517fb0491aea57cfcc9b0a.
+Thirteen focused checks (4native) PASS6.521s; independent review PASS. Actual
+recovery/parity/remote batch/rollback remain unverified. Collector service healthy;
+no manual service restart. Latest HANDOFF contains command and rollback scope.
+
 ## Optional NVIDIA gate corrected
 
 Offline-v1 stopped before the recovery driver/task/database/model at an optional
