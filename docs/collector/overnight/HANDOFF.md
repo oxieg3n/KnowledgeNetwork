@@ -1,6 +1,24 @@
 # V9 handoff - The Knowledge Network Collector
 
-## Current host blocker: standalone listener absent
+## Current recovery checkpoint: narrator task disabled; do not restart manually
+
+Offline-v3 reached original-code/task backup and disabled the already-offline task,
+then failed its post-disable XML comparison. Retained snapshots show exact Ready3/
+enabled/0instances before, Disabled1/disabled/0instances after; no canonical server
+or listener. The blocked receipt says fence_committed=false. No ledger connection,
+model job, code switch or DB restore occurred. Original code and task backups remain
+in WORK/old-code and task-before.*. Captured private copy:
+`KnowledgeNetwork-Private/narrator-disabled-checkpoint-v1/`.
+
+A disposable native Scheduler test confirmed the bug: after setting Enabled=false,
+the same COM object's Xml is stale; fresh GetTask returns the correct disabled XML.
+The task was never run in that fixture. A fresh-task refresh and exact checkpoint
+continuation are being prepared. Do not rerun v3, re-enable/start the old launcher,
+remove backups, or restart unrelated services. The installed Collector Windows
+service remains healthy, same workerID cb6ce3cd482148e7b8b0c8661ec8c6e9,
+companion enabled, no media hold, publication paused/scheduler disabled.
+
+## Prior host blocker: standalone listener absent
 
 Owner read-only diagnostics6ae507... andf52f2a... both passed imports, elevated
 recorded-owner/runtime flags/image and actual bundle validation, then stopped at
