@@ -635,6 +635,6 @@ Write-New "$work/update-helper.py" $utf8.GetBytes($helper)
 Assert-Trust "$work/update-helper.py" $ownerSid
 Write-New "$work/prepared-only.private.json" $utf8.GetBytes((@{status='BUNDLE_CAPTURED_BEFORE_ACTIVATION';bundle_sha256=$BundleSha256;helper_sha256=(Hash-Bytes $utf8.GetBytes($helper));publication_paused=$true;host_runtime_changed=$false;database_opened=$false;task_changed=$false;network_changed=$false}|ConvertTo-Json))
 # Root must review and native-test these exact bytes before staging an owner command.
-& "$runtime/python.exe" -I -S -B "$work/update-helper.py" 1>"$work/owner-update.stdout.private.log" 2>"$work/owner-update.stderr.private.log"
-if($LASTEXITCODE -ne 0){throw 'Batch update blocked; preserve batch-update-v1 and inspect its private update-review receipt. Do not retry.'}
+$helperProcess=Start-Process -FilePath "$runtime/python.exe" -ArgumentList @('-I','-S','-B',"$work/update-helper.py") -WindowStyle Hidden -Wait -PassThru -RedirectStandardOutput "$work/owner-update.stdout.private.log" -RedirectStandardError "$work/owner-update.stderr.private.log"
+if($helperProcess.ExitCode -ne 0){throw 'Batch update blocked; preserve batch-update-v1 and inspect its private update-review receipt. Do not retry.'}
 Get-Content -LiteralPath "$work/owner-update.stdout.private.log" -Raw
