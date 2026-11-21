@@ -256,6 +256,18 @@ class BatchClientTests(unittest.TestCase):
         self.assertEqual(request.call_count, 2)
         self.assertEqual(len(self.posts), 1)
 
+    def test_batch_cancel_rejects_other_valid_job_id_before_any_network_call(self):
+        self.lose_post = True
+        with self.assertRaises(voice.VoiceError): self.generate()
+        path = self.spool / self.key / 'narration.json'
+        receipt = json.loads(path.read_text())
+        receipt['host_jobs'][0]['id'] = 'b' * 32
+        checkpoint(path, receipt)
+        with patch.object(self.provider, '_json') as network:
+            with self.assertRaisesRegex(voice.VoiceError, 'LOCAL_RECEIPT_CHANGED'):
+                self.provider.cancel(self.key)
+            network.assert_not_called()
+
     def test_batch_deadline_covers_manifest_and_runner_without_weakening_legacy_deadline(self):
         payload = {'idempotency_key': self.key, 'text': self.text}
         done = self.host_job(payload); queued = {**done, 'state': 'running'}

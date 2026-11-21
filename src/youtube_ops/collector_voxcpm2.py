@@ -324,7 +324,8 @@ class RemoteVoxCPM2Provider:
     @staticmethod
     def _batch_identity(intent, job_id, text_hash):
         jobs = intent.get('host_jobs')
-        if not isinstance(jobs, list) or len(jobs) > 1:
+        if (not isinstance(text_hash, str) or not HASH.fullmatch(text_hash)
+                or not isinstance(jobs, list) or len(jobs) > 1):
             raise VoiceError('NARRATION_LOCAL_RECEIPT_CHANGED')
         if jobs and (not isinstance(jobs[0], dict) or jobs[0].get('id') != job_id
                      or jobs[0].get('text_sha256') != text_hash
@@ -476,6 +477,8 @@ class RemoteVoxCPM2Provider:
         directory = local_spool(self.spool / job_id)
         receipt = read_json(directory / 'narration.json')
         if receipt.get('provider') != PROVIDER or receipt.get('collector_job_id') != job_id: raise VoiceError('INVALID_NARRATION_RECEIPT')
+        if receipt.get('request_mode') == BATCH_MODE:
+            self._batch_identity(receipt, job_id, receipt.get('text_sha256'))
         expected = provenance(self.route.get('expected_provenance'))
         if provenance(self._health().get('provenance')) != expected:
             raise VoiceError('BLOCKED_NARRATOR_PROVENANCE_CHANGED')
