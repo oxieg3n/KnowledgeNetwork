@@ -16,6 +16,11 @@ Independent security review found no must-fix issue. Root/task filesystem entrie
 remain absent; the old controller task file remains present. No host execution,
 service/route change, inference or credential transfer occurred here.
 
+Full hosted run44860391334 PASS for source `3f45dfee8b9b3764279630d4f217b0a60ab3dfd8`:
+Windows517/500 passed/17 skipped (including the native missing-task regression),
+Ubuntu517/412 passed/105 skipped, worker190checks and WPF build. Synthetic log/
+index ZIPs are retained under the private root's `ci-durable-44860391334/`.
+
 V5 is staged with verified identical local/host bytes. The service bundle,
 backend sources and still-valid V4 security proof are unchanged; no API review
 or model inventory was repeated. All previous stages remain retained.

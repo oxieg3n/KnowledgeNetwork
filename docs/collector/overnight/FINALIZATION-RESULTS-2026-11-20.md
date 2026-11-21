@@ -16,6 +16,12 @@ standalone root/task files remain absent and original controller task file
 present. No host execution, service/route mutation, credential transfer, model
 inventory or inference was performed during this correction.
 
+Full hosted run44860391334 PASS for source `3f45dfee8b9b3764279630d4f217b0a60ab3dfd8`:
+Windows517/500 passed/17 skipped in60.851s; Ubuntu517/412 passed/105 skipped in
+8.326s; worker190checks and WPF build PASS. The Windows log confirms the new
+native missing-task test passed. Durable synthetic ZIPs and SHA receipts are at
+`C:/Admin/Projects/KnowledgeNetwork-Private/ci-durable-44860391334/`.
+
 The corrected V5 source SHA is
 `b75fd594a9a1af5d9b45e934589f53115b940f4632ae536e11321061370e8eb9`.
 The bundle SHA remains
