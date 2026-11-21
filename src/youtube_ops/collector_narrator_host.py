@@ -17,7 +17,11 @@ import socket
 import sqlite3
 import subprocess
 import threading
+import stat
+from itertools import islice
 import time
+import wave
+from contextlib import closing, ExitStack
 
 from .collector_narration_common import (MAX_WAV, VoiceError, digest, inspect_wav,
     local_spool, read_json, sha256_file, socket_deadline, voice_lease)
@@ -30,9 +34,12 @@ CLI = Path(r'D:\tools\audio\voicestudio\data\engines\voxcpm2\voxcpm2\.venv\Scrip
 CREDENTIAL_TARGET = 'KnowledgeNetworkCollector/OxiegenNarrator/Host'
 SETTINGS = {'cfg_value': 2.0, 'inference_timesteps': 10, 'denoiser': False,
             'optimize': False, 'local_files_only': True, 'torch_compile_disable': '1'}
-MAX_BODY = 65536
+LEGACY_MAX_BODY = 65536
+MAX_BODY = 131072
 REQUEST_DEADLINE_SECONDS = 30
 SCRIPT_TIMEOUT_SECONDS = 900
+BATCH_TIMEOUT_SECONDS = 900
+JOB_COLUMNS = ['id', 'request_sha', 'text', 'text_sha', 'state', 'provenance', 'audio', 'error', 'cancel_requested']
 SPOOL_ACL_CHECK = r'''
 $ErrorActionPreference = 'Stop'
 try {
@@ -74,6 +81,107 @@ def valid_id(value):
 def validate_text(text):
     if not isinstance(text, str) or not text.strip() or len(text) > 12000 or any(ord(c) < 32 and c not in '\n\t' for c in text):
         raise NarratorError('invalid_text')
+
+
+
+def validate_segments(text, segments):
+    validate_text(text)
+    if (not isinstance(segments, list) or not 1 <= len(segments) <= 16
+            or any(not isinstance(part, str) or not part.strip() or part != part.strip()
+                   or any(ord(c) < 32 or ord(c) == 127 for c in part) for part in segments)
+            or sum(len(part) for part in segments) > 12000 or ' '.join(segments) != text):
+        raise NarratorError('invalid_narration_segments')
+    return segments
+
+
+def validate_cues(cues, segments, frames, rate):
+    if not isinstance(cues, list) or len(cues) != len(segments):
+        raise NarratorError('batch_cues_invalid')
+    end = 0
+    for cue, text in zip(cues, segments):
+        if (not isinstance(cue, dict) or set(cue) != {'text', 'start_sample', 'end_sample', 'start', 'end'}
+                or cue['text'] != text or type(cue['start_sample']) is not int
+                or type(cue['end_sample']) is not int or cue['start_sample'] != end
+                or not end < cue['end_sample'] <= frames
+                or type(cue['start']) not in (int, float) or type(cue['end']) not in (int, float)
+                or cue['start'] != end / rate or cue['end'] != cue['end_sample'] / rate):
+            raise NarratorError('batch_cues_invalid')
+        end = cue['end_sample']
+    if end != frames:
+        raise NarratorError('batch_cues_invalid')
+    return cues
+
+
+def batch_arguments(input_path, output_directory):
+    return [str(CLI), 'batch', '--input', str(input_path), '--output-dir', str(output_directory),
+            '--reference-audio', str(REFERENCE), '--cfg-value', '2.0', '--inference-timesteps', '10',
+            '--no-denoiser', '--no-optimize', '--local-files-only']
+
+
+
+def batch_output_limit(directory):
+    """Bound growing CLI artifacts without following links or decoding live WAVs."""
+    info = directory.lstat()
+    if not stat.S_ISDIR(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+        return True
+    with os.scandir(directory) as entries:
+        members = list(islice(entries, 17))
+    if len(members) > 16:
+        return True
+    total = 0
+    for path in members:
+        info = os.lstat(path.path)
+        if (not re.fullmatch(r'output_(?:00[1-9]|01[0-6])\.wav', path.name)
+                or not stat.S_ISREG(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400
+                or info.st_nlink != 1):
+            return True
+        total += info.st_size
+        if total > MAX_WAV:
+            return True
+    return False
+
+
+def join_batch_outputs(directory, output, segments):
+    """CLI batch can exit zero after partial failure; every output is mandatory."""
+    if batch_output_limit(directory):
+        raise NarratorError('batch_output_limit')
+    expected = [directory / ('output_%03d.wav' % (index + 1)) for index in range(len(segments))]
+    with os.scandir(directory) as entries:
+        actual = {Path(item.path) for item in islice(entries, 17)}
+    if actual != set(expected):
+        raise NarratorError('batch_outputs_incomplete_or_unexpected')
+    audio = []
+    for path in expected:
+        info = path.lstat()
+        if (not path.is_file() or path.is_symlink() or getattr(info, 'st_file_attributes', 0) & 0x400
+                or info.st_nlink != 1 or info.st_size > MAX_WAV):
+            raise NarratorError('batch_output_invalid')
+        audio.append(inspect_wav(path))
+    keys = ('sample_rate', 'channels', 'sample_width')
+    if any(any(item[key] != audio[0][key] for key in keys) for item in audio):
+        raise NarratorError('batch_audio_format_mismatch')
+    frames = sum(item['frames'] for item in audio)
+    rate, channels, width = (audio[0][key] for key in keys)
+    if frames / rate > 600 or frames * channels * width + 44 > MAX_WAV:
+        raise NarratorError('batch_audio_limit')
+    cues, offset = [], 0
+    with output.open('xb') as stream:
+        with wave.open(stream, 'wb') as joined:
+            joined.setparams((channels, width, rate, 0, 'NONE', 'not compressed'))
+            for path, item, text in zip(expected, audio, segments):
+                with wave.open(str(path), 'rb') as source:
+                    for block in iter(lambda: source.readframes(16384), b''):
+                        joined.writeframesraw(block)
+                end = offset + item['frames']
+                cues.append({'text': text, 'start_sample': offset, 'end_sample': end,
+                             'start': offset / rate, 'end': end / rate})
+                offset = end
+        stream.flush(); os.fsync(stream.fileno())
+    measured = inspect_wav(output)
+    if measured['frames'] != frames:
+        raise NarratorError('batch_join_frame_mismatch')
+    validate_cues(cues, segments, frames, rate)
+    return cues
 
 
 def _system_powershell():
@@ -219,6 +327,40 @@ class WindowsScriptRunner:
     def __call__(self, text, output, cancel):
         if cancel.is_set():
             raise NarratorError('cancelled')
+        return self._execute(script_arguments(_system_powershell(), text, output), output,
+                             cancel, SCRIPT_TIMEOUT_SECONDS)
+
+    def batch(self, text, output, cancel):
+        validate_segments(' '.join(text), text)
+        if cancel.is_set():
+            raise NarratorError('cancelled')
+        directory = output.parent / 'segments'
+        directory.mkdir()
+        input_path = output.parent / 'batch-input.private.txt'
+        with input_path.open('x', encoding='utf-8', newline='\n') as stream:
+            stream.write('\n'.join(text) + '\n'); stream.flush(); os.fsync(stream.fileno())
+        environment = dict(os.environ, TORCH_COMPILE_DISABLE='1')
+        self._execute(batch_arguments(input_path, directory), output, cancel,
+                      BATCH_TIMEOUT_SECONDS, environment, output.parent / 'batch-cli.private.log', directory)
+        try:
+            with (output.parent / 'batch-cli.private.log').open('rb') as stream:
+                raw = stream.read(1024 * 1024 + 1)
+            log = raw.decode('utf-8', errors='replace')
+            summary = 'Batch finished: %d/%d succeeded' % (len(text), len(text))
+            if (len(raw) > 1024 * 1024 or log.count('Loading VoxCPM model...') != 1
+                    or log.count('Model loaded (from_pretrained).') != 1
+                    or log.splitlines().count(summary) != 1
+                    or re.search(r'(?m)^Failed on line [0-9]+:', log)):
+                raise NarratorError('batch_cli_completion_unverified')
+            return join_batch_outputs(directory, output, text)
+        except NarratorError:
+            raise
+        except (OSError, ValueError, VoiceError, wave.Error):
+            raise NarratorError('batch_output_validation_failed') from None
+
+    def _execute(self, arguments, output, cancel, timeout, environment=None, log_path=None, batch_directory=None):
+        if cancel.is_set():
+            raise NarratorError('cancelled')
         if os.name != 'nt':
             raise NarratorError('windows_host_required')
         kernel = ctypes.WinDLL('kernel32', use_last_error=True)
@@ -253,27 +395,33 @@ class WindowsScriptRunner:
             'CloseHandle': ([handle], wintypes.BOOL),
             'CreateProcessW': ([wintypes.LPCWSTR, wintypes.LPWSTR, ctypes.c_void_p, ctypes.c_void_p,
                 wintypes.BOOL, wintypes.DWORD, ctypes.c_void_p, wintypes.LPCWSTR, ctypes.POINTER(Startup), ctypes.POINTER(Process)], wintypes.BOOL)}
-        for name, (arguments, result) in signatures.items():
-            function = getattr(kernel, name); function.argtypes = arguments; function.restype = result
-        powershell = _system_powershell()
-        command = subprocess.list2cmdline(script_arguments(powershell, text, output))
+        for name, (parameters, result) in signatures.items():
+            function = getattr(kernel, name); function.argtypes = parameters; function.restype = result
+        command = subprocess.list2cmdline(arguments)
+        environment_block = None
+        if environment is not None:
+            environment_block = ctypes.create_unicode_buffer('\0'.join(
+                key + '=' + value for key, value in sorted(environment.items(), key=lambda item: item[0].upper())) + '\0\0')
         if len(command.encode('utf-16-le')) // 2 >= 32767:
             raise NarratorError('narration_command_too_long')
         job, process, assigned = kernel.CreateJobObjectW(None, None), Process(), False
+        started = time.monotonic()
         limits = Limits(); limits.basic.flags = 0x2000  # KILL_ON_JOB_CLOSE; no child breakaway.
         try:
             if not job or not kernel.SetInformationJobObject(job, 9, ctypes.byref(limits), ctypes.sizeof(limits)):
                 raise NarratorError('process_isolation_unavailable')
             import msvcrt
-            with open(os.devnull, 'r+b', buffering=0) as discard:
-                null = msvcrt.get_osfhandle(discard.fileno())
-                os.set_handle_inheritable(null, True)
-                startup = Startup(cb=ctypes.sizeof(Startup), flags=0x100, stdin=null, stdout=null, stderr=null)
+            with open(os.devnull, 'r+b', buffering=0) as discard, ExitStack() as streams:
+                log = streams.enter_context(log_path.open('xb', buffering=0)) if log_path else discard
+                null, log_handle = msvcrt.get_osfhandle(discard.fileno()), msvcrt.get_osfhandle(log.fileno())
+                os.set_handle_inheritable(null, True); os.set_handle_inheritable(log_handle, True)
+                startup = Startup(cb=ctypes.sizeof(Startup), flags=0x100, stdin=null, stdout=log_handle, stderr=log_handle)
                 try:
-                    created = kernel.CreateProcessW(str(powershell), ctypes.create_unicode_buffer(command), None, None,
-                        True, 0x4 | 0x08000000, None, str(output.parent), ctypes.byref(startup), ctypes.byref(process))
+                    created = kernel.CreateProcessW(arguments[0], ctypes.create_unicode_buffer(command), None, None,
+                        True, 0x4 | 0x08000000 | (0x400 if environment_block is not None else 0),
+                        environment_block, str(output.parent), ctypes.byref(startup), ctypes.byref(process))
                 finally:
-                    os.set_handle_inheritable(null, False)
+                    os.set_handle_inheritable(null, False); os.set_handle_inheritable(log_handle, False)
             if not created:
                 raise NarratorError('narrator_start_failed')
             if not kernel.AssignProcessToJobObject(job, process.process):
@@ -282,7 +430,7 @@ class WindowsScriptRunner:
             assigned = True
             if kernel.ResumeThread(process.thread) == 0xffffffff:
                 raise NarratorError('narrator_resume_failed', uncertain=True)
-            deadline, stop_reason = time.monotonic() + SCRIPT_TIMEOUT_SECONDS, None
+            deadline, stop_reason = time.monotonic() + timeout, None
             while True:
                 accounting = Accounting()
                 if not kernel.QueryInformationJobObject(job, 1, ctypes.byref(accounting), ctypes.sizeof(accounting), None):
@@ -290,7 +438,9 @@ class WindowsScriptRunner:
                 if accounting.active == 0:
                     break
                 if stop_reason is None and (cancel.is_set() or time.monotonic() >= deadline or
-                    (output.exists() and output.stat().st_size > MAX_WAV)):
+                    (output.exists() and output.stat().st_size > MAX_WAV) or
+                    (log_path is not None and log_path.stat().st_size > 1024 * 1024) or
+                    (batch_directory is not None and batch_output_limit(batch_directory))):
                     stop_reason = 'cancelled' if cancel.is_set() else 'generation_timeout_or_size_limit'
                     if not kernel.TerminateJobObject(job, 1):
                         raise NarratorError('process_outcome_unknown', uncertain=True)
@@ -298,10 +448,20 @@ class WindowsScriptRunner:
                 elif stop_reason is not None and time.monotonic() >= deadline:
                     raise NarratorError('process_outcome_unknown', uncertain=True)
                 time.sleep(.05)
+            exit_code = wintypes.DWORD()
+            if not stop_reason or log_path is not None:
+                if not kernel.GetExitCodeProcess(process.process, ctypes.byref(exit_code)):
+                    raise NarratorError('process_outcome_unknown', uncertain=True)
+            if log_path is not None:
+                with (output.parent / 'batch-process.private.json').open('x', encoding='utf-8') as receipt:
+                    json.dump({'schema_version': 1, 'execution_mode': 'cli_segment_batch_v1',
+                        'pid': process.pid, 'owned_active_processes': 0, 'exit_code': exit_code.value,
+                        'outcome': stop_reason or 'process_exited', 'elapsed_seconds': time.monotonic() - started,
+                        'model_lifecycle': 'batch_process_exit'}, receipt)
+                    receipt.flush(); os.fsync(receipt.fileno())
             if stop_reason:
                 raise NarratorError(stop_reason)
-            exit_code = wintypes.DWORD()
-            if not kernel.GetExitCodeProcess(process.process, ctypes.byref(exit_code)) or exit_code.value != 0:
+            if exit_code.value != 0:
                 raise NarratorError('narrator_process_failed')
         except NarratorError:
             raise
@@ -316,7 +476,10 @@ class WindowsScriptRunner:
 
 
 class NarratorStore:
-    def __init__(self, spool, manifest, executor=None):
+    def __init__(self, spool, manifest, executor=None, *, segment_batches=False):
+        if type(segment_batches) is not bool:
+            raise NarratorError('batch_configuration_invalid')
+        self.segment_batches = segment_batches
         self.spool, self.manifest = local_spool(spool), manifest
         self.executor = executor or WindowsScriptRunner()
         self.lock, self.stop = threading.RLock(), threading.Event()
@@ -329,7 +492,7 @@ class NarratorStore:
             tables = {row[0] for row in self.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
             if tables:
                 version = self.db.execute("SELECT value FROM metadata WHERE key='schema_version'").fetchone() if 'metadata' in tables else None
-                if version is None or version[0] != '1':
+                if version is None or version[0] not in ('1', '2'):
                     raise NarratorError('unsupported_host_database_schema')
             self.db.executescript("""PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA busy_timeout=5000;
                 PRAGMA max_page_count=131072;
@@ -348,10 +511,67 @@ class NarratorStore:
                     self.db.execute("INSERT INTO events(job_id,state) VALUES(?,'failed_outcome_unknown')", (row['id'],))
                 if interrupted:
                     self.db.execute("INSERT OR REPLACE INTO metadata VALUES('execution_hold','outcome_unknown')")
+            self.schema = self.db.execute("SELECT value FROM metadata WHERE key='schema_version'").fetchone()[0]
+            if self.segment_batches and self.schema == '1':
+                self._migrate_batches()
+            if self.schema == '2':
+                columns = [row['name'] for row in self.db.execute('PRAGMA table_info(jobs)')]
+                if columns != JOB_COLUMNS + ['segments', 'cues']:
+                    raise NarratorError('unsupported_host_database_schema')
+                prepared = read_json(self.spool / 'schema2-migration.private.json')
+                committed = read_json(self.spool / 'schema2-migration-completed.private.json')
+                if (prepared.get('status') != 'PREPARED_SCHEMA2' or committed != {
+                        'status': 'COMMITTED_SCHEMA2', 'original_backup_retained': True}
+                        or sha256_file(self.spool / 'host-narrations.schema1.backup.sqlite') != prepared.get('backup_sha256')):
+                    raise NarratorError('schema_migration_requires_reconciliation')
+                if not self.segment_batches and self.db.execute("SELECT 1 FROM jobs WHERE segments IS NOT NULL AND state IN ('queued','running')").fetchone():
+                    raise NarratorError('batch_jobs_require_configured_support')
         except BaseException:
             if hasattr(self, 'db'):
                 self.db.close()
             self.lease.__exit__(None, None, None)
+            raise
+
+    def _migrate_batches(self):
+        """Idle, leased schema1 upgrade; a consistent original remains on failure."""
+        backup = self.spool / 'host-narrations.schema1.backup.sqlite'
+        evidence = self.spool / 'schema2-migration.private.json'
+        completed = self.spool / 'schema2-migration-completed.private.json'
+        if [row['name'] for row in self.db.execute('PRAGMA table_info(jobs)')] != JOB_COLUMNS:
+            raise NarratorError('unsupported_host_database_schema')
+        if backup.exists() or evidence.exists() or completed.exists():
+            raise NarratorError('schema_migration_requires_reconciliation')
+        self.db.execute('BEGIN IMMEDIATE')
+        try:
+            if self.held() or self.db.execute("SELECT 1 FROM jobs WHERE state IN ('queued','running') LIMIT 1").fetchone():
+                raise NarratorError('schema_migration_requires_idle')
+            # Use a second reader while our reserved writer lock excludes changes.
+            with backup.open('xb'):
+                pass
+            deadline = time.monotonic() + 20
+            def progress(status, remaining, total):
+                if time.monotonic() >= deadline:
+                    raise NarratorError('schema_backup_deadline')
+            source = (self.spool / 'host-narrations.sqlite').as_uri() + '?mode=ro'
+            with closing(sqlite3.connect(source, uri=True, timeout=2)) as reader, closing(sqlite3.connect(backup)) as target:
+                reader.backup(target, pages=128, progress=progress, sleep=.01)
+                if target.execute('PRAGMA quick_check').fetchone()[0] != 'ok':
+                    raise NarratorError('schema_backup_invalid')
+            with evidence.open('x', encoding='utf-8') as stream:
+                json.dump({'schema_version': 1, 'status': 'PREPARED_SCHEMA2',
+                    'backup_sha256': sha256_file(backup, deadline=deadline), 'original_schema': '1',
+                    'rollback': 'Only offline with no schema2 activity; preserve both databases and all records.'}, stream)
+                stream.flush(); os.fsync(stream.fileno())
+            self.db.execute('ALTER TABLE jobs ADD COLUMN segments TEXT')
+            self.db.execute('ALTER TABLE jobs ADD COLUMN cues TEXT')
+            self.db.execute("UPDATE metadata SET value='2' WHERE key='schema_version'")
+            self.db.commit()
+            with completed.open('x', encoding='utf-8') as stream:
+                json.dump({'status': 'COMMITTED_SCHEMA2', 'original_backup_retained': True}, stream)
+                stream.flush(); os.fsync(stream.fileno())
+            self.schema = '2'
+        except BaseException:
+            self.db.rollback()
             raise
 
     def held(self):
@@ -363,7 +583,8 @@ class NarratorStore:
                 'status': 'blocked' if self.held() else 'ready', 'execution_hold': self.held(),
                 'worker_fault': self.worker_fault,
                 'queue_depth': self.db.execute("SELECT count(*) FROM jobs WHERE state='queued'").fetchone()[0],
-                'model_state': 'not_probed', 'device': 'not_verified', 'provenance': self.manifest.provenance}
+                'model_state': 'not_probed', 'device': 'not_verified', 'provenance': self.manifest.provenance,
+                'segment_batches': self.segment_batches}
 
     def get(self, job_id):
         if not valid_id(job_id):
@@ -377,11 +598,23 @@ class NarratorStore:
                 'error': row['error'], 'cancel_requested': bool(row['cancel_requested'])}
             if row['audio']:
                 result['audio'] = json.loads(row['audio'])
+            if self.schema == '2' and row['segments'] is not None:
+                result['execution_mode'] = 'cli_segment_batch_v1'
+                if row['state'] == 'completed':
+                    parts = validate_segments(row['text'], json.loads(row['segments']))
+                    result['cues'] = validate_cues(json.loads(row['cues']), parts,
+                        result['audio']['frames'], result['audio']['sample_rate'])
             return result
 
     def submit(self, value):
-        if not isinstance(value, dict) or set(value) != {'idempotency_key', 'text', 'narrator_id'}:
+        fields = {'idempotency_key', 'text', 'narrator_id'}
+        if not isinstance(value, dict) or set(value) not in (fields, fields | {'segments'}):
             raise NarratorError('invalid_narration_fields')
+        parts = None
+        if 'segments' in value:
+            if not self.segment_batches:
+                raise NarratorError('segment_batches_not_enabled', 409)
+            parts = validate_segments(value['text'], value['segments'])
         if not valid_id(value['idempotency_key']) or value['narrator_id'] != NARRATOR:
             raise NarratorError('invalid_narrator_or_key')
         validate_text(value['text'])
@@ -399,8 +632,12 @@ class NarratorStore:
                 raise NarratorError('queue_backpressure', 503)
             if shutil.disk_usage(self.spool).free < 256 * 1024 * 1024:
                 raise NarratorError('disk_reserve_reached', 503)
-            self.db.execute("INSERT INTO jobs(id,request_sha,text,text_sha,state,provenance) VALUES(?,?,?,?,'queued',?)",
-                (job_id, request_sha, value['text'], hashlib.sha256(value['text'].encode()).hexdigest(), json.dumps(self.manifest.provenance)))
+            values = (job_id, request_sha, value['text'], hashlib.sha256(value['text'].encode()).hexdigest(), json.dumps(self.manifest.provenance))
+            if self.schema == '2':
+                self.db.execute("INSERT INTO jobs(id,request_sha,text,text_sha,state,provenance,segments) VALUES(?,?,?,?,'queued',?,?)",
+                                (*values, json.dumps(parts) if parts is not None else None))
+            else:
+                self.db.execute("INSERT INTO jobs(id,request_sha,text,text_sha,state,provenance) VALUES(?,?,?,?,'queued',?)", values)
             self.db.execute("INSERT INTO events(job_id,state) VALUES(?,'queued')", (job_id,))
         return self.get(job_id)
 
@@ -427,10 +664,16 @@ class NarratorStore:
             self.db.execute("UPDATE jobs SET state='running' WHERE id=?", (job_id,))
             self.db.execute("INSERT INTO events(job_id,state) VALUES(?,'running')", (job_id,))
             cancel = threading.Event(); self.active = job_id, cancel
-        audio, error, state, uncertain = None, None, 'completed', False
+        audio, cues, error, state, uncertain = None, None, None, 'completed', False
         launched, finished = False, False
         try:
             expected = {'idempotency_key': job_id, 'text': text, 'narrator_id': NARRATOR}
+            parts = json.loads(row['segments']) if self.schema == '2' and row['segments'] is not None else None
+            if parts is not None:
+                validate_segments(text, parts)
+                if not self.segment_batches:
+                    raise NarratorError('segment_batches_not_enabled')
+                expected['segments'] = parts
             if (row['text_sha'] != hashlib.sha256(text.encode()).hexdigest() or row['request_sha'] != digest(expected) or
                 json.loads(row['provenance']) != self.manifest.provenance):
                 raise NarratorError('stored_request_integrity_mismatch')
@@ -442,11 +685,16 @@ class NarratorStore:
             if cancel.is_set():
                 raise NarratorError('cancelled')
             launched = True
-            self.executor(text, output, cancel)
+            if parts is None:
+                self.executor(text, output, cancel)
+            else:
+                cues = self.executor.batch(parts, output, cancel)
             finished = True
             if output.stat().st_size > MAX_WAV:
                 raise NarratorError('invalid_audio_size')
             pcm = inspect_wav(output)
+            if parts is not None:
+                validate_cues(cues, parts, pcm['frames'], pcm['sample_rate'])
             with output.open('r+b') as stream:
                 stream.flush(); os.fsync(stream.fileno())
             audio = {**pcm, 'duration': pcm['duration_seconds'], 'bytes': output.stat().st_size}
@@ -459,8 +707,13 @@ class NarratorStore:
         except Exception:
             state, error, uncertain = 'failed', 'outcome_unknown', True
         with self.lock, self.db:
-            self.db.execute('UPDATE jobs SET state=?,error=?,audio=? WHERE id=?',
-                (state, error, json.dumps(audio) if audio else None, job_id))
+            if self.schema == '2':
+                self.db.execute('UPDATE jobs SET state=?,error=?,audio=?,cues=? WHERE id=?',
+                    (state, error, json.dumps(audio) if audio else None,
+                     json.dumps(cues) if cues is not None and state == 'completed' else None, job_id))
+            else:
+                self.db.execute('UPDATE jobs SET state=?,error=?,audio=? WHERE id=?',
+                    (state, error, json.dumps(audio) if audio else None, job_id))
             self.db.execute('INSERT INTO events(job_id,state) VALUES(?,?)', (job_id, state))
             if uncertain:
                 self.db.execute("INSERT OR REPLACE INTO metadata VALUES('execution_hold','outcome_unknown')")
@@ -576,7 +829,10 @@ class NarratorHandler(BaseHTTPRequestHandler):
         try:
             def reject_constant(value):
                 raise NarratorError('non_finite_json')
-            return json.loads(raw, object_pairs_hook=unique_object, parse_constant=reject_constant)
+            value = json.loads(raw, object_pairs_hook=unique_object, parse_constant=reject_constant)
+            if len(raw) > LEGACY_MAX_BODY and not (isinstance(value, dict) and 'segments' in value):
+                raise NarratorError('request_too_large', 413)
+            return value
         except (ValueError, UnicodeError) as exc:
             raise NarratorError('invalid_json') from exc
     def dispatch(self):
