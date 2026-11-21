@@ -1,5 +1,31 @@
 # November 20 finalization execution results
 
+## Bootstrap retry: elevation gate and refreshed proof
+
+The owner's V3 attempt stopped at the elevated/non-SYSTEM owner check, before
+installation changes. The standalone root remains absent. No task, service,
+route, ledger or narrator was changed by that attempt. The System32 working
+directory does not establish administrator elevation. Use an Administrator
+PowerShell window under the same recorded owner account, never SYSTEM or a
+different administrator account.
+
+The old proof expired before this reply. Fresh read-only capture/validation002
+passed: same five device ID/address bindings, explicit empty routes, unchanged
+approved v5 policy and ten byte-identical accepted previews. No policy write.
+The source and six host-execution pins are unchanged. V4 refreshes only the
+private proof and bound bundle; V3 is retained as attempt evidence.
+
+- Host stage: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-standalone-v4`.
+- Source SHA: `86c75d277f540b90a3cd7f63de53a9da4c71533e6ff883e5c5ecf40a661d5fe7` (unchanged).
+- New bundle SHA: `8f91a5a90427fe051e59c6e8309ea0f946710988fdb8d97e8b6844d4a720d3c6`.
+- Proof valid until **2026-11-21 05:05:49 UTC / November21 12:05AM Eastern**.
+- FORGE command copy: `C:/Admin/Projects/KnowledgeNetwork-Private/narrator-standalone-v4/Host-Narrator-Standalone-Bootstrap.txt`.
+
+Use only the refreshed command; never remove elevation, expiry or digest checks.
+This is a native Windows privilege requirement, not a request for renewed owner
+permission. All earlier app/body/CI acceptance remains applicable; real narration
+and the final MP4 are still blocked. Publication PAUSED; PR20 draft/unmerged.
+
 **Overall: BLOCKED on native BLACKHAT-BASE execution; final video NOT COMPLETE.**
 Publication PAUSED. PR20 remains draft/unmerged. Continued the existing branch
 from owner authorization `d7f571ce862c82562792719ed8fdada11a3673fa`, preserving
