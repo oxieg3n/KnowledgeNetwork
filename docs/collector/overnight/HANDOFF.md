@@ -18,12 +18,26 @@ the completed conditional handler can now check/refuse that state itself.
 Do not blindly restart the original launcher; its create-only startup files
 already exist. No old V2 recovery.
 
+### NVIDIA diagnostic correction
+
+The owner's offline-v1 attempt stopped at optional NVIDIA identity verification,
+before driver creation/task/DB/model changes. FORGE can verify the current file's
+version8.17.16.1714, NVIDIA signature and SHA0a9c58a7...696b42e; the failed host
+comparison's exact field is not yet known. Do not call this a changed driver.
+The optional inventory dependency was unnecessary. Revised source never executes
+an unavailable/unverified/digest-changed tool, records its exact availability
+reason privately and continues every mandatory task/owner/source/lease/physical
+ledger/model/parity gate. A skipped baseline proves no GPU availability or CUDA.
+The actual limited-owner parity remains required. Private evidence writes still
+fail closed. Source/full9 focused tests PASS5.718s (3native), independent review
+PASS. v1 and the unexecuted intermediate v2 draft remain retained.
+
 ### Checked conditional offline continuation
 
 Source `Resume-KnowledgeNetworkNarratorBatchOffline.ps1`, exact SHA
-`2f92de76190572390a9f3a49e94d9f0cc055a7050dfa9640959c09319c4d6212`,
-is staged in host kit `narrator-batch-offline-v1/` and mirrored privately on
-FORGE. Checked owner command: `KnowledgeNetwork-Private/narrator-batch-offline-v1/Host-Offline-Continuation.txt`.
+`9ed94fa1a858414675de5d33cb1442c81c95692c9c950421edcbfc002af1601b`,
+is staged in host kit `narrator-batch-offline-v3/` and mirrored privately on
+FORGE. Checked owner command: `KnowledgeNetwork-Private/narrator-batch-offline-v3/Host-Offline-Continuation.txt`.
 Run once from the recorded owner's Administrator PowerShell while GPU work is
 idle. This is a scoped mutation/inference continuation, not the read-only probe.
 The restricted SSH account cannot perform it. Standing owner authorization is

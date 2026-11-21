@@ -9,6 +9,7 @@ import sqlite3
 import subprocess
 import unittest
 from unittest.mock import Mock
+from types import SimpleNamespace
 
 from tests.fixture_retention import FixtureDirectory
 from tests.test_collector_narrator_batch_update import helper,create_database,EXPECTED
@@ -84,12 +85,36 @@ class OfflineContinuationTests(unittest.TestCase):
         self.assertNotIn("ns['main']",self.source)
         self.assertIn('PREPARED_MANUAL_ROLLBACK_NOT_TESTED',self.source)
 
+    def test_optional_gpu_unavailable_or_changed_never_executes_and_query_errors_are_retained(self):
+        run=Mock();self.code['GPU']=Path('fixed-nvidia.exe');self.code['GPU_PIN']='expected'
+        self.code['subprocess']=SimpleNamespace(run=run,PIPE=-1,CREATE_NO_WINDOW=0,TimeoutExpired=subprocess.TimeoutExpired)
+        record=Mock();ns={'write':record,'raw_write':Mock(),'sha':lambda path:'expected'}
+        self.code['GPU_EVIDENCE']={'status':'UNAVAILABLE','reason':'signature_unavailable'}
+        self.code['gpu_baseline'](ns,self.root);run.assert_not_called()
+        self.assertEqual(record.call_args.args[1]['status'],'UNAVAILABLE')
+        self.code['GPU_EVIDENCE']={'status':'VERIFIED'};ns['sha']=lambda path:'changed'
+        self.code['gpu_baseline'](ns,self.root);run.assert_not_called()
+        ns['sha']=lambda path:'expected';run.side_effect=subprocess.TimeoutExpired('owned-query',20,stderr=b'private failure')
+        self.code['gpu_baseline'](ns,self.root)
+        self.assertEqual(record.call_args.args[1]['status'],'UNAVAILABLE')
+        self.assertTrue(record.call_args.args[1]['tool_executed'])
+        self.assertEqual(ns['raw_write'].call_args.args[1],b'private failure')
+        run.side_effect=OSError('tool failed to start')
+        self.code['gpu_baseline'](ns,self.root)
+        self.assertFalse(record.call_args.args[1]['tool_executed'])
+        run.side_effect=None;run.return_value=SimpleNamespace(stdout=b'GPU facts',stderr=b'',returncode=0)
+        self.code['gpu_baseline'](ns,self.root)
+        self.assertEqual(record.call_args.args[1]['status'],'AVAILABLE')
+        # Evidence-write failures remain fatal; only the optional tool is skipped.
+        record.side_effect=OSError('evidence unavailable')
+        with self.assertRaises(OSError):self.code['gpu_baseline'](ns,self.root)
+
     def test_fixed_scope_and_gpu_facts_do_not_claim_unrelated_activity(self):
         text=SOURCE.read_text()
         for forbidden in ('Remove-Item','Stop-ScheduledTask','Start-Service','tailscale','Set-ExecutionPolicy','--gpu-reset'):
             self.assertNotIn(forbidden,text)
         self.assertIn("GPU=Path('C:/Windows/System32/nvidia-smi.exe')",self.source)
-        self.assertIn("'facts_only':True,'unrelated_workloads_changed':False",self.source)
+        self.assertIn("facts_only=True,unrelated_workloads_changed=False",self.source)
         self.assertIn("$start.Arguments='-I -S -B -'",text)
 
 

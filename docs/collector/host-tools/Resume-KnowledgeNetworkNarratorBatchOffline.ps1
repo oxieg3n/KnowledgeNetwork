@@ -72,10 +72,22 @@ $inputPins['collector_narrator_recovery_probe.py']=(Hash-Bytes $probe)
 $validator=Capture-Read "$work/assert-code.ps1" 65536
 $inputPins['assert-code.ps1']=(Hash-Bytes $validator)
 $gpu='C:/Windows/System32/nvidia-smi.exe'
-$gpuBytes=Capture-Read $gpu 33554432
-$version=[Diagnostics.FileVersionInfo]::GetVersionInfo($gpu)
-$signature=Get-AuthenticodeSignature -FilePath $gpu
-if($version.FileVersion -cne '8.17.16.1714' -or $version.CompanyName -notmatch 'NVIDIA' -or $signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'NVIDIA'){throw 'Known read-only NVIDIA tool identity changed.'}
+# NVIDIA inventory is optional evidence; never execute an unverified tool.
+$gpuPin=''
+$gpuEvidence=@{status='UNAVAILABLE';reason='tool_verification_unavailable';tool_executed=$false}
+try {
+    $gpuBytes=Capture-Read $gpu 33554432
+    $version=[Diagnostics.FileVersionInfo]::GetVersionInfo($gpu)
+    $signature=Get-AuthenticodeSignature -FilePath $gpu
+    $gpuEvidence.file_version=$version.FileVersion
+    $gpuEvidence.company=$version.CompanyName
+    $gpuEvidence.signature_status=[string]$signature.Status
+    $gpuEvidence.signer=if($signature.SignerCertificate){$signature.SignerCertificate.Subject}else{$null}
+    if($version.FileVersion -ceq '8.17.16.1714' -and $version.CompanyName -match 'NVIDIA' -and $signature.Status -eq 'Valid' -and $gpuEvidence.signer -match 'NVIDIA'){
+        $gpuPin=Hash-Bytes $gpuBytes
+        $gpuEvidence.status='VERIFIED';$gpuEvidence.reason='verified_before_query'
+    }else{$gpuEvidence.reason='tool_identity_not_verified'}
+}catch{$gpuEvidence.reason='tool_read_or_trust_unavailable';$gpuEvidence.error=$_.Exception.Message}
 $stem='batch-offline-recovery-'+[Guid]::NewGuid().ToString('N')
 $driver=@'
 import ast,base64,ctypes,hashlib,json,os,socket,subprocess,sys,time,traceback,uuid
@@ -87,6 +99,7 @@ INPUT_PINS=json.loads(base64.b64decode('__INPUT_PINS__',validate=True))
 PIN='1ec820f1123aab4d12d8719efc0a462f89e9db18e80d52b09523743542129ca6'
 WORK=Path('C:/ProgramData/KnowledgeNetworkCollector/NarratorStandaloneV1/batch-update-v1')
 GPU=Path('C:/Windows/System32/nvidia-smi.exe');GPU_PIN='__GPU_PIN__'
+GPU_EVIDENCE=json.loads(base64.b64decode('__GPU_EVIDENCE__',validate=True))
 STEM='__RECOVERY_STEM__'
 OFFLINE_TASK=r'''
 $ErrorActionPreference='Stop';$s=New-Object -ComObject Schedule.Service;$s.Connect();$t=$s.GetFolder('\KnowledgeNetworkCollector').GetTask('NarratorStandaloneV1')
@@ -142,11 +155,25 @@ def reserve_port(port=39110):
     except BaseException:reservation.close();raise
 
 def gpu_baseline(ns,review):
-    if ns['sha'](GPU)!=GPU_PIN:raise RuntimeError('trusted_gpu_tool_changed')
-    result=subprocess.run([str(GPU),'-q'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=20,creationflags=subprocess.CREATE_NO_WINDOW)
-    ns['raw_write'](review/'gpu-before.stdout.private.log',result.stdout[:65536]);ns['raw_write'](review/'gpu-before.stderr.private.log',result.stderr[:65536])
-    ns['write'](review/'gpu-before.private.json',{'tool_sha256':GPU_PIN,'exit_code':result.returncode,'stdout_bytes':len(result.stdout),'stderr_bytes':len(result.stderr),'truncated':len(result.stdout)>65536 or len(result.stderr)>65536,'facts_only':True,'unrelated_workloads_changed':False})
-    if result.returncode or len(result.stdout)>65536 or len(result.stderr)>65536:raise RuntimeError('read_only_gpu_baseline_failed')
+    evidence=dict(GPU_EVIDENCE,facts_only=True,unrelated_workloads_changed=False,tool_executed=False)
+    if evidence['status']!='VERIFIED':
+        ns['write'](review/'gpu-before.private.json',evidence);return
+    try:
+        if ns['sha'](GPU)!=GPU_PIN:raise ValueError('tool_digest_changed_before_query')
+    except (OSError,ValueError) as error:
+        evidence.update(status='UNAVAILABLE',reason=str(error))
+        ns['write'](review/'gpu-before.private.json',evidence);return
+    try:
+        result=subprocess.run([str(GPU),'-q'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=20,creationflags=subprocess.CREATE_NO_WINDOW)
+        out,err,code=result.stdout,result.stderr,result.returncode
+        evidence.update(status='AVAILABLE' if code==0 and len(out)<=65536 and len(err)<=65536 else 'UNAVAILABLE',reason='query_completed',exit_code=code,tool_executed=True)
+    except (OSError,subprocess.TimeoutExpired) as error:
+        out,err=getattr(error,'stdout',None) or b'',getattr(error,'stderr',None) or b''
+        evidence.update(status='UNAVAILABLE',reason='optional_query_failed',error_class=type(error).__name__,tool_executed=isinstance(error,subprocess.TimeoutExpired))
+    ns['raw_write'](review/'gpu-before.stdout.private.log',out[:65536]);ns['raw_write'](review/'gpu-before.stderr.private.log',err[:65536])
+    evidence.update(tool_sha256=GPU_PIN,stdout_bytes=len(out),stderr_bytes=len(err),truncated=len(out)>65536 or len(err)>65536)
+    ns['write'](review/'gpu-before.private.json',evidence)
+
 
 def main():
     ns={'__name__':'knowledge_network_offline_continuation'}
@@ -214,7 +241,7 @@ def main():
 
 if __name__=='__main__':main()
 '@
-$driver=$driver.Replace('__CAPTURED_HELPER__',[Convert]::ToBase64String($helper)).Replace('__CAPTURED_COMMON__',[Convert]::ToBase64String($common)).Replace('__INPUT_PINS__',[Convert]::ToBase64String($utf8.GetBytes(($inputPins|ConvertTo-Json -Compress)))).Replace('__GPU_PIN__',(Hash-Bytes $gpuBytes)).Replace('__RECOVERY_STEM__',$stem)
+$driver=$driver.Replace('__CAPTURED_HELPER__',[Convert]::ToBase64String($helper)).Replace('__CAPTURED_COMMON__',[Convert]::ToBase64String($common)).Replace('__INPUT_PINS__',[Convert]::ToBase64String($utf8.GetBytes(($inputPins|ConvertTo-Json -Compress)))).Replace('__GPU_PIN__',$gpuPin).Replace('__GPU_EVIDENCE__',[Convert]::ToBase64String($utf8.GetBytes(($gpuEvidence|ConvertTo-Json -Compress)))).Replace('__RECOVERY_STEM__',$stem)
 if($driver -match '[^\x00-\x7f]'){throw 'Captured recovery transport must be ASCII.'}
 $start=[Diagnostics.ProcessStartInfo]::new();$start.FileName=$python;$start.Arguments='-I -S -B -';$start.WorkingDirectory=$work
 $start.UseShellExecute=$false;$start.CreateNoWindow=$true;$start.RedirectStandardInput=$true;$start.RedirectStandardOutput=$true;$start.RedirectStandardError=$true

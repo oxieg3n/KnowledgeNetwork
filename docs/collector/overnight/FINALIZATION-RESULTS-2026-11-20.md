@@ -1,5 +1,15 @@
 # November 20 finalization execution results
 
+## Optional NVIDIA gate corrected
+
+Offline-v1 stopped before the recovery driver/task/database/model at an optional
+NVIDIA verification gate. The revised source skips an unverified tool and records
+unavailable evidence instead of executing it or blocking mandatory recovery.
+Owner/task/source/namespace/lease/ledger/model/parity checks are unchanged.
+Nine focused tests (three native Windows) PASS5.718s; independent review PASS.
+The checked new v3 command is staged; actual recovery/parity remain NOT RUN.
+Previous stages and all original prepared evidence are retained.
+
 ## Latest operational state: no standalone listener
 
 Read-only host preflight6ae507... andf52f2a... passed imports/identity/flags/image/
@@ -7,10 +17,10 @@ bundle and failed at the current39110 listener query. FORGE now returnsHTTP502.
 The original service had passed a prior post-failure status check; exit cause/time
 remain unknown. No diagnostic/update DB or task mutation occurred. This changed
 state does not prove the exact original hidden Python exception. A strictly gated
-offline continuation is tested/staged, SHA2f92de76...d6212, using existing helper
+offline continuation is tested/staged, SHA9ed94fa1...1601b, using existing helper
 definitions and no original main/live-process stop. Eight focused checks
 (including3 native Windows) and independent review PASS. The checked command is
-`KnowledgeNetwork-Private/narrator-batch-offline-v1/Host-Offline-Continuation.txt`.
+`KnowledgeNetwork-Private/narrator-batch-offline-v3/Host-Offline-Continuation.txt`.
 It requires an exact Ready/zero-instance task and free existing lease, retains
 both original namespace guards through new startup and physical ledger binding,
 and preserves all original records/backups. Actual task switch/GPU parity/remote
