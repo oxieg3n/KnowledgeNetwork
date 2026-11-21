@@ -1,6 +1,49 @@
 # V9 handoff - The Knowledge Network Collector
 
-## Current recovery checkpoint: narrator task disabled; do not restart manually
+## Current result: real batch parity passed; windowless supervisor pending
+
+V4 generated two segments in one real CUDA/bfloat16 model session. Joined WAV:
+9.44s,48000Hz mono PCM16,453120frames, SHA
+`950a708ebb736d65c6596dce6ba3677f7a574e6f83b4723548c513e363005e36`.
+CLI log confirms one model load; process exit0, owned_active_processes0 after
+323.14seconds. Actual output PCM was decoded/hash-checked on FORGE after private
+file capture. This is technical host batch parity, not authenticated new-batch
+API transfer or listening approval. Canonical script/reference/settings unchanged.
+Private retained proof: `KnowledgeNetwork-Private/narrator-batch-parity-acceptance-v1/`.
+
+Schema2 migration and limited-owner startup401/401/200 passed. Final task proof
+rejected child3336 of supervisor26616; its identity was not established. Other
+recorded contract fields matched. Owner subsequently confirmed closing windows;
+FORGE now receivesHTTP502. Do not claim what child3336 was or rerun inference.
+The blocked receipt's fence_committed=true tracks an earlier committed fence;
+startup success required that the handler already cleared its own hold.
+
+Owner requests that the command start needed components before checking. A
+minimal windowless HTTP-supervisor continuation is tested/staged, using protected
+pythonw.exe with its own inventory pin, separate from helper python.exe. It will
+reuse the accepted parity, preserve schema2/current data and all backups, and
+start once only after offline/lease/namespace checks. The canonical inference
+interpreter/model stay unchanged. No manual service restart, route/bearer change,
+unknown-child whitelist, or repeated GPU test. Live windowless acceptance and
+FORGE batch proof remain pending. Publication remains PAUSED.
+
+Checked startup: host kit `narrator-windowless-v1/Start-KnowledgeNetworkNarratorWindowless.ps1`,
+SHA `53faf5a77780804c40c5d57d36e0e300dd52f513284149be8fbd44f21f093c14`.
+Owner command is saved in the FORGE private mirror's Host-Windowless-Startup.txt.
+Run once as recorded Administrator owner. It starts the limited-owner windowless
+supervisor before health acceptance; it never calls parity or inference. Helper
+python.exe remains pinned separately from supervisor pythonw.exe. All13 live
+checkpoint hashes were read-only verified; schema2/current data, old code and
+accepted parity remain intact. It retains a consistent schema2 backup/own fence,
+both namespaces through startup and same-ledger verification. Task/process/auth
+checks remain strict, including zero children. No unknown-child whitelist.
+PASS:7 focused checks3.081s, including native pythonw no-console/no-children and
+401/401/200 loopback fixture; independent review PASS. Actual host task switch,
+new authentication/PSS and remote batch still NOT TESTED until command completes.
+Private validation narrator-windowless-validation-v7.private.json retained.
+No new model run or network/credential/Gateway change is needed for startup.
+
+## Historical checkpoint: narrator task disabled after v3
 
 Offline-v3 reached original-code/task backup and disabled the already-offline task,
 then failed its post-disable XML comparison. Retained snapshots show exact Ready3/
