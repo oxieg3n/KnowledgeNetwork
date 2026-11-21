@@ -1,5 +1,18 @@
 ﻿# V9 direct narrator acceptance
 
+Current result (November21): **REMOTE_NARRATION_PASS**. Authenticated private
+host deployment and FORGE transfer are complete: the actual Collector body job
+`632b3b9a21b34e92a944aae80b478a81` returned37.76s/48000Hz mono PCM16, SHA
+`77a1448af4a4c4251afdd7498e19a93cb70735eb3917a2d0bd41a82ee3e070d4`.
+All eight host/FORGE hashes match and joined PCM matches their concatenation.
+The50-second branded native export is technically accepted and owner preview
+approved; publication remains PAUSED. [Current verified results](overnight/FINALIZATION-RESULTS-2026-11-20.md)
+supersede earlier missing-model/rights/transport descriptions below. The new
+single-load segment-batch implementation is tested in isolation but still awaits
+live owner-context activation/parity. Dependency redistribution remains uncleared.
+
+## Historical acceptance log
+
 Updated November 14, 2026. The active provider is `RemoteVoxCPM2Provider`, fixed narrator `oxiegen-narrator`. VoiceStudio's former provider, PIN, health and model-selection evidence are historical; they do not establish readiness for this narrator.
 
 ## PASS: observed host file identity

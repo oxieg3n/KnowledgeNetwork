@@ -1,14 +1,46 @@
 # Restricted direct Oxiegen-Narrator host worker
 
-## November20 execution continuation
+## November21 verified deployment and model lifetime
 
-The old controller recovery is DEFERRED. An independently reviewed standalone
-bootstrap reuses this API under a limited owner task and new protected data,
-without stopping/replacing the old controller. It is staged, not executed;
-FORGE's dedicated host SSH connection currently times out. Fresh policy review
-passed, but no9443 route or new speech transfer is claimed. See the
-[actual results and one technical bootstrap](overnight/FINALIZATION-RESULTS-2026-11-20.md).
-Historical deployment/permission-pending descriptions below retain their scope.
+The standalone Limited-owner task and protected ProgramData service are live;
+127.0.0.1:39110 authentication passed401/401/200. Private HTTPS9443, verified TLS
+and pinned FORGE access passed. One short remote WAV and the actual Collector's
+eight-segment37.76s body passed host/FORGE digest and decoded PCM checks. The
+resulting native50-second Short was rendered and owner-approved. Publication
+remains PAUSED. See [exact receipts, hashes and current status](overnight/FINALIZATION-RESULTS-2026-11-20.md).
+Older blocked descriptions below retain their historical scope; never rerun an
+old installer or recover the deferred V2 controller to satisfy this workflow.
+
+The owner requires one model load for a complete narration job, all its segments
+in sequence, then process exit/unload on completion, failure or cancellation.
+The implemented optional `segments` array uses the installed VoxCPM2 CLI's batch
+command with the same reference/model/CFG2/ten steps/no-denoiser/no-optimization/
+local-only/compile-disabled settings. A batch is one durable host job with one
+owned process and a complete WAV plus measured sample cues. The HTTP server
+remains available without keeping a model resident while idle. A new batch is
+accepted only when authenticated health advertises `segment_batches=true`.
+The restricted host accepts at most16 nonempty stripped segments, a total12000
+characters and a literal-space join equal to `text`; callers cannot select CLI
+arguments, paths, voices or models. Cues must cover the complete decoded WAV.
+
+The installed CLI may exit0 after individual batch errors, so success requires
+all expected files, successful log counts, valid PCM and confirmed process exit;
+partial files never become successful speech. Bounded output/logs, cancellation,
+idempotency and uncertain-outcome holds still apply. New FORGE multi-segment
+requests require this capability and never fall back to per-segment submissions.
+Existing legacy receipts recover the original IDs through GET only.
+
+The reviewed fixed owner updater is staged; **live batch parity/activation is
+pending**, so the current installed service still executes the canonical script
+once per legacy segment. After an exact task/physical-ledger/idle-fence proof,
+the updater preserves original code/task/database and runs a Limited-owner
+technical parity batch before enabling support. The old script SHA remains the
+settings oracle; a batch receipt truthfully identifies `cli_segment_batch_v1`,
+rather than falsely claiming the script itself executed. Real batch CUDA and
+FORGE acceptance remain untested until activation. No route/policy/Gateway or
+original narrator files change in this update.
+
+## Historical baseline and initial acceptance boundaries
 
 Current continuation: the canonical diagnostic, owner listening approval,
 private host manifest validation and original loopback authentication passed;
