@@ -1,4 +1,5 @@
 """Actual tiny codec fixture, not production media or a listening attestation."""
+from tests.fixture_retention import FixtureDirectory
 import json,shutil,subprocess,tempfile,unittest
 from pathlib import Path
 from youtube_ops.render import assemble_segments,probe
@@ -6,7 +7,7 @@ from youtube_ops.render import assemble_segments,probe
 @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'),'FFmpeg integration tools unavailable')
 class AssemblyTests(unittest.TestCase):
  def test_color_metadata_transition_preserves_video_timeline(self):
-  with tempfile.TemporaryDirectory() as d:
+  with FixtureDirectory() as d:
    root=Path(d)
    for i,color in enumerate(('blue','red','green')):
     args=['ffmpeg','-v','error','-f','lavfi','-i',f'color={color}:s=90x160:r=30:d=1',
@@ -31,7 +32,7 @@ class AssemblyTests(unittest.TestCase):
    self.assertAlmostEqual(pts[-1]-pts[0],(len(pts)-1)/30,places=3)
  def test_mixed_dimensions_rejected_before_assembly(self):
   from unittest.mock import patch
-  with tempfile.TemporaryDirectory() as d:
+  with FixtureDirectory() as d:
    root=Path(d);concat=root/'segments.txt';concat.write_text("file 'a.mp4'\nfile 'b.mp4'\n")
    def info(width):return {'streams':[{'codec_type':'video','width':width,'height':160,'pix_fmt':'yuv420p'}]}
    with patch('youtube_ops.render.probe',side_effect=[info(90),info(180)]),patch('youtube_ops.render.run') as run:

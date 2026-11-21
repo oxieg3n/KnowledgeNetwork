@@ -1,7 +1,7 @@
 name: Software validation
 on:
   push:
-    branches: [main, feat/video-operations]
+    branches: [main, feat/video-operations, feature/collector-v7-overnight]
     paths-ignore: ['state/**', 'reports/**']
   pull_request:
   workflow_dispatch:
@@ -9,28 +9,62 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+    name: Full retention-safe regression (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+          clean: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
-      - name: Install pinned graphics test dependency
-        run: python -m pip install --disable-pip-version-check Pillow==13.0.0
+      - name: Retention preflight before full supported regression
+        run: python tools/check_archive_retention.py --scope legacy-tests
+      - name: Install pinned test dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-render.txt 'tzdata==2026.2'
       - name: Unit and recovery tests (no secrets, no publishing)
         env:
           PYTHONPATH: src
-        run: python -m unittest discover -s tests -v
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          evidence=pathlib.Path(os.environ['RUNNER_TEMP'])/'kn-ci-evidence'
+          evidence.mkdir()
+          with (evidence/'unit-tests.log').open('xb') as output:
+              result=subprocess.run(['python','-m','unittest','discover','-s','tests','-v'],stdout=output,stderr=subprocess.STDOUT)
+          print((evidence/'unit-tests.log').read_text(encoding='utf-8',errors='replace'))
+          (evidence/'result.json').write_text(json.dumps({'exit_code':result.returncode,'scope':'synthetic hosted tests; native opt-in cases require separate local acceptance','retention':'90-day synthetic log/index artifact; runner fixture bytes are ephemeral, not permanently archived'}),encoding='utf-8')
+          raise SystemExit(result.returncode)
+          PY
+      - name: Retain synthetic test logs and bounded fixture indexes
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: synthetic-test-evidence-${{ matrix.os }}
+          retention-days: 90
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/kn-ci-evidence/
+            ${{ github.workspace }}-Private/fixture-retention/*.private.json
       - name: Reject tracked media and credential files
+        if: always()
         run: |
           python - <<'PY'
           import hashlib, pathlib, subprocess
           files=subprocess.check_output(['git','ls-files'],text=True).splitlines()
-          # Owner-authorized brand source copies only; all other media stays forbidden.
+          # Unchanged owner-approved main sources are the only media exceptions.
           approved = {
+              'sources/Neon Cosmic Oxieg3n Emblem.png': '5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54',
               'sources/Powered-By-Outro-Portrait.mp4': '62496803360e377d81ab54b6970d94fcce3eee125f5d22c2fe08377dcf1b5c9b',
               'sources/Powered-By-Outro-Landscape.mp4': '3720a160cd8acb46c828d448cca740252fb8c6a80eba892f1573dc5b56479ee3',
               'sources/Powered-By-Plasma-With-Sound-Preview.mp4': '1eeec90cda8dec320e078e77d5a6c4b6034be6e9dd07e00220ccc601f688e781',
@@ -38,6 +72,39 @@ jobs:
           for path, digest in approved.items():
               assert path in files, f'Missing approved brand source: {path}'
               assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() == digest, f'Changed approved brand source: {path}'
-          bad=[x for x in files if (pathlib.Path(x).suffix.lower() in {'.mp4','.mp3','.wav','.onnx'} and x not in approved) or 'client_secret' in x or 'token.json' in x]
+          bad=[x for x in files if (pathlib.Path(x).suffix.lower() in {'.mp4','.mp3','.wav','.onnx'} and x not in approved) or 'client_secret' in x or 'token.json' in x or pathlib.PurePosixPath(x).parts[0]=='old']
           assert not bad, 'Forbidden tracked files'
           PY
+  windows-build:
+    name: Windows worker and native WPF build
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          clean: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+        with:
+          global-json-file: global.json
+      - name: Restore locked worker dependencies
+        run: dotnet restore collector/windows/Collector/Collector.csproj --locked-mode -r win-x64
+      - name: Build worker
+        run: dotnet build collector/windows/Collector/Collector.csproj -c Release -r win-x64 --no-restore
+      - name: Worker protocol, persistence and denied-operation self-tests
+        shell: pwsh
+        run: |
+          $evidence = Join-Path $env:RUNNER_TEMP 'kn-worker-self-test.log'
+          if (Test-Path -LiteralPath $evidence) { throw 'Preserve previous worker test evidence.' }
+          & dotnet run --project collector/windows/Collector/Collector.csproj -c Release -r win-x64 --no-build -- self-test | Tee-Object -FilePath $evidence
+          if ($LASTEXITCODE -ne 0) { throw 'Worker self-tests failed.' }
+      - name: Retain synthetic worker self-test summary
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: synthetic-worker-self-test-summary
+          retention-days: 90
+          if-no-files-found: error
+          path: ${{ runner.temp }}/kn-worker-self-test.log
+      - name: Compile native WPF dashboard
+        run: dotnet build collector/windows/Dashboard/Dashboard.csproj -c Release

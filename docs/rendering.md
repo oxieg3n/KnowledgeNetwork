@@ -1,6 +1,8 @@
 # Local renderer and qualification boundary
 
-The renderer produces an original graphic sequence with local Piper narration. It does not download YouTube footage, upload anything, or grant editorial approval. `publication_eligible` is always false at this layer. A separate reviewed production package must clear facts, rights, pronunciation, captions, distinct value, and mobile readability.
+Current host setup and private configuration: [V9 Assistant operations](collector/ASSISTANT-OPERATIONS.md).
+
+The renderer produces an original graphic sequence using verified, Forge-local VoxCPM2 Oxiegen-Narrator WAV receipts. It does not synthesize local body speech, download YouTube footage, upload anything, or grant editorial approval. `publication_eligible` is always false at this layer. A separate reviewed production package must clear facts, rights, pronunciation, captions, distinct value, and mobile readability.
 
 Install `requirements-render.txt` in an isolated environment. FFmpeg and ffprobe must be installed from the official distribution. Dependencies are version-pinned, not yet a transitive hash lock. Do not run sustained production on GitHub-hosted machines before the acceptable-use/runtime decision is resolved.
 
@@ -9,11 +11,15 @@ Run:
 ```
 PYTHONPATH=src python -m youtube_ops.render examples/render_smoke.json \
   --output /absolute/new/ephemeral/directory \
-  --voice /approved/local/model.onnx \
-  --voice-metadata /approved/local/voice.json
+  --narration-receipt /private/scene-one/narration.json \
+  --narration-receipt /private/scene-two/narration.json \
+  --narration-receipt /private/scene-three/narration.json \
+  --font /reviewed/local/font.ttf
 ```
 
-The `.onnx.json` sidecar must be beside the model. Voice metadata requires `rights_reviewed: true`, `license`, `proof_url`, `rights_holder`, `model_sha256`, `commercial_use: true`, and `youtube_use: true`. No model is downloaded implicitly. Rights fields record a human/agent review; they are not proof by themselves. Preserve the underlying evidence and verify license scope before approving.
+Repeat `--narration-receipt` once for each original narrated scene, in scene order; licensed excerpts retain their existing source audio/captions. Each absolute local receipt has sibling `narration.wav`, fixed `provider=voxcpm2_remote`, `narrator_id=oxiegen-narrator`, exact scene-text SHA-256, script/config/model/license provenance, verified PCM metadata/hash and measured sample-based cues. Missing, mismatched, linked or uncaptioned narration fails closed before encoding. Cues must preserve the scene's words and fit the readable two-line caption layout; request actual shorter synthesized segments when needed rather than dividing existing audio by word count.
+
+The new path never imports Piper/ONNX. Retired `--voice` and `--voice-metadata` inputs are recognized only to reject new local synthesis; there is no boolean legacy bypass. Historical requests, receipts and media stay unchanged. Existing exact-approved media can still use their separate finishing/recovery controls; re-synthesis needs a separately reviewed recovery binding. No model is downloaded implicitly. Receipt metadata is retained evidence, not independent rights clearance or proof somebody listened. The November 12 Piper evaluations and render hashes below are historical records, not the active narration path.
 
 ## Smoke test
 
@@ -75,6 +81,6 @@ For narration-linked emphasis, split a story into consecutive scenes with the sa
 
 ## Required telemetry opt-out
 
-Start every rendering Python process with `ORT_DISABLE_TELEMETRY=1` before Piper or ONNX Runtime imports. Official native ONNX Runtime builds can send telemetry by default, and disabling events after import may miss initialization. The renderer refuses to import Piper unless the startup opt-out is present. This is a local privacy control, not authorization to transmit telemetry. Official reference: https://github.com/microsoft/onnxruntime/blob/main/docs/Privacy.md
+Start every rendering Python process with `ORT_DISABLE_TELEMETRY=1` before any legacy Piper or ONNX Runtime imports. Official native ONNX Runtime builds can send telemetry by default, and disabling events after import may miss initialization. The V9 receipt-only renderer rejects Piper synthesis entirely and imports neither Piper nor ONNX Runtime; the older opt-out guard is historical evidence, not a fallback route. This is a local privacy control, not authorization to transmit telemetry. Official reference: https://github.com/microsoft/onnxruntime/blob/main/docs/Privacy.md
 
 The November12 full-recap first render was interrupted by safety review after seven completed scenes and an empty eighth scene. No finalMP4 or upload resulted. Keep that attempt as interrupted; reconcile process termination and record a distinct authorized recovery attempt before restarting with telemetry disabled.

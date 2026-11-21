@@ -4,8 +4,8 @@ import argparse
 import hashlib
 import json
 import math
-import os
 import re
+import shutil
 import subprocess
 import wave
 from pathlib import Path
@@ -194,6 +194,9 @@ def write_captions(path: Path, captions: list[dict], size: tuple[int, int], font
     px = 48 if w < h else 44
     width = w - (220 if w < h else 300)
     font = ImageFont.truetype(font_path, px)
+    font_family = font.getname()[0]
+    if not font_family or any(c in font_family for c in ',\r\n'):
+        raise ValueError('Unsupported subtitle font family')
     draw = ImageDraw.Draw(Image.new('RGB', size))
     y = h - (365 if w < h else 205)
     header = f"""[Script Info]
@@ -203,7 +206,7 @@ PlayResY: {h}
 WrapStyle: 2
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,DejaVu Sans,{px},&H00FFFFFF,&H00FFFFFF,&H00121C2A,&H00121C2A,0,0,0,0,100,100,0,0,3,12,0,5,110,110,100,1
+Style: Default,{font_family},{px},&H00FFFFFF,&H00FFFFFF,&H00121C2A,&H00121C2A,0,0,0,0,100,100,0,0,3,12,0,5,110,110,100,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
@@ -326,8 +329,9 @@ def assemble_segments(concat: Path, final: Path, *, branded: bool) -> None:
          *encoding,'-movflags','+faststart',str(final)])
 
 
-def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
-           font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', *, local_assets: dict | None = None) -> dict:
+def render(spec: dict, output: Path, model: Path | None = None, voice_metadata: dict | None = None,
+           font_path: str = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', *, local_assets: dict | None = None,
+           narration_receipts: list[Path] | None = None) -> dict:
     validate_spec(spec)
     reserved_assets = set()
     if spec.get('brand_intro') is not None: reserved_assets.add('poweredby_logo')
@@ -349,19 +353,27 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         if not local_assets or 'poweredby_logo' not in local_assets:
             raise ValueError('brand_intro requires local approved poweredby_logo')
         verify_intro(intro_config, Path(local_assets['poweredby_logo']))
-    verify_voice(model, voice_metadata)
-    # Official native ONNX builds can initialize telemetry during import.
-    # Refuse to import Piper/ONNX unless process startup explicitly opted out.
-    if os.environ.get("ORT_DISABLE_TELEMETRY") != "1":
-        raise ValueError("Start Python with ORT_DISABLE_TELEMETRY=1 before loading Piper/ONNX")
-    from piper import PiperVoice
+    if model is not None or voice_metadata is not None:
+        raise ValueError('Legacy Piper body synthesis is disabled; verified VoxCPM2 narration receipts required')
+    if narration_receipts is not None and not isinstance(narration_receipts, (list, tuple)):
+        raise ValueError('Narration receipts must be an ordered list')
+    originals = [(i, scene) for i, scene in enumerate(spec['scenes']) if 'licensed_excerpt' not in scene]
+    paths = narration_receipts or []
+    if len(paths) != len(originals):
+        raise ValueError('One verified VoxCPM2 narration receipt required per original scene')
+    from .collector_narration_receipt import read_voxcpm2_receipt
+    narration = {}
+    for (index, scene), path in zip(originals, paths):
+        verified = read_voxcpm2_receipt(path, expected_text=scene['narration'])
+        if not verified[2].get('cues'):
+            raise ValueError('Measured narration cues required; caption alignment is blocked')
+        narration[index] = verified
     from PIL import __version__ as pillow_version
     if output.exists():
         raise FileExistsError('choose a new output directory; never overwrite recovery media')
     output.mkdir(parents=True)
     output = output.resolve()
     size = (1080, 1920) if spec['format']=='short' else (1920,1080)
-    voice = PiperVoice.load(str(model))
     segments, durations, captions = [], [], []
     elapsed = 0.0
     for i, scene in enumerate(spec['scenes']):
@@ -394,11 +406,13 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
                  '-threads','2',str(mp4)],cwd=output)
         else:
             wav = output / f'scene-{i:02}.wav'
-            phrases = caption_phrases(scene['narration'], font_path=font_path,
-                                      width=size[0]-(220 if size[0]<size[1] else 300),
-                                      px=48 if size[0]<size[1] else 44)
-            cues = synthesize_phrases(voice, phrases, wav)
-            duration = cues[-1]['end']
+            receipt_path, source_wav, receipt, expected_audio, receipt_hash = narration[i]
+            shutil.copyfile(source_wav, wav)
+            from .collector_narration_common import inspect_wav
+            if inspect_wav(wav) != expected_audio:
+                raise ValueError('Narration WAV changed after receipt validation')
+            cues = receipt['cues']
+            duration = expected_audio['duration_seconds']
             ass = output / f'scene-{i:02}.ass'
             write_captions(ass, cues, size, font_path)
             png = output / f'scene-{i:02}.png'
@@ -466,8 +480,14 @@ def render(spec: dict, output: Path, model: Path, voice_metadata: dict,
         'script_sha256':hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
         'brand_intro':intro_evidence, 'brand_outro':outro_evidence,
         'licensed_assets':spec.get('licensed_assets',{}),
-        'voice':voice_metadata,'graphics':{'origin':'original programmatic schematic; licensed source frames where explicitly registered' if spec.get('licensed_assets') else 'original programmatic schematic','font':'DejaVu Sans (Bitstream Vera / DejaVu license)'},
-        'captions':'burned-in captions and JSON sidecar; original narration uses synthesized PCM phrase timing; licensed excerpts use reviewed source-relative cues; muxed scene offsets; manual listening/sync review required',
+        'voice':{'provider':'voxcpm2_remote' if narration else 'licensed_source_audio',
+                 'narrator_id':'oxiegen-narrator' if narration else None,
+                 'scenes':[{'scene': index, 'receipt_sha256': item[4],
+                            'text_sha256': item[2]['text_sha256'], 'audio': item[3],
+                            'provenance': item[2]['provenance']} for index, item in narration.items()],
+                 'listening':'NOT_TESTED'},
+        'graphics':{'origin':'original programmatic schematic; licensed source frames where explicitly registered' if spec.get('licensed_assets') else 'original programmatic schematic','font':Path(font_path).name,'font_sha256':sha256(Path(font_path)),'font_license_review':'pending'},
+        'captions':'burned-in captions and JSON sidecar; original narration uses verified VoxCPM2 measured PCM segment cues; licensed excerpts use reviewed source-relative cues; muxed scene offsets; manual listening/sync review required',
         'pillow_version':pillow_version,'qc':qc,
     }
     (output/'manifest.json').write_text(json.dumps(manifest,indent=2))
@@ -478,11 +498,16 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument('spec',type=Path)
     ap.add_argument('--output',type=Path,required=True)
-    ap.add_argument('--voice',type=Path,required=True)
-    ap.add_argument('--voice-metadata',type=Path,required=True)
+    ap.add_argument('--voice',type=Path,help='retired body-synthesis input; rejected for new renders')
+    ap.add_argument('--voice-metadata',type=Path,help='retired body-synthesis input; rejected for new renders')
+    ap.add_argument('--narration-receipt',type=Path,action='append',help='absolute verified VoxCPM2 narration.json; repeat for each original scene')
+    ap.add_argument('--font',default='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',help='local reviewed font used for layout')
     ap.add_argument('--local-assets',type=Path,help='private JSON asset-id to local-path mapping; never committed')
     args=ap.parse_args()
-    manifest=render(json.loads(args.spec.read_text()),args.output,args.voice,json.loads(args.voice_metadata.read_text()),local_assets=json.loads(args.local_assets.read_text()) if args.local_assets else None)
+    manifest=render(json.loads(args.spec.read_text()),args.output,args.voice,
+                    {} if args.voice_metadata else None,
+                    font_path=args.font, narration_receipts=args.narration_receipt,
+                    local_assets=json.loads(args.local_assets.read_text()) if args.local_assets else None)
     print(json.dumps({'status':manifest['status'],'qc_passed':manifest['qc']['passed'],'publication_eligible':False}))
 
 if __name__=='__main__':

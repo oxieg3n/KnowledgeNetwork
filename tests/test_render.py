@@ -1,9 +1,16 @@
-import tempfile
+from tests.fixture_retention import FixtureDirectory
 import importlib.util
+import os
 import wave
 import unittest
 from pathlib import Path
 from youtube_ops.render import validate_spec, verify_voice, assess_probe, sha256, caption_phrases, synthesize_phrases, ass_time, write_captions
+
+# These tests exercise text layout, not the approved brand font or brand assets.
+TEST_FONT = next((str(p) for p in (
+    Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'),
+    Path(os.environ.get('WINDIR', 'C:/Windows')) / 'Fonts/arial.ttf',
+) if p.is_file()), None)
 
 class RenderTests(unittest.TestCase):
     def test_spec_rejects_control_characters(self):
@@ -12,7 +19,7 @@ class RenderTests(unittest.TestCase):
     def test_spec_rejects_empty(self):
         with self.assertRaises(ValueError): validate_spec({'format':'short','scenes':[]})
     def test_rights_and_hash_fail_closed(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             p=Path(tmp)/'model';p.write_bytes(b'test')
             with self.assertRaises(ValueError): verify_voice(p,{})
             rights={'rights_reviewed':True,'license':'CC0','proof_url':'https://example.org','rights_holder':'test','model_sha256':sha256(p),'commercial_use':True,'youtube_use':True}
@@ -34,7 +41,7 @@ class CaptionTests(unittest.TestCase):
             def synthesize_wav(self, text, out):
                 out.setnchannels(1); out.setsampwidth(2); out.setframerate(1000)
                 out.writeframes(b'\x00\x00' * (300 if text == 'short' else 1700))
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             wav = Path(tmp) / 'speech.wav'
             cues = synthesize_phrases(FakeVoice(), ['short', 'longer phrase'], wav)
             self.assertEqual(cues[0]['start'], 0)
@@ -46,16 +53,16 @@ class CaptionTests(unittest.TestCase):
     def test_time_centisecond_rollover(self):
         self.assertEqual(ass_time(59.999), '0:01:00.00')
         self.assertEqual(ass_time(3600), '1:00:00.00')
-    @unittest.skipUnless(importlib.util.find_spec('PIL') and Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf').exists(), 'optional render dependencies absent')
+    @unittest.skipUnless(importlib.util.find_spec('PIL') and TEST_FONT, 'Pillow and a test font required')
     def test_readable_chunks_preserve_transcript_and_reject_markup(self):
-        font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+        font=TEST_FONT
         text='These captions follow the actual narration. They stay readable, with safe margins and short phrases.'
         phrases=caption_phrases(text,font_path=font,width=860,px=48)
         self.assertEqual(' '.join(phrases),text)
         self.assertTrue(all(len(p.split())<=10 for p in phrases))
         with self.assertRaises(ValueError):
             caption_phrases('A {control} word',font_path=font,width=860,px=48)
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             path=Path(tmp)/'captions.ass'
             write_captions(path,[{'start':0,'end':3,'text':phrases[0]}],(1080,1920),font)
             content=path.read_text()
@@ -72,11 +79,11 @@ class SubjectGraphicsTests(unittest.TestCase):
         validate_graphic(base)
         for bad in [dict(base,kind='numeric-chart'),dict(base,emphasis=2),dict(base,emphasis=True),dict(base,items=[]),dict(base,items=[{'label':'','detail':'a'},{'label':'b','detail':'c'}])]:
             with self.assertRaises(ValueError): validate_graphic(bad)
-    @unittest.skipUnless(importlib.util.find_spec('PIL'), 'optional render dependencies absent')
+    @unittest.skipUnless(importlib.util.find_spec('PIL') and TEST_FONT, 'Pillow and a test font required')
     def test_landscape_graphic_modes_and_overflow(self):
         from youtube_ops.render import card
-        font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
-        with tempfile.TemporaryDirectory() as tmp:
+        font=TEST_FONT
+        with FixtureDirectory() as tmp:
             for kind in ['flow','comparison','timeline']:
                 scene={'title':'A technical schematic, not a news report','caption':'Original diagram for layout validation.','graphic':{'kind':kind,'items':[{'label':'Source','detail':'Read the primary document'},{'label':'Evidence','detail':'Check the actual claim'},{'label':'Review','detail':'Inspect final output'}],'emphasis':1}}
                 card(scene,Path(tmp)/f'{kind}.png',(1920,1080),0,1,technical_test=True,font_path=font)
@@ -101,17 +108,23 @@ class SceneMotionTests(unittest.TestCase):
         with self.assertRaises(ValueError): scene_video_filter(30,(1920,1080),'bad;filter.ass')
 
 
-class TelemetryGuardTests(unittest.TestCase):
-    def test_piper_import_guard_precedes_import(self):
-        import inspect
-        from youtube_ops import render as module
-        code = inspect.getsource(module.render)
-        self.assertLess(code.index('ORT_DISABLE_TELEMETRY'), code.index('from piper import PiperVoice'))
-        self.assertIn('raise ValueError("Start Python with ORT_DISABLE_TELEMETRY=1', code)
-    def test_missing_opt_out_refuses_before_voice_load(self):
+class NarratorDefaultGuardTests(unittest.TestCase):
+    def test_legacy_body_model_is_rejected_without_loading_it(self):
         from unittest.mock import patch
-        from pathlib import Path
         from youtube_ops import render as module
-        with patch.dict('os.environ', {}, clear=True), patch.object(module, 'validate_spec'), patch.object(module, 'verify_voice'):
-            with self.assertRaisesRegex(ValueError, 'ORT_DISABLE_TELEMETRY=1'):
-                module.render({}, Path('/tmp/not-created-telemetry-test'), Path('/tmp/not-read-model'), {})
+        with FixtureDirectory() as directory, patch.object(module, 'verify_voice') as verify:
+            output = Path(directory) / 'not-created'
+            spec = {'format': 'short', 'scenes': [{'title': 'Test', 'narration': 'Test speech.', 'caption': 'Test'}]}
+            with self.assertRaisesRegex(ValueError, 'Legacy Piper body synthesis is disabled'):
+                module.render(spec, output, Path('missing-model'), {})
+            verify.assert_not_called()
+            self.assertFalse(output.exists())
+
+    def test_no_receipt_never_falls_back_to_local_speech(self):
+        from youtube_ops import render as module
+        with FixtureDirectory() as directory:
+            output = Path(directory) / 'not-created'
+            spec = {'format': 'short', 'scenes': [{'title': 'Test', 'narration': 'Test speech.', 'caption': 'Test'}]}
+            with self.assertRaisesRegex(ValueError, 'verified VoxCPM2 narration receipt'):
+                module.render(spec, output)
+            self.assertFalse(output.exists())

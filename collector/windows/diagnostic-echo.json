@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "job_type": "diagnostic.echo",
+  "idempotency_key": "local-review-connection-test-001",
+  "inputs": { "nonce": "owner-local-review-test-001" }
+}

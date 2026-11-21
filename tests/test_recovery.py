@@ -1,4 +1,4 @@
-import tempfile
+from tests.fixture_retention import FixtureDirectory
 import unittest
 from youtube_ops.state import State
 from youtube_ops.recovery import (
@@ -14,7 +14,7 @@ VIDEO = 'd'*11
 
 class RecoveryTests(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
+        self.tmp = FixtureDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.state = State(self.tmp.name)
 

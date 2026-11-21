@@ -2,13 +2,27 @@
 
 Rights-safe video operations for Powered By Oxieg3n. This public repository contains software and small public metadata only. It does not modify the separate website repository.
 
+**The Knowledge Network Collector** Windows staging build has a tested
+Windows service, durable CLI, owner-session companion, operations dashboard and
+native OpenShot editing. Actual authenticated BLACKHAT-BASE VoxCPM2 narration
+was returned to FORGE and used in an editable, branded50-second1080x1920 Short.
+The owner watched and approved that exact local export. Publication remains
+**PAUSED**; PR20 stays draft/unmerged. VoiceStudio is retired.
+
+See the [verified handoff](docs/collector/overnight/HANDOFF.md),
+[artifact paths, hashes and acceptance limits](docs/collector/overnight/FINALIZATION-RESULTS-2026-11-20.md)
+and [Assistant operations](docs/collector/ASSISTANT-OPERATIONS.md).
+The new one-load-per-job narration batch implementation is tested; live activation
+still requires its reviewed elevated-owner host step. Existing installer upgrade/
+rollback and scheduled Assistant/reboot acceptance are not claimed complete.
+
 ## Current implementation
 
 - Four durable queues: fresh source uploads, daily recap, published-blog adaptations, historical top-ten research.
 - 150 watchlist entries (121 unique names); ten channels initially verified with official identity evidence.
 - Bounded official RSS discovery, optional YouTube Data API uploads-playlist reconciliation and archival ranking, live public blog sync.
 - Versioned JSON state with single-writer workflow concurrency and optimistic conflict rejection.
-- Local original-graphics/Piper renderer, FFmpeg QC, publication gates and recovery tests.
+- Local original-graphics renderer with verified narration receipts, FFmpeg QC, publication gates and recovery tests.
 - Public operational reports and pending alert outbox. No email is claimed sent.
 
 **Not yet fully autonomous:** official upload/subscription OAuth, an approved persistent render host, email route, finished editorial scripts and exact-render human-quality review remain required. Browser Studio sign-in is not API authorization. Production publication is paused by default. No video has been published by this software.

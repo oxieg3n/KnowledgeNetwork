@@ -12,6 +12,7 @@ __pycache__/
 *token*.json
 *client_secret*.json
 output/
+/old/
 
 # Owner-approved reusable brand bookends (exact-path CI allowlist).
 !sources/Powered-By-Outro-Portrait.mp4
