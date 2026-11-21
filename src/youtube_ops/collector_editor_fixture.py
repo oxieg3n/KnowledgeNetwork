@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import math
+from itertools import product
 from pathlib import Path
 from fractions import Fraction
 import re
@@ -40,6 +41,20 @@ def caption_fingerprint(client, clip_id):
 def music_fingerprint(clip):
     values = {key: clip.get(key) for key in ('id', 'position', 'start', 'end', 'volume')}
     return hashlib.sha256(json.dumps(values, sort_keys=True).encode()).hexdigest()
+
+
+def music_matches_fingerprint(clip, expected):
+    # Native save/reopen can encode the same integral time as 0 or 0.0.
+    if music_fingerprint(clip) == expected:
+        return True
+    keys = ('position', 'start', 'end')
+    choices = []
+    for key in keys:
+        value = clip.get(key)
+        choices.append((int(value), float(int(value))) if type(value) in (int, float)
+                       and abs(value) <= 2**53 and value == int(value) else (value,))
+    return any(music_fingerprint(dict(clip, **dict(zip(keys, values)))) == expected
+               for values in product(*choices))
 
 
 def capture_music_baseline(client, clip_id, revision):
@@ -96,7 +111,7 @@ def checked_music(client, clips, layer, previous):
     result = []
     for item in owned:
         clip = client._invoke(['clip', 'get', item['clip_id']])['data']
-        if music_fingerprint(clip) != item.get('sha256'):
+        if not music_matches_fingerprint(clip, item.get('sha256')):
             raise ValueError('Music gain or timing was changed; preserve manual edits and reconcile narration')
         result.append(clip)
     return result
