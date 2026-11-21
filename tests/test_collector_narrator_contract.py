@@ -8,7 +8,7 @@ from unittest.mock import patch
 import wave
 
 from youtube_ops.collector_narration_common import inspect_wav
-from youtube_ops.collector_narrator_host import NarratorHTTPServer, NarratorStore
+from youtube_ops.collector_narrator_host import NarratorHTTPServer, NarratorStore, join_batch_outputs
 from youtube_ops.collector_voxcpm2 import RemoteVoxCPM2Provider
 
 
@@ -22,16 +22,24 @@ class SimulatedNarrator:
 
 class NarratorContractTests(unittest.TestCase):
     def test_two_measured_segments_cross_actual_http_contract(self):
-        def synthetic_executor(text, output, cancel):
-            with wave.open(str(output), 'wb') as audio:
-                audio.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
-                audio.writeframes(b'\x01\x00' * (1600 if text == 'First.' else 3200))
+        calls = []
+        class SyntheticExecutor:
+            def __call__(self, text, output, cancel):
+                raise AssertionError('New multi-part requests must use one batch.')
+            def batch(self, segments, output, cancel):
+                calls.append(tuple(segments))
+                directory = output.parent / 'synthetic-segments'; directory.mkdir()
+                for index, text in enumerate(segments):
+                    with wave.open(str(directory / ('output_%03d.wav' % (index + 1))), 'wb') as audio:
+                        audio.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
+                        audio.writeframes(b'\x01\x00' * (1600 if text == 'First.' else 3200))
+                return join_batch_outputs(directory, output, segments)
 
         with FixtureDirectory() as temporary:
             root = Path(temporary)
             host, forge = root / 'host', root / 'forge'
             host.mkdir(); forge.mkdir()
-            store = NarratorStore(host, SimulatedNarrator(), synthetic_executor)
+            store = NarratorStore(host, SimulatedNarrator(), SyntheticExecutor(), segment_batches=True)
             server = NarratorHTTPServer(('127.0.0.1', 0), store, 'x' * 32)
             thread = threading.Thread(target=server.serve_forever, daemon=True)
             thread.start(); store.start()
@@ -60,6 +68,8 @@ class NarratorContractTests(unittest.TestCase):
                 self.assertEqual([(cue['start_sample'], cue['end_sample']) for cue in result['cues']],
                                  [(0, 1600), (1600, 4800)])
                 self.assertFalse(result['publication_eligible'])
-                self.assertEqual(store.db.execute('SELECT count(*) FROM jobs').fetchone()[0], 2)
+                self.assertEqual(store.db.execute('SELECT count(*) FROM jobs').fetchone()[0], 1)
+                self.assertEqual(calls, [('First.', 'Second.')])
+                self.assertEqual(result['execution_mode'], 'cli_segment_batch_v1')
             finally:
                 server.shutdown(); thread.join(timeout=5); server.server_close(); store.close()
