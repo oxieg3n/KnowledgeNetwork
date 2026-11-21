@@ -896,6 +896,14 @@
       "url": "https://www.youtube.com/watch?v=W2DPDjuL7Do",
       "video_id": "W2DPDjuL7Do"
     },
+    "video:WN-JK-hMAyg": {
+      "created_at": "2026-11-21T09:46:17.327817+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world",
+      "url": "https://www.youtube.com/watch?v=WN-JK-hMAyg",
+      "video_id": "WN-JK-hMAyg"
+    },
     "video:W_Wjpk-oUbc": {
       "created_at": "2026-11-12T21:57:21.142742+00:00",
       "kind": "new_video",
@@ -2104,8 +2112,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-19T20:32:43.990967+00:00",
-      "last_monitored_at": "2026-11-19T20:32:43.990861+00:00",
+      "last_attempt_at": "2026-11-21T09:46:16.801845+00:00",
+      "last_monitored_at": "2026-11-21T09:46:16.801711+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -2275,8 +2283,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-19T20:32:44.474168+00:00",
-      "last_monitored_at": "2026-11-19T20:32:44.474042+00:00",
+      "last_attempt_at": "2026-11-21T09:46:17.328020+00:00",
+      "last_monitored_at": "2026-11-21T09:46:17.327842+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -9723,6 +9731,26 @@
         "url": "https://www.youtube.com/watch?v=W2DPDjuL7Do",
         "video_id": "W2DPDjuL7Do"
       },
+      "WN-JK-hMAyg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "channel_name": "Google for Developers",
+        "discovered_at": "2026-11-21T09:46:17.327793+00:00",
+        "id": "WN-JK-hMAyg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-20T20:00:04Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world",
+        "url": "https://www.youtube.com/watch?v=WN-JK-hMAyg",
+        "video_id": "WN-JK-hMAyg"
+      },
       "W_Wjpk-oUbc": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12218,6 +12246,11 @@
       "general": 21,
       "search": 3,
       "upload": 0
+    },
+    "2026-11-21": {
+      "general": 6,
+      "search": 0,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -12671,7 +12704,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 600,
+  "revision": 610,
   "rights_ledger": {},
   "runs": [
     {
@@ -14130,6 +14163,31 @@
       },
       "run_id": "44850512548-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-21T09:46:16.414874+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "44891138374-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-21T09:46:17.357993+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 0
+      },
+      "run_id": "44891138374-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
