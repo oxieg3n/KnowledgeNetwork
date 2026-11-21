@@ -14,7 +14,7 @@ import time
 from .collector_narration_common import VoiceError, local_spool, read_json, sha256_file
 from .collector_narration_receipt import read_voxcpm2_receipt
 from .collector_narrator_host import NarratorError, verify_spool_acl
-from .collector_voxcpm2 import RemoteVoxCPM2Provider, request_identity
+from .collector_voxcpm2 import BATCH_MODE, RemoteVoxCPM2Provider, request_identity
 from .collector_editor_job import execute as execute_editor, outcome as editor_outcome
 
 IDENTITY = {'provider': 'voxcpm2_remote', 'narrator_id': 'oxiegen-narrator',
@@ -227,6 +227,17 @@ def run_once(service, provider_factory=RemoteVoxCPM2Provider.from_environment, *
             status = 'failed'
         elif not generating and (isinstance(exc, VoiceError) or code in SAFE_BLOCK):
             status = 'blocked'
+        elif isinstance(exc, VoiceError) and code in {
+                'BLOCKED_NARRATOR_SEGMENT_BATCH_UNSUPPORTED', 'INVALID_NARRATION_BATCH_SEGMENTS'}:
+            # A batch rejected before its first host intent has no uncertain work.
+            status = 'reconciliation_required'
+            try:
+                record = read_json(local_spool(provider.spool / job['job_id']) / 'narration.json')
+                if (record.get('collector_job_id') == job['job_id'] and record.get('request_mode') == BATCH_MODE
+                        and record.get('provider') == IDENTITY['provider'] and record.get('host_jobs') == []):
+                    status = 'blocked' if code.startswith('BLOCKED_') else 'failed'
+            except Exception:
+                pass
         else:
             status = 'reconciliation_required'
         result = failure(status, code)

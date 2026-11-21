@@ -88,6 +88,27 @@ class CompanionTests(unittest.TestCase):
     def test_unknown_after_generation_no_retry(self):
         self.provider.generate=Mock(side_effect=VoiceError('NARRATION_TRANSPORT_OUTCOME_UNKNOWN'))
         self.assertEqual(self.run_job()['status'],'reconciliation_required'); self.provider.generate.assert_called_once()
+    def batch_preflight_failure(self, code, host_jobs):
+        def generate(*args, **kwargs):
+            directory=self.spool/JOB; directory.mkdir()
+            (directory/'narration.json').write_text(json.dumps({
+                'provider':'voxcpm2_remote','collector_job_id':JOB,
+                'request_mode':'segment_batch_v1','host_jobs':host_jobs}),encoding='utf-8')
+            raise VoiceError(code)
+        self.provider.generate=Mock(side_effect=generate)
+        result=self.run_job()
+        self.provider.generate.assert_called_once()
+        return result
+    def test_unsupported_batch_without_host_intent_is_blocked(self):
+        result=self.batch_preflight_failure('BLOCKED_NARRATOR_SEGMENT_BATCH_UNSUPPORTED',[])
+        self.assertEqual(result['status'],'blocked')
+    def test_invalid_batch_without_host_intent_is_failed(self):
+        result=self.batch_preflight_failure('INVALID_NARRATION_BATCH_SEGMENTS',[])
+        self.assertEqual(result['status'],'failed')
+    def test_batch_preflight_code_cannot_clear_a_recorded_host_intent(self):
+        result=self.batch_preflight_failure('BLOCKED_NARRATOR_SEGMENT_BATCH_UNSUPPORTED',
+                                           [{'id':JOB,'state':'submission_intent'}])
+        self.assertEqual(result['status'],'reconciliation_required')
     def test_modified_pcm_not_completed(self):
         original=self.provider.generate
         def generate(*args,**kw):
