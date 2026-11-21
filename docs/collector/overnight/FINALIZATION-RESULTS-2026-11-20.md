@@ -111,19 +111,73 @@ Focused integration then passed. Hosted push44867598017 and PR44867601802
 passed at536828a: Windows565/546 passed/19 skipped; Ubuntu565/458 passed/107
 skipped; worker190 checks and native WPF build PASS. Durable synthetic logs and
 hashes are retained in `KnowledgeNetwork-Private/ci-durable-44867598017/`.
-New updater-only hosted acceptance is tracked separately after the final push.
+Final source push44869843163 and PR44869849916 also PASS at8e425f5:
+Windows581/558 passed/23 skipped in55.173s; Ubuntu581/470 passed/111 skipped
+in13.778s; worker190 checks and WPF build PASS. This includes all new updater
+pure tests; its four opt-in native cases remain separately recorded. Durable
+synthetic ZIPs/hashes: `KnowledgeNetwork-Private/ci-durable-44869843163/`.
 
 Existing pipefix002 installer/hash/rollback and installed worker identity are
-retained, without reinstall or rebuild. Isolated install/upgrade/rollback,
+retained, without reinstall or rebuild. Read-only packaging review confirms its
+481-file manifest contains the .NET worker/dashboard and no Python source/runtime;
+rebuilding unchanged packaging would not deliver the batch client. The successful
+body launch used this repository's `.venv` and `PYTHONPATH=repo/src`; retain both.
+A self-contained distributable still needs a reviewed versioned companion-source
+bundle plus its dependency/configuration prerequisites, not unreviewed narrator
+runtime redistribution. Before any future upgrade revalidate the companion CLI
+pin: installed60516f...2754 differs from staging packagebec287...6880. No installer
+was run over the working installation and no10-file archive candidate is referenced
+by current packaging sources. Isolated install/upgrade/rollback,
 scheduled Assistant/reboot and separate Dot/CUA operation remain NOT TESTED.
 Local-use/media rights review and actual manifest42f270ac…9d84 remain applicable;
 kaldiio's tested inactivity is scoped, and dependency redistribution remains
 uncleared. Original declarations/licenses/model/reference files are unchanged.
 
-The owner requests cleanup after finalization under the permanent archive-only
-policy. Archive inventory is bounded to confirmed superseded staging copies;
-no cleanup move or deletion is claimed here. Active media, credentials, trusted
-runtime, referenced receipts, original assets and rollback backups stay put.
+Installed final status was read again without inference: worker healthy, stable
+worker ID `cb6ce3cd482148e7b8b0c8661ec8c6e9`, companion enabled, no media hold,
+publication paused/scheduler disabled; authenticated remote status PASS and
+segment_batches=false (not activated). Worker EXE SHA
+`60516f07332facbbfa484cb5a2b4b430cc42c12128bc6525283e589b812e2754`.
+Private receipt: `KnowledgeNetwork-Private/program-final-status-20261121.private.json`.
+
+Launch the installed application:
+
+```powershell
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector-dashboard.exe'
+```
+
+### Completed archive-only cleanup
+
+PASS: exactly10 superseded FORGE-private staging-code files,148390bytes,
+archived at `2026-11-21T05:22:45.6736347Z`. Original relative structure is preserved under
+`C:/Admin/Projects/KnowledgeNetwork-Private/old/2026-11-20-finalization/`.
+The folder label names the work period; actual archive time is November21 UTC.
+No file deletion, overwrite, broad move or host archive occurred. Archival keeps
+bytes for owner review; it does not claim disk space was freed.
+
+Both `narrator-standalone-v3/` and `narrator-standalone-v4/` contributed only:
+`Install-KnowledgeNetworkNarratorStandalone.ps1`, `__init__.py`,
+`collector_credentials.py`, `collector_narration_common.py`, and
+`collector_narrator_host.py`. Active-reference checks were empty. Native ancestor
+directory handles prevented rename/replacement while exact same-volume moves
+ran. Every destination matched its original SHA/size/physical file ID/SDDL;
+root independently rechecked all destination digests. V5 source files and all
+nine retained command/proof/receipt files were verified unchanged.
+
+Full original/destination paths, per-file SHA/size/reason/archive date/security
+snapshots and outcomes are private:
+`C:/Admin/Projects/KnowledgeNetwork-Private/finalization-archive-plan-v1/archive-result-v1.private.json`.
+Receipt SHA `1347c2be7f8b8400d617ad9171d7d86313c35f0c630a69d64366d7fbb84d669f`. The pinned one-time archive script and read-only validation
+remain beside it for audit; it rejects replay. AGENTS.md permanent archive policy
+and ignored `/old/` remain in force.
+
+Deliberately retained: final vault and earlier fixtures, original approved assets,
+V5/current batch stage, live code/data/SQLite sidecars, consent/licenses/model,
+all protected backups/rollback/installer assets, referenced receipts, active
+source/worktrees and the four live SSH authentication files. D: host stages stay
+put because redirected-drive metadata cannot attest native host archive ACLs;
+no security boundary was weakened to move them. Original V2 task/ledger/all five
+backups, Gateway and existing routes are unchanged.
 
 ## Current batch activation: one required elevated host step
 

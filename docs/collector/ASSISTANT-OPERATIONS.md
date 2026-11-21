@@ -1,23 +1,27 @@
 # Assistant operations — installed staging build
 
-## November20 current acceptance
+## November21 current acceptance
 
 See [verified execution results](overnight/FINALIZATION-RESULTS-2026-11-20.md).
-Installed service health and17 native dashboard checks passed; a real queued
-editor inspect passed through the owner-session companion. The new editable
-body is saved/reopened/edited, but has no real narration or bookends yet.
-The complete50-second command is therefore not accepted. Host SSH is unreachable;
-one reviewed independent limited-owner bootstrap is staged, with fresh route
-proof expiry enforced. Old V2 recovery is DEFERRED. Publication stays PAUSED.
+The installed Windows service is healthy with its stable identity, companion
+enabled, publication PAUSED and production scheduler disabled. Actual Collector
+narration job632b3b9a21b34e92a944aae80b478a81 completed attempt1 through the
+owner companion and private host API:37.76s, eight measured segments, exact
+host/FORGE WAV hashes. The complete branded50-second native project was saved,
+reopened, graphically revised, saved, reopened and exported once. Full decode/
+technical QC passed; the owner watched and approved the exact final MP4.
 
-For the current body use the environment-reopened-v2/body-state-reviewed-v2
-private records, not the historical session below. Companion transport spool
-must already exist with its private protected ACL. Keep the normal Windows
-USERPROFILE for companion validation; use its project-specific editor vault and
-OPENSHOT_SESSION_DIR. Missing/invalid pre-claim configuration now reports blocked
-without claiming an uncertain media dispatch. Later uncertainty still holds.
-These are Codex/user-context manual results; scheduled Dot connection, separate
-Computer Use and human final listening remain unverified.
+Use the linked final artifact paths, not older body-only fixtures. The new
+single-load batch client/host contract is implemented and tested, but live
+capability activation remains pending its fixed elevated-owner updater. New
+multi-segment requests block before submission until support is advertised;
+legacy receipt recovery continues with original IDs. Do not replay an uncertain
+job or bootstrap. Keep normal Windows USERPROFILE for companion validation and
+the protected existing transport spool; use project-specific native editor
+settings. No new model, VoiceStudio API, general shell or second server.
+
+Scheduled Dot connection, reboot acceptance and separate computer-use operation
+remain unverified. Owner preview approval does not authorize publication.
 
 Run on FORGE, not on Dot's cloud localhost or BLACKHAT-BASE. A real scheduled
 Assistant connection remains unverified. Publication is paused.
@@ -48,8 +52,8 @@ Oxiegen-Narrator on BLACKHAT-BASE. Approved outro audio is unchanged.
 
 Use the existing project virtual environment and pinned FFmpeg process PATH:
 `$env:PATH = 'C:/admin/tools/ffmpeg-9.0.2/ffmpeg-9.0.2-full_build/bin;' + $env:PATH`.
-The actual CLI syntax below was checked. `status` currently exits 1 with
-`BLOCKED_NARRATOR_CONFIG`; no dedicated host route/credential is configured.
+The actual CLI syntax below was checked. The real private route, pins and
+owner-scoped credential are configured; authenticated `status` now passes.
 Host deployment/inspection instructions are in [host-narrator.md](host-narrator.md).
 Forge's Tailscale peer check is not proof that a narrator API exists.
 

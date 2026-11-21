@@ -3,13 +3,18 @@
 Rights-safe video operations for Powered By Oxieg3n. This public repository contains software and small public metadata only. It does not modify the separate website repository.
 
 **The Knowledge Network Collector** Windows staging build has a tested
-LocalService worker, durable CLI, native operations dashboard and installer.
-Its user-session companion dispatches narration and four bounded native OpenShot
-operations. Real editor jobs and a 50-second synthetic export passed; live
-BLACKHAT-BASE VoxCPM2 narration remains blocked by host verification/deployment. VoiceStudio is retired from the active narration stack. See the
-[verified handoff](docs/collector/overnight/HANDOFF.md) and
-[Assistant operations](docs/collector/ASSISTANT-OPERATIONS.md). Full narrated,
-branded production acceptance remains blocked; publishing remains paused.
+Windows service, durable CLI, owner-session companion, operations dashboard and
+native OpenShot editing. Actual authenticated BLACKHAT-BASE VoxCPM2 narration
+was returned to FORGE and used in an editable, branded50-second1080x1920 Short.
+The owner watched and approved that exact local export. Publication remains
+**PAUSED**; PR20 stays draft/unmerged. VoiceStudio is retired.
+
+See the [verified handoff](docs/collector/overnight/HANDOFF.md),
+[artifact paths, hashes and acceptance limits](docs/collector/overnight/FINALIZATION-RESULTS-2026-11-20.md)
+and [Assistant operations](docs/collector/ASSISTANT-OPERATIONS.md).
+The new one-load-per-job narration batch implementation is tested; live activation
+still requires its reviewed elevated-owner host step. Existing installer upgrade/
+rollback and scheduled Assistant/reboot acceptance are not claimed complete.
 
 ## Current implementation
 

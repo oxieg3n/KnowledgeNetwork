@@ -2,9 +2,31 @@
 
 # Assistant Dot: full-feature Collector end-to-end test (owner-review only)
 
+## Existing completed local acceptance
+
+The actual50-second Short is complete and owner-preview-approved; see
+[exact paths, hashes and results](../overnight/FINALIZATION-RESULTS-2026-11-20.md).
+The new batch lifecycle still awaits live activation. Do not regenerate the
+approved output merely to demonstrate playback. The plain-English existing-file
+review request for Assistant is:
+
+> Assistant, connect to FORGE and query The Knowledge Network Collector's installed
+> CLI health with a fresh nonce using ASSISTANT-OPERATIONS.md. Open the exact
+> approved50-second MP4 and native OpenShot project in the current handoff. Show
+> the24 editable clips, five layers, three scenes, real Oxiegen narration,
+> measured captions, ducked music, effects, one1.6-second intro and original
+>7.8-second outro. Preserve the reviewed files; save any requested edit under a
+>new revision and require a new render review. Report actual connection and
+>playback results. Publication remains PAUSED. Do not submit new narration or
+>upload anything just to open these existing files.
+
+This is an operator instruction, not proof of scheduled Dot/computer access.
+The fresh-project test below is optional future acceptance and must respect all
+current gates and the new job-scoped batch requirement.
+
 ## Intent
 
-After Codex reports the installed Windows worker and local Assistant connection as verified, paste the instruction below into the existing Dot named **Assistant**. This is a standalone functional test of the Collector's editor, VoiceStudio, branding, rendering, persistence and inspection. It authorizes production of an ORIGINAL, synthetic/owned local review clip, not publication.
+After Codex reports the installed Windows worker and local Assistant connection as verified, paste the instruction below into the existing Dot named **Assistant**. This is a standalone functional test of the Collector's editor, direct VoxCPM2 narration, branding, rendering, persistence and inspection. It authorizes production of an ORIGINAL, synthetic/owned local review clip, not publication.
 
 ## Copy and paste to Assistant
 
@@ -12,7 +34,7 @@ Assistant, perform a real end-to-end test of **The Knowledge Network Collector**
 
 Create a fresh project with a unique ID and a 9:16 1080x1920 Short titled **"The Knowledge Network Collector | Production Demo"** with total FINAL duration approximately 45-55 seconds, including the approved 1.6-second plasma intro and 7.8-second plasma outro. Use only self-generated graphics and media or other proven owner-controlled assets. Do not download clips from third-party YouTube channels for this test.
 
-Use the actual **preinstalled VoiceStudio** API on the VM with a verified commercially usable installed narrator/profile to record smooth, natural English body narration. Do not alter or resynthesize the already-approved outro audio. If no suitable voice is installed/licensed, accurately mark VoiceStudio narration blocked and generate a separate nonpublishable technical render rather than inventing a successful VoiceStudio result. Keep body script around 70-105 spoken words depending on the measured delivery.
+Use the existing private authenticated VoxCPM2 client on FORGE and approved Oxiegen-Narrator on BLACKHAT-BASE. Require a durable job receipt, matching host/FORGE WAV hashes, decoded samples and measured caption timing. Do not alter or resynthesize approved outro audio. New multi-segment work requires the verified batch capability; if it is unavailable, report that exact blocker without substituting synthetic speech or replaying an uncertain job. Keep the body within40.6seconds for a50-second final video, including both bookends.
 
 Create at least THREE distinct body scenes:
 - A concise introduction explaining the Collector's monitoring and research.
@@ -27,7 +49,7 @@ Perform actual quality checks: use FFprobe/FFmpeg to validate codec, resolution,
 
 Leave the video in LOCAL REVIEW-ONLY status. **Do not upload to YouTube, Facebook, GitHub public artifacts or any public site.** Do not enable production publishing or bypass approved review checks.
 
-Return the exact Collector job ID, project file location, preview and final MP4 locations, duration, SHA-256, editor and VoiceStudio statuses, technical/visual/listening QA outcomes, any blocked item, and the steps to view the result inside the Collector. Send only actual verified results. Never invent a path or success URL.
+Return the exact Collector job ID, project file location, preview and final MP4 locations, duration, SHA-256, editor and direct VoxCPM2 statuses, technical/visual/listening QA outcomes, any blocked item, and the steps to view the result inside the Collector. Send only actual verified results. Never invent a path or success URL.
 
 If you cannot complete everything, preserve the project and report the first genuine failing operation with actionable information for Codex.
 

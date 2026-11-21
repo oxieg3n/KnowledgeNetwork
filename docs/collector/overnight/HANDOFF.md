@@ -44,15 +44,22 @@ are staged in `narrator-batch-update-v1` on both computers; the checked command
 requires one elevated recorded-owner run on BLACKHAT-BASE. Original nine jobs
 are fenced/backed up before a tested two-segment parity task. Actual batch
 activation/remote acceptance remains NOT TESTED; never retry an uncertain update.
-Full hosted source regression44867598017/44867601802 passed (Windows565/546,
-Ubuntu565/458, worker190 and WPF build). Final updater16 tests:12 passed/4
+Final hosted source regression44869843163/44869849916 passed (Windows581/558
+passed/23 skipped; Ubuntu581/470 passed/111 skipped; worker190 and WPF build).
+Durable synthetic receipts: `KnowledgeNetwork-Private/ci-durable-44869843163/`. Final updater16 tests:12 passed/4
 opt-in native skipped; those native cases passed separately before logging-only
 changes. Independent security review PASS.
 No second server, idle-resident model or automatic replay was introduced.
 
-Archive-only cleanup is authorized after finalization. Active media, receipts,
-credentials, runtime and rollback assets remain protected. Old controller/V2
-recovery remains deferred; no mutation of its task, ledger or five backups.
+Archive cleanup PASS:10 confirmed obsolete V3/V4 staging-code files,148390bytes,
+are under `KnowledgeNetwork-Private/old/2026-11-20-finalization/`. Per-file bytes,
+physical IDs/permissions and V5/nine retained records passed verification. No
+files deleted. Full paths/hashes/reasons/actual November21 dates:
+`KnowledgeNetwork-Private/finalization-archive-plan-v1/archive-result-v1.private.json`,
+SHA `1347c2be7f8b8400d617ad9171d7d86313c35f0c630a69d64366d7fbb84d669f`. Active media, receipts,
+credentials, runtime, four SSH auth files and rollback assets stay put. No host
+archive/ACL mutation. Old V2 recovery stays deferred; its task/ledger/five backups
+remain unchanged. See current execution results for the exact retained scope.
 
 ## Historical log: do not rerun superseded bootstrap commands
 
