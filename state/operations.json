@@ -2208,8 +2208,8 @@
         "https://www.youtube.com/@NVIDIA",
         "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
       ],
-      "last_attempt_at": "2026-11-20T11:33:59.828759+00:00",
-      "last_monitored_at": "2026-11-20T11:33:59.828632+00:00",
+      "last_attempt_at": "2026-11-21T23:13:11.865993+00:00",
+      "last_monitored_at": "2026-11-21T23:13:11.865878+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "NVIDIA",
@@ -2265,8 +2265,8 @@
         "https://www.youtube.com/@GoogleDeepMind",
         "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
       ],
-      "last_attempt_at": "2026-11-20T11:33:59.427014+00:00",
-      "last_monitored_at": "2026-11-20T11:33:59.426870+00:00",
+      "last_attempt_at": "2026-11-21T23:13:11.452879+00:00",
+      "last_monitored_at": "2026-11-21T23:13:11.452770+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google DeepMind",
@@ -12544,7 +12544,7 @@
       "upload": 0
     },
     "2026-11-21": {
-      "general": 12,
+      "general": 18,
       "search": 0,
       "upload": 0
     }
@@ -13000,7 +13000,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 620,
+  "revision": 629,
   "rights_ledger": {},
   "runs": [
     {
@@ -14509,6 +14509,21 @@
       },
       "run_id": "44930303584-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-21T23:13:11.040385+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "44960694353-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1
