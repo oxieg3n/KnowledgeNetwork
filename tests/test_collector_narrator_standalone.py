@@ -82,6 +82,47 @@ try{
         self.assertEqual(result.returncode,0,result.stderr)
         self.assertEqual(json.loads(result.stdout),{'roundtrip':True,'wrong_key_rejected':True,'public_only':True})
 
+    @unittest.skipUnless(os.name == 'nt', 'Native Windows Task Scheduler missing-task mapping')
+    def test_native_missing_task_lookup_accepts_only_file_not_found(self):
+        lookup = next(line for line in SOURCE.read_text(encoding='utf-8').splitlines()
+                      if line.startswith('try{$old=$folder.GetTask($taskName)}'))
+        script = r'''
+$ErrorActionPreference='Stop'
+$lookup=[ScriptBlock]::Create(([Console]::In.ReadToEnd()|ConvertFrom-Json).lookup)
+$scheduler=New-Object -ComObject Schedule.Service
+$scheduler.Connect()
+$folder=$scheduler.GetFolder('\')
+$taskName='KnowledgeNetwork-MissingFixture-'+[Guid]::NewGuid().ToString('N')
+$native=$null
+try{$null=$folder.GetTask($taskName)}catch{$native=$_.Exception}
+if($null -eq $native -or $native.HResult -ne -2147024894){throw 'Native missing-task control failed.'}
+$old='unchanged'
+. $lookup
+if($null -ne $old){throw 'Missing task was not accepted.'}
+$existing=[PSCustomObject]@{Name='existing-fixture'}
+$folder=[PSCustomObject]@{Task=$existing}
+$folder|Add-Member ScriptMethod GetTask {param($name) $this.Task}
+. $lookup
+if(-not [Object]::ReferenceEquals($old,$existing)){throw 'Existing task was hidden.'}
+foreach($errorKind in @('access-denied','other-com')){
+ $folder=[PSCustomObject]@{ErrorKind=$errorKind}
+ $folder|Add-Member ScriptMethod GetTask {
+  param($name)
+  if($this.ErrorKind -ceq 'access-denied'){throw [UnauthorizedAccessException]::new('denied fixture')}
+  throw [Runtime.InteropServices.COMException]::new('other fixture',-2147023728)
+ }
+ $rejected=$false
+ try{. $lookup}catch{$rejected=$true}
+ if(-not $rejected){throw 'Unexpected task lookup failure was accepted.'}
+}
+[Console]::Out.Write('{"native_missing_task":true,"existing_task_preserved":true,"other_errors_rejected":true}')
+'''
+        result = subprocess.run(['powershell.exe', '-NoLogo', '-NoProfile', '-NonInteractive', '-Command', script],
+                                input=json.dumps({'lookup': lookup}), capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {'native_missing_task': True, 'existing_task_preserved': True,
+                                                   'other_errors_rejected': True})
+
     @unittest.skipUnless(os.name == 'nt', 'Native Windows PowerShell parser/ACL fixture')
     def test_native_parser_and_protected_code_vs_owner_writable_fixture(self):
         with FixtureDirectory(prefix='kn-standalone-acl-', trusted_execution=True) as directory:

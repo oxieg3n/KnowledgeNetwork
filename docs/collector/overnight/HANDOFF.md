@@ -1,5 +1,37 @@
 # V9 handoff - The Knowledge Network Collector
 
+## V5 bootstrap: native missing-task check corrected
+
+The owner's V4 attempt reported FileNotFoundException/0x80070002. A read-only
+native FORGE reproduction exposed a bootstrap bug: Task Scheduler's missing-task
+lookup marshals that HRESULT as FileNotFoundException, outside the old typed
+COMException catch. The new regression failed with the reported error before
+the fix. The catch now accepts only that exact HRESULT from the single GetTask
+lookup; other errors and existing tasks still block. No trust check was relaxed.
+The exact original host line remains inferred without its stack trace.
+
+PASS: five standalone tests, including native Task Scheduler, PowerShell ACL/
+parser and RSA fixtures;48 combined standalone/host/client tests in27.651s.
+Independent security review found no must-fix issue. Root/task filesystem entries
+remain absent; the old controller task file remains present. No host execution,
+service/route change, inference or credential transfer occurred here.
+
+V5 is staged with verified identical local/host bytes. The service bundle,
+backend sources and still-valid V4 security proof are unchanged; no API review
+or model inventory was repeated. All previous stages remain retained.
+
+- Host stage: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-standalone-v5`.
+- Corrected source SHA: `b75fd594a9a1af5d9b45e934589f53115b940f4632ae536e11321061370e8eb9`.
+- Unchanged bundle SHA: `8f91a5a90427fe051e59c6e8309ea0f946710988fdb8d97e8b6844d4a720d3c6`.
+- Proof expires **2026-11-21 05:05:49 UTC / November21 12:05AM Eastern**.
+- Command and private receipts: `C:/Admin/Projects/KnowledgeNetwork-Private/narrator-standalone-v5/`.
+
+Use only V5's pinned command from the recorded owner's Administrator PowerShell.
+Its error wrapper prints the script stack if another stage fails. No automatic
+retry after mutation or alternate spool is permitted. Real remote narration and
+the final MP4 remain BLOCKED pending actual host bootstrap acceptance. Publication
+PAUSED; PR20 draft/unmerged. Prior V3/V4 notes below are retained history.
+
 ## Bootstrap retry: elevation gate and refreshed proof
 
 The owner's V3 attempt stopped at the elevated/non-SYSTEM owner check, before

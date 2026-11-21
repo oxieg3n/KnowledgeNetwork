@@ -161,7 +161,8 @@ foreach($name in $names){
 if(Test-Path -LiteralPath $root){throw 'Standalone root exists; reconcile it, do not retry or choose a new path.'}
 $scheduler=New-Object -ComObject 'Schedule.Service';$scheduler.Connect()
 $folder=$scheduler.GetFolder('\KnowledgeNetworkCollector')
-try{$old=$folder.GetTask($taskName)}catch [Runtime.InteropServices.COMException]{if($_.Exception.HResult -ne -2147024894){throw};$old=$null}
+# PowerShell can marshal the missing-task HRESULT as FileNotFoundException.
+try{$old=$folder.GetTask($taskName)}catch{if($_.Exception.HResult -ne -2147024894){throw};$old=$null}
 if($null -ne $old){throw 'Standalone task already exists; preserve and reconcile.'}
 $existingNarratorListeners=@(Get-NetTCPConnection -State Listen -LocalPort 39110 -ErrorAction SilentlyContinue)
 if($existingNarratorListeners.Count){

@@ -1,5 +1,34 @@
 # November 20 finalization execution results
 
+## V5 bootstrap: missing-task regression fixed
+
+The V4 owner attempt reported FileNotFoundException/0x80070002. Native read-only
+FORGE reproduction found the bootstrap's typed COMException catch misses the
+actual FileNotFoundException returned for an absent scheduled task. The new
+regression reproduced that failure before the correction and passes afterward.
+Only the single GetTask lookup accepts the exact missing-file HRESULT; denied
+access, other errors and existing tasks still block. Independent review PASS.
+Without the original host stack, that exact host failure location is inferred.
+
+PASS:5 standalone tests and48 combined standalone/host/client tests in27.651s;
+retention preflight, command parse and private-stage permissions PASS. The
+standalone root/task files remain absent and original controller task file
+present. No host execution, service/route mutation, credential transfer, model
+inventory or inference was performed during this correction.
+
+The corrected V5 source SHA is
+`b75fd594a9a1af5d9b45e934589f53115b940f4632ae536e11321061370e8eb9`.
+The bundle SHA remains
+`8f91a5a90427fe051e59c6e8309ea0f946710988fdb8d97e8b6844d4a720d3c6`;
+all four backend modules and the still-valid V4 proof are unchanged. Host stage:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-standalone-v5`.
+Command/receipts are under the FORGE private root's `narrator-standalone-v5/`.
+Proof expires **2026-11-21 05:05:49 UTC / November21 12:05AM Eastern**. Retain
+all older stages as evidence; use only the V5 command in the recorded owner's
+Administrator PowerShell. Its wrapper emits a script stack on failure. Do not
+blindly retry uncertain mutations. Actual remote narration/final video remain
+BLOCKED pending host acceptance; earlier app/editor/CI results remain applicable.
+
 ## Bootstrap retry: elevation gate and refreshed proof
 
 The owner's V3 attempt stopped at the elevated/non-SYSTEM owner check, before
