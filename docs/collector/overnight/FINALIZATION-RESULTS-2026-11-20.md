@@ -1,5 +1,24 @@
 # November 20 finalization execution results
 
+## Latest operational state: no standalone listener
+
+Read-only host preflight6ae507... andf52f2a... passed imports/identity/flags/image/
+bundle and failed at the current39110 listener query. FORGE now returnsHTTP502.
+The original service had passed a prior post-failure status check; exit cause/time
+remain unknown. No diagnostic/update DB or task mutation occurred. This changed
+state does not prove the exact original hidden Python exception. A strictly gated
+offline continuation is tested/staged, SHA2f92de76...d6212, using existing helper
+definitions and no original main/live-process stop. Eight focused checks
+(including3 native Windows) and independent review PASS. The checked command is
+`KnowledgeNetwork-Private/narrator-batch-offline-v1/Host-Offline-Continuation.txt`.
+It requires an exact Ready/zero-instance task and free existing lease, retains
+both original namespace guards through new startup and physical ledger binding,
+and preserves all original records/backups. Actual task switch/GPU parity/remote
+batch/manual rollback remain NOT TESTED. See HANDOFF for the exact scope and
+rollback conditions; do not replay the original updater or
+restart the old create-only launcher. Approved final media/archive evidence below
+is unaffected. Publication PAUSED.
+
 ## Subsequent owner batch-update attempt
 
 The pinned updater was run once and stopped with a Python traceback surfaced
@@ -15,8 +34,8 @@ SHA `0aeba36ef751b2286f0945d3cd22cb7dfe16b1041bc024edb5c9cf55e52f9605`,
 with direct .NET process capture. Owner command is in the private
 `narrator-batch-preflight-v1/Host-ReadOnly-Preflight.txt`. It checks every original
 pre-backup condition, including recorded startup PID, and writes only private
-UUID diagnostics. It never calls main or opens/locks SQLite. Actual host execution
-is NOT RUN. Native PS5.1 synthetic reproduction confirmed the original0byte stderr
+UUID diagnostics. It never calls main or opens/locks SQLite. Actual read-only host execution isolated the current missing listener at
+task_process_proof without mutation. Native PS5.1 synthetic reproduction confirmed the original0byte stderr
 fault; the future wrapper now captures through Hidden Start-Process. Focused21
 checks17 passed/4 skipped; independent review PASS. Current prepared updater is
 not replayable; changing future logging is not a safe continuation by itself; all approved final media and archive results below

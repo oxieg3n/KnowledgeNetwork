@@ -1,5 +1,67 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Current host blocker: standalone listener absent
+
+Owner read-only diagnostics6ae507... andf52f2a... both passed imports, elevated
+recorded-owner/runtime flags/image and actual bundle validation, then stopped at
+`task_process_proof`: the fixed Get-NetTCPConnection query found no39110 listener.
+Fresh FORGE authenticated status now receives HTTP502. A prior post-failure health
+was PASS; the exit time/cause is not established. Do not attribute the outage to
+an updater mutation: neither original update nor diagnostics reached DB/task changes.
+The initial hidden Python exception is still not independently proven because
+live state changed before this diagnostic reached all original comparisons.
+
+Both reports/logs are retained under the existing private failure capture's
+`readonly-results/`. No inference, DB open/lock, task stop or route change occurred.
+The original task's State/Instances/LastTaskResult was requested read-only;
+the completed conditional handler can now check/refuse that state itself.
+Do not blindly restart the original launcher; its create-only startup files
+already exist. No old V2 recovery.
+
+### Checked conditional offline continuation
+
+Source `Resume-KnowledgeNetworkNarratorBatchOffline.ps1`, exact SHA
+`2f92de76190572390a9f3a49e94d9f0cc055a7050dfa9640959c09319c4d6212`,
+is staged in host kit `narrator-batch-offline-v1/` and mirrored privately on
+FORGE. Checked owner command: `KnowledgeNetwork-Private/narrator-batch-offline-v1/Host-Offline-Continuation.txt`.
+Run once from the recorded owner's Administrator PowerShell while GPU work is
+idle. This is a scoped mutation/inference continuation, not the read-only probe.
+The restricted SSH account cannot perform it. Standing owner authorization is
+already recorded; no new permission is requested. Actual live result is pending.
+
+It captures/reuses original helper1ec820...29ca6 definitions without `main`,
+preserves all captured inputs and refuses any prior update activity. It requires
+exact original task XML/source/owner/settings, Ready/enabled/zero instances,
+no canonical server process and no listener. Raw fixed task metadata is retained
+before comparisons. The existing single-byte spool lease must be free; both its
+namespace and the ledger namespace stay held through new startup/final physical
+ledger binding. Only the byte-range lease releases before the one task start.
+The handler reserves the loopback port, preserves original code/task/descriptors,
+disables only that already-offline task and rechecks it, then opens the same
+physically verified C-API ledger under the protected namespace. Exact nine
+completed jobs/schema1/no hold, a consistent original backup and a durable own
+fence are required. No old process is stopped, no database is replaced.
+
+Existing helpers prepare protected code and one Limited-owner parity task with
+the same narrator/settings. A verified signed NVIDIA tool records read-only GPU
+facts; no unrelated workload is changed. Only successful complete batch/parity/
+owned-process exit permits batching, task switch, one startup,401/401/200 and
+same-ledger binding. Existing route/bearer/model/reference/Gateway remain intact.
+
+PASS:8 focused checks in4.352s (5 pure,3 native Windows), including lease-held
+without listener, lock replacement/hardlink/rename denial, wrong physical ledger,
+writer contention and parser. Independent security review PASS. Source/failure
+validation receipt: `KnowledgeNetwork-Private/batch-offline-continuation-validation-v5.private.json`.
+Actual task switch, GPU parity, FORGE batch and manual rollback remain NOT TESTED.
+
+Rollback plan is retained before parity and is **manual, NOT TESTED live**:
+original task XML, original code/descriptors and consistent DB backup stay in
+place. After source/task/physical-ledger and idle/uncertainty review, use reviewed
+new source with batching disabled and a fresh startup UUID while preserving the
+current database. Never restore schema1 over schema2 activity, clear an unknown
+hold, restart the old create-only launcher, replay this continuation or choose
+another spool after an uncertain outcome.
+
 ## Latest batch attempt: stopped before activation; do not replay
 
 The owner ran the pinned updater5002de3d...ba46 with private bundlec372224c...59a5d.
@@ -13,8 +75,8 @@ opening, fencing, task changes or model inference. This is a failed updater
 preflight, not a narration/model failure. Its exact Python exception is not yet
 recovered; do not guess at it or rerun the original updater/work directory.
 
-Existing authenticated narrator status still PASS, provenance matches and no
-execution hold. No new inference. Private failure capture is under
+Earlier post-failure authenticated status was PASS with matching provenance/no
+hold; the later listener outage above supersedes that observation. No new inference. Private failure capture is under
 `KnowledgeNetwork-Private/batch-update-failure-733f0a0df80a4ddcbde6dea66e1e3a5c/`.
 The narrowed read-only diagnostic is tested and staged:
 
@@ -28,7 +90,8 @@ runtime flags, owner, existing-file checks, task/process proof and original star
 PID binding privately. `main` is excluded; no SQLite opening, fence, task/service,
 network or inference action occurs. The nonadmin bridge cannot run this protected
 owner-context check; the supplied single command requires the recorded elevated
-owner. No new permission is requested. Its actual host result remains NOT RUN.
+owner. No new permission is requested. It ran twice without mutation and isolated the current missing listener at
+task_process_proof; see the latest operational state above.
 
 The PS5.1 logging fault was reproduced with an owned synthetic Python exception:
 old native redirection produced0bytes; direct process capture retained the full
@@ -37,7 +100,10 @@ this changes logging only and does not fix/retry the unknown original preflight.
 Focused combined tests21:17 passed/4 skipped, including native capture/parser;
 final startup-PID comparison's3 pure tests reran PASS. Independent security review
 PASS. Validation receipt: `KnowledgeNetwork-Private/batch-preflight-capture-validation-v4.private.json`.
-All failed/captured inputs and original prepared work remain in place. Publication remains PAUSED.
+All failed/captured inputs and original prepared work remain in place. Full
+diagnostic-source CI44884421079/44884425284 passed atde47d20; new offline
+continuation hosted CI is tracked after integration. Root repeated its5 pure
+gate/order tests PASS0.497s and retention source preflight50 files PASS. Publication remains PAUSED.
 
 ## Current result: real Short complete and owner-approved
 
