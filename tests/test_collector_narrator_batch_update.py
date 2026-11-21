@@ -193,6 +193,35 @@ class BatchUpdateTests(unittest.TestCase):
                 self.code['ps']=lambda code,edit=edit:{**valid,**edit}
                 with self.assertRaises(RuntimeError):self.code['task_proof'](config)
 
+    def test_failed_fixed_powershell_retains_bounded_private_bytes_but_never_stdin(self):
+        self.code['WORK']=Path(self.directory.name)
+        code="[Console]::Error.Write('fixed diagnostic')"
+        sentinel='owned-synthetic-stdin-secret-MUST-NOT-BE-RETAINED'
+        payload={'synthetic_input':sentinel}
+        cases=((23,b'fixed stdout\x00',b'Win32 task registration denied',False),
+               (None,b'partial timeout\xff'+b'x'*70000,b'partial stderr',True))
+        for returncode,out,err,timed_out in cases:
+            with self.subTest(timed_out=timed_out):
+                previous=set(self.code['WORK'].glob('powershell-failure-*.private.json'))
+                run=Mock(side_effect=subprocess.TimeoutExpired(['fixed-test-command'],20,output=out,stderr=err)) if timed_out else Mock(return_value=SimpleNamespace(returncode=returncode,stdout=out,stderr=err))
+                self.code['subprocess']=SimpleNamespace(run=run,PIPE=subprocess.PIPE,CREATE_NO_WINDOW=0,TimeoutExpired=subprocess.TimeoutExpired)
+                expected_error=subprocess.TimeoutExpired if timed_out else RuntimeError
+                with self.assertRaises(expected_error):self.code['ps'](code,payload)
+                self.assertIn(sentinel.encode(),run.call_args.kwargs['input'])
+                added=set(self.code['WORK'].glob('powershell-failure-*.private.json'))-previous
+                self.assertEqual(len(added),1)
+                path=added.pop();record=json.loads(path.read_text())
+                self.assertEqual(record['returncode'],returncode);self.assertEqual(record['timed_out'],timed_out)
+                self.assertEqual(record['code_sha256'],self.code['hashlib'].sha256(code.encode()).hexdigest())
+                self.assertFalse(record['stdin_retained']);self.assertFalse(record['caller_values_retained'])
+                retained=path.read_bytes()
+                for name,data in (('stdout',out),('stderr',err)):
+                    artifact=self.code['WORK']/record[name]['file']
+                    self.assertEqual(artifact.read_bytes(),data[:65536])
+                    self.assertEqual(record[name]['truncated'],len(data)>65536)
+                    retained+=artifact.read_bytes()
+                self.assertNotIn(sentinel.encode(),retained)
+
     def test_uncertain_held_process_exit_never_prepares_code_or_starts_any_task(self):
         for stop_ok,wait_code,error in ((False,0,'exact_held_process_stop_failed'),(True,258,'exact_process_exit_unknown')):
             with self.subTest(error=error),FixtureDirectory(prefix='kn-update-uncertain-') as directory:

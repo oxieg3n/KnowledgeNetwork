@@ -140,9 +140,30 @@ def write(path,value):
         json.dump(value,f,sort_keys=True,indent=2);f.flush();os.fsync(f.fileno())
 def raw_write(path,value):
     with path.open('xb') as f:f.write(value);f.flush();os.fsync(f.fileno())
+
+def retain_ps_failure(code,returncode,stdout,stderr,timed_out=False):
+    # Only fixed identity/task/ACL/validator commands use ps(). Credential
+    # operations run in the separate limited-owner launcher, never this helper.
+    stem='powershell-failure-'+uuid.uuid4().hex
+    result={'schema_version':1,'returncode':returncode,'timed_out':timed_out,
+            'code_sha256':hashlib.sha256(code.encode('utf-8')).hexdigest(),
+            'stdin_retained':False,'caller_values_retained':False}
+    for name,data in (('stdout',stdout),('stderr',stderr)):
+        data=data.encode('utf-8') if isinstance(data,str) else data or b''
+        path=WORK/(stem+'.'+name+'.private.log')
+        raw_write(path,data[:65536])
+        result[name]={'file':path.name,'bytes_observed':len(data),'bytes_retained':min(len(data),65536),'truncated':len(data)>65536}
+    write(WORK/(stem+'.private.json'),result)
+
 def ps(code,value=None,timeout=20):
-    p=subprocess.run([r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe','-NoLogo','-NoProfile','-NonInteractive','-Command',code],input=None if value is None else json.dumps(value).encode(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=timeout,creationflags=subprocess.CREATE_NO_WINDOW)
-    if p.returncode:raise RuntimeError('fixed_powershell_operation_failed')
+    try:
+        p=subprocess.run([r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe','-NoLogo','-NoProfile','-NonInteractive','-Command',code],input=None if value is None else json.dumps(value).encode(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=timeout,creationflags=subprocess.CREATE_NO_WINDOW)
+    except subprocess.TimeoutExpired as error:
+        retain_ps_failure(code,None,error.stdout,error.stderr,True)
+        raise
+    if p.returncode:
+        retain_ps_failure(code,p.returncode,p.stdout,p.stderr)
+        raise RuntimeError('fixed_powershell_operation_failed')
     return json.loads(p.stdout.decode('utf-8-sig')) if p.stdout.strip() else None
 
 def backup_locked(path,destination):
