@@ -129,6 +129,7 @@ PYTHON=Path('C:/ProgramData/KnowledgeNetworkCollector/HostExec/runtime/python/py
 TASK=r'\KnowledgeNetworkCollector\NarratorStandaloneV1'
 FENCE='batch_update_v1_'+uuid.uuid4().hex
 NAMES=('__init__.py','collector_narrator_host.py','collector_narration_common.py','collector_credentials.py')
+VALIDATOR_SHA256='__CAPTURED_ASSERT_CODE_SHA256__'
 if hashlib.sha256((WORK/'collector_narrator_recovery_probe.py').read_bytes()).hexdigest()!=json.loads((WORK/'batch-update-bundle.private.json').read_text())['probe_sha256']:raise RuntimeError('probe_source_changed')
 sys.path.insert(0,str(WORK))
 import collector_narrator_recovery_probe as probe
@@ -228,13 +229,34 @@ if($l.Count -ne 1 -or $l[0].LocalAddress -cne '127.0.0.1'){throw 'loopback'}
 $p=Get-CimInstance Win32_Process -Filter ('ProcessId='+$l[0].OwningProcess) -ErrorAction Stop
 $sid=Invoke-CimMethod -InputObject $p -MethodName GetOwnerSid -ErrorAction Stop
 if($sid.ReturnValue -ne 0){throw 'owner'}
-@{xml=$t.Xml;sddl=$t.GetSecurityDescriptor(7);state=$t.State;enabled=$t.Enabled;owner_sid=$owner;logon=$d.Principal.LogonType;runlevel=$d.Principal.RunLevel;actions=$d.Actions.Count;triggers=$d.Triggers.Count;multiple=$d.Settings.MultipleInstances;hard_terminate=$d.Settings.AllowHardTerminate;execution_limit=$d.Settings.ExecutionTimeLimit;execute=$a.Path;arguments=$a.Arguments;working_directory=$a.WorkingDirectory;pid=$p.ProcessId;creation_filetime=$p.CreationDate.ToFileTimeUtc();process_owner=$sid.Sid;image=$p.ExecutablePath;command_line=$p.CommandLine;children=@(Get-CimInstance Win32_Process -Filter ('ParentProcessId='+$p.ProcessId)|Select-Object ProcessId,CreationDate)}|ConvertTo-Json -Depth 5 -Compress
+@{xml=$t.Xml;sddl=$t.GetSecurityDescriptor(7);state=$t.State;enabled=$t.Enabled;owner_sid=$owner;logon=$d.Principal.LogonType;runlevel=$d.Principal.RunLevel;actions=$d.Actions.Count;triggers=$d.Triggers.Count;multiple=$d.Settings.MultipleInstances;hard_terminate=$d.Settings.AllowHardTerminate;execution_limit=$d.Settings.ExecutionTimeLimit;execute=$a.Path;arguments=$a.Arguments;working_directory=$a.WorkingDirectory;pid=$p.ProcessId;process_owner=$sid.Sid;image=$p.ExecutablePath;command_line=$p.CommandLine;children=@(Get-CimInstance Win32_Process -Filter ('ParentProcessId='+$p.ProcessId)|Select-Object ProcessId,CreationDate)}|ConvertTo-Json -Depth 5 -Compress
 '''
+
+def capture_task_process(pid,read_current):
+    # CIM loses sub-microsecond FILETIME bits. Hold the exact native process
+    # while refreshing task/listener metadata, then return its raw creation time.
+    if type(pid) is not int or not 0<pid<=0xffffffff:raise RuntimeError('invalid_fixed_process_id')
+    native=probe.Native()
+    native.k.OpenProcess.argtypes=[probe.U32,c.c_int,probe.U32];native.k.OpenProcess.restype=probe.HANDLE
+    process=native.k.OpenProcess(0x101000,False,pid)
+    if not process:raise RuntimeError('fixed_process_identity_unavailable')
+    try:
+        times=[probe.FileTime() for _ in range(4)]
+        if not native.k.GetProcessTimes(process,*[c.byref(value) for value in times]):raise RuntimeError('fixed_creation_time_unverified')
+        created=(times[0].high<<32)|times[0].low
+        native.running(process,created)
+        value=read_current()
+        if value.get('pid')!=pid:raise RuntimeError('fixed_listener_pid_changed')
+        native.running(process,created)
+        value['creation_filetime']=created
+        return value
+    finally:native.k.CloseHandle(process)
 
 def task_proof(config,code=None):
     code=ROOT/'code' if code is None else code
     if code not in (ROOT/'code',WORK/'code'):raise RuntimeError('fixed_code_directory_required')
-    value=ps(TASK_PROOF)
+    initial=ps(TASK_PROOF)
+    value=capture_task_process(initial['pid'],lambda:ps(TASK_PROOF))
     normalized=lambda path:str(path).replace('\\','/').casefold()
     if (value['owner_sid']!=config['owner_sid'] or value['process_owner']!=config['owner_sid']
         or value['state']!=4 or value['enabled'] is not True or value['logon']!=3 or value['runlevel']!=0
@@ -427,8 +449,18 @@ def prepare_code(package,config,review):
     # Code inherits the administrator-owned read-only owner ACL from WORK.
     return code,configuration
 
+CODE_VALIDATION=r'''
+$ErrorActionPreference='Stop';$r=[Console]::In.ReadToEnd()|ConvertFrom-Json
+$bytes=[IO.File]::ReadAllBytes('C:/ProgramData/KnowledgeNetworkCollector/NarratorStandaloneV1/batch-update-v1/assert-code.ps1')
+$sha=[Security.Cryptography.SHA256]::Create()
+try{$actual=([BitConverter]::ToString($sha.ComputeHash($bytes))).Replace('-','').ToLowerInvariant()}finally{$sha.Dispose()}
+if($actual -cne $r.sha256){throw 'Captured code validator changed.'}
+$text=[Text.UTF8Encoding]::new($false,$true).GetString($bytes)
+& ([ScriptBlock]::Create($text)) -OwnerSid $r.owner
+'''
+
 def assert_new_code(owner):
-    ps(r'''$ErrorActionPreference='Stop';$r=[Console]::In.ReadToEnd()|ConvertFrom-Json;& 'C:/ProgramData/KnowledgeNetworkCollector/NarratorStandaloneV1/batch-update-v1/assert-code.ps1' -OwnerSid $r.owner''',{'owner':owner})
+    ps(CODE_VALIDATION,{'owner':owner,'sha256':VALIDATOR_SHA256})
 
 def parity_task(config):
     result=ps(r'''
@@ -577,6 +609,7 @@ def main():
 
 if __name__=='__main__':main()
 '@
+$helper=$helper.Replace('__CAPTURED_ASSERT_CODE_SHA256__',(Hash-Bytes $utf8.GetBytes($codeValidator)))
 Write-New "$work/update-helper.py" $utf8.GetBytes($helper)
 Assert-Trust "$work/update-helper.py" $ownerSid
 Write-New "$work/prepared-only.private.json" $utf8.GetBytes((@{status='BUNDLE_CAPTURED_BEFORE_ACTIVATION';bundle_sha256=$BundleSha256;helper_sha256=(Hash-Bytes $utf8.GetBytes($helper));publication_paused=$true;host_runtime_changed=$false;database_opened=$false;task_changed=$false;network_changed=$false}|ConvertTo-Json))

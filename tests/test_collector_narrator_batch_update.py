@@ -30,7 +30,7 @@ def helper():
     tree=ast.parse(source)
     # Import only definitions and constants. The fixed host bootstrap's top-level
     # source-pin reads/main invocation are intentionally never run in fixtures.
-    constants={'ROOT','WORK','DATA','DB','PYTHON','TASK','NAMES','TASK_PROOF'}
+    constants={'ROOT','WORK','DATA','DB','PYTHON','TASK','NAMES','TASK_PROOF','CODE_VALIDATION','VALIDATOR_SHA256'}
     nodes=[node for node in tree.body if isinstance(node,(ast.FunctionDef,ast.ClassDef))
            or isinstance(node,(ast.Import,ast.ImportFrom)) and not any(alias.name=='collector_narrator_recovery_probe' for alias in node.names)
            or isinstance(node,ast.Assign) and any(isinstance(target,ast.Name) and target.id in constants for target in node.targets)]
@@ -163,15 +163,20 @@ class BatchUpdateTests(unittest.TestCase):
         self.assertLess(body.index('EXACT_HELD_PROCESS_EXIT_CONFIRMED'),body.index('prepare_code(package'))
         self.assertLess(body.index('parity_task(config)'),body.index('new_config.update(segment_batches=True'))
         self.assertIn("'automatic_database_restore':False",text)
+        self.assertNotIn('Set-ExecutionPolicy',text)
+        self.assertNotIn('CreationDate.ToFileTimeUtc()',self.code['TASK_PROOF'])
+        self.assertIn('ReadAllBytes(',self.code['CODE_VALIDATION'])
+        self.assertIn('[ScriptBlock]::Create($text)',self.code['CODE_VALIDATION'])
 
     def test_actual_task_validation_rejects_identity_flags_children_and_action_drift(self):
         config={'owner_sid':'S-1-5-21-1-2-3-1001'}
         python=str(self.code['PYTHON']);script=str(self.code['ROOT']/'code/narrator-standalone.py').replace('\\','/')
-        valid={'owner_sid':config['owner_sid'],'process_owner':config['owner_sid'],'state':4,'enabled':True,'logon':3,'runlevel':0,
+        valid={'pid':123,'creation_filetime':456,'owner_sid':config['owner_sid'],'process_owner':config['owner_sid'],'state':4,'enabled':True,'logon':3,'runlevel':0,
                'actions':1,'triggers':0,'multiple':2,'hard_terminate':False,'execution_limit':'PT0S','execute':python,'image':python,
                'arguments':'-I -S -B '+script,'working_directory':str(self.code['ROOT']/'code'),'children':[],
                'command_line':subprocess.list2cmdline([python,'-I','-S','-B',script])}
         self.code['ps']=lambda code:copy.deepcopy(valid)
+        self.code['capture_task_process']=lambda pid,read_current:read_current()
         self.assertEqual(self.code['task_proof'](config),valid)
         new_code=self.code['WORK']/'code'
         updated={**valid,'working_directory':str(new_code),'arguments':'-I -S -B '+str(new_code/'narrator-standalone.py').replace('\\','/'),
@@ -247,6 +252,40 @@ class NativeBatchUpdateTests(unittest.TestCase):
                     connection.execute('ROLLBACK')
                 finally:connection.close()
 
+    def test_restricted_child_invokes_only_captured_digest_verified_utf8(self):
+        functions,_=helper()
+        with FixtureDirectory(prefix='kn-update-policy-',trusted_execution=True) as folder:
+            root=Path(folder);validator=root/'validator.ps1'
+            validator.write_text('param([string]$OwnerSid)\n@{owner_sid=$OwnerSid;captured_validator=$true}|ConvertTo-Json -Compress',encoding='utf-8')
+            original='C:/ProgramData/KnowledgeNetworkCollector/NarratorStandaloneV1/batch-update-v1/assert-code.ps1'
+            prefix="$ErrorActionPreference='Stop';if((Get-ExecutionPolicy) -cne 'Restricted'){throw 'Fixture requires effective Restricted policy.'};"
+            calls=[];current=validator
+            def run(command,payload=None):
+                process=subprocess.run(['powershell.exe','-NoLogo','-NoProfile','-NonInteractive','-ExecutionPolicy','Restricted','-Command',prefix+command],input=None if payload is None else json.dumps(payload),capture_output=True,text=True,timeout=20)
+                index=len(calls);calls.append(process)
+                (root/('child-%02d.stdout.log'%index)).write_text(process.stdout,encoding='utf-8')
+                (root/('child-%02d.stderr.log'%index)).write_text(process.stderr,encoding='utf-8')
+                return process
+            direct=run("& '"+validator.as_posix()+"' -OwnerSid 'owned-fixture'")
+            self.assertNotEqual(direct.returncode,0,'File-script negative control unexpectedly executed')
+            self.assertNotIn('captured_validator',direct.stdout)
+            def invoke(command,value):
+                self.assertEqual(command.count(original),1)
+                result=run(command.replace(original,current.as_posix()),value)
+                if result.returncode:raise RuntimeError('fixed_powershell_operation_failed')
+                return json.loads(result.stdout)
+            functions['ps']=invoke
+            functions['VALIDATOR_SHA256']=functions['sha'](validator)
+            functions['assert_new_code']('owned-fixture')
+            self.assertEqual(json.loads(calls[-1].stdout),{'captured_validator':True,'owner_sid':'owned-fixture'})
+            functions['VALIDATOR_SHA256']='0'*64
+            with self.assertRaisesRegex(RuntimeError,'fixed_powershell_operation_failed'):functions['assert_new_code']('owned-fixture')
+            self.assertNotIn('captured_validator',calls[-1].stdout)
+            invalid=root/'invalid-utf8.ps1';invalid.write_bytes(b'\xff\xfe\x80')
+            current=invalid;functions['VALIDATOR_SHA256']=functions['sha'](invalid)
+            with self.assertRaisesRegex(RuntimeError,'fixed_powershell_operation_failed'):functions['assert_new_code']('owned-fixture')
+            self.assertNotIn('captured_validator',calls[-1].stdout)
+
     def test_native_exact_child_ledger_writer_fence_and_confirmed_exit(self):
         functions,_=helper()
         with FixtureDirectory(prefix='kn-update-process-',trusted_execution=True) as folder:
@@ -273,6 +312,10 @@ class NativeBatchUpdateTests(unittest.TestCase):
                         times=[probe.FileTime() for _ in range(4)]
                         self.assertTrue(native.k.GetProcessTimes(int(child._handle),*[ctypes.byref(value) for value in times]))
                         created=(times[0].high<<32)|times[0].low
+                        captured=functions['capture_task_process'](child.pid,lambda:{'pid':child.pid})
+                        self.assertEqual(captured['creation_filetime'],created)
+                        with self.assertRaisesRegex(RuntimeError,'fixed_listener_pid_changed'):
+                            functions['capture_task_process'](child.pid,lambda:{'pid':child.pid+1})
                         handles=functions['live_ledger_handles'](native,int(child._handle),created,guard.ledger)
                         self.assertEqual(len(handles),1)
                         self.assertEqual(functions['live_ledger_handles'](native,int(child._handle),created,guard.ledger),handles)
