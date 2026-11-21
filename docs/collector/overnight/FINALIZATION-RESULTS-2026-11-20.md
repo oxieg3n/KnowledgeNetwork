@@ -1,5 +1,27 @@
 # November 20 finalization execution results
 
+## Subsequent owner batch-update attempt
+
+The pinned updater was run once and stopped with a Python traceback surfaced
+as Windows PowerShell5.1 NativeCommandError. Both outer redirected log files
+are0bytes; the exact exception remains unknown. Actual captured helper SHA
+1ec820f1...29ca6 matches the reviewed template, and examined source/config/
+bundle/startup pins pass. No original-code backup, update-review or batch-data
+folder exists, proving the pinned helper did not reach live DB/task mutation.
+Authenticated existing service status still PASS with matching provenance and
+execution_hold=false. No batch inference or activation occurred. Preserve the
+prepared directory; never replay it. The next step is the reviewed staged read-only preflight,
+SHA `0aeba36ef751b2286f0945d3cd22cb7dfe16b1041bc024edb5c9cf55e52f9605`,
+with direct .NET process capture. Owner command is in the private
+`narrator-batch-preflight-v1/Host-ReadOnly-Preflight.txt`. It checks every original
+pre-backup condition, including recorded startup PID, and writes only private
+UUID diagnostics. It never calls main or opens/locks SQLite. Actual host execution
+is NOT RUN. Native PS5.1 synthetic reproduction confirmed the original0byte stderr
+fault; the future wrapper now captures through Hidden Start-Process. Focused21
+checks17 passed/4 skipped; independent review PASS. Current prepared updater is
+not replayable; changing future logging is not a safe continuation by itself; all approved final media and archive results below
+remain valid. See the latest HANDOFF for its private evidence path.
+
 ## Current verified result: completed local video, owner preview approved
 
 The owner reported watching and approving the exact MP4 below. The private

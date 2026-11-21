@@ -1,5 +1,44 @@
 # V9 handoff - The Knowledge Network Collector
 
+## Latest batch attempt: stopped before activation; do not replay
+
+The owner ran the pinned updater5002de3d...ba46 with private bundlec372224c...59a5d.
+Windows PowerShell5.1 raised NativeCommandError at the protected Python helper.
+Both redirected outer logs are empty. The actual helper SHA is exactly
+`1ec820f1123aab4d12d8719efc0a462f89e9db18e80d52b09523743542129ca6` and matches
+the reviewed generated template; examined old/new source/config/bundle/startup
+pins pass. No `old-code`, `update-review`, PowerShell failure receipt or batch-data
+directory was created. Pinned control flow therefore stopped before live database
+opening, fencing, task changes or model inference. This is a failed updater
+preflight, not a narration/model failure. Its exact Python exception is not yet
+recovered; do not guess at it or rerun the original updater/work directory.
+
+Existing authenticated narrator status still PASS, provenance matches and no
+execution hold. No new inference. Private failure capture is under
+`KnowledgeNetwork-Private/batch-update-failure-733f0a0df80a4ddcbde6dea66e1e3a5c/`.
+The narrowed read-only diagnostic is tested and staged:
+
+- Host: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-batch-preflight-v1/Inspect-KnowledgeNetworkNarratorBatchPreflight.ps1`.
+- Exact SHA: `0aeba36ef751b2286f0945d3cd22cb7dfe16b1041bc024edb5c9cf55e52f9605`.
+- Checked owner command: `KnowledgeNetwork-Private/narrator-batch-preflight-v1/Host-ReadOnly-Preflight.txt`.
+
+It captures the exact failed helper, executes only its pre-main prefix and fixed
+read-only verification calls, and denies database/mutation handlers. It records
+runtime flags, owner, existing-file checks, task/process proof and original startup
+PID binding privately. `main` is excluded; no SQLite opening, fence, task/service,
+network or inference action occurs. The nonadmin bridge cannot run this protected
+owner-context check; the supplied single command requires the recorded elevated
+owner. No new permission is requested. Its actual host result remains NOT RUN.
+
+The PS5.1 logging fault was reproduced with an owned synthetic Python exception:
+old native redirection produced0bytes; direct process capture retained the full
+traceback/exit code. Future updater source now uses Hidden Start-Process capture;
+this changes logging only and does not fix/retry the unknown original preflight.
+Focused combined tests21:17 passed/4 skipped, including native capture/parser;
+final startup-PID comparison's3 pure tests reran PASS. Independent security review
+PASS. Validation receipt: `KnowledgeNetwork-Private/batch-preflight-capture-validation-v4.private.json`.
+All failed/captured inputs and original prepared work remain in place. Publication remains PAUSED.
+
 ## Current result: real Short complete and owner-approved
 
 The owner watched and approved MP4 SHA
@@ -41,8 +80,8 @@ calls. New client multi-segment requests fail before submission until batch
 support is advertised; existing legacy receipts recover their original IDs.
 Reviewed updater SHA5002de3d...ba46 and private bundle SHA c372224c...59a5d
 are staged in `narrator-batch-update-v1` on both computers; the checked command
-requires one elevated recorded-owner run on BLACKHAT-BASE. Original nine jobs
-are fenced/backed up before a tested two-segment parity task. Actual batch
+requires one elevated recorded-owner run on BLACKHAT-BASE. The updater would fence/back up the original nine jobs before a two-segment
+parity task; this failed preflight did not reach those operations. Actual batch
 activation/remote acceptance remains NOT TESTED; never retry an uncertain update.
 Final hosted source regression44869843163/44869849916 passed (Windows581/558
 passed/23 skipped; Ubuntu581/470 passed/111 skipped; worker190 and WPF build).
