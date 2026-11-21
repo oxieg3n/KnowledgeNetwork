@@ -101,6 +101,17 @@ WORK=Path('C:/ProgramData/KnowledgeNetworkCollector/NarratorStandaloneV1/batch-u
 GPU=Path('C:/Windows/System32/nvidia-smi.exe');GPU_PIN='__GPU_PIN__'
 GPU_EVIDENCE=json.loads(base64.b64decode('__GPU_EVIDENCE__',validate=True))
 STEM='__RECOVERY_STEM__'
+CHECKPOINT='batch-offline-recovery-f22619166b424f5a86e8963de5dd1bb0'
+CHECKPOINT_PINS={
+    CHECKPOINT+'-review/blocked.private.json':'6646531ee62bf9f249d39cc2de828c5aa80a507af74334946f231be22aadc78f',
+    CHECKPOINT+'-review/initial-offline.private.json':'c287da2cd2fac5f6591344ef57dd43347368bfd6e03f2e36f2b0f5610dc97695',
+    CHECKPOINT+'-task-18c7f1c550784e7386e4a99dc39966fe.private.json':'35a8ba2fe2995e5b89fb6e1d500da53525a4a587762d606ef0bdaebcd366d1dc',
+    'task-before.private.json':'c287da2cd2fac5f6591344ef57dd43347368bfd6e03f2e36f2b0f5610dc97695',
+    'task-before.private.xml':'7cd415ccfb470f3134bb02e44527a3342fedabbcb4377f1a81474e3a53b79e53',
+    'original-code-descriptors.private.json':'cde34a3575e0f20ce46fd10e4f762d942a00cef8838f006bba6beb4eefdf0f0c'}
+ORIGINAL_XML='7cd415ccfb470f3134bb02e44527a3342fedabbcb4377f1a81474e3a53b79e53'
+DISABLED_XML='2713e2f07981df12c2ec5f29ecbbf019505c1d49a87a804b454d09b8e4fc1119'
+TASK_OPERATION_CODE='f1605941ac9b6211cac1d552d3be14738707a09243161b5da90ad0bd0b16e338'
 OFFLINE_TASK=r'''
 $ErrorActionPreference='Stop';$s=New-Object -ComObject Schedule.Service;$s.Connect();$t=$s.GetFolder('\KnowledgeNetworkCollector').GetTask('NarratorStandaloneV1')
 $d=$t.Definition;$a=$d.Actions.Item(1);$owner=if($d.Principal.UserId -match '^S-1-'){$d.Principal.UserId}else{([Security.Principal.NTAccount]::new($d.Principal.UserId)).Translate([Security.Principal.SecurityIdentifier]).Value}
@@ -123,6 +134,49 @@ def capture_only(ns):
         try:path.lstat()
         except FileNotFoundError:continue
         raise RuntimeError('prepared_capture_has_prior_activity')
+
+def install_task_refresh(ns,prefix):
+    function=next(node for node in ast.parse(prefix).body if isinstance(node,ast.FunctionDef) and node.name=='task_operation')
+    codes=[node.args[0].value for node in ast.walk(function) if isinstance(node,ast.Call) and isinstance(node.func,ast.Name) and node.func.id=='ps' and isinstance(node.args[0],ast.Constant)]
+    if len(codes)!=1 or hashlib.sha256(codes[0].encode()).hexdigest()!=TASK_OPERATION_CODE:raise RuntimeError('captured_task_operation_changed')
+    original=codes[0];marker='\n@{xml=$t.Xml;enabled=$t.Enabled;state=$t.State}|ConvertTo-Json -Compress'
+    if original.count(marker)!=1:raise RuntimeError('task_metadata_return_changed')
+    refreshed=original.replace(marker,"\n$t=$f.GetTask('NarratorStandaloneV1')"+marker)
+    original_ps=ns['ps']
+    def ps(code,value=None,timeout=20):return original_ps(refreshed if code==original else code,value,timeout)
+    ns['ps']=ps
+
+def disabled_checkpoint(ns,package):
+    for relative,pin in CHECKPOINT_PINS.items():
+        if ns['sha'](WORK/relative)!=pin:raise RuntimeError('disabled_checkpoint_evidence_changed')
+    review=WORK/(CHECKPOINT+'-review')
+    if {path.name for path in review.iterdir()}!={'initial-offline.private.json','blocked.private.json'}:raise RuntimeError('checkpoint_has_later_activity')
+    blocked=json.loads((review/'blocked.private.json').read_text())
+    if blocked.get('fence_committed') is not False or blocked.get('no_process_stopped') is not True or blocked.get('error')!='exact_offline_task_proof_failed':raise RuntimeError('disabled_checkpoint_not_pre_database')
+    for path in [*(WORK/name for name in ('code','update-review','schema1-before-update.backup.sqlite','parity-task.private.xml','config-parity-disabled.retained.json')),ns['DATA']/'batch-update-v1']:
+        try:path.lstat()
+        except FileNotFoundError:continue
+        raise RuntimeError('checkpoint_has_later_activity')
+    disabled=json.loads((WORK/(CHECKPOINT+'-task-18c7f1c550784e7386e4a99dc39966fe.private.json')).read_text())
+    before=json.loads((WORK/'task-before.private.json').read_text())
+    if hashlib.sha256(disabled['xml'].encode()).hexdigest()!=DISABLED_XML or hashlib.sha256(before['xml'].encode()).hexdigest()!=ORIGINAL_XML or disabled['sddl']!=before['sddl']:raise RuntimeError('checkpoint_task_identity_changed')
+    sources={'config.json':package['old_config_sha256'],'narrator-standalone.py':package['old_launcher_sha256'],'standalone-bundle.json':package['old_bundle_sha256'],'task.private.xml':ORIGINAL_XML}
+    old_bundle=json.loads((ns['ROOT']/'code/standalone-bundle.json').read_text())
+    sources.update({'youtube_ops/'+name:pin for name,pin in old_bundle['files'].items()})
+    if {path.relative_to(WORK/'old-code').as_posix() for path in (WORK/'old-code').rglob('*') if path.is_file()}!=set(sources):raise RuntimeError('checkpoint_backup_set_changed')
+    for relative,pin in sources.items():
+        for path in (ns['ROOT']/'code'/relative,WORK/'old-code'/relative):
+            if path.is_symlink() or getattr(path.stat(),'st_file_attributes',0)&0x400 or path.stat().st_nlink!=1 or ns['sha'](path)!=pin:raise RuntimeError('checkpoint_original_or_backup_changed')
+    expected=json.loads((WORK/'original-code-descriptors.private.json').read_text())
+    normalize=lambda path:str(path).replace('\\','/').casefold()
+    if {normalize(item['path']) for item in expected}!={normalize(ns['ROOT']/'code'/relative) for relative in sources}:raise RuntimeError('checkpoint_descriptor_set_changed')
+    actual=ns['ps']("$ErrorActionPreference='Stop';$r=[Console]::In.ReadToEnd()|ConvertFrom-Json;@($r.paths|ForEach-Object{@{path=$_;sddl=(Get-Acl -LiteralPath $_).Sddl}})|ConvertTo-Json -Compress",{'paths':[item['path'] for item in expected]})
+    ns['write'](WORK/(STEM+'-code-descriptors-'+uuid.uuid4().hex+'.private.json'),actual)
+    if {normalize(item['path']):item['sddl'] for item in actual}!={normalize(item['path']):item['sddl'] for item in expected}:raise RuntimeError('checkpoint_source_descriptors_changed')
+    return disabled
+
+def verify_disabled_live(value,checkpoint):
+    if any(value.get(key)!=checkpoint.get(key) for key in ('xml','sddl','owner_sid','last_result','last_run')):raise RuntimeError('disabled_checkpoint_live_task_changed')
 
 def offline_proof(ns,config,enabled=True,expected_xml=None):
     value=ns['ps'](OFFLINE_TASK)
@@ -177,7 +231,7 @@ def gpu_baseline(ns,review):
 
 def main():
     ns={'__name__':'knowledge_network_offline_continuation'}
-    exec(compile(checked_prefix(RAW,PIN),'captured-helper-definitions-only','exec'),ns)
+    prefix=checked_prefix(RAW,PIN);exec(compile(prefix,'captured-helper-definitions-only','exec'),ns);install_task_refresh(ns,prefix)
     for name,pin in INPUT_PINS.items():
         if ns['sha'](WORK/name)!=pin:raise RuntimeError('captured_input_changed')
     if INPUT_PINS['assert-code.ps1']!=ns['VALIDATOR_SHA256']:raise RuntimeError('captured_validator_changed')
@@ -186,17 +240,16 @@ def main():
     config=json.loads((ns['ROOT']/'code/config.json').read_text());package=json.loads((WORK/'batch-update-bundle.private.json').read_text())
     identity=ns['ps']("$i=[Security.Principal.WindowsIdentity]::GetCurrent();@{sid=$i.User.Value;elevated=([Security.Principal.WindowsPrincipal]::new($i)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)}|ConvertTo-Json -Compress")
     if identity!={'sid':config['owner_sid'],'elevated':True} or identity['sid']=='S-1-5-18' or not(sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode) or Path(sys.executable).resolve()!=ns['PYTHON'].resolve() or ns['sha'](ns['PYTHON'])!=config['server_python_sha256']:raise RuntimeError('owner_or_runtime_unverified')
-    capture_only(ns);ns['verify_bundle'](package,config);task=offline_proof(ns,config)
+    ns['verify_bundle'](package,config);checkpoint=disabled_checkpoint(ns,package)
+    task=offline_proof(ns,config,False,checkpoint['xml']);verify_disabled_live(task,checkpoint)
     review=WORK/(STEM+'-review');review.mkdir();ns['write'](review/'initial-offline.private.json',task)
     reservation=None;connection=None;db_guard=None;lock_guard=None;fenced=False
     try:
         lock_guard=ns['probe'].NamespaceGuard(ns['DATA']/'remote-voice.lock')
         with existing_lease(ns,common,lock_guard):
-            reservation=reserve_port();fresh=offline_proof(ns,config)
-            if fresh['xml']!=task['xml']:raise RuntimeError('offline_task_changed')
-            capture_only(ns);ns['preserve_old_code'](config,task)
-            disabled=ns['task_operation']('disable',task['xml'],config['owner_sid']);after=offline_proof(ns,config,False,disabled['xml'])
-            ns['write'](review/'disabled-offline.private.json',after)
+            reservation=reserve_port();fresh=offline_proof(ns,config,False,checkpoint['xml']);verify_disabled_live(fresh,checkpoint)
+            disabled_checkpoint(ns,package);disabled=fresh
+            ns['write'](review/'disabled-offline.private.json',fresh)
             db_guard=ns['probe'].NamespaceGuard(ns['DB'])
             connection=ns['Sqlite'](ns['DB'],db_guard)
             def on_fenced():

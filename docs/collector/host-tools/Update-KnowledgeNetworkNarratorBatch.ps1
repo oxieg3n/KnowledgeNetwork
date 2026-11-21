@@ -383,6 +383,7 @@ elseif($r.operation -ceq 'switch'){
  $e.WorkingDirectory='C:/ProgramData/KnowledgeNetworkCollector/NarratorStandaloneV1/batch-update-v1/code'
  $t=$f.RegisterTask('NarratorStandaloneV1',$x.OuterXml,4,$r.owner,$null,3,$null);$t.SetSecurityDescriptor($sddl,16)
 }elseif($r.operation -ceq 'start'){$t.Enabled=$true;$null=$t.Run($null)}else{throw 'operation'}
+$t=$f.GetTask('NarratorStandaloneV1')
 @{xml=$t.Xml;enabled=$t.Enabled;state=$t.State}|ConvertTo-Json -Compress
 ''',{'operation':operation,'expected_xml':hashlib.sha256(expected_xml.encode()).hexdigest(),'owner':owner})
 
