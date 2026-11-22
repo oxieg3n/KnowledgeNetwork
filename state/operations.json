@@ -2188,8 +2188,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-21T09:46:16.801845+00:00",
-      "last_monitored_at": "2026-11-21T09:46:16.801711+00:00",
+      "last_attempt_at": "2026-11-22T19:35:14.009709+00:00",
+      "last_monitored_at": "2026-11-22T19:35:14.009603+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -2359,8 +2359,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-21T09:46:17.328020+00:00",
-      "last_monitored_at": "2026-11-21T09:46:17.327842+00:00",
+      "last_attempt_at": "2026-11-22T19:35:14.587612+00:00",
+      "last_monitored_at": "2026-11-22T19:35:14.587493+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -12595,7 +12595,7 @@
       "upload": 0
     },
     "2026-11-22": {
-      "general": 9,
+      "general": 15,
       "search": 3,
       "upload": 0
     }
@@ -13051,7 +13051,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 654,
+  "revision": 663,
   "rights_ledger": {},
   "runs": [
     {
@@ -14615,6 +14615,21 @@
       },
       "run_id": "45016631830-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-22T19:35:13.506323+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "45061590459-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1
