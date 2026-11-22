@@ -1576,6 +1576,14 @@
       "url": "https://www.youtube.com/watch?v=qiZEzSyw6fo",
       "video_id": "qiZEzSyw6fo"
     },
+    "video:qv2ve1vmULY": {
+      "created_at": "2026-11-22T11:18:12.798174+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Arknights: Endfield - Meeting You in the World o'Shrooms Version Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=qv2ve1vmULY",
+      "video_id": "qv2ve1vmULY"
+    },
     "video:s-P09UGp4eE": {
       "created_at": "2026-11-18T02:53:34.617955+00:00",
       "kind": "new_video",
@@ -1915,7 +1923,7 @@
   },
   "archive_progress": {
     "UC-2Y8dQb0S6DtpxNgAKoJKA": {
-      "checked_at": "2026-11-18T11:37:38.111314+00:00",
+      "checked_at": "2026-11-22T11:18:13.961006+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1945,7 +1953,7 @@
       "ranking": "best_available"
     },
     "UCW5gUZ7lKGrAbLOkHv2xfbw": {
-      "checked_at": "2026-11-17T11:48:42.749147+00:00",
+      "checked_at": "2026-11-22T11:18:13.603336+00:00",
       "count": 10,
       "ranking": "best_available"
     },
@@ -1960,7 +1968,7 @@
       "ranking": "best_available"
     },
     "UCjBp_7RuDBUYbd1LegWEJ8g": {
-      "checked_at": "2026-11-18T11:37:38.541275+00:00",
+      "checked_at": "2026-11-22T11:18:14.341944+00:00",
       "count": 10,
       "ranking": "best_available"
     }
@@ -2124,8 +2132,8 @@
         "https://www.youtube.com/@PlayStation",
         "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
       ],
-      "last_attempt_at": "2026-11-21T01:30:03.340739+00:00",
-      "last_monitored_at": "2026-11-21T01:30:03.340649+00:00",
+      "last_attempt_at": "2026-11-22T11:18:12.798400+00:00",
+      "last_monitored_at": "2026-11-22T11:18:12.798266+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "PlayStation",
@@ -2379,8 +2387,8 @@
         "https://www.youtube.com/@Xbox",
         "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
       ],
-      "last_attempt_at": "2026-11-21T01:30:03.693374+00:00",
-      "last_monitored_at": "2026-11-21T01:30:03.693267+00:00",
+      "last_attempt_at": "2026-11-22T11:18:13.211754+00:00",
+      "last_monitored_at": "2026-11-22T11:18:13.211589+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Xbox",
@@ -7214,6 +7222,24 @@
         "video_id": "meUr8fjy8lQ",
         "view_count": 174767199
       },
+      "mtjkqrvUg_4": {
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "collected_at": "2026-11-22T11:18:13.961000+00:00",
+        "discovered_at": "2026-11-22T11:18:13.961003+00:00",
+        "id": "mtjkqrvUg_4",
+        "rank": 10,
+        "ranking": "best_available",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Call of Duty: Modern Warfare - Reveal Trailer | PS4",
+        "url": "https://www.youtube.com/watch?v=mtjkqrvUg_4",
+        "video_id": "mtjkqrvUg_4",
+        "view_count": 3716691
+      },
       "nx_2KIwYEWA": {
         "attempts": 0,
         "categories": [
@@ -11625,6 +11651,26 @@
         "url": "https://www.youtube.com/watch?v=qiZEzSyw6fo",
         "video_id": "qiZEzSyw6fo"
       },
+      "qv2ve1vmULY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-22T11:18:12.798153+00:00",
+        "id": "qv2ve1vmULY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-21T12:00:39Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Arknights: Endfield - Meeting You in the World o'Shrooms Version Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=qv2ve1vmULY",
+        "video_id": "qv2ve1vmULY"
+      },
       "s-P09UGp4eE": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12547,6 +12593,11 @@
       "general": 24,
       "search": 0,
       "upload": 0
+    },
+    "2026-11-22": {
+      "general": 9,
+      "search": 3,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -13000,7 +13051,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 638,
+  "revision": 654,
   "rights_ledger": {},
   "runs": [
     {
@@ -14539,6 +14590,31 @@
       },
       "run_id": "44979378105-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-22T11:18:12.321480+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "45016631830-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-22T11:18:13.237022+00:00",
+      "command": "archive",
+      "details": {
+        "candidates": 30
+      },
+      "run_id": "45016631830-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
