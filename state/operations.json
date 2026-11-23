@@ -2244,8 +2244,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-21T17:29:31.869614+00:00",
-      "last_monitored_at": "2026-11-21T17:29:31.869552+00:00",
+      "last_attempt_at": "2026-11-23T00:50:03.057808+00:00",
+      "last_monitored_at": "2026-11-23T00:50:03.057655+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -2331,8 +2331,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-21T17:29:31.495173+00:00",
-      "last_monitored_at": "2026-11-21T17:29:31.495117+00:00",
+      "last_attempt_at": "2026-11-23T00:50:02.470439+00:00",
+      "last_monitored_at": "2026-11-23T00:50:02.470253+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -5515,6 +5515,15 @@
         "discovered_at": "2026-11-14T00:19:47.068155+00:00",
         "id": "2026-11-13",
         "local_date": "2026-11-13",
+        "rights_path": "original_required",
+        "status": "needs_verified_story_lineup",
+        "story_ids": []
+      },
+      "2026-11-22": {
+        "attempts": 0,
+        "discovered_at": "2026-11-23T00:50:03.079812+00:00",
+        "id": "2026-11-22",
+        "local_date": "2026-11-22",
         "rights_path": "original_required",
         "status": "needs_verified_story_lineup",
         "story_ids": []
@@ -9983,7 +9992,7 @@
         "published_at": "2026-11-20T16:00:17Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
-        "title": "3 ChatGPT Tips to Save Money",
+        "title": "3 Tips to Save Money With ChatGPT",
         "url": "https://www.youtube.com/watch?v=WGvsk0LIveU",
         "video_id": "WGvsk0LIveU"
       },
@@ -12595,7 +12604,7 @@
       "upload": 0
     },
     "2026-11-22": {
-      "general": 15,
+      "general": 21,
       "search": 3,
       "upload": 0
     }
@@ -13051,7 +13060,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 663,
+  "revision": 673,
   "rights_ledger": {},
   "runs": [
     {
@@ -14629,6 +14638,31 @@
         "new_leads": 0
       },
       "run_id": "45061590459-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-23T00:50:01.918921+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "45091055043-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Editorial lineup, original script and approved narration/render required; no filler generated"
+      ],
+      "checked_at": "2026-11-23T00:50:03.079675+00:00",
+      "command": "recap",
+      "details": {},
+      "run_id": "45091055043-1",
       "status": "BLOCKED"
     }
   ],
