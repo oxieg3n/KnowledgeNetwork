@@ -1975,10 +1975,12 @@
   },
   "blog_versions": {
     "https://poweredby.oxieg3n.com/blog/a2ui-native-component-catalog/": "8fd5919c33001bc38f493dfefa2c9edf006a17a76b279734595afb672336af03",
+    "https://poweredby.oxieg3n.com/blog/ag-ui-langgraph-changed-input-approval/": "702b6bf124b551e715a6849fe0231d79609ae252e5e8a0ddb5b23b3de7513085",
     "https://poweredby.oxieg3n.com/blog/ag2-cached-token-accounting/": "87a196f505aee655efeb089b2d17f3ac5afe2d5d9539aabee499551984cc5942",
     "https://poweredby.oxieg3n.com/blog/ai-memory-correction-test/": "accb85819d8cab6394ed45eb5fdce153be778476c64ff728a1e62c12ec0fc71d",
     "https://poweredby.oxieg3n.com/blog/android-developer-verification-github-apk/": "de4f10ae2108d14d5c585510fb929415bc57b258222ccd1c6f5e0b5e211eda11",
     "https://poweredby.oxieg3n.com/blog/apple-health-ai-study-consent-evidence/": "3cfd8bf5b88f8545874095f331e3bad3ea143479adea837ba30c33daacaf0dc5",
+    "https://poweredby.oxieg3n.com/blog/arknights-endfield-november-25-progression-patch/": "5d5939dee7a19a2de273a191b0ebdc161c0886ef2ae987288ea32652719d4d24",
     "https://poweredby.oxieg3n.com/blog/ask-maps-holiday-itineraries-appointments/": "69db1742ff033c7f314a50375f9afca2278086d3d35e12999cf7c919278ee002",
     "https://poweredby.oxieg3n.com/blog/astro-cloudflare-beta-six-rebuild-output/": "bf8f41a745f67d4758afc63546ad0694ad5cd7364be908d494f56766a7300e76",
     "https://poweredby.oxieg3n.com/blog/audible-audio-discovery-narrator-sample/": "62f26a0d383fdae37eb479bcffcea5070b8d9427c792c0812a9fa53493ec8539",
@@ -1997,9 +1999,12 @@
     "https://poweredby.oxieg3n.com/blog/cloudflare-nov17-compatibility-date-checks/": "d879bbc2cd9b58a2d29b73dc3dbe05366e1fb6a624265eeab94beec3ab7ec53d",
     "https://poweredby.oxieg3n.com/blog/cloudflare-personal-agent-website-access/": "83162047a7396236c6992d46a6188ecdd4ea27b871a6324519d5b4e1dea1a686",
     "https://poweredby.oxieg3n.com/blog/cloudflare-workflow-backlog-test/": "fe82b74215351b78ebaf925b5034295c73235b597eb88eafcdef9e1101b431a5",
+    "https://poweredby.oxieg3n.com/blog/cloudwatch-omni-azure-platform-telemetry/": "e7ffeea156d3c81cb445a8dce9541df920fc3dd708d0313f3bf0717d0364c83c",
     "https://poweredby.oxieg3n.com/blog/codex-sandbox-permissions-explained/": "d1fa253f83c685e6b3145abc441824b3409e1dda341799e72028077a32370a38",
     "https://poweredby.oxieg3n.com/blog/codex-weekly-allowance/": "5c7506cccd3313648eb0e7d058a230ba8ab8ef7a463628e153e6aef72737b56c",
     "https://poweredby.oxieg3n.com/blog/cohere-compass-video-evidence-preview/": "8c75c48ba494498cbde67beaab6482cf9716bc57e2784f86a612cc85d7384d91",
+    "https://poweredby.oxieg3n.com/blog/comfyui-frontend-unreadable-workflow-warning/": "db970d569af13b0438c57780ef9413547f267115b979be13f335abc2182b408d",
+    "https://poweredby.oxieg3n.com/blog/copilot-cloud-sandbox-shared-compute-billing/": "22998a44fa4e473b35dbdf6a6ba2a643dfa099f0f98a1ab0cdb39e2c14cb36ba",
     "https://poweredby.oxieg3n.com/blog/copilot-december-model-retirement-plan/": "ae212ea5b68a5e61f724ac05819aa7ba4915559d0ea616b7133c6cf2da24cf04",
     "https://poweredby.oxieg3n.com/blog/copilot-evals-run-cost-review/": "8c27309f01a78e0361623f40cbff62293d7ee8a5495a8f40ba73a4edd92dfe29",
     "https://poweredby.oxieg3n.com/blog/copilot-ghes-account-boundary/": "a2eca95815563f79f4c8977ae6ebc876ca90a5f81806247a3a991e086d8fe9b7",
@@ -2040,6 +2045,7 @@
     "https://poweredby.oxieg3n.com/blog/github-pull-request-overview-review/": "41156743e2d8e8fd6887327895c28a12b5ac9f3b6783521fec815e3baeac9bbd",
     "https://poweredby.oxieg3n.com/blog/gitlab-ci-kubernetes-secrets-patch/": "806aba1ff856c1062beb960a8477cab7bba6bfc20667a6a139f85c9623dc4bd2",
     "https://poweredby.oxieg3n.com/blog/google-agent-anomaly-detection/": "7c880fb1cc3fa946fb232287678c03c6cafccee030f52a4b8ac7d91b01037138",
+    "https://poweredby.oxieg3n.com/blog/google-cloud-php-patch-redeploy-checklist/": "88353c9392c1d07ba78d56b276e128097aa58d42772b4f169a50407a549f7be8",
     "https://poweredby.oxieg3n.com/blog/google-gtig-automation-credential-access-review/": "5bdf8b928ec0d8071d43edb3a22dce0e56da5cda45b137b002cdae6a4b59cb75",
     "https://poweredby.oxieg3n.com/blog/gputaskman-tmog-local-ai-monitoring/": "28464343a38d56b87bcd2f1b7c3666adde3db6e2e4d2ceba481a8537088fe720",
     "https://poweredby.oxieg3n.com/blog/grok-bot-shared-account-check/": "595ea5363eddd6f9537f68c4011d4e40a259bd1f798f82603b6faeeb65f62ab6",
@@ -2047,6 +2053,7 @@
     "https://poweredby.oxieg3n.com/blog/gunz-november-update-bounty-attendance/": "2f190378dde49043155987929dfe76d30f130d36769dd30d2db158a1c9fa64b0",
     "https://poweredby.oxieg3n.com/blog/hangten-design-rules-human-review/": "a197d73f186568703d1701585ee06cc766b73f5a53d1324dcd1226617bc1300d",
     "https://poweredby.oxieg3n.com/blog/hedy-topic-files-meeting-context/": "a1800577096230de7acf3896a7df90e6c8507d8b536916ce7e381a4e8cb8ce63",
+    "https://poweredby.oxieg3n.com/blog/highlevel-email-sync-disclosure/": "1436cce00df07296a37ee881f7f5605004f0af724309b76bc6a8e50334094f41",
     "https://poweredby.oxieg3n.com/blog/hugging-face-openrouter-routing-provider-keys/": "2a9fb7dc0fc3ef77bec3ddea73a50913a6cbdfb26b6bfe008e485a943716d7c2",
     "https://poweredby.oxieg3n.com/blog/inkling-2-mini-local-memory/": "67f4babe893eb2b19921814f65203e762d5c5b6aa4fdba79f492a02ba1ef85de",
     "https://poweredby.oxieg3n.com/blog/katalon-ai-test-runner-evidence-review/": "95d77966e906ac3b90a089b43236371a3cf134a9cfd1ba313963d120997b5d00",
@@ -2076,6 +2083,8 @@
     "https://poweredby.oxieg3n.com/blog/openai-embedded-assessment-evidence-limits/": "d1d1aae236251843416f6baced8f958777c97f8054c1cf7e3a934cee3f956907",
     "https://poweredby.oxieg3n.com/blog/openclaw-long-session-restart-reliability/": "5841bbfc5f3ba10fcded0bcaf62e6fb0da707e934f72d6191fbca402077e5661",
     "https://poweredby.oxieg3n.com/blog/openhands-140-agent-workspace/": "e6b980e56d5459f37270835357305a7cb7dd0e838e70ee77ab082521349acd07",
+    "https://poweredby.oxieg3n.com/blog/openmausbot-reviewer-handoff-trail/": "3544c973bbe968a033a39a1b803f164a1c61afc8fc852d55f7fe8e9cd8c12a4c",
+    "https://poweredby.oxieg3n.com/blog/openrouter-zero-data-retention-routing-review/": "6d3b24a8b5f974a303176ee494c659374c201538bcb9f4f92151e9d25f35e9d9",
     "https://poweredby.oxieg3n.com/blog/openspec-global-project-skills/": "75c4088f7a3a8d0bc80317a2f0f58726f6dea27e864360c8ff137e45fb4749a9",
     "https://poweredby.oxieg3n.com/blog/optimizely-script-incident-review/": "7de75f654d63089cdfbd5bf2d6c062397bae7cd86a311c10c11c80a5f746c224",
     "https://poweredby.oxieg3n.com/blog/original-xbox-pc-compatibility-achievements/": "fb9016538935074b13e8f668e45b5b0447c5ad175b0851c9db977d0947a8d372",
@@ -2087,6 +2096,7 @@
     "https://poweredby.oxieg3n.com/blog/qwen-code-repository-event-filter/": "31afcfb9e43ad6ded67fe8be2afa8f7d2b01bb86409d716c6d06bf007155d340",
     "https://poweredby.oxieg3n.com/blog/react-flow-thirteen-migration-checks/": "52b38353d6edb0446147ac2656d65bb7fa0cbc32f1a232e1b49f8a56cc11a9d3",
     "https://poweredby.oxieg3n.com/blog/replit-agent-commerce-ad-spending-approval/": "6e8e02fff6ef56152d8f6baa02107e28c1880cdd7b4d0e33d7f03561a18cfd12",
+    "https://poweredby.oxieg3n.com/blog/riemann-lean-independent-proof-checks/": "384dd3a87891f49af9cafac7eed2540d054769de57f9da9469da960138c8bc2e",
     "https://poweredby.oxieg3n.com/blog/ruby-httpx-oj-json-disclosure/": "0bd9bbebeb9147223af015da4d0046cf88c7a6c82381e2ad2b5cfdce875fd668",
     "https://poweredby.oxieg3n.com/blog/secure-enterprise-ai-chat-case-study-analysis/": "c989b33502f0c0ab21540bf9fb0ba10a42478e097606a68ead0c15952fd93b6b",
     "https://poweredby.oxieg3n.com/blog/sema4-vscode-3-package-compatibility/": "f141853e64a89941ad19efd68ab1cf3e1385d597d0ad5b171dc6e7023b2c34f4",
@@ -2104,6 +2114,7 @@
     "https://poweredby.oxieg3n.com/blog/vercel-functions-20mib-upload-beta/": "dc293574a4c1a54777958baa37da388992eff487b50ef8ebf4860ed1ac44b75a",
     "https://poweredby.oxieg3n.com/blog/vercel-project-product-budget-scopes/": "7e33575569f715e1917626290bad62067a1eae019deaf4805db2ebd5c173dff1",
     "https://poweredby.oxieg3n.com/blog/vercel-tracing-website-slowdowns/": "52cad508f87b2a19d6780d05c4fe0074b5a2926276720cf3cd7b46baeadb8fb7",
+    "https://poweredby.oxieg3n.com/blog/webflow-cli-cms-item-total-retries/": "453ed6f8d9ee345d143e53ea8c3e730ebe2a4e7218b3032ff7761cc0cc4d22a4",
     "https://poweredby.oxieg3n.com/blog/webflow-comment-search-filters/": "daf4cdb4f0fa538e3a943874d51c4b00b6f51e888aeda5043d162a2f954e1304",
     "https://poweredby.oxieg3n.com/blog/webflow-copied-component-ownership/": "b0fe2785c20e85e6cf5709085a464ae8d7eaae57b5d05eed494b1a5a90b08de5",
     "https://poweredby.oxieg3n.com/blog/website-project-brief-checklist/": "252851c5880ebb6a9ba81e0d5a852e69f8befe9901a384adad3c5fe568ceb963",
@@ -2160,8 +2171,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-22T03:10:12.852947+00:00",
-      "last_monitored_at": "2026-11-22T03:10:12.852908+00:00",
+      "last_attempt_at": "2026-11-23T21:18:06.411205+00:00",
+      "last_monitored_at": "2026-11-23T21:18:06.411076+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -2301,8 +2312,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-22T03:10:13.449978+00:00",
-      "last_monitored_at": "2026-11-22T03:10:13.449939+00:00",
+      "last_attempt_at": "2026-11-23T21:18:07.082796+00:00",
+      "last_monitored_at": "2026-11-23T21:18:07.082669+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -4050,6 +4061,19 @@
         "status": "needs_editorial_review",
         "title": "What to approve before an agent changes Vercel compute"
       },
+      "251008619385d4f87d059a9862db4c7da97beaeb524d7ae67d2a942ded8000d1": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/copilot-cloud-sandbox-shared-compute-billing/",
+        "discovered_at": "2026-11-23T21:18:07.857659+00:00",
+        "id": "251008619385d4f87d059a9862db4c7da97beaeb524d7ae67d2a942ded8000d1",
+        "live_verified_at": "2026-11-23T21:18:07.857650+00:00",
+        "original_published_at": "Mon, 23 Nov 2026 16:16:30 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "22998a44fa4e473b35dbdf6a6ba2a643dfa099f0f98a1ab0cdb39e2c14cb36ba",
+        "status": "needs_editorial_review",
+        "title": "Copilot cloud sandboxes now share the GitHub Actions compute allowance"
+      },
       "2573ff90ab543ce549bc8e59b780d019818ef59c619065bff6f313929e0840df": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/inkling-2-mini-local-memory/",
@@ -4205,6 +4229,19 @@
         "source_version": "a47c9998f6b71c45c185fc19d8df14bdb7cb3c7f0d07c6ace1c42f55845069c9",
         "status": "needs_editorial_review",
         "title": "Framer adds image and shader generation for site design"
+      },
+      "31e49c6668bdf5178c255514fa59b97ee96881d5a7f6c6fea4271e4c37c12c28": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/openrouter-zero-data-retention-routing-review/",
+        "discovered_at": "2026-11-23T21:18:07.704978+00:00",
+        "id": "31e49c6668bdf5178c255514fa59b97ee96881d5a7f6c6fea4271e4c37c12c28",
+        "live_verified_at": "2026-11-23T21:18:07.704967+00:00",
+        "original_published_at": "Mon, 23 Nov 2026 17:08:06 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "6d3b24a8b5f974a303176ee494c659374c201538bcb9f4f92151e9d25f35e9d9",
+        "status": "needs_editorial_review",
+        "title": "OpenRouter pulled 125 endpoints from zero-retention eligibility. What should teams check?"
       },
       "35349d6182c590cc4e3684e7314772e1f6147d9bf39ee12cb48ecb674cdf0467": {
         "attempts": 0,
@@ -4765,6 +4802,19 @@
         "status": "needs_editorial_review",
         "title": "Ruby httpx disclosure: check the JSON parser before triage"
       },
+      "9457a27d3fd40c0d2beb7c18bec43d4c98fad6180577fb5471675b433c60254b": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/ag-ui-langgraph-changed-input-approval/",
+        "discovered_at": "2026-11-23T21:18:08.548739+00:00",
+        "id": "9457a27d3fd40c0d2beb7c18bec43d4c98fad6180577fb5471675b433c60254b",
+        "live_verified_at": "2026-11-23T21:18:08.548729+00:00",
+        "original_published_at": "Sun, 22 Nov 2026 17:08:49 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "702b6bf124b551e715a6849fe0231d79609ae252e5e8a0ddb5b23b3de7513085",
+        "status": "needs_editorial_review",
+        "title": "AG-UI\u2019s LangGraph adapter starts a new run when inputs change"
+      },
       "94dc5c2fd6fb9c2632f6907294c19d9f5dc8b482e1c079e3d175fac401db12ec": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/react-flow-thirteen-migration-checks/",
@@ -4830,6 +4880,32 @@
         "status": "needs_editorial_review",
         "title": "Cursor Voice Chat: How to Talk to Coding Agents Without Losing Control"
       },
+      "9dc7731c79c0ab60bedf0e8c26fa3fff3b2a64124f550dc9940aee613380c1db": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/highlevel-email-sync-disclosure/",
+        "discovered_at": "2026-11-23T21:18:07.782400+00:00",
+        "id": "9dc7731c79c0ab60bedf0e8c26fa3fff3b2a64124f550dc9940aee613380c1db",
+        "live_verified_at": "2026-11-23T21:18:07.782390+00:00",
+        "original_published_at": "Mon, 23 Nov 2026 02:08:05 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "1436cce00df07296a37ee881f7f5605004f0af724309b76bc6a8e50334094f41",
+        "status": "needs_editorial_review",
+        "title": "HighLevel now explains who can read your synced email"
+      },
+      "a019274c59bbf5151c1f2254c00dfd7c2d4aeca236736f0f32632baf012c9f16": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/arknights-endfield-november-25-progression-patch/",
+        "discovered_at": "2026-11-23T21:18:08.414295+00:00",
+        "id": "a019274c59bbf5151c1f2254c00dfd7c2d4aeca236736f0f32632baf012c9f16",
+        "live_verified_at": "2026-11-23T21:18:08.414284+00:00",
+        "original_published_at": "Sun, 22 Nov 2026 16:11:51 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "5d5939dee7a19a2de273a191b0ebdc161c0886ef2ae987288ea32652719d4d24",
+        "status": "needs_editorial_review",
+        "title": "Arknights: Endfield\u2019s November 25 update makes upgrade shortfalls easier to spot"
+      },
       "a0324d05f351874ad555d4b60ff6b1c59fd474d8ed06c98720ecc054a4820a09": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/audible-audio-discovery-narrator-sample/",
@@ -4855,6 +4931,19 @@
         "source_version": "1787469b1a6bc6e0d164e89ebf046c25db1ad5669c917f337fc841df99f8a832",
         "status": "needs_editorial_review",
         "title": "Bloomreach buys AthenaHQ: existing accounts stay put"
+      },
+      "a21b5cc1ae3ccc131be2ae77d11a611e90bb9624d74b77fa3867ab9aa96999d1": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/riemann-lean-independent-proof-checks/",
+        "discovered_at": "2026-11-23T21:18:07.534991+00:00",
+        "id": "a21b5cc1ae3ccc131be2ae77d11a611e90bb9624d74b77fa3867ab9aa96999d1",
+        "live_verified_at": "2026-11-23T21:18:07.534978+00:00",
+        "original_published_at": "Mon, 23 Nov 2026 14:21:30 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "384dd3a87891f49af9cafac7eed2540d054769de57f9da9469da960138c8bc2e",
+        "status": "needs_editorial_review",
+        "title": "What independent Lean checks found in the Riemann Hypothesis proof"
       },
       "a250cf4ad5ebe76363ea13c7e2a96dde14e42c5cc8084578029e6ba7985bd854": {
         "attempts": 0,
@@ -4921,6 +5010,32 @@
         "status": "needs_editorial_review",
         "title": "BenchProofer asks what a passing coding test actually proves"
       },
+      "aa7236e36cbbb0416eb63b2abcd3bac2ee0a2e032e331219cce840d2005ee046": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/webflow-cli-cms-item-total-retries/",
+        "discovered_at": "2026-11-23T21:18:07.967311+00:00",
+        "id": "aa7236e36cbbb0416eb63b2abcd3bac2ee0a2e032e331219cce840d2005ee046",
+        "live_verified_at": "2026-11-23T21:18:07.967301+00:00",
+        "original_published_at": "Sun, 22 Nov 2026 02:10:06 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "453ed6f8d9ee345d143e53ea8c3e730ebe2a4e7218b3032ff7761cc0cc4d22a4",
+        "status": "needs_editorial_review",
+        "title": "Webflow\u2019s CLI fixes an empty-looking CMS inventory"
+      },
+      "ad83a59e75ac01154123613060c21febf567e05e940661c8017d165fd3d9e63b": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/comfyui-frontend-unreadable-workflow-warning/",
+        "discovered_at": "2026-11-23T21:18:08.282743+00:00",
+        "id": "ad83a59e75ac01154123613060c21febf567e05e940661c8017d165fd3d9e63b",
+        "live_verified_at": "2026-11-23T21:18:08.282728+00:00",
+        "original_published_at": "Sun, 22 Nov 2026 14:22:19 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "db970d569af13b0438c57780ef9413547f267115b979be13f335abc2182b408d",
+        "status": "needs_editorial_review",
+        "title": "ComfyUI now tells you when a saved workflow is unreadable"
+      },
       "aefe81cbad20ea575637689db7f725c7df50a96c555c9bf1393f330958a8fafc": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/litellm-11086-request-fields-upgrade-check/",
@@ -4960,6 +5075,19 @@
         "status": "needs_editorial_review",
         "title": "PS5 QSSR rollout: Spider-Man 2 is live, other games follow"
       },
+      "b3ab0dbe1d1ee1ab5d446d12fc294ec0f70a4cd8aa0857aff721fc00d2668eba": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/openmausbot-reviewer-handoff-trail/",
+        "discovered_at": "2026-11-23T21:18:08.060968+00:00",
+        "id": "b3ab0dbe1d1ee1ab5d446d12fc294ec0f70a4cd8aa0857aff721fc00d2668eba",
+        "live_verified_at": "2026-11-23T21:18:08.060959+00:00",
+        "original_published_at": "Sun, 22 Nov 2026 23:12:58 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "3544c973bbe968a033a39a1b803f164a1c61afc8fc852d55f7fe8e9cd8c12a4c",
+        "status": "needs_editorial_review",
+        "title": "OpenMausBot lets you read what bots say during a handoff"
+      },
       "b83384e658a09ee00637c1d27a765dd20bfd7737ced722a56179683572f0b123": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/github-pull-request-overview-review/",
@@ -4985,6 +5113,19 @@
         "source_version": "d879bbc2cd9b58a2d29b73dc3dbe05366e1fb6a624265eeab94beec3ab7ec53d",
         "status": "needs_editorial_review",
         "title": "Cloudflare\u2019s November 17 compatibility date needs a migration check"
+      },
+      "bcf1f8a0e471478562d9514522994671dc8a2be65d5c2acf5dddee2b1b91ea57": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/google-cloud-php-patch-redeploy-checklist/",
+        "discovered_at": "2026-11-23T21:18:08.208723+00:00",
+        "id": "bcf1f8a0e471478562d9514522994671dc8a2be65d5c2acf5dddee2b1b91ea57",
+        "live_verified_at": "2026-11-23T21:18:08.208713+00:00",
+        "original_published_at": "Sun, 22 Nov 2026 16:21:12 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "88353c9392c1d07ba78d56b276e128097aa58d42772b4f169a50407a549f7be8",
+        "status": "needs_editorial_review",
+        "title": "Google Cloud\u2019s PHP patch: Which deployments need a redeploy?"
       },
       "bd448faaf6571044c0030dbfd2ee9c3b651b41d1975c9cada05c654a7cb5c40d": {
         "attempts": 0,
@@ -5128,6 +5269,19 @@
         "source_version": "527073954b54155d57b260f215eb358b4620553818687b5d75fa81bcf220c960",
         "status": "needs_editorial_review",
         "title": "WorkOS Atlas gives internal apps a shared home, in early access"
+      },
+      "cddeb1e84b322266be9fc7fe29eae28ddce275e7d8825ab739eec14b90b4e7d2": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/cloudwatch-omni-azure-platform-telemetry/",
+        "discovered_at": "2026-11-23T21:18:09.085627+00:00",
+        "id": "cddeb1e84b322266be9fc7fe29eae28ddce275e7d8825ab739eec14b90b4e7d2",
+        "live_verified_at": "2026-11-23T21:18:09.085614+00:00",
+        "original_published_at": "Sat, 21 Nov 2026 23:03:47 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "e7ffeea156d3c81cb445a8dce9541df920fc3dd708d0313f3bf0717d0364c83c",
+        "status": "needs_editorial_review",
+        "title": "CloudWatch Omni can now read Azure platform telemetry"
       },
       "ce7c979abfce747b5030ce484c9a903a046de4c5c039b6a6a445a475e074a963": {
         "attempts": 0,
@@ -12609,7 +12763,7 @@
       "upload": 0
     },
     "2026-11-23": {
-      "general": 6,
+      "general": 12,
       "search": 0,
       "upload": 0
     }
@@ -13065,7 +13219,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 682,
+  "revision": 692,
   "rights_ledger": {},
   "runs": [
     {
@@ -14684,6 +14838,31 @@
       },
       "run_id": "45143093990-1",
       "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-23T21:18:05.609004+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "45268230605-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-23T21:18:07.108588+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 11
+      },
+      "run_id": "45268230605-1",
+      "status": "PASS"
     }
   ],
   "schema_version": 1
