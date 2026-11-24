@@ -312,6 +312,14 @@
       "url": "https://www.youtube.com/watch?v=AQc8khSSd-4",
       "video_id": "AQc8khSSd-4"
     },
+    "video:AVkhCctmnQQ": {
+      "created_at": "2026-11-24T05:59:34.195753+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The Spotter: Dig or Die - Official Launch Trailer | XBOX Series X|S",
+      "url": "https://www.youtube.com/watch?v=AVkhCctmnQQ",
+      "video_id": "AVkhCctmnQQ"
+    },
     "video:AhmCKHNqhB8": {
       "created_at": "2026-11-20T02:18:22.069587+00:00",
       "kind": "new_video",
@@ -736,6 +744,14 @@
       "url": "https://www.youtube.com/watch?v=OHCrenHN9oo",
       "video_id": "OHCrenHN9oo"
     },
+    "video:OPASlFGPdW0": {
+      "created_at": "2026-11-24T05:59:34.195747+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Jaden Industries - Official Release XBOX Trailer",
+      "url": "https://www.youtube.com/watch?v=OPASlFGPdW0",
+      "video_id": "OPASlFGPdW0"
+    },
     "video:OSHSopaYjTw": {
       "created_at": "2026-11-21T17:29:31.495060+00:00",
       "kind": "new_video",
@@ -1135,6 +1151,14 @@
       "title": "Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad",
       "url": "https://www.youtube.com/watch?v=f2bpv9mFUeE",
       "video_id": "f2bpv9mFUeE"
+    },
+    "video:fDRh01_DLhg": {
+      "created_at": "2026-11-24T05:59:33.716597+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The Spotter: Dig or Die - Out now! | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=fDRh01_DLhg",
+      "video_id": "fDRh01_DLhg"
     },
     "video:fJxUKVpiU6A": {
       "created_at": "2026-11-19T02:33:05.935109+00:00",
@@ -1808,6 +1832,14 @@
       "url": "https://www.youtube.com/watch?v=viF_AHt8uDs",
       "video_id": "viF_AHt8uDs"
     },
+    "video:vrIuiy_90-Y": {
+      "created_at": "2026-11-24T05:59:33.716605+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The Floor Above - Launch Trailer | PS5 Games",
+      "url": "https://www.youtube.com/watch?v=vrIuiy_90-Y",
+      "video_id": "vrIuiy_90-Y"
+    },
     "video:vu3YlUMkvyg": {
       "created_at": "2026-11-12T21:57:04.667456+00:00",
       "kind": "new_video",
@@ -1996,6 +2028,7 @@
     "https://poweredby.oxieg3n.com/blog/choose-your-website-visual-direction/": "8ae8b21d77fdfe8392938c4808dfcf14e9e27596f5575e317af79981e3b84ac5",
     "https://poweredby.oxieg3n.com/blog/claude-personal-finance-beta/": "98ce38a23c903c89fff3001112083a87c8895455482eda407b3a12fef232b83a",
     "https://poweredby.oxieg3n.com/blog/cloudflare-agent-markdown-review/": "efdee40550d26ee03acd53de0149b52f35546dee47f7ae471fcda8d9643653b6",
+    "https://poweredby.oxieg3n.com/blog/cloudflare-foundation-dns-boolean-removal/": "7fe2fba55ea4ae182525891e035b71748e8d17dc4263ebe0aa65dd90d1bd88f1",
     "https://poweredby.oxieg3n.com/blog/cloudflare-nov17-compatibility-date-checks/": "d879bbc2cd9b58a2d29b73dc3dbe05366e1fb6a624265eeab94beec3ab7ec53d",
     "https://poweredby.oxieg3n.com/blog/cloudflare-personal-agent-website-access/": "83162047a7396236c6992d46a6188ecdd4ea27b871a6324519d5b4e1dea1a686",
     "https://poweredby.oxieg3n.com/blog/cloudflare-workflow-backlog-test/": "fe82b74215351b78ebaf925b5034295c73235b597eb88eafcdef9e1101b431a5",
@@ -2107,6 +2140,7 @@
     "https://poweredby.oxieg3n.com/blog/splatoon-3-12-friends-season-timing/": "cd0e750753fd5d962259899e89ee38f09a9afaa88c2092bfea5640f85051f3cb",
     "https://poweredby.oxieg3n.com/blog/super-meat-boy-again-familiar-new/": "0d1a722eb26cf92afaa774dd8befdede9bc8614f3fc3d3c03dfd3a5d9b5cc8a6",
     "https://poweredby.oxieg3n.com/blog/taste-ui-ux-pro-max-ai-design/": "6e67d327d2fed71d145a17284e5f1e2e3006c0193e285b33fc5faf16bb53409d",
+    "https://poweredby.oxieg3n.com/blog/the-spotter-dig-or-die-console-launch/": "43c3f328dcafd1e2338a087836d06809bbb6b38cee4359909d650619563f2e82",
     "https://poweredby.oxieg3n.com/blog/todays-gaming-recap-2026-11-14/": "8d387b745abb0312e03c6ae8cc04c5f9be650e6739b0d4da8c822a089cafb9ab",
     "https://poweredby.oxieg3n.com/blog/vercel-agent-compute-budget-controls/": "e95c3ef3062f80d3310399e7e7163caa6a672f9c5b8f3495268823f3cd681001",
     "https://poweredby.oxieg3n.com/blog/vercel-daemon-traces-export-path/": "919fa5605fca0f20f7a4fb8111b5d57547d8899facfa427e23fd5c964a695000",
@@ -2143,8 +2177,8 @@
         "https://www.youtube.com/@PlayStation",
         "https://www.youtube.com/playlist?list=UU-2Y8dQb0S6DtpxNgAKoJKA"
       ],
-      "last_attempt_at": "2026-11-22T11:18:12.798400+00:00",
-      "last_monitored_at": "2026-11-22T11:18:12.798266+00:00",
+      "last_attempt_at": "2026-11-24T05:59:33.716702+00:00",
+      "last_monitored_at": "2026-11-24T05:59:33.716657+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "PlayStation",
@@ -2398,8 +2432,8 @@
         "https://www.youtube.com/@Xbox",
         "https://www.youtube.com/playlist?list=UUjBp_7RuDBUYbd1LegWEJ8g"
       ],
-      "last_attempt_at": "2026-11-22T11:18:13.211754+00:00",
-      "last_monitored_at": "2026-11-22T11:18:13.211589+00:00",
+      "last_attempt_at": "2026-11-24T05:59:34.195829+00:00",
+      "last_monitored_at": "2026-11-24T05:59:34.195779+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Xbox",
@@ -3801,6 +3835,19 @@
         "status": "needs_editorial_review",
         "title": "A2UI 1.0: build agent interfaces from your own components"
       },
+      "0adeed2fea2b9c4fa372e95fc764472f2fdaf37c5f79c405e1b42c1936e1c989": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/the-spotter-dig-or-die-console-launch/",
+        "discovered_at": "2026-11-24T05:59:34.533926+00:00",
+        "id": "0adeed2fea2b9c4fa372e95fc764472f2fdaf37c5f79c405e1b42c1936e1c989",
+        "live_verified_at": "2026-11-24T05:59:34.533916+00:00",
+        "original_published_at": "Tue, 24 Nov 2026 02:11:15 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "43c3f328dcafd1e2338a087836d06809bbb6b38cee4359909d650619563f2e82",
+        "status": "needs_editorial_review",
+        "title": "The Spotter: Dig or Die brings its worst gas station to PS5 and Xbox"
+      },
       "0b2d4724b21d42164df5cc330bf1262e2ae6067c28d356d25373d2389e515192": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/docling-docx-structure-patch/",
@@ -4749,6 +4796,19 @@
         "source_version": "f023d9c700689594f5f63a65eeaa6c75a858614e62b71f78b6c80aab9f57ef37",
         "status": "needs_editorial_review",
         "title": "Gitea 28.4.0: prioritize the update, then check exposure"
+      },
+      "868d1ddac254ef2f83b8da375f9c71e3aa2264b7efefc2926cc31f4e45d38373": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/cloudflare-foundation-dns-boolean-removal/",
+        "discovered_at": "2026-11-24T05:59:35.172699+00:00",
+        "id": "868d1ddac254ef2f83b8da375f9c71e3aa2264b7efefc2926cc31f4e45d38373",
+        "live_verified_at": "2026-11-24T05:59:35.172688+00:00",
+        "original_published_at": "Mon, 23 Nov 2026 23:12:10 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "7fe2fba55ea4ae182525891e035b71748e8d17dc4263ebe0aa65dd90d1bd88f1",
+        "status": "needs_editorial_review",
+        "title": "Cloudflare is removing foundation_dns. Check what your scripts send."
       },
       "878afea297abcfc4d89d41829c7db685ad2c0d080d94be6ae160bceafbe545de": {
         "attempts": 0,
@@ -8539,6 +8599,26 @@
         "url": "https://www.youtube.com/watch?v=AQc8khSSd-4",
         "video_id": "AQc8khSSd-4"
       },
+      "AVkhCctmnQQ": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-24T05:59:34.195751+00:00",
+        "id": "AVkhCctmnQQ",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T17:15:22Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The Spotter: Dig or Die - Official Launch Trailer | XBOX Series X|S",
+        "url": "https://www.youtube.com/watch?v=AVkhCctmnQQ",
+        "video_id": "AVkhCctmnQQ"
+      },
       "AhmCKHNqhB8": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9630,6 +9710,26 @@
         "url": "https://www.youtube.com/watch?v=OHCrenHN9oo",
         "video_id": "OHCrenHN9oo"
       },
+      "OPASlFGPdW0": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCjBp_7RuDBUYbd1LegWEJ8g",
+        "channel_name": "Xbox",
+        "discovered_at": "2026-11-24T05:59:34.195737+00:00",
+        "id": "OPASlFGPdW0",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T18:38:39Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Jaden Industries - Official Release XBOX Trailer",
+        "url": "https://www.youtube.com/watch?v=OPASlFGPdW0",
+        "video_id": "OPASlFGPdW0"
+      },
       "OSHSopaYjTw": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10672,6 +10772,26 @@
         "title": "Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad",
         "url": "https://www.youtube.com/watch?v=f2bpv9mFUeE",
         "video_id": "f2bpv9mFUeE"
+      },
+      "fDRh01_DLhg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-24T05:59:33.716586+00:00",
+        "id": "fDRh01_DLhg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T17:00:21Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The Spotter: Dig or Die - Out now! | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=fDRh01_DLhg",
+        "video_id": "fDRh01_DLhg"
       },
       "fJxUKVpiU6A": {
         "api_verification": "verified",
@@ -12416,6 +12536,26 @@
         "url": "https://www.youtube.com/watch?v=viF_AHt8uDs",
         "video_id": "viF_AHt8uDs"
       },
+      "vrIuiy_90-Y": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "channel_name": "PlayStation",
+        "discovered_at": "2026-11-24T05:59:33.716602+00:00",
+        "id": "vrIuiy_90-Y",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T11:00:10Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The Floor Above - Launch Trailer | PS5 Games",
+        "url": "https://www.youtube.com/watch?v=vrIuiy_90-Y",
+        "video_id": "vrIuiy_90-Y"
+      },
       "vu3YlUMkvyg": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12763,7 +12903,7 @@
       "upload": 0
     },
     "2026-11-23": {
-      "general": 12,
+      "general": 18,
       "search": 0,
       "upload": 0
     }
@@ -13219,7 +13359,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 692,
+  "revision": 702,
   "rights_ledger": {},
   "runs": [
     {
@@ -14862,6 +15002,31 @@
         "new_versions": 11
       },
       "run_id": "45268230605-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-24T05:59:33.253099+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 4
+      },
+      "run_id": "45337115433-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-24T05:59:34.213826+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 2
+      },
+      "run_id": "45337115433-1",
       "status": "PASS"
     }
   ],
