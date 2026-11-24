@@ -240,6 +240,14 @@
       "url": "https://www.youtube.com/watch?v=784YQBiZArk",
       "video_id": "784YQBiZArk"
     },
+    "video:7AXiDrvTd7k": {
+      "created_at": "2026-11-24T17:39:16.939849+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Tetris\u00ae 99 \u2013 58th MAXIMUS CUP Gameplay Trailer \u2013 Nintendo Switch",
+      "url": "https://www.youtube.com/watch?v=7AXiDrvTd7k",
+      "video_id": "7AXiDrvTd7k"
+    },
     "video:7kh27KsjoZM": {
       "created_at": "2026-11-14T00:19:46.879025+00:00",
       "kind": "new_video",
@@ -263,6 +271,14 @@
       "title": "Component properties, variants, and slots in Webflow",
       "url": "https://www.youtube.com/watch?v=9YLbugt3RxE",
       "video_id": "9YLbugt3RxE"
+    },
+    "video:9ZAr8bhi1ig": {
+      "created_at": "2026-11-24T17:39:16.939855+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Wave Race Blue Storm - GameCube - Nintendo Classics",
+      "url": "https://www.youtube.com/watch?v=9ZAr8bhi1ig",
+      "video_id": "9ZAr8bhi1ig"
     },
     "video:9aCVhYoLZ7s": {
       "created_at": "2026-11-19T11:35:38.280990+00:00",
@@ -1192,6 +1208,14 @@
       "url": "https://www.youtube.com/watch?v=fUNO1g5D84g",
       "video_id": "fUNO1g5D84g"
     },
+    "video:fpQcDQJQLhg": {
+      "created_at": "2026-11-24T17:39:17.543419+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Google Antigravity in action: Building an offline wildlife field guide",
+      "url": "https://www.youtube.com/watch?v=fpQcDQJQLhg",
+      "video_id": "fpQcDQJQLhg"
+    },
     "video:fzRshjBCWyU": {
       "created_at": "2026-11-14T00:19:46.041824+00:00",
       "kind": "new_video",
@@ -1552,6 +1576,14 @@
       "url": "https://www.youtube.com/watch?v=pmOJIq7Ah00",
       "video_id": "pmOJIq7Ah00"
     },
+    "video:pwEIqVsZ0ps": {
+      "created_at": "2026-11-24T17:39:16.939840+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Choose your Operator challenge. Who are you deploying with?",
+      "url": "https://www.youtube.com/watch?v=pwEIqVsZ0ps",
+      "video_id": "pwEIqVsZ0ps"
+    },
     "video:q1f-O-IS_VI": {
       "created_at": "2026-11-12T21:57:16.149719+00:00",
       "kind": "new_video",
@@ -1848,6 +1880,14 @@
       "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
       "video_id": "vu3YlUMkvyg"
     },
+    "video:w5HdN9s4HtY": {
+      "created_at": "2026-11-24T17:39:16.939859+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Central Hyrule, the land of beginnings and endings. \ud83c\udf05",
+      "url": "https://www.youtube.com/watch?v=w5HdN9s4HtY",
+      "video_id": "w5HdN9s4HtY"
+    },
     "video:wNFuid4drrA": {
       "created_at": "2026-11-17T20:52:58.268426+00:00",
       "kind": "new_video",
@@ -2027,6 +2067,7 @@
     "https://poweredby.oxieg3n.com/blog/canva-app-migration-two-deadlines/": "56ecc3f2691a9e67a129f549417338d278a060b823d8e38b7f8410b7a8a6647a",
     "https://poweredby.oxieg3n.com/blog/choose-your-website-visual-direction/": "8ae8b21d77fdfe8392938c4808dfcf14e9e27596f5575e317af79981e3b84ac5",
     "https://poweredby.oxieg3n.com/blog/claude-personal-finance-beta/": "98ce38a23c903c89fff3001112083a87c8895455482eda407b3a12fef232b83a",
+    "https://poweredby.oxieg3n.com/blog/claude-ship-approval-boundary/": "83f2379f406ffe990d00b9584f83bc1eaf1106d25b03c7e29d15586a0905c9cc",
     "https://poweredby.oxieg3n.com/blog/cloudflare-agent-markdown-review/": "efdee40550d26ee03acd53de0149b52f35546dee47f7ae471fcda8d9643653b6",
     "https://poweredby.oxieg3n.com/blog/cloudflare-foundation-dns-boolean-removal/": "7fe2fba55ea4ae182525891e035b71748e8d17dc4263ebe0aa65dd90d1bd88f1",
     "https://poweredby.oxieg3n.com/blog/cloudflare-nov17-compatibility-date-checks/": "d879bbc2cd9b58a2d29b73dc3dbe05366e1fb6a624265eeab94beec3ab7ec53d",
@@ -2074,6 +2115,7 @@
     "https://poweredby.oxieg3n.com/blog/gitea-28-4-security-update/": "f023d9c700689594f5f63a65eeaa6c75a858614e62b71f78b6c80aab9f57ef37",
     "https://poweredby.oxieg3n.com/blog/github-ai-scan-rest-api/": "0a7e9666fbd0c4ccfc01bec17ec7a6e44ab952003d37eeff4480c1033c6bd376",
     "https://poweredby.oxieg3n.com/blog/github-chat-code-handoff/": "20ac8ef733ac89e891cece461ce7e7644bbecf7edaf1c24325d75d3d4d905f79",
+    "https://poweredby.oxieg3n.com/blog/github-code-quality-cobertura-upload-validation/": "ca8b87c9ef034140a55f855d0b4acd0977b07084e640bb3f014fb2e0c2c10f44",
     "https://poweredby.oxieg3n.com/blog/github-mcp-skills-client-compatibility/": "1bbe1f76b06a570cccd0b6206df93db00a82e5bb123d31b59c51aca2c3a7875f",
     "https://poweredby.oxieg3n.com/blog/github-pull-request-overview-review/": "41156743e2d8e8fd6887327895c28a12b5ac9f3b6783521fec815e3baeac9bbd",
     "https://poweredby.oxieg3n.com/blog/gitlab-ci-kubernetes-secrets-patch/": "806aba1ff856c1062beb960a8477cab7bba6bfc20667a6a139f85c9623dc4bd2",
@@ -2115,6 +2157,7 @@
     "https://poweredby.oxieg3n.com/blog/open-webui-tether-local-mcp-access/": "b2a16a68c71e208cca789775e26371a75406a0d5ad163354856dbd5abe37d368",
     "https://poweredby.oxieg3n.com/blog/openai-embedded-assessment-evidence-limits/": "d1d1aae236251843416f6baced8f958777c97f8054c1cf7e3a934cee3f956907",
     "https://poweredby.oxieg3n.com/blog/openclaw-long-session-restart-reliability/": "5841bbfc5f3ba10fcded0bcaf62e6fb0da707e934f72d6191fbca402077e5661",
+    "https://poweredby.oxieg3n.com/blog/opencode-config-only-model-picker/": "5bb8bac591d8c0b980c16ac286fa91bd6aed8c228a8030229d30f3a547ca72f6",
     "https://poweredby.oxieg3n.com/blog/openhands-140-agent-workspace/": "e6b980e56d5459f37270835357305a7cb7dd0e838e70ee77ab082521349acd07",
     "https://poweredby.oxieg3n.com/blog/openmausbot-reviewer-handoff-trail/": "3544c973bbe968a033a39a1b803f164a1c61afc8fc852d55f7fe8e9cd8c12a4c",
     "https://poweredby.oxieg3n.com/blog/openrouter-zero-data-retention-routing-review/": "6d3b24a8b5f974a303176ee494c659374c201538bcb9f4f92151e9d25f35e9d9",
@@ -2134,6 +2177,7 @@
     "https://poweredby.oxieg3n.com/blog/secure-enterprise-ai-chat-case-study-analysis/": "c989b33502f0c0ab21540bf9fb0ba10a42478e097606a68ead0c15952fd93b6b",
     "https://poweredby.oxieg3n.com/blog/sema4-vscode-3-package-compatibility/": "f141853e64a89941ad19efd68ab1cf3e1385d597d0ad5b171dc6e7023b2c34f4",
     "https://poweredby.oxieg3n.com/blog/shopify-admin-api-ip-allowlist-deadline/": "9cd55b25aef652ecac1fa00aad57f3a91ce31ad377d40f4d7bdd57282959ff3f",
+    "https://poweredby.oxieg3n.com/blog/shopify-chatgpt-agentic-checkout-toggle/": "0d52700426d9e5bf8ad433db5f0a1d03c0a0f79ebe940e2bdb605411e261a9c2",
     "https://poweredby.oxieg3n.com/blog/slay-the-spire-2-beta-fool-blitz-dread/": "6f10d9b3fb5658a0e581ed77de9733aef358637999b145c6af857e622fd273dd",
     "https://poweredby.oxieg3n.com/blog/sneg-classic-strategy-pc-rereleases/": "5fae562d4a4af7e134c1fa294ee856c234765a6b0766eb07285cd91947256d9e",
     "https://poweredby.oxieg3n.com/blog/sons-sparta-ps4-hermes-erebus/": "c158b7a1cfd708568f73eee6d21d7bdedc2199d644f3aa402dd5d8cf72f73c93",
@@ -2233,8 +2277,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-22T19:35:14.009709+00:00",
-      "last_monitored_at": "2026-11-22T19:35:14.009603+00:00",
+      "last_attempt_at": "2026-11-24T17:39:16.940003+00:00",
+      "last_monitored_at": "2026-11-24T17:39:16.939876+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -2404,8 +2448,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-22T19:35:14.587612+00:00",
-      "last_monitored_at": "2026-11-22T19:35:14.587493+00:00",
+      "last_attempt_at": "2026-11-24T17:39:17.543558+00:00",
+      "last_monitored_at": "2026-11-24T17:39:17.543433+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -4849,6 +4893,19 @@
         "status": "needs_editorial_review",
         "title": "Memos 26.11.1: prepare the upgrade before trying image markup"
       },
+      "89d0a83984244cae44e423760cd171ac2978655bdbf6c206469639e7079bd0c9": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/shopify-chatgpt-agentic-checkout-toggle/",
+        "discovered_at": "2026-11-24T17:39:17.978602+00:00",
+        "id": "89d0a83984244cae44e423760cd171ac2978655bdbf6c206469639e7079bd0c9",
+        "live_verified_at": "2026-11-24T17:39:17.978578+00:00",
+        "original_published_at": "Tue, 24 Nov 2026 17:29:19 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "0d52700426d9e5bf8ad433db5f0a1d03c0a0f79ebe940e2bdb605411e261a9c2",
+        "status": "needs_editorial_review",
+        "title": "Shopify\u2019s ChatGPT checkout switch isn\u2019t a visibility switch"
+      },
       "901cf38b0c8414c3a20e2628a6f267941aec8f9c0fd38ea5387482914e3706e7": {
         "attempts": 0,
         "canonical_url": "https://poweredby.oxieg3n.com/blog/ruby-httpx-oj-json-disclosure/",
@@ -4861,6 +4918,19 @@
         "source_version": "0bd9bbebeb9147223af015da4d0046cf88c7a6c82381e2ad2b5cfdce875fd668",
         "status": "needs_editorial_review",
         "title": "Ruby httpx disclosure: check the JSON parser before triage"
+      },
+      "93a7056188eca04719ee558b1756dc5241e4fbde2e39cb932ab2948c843313fa": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/claude-ship-approval-boundary/",
+        "discovered_at": "2026-11-24T17:39:18.423087+00:00",
+        "id": "93a7056188eca04719ee558b1756dc5241e4fbde2e39cb932ab2948c843313fa",
+        "live_verified_at": "2026-11-24T17:39:18.423063+00:00",
+        "original_published_at": "Tue, 24 Nov 2026 17:14:04 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "83f2379f406ffe990d00b9584f83bc1eaf1106d25b03c7e29d15586a0905c9cc",
+        "status": "needs_editorial_review",
+        "title": "Claude Ship can approve a pull request. What still controls the merge?"
       },
       "9457a27d3fd40c0d2beb7c18bec43d4c98fad6180577fb5471675b433c60254b": {
         "attempts": 0,
@@ -5043,6 +5113,19 @@
         "source_version": "90aeca037b48ebd069516ff1350dc99a042ab99f68227afc8de28eeb0f93e0fa",
         "status": "needs_editorial_review",
         "title": "WoW Forever changes dungeon XP for mixed-level parties"
+      },
+      "a6287806ab93d0270eec36e71efdb58d7989620960a1921a91a16db015e487da": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/opencode-config-only-model-picker/",
+        "discovered_at": "2026-11-24T17:39:18.094592+00:00",
+        "id": "a6287806ab93d0270eec36e71efdb58d7989620960a1921a91a16db015e487da",
+        "live_verified_at": "2026-11-24T17:39:18.094568+00:00",
+        "original_published_at": "Tue, 24 Nov 2026 16:14:22 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "5bb8bac591d8c0b980c16ac286fa91bd6aed8c228a8030229d30f3a547ca72f6",
+        "status": "needs_editorial_review",
+        "title": "OpenCode 2.4.1 puts configured Ollama models back in the picker"
       },
       "a823ab0e7fd6e54bd6119244abc7c6a7d80b4732774383c299a7befcc64807ab": {
         "attempts": 0,
@@ -5602,6 +5685,19 @@
         "source_version": "accb85819d8cab6394ed45eb5fdce153be778476c64ff728a1e62c12ec0fc71d",
         "status": "needs_editorial_review",
         "title": "When an AI Assistant Remembers the Wrong Rule"
+      },
+      "f07ea5ac0a00dfc06558eca54d294a90d84b38a23d7807d261c6d5011bcf6520": {
+        "attempts": 0,
+        "canonical_url": "https://poweredby.oxieg3n.com/blog/github-code-quality-cobertura-upload-validation/",
+        "discovered_at": "2026-11-24T17:39:18.295274+00:00",
+        "id": "f07ea5ac0a00dfc06558eca54d294a90d84b38a23d7807d261c6d5011bcf6520",
+        "live_verified_at": "2026-11-24T17:39:18.295249+00:00",
+        "original_published_at": "Tue, 24 Nov 2026 14:19:02 +0000",
+        "primary_sources": [],
+        "rights_path": "original_required",
+        "source_version": "ca8b87c9ef034140a55f855d0b4acd0977b07084e640bb3f014fb2e0c2c10f44",
+        "status": "needs_editorial_review",
+        "title": "GitHub Code Quality now fails uploads that aren't Cobertura XML"
       },
       "f1df34df88360bc51a828234bb2e1f2df5626ad181ea2d66df9ca922196fd993": {
         "attempts": 0,
@@ -8416,6 +8512,26 @@
         "url": "https://www.youtube.com/watch?v=784YQBiZArk",
         "video_id": "784YQBiZArk"
       },
+      "7AXiDrvTd7k": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-24T17:39:16.939846+00:00",
+        "id": "7AXiDrvTd7k",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T02:00:29Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Tetris\u00ae 99 \u2013 58th MAXIMUS CUP Gameplay Trailer \u2013 Nintendo Switch",
+        "url": "https://www.youtube.com/watch?v=7AXiDrvTd7k",
+        "video_id": "7AXiDrvTd7k"
+      },
       "7kh27KsjoZM": {
         "api_verification": "verified",
         "attempts": 0,
@@ -8476,6 +8592,26 @@
         "title": "Component properties, variants, and slots in Webflow",
         "url": "https://www.youtube.com/watch?v=9YLbugt3RxE",
         "video_id": "9YLbugt3RxE"
+      },
+      "9ZAr8bhi1ig": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-24T17:39:16.939853+00:00",
+        "id": "9ZAr8bhi1ig",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T01:02:03Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Wave Race Blue Storm - GameCube - Nintendo Classics",
+        "url": "https://www.youtube.com/watch?v=9ZAr8bhi1ig",
+        "video_id": "9ZAr8bhi1ig"
       },
       "9aCVhYoLZ7s": {
         "api_verification": "verified",
@@ -10873,6 +11009,26 @@
         "url": "https://www.youtube.com/watch?v=fUNO1g5D84g",
         "video_id": "fUNO1g5D84g"
       },
+      "fpQcDQJQLhg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "channel_name": "Google for Developers",
+        "discovered_at": "2026-11-24T17:39:17.543398+00:00",
+        "id": "fpQcDQJQLhg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T20:00:28Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Google Antigravity in action: Building an offline wildlife field guide",
+        "url": "https://www.youtube.com/watch?v=fpQcDQJQLhg",
+        "video_id": "fpQcDQJQLhg"
+      },
       "fzRshjBCWyU": {
         "api_verification": "verified",
         "attempts": 0,
@@ -11810,6 +11966,26 @@
         "url": "https://www.youtube.com/watch?v=pmOJIq7Ah00",
         "video_id": "pmOJIq7Ah00"
       },
+      "pwEIqVsZ0ps": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-24T17:39:16.939815+00:00",
+        "id": "pwEIqVsZ0ps",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:00:25Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Choose your Operator challenge. Who are you deploying with?",
+        "url": "https://www.youtube.com/watch?v=pwEIqVsZ0ps",
+        "video_id": "pwEIqVsZ0ps"
+      },
       "q1f-O-IS_VI": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12579,6 +12755,26 @@
         "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
         "video_id": "vu3YlUMkvyg"
       },
+      "w5HdN9s4HtY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-24T17:39:16.939857+00:00",
+        "id": "w5HdN9s4HtY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T20:00:25Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Central Hyrule, the land of beginnings and endings. \ud83c\udf05",
+        "url": "https://www.youtube.com/watch?v=w5HdN9s4HtY",
+        "video_id": "w5HdN9s4HtY"
+      },
       "wNFuid4drrA": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12904,6 +13100,11 @@
     },
     "2026-11-23": {
       "general": 18,
+      "search": 0,
+      "upload": 0
+    },
+    "2026-11-24": {
+      "general": 6,
       "search": 0,
       "upload": 0
     }
@@ -13359,7 +13560,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 702,
+  "revision": 712,
   "rights_ledger": {},
   "runs": [
     {
@@ -15027,6 +15228,31 @@
         "new_versions": 2
       },
       "run_id": "45337115433-1",
+      "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-24T17:39:16.381042+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 5
+      },
+      "run_id": "45450926475-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [],
+      "checked_at": "2026-11-24T17:39:17.562892+00:00",
+      "command": "blog-sync",
+      "details": {
+        "new_versions": 4
+      },
+      "run_id": "45450926475-1",
       "status": "PASS"
     }
   ],
