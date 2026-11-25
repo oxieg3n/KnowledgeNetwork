@@ -88,6 +88,14 @@
       "url": "https://www.youtube.com/watch?v=2Y3e3RYNjFk",
       "video_id": "2Y3e3RYNjFk"
     },
+    "video:2b4QUm0tuVc": {
+      "created_at": "2026-11-25T12:49:21.540103+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Unwrap new possibilities this holiday season. \ud83c\udf81",
+      "url": "https://www.youtube.com/watch?v=2b4QUm0tuVc",
+      "video_id": "2b4QUm0tuVc"
+    },
     "video:2eVPrGJPy30": {
       "created_at": "2026-11-12T23:07:36.462892+00:00",
       "kind": "new_video",
@@ -640,6 +648,14 @@
       "url": "https://www.youtube.com/watch?v=Hz9lmh9NBp0",
       "video_id": "Hz9lmh9NBp0"
     },
+    "video:IArSmPMHQug": {
+      "created_at": "2026-11-25T12:49:21.540033+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Eli Lilly and Company Accelerates Drug Discovery with NVIDIA",
+      "url": "https://www.youtube.com/watch?v=IArSmPMHQug",
+      "video_id": "IArSmPMHQug"
+    },
     "video:IOcODanTpN0": {
       "created_at": "2026-11-14T19:55:43.408006+00:00",
       "kind": "new_video",
@@ -679,6 +695,14 @@
       "title": "Tanuki: Pon's Summer - Launch Trailer | PS5 & PS4 Games",
       "url": "https://www.youtube.com/watch?v=JqtQk3Rt4CM",
       "video_id": "JqtQk3Rt4CM"
+    },
+    "video:K8rdrWQRd20": {
+      "created_at": "2026-11-25T12:49:21.093214+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "The brain helped us build AI. Now AI is explaining the brain.",
+      "url": "https://www.youtube.com/watch?v=K8rdrWQRd20",
+      "video_id": "K8rdrWQRd20"
     },
     "video:KaEsH28aGxQ": {
       "created_at": "2026-11-12T23:07:36.462953+00:00",
@@ -1152,6 +1176,14 @@
       "url": "https://www.youtube.com/watch?v=_eST776E7Vo",
       "video_id": "_eST776E7Vo"
     },
+    "video:aAbtjH0-oQQ": {
+      "created_at": "2026-11-25T12:49:21.540077+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Why Transparency Matters for AI Security",
+      "url": "https://www.youtube.com/watch?v=aAbtjH0-oQQ",
+      "video_id": "aAbtjH0-oQQ"
+    },
     "video:aRIFzzr_Mi0": {
       "created_at": "2026-11-18T02:53:35.187861+00:00",
       "kind": "new_video",
@@ -1480,6 +1512,14 @@
       "url": "https://www.youtube.com/watch?v=jwDYCmVM2z8",
       "video_id": "jwDYCmVM2z8"
     },
+    "video:kTJ8NDNYua8": {
+      "created_at": "2026-11-25T12:49:21.540063+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "\u201cGovernance is what made us go faster.\u201d",
+      "url": "https://www.youtube.com/watch?v=kTJ8NDNYua8",
+      "video_id": "kTJ8NDNYua8"
+    },
     "video:ketIuVCUI8k": {
       "created_at": "2026-11-12T21:57:16.149605+00:00",
       "kind": "new_video",
@@ -1599,6 +1639,14 @@
       "title": "For The King II - A Mother Below Free Update/Dust To Dust Paid Character Pack DLC | PS5 & PS4 Games",
       "url": "https://www.youtube.com/watch?v=o-nRCd6YHls",
       "video_id": "o-nRCd6YHls"
+    },
+    "video:oF2xi9BaHco": {
+      "created_at": "2026-11-25T12:49:21.540090+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Tomorrow on the NVIDIA AI Podcast.",
+      "url": "https://www.youtube.com/watch?v=oF2xi9BaHco",
+      "video_id": "oF2xi9BaHco"
     },
     "video:oJIuz3AFfEQ": {
       "created_at": "2026-11-21T17:29:31.495068+00:00",
@@ -2096,6 +2144,14 @@
       "url": "https://www.youtube.com/watch?v=ykjNhM5tR4I",
       "video_id": "ykjNhM5tR4I"
     },
+    "video:z7tcQiyLK8E": {
+      "created_at": "2026-11-25T12:49:21.540050+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Eli Lilly and Company Accelerates Drug Discovery with NVIDIA",
+      "url": "https://www.youtube.com/watch?v=z7tcQiyLK8E",
+      "video_id": "z7tcQiyLK8E"
+    },
     "video:zyxriGmW3BI": {
       "created_at": "2026-11-12T23:07:36.462898+00:00",
       "kind": "new_video",
@@ -2417,8 +2473,8 @@
         "https://www.youtube.com/@NVIDIA",
         "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
       ],
-      "last_attempt_at": "2026-11-23T08:59:45.853598+00:00",
-      "last_monitored_at": "2026-11-23T08:59:45.853483+00:00",
+      "last_attempt_at": "2026-11-25T12:49:21.540342+00:00",
+      "last_monitored_at": "2026-11-25T12:49:21.540162+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "NVIDIA",
@@ -2474,8 +2530,8 @@
         "https://www.youtube.com/@GoogleDeepMind",
         "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
       ],
-      "last_attempt_at": "2026-11-23T08:59:45.392000+00:00",
-      "last_monitored_at": "2026-11-23T08:59:45.391863+00:00",
+      "last_attempt_at": "2026-11-25T12:49:21.093407+00:00",
+      "last_monitored_at": "2026-11-25T12:49:21.093247+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google DeepMind",
@@ -8239,6 +8295,26 @@
         "url": "https://www.youtube.com/watch?v=2Y3e3RYNjFk",
         "video_id": "2Y3e3RYNjFk"
       },
+      "2b4QUm0tuVc": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-25T12:49:21.540098+00:00",
+        "id": "2b4QUm0tuVc",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T19:03:04Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Unwrap new possibilities this holiday season. \ud83c\udf81",
+        "url": "https://www.youtube.com/watch?v=2b4QUm0tuVc",
+        "video_id": "2b4QUm0tuVc"
+      },
       "2eVPrGJPy30": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9409,7 +9485,7 @@
         "published_at": "2026-11-19T19:58:06Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
-        "title": "Gemini and the path to AGI with Koray Kavukcuoglu",
+        "title": "Is Gemini our path to AGI?",
         "url": "https://www.youtube.com/watch?v=FORdPIWOH5k",
         "video_id": "FORdPIWOH5k"
       },
@@ -9660,6 +9736,26 @@
         "url": "https://www.youtube.com/watch?v=Hz9lmh9NBp0",
         "video_id": "Hz9lmh9NBp0"
       },
+      "IArSmPMHQug": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-25T12:49:21.540009+00:00",
+        "id": "IArSmPMHQug",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T16:37:31Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Eli Lilly and Company Accelerates Drug Discovery with NVIDIA",
+        "url": "https://www.youtube.com/watch?v=IArSmPMHQug",
+        "video_id": "IArSmPMHQug"
+      },
       "IOcODanTpN0": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9761,6 +9857,27 @@
         "title": "Tanuki: Pon's Summer - Launch Trailer | PS5 & PS4 Games",
         "url": "https://www.youtube.com/watch?v=JqtQk3Rt4CM",
         "video_id": "JqtQk3Rt4CM"
+      },
+      "K8rdrWQRd20": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Google Gemini"
+        ],
+        "channel_id": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+        "channel_name": "Google DeepMind",
+        "discovered_at": "2026-11-25T12:49:21.093192+00:00",
+        "id": "K8rdrWQRd20",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:51:08Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "The brain helped us build AI. Now AI is explaining the brain.",
+        "url": "https://www.youtube.com/watch?v=K8rdrWQRd20",
+        "video_id": "K8rdrWQRd20"
       },
       "KaEsH28aGxQ": {
         "api_verification": "verified",
@@ -10991,6 +11108,26 @@
         "url": "https://www.youtube.com/watch?v=_eST776E7Vo",
         "video_id": "_eST776E7Vo"
       },
+      "aAbtjH0-oQQ": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-25T12:49:21.540070+00:00",
+        "id": "aAbtjH0-oQQ",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T11:00:17Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Why Transparency Matters for AI Security",
+        "url": "https://www.youtube.com/watch?v=aAbtjH0-oQQ",
+        "video_id": "aAbtjH0-oQQ"
+      },
       "aRIFzzr_Mi0": {
         "api_verification": "verified",
         "attempts": 0,
@@ -11842,6 +11979,26 @@
         "url": "https://www.youtube.com/watch?v=jwDYCmVM2z8",
         "video_id": "jwDYCmVM2z8"
       },
+      "kTJ8NDNYua8": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-25T12:49:21.540058+00:00",
+        "id": "kTJ8NDNYua8",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T14:21:00Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "\u201cGovernance is what made us go faster.\u201d",
+        "url": "https://www.youtube.com/watch?v=kTJ8NDNYua8",
+        "video_id": "kTJ8NDNYua8"
+      },
       "ketIuVCUI8k": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12149,6 +12306,26 @@
         "title": "For The King II - A Mother Below Free Update/Dust To Dust Paid Character Pack DLC | PS5 & PS4 Games",
         "url": "https://www.youtube.com/watch?v=o-nRCd6YHls",
         "video_id": "o-nRCd6YHls"
+      },
+      "oF2xi9BaHco": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-25T12:49:21.540084+00:00",
+        "id": "oF2xi9BaHco",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T22:03:46Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Tomorrow on the NVIDIA AI Podcast.",
+        "url": "https://www.youtube.com/watch?v=oF2xi9BaHco",
+        "video_id": "oF2xi9BaHco"
       },
       "oJIuz3AFfEQ": {
         "api_verification": "verified",
@@ -13438,6 +13615,26 @@
         "url": "https://www.youtube.com/watch?v=ykjNhM5tR4I",
         "video_id": "ykjNhM5tR4I"
       },
+      "z7tcQiyLK8E": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-25T12:49:21.540044+00:00",
+        "id": "z7tcQiyLK8E",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T16:37:11Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Eli Lilly and Company Accelerates Drug Discovery with NVIDIA",
+        "url": "https://www.youtube.com/watch?v=z7tcQiyLK8E",
+        "video_id": "z7tcQiyLK8E"
+      },
       "zyxriGmW3BI": {
         "api_verification": "verified",
         "attempts": 0,
@@ -13523,6 +13720,11 @@
     },
     "2026-11-24": {
       "general": 12,
+      "search": 0,
+      "upload": 0
+    },
+    "2026-11-25": {
+      "general": 6,
       "search": 0,
       "upload": 0
     }
@@ -13978,7 +14180,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 721,
+  "revision": 730,
   "rights_ledger": {},
   "runs": [
     {
@@ -15686,6 +15888,21 @@
         "new_leads": 14
       },
       "run_id": "45532693065-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-25T12:49:20.649715+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 7
+      },
+      "run_id": "45617432628-1",
       "status": "BLOCKED"
     }
   ],

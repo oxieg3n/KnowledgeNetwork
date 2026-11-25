@@ -1,12 +1,12 @@
 {
   "command": "monitor",
-  "run_id": "45532693065-1",
-  "checked_at": "2026-11-25T02:24:25.267385+00:00",
+  "run_id": "45617432628-1",
+  "checked_at": "2026-11-25T12:49:20.649715+00:00",
   "status": "BLOCKED",
   "details": {
     "channels_registered": 10,
     "channels_attempted": 2,
-    "new_leads": 14,
+    "new_leads": 7,
     "api_enabled": true
   },
   "blockers": [
