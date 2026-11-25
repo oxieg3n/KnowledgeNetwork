@@ -40,6 +40,14 @@
       "url": "https://www.youtube.com/watch?v=1oryBjH9iiQ",
       "video_id": "1oryBjH9iiQ"
     },
+    "video:1u0hTd86_HU": {
+      "created_at": "2026-11-25T02:24:25.860673+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Experiment with SVG & 3D Design with the Codex Plugin",
+      "url": "https://www.youtube.com/watch?v=1u0hTd86_HU",
+      "video_id": "1u0hTd86_HU"
+    },
     "video:25X9nalEXg0": {
       "created_at": "2026-11-13T11:21:38.844380+00:00",
       "kind": "new_video",
@@ -47,6 +55,14 @@
       "title": "Bombanana XBOX Launch Trailer",
       "url": "https://www.youtube.com/watch?v=25X9nalEXg0",
       "video_id": "25X9nalEXg0"
+    },
+    "video:2DUJ2whBJRM": {
+      "created_at": "2026-11-25T02:24:25.860698+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Make sense of your day | with ChatGPT",
+      "url": "https://www.youtube.com/watch?v=2DUJ2whBJRM",
+      "video_id": "2DUJ2whBJRM"
     },
     "video:2EgJDihn1D4": {
       "created_at": "2026-11-20T20:12:34.650906+00:00",
@@ -136,6 +152,14 @@
       "url": "https://www.youtube.com/watch?v=3gNaAp_KPV0",
       "video_id": "3gNaAp_KPV0"
     },
+    "video:4MFBNFyBmQg": {
+      "created_at": "2026-11-25T02:24:25.860706+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Make a day of it | with ChatGPT",
+      "url": "https://www.youtube.com/watch?v=4MFBNFyBmQg",
+      "video_id": "4MFBNFyBmQg"
+    },
     "video:4PfZ_aAMrSY": {
       "created_at": "2026-11-19T20:32:43.990828+00:00",
       "kind": "new_video",
@@ -191,6 +215,14 @@
       "title": "Autonomous Vehicle Safety: 5 Things to Know",
       "url": "https://www.youtube.com/watch?v=5ibgnmypP8I",
       "video_id": "5ibgnmypP8I"
+    },
+    "video:5p8CdiQGqV4": {
+      "created_at": "2026-11-25T02:24:25.860735+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Conhe\u00e7a o nov\u00edssimo ChatGPT Modo Voz.",
+      "url": "https://www.youtube.com/watch?v=5p8CdiQGqV4",
+      "video_id": "5p8CdiQGqV4"
     },
     "video:5xGsiOB2nc8": {
       "created_at": "2026-11-17T20:52:57.824114+00:00",
@@ -424,6 +456,14 @@
       "url": "https://www.youtube.com/watch?v=DLHEr67OWT0",
       "video_id": "DLHEr67OWT0"
     },
+    "video:DLV3XRdJAog": {
+      "created_at": "2026-11-25T02:24:25.860720+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Make your day move | with ChatGPT",
+      "url": "https://www.youtube.com/watch?v=DLV3XRdJAog",
+      "video_id": "DLV3XRdJAog"
+    },
     "video:Di8ntBu1ouY": {
       "created_at": "2026-11-20T02:18:22.500501+00:00",
       "kind": "new_video",
@@ -511,6 +551,14 @@
       "title": "Pikmin 4 \u2013 Nintendo Switch 2 Edition + Dandori Academy \u2013 Overview Trailer",
       "url": "https://www.youtube.com/watch?v=FOqxuzEr4R4",
       "video_id": "FOqxuzEr4R4"
+    },
+    "video:Faoam45LT-Q": {
+      "created_at": "2026-11-25T02:24:25.860713+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Make room in your day | with ChatGPT",
+      "url": "https://www.youtube.com/watch?v=Faoam45LT-Q",
+      "video_id": "Faoam45LT-Q"
     },
     "video:Fupb0CeuPoc": {
       "created_at": "2026-11-12T21:57:26.204249+00:00",
@@ -712,6 +760,14 @@
       "url": "https://www.youtube.com/watch?v=MnW00Oo7Gs8",
       "video_id": "MnW00Oo7Gs8"
     },
+    "video:MpsO8Ds8uyo": {
+      "created_at": "2026-11-25T02:24:25.860752+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Investigating Linux Vulnerabilities with GPT-6 Cyber",
+      "url": "https://www.youtube.com/watch?v=MpsO8Ds8uyo",
+      "video_id": "MpsO8Ds8uyo"
+    },
     "video:N5YLi8Ar3Wg": {
       "created_at": "2026-11-12T21:57:13.626744+00:00",
       "kind": "new_video",
@@ -807,6 +863,14 @@
       "title": "DERELIKT XBOX Launch Trailer",
       "url": "https://www.youtube.com/watch?v=PX1Q6Ld5beY",
       "video_id": "PX1Q6Ld5beY"
+    },
+    "video:PXKvR8ta22Q": {
+      "created_at": "2026-11-25T02:24:25.860765+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Franklin Templeton uses AI for investment research | OpenAI",
+      "url": "https://www.youtube.com/watch?v=PXKvR8ta22Q",
+      "video_id": "PXKvR8ta22Q"
     },
     "video:PYplTYmMEoI": {
       "created_at": "2026-11-21T01:30:03.340579+00:00",
@@ -935,6 +999,14 @@
       "title": "TANUKI: Pon's Summer | Launch Trailer",
       "url": "https://www.youtube.com/watch?v=UwRcePRxAZg",
       "video_id": "UwRcePRxAZg"
+    },
+    "video:VPYhT7UWyzo": {
+      "created_at": "2026-11-25T02:24:26.379984+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Build a satisfying pie crust simulation with Search \ud83e\udd67",
+      "url": "https://www.youtube.com/watch?v=VPYhT7UWyzo",
+      "video_id": "VPYhT7UWyzo"
     },
     "video:VQjDInADRMM": {
       "created_at": "2026-11-12T21:57:21.142819+00:00",
@@ -1096,6 +1168,14 @@
       "url": "https://www.youtube.com/watch?v=adD2SUJtKEw",
       "video_id": "adD2SUJtKEw"
     },
+    "video:asUuxCqj0GE": {
+      "created_at": "2026-11-25T02:24:25.860740+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Waiting for a better price on that gift? Use ChatGPT.",
+      "url": "https://www.youtube.com/watch?v=asUuxCqj0GE",
+      "video_id": "asUuxCqj0GE"
+    },
     "video:aupPY-1Ir9Q": {
       "created_at": "2026-11-14T00:19:46.041835+00:00",
       "kind": "new_video",
@@ -1111,6 +1191,14 @@
       "title": "Harness-as-a-Service: Building with the Agents API | DevDay 2026",
       "url": "https://www.youtube.com/watch?v=b7l_Dhe1h8M",
       "video_id": "b7l_Dhe1h8M"
+    },
+    "video:bGiFYYrmnAg": {
+      "created_at": "2026-11-25T02:24:25.860727+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "School Day | Make A Day Do Anything with ChatGPT",
+      "url": "https://www.youtube.com/watch?v=bGiFYYrmnAg",
+      "video_id": "bGiFYYrmnAg"
     },
     "video:bOpqPkOlCGA": {
       "created_at": "2026-11-12T23:07:36.462874+00:00",
@@ -1223,6 +1311,14 @@
       "title": "Stranger Than Heaven - Act 2: Kure Story Trailer | PS5 Games",
       "url": "https://www.youtube.com/watch?v=fzRshjBCWyU",
       "video_id": "fzRshjBCWyU"
+    },
+    "video:gAmjBqXNoFI": {
+      "created_at": "2026-11-25T02:24:25.860758+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How Franklin Templeton uses AI for investment research | OpenAI",
+      "url": "https://www.youtube.com/watch?v=gAmjBqXNoFI",
+      "video_id": "gAmjBqXNoFI"
     },
     "video:gSMS9m0k_nI": {
       "created_at": "2026-11-12T21:57:23.629685+00:00",
@@ -1511,6 +1607,14 @@
       "title": "Connect Your Team\u2019s Data to ChatGPT",
       "url": "https://www.youtube.com/watch?v=oJIuz3AFfEQ",
       "video_id": "oJIuz3AFfEQ"
+    },
+    "video:p8lvQQebvpg": {
+      "created_at": "2026-11-25T02:24:25.860688+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How to Search for Exoplanets",
+      "url": "https://www.youtube.com/watch?v=p8lvQQebvpg",
+      "video_id": "p8lvQQebvpg"
     },
     "video:pBzUGSI03Xw": {
       "created_at": "2026-11-12T23:07:36.462846+00:00",
@@ -1879,6 +1983,14 @@
       "title": "What Codex Unlocks for Holiday Extras",
       "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
       "video_id": "vu3YlUMkvyg"
+    },
+    "video:w-ltt0Np2cY": {
+      "created_at": "2026-11-25T02:24:25.860746+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Investigating Linux Vulnerabilities with GPT-6 Cyber",
+      "url": "https://www.youtube.com/watch?v=w-ltt0Np2cY",
+      "video_id": "w-ltt0Np2cY"
     },
     "video:w5HdN9s4HtY": {
       "created_at": "2026-11-24T17:39:16.939859+00:00",
@@ -2333,8 +2445,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-23T00:50:03.057808+00:00",
-      "last_monitored_at": "2026-11-23T00:50:03.057655+00:00",
+      "last_attempt_at": "2026-11-25T02:24:26.380163+00:00",
+      "last_monitored_at": "2026-11-25T02:24:26.379995+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -2420,8 +2532,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-23T00:50:02.470439+00:00",
-      "last_monitored_at": "2026-11-23T00:50:02.470253+00:00",
+      "last_attempt_at": "2026-11-25T02:24:25.860922+00:00",
+      "last_monitored_at": "2026-11-25T02:24:25.860818+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -8003,6 +8115,28 @@
         "url": "https://www.youtube.com/watch?v=1oryBjH9iiQ",
         "video_id": "1oryBjH9iiQ"
       },
+      "1u0hTd86_HU": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860654+00:00",
+        "id": "1u0hTd86_HU",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T21:32:42Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Experiment with SVG & 3D Design with the Codex Plugin",
+        "url": "https://www.youtube.com/watch?v=1u0hTd86_HU",
+        "video_id": "1u0hTd86_HU"
+      },
       "25X9nalEXg0": {
         "api_verification": "verified",
         "attempts": 0,
@@ -8022,6 +8156,28 @@
         "title": "Bombanana XBOX Launch Trailer",
         "url": "https://www.youtube.com/watch?v=25X9nalEXg0",
         "video_id": "25X9nalEXg0"
+      },
+      "2DUJ2whBJRM": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860694+00:00",
+        "id": "2DUJ2whBJRM",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:14:03Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Make sense of your day | with ChatGPT",
+        "url": "https://www.youtube.com/watch?v=2DUJ2whBJRM",
+        "video_id": "2DUJ2whBJRM"
       },
       "2EgJDihn1D4": {
         "api_verification": "verified",
@@ -8247,6 +8403,28 @@
         "url": "https://www.youtube.com/watch?v=3gNaAp_KPV0",
         "video_id": "3gNaAp_KPV0"
       },
+      "4MFBNFyBmQg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860703+00:00",
+        "id": "4MFBNFyBmQg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:14:01Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Make a day of it | with ChatGPT",
+        "url": "https://www.youtube.com/watch?v=4MFBNFyBmQg",
+        "video_id": "4MFBNFyBmQg"
+      },
       "4PfZ_aAMrSY": {
         "api_verification": "verified",
         "attempts": 0,
@@ -8390,6 +8568,28 @@
         "title": "Autonomous Vehicle Safety: 5 Things to Know",
         "url": "https://www.youtube.com/watch?v=5ibgnmypP8I",
         "video_id": "5ibgnmypP8I"
+      },
+      "5p8CdiQGqV4": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860732+00:00",
+        "id": "5p8CdiQGqV4",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T13:14:46Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Conhe\u00e7a o nov\u00edssimo ChatGPT Modo Voz.",
+        "url": "https://www.youtube.com/watch?v=5p8CdiQGqV4",
+        "video_id": "5p8CdiQGqV4"
       },
       "5xGsiOB2nc8": {
         "api_verification": "verified",
@@ -8985,6 +9185,28 @@
         "url": "https://www.youtube.com/watch?v=DLHEr67OWT0",
         "video_id": "DLHEr67OWT0"
       },
+      "DLV3XRdJAog": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860717+00:00",
+        "id": "DLV3XRdJAog",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:13:55Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Make your day move | with ChatGPT",
+        "url": "https://www.youtube.com/watch?v=DLV3XRdJAog",
+        "video_id": "DLV3XRdJAog"
+      },
       "Di8ntBu1ouY": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9211,6 +9433,28 @@
         "title": "Pikmin 4 \u2013 Nintendo Switch 2 Edition + Dandori Academy \u2013 Overview Trailer",
         "url": "https://www.youtube.com/watch?v=FOqxuzEr4R4",
         "video_id": "FOqxuzEr4R4"
+      },
+      "Faoam45LT-Q": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860710+00:00",
+        "id": "Faoam45LT-Q",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:13:58Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Make room in your day | with ChatGPT",
+        "url": "https://www.youtube.com/watch?v=Faoam45LT-Q",
+        "video_id": "Faoam45LT-Q"
       },
       "Fupb0CeuPoc": {
         "api_verification": "verified",
@@ -9721,6 +9965,28 @@
         "url": "https://www.youtube.com/watch?v=MnW00Oo7Gs8",
         "video_id": "MnW00Oo7Gs8"
       },
+      "MpsO8Ds8uyo": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860750+00:00",
+        "id": "MpsO8Ds8uyo",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T20:02:15Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Investigating Linux Vulnerabilities with GPT-6 Cyber",
+        "url": "https://www.youtube.com/watch?v=MpsO8Ds8uyo",
+        "video_id": "MpsO8Ds8uyo"
+      },
       "N5YLi8Ar3Wg": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9968,6 +10234,28 @@
         "title": "DERELIKT XBOX Launch Trailer",
         "url": "https://www.youtube.com/watch?v=PX1Q6Ld5beY",
         "video_id": "PX1Q6Ld5beY"
+      },
+      "PXKvR8ta22Q": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860762+00:00",
+        "id": "PXKvR8ta22Q",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T15:21:09Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Franklin Templeton uses AI for investment research | OpenAI",
+        "url": "https://www.youtube.com/watch?v=PXKvR8ta22Q",
+        "video_id": "PXKvR8ta22Q"
       },
       "PYplTYmMEoI": {
         "api_verification": "verified",
@@ -10301,6 +10589,26 @@
         "title": "TANUKI: Pon's Summer | Launch Trailer",
         "url": "https://www.youtube.com/watch?v=UwRcePRxAZg",
         "video_id": "UwRcePRxAZg"
+      },
+      "VPYhT7UWyzo": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "channel_name": "Google",
+        "discovered_at": "2026-11-25T02:24:26.379966+00:00",
+        "id": "VPYhT7UWyzo",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:03:16Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Build a satisfying pie crust simulation with Search \ud83e\udd67",
+        "url": "https://www.youtube.com/watch?v=VPYhT7UWyzo",
+        "video_id": "VPYhT7UWyzo"
       },
       "VQjDInADRMM": {
         "api_verification": "verified",
@@ -10723,6 +11031,28 @@
         "url": "https://www.youtube.com/watch?v=adD2SUJtKEw",
         "video_id": "adD2SUJtKEw"
       },
+      "asUuxCqj0GE": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860738+00:00",
+        "id": "asUuxCqj0GE",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T01:36:38Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Waiting for a better price on that gift? Use ChatGPT.",
+        "url": "https://www.youtube.com/watch?v=asUuxCqj0GE",
+        "video_id": "asUuxCqj0GE"
+      },
       "aupPY-1Ir9Q": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10765,6 +11095,28 @@
         "title": "Harness-as-a-Service: Building with the Agents API | DevDay 2026",
         "url": "https://www.youtube.com/watch?v=b7l_Dhe1h8M",
         "video_id": "b7l_Dhe1h8M"
+      },
+      "bGiFYYrmnAg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860724+00:00",
+        "id": "bGiFYYrmnAg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T17:09:11Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "School Day | Make A Day Do Anything with ChatGPT",
+        "url": "https://www.youtube.com/watch?v=bGiFYYrmnAg",
+        "video_id": "bGiFYYrmnAg"
       },
       "bOpqPkOlCGA": {
         "api_verification": "verified",
@@ -11048,6 +11400,28 @@
         "title": "Stranger Than Heaven - Act 2: Kure Story Trailer | PS5 Games",
         "url": "https://www.youtube.com/watch?v=fzRshjBCWyU",
         "video_id": "fzRshjBCWyU"
+      },
+      "gAmjBqXNoFI": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860756+00:00",
+        "id": "gAmjBqXNoFI",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T15:23:23Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How Franklin Templeton uses AI for investment research | OpenAI",
+        "url": "https://www.youtube.com/watch?v=gAmjBqXNoFI",
+        "video_id": "gAmjBqXNoFI"
       },
       "gSMS9m0k_nI": {
         "api_verification": "verified",
@@ -11797,6 +12171,28 @@
         "title": "Connect Your Team\u2019s Data to ChatGPT",
         "url": "https://www.youtube.com/watch?v=oJIuz3AFfEQ",
         "video_id": "oJIuz3AFfEQ"
+      },
+      "p8lvQQebvpg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860683+00:00",
+        "id": "p8lvQQebvpg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T20:00:45Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How to Search for Exoplanets",
+        "url": "https://www.youtube.com/watch?v=p8lvQQebvpg",
+        "video_id": "p8lvQQebvpg"
       },
       "pBzUGSI03Xw": {
         "api_verification": "verified",
@@ -12755,6 +13151,28 @@
         "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
         "video_id": "vu3YlUMkvyg"
       },
+      "w-ltt0Np2cY": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-25T02:24:25.860743+00:00",
+        "id": "w-ltt0Np2cY",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T20:03:11Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Investigating Linux Vulnerabilities with GPT-6 Cyber",
+        "url": "https://www.youtube.com/watch?v=w-ltt0Np2cY",
+        "video_id": "w-ltt0Np2cY"
+      },
       "w5HdN9s4HtY": {
         "api_verification": "verified",
         "attempts": 0,
@@ -13104,7 +13522,7 @@
       "upload": 0
     },
     "2026-11-24": {
-      "general": 6,
+      "general": 12,
       "search": 0,
       "upload": 0
     }
@@ -13560,7 +13978,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 712,
+  "revision": 721,
   "rights_ledger": {},
   "runs": [
     {
@@ -15254,6 +15672,21 @@
       },
       "run_id": "45450926475-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-25T02:24:25.267385+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 14
+      },
+      "run_id": "45532693065-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1
