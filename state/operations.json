@@ -16,6 +16,14 @@
       "url": "https://www.youtube.com/watch?v=-O0tMcyH4Wo",
       "video_id": "-O0tMcyH4Wo"
     },
+    "video:05Os8Cqr7Ic": {
+      "created_at": "2026-11-25T22:29:30.955389+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Your website can do more - Framer Automations & Connectors",
+      "url": "https://www.youtube.com/watch?v=05Os8Cqr7Ic",
+      "video_id": "05Os8Cqr7Ic"
+    },
     "video:0cC6yoOk2ZA": {
       "created_at": "2026-11-12T23:07:36.463010+00:00",
       "kind": "new_video",
@@ -23,6 +31,14 @@
       "title": "The First Descendant - \"Meet Monet\" Character Trailer | PS5 Games",
       "url": "https://www.youtube.com/watch?v=0cC6yoOk2ZA",
       "video_id": "0cC6yoOk2ZA"
+    },
+    "video:1YKTm0L7734": {
+      "created_at": "2026-11-25T22:29:30.522682+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Popovers vs. Modals in Webflow",
+      "url": "https://www.youtube.com/watch?v=1YKTm0L7734",
+      "video_id": "1YKTm0L7734"
     },
     "video:1_ZrPLCMMF8": {
       "created_at": "2026-11-12T23:07:36.462977+00:00",
@@ -135,6 +151,14 @@
       "title": "RACCOIN: Chaos Max Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
       "url": "https://www.youtube.com/watch?v=3ShCCyHTu1A",
       "video_id": "3ShCCyHTu1A"
+    },
+    "video:3Up_9gdFOlQ": {
+      "created_at": "2026-11-25T22:29:30.955403+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Connect your tools. Put Framer\u2019s Agent to work.",
+      "url": "https://www.youtube.com/watch?v=3Up_9gdFOlQ",
+      "video_id": "3Up_9gdFOlQ"
     },
     "video:3_fayTbZrW8": {
       "created_at": "2026-11-21T17:29:31.495075+00:00",
@@ -295,6 +319,14 @@
       "title": "Microsoft Flight Simulator | XBOX Anniversary Livery Collection",
       "url": "https://www.youtube.com/watch?v=7kh27KsjoZM",
       "video_id": "7kh27KsjoZM"
+    },
+    "video:86m1y-Ku6Y8": {
+      "created_at": "2026-11-25T22:29:30.522671+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "View Source: From prompt to published",
+      "url": "https://www.youtube.com/watch?v=86m1y-Ku6Y8",
+      "video_id": "86m1y-Ku6Y8"
     },
     "video:8L0CzL2V72c": {
       "created_at": "2026-11-12T23:07:36.462934+00:00",
@@ -1416,6 +1448,14 @@
       "url": "https://www.youtube.com/watch?v=hUhr0JiVZZs",
       "video_id": "hUhr0JiVZZs"
     },
+    "video:hVecZ1V5eYM": {
+      "created_at": "2026-11-25T22:29:30.955398+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Meet Framer Automations, connectors, and the Slack agent",
+      "url": "https://www.youtube.com/watch?v=hVecZ1V5eYM",
+      "video_id": "hVecZ1V5eYM"
+    },
     "video:ha-gDrDm8Es": {
       "created_at": "2026-11-14T19:55:43.407991+00:00",
       "kind": "new_video",
@@ -2417,8 +2457,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-23T21:18:06.411205+00:00",
-      "last_monitored_at": "2026-11-23T21:18:06.411076+00:00",
+      "last_attempt_at": "2026-11-25T22:29:30.522805+00:00",
+      "last_monitored_at": "2026-11-25T22:29:30.522687+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -2558,8 +2598,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-23T21:18:07.082796+00:00",
-      "last_monitored_at": "2026-11-23T21:18:07.082669+00:00",
+      "last_attempt_at": "2026-11-25T22:29:30.955545+00:00",
+      "last_monitored_at": "2026-11-25T22:29:30.955413+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -8111,6 +8151,26 @@
         "url": "https://www.youtube.com/watch?v=-O0tMcyH4Wo",
         "video_id": "-O0tMcyH4Wo"
       },
+      "05Os8Cqr7Ic": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "channel_name": "Framer",
+        "discovered_at": "2026-11-25T22:29:30.955373+00:00",
+        "id": "05Os8Cqr7Ic",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T15:25:47Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Your website can do more - Framer Automations & Connectors",
+        "url": "https://www.youtube.com/watch?v=05Os8Cqr7Ic",
+        "video_id": "05Os8Cqr7Ic"
+      },
       "0cC6yoOk2ZA": {
         "api_verification": "verified",
         "attempts": 0,
@@ -8130,6 +8190,26 @@
         "title": "The First Descendant - \"Meet Monet\" Character Trailer | PS5 Games",
         "url": "https://www.youtube.com/watch?v=0cC6yoOk2ZA",
         "video_id": "0cC6yoOk2ZA"
+      },
+      "1YKTm0L7734": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-25T22:29:30.522678+00:00",
+        "id": "1YKTm0L7734",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-23T21:44:50Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Popovers vs. Modals in Webflow",
+        "url": "https://www.youtube.com/watch?v=1YKTm0L7734",
+        "video_id": "1YKTm0L7734"
       },
       "1_ZrPLCMMF8": {
         "api_verification": "verified",
@@ -8416,6 +8496,26 @@
         "title": "RACCOIN: Chaos Max Edition \u2013 Launch Trailer \u2013 Nintendo Switch 2",
         "url": "https://www.youtube.com/watch?v=3ShCCyHTu1A",
         "video_id": "3ShCCyHTu1A"
+      },
+      "3Up_9gdFOlQ": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "channel_name": "Framer",
+        "discovered_at": "2026-11-25T22:29:30.955401+00:00",
+        "id": "3Up_9gdFOlQ",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T15:25:41Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Connect your tools. Put Framer\u2019s Agent to work.",
+        "url": "https://www.youtube.com/watch?v=3Up_9gdFOlQ",
+        "video_id": "3Up_9gdFOlQ"
       },
       "3_fayTbZrW8": {
         "api_verification": "verified",
@@ -8827,6 +8927,26 @@
         "title": "Microsoft Flight Simulator | XBOX Anniversary Livery Collection",
         "url": "https://www.youtube.com/watch?v=7kh27KsjoZM",
         "video_id": "7kh27KsjoZM"
+      },
+      "86m1y-Ku6Y8": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCELSb-IYi_d5rYFOxWeOz5g",
+        "channel_name": "Webflow",
+        "discovered_at": "2026-11-25T22:29:30.522654+00:00",
+        "id": "86m1y-Ku6Y8",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T06:18:29Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "View Source: From prompt to published",
+        "url": "https://www.youtube.com/watch?v=86m1y-Ku6Y8",
+        "video_id": "86m1y-Ku6Y8"
       },
       "8L0CzL2V72c": {
         "api_verification": "verified",
@@ -11732,6 +11852,26 @@
         "url": "https://www.youtube.com/watch?v=hUhr0JiVZZs",
         "video_id": "hUhr0JiVZZs"
       },
+      "hVecZ1V5eYM": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Website Design"
+        ],
+        "channel_id": "UCW5gUZ7lKGrAbLOkHv2xfbw",
+        "channel_name": "Framer",
+        "discovered_at": "2026-11-25T22:29:30.955395+00:00",
+        "id": "hVecZ1V5eYM",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T15:25:44Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Meet Framer Automations, connectors, and the Slack agent",
+        "url": "https://www.youtube.com/watch?v=hVecZ1V5eYM",
+        "video_id": "hVecZ1V5eYM"
+      },
       "ha-gDrDm8Es": {
         "api_verification": "verified",
         "attempts": 0,
@@ -13724,7 +13864,7 @@
       "upload": 0
     },
     "2026-11-25": {
-      "general": 6,
+      "general": 12,
       "search": 0,
       "upload": 0
     }
@@ -14180,7 +14320,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 730,
+  "revision": 739,
   "rights_ledger": {},
   "runs": [
     {
@@ -15903,6 +16043,21 @@
         "new_leads": 7
       },
       "run_id": "45617432628-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-25T22:29:29.935909+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 5
+      },
+      "run_id": "45713645885-1",
       "status": "BLOCKED"
     }
   ],
