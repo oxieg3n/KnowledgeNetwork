@@ -144,6 +144,14 @@
       "url": "https://www.youtube.com/watch?v=2eVPrGJPy30",
       "video_id": "2eVPrGJPy30"
     },
+    "video:2ohfoM2k4dI": {
+      "created_at": "2026-11-26T15:10:35.347554+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Xenoblade Chronicles 3 \u2013 Nintendo Switch 2 Edition \u2013 Overview Trailer",
+      "url": "https://www.youtube.com/watch?v=2ohfoM2k4dI",
+      "video_id": "2ohfoM2k4dI"
+    },
     "video:2pdF52EVlbM": {
       "created_at": "2026-11-18T11:37:37.325496+00:00",
       "kind": "new_video",
@@ -247,6 +255,14 @@
       "title": "Answering your questions about GPT-Live",
       "url": "https://www.youtube.com/watch?v=5YXlrzC_RYE",
       "video_id": "5YXlrzC_RYE"
+    },
+    "video:5_GJqaYbCY4": {
+      "created_at": "2026-11-26T15:10:35.347571+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Treat yo' self. \ud83c\udf69",
+      "url": "https://www.youtube.com/watch?v=5_GJqaYbCY4",
+      "video_id": "5_GJqaYbCY4"
     },
     "video:5c21oaFNRW8": {
       "created_at": "2026-11-12T23:07:37.009618+00:00",
@@ -896,6 +912,14 @@
       "url": "https://www.youtube.com/watch?v=MdylaeDkKJE",
       "video_id": "MdylaeDkKJE"
     },
+    "video:MiE6-XaL8Hw": {
+      "created_at": "2026-11-26T15:10:35.347565+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "KuloNiku: Bowl Up! \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=MiE6-XaL8Hw",
+      "video_id": "MiE6-XaL8Hw"
+    },
     "video:MnW00Oo7Gs8": {
       "created_at": "2026-11-14T07:36:18.134464+00:00",
       "kind": "new_video",
@@ -1039,6 +1063,14 @@
       "title": "How Mozilla uses GPT-6 Cyber to find and fix Firefox vulnerabilities",
       "url": "https://www.youtube.com/watch?v=PkAmyub12K8",
       "video_id": "PkAmyub12K8"
+    },
+    "video:Pn0MuiE7YDQ": {
+      "created_at": "2026-11-26T15:10:35.347577+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Mario Kart World \u2013 Ver. 1.9.0 Update Available Now \u2013 Nintendo Switch 2",
+      "url": "https://www.youtube.com/watch?v=Pn0MuiE7YDQ",
+      "video_id": "Pn0MuiE7YDQ"
     },
     "video:Q747LpUuLTA": {
       "created_at": "2026-11-16T01:00:11.753724+00:00",
@@ -1223,6 +1255,14 @@
       "title": "Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world",
       "url": "https://www.youtube.com/watch?v=WN-JK-hMAyg",
       "video_id": "WN-JK-hMAyg"
+    },
+    "video:WN5O4vWCa54": {
+      "created_at": "2026-11-26T15:10:35.997438+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "5 developer tips for working with Gemini 4",
+      "url": "https://www.youtube.com/watch?v=WN5O4vWCa54",
+      "video_id": "WN5O4vWCa54"
     },
     "video:W_Wjpk-oUbc": {
       "created_at": "2026-11-12T21:57:21.142742+00:00",
@@ -2264,6 +2304,14 @@
       "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
       "video_id": "vu3YlUMkvyg"
     },
+    "video:w-MBfX6SbFw": {
+      "created_at": "2026-11-26T15:10:35.347582+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Where did your adventures through The Legend of Zelda series begin? \ud83d\udc47",
+      "url": "https://www.youtube.com/watch?v=w-MBfX6SbFw",
+      "video_id": "w-MBfX6SbFw"
+    },
     "video:w-ltt0Np2cY": {
       "created_at": "2026-11-25T02:24:25.860746+00:00",
       "kind": "new_video",
@@ -2689,8 +2737,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-24T17:39:16.940003+00:00",
-      "last_monitored_at": "2026-11-24T17:39:16.939876+00:00",
+      "last_attempt_at": "2026-11-26T15:10:35.347688+00:00",
+      "last_monitored_at": "2026-11-26T15:10:35.347605+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -2860,8 +2908,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-24T17:39:17.543558+00:00",
-      "last_monitored_at": "2026-11-24T17:39:17.543433+00:00",
+      "last_attempt_at": "2026-11-26T15:10:35.997554+00:00",
+      "last_monitored_at": "2026-11-26T15:10:35.997453+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -8731,6 +8779,26 @@
         "url": "https://www.youtube.com/watch?v=2eVPrGJPy30",
         "video_id": "2eVPrGJPy30"
       },
+      "2ohfoM2k4dI": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-26T15:10:35.347535+00:00",
+        "id": "2ohfoM2k4dI",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-26T01:01:10Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Xenoblade Chronicles 3 \u2013 Nintendo Switch 2 Edition \u2013 Overview Trailer",
+        "url": "https://www.youtube.com/watch?v=2ohfoM2k4dI",
+        "video_id": "2ohfoM2k4dI"
+      },
       "2pdF52EVlbM": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9000,6 +9068,26 @@
         "title": "Answering your questions about GPT-Live",
         "url": "https://www.youtube.com/watch?v=5YXlrzC_RYE",
         "video_id": "5YXlrzC_RYE"
+      },
+      "5_GJqaYbCY4": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-26T15:10:35.347569+00:00",
+        "id": "5_GJqaYbCY4",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T17:00:20Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Treat yo' self. \ud83c\udf69",
+        "url": "https://www.youtube.com/watch?v=5_GJqaYbCY4",
+        "video_id": "5_GJqaYbCY4"
       },
       "5c21oaFNRW8": {
         "api_verification": "verified",
@@ -10658,6 +10746,26 @@
         "url": "https://www.youtube.com/watch?v=MdylaeDkKJE",
         "video_id": "MdylaeDkKJE"
       },
+      "MiE6-XaL8Hw": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-26T15:10:35.347561+00:00",
+        "id": "MiE6-XaL8Hw",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T20:00:29Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "KuloNiku: Bowl Up! \u2013 Launch Trailer \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=MiE6-XaL8Hw",
+        "video_id": "MiE6-XaL8Hw"
+      },
       "MnW00Oo7Gs8": {
         "api_verification": "verified",
         "attempts": 0,
@@ -11031,6 +11139,26 @@
         "title": "How Mozilla uses GPT-6 Cyber to find and fix Firefox vulnerabilities",
         "url": "https://www.youtube.com/watch?v=PkAmyub12K8",
         "video_id": "PkAmyub12K8"
+      },
+      "Pn0MuiE7YDQ": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-26T15:10:35.347575+00:00",
+        "id": "Pn0MuiE7YDQ",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T01:00:34Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Mario Kart World \u2013 Ver. 1.9.0 Update Available Now \u2013 Nintendo Switch 2",
+        "url": "https://www.youtube.com/watch?v=Pn0MuiE7YDQ",
+        "video_id": "Pn0MuiE7YDQ"
       },
       "Q747LpUuLTA": {
         "api_verification": "verified",
@@ -11506,6 +11634,26 @@
         "title": "Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world",
         "url": "https://www.youtube.com/watch?v=WN-JK-hMAyg",
         "video_id": "WN-JK-hMAyg"
+      },
+      "WN5O4vWCa54": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "channel_name": "Google for Developers",
+        "discovered_at": "2026-11-26T15:10:35.997421+00:00",
+        "id": "WN5O4vWCa54",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T20:00:15Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "5 developer tips for working with Gemini 4",
+        "url": "https://www.youtube.com/watch?v=WN5O4vWCa54",
+        "video_id": "WN5O4vWCa54"
       },
       "W_Wjpk-oUbc": {
         "api_verification": "verified",
@@ -14204,6 +14352,26 @@
         "url": "https://www.youtube.com/watch?v=vu3YlUMkvyg",
         "video_id": "vu3YlUMkvyg"
       },
+      "w-MBfX6SbFw": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-26T15:10:35.347580+00:00",
+        "id": "w-MBfX6SbFw",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-24T23:00:28Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Where did your adventures through The Legend of Zelda series begin? \ud83d\udc47",
+        "url": "https://www.youtube.com/watch?v=w-MBfX6SbFw",
+        "video_id": "w-MBfX6SbFw"
+      },
       "w-ltt0Np2cY": {
         "api_verification": "verified",
         "attempts": 0,
@@ -14621,6 +14789,11 @@
     },
     "2026-11-25": {
       "general": 18,
+      "search": 0,
+      "upload": 0
+    },
+    "2026-11-26": {
+      "general": 6,
       "search": 0,
       "upload": 0
     }
@@ -15076,7 +15249,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 749,
+  "revision": 758,
   "rights_ledger": {},
   "runs": [
     {
@@ -16840,6 +17013,21 @@
       },
       "run_id": "45758681768-1",
       "status": "PASS"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-26T15:10:34.659696+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 6
+      },
+      "run_id": "45846402548-1",
+      "status": "BLOCKED"
     }
   ],
   "schema_version": 1

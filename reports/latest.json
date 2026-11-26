@@ -1,10 +1,15 @@
 {
-  "command": "blog-sync",
-  "run_id": "45758681768-1",
-  "checked_at": "2026-11-26T05:00:05.982461+00:00",
-  "status": "PASS",
+  "command": "monitor",
+  "run_id": "45846402548-1",
+  "checked_at": "2026-11-26T15:10:34.659696+00:00",
+  "status": "BLOCKED",
   "details": {
-    "new_versions": 4
+    "channels_registered": 10,
+    "channels_attempted": 2,
+    "new_leads": 6,
+    "api_enabled": true
   },
-  "blockers": []
+  "blockers": [
+    "Bounded rotating batch; not all sources checked this run"
+  ]
 }
