@@ -384,6 +384,14 @@
       "url": "https://www.youtube.com/watch?v=86m1y-Ku6Y8",
       "video_id": "86m1y-Ku6Y8"
     },
+    "video:8AHYLrvxuSw": {
+      "created_at": "2026-11-26T23:50:02.662140+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Fifty years, zero skips \ud83c\udfb6",
+      "url": "https://www.youtube.com/watch?v=8AHYLrvxuSw",
+      "video_id": "8AHYLrvxuSw"
+    },
     "video:8L0CzL2V72c": {
       "created_at": "2026-11-12T23:07:36.462934+00:00",
       "kind": "new_video",
@@ -423,6 +431,14 @@
       "title": "Mistfall Hunter Season 2: Fires of the Past - Launch Trailer | PS5 Games",
       "url": "https://www.youtube.com/watch?v=9qOjJaeKTAQ",
       "video_id": "9qOjJaeKTAQ"
+    },
+    "video:A4UNP-axGHU": {
+      "created_at": "2026-11-26T23:50:02.270177+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "How your dot can keep work moving while you\u2019re away",
+      "url": "https://www.youtube.com/watch?v=A4UNP-axGHU",
+      "video_id": "A4UNP-axGHU"
     },
     "video:AFclxMTQ2hI": {
       "created_at": "2026-11-12T21:57:26.204238+00:00",
@@ -527,6 +543,14 @@
       "title": "GPT-6.2 Astra and GPT-6.2 Sol\u2014Models built for the real world",
       "url": "https://www.youtube.com/watch?v=C1zYX5jwqq4",
       "video_id": "C1zYX5jwqq4"
+    },
+    "video:C6DENY3rgqg": {
+      "created_at": "2026-11-26T23:50:02.270166+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "You had us at Deployed",
+      "url": "https://www.youtube.com/watch?v=C6DENY3rgqg",
+      "video_id": "C6DENY3rgqg"
     },
     "video:CC4UYBpF4Ns": {
       "created_at": "2026-11-12T23:07:36.462959+00:00",
@@ -1664,6 +1688,14 @@
       "url": "https://www.youtube.com/watch?v=ha-gDrDm8Es",
       "video_id": "ha-gDrDm8Es"
     },
+    "video:hwKct_1ilEQ": {
+      "created_at": "2026-11-26T23:50:02.270189+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Finances in ChatGPT: A Beginner\u2019s Guide",
+      "url": "https://www.youtube.com/watch?v=hwKct_1ilEQ",
+      "video_id": "hwKct_1ilEQ"
+    },
     "video:iC6H8KOQTFU": {
       "created_at": "2026-11-14T19:55:43.408010+00:00",
       "kind": "new_video",
@@ -1767,6 +1799,14 @@
       "title": "Intro to Popovers & Modals \u2014 Webflow Tutorial",
       "url": "https://www.youtube.com/watch?v=ketIuVCUI8k",
       "video_id": "ketIuVCUI8k"
+    },
+    "video:kfGYU_-SuaE": {
+      "created_at": "2026-11-26T23:50:02.270183+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "School Day | Make a day do anything with ChatGPT\u00a0 (Official)",
+      "url": "https://www.youtube.com/watch?v=kfGYU_-SuaE",
+      "video_id": "kfGYU_-SuaE"
     },
     "video:kmtBl-AboRI": {
       "created_at": "2026-11-21T01:30:03.693210+00:00",
@@ -1887,6 +1927,14 @@
       "title": "For The King II - A Mother Below Free Update/Dust To Dust Paid Character Pack DLC | PS5 & PS4 Games",
       "url": "https://www.youtube.com/watch?v=o-nRCd6YHls",
       "video_id": "o-nRCd6YHls"
+    },
+    "video:oAruxERyZOc": {
+      "created_at": "2026-11-26T23:50:02.662148+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Good food. Great friends  \ud83c\udf7d\ufe0f",
+      "url": "https://www.youtube.com/watch?v=oAruxERyZOc",
+      "video_id": "oAruxERyZOc"
     },
     "video:oF2xi9BaHco": {
       "created_at": "2026-11-25T12:49:21.540090+00:00",
@@ -2793,8 +2841,8 @@
         "https://www.youtube.com/@Google",
         "https://www.youtube.com/playlist?list=UUK8sQmJBp8GCxrOtXWBpyEA"
       ],
-      "last_attempt_at": "2026-11-25T02:24:26.380163+00:00",
-      "last_monitored_at": "2026-11-25T02:24:26.379995+00:00",
+      "last_attempt_at": "2026-11-26T23:50:02.662322+00:00",
+      "last_monitored_at": "2026-11-26T23:50:02.662158+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google",
@@ -2880,8 +2928,8 @@
         "https://www.youtube.com/@OpenAI",
         "https://www.youtube.com/playlist?list=UUXZCJLdBC09xxGZ6gcdrc6A"
       ],
-      "last_attempt_at": "2026-11-25T02:24:25.860922+00:00",
-      "last_monitored_at": "2026-11-25T02:24:25.860818+00:00",
+      "last_attempt_at": "2026-11-26T23:50:02.270402+00:00",
+      "last_monitored_at": "2026-11-26T23:50:02.270264+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "OpenAI",
@@ -9392,6 +9440,26 @@
         "url": "https://www.youtube.com/watch?v=86m1y-Ku6Y8",
         "video_id": "86m1y-Ku6Y8"
       },
+      "8AHYLrvxuSw": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "channel_name": "Google",
+        "discovered_at": "2026-11-26T23:50:02.662123+00:00",
+        "id": "8AHYLrvxuSw",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-26T03:00:17Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Fifty years, zero skips \ud83c\udfb6",
+        "url": "https://www.youtube.com/watch?v=8AHYLrvxuSw",
+        "video_id": "8AHYLrvxuSw"
+      },
       "8L0CzL2V72c": {
         "api_verification": "verified",
         "attempts": 0,
@@ -9492,6 +9560,28 @@
         "title": "Mistfall Hunter Season 2: Fires of the Past - Launch Trailer | PS5 Games",
         "url": "https://www.youtube.com/watch?v=9qOjJaeKTAQ",
         "video_id": "9qOjJaeKTAQ"
+      },
+      "A4UNP-axGHU": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-26T23:50:02.270173+00:00",
+        "id": "A4UNP-axGHU",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T18:21:11Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "How your dot can keep work moving while you\u2019re away",
+        "url": "https://www.youtube.com/watch?v=A4UNP-axGHU",
+        "video_id": "A4UNP-axGHU"
       },
       "AFclxMTQ2hI": {
         "api_verification": "verified",
@@ -9761,6 +9851,28 @@
         "title": "GPT-6.2 Astra and GPT-6.2 Sol\u2014Models built for the real world",
         "url": "https://www.youtube.com/watch?v=C1zYX5jwqq4",
         "video_id": "C1zYX5jwqq4"
+      },
+      "C6DENY3rgqg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-26T23:50:02.270146+00:00",
+        "id": "C6DENY3rgqg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T23:50:43Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "You had us at Deployed",
+        "url": "https://www.youtube.com/watch?v=C6DENY3rgqg",
+        "video_id": "C6DENY3rgqg"
       },
       "CC4UYBpF4Ns": {
         "api_verification": "verified",
@@ -12696,6 +12808,28 @@
         "url": "https://www.youtube.com/watch?v=ha-gDrDm8Es",
         "video_id": "ha-gDrDm8Es"
       },
+      "hwKct_1ilEQ": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-26T23:50:02.270187+00:00",
+        "id": "hwKct_1ilEQ",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T14:00:28Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Finances in ChatGPT: A Beginner\u2019s Guide",
+        "url": "https://www.youtube.com/watch?v=hwKct_1ilEQ",
+        "video_id": "hwKct_1ilEQ"
+      },
       "iC6H8KOQTFU": {
         "api_verification": "verified",
         "attempts": 0,
@@ -12963,6 +13097,28 @@
         "title": "Intro to Popovers & Modals \u2014 Webflow Tutorial",
         "url": "https://www.youtube.com/watch?v=ketIuVCUI8k",
         "video_id": "ketIuVCUI8k"
+      },
+      "kfGYU_-SuaE": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models",
+          "Codex",
+          "ChatGPT"
+        ],
+        "channel_id": "UCXZCJLdBC09xxGZ6gcdrc6A",
+        "channel_name": "OpenAI",
+        "discovered_at": "2026-11-26T23:50:02.270181+00:00",
+        "id": "kfGYU_-SuaE",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T16:45:33Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "School Day | Make a day do anything with ChatGPT\u00a0 (Official)",
+        "url": "https://www.youtube.com/watch?v=kfGYU_-SuaE",
+        "video_id": "kfGYU_-SuaE"
       },
       "kmtBl-AboRI": {
         "api_verification": "verified",
@@ -13270,6 +13426,26 @@
         "title": "For The King II - A Mother Below Free Update/Dust To Dust Paid Character Pack DLC | PS5 & PS4 Games",
         "url": "https://www.youtube.com/watch?v=o-nRCd6YHls",
         "video_id": "o-nRCd6YHls"
+      },
+      "oAruxERyZOc": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Google Gemini"
+        ],
+        "channel_id": "UCK8sQmJBp8GCxrOtXWBpyEA",
+        "channel_name": "Google",
+        "discovered_at": "2026-11-26T23:50:02.662145+00:00",
+        "id": "oAruxERyZOc",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T16:59:54Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Good food. Great friends  \ud83c\udf7d\ufe0f",
+        "url": "https://www.youtube.com/watch?v=oAruxERyZOc",
+        "video_id": "oAruxERyZOc"
       },
       "oF2xi9BaHco": {
         "api_verification": "verified",
@@ -14793,7 +14969,7 @@
       "upload": 0
     },
     "2026-11-26": {
-      "general": 6,
+      "general": 12,
       "search": 0,
       "upload": 0
     }
@@ -15249,7 +15425,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 758,
+  "revision": 767,
   "rights_ledger": {},
   "runs": [
     {
@@ -17027,6 +17203,21 @@
         "new_leads": 6
       },
       "run_id": "45846402548-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-26T23:50:01.749042+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 6
+      },
+      "run_id": "45913219083-1",
       "status": "BLOCKED"
     }
   ],
