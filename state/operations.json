@@ -264,6 +264,14 @@
       "url": "https://www.youtube.com/watch?v=5_GJqaYbCY4",
       "video_id": "5_GJqaYbCY4"
     },
+    "video:5_peDo1mukg": {
+      "created_at": "2026-11-27T08:24:59.577636+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "One name. Two worlds. A shared commitment to safety. \ud83c\udfd4\ufe0f\ud83d\ude97",
+      "url": "https://www.youtube.com/watch?v=5_peDo1mukg",
+      "video_id": "5_peDo1mukg"
+    },
     "video:5c21oaFNRW8": {
       "created_at": "2026-11-12T23:07:37.009618+00:00",
       "kind": "new_video",
@@ -2813,8 +2821,8 @@
         "https://www.youtube.com/@NVIDIA",
         "https://www.youtube.com/playlist?list=UUHuiy8bXnmK5nisYHUd1J5g"
       ],
-      "last_attempt_at": "2026-11-25T12:49:21.540342+00:00",
-      "last_monitored_at": "2026-11-25T12:49:21.540162+00:00",
+      "last_attempt_at": "2026-11-27T08:24:59.577774+00:00",
+      "last_monitored_at": "2026-11-27T08:24:59.577664+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "NVIDIA",
@@ -2870,8 +2878,8 @@
         "https://www.youtube.com/@GoogleDeepMind",
         "https://www.youtube.com/playlist?list=UUP7jMXSY2xbc3KCAE0MHQ-A"
       ],
-      "last_attempt_at": "2026-11-25T12:49:21.093407+00:00",
-      "last_monitored_at": "2026-11-25T12:49:21.093247+00:00",
+      "last_attempt_at": "2026-11-27T08:24:58.947088+00:00",
+      "last_monitored_at": "2026-11-27T08:24:58.946949+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google DeepMind",
@@ -9137,6 +9145,26 @@
         "url": "https://www.youtube.com/watch?v=5_GJqaYbCY4",
         "video_id": "5_GJqaYbCY4"
       },
+      "5_peDo1mukg": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "AI Models"
+        ],
+        "channel_id": "UCHuiy8bXnmK5nisYHUd1J5g",
+        "channel_name": "NVIDIA",
+        "discovered_at": "2026-11-27T08:24:59.577613+00:00",
+        "id": "5_peDo1mukg",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-25T16:00:36Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "One name. Two worlds. A shared commitment to safety. \ud83c\udfd4\ufe0f\ud83d\ude97",
+        "url": "https://www.youtube.com/watch?v=5_peDo1mukg",
+        "video_id": "5_peDo1mukg"
+      },
       "5c21oaFNRW8": {
         "api_verification": "verified",
         "attempts": 0,
@@ -10631,7 +10659,7 @@
         "published_at": "2026-11-24T17:51:08Z",
         "rights_path": "original_required",
         "status": "needs_editorial_review",
-        "title": "The brain helped us build AI. Now AI is explaining the brain.",
+        "title": "How AI is finding the hidden rules of the human brain",
         "url": "https://www.youtube.com/watch?v=K8rdrWQRd20",
         "video_id": "K8rdrWQRd20"
       },
@@ -14972,6 +15000,11 @@
       "general": 12,
       "search": 0,
       "upload": 0
+    },
+    "2026-11-27": {
+      "general": 6,
+      "search": 0,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -15425,7 +15458,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 767,
+  "revision": 776,
   "rights_ledger": {},
   "runs": [
     {
@@ -17218,6 +17251,21 @@
         "new_leads": 6
       },
       "run_id": "45913219083-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-27T08:24:58.542597+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "45965471297-1",
       "status": "BLOCKED"
     }
   ],
