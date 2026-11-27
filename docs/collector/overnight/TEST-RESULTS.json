@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-14T19:05:12.633963+00:00",
+  "scope": "V9 FORGE staging; not full production acceptance",
+  "python_regression": {
+    "run": 284,
+    "passed": 284,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 55.991,
+    "environment": ".venv/Scripts/python.exe with pinned FFmpeg bin on process PATH",
+    "log": "C:/admin/collector-v9/regression-final-venv.log"
+  },
+  "earlier_wrong_environment_run": {
+    "errors": 26,
+    "skipped": 7,
+    "cause": "System Python lacked project timezone/Pillow dependencies and pinned FFmpeg PATH; rerun existing configured venv without test changes"
+  },
+  "installed_worker_self_checks": 163,
+  "dashboard_in_process_checks": 17,
+  "worker": {
+    "restart_same_identity_and_five_results": "PASS",
+    "schema1_to2_original_rows_preserved": "PASS",
+    "large_frame_bounded_roundtrip": "PASS",
+    "queued_cancel_no_attempt": "PASS",
+    "reboot": "NOT TESTED",
+    "signed_out_session": "NOT TESTED",
+    "scheduled_dot": "NOT TESTED"
+  },
+  "editor": {
+    "service_inspect_apply_save_reopen": "PASS",
+    "native_export": "PASS",
+    "duration_seconds": 50.0,
+    "resolution": [
+      1080,
+      1920
+    ],
+    "frames": 1500,
+    "sha256": "f453bd15c060ac590bfe8beb58c93898e3acc249df40c43310fe72978fa77c63",
+    "decode_exit": 0,
+    "source_hashes_unchanged": 6,
+    "revision": 59,
+    "visual_sample_seconds": [
+      4,
+      21,
+      42
+    ],
+    "black_events": 0,
+    "silence": "final faded 0.508s only",
+    "audio": "synthetic tones; not listened",
+    "approved_bookends": "BLOCKED missing exact assets"
+  },
+  "narrator": {
+    "script_reference_cli_identity": "PASS read-only matched existing host bytes",
+    "installed_package": "2.0.3",
+    "python": "3.11",
+    "selected_model_revision": "PASS inventory:7936080b41163874f38610f46f438e2c0757f9fd",
+    "reference_component_rights": "BLOCKED",
+    "direct_python_parity": "NOT TESTED",
+    "actual_host_api": "BLOCKED not deployed",
+    "forge_to_host_new_wav": "BLOCKED not performed",
+    "local_contract_tests": "PASS MOCK inference only",
+    "model_license_evidence": "Exact cached model card matches verified revision upstream; declares Apache-2.0/commercial use. Reference consent and remaining obligations still incomplete."
+  },
+  "installer": {
+    "round5_actual_upgrade": "PASS",
+    "signature": "NotSigned",
+    "sha256": "58b73fd62cb3a2997e12b801a88686a6854bfa1421c67cd027b1b0c6dba9da5d"
+  },
+  "publication_paused": true,
+  "public_demo_uploaded": false,
+  "evidence_root": "C:/admin/collector-v9",
+  "inspector_repair": {
+    "windows_tests_passed": 24,
+    "host_contract_tests_passed": 23,
+    "host_inventory": "PASS owner-run",
+    "revision": "7936080b41163874f38610f46f438e2c0757f9fd",
+    "snapshot_files": 9,
+    "snapshot_bytes": 4960731830,
+    "package_files": 39,
+    "inventory_sha256": "8db573cd5c002dd3e934f6b03dfbb6a78ad4245d263070a320a6db1914a08898",
+    "collector_rebuilt": false,
+    "latest_stricter_unc_guard": "Windows tests PASS; actual host PASS preceded guard only"
+  },
+  "review_pr": "https://github.com/oxieg3n/KnowledgeNetwork/pull/20"
+}

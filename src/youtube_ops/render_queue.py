@@ -73,9 +73,10 @@ def reserve_render(state: State, request: dict, *, executor: str) -> dict:
     state.save()
     return {'revision':state.data['revision'],'request_sha256':record['request_sha256']}
 
-def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
-                     voice_metadata: dict, commit_sha: str, readback_revision: int,
-                     expected_request_sha256: str, readback_sha256: str, durable_checkpoint, renderer=None, local_assets=None) -> dict:
+def execute_reserved(state: State, request: dict, *, output: Path, voice: Path | None = None,
+                     voice_metadata: dict | None = None, commit_sha: str, readback_revision: int,
+                     expected_request_sha256: str, readback_sha256: str, durable_checkpoint, renderer=None, local_assets=None,
+                     narration_receipts: list[Path] | None = None) -> dict:
     """One bounded render after a real remote reservation readback.
 
     commit_sha/readback_revision are supplied by the trusted coordinator after
@@ -103,10 +104,12 @@ def execute_reserved(state: State, request: dict, *, output: Path, voice: Path,
     if renderer is None:
         from .render import render
         renderer=render
-    if request['rights_path'] in ('licensed_cc_by_excerpt','licensed_cc_by_review_preview'):
-        result=renderer(request['script'],output,voice,voice_metadata,local_assets=local_assets)
-    else:
-        result=renderer(request['script'],output,voice,voice_metadata)
+    options = {}
+    if request['rights_path'] in ('licensed_cc_by_excerpt','licensed_cc_by_review_preview') or local_assets is not None:
+        options['local_assets'] = local_assets
+    if narration_receipts is not None:
+        options['narration_receipts'] = narration_receipts
+    result=renderer(request['script'],output,voice,voice_metadata,**options)
     digest=result.get('sha256')
     if not re.fullmatch(r'[a-f0-9]{64}',digest or '') or result.get('publication_eligible') is not False:
         raise ValueError('Invalid or improperly approved render result')

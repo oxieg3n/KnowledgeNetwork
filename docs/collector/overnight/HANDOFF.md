@@ -1,0 +1,2307 @@
+# V9 handoff - The Knowledge Network Collector
+
+## Current result: windowless API and real FORGE batch PASS
+
+November21 continuation, branch `feature/collector-v7-overnight`, source checkpoint
+`d48b18232718a98315fc2ad086421c084465a9e9` (this receipt update follows it).
+The checked windowless startup completed on BLACKHAT-BASE. Limited-owner
+pythonw.exe supervisor runs in the background; loopback authentication returned
+401 missing bearer /401 incorrect bearer /200 valid bearer. Same physical
+schema2 ledger, strict task/process proof including zero children at startup,
+reviewed manifest and accepted parity passed. No new bearer/route/policy change.
+The successful setup PowerShell window can close; keep the owner's Windows
+session signed in. Sign-out/reboot recovery has not been accepted.
+
+**REMOTE_BATCH_NARRATION_PASS:** FORGE submitted exactly one request with durable
+ID `28edfa96a8744a15800b6963c56c1665` through authenticated private HTTPS9443.
+Host completed both segments with exactly one logged model load, CUDA/bfloat16,
+exit0 and owned_active_processes0. Batch-process runtime347.074s; full client
+request412.156s including integrity checks and transfer. Supervisor remains ready
+after the model exits. This implements load once per complete job, all segments,
+then process exit/unload; it does not keep the GPU model resident between jobs.
+
+Returned WAV:48000Hz mono PCM16,368640frames,7.68s, SHA
+`06a7fc3b7188c5eadbe9f1ef3ce918bac218527fbf51877ab470d2347062151c`.
+Host physical bytes, host authenticated receipt and FORGE downloaded bytes match.
+Full PCM decode and exact two-segment PCM concatenation PASS. Cues0–176640 and
+176640–368640 are contiguous and sample-derived. Shared receipt validator and
+the actual native editor receipt caller accept this schema3 output without a
+source change. Independent caller review PASS. This new diagnostic has no human
+listening approval; the previously approved final video remains unchanged.
+
+FORGE output is under
+`C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87/remote-narration-v1/28edfa96a8744a15800b6963c56c1665/`
+(`narration.wav` and `narration.json`). Private acceptance/logs are retained in
+`C:/Admin/Projects/KnowledgeNetwork-Private/narrator-remote-batch-acceptance-v1/`;
+acceptance SHA `d8c8f5ef8f0052ccace55dc074a64356908fa24b6e49a310bba551064702ec1c`.
+Windowless startup receipts/rollback are retained in the private
+`narrator-windowless-v1/live-acceptance/` and protected host
+`NarratorStandaloneV1/batch-update-v1/windowless-start-a44952a00068437ca5ac5daef34b1073-review`.
+Do not rerun old recovery/updater/startup scripts against the running service.
+
+Installed Collector health was rechecked: same worker
+`cb6ce3cd482148e7b8b0c8661ec8c6e9`, windows_service, companion enabled,
+no media reconciliation hold, publication_paused=true, production scheduler=false.
+Approved final MP4 and native project were rehashed unchanged. Paths, full hashes,
+launch instructions and remaining release limitations are in
+[finalization results](FINALIZATION-RESULTS-2026-11-20.md).
+
+PASS:7 focused windowless checks including2 native Windows; independent security
+review; full push/PR CI44899271604/44899274736 at d48b182. Windows606 tests:
+575 passed/31 skipped; Ubuntu606:487 passed/119 skipped; worker190 checks and
+WPF build PASS. Platform skips are not live host acceptance. No new render,
+inference retry, installer deployment, Gateway or443/8443 change occurred.
+Archive-only retention remains mandatory; prior10 verified private staging copies
+remain archived, active runtime/media/backups/SSH/evidence remain in place.
+PR20 stays draft/unmerged. **Publication remains PAUSED.**
+
+## Historical checkpoint: parity passed, before windowless startup
+
+V4 generated two segments in one real CUDA/bfloat16 model session. Joined WAV:
+9.44s,48000Hz mono PCM16,453120frames, SHA
+`950a708ebb736d65c6596dce6ba3677f7a574e6f83b4723548c513e363005e36`.
+CLI log confirms one model load; process exit0, owned_active_processes0 after
+323.14seconds. Actual output PCM was decoded/hash-checked on FORGE after private
+file capture. This is technical host batch parity, not authenticated new-batch
+API transfer or listening approval. Canonical script/reference/settings unchanged.
+Private retained proof: `KnowledgeNetwork-Private/narrator-batch-parity-acceptance-v1/`.
+
+Schema2 migration and limited-owner startup401/401/200 passed. Final task proof
+rejected child3336 of supervisor26616; its identity was not established. Other
+recorded contract fields matched. Owner subsequently confirmed closing windows;
+FORGE now receivesHTTP502. Do not claim what child3336 was or rerun inference.
+The blocked receipt's fence_committed=true tracks an earlier committed fence;
+startup success required that the handler already cleared its own hold.
+
+Owner requests that the command start needed components before checking. A
+minimal windowless HTTP-supervisor continuation is tested/staged, using protected
+pythonw.exe with its own inventory pin, separate from helper python.exe. It will
+reuse the accepted parity, preserve schema2/current data and all backups, and
+start once only after offline/lease/namespace checks. The canonical inference
+interpreter/model stay unchanged. No manual service restart, route/bearer change,
+unknown-child whitelist, or repeated GPU test. Live windowless acceptance and
+FORGE batch proof remain pending. Publication remains PAUSED.
+
+Checked startup: host kit `narrator-windowless-v1/Start-KnowledgeNetworkNarratorWindowless.ps1`,
+SHA `53faf5a77780804c40c5d57d36e0e300dd52f513284149be8fbd44f21f093c14`.
+Owner command is saved in the FORGE private mirror's Host-Windowless-Startup.txt.
+Run once as recorded Administrator owner. It starts the limited-owner windowless
+supervisor before health acceptance; it never calls parity or inference. Helper
+python.exe remains pinned separately from supervisor pythonw.exe. All13 live
+checkpoint hashes were read-only verified; schema2/current data, old code and
+accepted parity remain intact. It retains a consistent schema2 backup/own fence,
+both namespaces through startup and same-ledger verification. Task/process/auth
+checks remain strict, including zero children. No unknown-child whitelist.
+PASS:7 focused checks3.081s, including native pythonw no-console/no-children and
+401/401/200 loopback fixture; independent review PASS. Actual host task switch,
+new authentication/PSS and remote batch still NOT TESTED until command completes.
+Private validation narrator-windowless-validation-v7.private.json retained.
+No new model run or network/credential/Gateway change is needed for startup.
+
+## Historical checkpoint: narrator task disabled after v3
+
+Offline-v3 reached original-code/task backup and disabled the already-offline task,
+then failed its post-disable XML comparison. Retained snapshots show exact Ready3/
+enabled/0instances before, Disabled1/disabled/0instances after; no canonical server
+or listener. The blocked receipt says fence_committed=false. No ledger connection,
+model job, code switch or DB restore occurred. Original code and task backups remain
+in WORK/old-code and task-before.*. Captured private copy:
+`KnowledgeNetwork-Private/narrator-disabled-checkpoint-v1/`.
+
+A disposable native Scheduler test confirmed the bug: after setting Enabled=false,
+the same COM object's Xml is stale; fresh GetTask returns the correct disabled XML.
+The task was never run in that fixture. The exact checkpoint continuation is tested/staged as offline-v4, SHA
+`1d5276a4945a2588f013fbb9bf4bab2fd58a8cd216517fb0491aea57cfcc9b0a`.
+Checked owner command: private narrator-batch-offline-v4/Host-Offline-Continuation.txt.
+It pins six f226 receipts, exact disabled XML/SDDL and eight original/backup files,
+rejects later stages and reuses backups without repeating backup/disable.
+A hash-bound task-operation refresh fixes stale COM metadata for switch/start.
+All owner/lease/namespace/physical-ledger/model/parity gates and optional GPU
+handling remain. Thirteen focused checks PASS6.521s, including4 native Windows;
+independent review PASS. Actual recovery/parity/remote batch remain pending.
+Rollback remains manual, reviewed new source with batching disabled plus fresh
+startup UUID, preserving current DB; never restore schema1 over new records. Do not rerun v3, re-enable/start the old launcher,
+remove backups, or restart unrelated services. The installed Collector Windows
+service remains healthy, same workerID cb6ce3cd482148e7b8b0c8661ec8c6e9,
+companion enabled, no media hold, publication paused/scheduler disabled.
+
+## Prior host blocker: standalone listener absent
+
+Owner read-only diagnostics6ae507... andf52f2a... both passed imports, elevated
+recorded-owner/runtime flags/image and actual bundle validation, then stopped at
+`task_process_proof`: the fixed Get-NetTCPConnection query found no39110 listener.
+Fresh FORGE authenticated status now receives HTTP502. A prior post-failure health
+was PASS; the exit time/cause is not established. Do not attribute the outage to
+an updater mutation: neither original update nor diagnostics reached DB/task changes.
+The initial hidden Python exception is still not independently proven because
+live state changed before this diagnostic reached all original comparisons.
+
+Both reports/logs are retained under the existing private failure capture's
+`readonly-results/`. No inference, DB open/lock, task stop or route change occurred.
+The original task's State/Instances/LastTaskResult was requested read-only;
+the completed conditional handler can now check/refuse that state itself.
+Do not blindly restart the original launcher; its create-only startup files
+already exist. No old V2 recovery.
+
+### NVIDIA diagnostic correction
+
+The owner's offline-v1 attempt stopped at optional NVIDIA identity verification,
+before driver creation/task/DB/model changes. FORGE can verify the current file's
+version8.17.16.1714, NVIDIA signature and SHA0a9c58a7...696b42e; the failed host
+comparison's exact field is not yet known. Do not call this a changed driver.
+The optional inventory dependency was unnecessary. Revised source never executes
+an unavailable/unverified/digest-changed tool, records its exact availability
+reason privately and continues every mandatory task/owner/source/lease/physical
+ledger/model/parity gate. A skipped baseline proves no GPU availability or CUDA.
+The actual limited-owner parity remains required. Private evidence writes still
+fail closed. Source/full9 focused tests PASS5.718s (3native), independent review
+PASS. v1 and the unexecuted intermediate v2 draft remain retained.
+
+### Checked conditional offline continuation
+
+Source `Resume-KnowledgeNetworkNarratorBatchOffline.ps1`, exact SHA
+`9ed94fa1a858414675de5d33cb1442c81c95692c9c950421edcbfc002af1601b`,
+is staged in host kit `narrator-batch-offline-v3/` and mirrored privately on
+FORGE. Checked owner command: `KnowledgeNetwork-Private/narrator-batch-offline-v3/Host-Offline-Continuation.txt`.
+Run once from the recorded owner's Administrator PowerShell while GPU work is
+idle. This is a scoped mutation/inference continuation, not the read-only probe.
+The restricted SSH account cannot perform it. Standing owner authorization is
+already recorded; no new permission is requested. Actual live result is pending.
+
+It captures/reuses original helper1ec820...29ca6 definitions without `main`,
+preserves all captured inputs and refuses any prior update activity. It requires
+exact original task XML/source/owner/settings, Ready/enabled/zero instances,
+no canonical server process and no listener. Raw fixed task metadata is retained
+before comparisons. The existing single-byte spool lease must be free; both its
+namespace and the ledger namespace stay held through new startup/final physical
+ledger binding. Only the byte-range lease releases before the one task start.
+The handler reserves the loopback port, preserves original code/task/descriptors,
+disables only that already-offline task and rechecks it, then opens the same
+physically verified C-API ledger under the protected namespace. Exact nine
+completed jobs/schema1/no hold, a consistent original backup and a durable own
+fence are required. No old process is stopped, no database is replaced.
+
+Existing helpers prepare protected code and one Limited-owner parity task with
+the same narrator/settings. A verified signed NVIDIA tool records read-only GPU
+facts; no unrelated workload is changed. Only successful complete batch/parity/
+owned-process exit permits batching, task switch, one startup,401/401/200 and
+same-ledger binding. Existing route/bearer/model/reference/Gateway remain intact.
+
+PASS:8 focused checks in4.352s (5 pure,3 native Windows), including lease-held
+without listener, lock replacement/hardlink/rename denial, wrong physical ledger,
+writer contention and parser. Independent security review PASS. Source/failure
+validation receipt: `KnowledgeNetwork-Private/batch-offline-continuation-validation-v5.private.json`.
+Actual task switch, GPU parity, FORGE batch and manual rollback remain NOT TESTED.
+
+Rollback plan is retained before parity and is **manual, NOT TESTED live**:
+original task XML, original code/descriptors and consistent DB backup stay in
+place. After source/task/physical-ledger and idle/uncertainty review, use reviewed
+new source with batching disabled and a fresh startup UUID while preserving the
+current database. Never restore schema1 over schema2 activity, clear an unknown
+hold, restart the old create-only launcher, replay this continuation or choose
+another spool after an uncertain outcome.
+
+## Latest batch attempt: stopped before activation; do not replay
+
+The owner ran the pinned updater5002de3d...ba46 with private bundlec372224c...59a5d.
+Windows PowerShell5.1 raised NativeCommandError at the protected Python helper.
+Both redirected outer logs are empty. The actual helper SHA is exactly
+`1ec820f1123aab4d12d8719efc0a462f89e9db18e80d52b09523743542129ca6` and matches
+the reviewed generated template; examined old/new source/config/bundle/startup
+pins pass. No `old-code`, `update-review`, PowerShell failure receipt or batch-data
+directory was created. Pinned control flow therefore stopped before live database
+opening, fencing, task changes or model inference. This is a failed updater
+preflight, not a narration/model failure. Its exact Python exception is not yet
+recovered; do not guess at it or rerun the original updater/work directory.
+
+Earlier post-failure authenticated status was PASS with matching provenance/no
+hold; the later listener outage above supersedes that observation. No new inference. Private failure capture is under
+`KnowledgeNetwork-Private/batch-update-failure-733f0a0df80a4ddcbde6dea66e1e3a5c/`.
+The narrowed read-only diagnostic is tested and staged:
+
+- Host: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-batch-preflight-v1/Inspect-KnowledgeNetworkNarratorBatchPreflight.ps1`.
+- Exact SHA: `0aeba36ef751b2286f0945d3cd22cb7dfe16b1041bc024edb5c9cf55e52f9605`.
+- Checked owner command: `KnowledgeNetwork-Private/narrator-batch-preflight-v1/Host-ReadOnly-Preflight.txt`.
+
+It captures the exact failed helper, executes only its pre-main prefix and fixed
+read-only verification calls, and denies database/mutation handlers. It records
+runtime flags, owner, existing-file checks, task/process proof and original startup
+PID binding privately. `main` is excluded; no SQLite opening, fence, task/service,
+network or inference action occurs. The nonadmin bridge cannot run this protected
+owner-context check; the supplied single command requires the recorded elevated
+owner. No new permission is requested. It ran twice without mutation and isolated the current missing listener at
+task_process_proof; see the latest operational state above.
+
+The PS5.1 logging fault was reproduced with an owned synthetic Python exception:
+old native redirection produced0bytes; direct process capture retained the full
+traceback/exit code. Future updater source now uses Hidden Start-Process capture;
+this changes logging only and does not fix/retry the unknown original preflight.
+Focused combined tests21:17 passed/4 skipped, including native capture/parser;
+final startup-PID comparison's3 pure tests reran PASS. Independent security review
+PASS. Validation receipt: `KnowledgeNetwork-Private/batch-preflight-capture-validation-v4.private.json`.
+All failed/captured inputs and original prepared work remain in place. Full
+diagnostic-source CI44884421079/44884425284 passed atde47d20; new offline
+continuation hosted CI is tracked after integration. Root repeated its5 pure
+gate/order tests PASS0.497s and retention source preflight50 files PASS. Publication remains PAUSED.
+
+## Current result: real Short complete and owner-approved
+
+The owner watched and approved MP4 SHA
+`b77d0d341eabae4e36c38048673ea09269b0dfd00705062ad6691b87aa214fe8`.
+This is exact-render preview approval; **publication remains PAUSED**. PR20
+remains draft/unmerged. [Current execution results](FINALIZATION-RESULTS-2026-11-20.md)
+supersede all older blocked-bootstrap, missing-asset and pending-preview notes.
+Do not rerun any historical V3/V4/V5 installer command below.
+
+Real service deployment, local401/401/200 authentication, normal verified TLS,
+remote401/401/status PASS and forbidden-schema400 passed. Only private9443 was
+added; existing443/8443 and Gateway are unchanged. Pinned dedicated SSH health
+also works. No new policy change or Funnel/public endpoint.
+
+The actual Collector narration job `632b3b9a21b34e92a944aae80b478a81` succeeded
+at attempt1. All eight host/FORGE segment hashes match; joined PCM is exactly
+their concatenation:37.76s,48000Hz mono PCM16,1812480frames, WAV SHA
+`77a1448af4a4c4251afdd7498e19a93cb70735eb3917a2d0bd41a82ee3e070d4`.
+
+Final files are beneath
+`C:/Admin/Projects/KnowledgeNetwork-Private/final-video-20261120-9a672d28298d400f803b234ee26d9d87/project-final-real-v4/`:
+
+- `knowledge-network-50s-local-review.mp4`: exact50s/1500frames/1080x1920/30FPS;
+  full decode PASS. H264/AAC48k stereo, no detected black span.
+- `knowledge-network-review-v2.osp`: SHA
+  `033a328c119523b6fa764c79242f858a4df364509e81572c47a6a443952d88d9`;
+ 24 editable clips/five layers/three scenes/effects/eight measured captions,
+  ducked music, one48-frame dynamic intro and one234-frame original outro.
+  Save/reopen/real graphic edit/save/reopen PASS. Export job
+  `e98ae02ddd7640c1aaf5d5cddcc31ce4`, revision71, completed once.
+
+The owner's additional requirement is **one model load per complete narration
+job, all segments sequentially, then unload on completion/failure/cancellation**.
+Batch host/client source and focused/native synthetic tests passed; local full
+regression565/546 passed/19 skipped. Live batch parity/activation is still pending
+the reviewed elevated-owner updater: the nonadmin SSH identity cannot change
+the protected task/code. Current deployed host still uses canonical one-shot
+calls. New client multi-segment requests fail before submission until batch
+support is advertised; existing legacy receipts recover their original IDs.
+Reviewed updater SHA5002de3d...ba46 and private bundle SHA c372224c...59a5d
+are staged in `narrator-batch-update-v1` on both computers; the checked command
+requires one elevated recorded-owner run on BLACKHAT-BASE. The updater would fence/back up the original nine jobs before a two-segment
+parity task; this failed preflight did not reach those operations. Actual batch
+activation/remote acceptance remains NOT TESTED; never retry an uncertain update.
+Final hosted source regression44869843163/44869849916 passed (Windows581/558
+passed/23 skipped; Ubuntu581/470 passed/111 skipped; worker190 and WPF build).
+Durable synthetic receipts: `KnowledgeNetwork-Private/ci-durable-44869843163/`. Final updater16 tests:12 passed/4
+opt-in native skipped; those native cases passed separately before logging-only
+changes. Independent security review PASS.
+No second server, idle-resident model or automatic replay was introduced.
+
+Archive cleanup PASS:10 confirmed obsolete V3/V4 staging-code files,148390bytes,
+are under `KnowledgeNetwork-Private/old/2026-11-20-finalization/`. Per-file bytes,
+physical IDs/permissions and V5/nine retained records passed verification. No
+files deleted. Full paths/hashes/reasons/actual November21 dates:
+`KnowledgeNetwork-Private/finalization-archive-plan-v1/archive-result-v1.private.json`,
+SHA `1347c2be7f8b8400d617ad9171d7d86313c35f0c630a69d64366d7fbb84d669f`. Active media, receipts,
+credentials, runtime, four SSH auth files and rollback assets stay put. No host
+archive/ACL mutation. Old V2 recovery stays deferred; its task/ledger/five backups
+remain unchanged. See current execution results for the exact retained scope.
+
+## Historical log: do not rerun superseded bootstrap commands
+
+The following entries are preserved history. Current acceptance and the only
+remaining elevated batch step are above and in the linked execution results.
+
+## V5 bootstrap: native missing-task check corrected
+
+The owner's V4 attempt reported FileNotFoundException/0x80070002. A read-only
+native FORGE reproduction exposed a bootstrap bug: Task Scheduler's missing-task
+lookup marshals that HRESULT as FileNotFoundException, outside the old typed
+COMException catch. The new regression failed with the reported error before
+the fix. The catch now accepts only that exact HRESULT from the single GetTask
+lookup; other errors and existing tasks still block. No trust check was relaxed.
+The exact original host line remains inferred without its stack trace.
+
+PASS: five standalone tests, including native Task Scheduler, PowerShell ACL/
+parser and RSA fixtures;48 combined standalone/host/client tests in27.651s.
+Independent security review found no must-fix issue. Root/task filesystem entries
+remain absent; the old controller task file remains present. No host execution,
+service/route change, inference or credential transfer occurred here.
+
+Full hosted run44860391334 PASS for source `3f45dfee8b9b3764279630d4f217b0a60ab3dfd8`:
+Windows517/500 passed/17 skipped (including the native missing-task regression),
+Ubuntu517/412 passed/105 skipped, worker190checks and WPF build. Synthetic log/
+index ZIPs are retained under the private root's `ci-durable-44860391334/`.
+
+V5 is staged with verified identical local/host bytes. The service bundle,
+backend sources and still-valid V4 security proof are unchanged; no API review
+or model inventory was repeated. All previous stages remain retained.
+
+- Host stage: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-standalone-v5`.
+- Corrected source SHA: `b75fd594a9a1af5d9b45e934589f53115b940f4632ae536e11321061370e8eb9`.
+- Unchanged bundle SHA: `8f91a5a90427fe051e59c6e8309ea0f946710988fdb8d97e8b6844d4a720d3c6`.
+- Proof expires **2026-11-21 05:05:49 UTC / November21 12:05AM Eastern**.
+- Command and private receipts: `C:/Admin/Projects/KnowledgeNetwork-Private/narrator-standalone-v5/`.
+
+Use only V5's pinned command from the recorded owner's Administrator PowerShell.
+Its error wrapper prints the script stack if another stage fails. No automatic
+retry after mutation or alternate spool is permitted. Real remote narration and
+the final MP4 remain BLOCKED pending actual host bootstrap acceptance. Publication
+PAUSED; PR20 draft/unmerged. Prior V3/V4 notes below are retained history.
+
+## Bootstrap retry: elevation gate and refreshed proof
+
+The owner's V3 attempt stopped at the elevated/non-SYSTEM owner check, before
+installation changes. The standalone root remains absent. No task, service,
+route, ledger or narrator was changed by that attempt. The System32 working
+directory does not establish administrator elevation. Use an Administrator
+PowerShell window under the same recorded owner account, never SYSTEM or a
+different administrator account.
+
+The old proof expired before this reply. Fresh read-only capture/validation002
+passed: same five device ID/address bindings, explicit empty routes, unchanged
+approved v5 policy and ten byte-identical accepted previews. No policy write.
+The source and six host-execution pins are unchanged. V4 refreshes only the
+private proof and bound bundle; V3 is retained as attempt evidence.
+
+- Host stage: `D:/projects/knowledgenetwork/collector-narrator-v9-004/narrator-standalone-v4`.
+- Source SHA: `86c75d277f540b90a3cd7f63de53a9da4c71533e6ff883e5c5ecf40a661d5fe7` (unchanged).
+- New bundle SHA: `8f91a5a90427fe051e59c6e8309ea0f946710988fdb8d97e8b6844d4a720d3c6`.
+- Proof valid until **2026-11-21 05:05:49 UTC / November21 12:05AM Eastern**.
+- FORGE command copy: `C:/Admin/Projects/KnowledgeNetwork-Private/narrator-standalone-v4/Host-Narrator-Standalone-Bootstrap.txt`.
+
+Use only the refreshed command; never remove elevation, expiry or digest checks.
+This is a native Windows privilege requirement, not a request for renewed owner
+permission. All earlier app/body/CI acceptance remains applicable; real narration
+and the final MP4 are still blocked. Publication PAUSED; PR20 draft/unmerged.
+
+## November20 execution: full CI and native body PASS; host bootstrap BLOCKED
+
+Current verified application source `f7ccdb43fa7d509eae636948fd7dce4c43434dcf`.
+[Execution results](FINALIZATION-RESULTS-2026-11-20.md) contain actual paths,
+hashes, logs, launch instructions and the one required technical host action.
+
+- Full supported CI restored: Windows516/499 passed/17 skipped, Ubuntu516/412
+  passed/104 skipped, actual190worker checks and WPF build PASS in run44835027428.
+  Main conflicts resolved by ordinary merge, preserving owner instructions and
+  exact approved sources. PR20 remains draft/unmerged; publication PAUSED.
+- FORGE Tailscale/Collector existing services restored. Same worker identity,
+  authenticated health, paused publication and disabled scheduler retained.
+  Actual native dashboard17checks PASS; real Collector-to-OpenShot inspect job
+  `543e1edb7a694dda96995186431cadd3` succeeded through the user companion.
+- Real1080x1920/30FPS/40.6s editable body built; four native frames inspected.
+  Actual restart/reopen/graphic edit/save PASS. Current body-only .osp SHA
+  `820f8a3f0e41d844af7cdde654aba7111b93d7e500d5099357bbb9ce805161b0`.
+  New session `ead88b5f4ebe441983045e9c15809b9d`, revision4, PID6856 idle at
+  acceptance. Read latest body state/environment before continuing.
+- Old V2 recovery DEFERRED. The blocker is actual host execution, not accepted
+  D: ACL risk: SSH22230 times out; redirected drives cannot execute commands.
+  A reviewed independent limited-owner narrator bootstrap is staged at the host
+  kit's `narrator-standalone-v3`, with one owner command supplied. No new host
+  task/route/credential transfer/inference ran. Policy/inventory drift review and
+  official validation PASS, without policy changes; proof expires00:23:34UTC
+  November21. Do not skip expiry or blindly retry an uncertain bootstrap.
+- No new WAV, REMOTE_NARRATION_PASS, narration/captions/bookend assembly or final
+  MP4. Do not call the body project a completed50-second Short. Final mix owner
+  listening remains pending. All exact branding inputs and approved diagnostic
+  evidence are reused; no model inventory/smoke or broad branding search repeated.
+- Retention policy preserved. Ten conditional installed editor retention edits
+  retain source/rollback evidence; initial startup's fresh empty-cache removal
+  was identified and corrected. Known native failures and source fixes are
+  recorded, not hidden. No original assets/backups/controller data were removed.
+- Installer isolation, scheduled Assistant/reboot and separate Dot/CUA operation
+  remain NOT TESTED. Existing installer/IPC evidence retained; no live reinstall,
+  reboot, Gateway change or public upload.
+
+## CURRENT OWNER DIRECTIVE — November 20, 2026: finish the application and video
+
+**Read and execute [FINALIZE-APP-AND-VIDEO-CODEX.md](FINALIZE-APP-AND-VIDEO-CODEX.md) as the current master Codex continuation prompt.** The November 20 owner authorization is also recorded in AGENTS.md section 12. The older entries below remain preserved checkpoint evidence, not instructions to rerun blocked work.
+
+**Standing authorization:** The owner accepts BLACKHAT-BASE and its drives as the personal development environment, including the documented inherited D: ACL risk. For KnowledgeNetwork only, Codex may perform required PowerShell/Python operations and targeted project-specific Windows ACL, firewall, task/service, private-host narrator and Tailscale HTTPS 9443 setup **without repeated approval** once actual permissions, effective scope, access restrictions and rollback are verified. Preserve Gateway, unrelated host settings and existing Serve 443/8443. This is not authorization to bypass existing authentication, execute mutable files as SYSTEM, ignore a live SQLite ledger, broaden public exposure or publish.
+
+**Old V2 narrator-controller repair is DEFERRED.** Do not rerun held V2, stop the uncertain controller, mutate its ledger, or change broad D: permissions. Choose the smallest independent owner-context, properly isolated working narrator API and prove real FORGE-to-host audio with original job-ID recovery and exact provenance. Where the fixed restricted SSH bridge lacks a necessary operation, add a reviewed fixed handler or use a legitimate owner context; ask for only a one-time technical bootstrap if unavoidable.
+
+**End-to-end deliverable:** a real 50.0-second portrait OpenShot edit (1500 frames at 30 fps: 48 dynamic intro, 1218 narrated body, 234 original approved outro) with the exact recovered emblem and outro, natural VoxCPM2 voice, captions, animated effects, layering and ducked music. Save/reopen/revise/export/QC; deliver an editable .osp and final local MP4 with hashes. Reuse the existing brand, owner-approved voice, v5 tailnet policy, installed Collector and prior tests. Restore full retention-safe CI (110 legacy delete sites), review main conflicts but **do not merge PR #20**, and archive old files rather than deleting. Do not call historical mock/fixed-fixture results final acceptance.
+
+**Status at this documentation-only handoff update:** the referenced finalization prompt and owner authorization are written to the feature branch; no host command, network change, API transfer, GPU run, editor session or new MP4 was performed by this GitHub edit. Later Codex execution must report observed PASS / FAILED / BLOCKED / NOT TESTED results. Publication remains **PAUSED**.
+
+---
+
+## Current continuation: retention persisted; integrated fixtures PASS; live recovery BLOCKED
+
+Validated source checkpoint `4b7042281f116f0235e16892ed1126ae488d24cf`
+(code integration `c63065f`); this later update records evidence only.
+[Hosted run43772046214](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43772046214)
+completed: focused Windows50 discovered/45 passed/5 skipped11.365s; focused
+Ubuntu50/35 passed/15 skipped0.388s; tracking guards and unchanged-worker source
+comparison PASS. No new190 checks ran. Both legacy full jobs FAILED at the intended
+retention preflight before dependency installation/test execution, so the overall
+workflow is FAILED/BLOCKED_RETENTION_PREFLIGHT, not green. Private receipt:
+`KnowledgeNetwork-Private/retention-ci-run-43772046214.private.json`.
+
+Continue from `0ef8525cccaa875f4a077ae39ed1d6e150dae075` on
+`feature/collector-v7-overnight`. PR20 remains draft/unmerged; publication PAUSED.
+Current changes, precise evidence, archival paths/hashes and rollback conditions:
+[V9-RETENTION-AND-RECOVERY-CONTINUATION.md](V9-RETENTION-AND-RECOVERY-CONTINUATION.md).
+This section supersedes historical staging/integration gaps below.
+
+- PASS: owner ran the pinned read-only inspector. All four D: ancestors through
+  the kit grant Authenticated Users Modify/DELETE. Spool/ledger leaf and inspected
+  C: execution/report chains pass. The task was Running; no SQLite opened or task,
+  ACL, service, model/reference, Gateway, policy or route changed.
+- PASS, isolated only: new helper integrates guard-before-open C-API physical
+  connection identity, retaining exact task/process/ledger checks. Five native
+  Limited-task cases passed49.632s, including wrong-ledger, active writer and both
+  shutdown uncertainties. Public live entry stays disabled pending protected
+  deployment, watchdog, actual host binding and separate mutation approval.
+- PASS: focused50 discovered,45 passed/5 skipped18.816s; those five native opt-in
+  cases passed separately. Independent security/Ponytail review passed. Original
+  intent, all five backup/live old-pin pairs and rollback reverified unchanged.
+- PASS: AGENTS permanent archive policy, `/old/` ignore, retained fixture indexes,
+  existing-installer-output refusal. One inactive never-run951-byte draft archived
+  with exact SHA/security/physical identity; active/protected and previously
+  denied cleanup targets remain untouched. FORGE diagnostic reports/indexes and
+  fresh data fixtures stay in `C:/Admin/Projects/KnowledgeNetwork-Private`. The
+  native host report remains protected in ProgramData; executed task fixtures
+  remain in their separately checked protected TEMP roots. Four SSH auth files
+  stay put. Exact exceptions/evidence are documented in the continuation.
+- Prepared only: fixed ProgramData controller-data review plan, no migration
+  executor or live move. Current ledger/code pins remain unresolved.
+- PASS, synthetic/source scope: same-ID WAV/checkpoint recovery, retained partials,
+  serialized editor receipt finalization, bounded native-thumbnail contract and
+  40.6s body budget (1.6 +40.6 +7.8 =50s). Original approved branding reused.
+- BLOCKED: native single-frame attempt found existing OpenShot session unavailable
+  before thumbnail RPC; no running OpenShot process, new artifact, project change,
+  render or retry. Existing .osp SHA remains7d108fbe?fe5e92. Real remote narration
+  and completed editable narrated Short are still outstanding. No new listening
+  claim or `REMOTE_NARRATION_PASS`.
+- CI: legacy suite deliberately held by read-only retention preflight (110 deletion
+  sites); separate focused Windows/Linux checks validate new work. Previous full
+  hosted452-test/190-worker acceptance retains its historical scope. Hosted current
+  results are recorded above; overall CI is not represented as green.
+- NOT TESTED: isolated installer fresh/upgrade/rollback, scheduled Assistant and
+  reboot acceptance. Pipefix002 installer and installed IPC correction reused;
+  no rebuild/deployment or unnecessary190-check rerun. No reboot authorized.
+
+No repair/migration approval is requested yet. Precise remaining prerequisite:
+prove the real controller's persistent ledger file ID and helper connection match
+under a protected namespace despite unsafe D: ancestry, with bounded shutdown and
+rollback evidence. ProgramData is the future data proposal, not a current fix.
+No complete end-to-end Short command has passed these missing live stages; reuse
+existing documented interfaces rather than inventing a success command.
+
+## Recovery preparation: FORGE evidence PASS; live prerequisites still BLOCKED
+
+Continued from `dabd57ed70c5442cd4e0bff66a2c5f73dd956297` on
+`feature/collector-v7-overnight`. The blocked V2 repair is not rerun or edited.
+No host task, file, ACL, service, credential, narrator, model, Gateway, policy or
+Serve route was changed during this preparation. The four live SSH files remain
+at their protected user-profile paths. All new private FORGE evidence is under
+`C:/Admin/Projects/KnowledgeNetwork-Private`.
+
+New read-only full-ancestor inspector and internal ledger/namespace evidence
+library are source-only, not installed host operations. Detailed design,
+prerequisites, scope and rollback conditions:
+[V9-NARRATOR-RECOVERY-PREPARATION.md](V9-NARRATOR-RECOVERY-PREPARATION.md).
+The inspector observes all D: ancestors, same-handle ACL/identity, C: execution /
+report ancestry and task state; unknown/reparse descendants stay uninspected.
+It opens no SQLite and starts no Python or task action. Exact source SHA-256:
+`6b5a48514c0691cb46a637c7310af34c95ee3e79c1c08f6a36277501de482f8b`
+(12566 bytes, exact checkout bytes retained). A review bundle and concrete
+staging/rollback plan are prepared ONLY on FORGE in
+`KnowledgeNetwork-Private/narrator-recovery-readonly-v1`; nothing was host-staged
+or run. Native host execution needs an owner-side bootstrap because the fixed
+SSH command set cannot execute it. No general execution endpoint was added.
+
+Read-only preservation again verified the original prepared intent and all five
+backup/live old-pin pairs. No stop/start/completion markers were present. Receipt:
+`narrator-recovery-preservation-v1.private.json`. Original rollback retained.
+
+New tests: ancestor inspection 7 native + 1 byte-pin regression; ledger probe
+11 (9 native + 2 contracts). Independent security/Ponytail review PASS. Three
+serialized disposable FORGE Limited-task composition tests PASS in 27.741s:
+single confirmed native stop, fault before native stop with child still alive,
+and lost acknowledgement after actual native stop with held exit proof. Both
+uncertain cases retain one intent/attempt and never retry or call Ready/start.
+Four native rollback guards plus eight existing idle-stop tests PASS in 10.612s.
+Full local integration regression PASS: 449 tests in 131.426s, 437 passed and
+12 skipped. The three opt-in composed tests passed separately; skipped tests
+retain their original entitlements/scope. Hosted run43762391000 passed Ubuntu
+and Windows build/190, but Windows tests FAILED one POSIX positive control
+(449 run, 1 failed/12 skipped): BOOL success did not change the expected target.
+The fixture's Win32 filename buffer now has an explicit UTF-16 terminator with
+correct byte length and ABI offsets. Four filename alignments each require real
+bytes, source disappearance and exact target/source physical ID. No source probe,
+inspector or trust check changed. Eleven probe tests PASS normally (3.471s) and
+through a real 8.3 TEMP alias (4.590s); independent diff review PASS. Fresh hosted
+validation: run43762949968 passed all new recovery tests, Ubuntu and Windows
+build/190, but FAILED an unrelated old capture-test float comparison
+(90.00000000000006 versus90). The mocked clock is now deterministic1000 with
+exact deadline1090; no production timeout changes. Ten capture tests PASS2.047s.
+Both failed hosted runs are retained as FAILED.
+[Hosted run43763988119](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43763988119)
+PASS for exact source `959f8ce2d9459410fda41e5b229cc58eec4866b4`:
+Windows452 tests (440 passed/12 skipped,43.961s), Ubuntu452 tests
+(365 passed/87 skipped,4.387s), Windows build/dashboard and190worker checks;
+media/credential tracking guards passed. Three opt-in Limited-task cases were
+accepted separately on FORGE; hosted CI does not exercise their entitlement.
+No host inspection, live repair or media acceptance is implied.
+Native receipt: `narrator-recovery-native-validation-v1.private.json`.
+
+Remaining trust prerequisite is precise: actual host task/owner/image/creation
+must be bound to the canonical controller's persistent open SQLite file ID,
+matched to a protected namespace. The helper's own SQLite connection must also
+be physically bound to that same ledger with guard acquired BEFORE DB open.
+The composed fixture acquires its guard after helper DB open and does not prove
+that final atomic binding. PSS partial coverage and cooperative deadlines are
+not full process attestation or a hard watchdog. No live-ready stop/cutover is
+claimed; no repair/cutover approval is requested before these gaps and an exact
+procedure/rollback are resolved. Even a live writer lock requires owner approval.
+
+Direct helper-connection identity method now has three native C-API fixtures
+PASS1.404s: guard BEFORE an existing READWRITE database open; public file-control
+29 returns the borrowed main HANDLE whose FileID128 matches the guard; wrong
+same-name database+decoy does not match; exact connection's writer lock/contention
+and actual INSERT/ROLLBACK preserve the sentinel. No borrowed handle is closed
+by the probe. Independent C-API/capture combined suite PASS13 in3.289s. This
+requires a future reviewed production-helper integration; old V2/stdlib SQLite
+source and composed fixture are unchanged, so their integration gap is not
+retroactively marked passed. No PSS causal-delta pseudo-attestation was added.
+Actual protected host SQLite DLL metadata:3.50.4,1584864bytes, selected37-file
+inventory hash MATCH; no host execution/copy. Exact private receipt:
+`sqlite-public-capi-identity-a824f62c69d04075b94c684467450992.private.json`.
+
+Long-term minimum design: retain protected ProgramData execution code; evaluate
+only a separate private controller ledger/startup-log child there after a proven,
+approved stop. Leave the running controller and D: narrator/job assets untouched;
+no broad D: permission changes or old trust-check exceptions are proposed.
+
+Automatic approval review rejected cleanup of four failed disposable test roots
+with 'blocked by policy'. Five files / 40960 bytes remain; no retry or bypass.
+Private exact inventory:
+`recovery-probe-fixture-cleanup-45dbe5cde8704b93a267a87f80703b14.private.json`.
+Successful fixture temp roots/tasks were cleaned normally. Original backups are
+excluded. Publication remains PAUSED; PR20 remains draft/unmerged.
+
+## Current state: native trust blocker confirmed; FORGE evidence consolidated
+
+The owner executed the read-only trust check. Actual native result:
+`BLOCKED_TRUST_PATH_IDENTIFIED`. The rejected ancestor is
+`D:/projects/knowledgenetwork/collector-narrator-v9-004`: inherited Authenticated
+Users Modify includes DELETE (`0x10000`, checked ancestor mask `0xD0040`). Native
+file identity and ACL were stable across the observation. The fixed NarratorControl
+task was Running with LastTaskResult 267009 (`0x41301`, still running). The check
+changed no ACL, opened no SQLite database, launched no Python or stop operation.
+The full private native evidence remains at
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/broker-update-v1/review-trust-9f9b3fd8efec42eb83cbc7690e034280.private.json`
+on BLACKHAT-BASE; it is not committed. The six preceding protected targets passed.
+Higher D: ancestors remain unverified because the original gate stops at its
+first rejection. Do not weaken that gate or change unrelated drive permissions.
+
+The failed v2 repair itself remains held. Reconciliation retained exactly its
+prepared intent, five original backups and generated rollback; live old pins
+were unchanged and no stop/start/completion/replacement markers existed. It
+stopped before protected Python, SQLite locking, process discovery, Task.Stop,
+task disable, replacement or task-ACL changes. Prepared intent SHA-256:
+`e0b4d95234d48b784d53379af46b82582887f9b7256cedfda45f795a32f2a1d5`.
+Do not rerun the repair or choose another evidence directory.
+
+Independent security review: tightening only the kit does not prove its entire
+ancestor chain is safe. A no-delete-sharing namespace guard alone cannot prove
+that the already-running controller still uses the current ledger pathname.
+Copying SQLite elsewhere does not lock its live database. Any bounded recovery
+must prove the exact held controller's ledger file identity, protect that same
+namespace through the existing empty-ledger lock and stop, and pass native
+replacement/race/SQLite tests before use. No speculative guard, process-kill
+fallback, new endpoint or ACL change was implemented. Host repair/API acceptance
+remains BLOCKED; no further owner command is released on an untested assumption.
+
+At the owner's request, FORGE commands/review evidence now live together at
+`C:/Admin/Projects/KnowledgeNetwork-Private`, outside the public repository.
+148 files (601482 bytes) were moved on the same volume, not copied; every file's
+SHA-256 and security descriptor were compared before/after. A receipt-only
+Measure-Object error occurred after those verifications; the state/counts were
+reconciled and the receipt written without repeating file moves. Full private
+inventory: `private-evidence-consolidation.private.json`. No original evidence
+was deleted or rewritten.
+
+Only four live SSH authentication/configuration files remain under
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/host-exec-client-v1`:
+`id_ed25519`, its public key, `known_hosts`, and `ssh_config`. The native Projects
+ancestor grants Authenticated Users Modify; a protected sibling vault alone
+cannot establish trusted ancestry. Keeping the existing authentication chain
+avoids reducing its protection. No ancestor ACL was changed. FORGE SSH `health`
+PASS after the move: pinned host, dedicated nonadministrator identity and the
+same twelve fixed capabilities. Windows Credential Manager is unchanged.
+Historical receipts and the already-applied policy script retain original bytes
+and old paths as historical evidence, not runnable current instructions. The
+new evidence directory is an archive, not a privileged execution root; command
+files are held historical records, not trusted new instructions. Future command
+authorization/integrity must come from reviewed source and an out-of-band hash.
+Tailnet API capture/validation examples are HELD at the archive location because
+the unchanged helper correctly rejects its writable ancestor namespace. No API
+call or policy action was attempted; existing v5 receipts retain their scope.
+
+Current FORGE private command files, attempted-command records and review
+receipts are under `C:/Admin/Projects/KnowledgeNetwork-Private`. Source test
+artifact outputs now use the sibling `KnowledgeNetwork-Private`, preventing
+new diagnostic outputs in the old home directory. Eight related unit tests PASS
+in 5.616 seconds; the prior eleven-test diagnostic/idle-stop validation remains
+applicable. Ponytail FULL review checked all three output callers, native move
+verification, private/public separation and untouched SSH references. No UI,
+installer, GPU, inference, native render, route, credential, reboot or publishing
+operation occurred. The repository remains `C:/Admin/Projects/KnowledgeNetwork`.
+PR20 remains draft/unmerged and publication remains PAUSED.
+
+CI follow-up: [run 43755999700](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43755999700)
+for preceding commit `7e64c89` FAILED on Windows: three diagnostic tests rejected
+checkout bytes against the original source hash. Ubuntu and the Windows build/
+190 worker checks passed. Git's CRLF conversion changed the LF-pinned stop
+helper from 23371 to 23715 bytes; the real host copy and its pin were correct.
+`.gitattributes` now preserves exact bytes for only the two pinned diagnostic/
+stop scripts. No script bytes or integrity checks were changed. A cross-platform
+raw-hash regression plus the native/related fixtures PASS: 12 tests in 10.130
+seconds. An isolated checkout with `core.autocrlf=true` preserved both exact
+hashes and its temporary directory was removed. [Run 43758194484](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43758194484)
+resolved all pin failures; Ubuntu and Windows build/190 passed, but one Windows
+fixture still FAILED its lexical path comparison. Actual 8.3 TEMP alias injection
+reproduced that failure locally. The fixture now compares native volume/file ID
+against the expected ancestor, retaining the exact SID/masks and unchanged-ACL
+assertions. Four diagnostic tests PASS with normal TEMP (2.585 seconds) and an
+isolated protected 8.3 TEMP alias (2.619 seconds). An initial alias fixture also
+exposed its own unprotected parent; only that fresh disposable fixture was
+protected, then removed. No existing ACL or host script changed. [Fresh hosted run 43758577112](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43758577112)
+PASS for exact source `7d663a56f645fdf9640bdb6e39b68b0001945236`:
+Windows 427 tests (418 passed, 9 skipped; 40.445 seconds), Ubuntu 427 tests
+(362 passed, 65 skipped; 4.503 seconds), and Windows build/dashboard plus 190
+worker checks. Tracking guards passed. Independent final review PASS. Both
+preceding failed runs remain FAILED. This is source/checkout validation, not
+host repair, GPU, remote narration, native video or scheduled/reboot acceptance.
+
+## V2 repair ready; full hosted validation PASS
+
+Source checkpoint `d7a1050455559fb91048553b98189d6c168b8888` on
+`feature/collector-v7-overnight`. PR #20 draft/unmerged; publication PAUSED.
+Historical pre-attempt state: V2 was READY FOR OWNER BOOTSTRAP, NOT EXECUTED. Installed dispatcher86b94a... and
+broker config2b38... were rechecked unchanged before releasing its command;
+no host `broker-update-v1` execution state was present at that check.
+
+[Hosted run 43751928202](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43751928202)
+passed all three jobs for that exact source: Windows 423 tests (414 passed,
+9 skipped), Ubuntu 423 tests (361 passed, 62 skipped), and Windows worker/dashboard
+build with 190 worker checks. Media/credential tracking guards passed. Prior
+failed runs remain failure evidence. This does not establish actual host repair,
+GPU execution, remote narration or native editor acceptance.
+
+CI exposed real File.Replace owner/group and inheritance-metadata changes.
+Both forward repair and rollback now stamp ONLY new temporary files with the
+recorded destination security and retain strict whole-descriptor/byte checks.
+Changed files lacking the processed AutoInherited (AI) descriptor flag, including
+protected-without-AI files, are refused BEFORE any intent, stop or write. Existing
+target descriptors are never normalized to make this pass. Genuine native legacy
+negative fixtures remain unchanged; supported processed-descriptor fixtures pass.
+
+Native text piping can add one or two UTF-8 signatures despite caller settings.
+Strict JSON now carries raw bytes as ASCII Base64 on stdin, separates transport
+signatures from input, then validates strict UTF-8 with one optional input BOM.
+Duplicate keys, nonfinite tokens, malformed UTF-8 and double input BOMs remain
+rejected. Unicode survives ASCII/UTF-8 writers. Intermediate diagnostics and
+encoding workarounds were replaced with the smaller shared helper. Historical
+private installer ab682... and resume evidence are unchanged.
+
+The original 9-file bundle is reused, SHA-256:
+`e957fdff5af63b9ae6cfad732635221478536cebc8b787d9e80ae2fd8f0c1d2d`.
+New host tools folder `narrator-control-update-tools-v2` has 2 files/53708 bytes;
+no interpreter, model or media duplicate. Exact current pins:
+
+- Updater: `7af50035b582349ea273c45c16a0dfd915f261765e6a50cffdd8a32ee2dc0cff`.
+- V2 installer/helper: `98cc2d6b712901dd956f8265701b18c8dfe58900c979ff5579d22b0189342838`.
+- Reused v1 stop helper: `3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb`.
+
+The former ready command is now preserved as
+`C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Repair-v2.ATTEMPTED.txt`.
+Do not rerun it; the current read-only command is above. At the preceding
+checkpoint it was intended for elevated BLACKHAT-BASE PowerShell. Standing authorization covers this; the SSH identity cannot modify
+protected code/task security technically. Earlier commands/updater remain HELD.
+Preserve any blocked/uncertain result and reconcile instead of rerunning or
+selecting another directory. V2 starts no narration and changes no Serve route
+or credential. After its result, perform actual FORGE task/pipe/lifecycle tests.
+
+The original narrator/ref/model/settings, rights flags, worker database and
+installation, exact brand sources, GPU/listening evidence and backups are
+preserved. No new WAV, native project/export, installer deployment or scheduled/
+reboot proof was produced. No 9443 route was activated. Software redistribution
+clearance remains separate from the retained private-use rights findings.
+
+Cleanup: obsolete generated Resume command and disposable startup probe were
+removed after their receipts/replacement were verified. Automatic approval review
+rejected later File.Replace fixture cleanup, returning only "blocked by policy".
+No bypass or later deletion attempt was made. Private inventory: 6 exact known
+roots, 19 files, 11 child directories, 67 logical data bytes. Receipt:
+`C:/Admin/Projects/KnowledgeNetwork-Private/FileReplace-Known-Leftovers-7ff88279e8a94271b39b30f9d7ff554f.private.json`,
+SHA-256 `965fa69481b450c891be7afcdd5dc8d7b38911b527cc386c89a49821e81f464f`.
+Original source, working runtime, models and rollback backups are excluded.
+
+Ponytail FULL source/security/diff review completed, including the final carrier
+and descriptor precondition. New checks addressed observed failures; prior
+passed GPU/media evidence retains its scope. All following sections are history;
+the v2 pins and command above supersede the initial staged repair.
+
+## Owner task running; narrator control pipe correction staged
+
+Branch `feature/collector-v7-overnight`; source/test checkpoint
+`7cfbf7d4e06524fc14d36ea2c6e1f01659f1857c`, continuing from ce79a341.
+PR #20 remains draft/unmerged. Publication PAUSED; production scheduler remains
+disabled. The working Collector installation/database and its already accepted
+pipe-trust fix were preserved. This is the separate new narrator-control pipe.
+
+**PASS observed deployment progress:** the owner completed the checked
+continuation. Actual installed dispatcher SHA86b94a... exposes 12 fixed commands;
+FORGE SSH health passed under the dedicated nonadmin identity/pinned host key.
+The owner reports its InteractiveToken/LeastPrivilege task Running. **BLOCKED
+actual pipe acceptance:** the first `narrator-reconcile` returned
+`broker_unavailable` before sending request bytes. A private startup database
+copy has both expected tables and zero rows; it is not a live shutdown lock.
+
+Root and independent security review reproduced the precise ACL defect with an
+actual Windows restricted token: old 0x120103 fails with Win32 error 5;
+corrected 0x120183 permits access and still denies additional pipe instances.
+Earlier same-owner tests had full access and missed this boundary. Source now
+also handles early disconnects, preserves unread replies and uses exclusive
+Windows binding on the actual HTTP listener. New fixed native task status/start
+commands use read-execute permissions only and no caller shell or paths.
+Private startup records retain redacted stages; no secret/error text is logged.
+
+**PASS validation:** combined 103 tests in 73.132s, 101 passed and 2 opt-in native
+task fixtures skipped. Both fixtures separately passed actual FORGE execution:
+fixed-task validation/single benign start, and empty-controller stop with a held
+process identity, SQLite writer lock and disabled-task Run rejection. The
+idle-stop suite's 9 tests passed in 24.594s including actual PowerShell5 STDIN
+program entry and durable blocked-stage evidence. Updater 9 native focused tests
+passed in 15.139s including real byte/ACL rollback and empty-marker handling.
+The combined run includes the client/host contract integration regression;
+fixtures do not count as actual host/GPU narration. Independent final security
+and Ponytail FULL review found no remaining must-fix before staging.
+
+**STAGED, NOT EXECUTED:** fixed host folders `narrator-control-update-v1`
+(9 source/manifest files) and `narrator-control-update-tools-v1` (2 reviewed
+scripts) total 163648 bytes. No model, interpreter or media copy was created.
+Bundle manifest SHA-256:
+`e957fdff5af63b9ae6cfad732635221478536cebc8b787d9e80ae2fd8f0c1d2d`.
+Updater SHA-256:
+`df802944a2fc9e5faec5a8874e723efa15dd5d92d95e393cb52694dfaf21481b`.
+Empty-stop helper SHA-256:
+`3813b6d5655d7f9fe262a90266418b11a27032fa7cdf33a79fedac5dc5e0adfb`.
+Actual protected host interpreter metadata remains 3.14.10; project tests used
+the existing FORGE Python 3.13.17 venv. Protected interpreter exe/package pins and the original manifest
+42f270ac... were checked before staging; the heavyweight model inventory was
+reused. Canonical narrator/ref/model/settings and rights flags were not changed.
+
+The repair requires the already authorized owner-side elevated bootstrap because
+the restricted SSH identity cannot write protected code/task permissions. Open
+`C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Repair.txt`
+on FORGE and run its one captured-byte/hash-checked line on BLACKHAT-BASE. It
+refuses another machine. Preserve any blocked/uncertain result; never retry
+blindly. The source repair is concrete and independently reviewed; this is a
+technical privilege boundary, not a new request for project permission.
+
+The narrow stop helper holds BEGIN IMMEDIATE across exact empty schema/row
+checks, one Task Scheduler Stop, held process exit and Task Ready confirmation.
+It refuses accepted work, an owned 39110 listener or uncertain identity. Scheduler
+Stop was NOT proven graceful; no direct process kill/fallback is provided.
+The task is disabled with zero instances during replacements; originally
+disabled tasks stay disabled. Original bytes/ACL/task security and checked
+inactive-only rollback are prepared before mutations under
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/broker-update-v1`.
+That directory will be created only by actual bootstrap; do not claim it exists
+yet. The already existing `broker-upgrade-v1` backup/rollback remains intact.
+
+Private staging, acceptance and cleanup receipts are under the protected owner
+profile. The obsolete generated Resume command was removed after hash-checked
+replacement; the disposable FORGE startup probe script/directory were removed
+after its 81-byte result was retained. Original host scripts still required by
+the repair and all backups/private evidence were retained.
+
+**Remaining:** host repair/pipe/API lifecycle acceptance, unmanaged foreground
+39110 handoff if still occupied, dedicated FORGE bearer and private HTTPS route,
+one genuine remote request with matching PCM receipt, and final native video.
+The earlier local 401/401/200/400 evidence and owner-approved 3.04s WAV remain at
+their original scopes. No new narration or listening test occurred. All four
+exact brand assets are recovered; no final project/export was created this turn.
+The staging pipefix installer remains unchanged/undeployed; isolated upgrades
+and scheduled/reboot acceptance remain NOT TESTED. Approved v5 tailnet policy
+is retained; no 9443 route, Gateway, firewall, public upload or merge occurred.
+
+Skill log: actual installed Ponytail 5.3.3 SKILL.md and ponytail-review/SKILL.md
+were read; FULL mode is active. Source/callers, trust boundaries, fixtures and
+rollback were reviewed. Prompt Sensei is unavailable and was not claimed used.
+There was no UI change or new UI/UX/Taste acceptance claim.
+See [the detailed current repair](V9-NARRATOR-CONTROL-REPAIR.md).
+
+## PowerShell5 atomic replacement corrected; checked continuation staged
+
+Owner ran the reviewed control bootstrap. It stopped before task registration:
+PowerShell5.1 bound the `File.Replace` backup `$null` as an empty filename and
+Windows rejected the path. This was an installer compatibility defect, not a
+changed model or pipe-trust regression. Root reproduced it on disposable FORGE
+files. Both deployment and rollback now use the actual typed-null value
+`[System.Management.Automation.Language.NullString]::Value`. The native
+regression executes both production AST calls and verifies new bytes, consumed
+temporary source, no extra backup, and exact destination ACL preservation.
+
+Actual host read-only reconciliation: live dispatcher remains old SHA637c92f...
+(17469bytes), pending `.next` remains new86b94a...(21347bytes). All6 package
+files, launcher, broker configuration,37 runtime files, private manifest and
+shared SSH config match their pins. Upgrade has exactly the original prepared
+receipt,41-entry ACL-before receipt, original dispatcher backup and failed
+rollback. None was deleted/recreated. No task absence or native ACL success is
+inferred from redirected storage; those are mandatory continuation gates.
+
+The narrow `host-tools/Resume-KnowledgeNetworkNarratorControl.ps1` checks that
+exact pre-replacement state, native task absence, fixed local source path and
+drive, exact owner/bridge/config/receipt types, all byte pins and all41 current
+ACLs equal to the recorded originals plus the already-applied owner RX rule.
+It rewrites no existing ACL and does not rerun account/runtime setup. It
+preserves the old rollback and creates the corrected
+`broker-upgrade-v1/rollback-source-v2.ps1` before atomic replacement, then runs
+only the fixed reviewed limited-task registration tail. Advanced/drifted state
+fails closed; do not rerun a failed or uncertain continuation.
+
+PASS:5 focused native continuation tests;12 corrected installer/helper tests
+(2 existing opt-in task fixture skips);60 combined regression tests in52.197s
+(the same2 skips). Root also tested the actual host's serialized prepared
+receipt/config and exact old-rollback derivation using production helpers,
+without claiming native host execution. Prior383-test and separate task/GPU/
+media evidence retain their original scopes; no unnecessary whole-suite repeat.
+Independent security/Ponytail FULL review PASS. No host task, inference,
+listener, networking, policy, Gateway, publication or Collector install action
+was performed by root this turn. The approved/post-verified v5 policy remains.
+
+Corrected bootstrap SHA-256:
+`ab682e594409f35f4650f1418a8541fe8d63b8e6e4b5981bfbe8c85ef702610c`.
+Continuation SHA-256:
+`eaf54f32301a50dbeb6d41b88e28e3bd2552fa900e565ed89465f33a1fd58e79`.
+Two source files staged under host kit `narrator-control-resume-v1` (49703bytes);
+original bundle96d39745... is reused. No runtime ZIP/package/model duplication.
+On FORGE open `C:/Admin/Projects/KnowledgeNetwork-Private/Host-Narrator-Control-Resume.txt`
+and run its single captured-byte/hash-checked line in the same elevated
+BLACKHAT-BASE PowerShell. Permission is already authorized; the existing closed
+four-command endpoint cannot perform this privileged continuation technically.
+Obsolete generated full-installer command files were removed after hash-checked
+replacement; original host source, prepared data, ACL evidence and rollback
+backups remain. Do not use the historical Setup command below.
+
+Actual host continuation/task/pipe acceptance remains NOT TESTED. HTTPS9443 is
+OFF; remote narration and finished native video remain pending. Publication
+PAUSED; PR20 stays draft/unmerged.
+
+## V5 policy applied/post-verified; restricted narrator control staged
+
+Branch `feature/collector-v7-overnight`, continuing from accepted checkpoint
+`18006d9df188a486ee334f484fe4d9daf6d75ffc`. PR20 draft/unmerged; publication
+PAUSED. No Collector rebuild/install, inference, render or public upload.
+
+**PASS actual tailnet remediation after explicit owner approval.** Original
+`grants[0]` allowed wildcard source/destination/IP permissions; no overlapping
+network ACL/group/tag rule restricted9443. Actual Admin API collection confirmed
+five devices/ten addresses and all five advertised/enabled route array pairs
+explicitly empty, including no exit defaults. Missing tags were not interpreted
+as proof of no tags. SSH and identity configuration were preserved.
+
+V5 passed20 official tests/400 valid same-family assertions and independent
+review of10 previews. Owner explicitly answered "Approve v5 policy only",
+accepting static-inventory maintenance and reserved TCP destination-port0 limits.
+Approved candidate SHA-256:
+`c96c6e7c4682625ae1b6e0aba21e52bd9d697b6c76b71d539a8f0cc986235d19`.
+Inside-script fresh inventory/routes/baseline checks preceded ONE conditional
+POST with live ETag/If-Match and fsynced intent. HTTP200; no update retry or
+automatic rollback. Tailscale normalized representation. Stored SHA-256:
+`35697bcb6e06a9b2047d6056ab847fcff31f2d054ca8da7ba8e6a97222b10335`.
+Independent recursive typed equality proved all approved/returned/stored values,
+array orders and five sections equal. Original normalization-blocked receipt
+remains intact. Actual stored-policy validation passed again;10 post-apply
+previews match approved semantics. Current443/8443/Gateway permissions preserved.
+Original rollback policy SHA-256:
+`a143952dfa2a51062e4bf003801b597c47fcc4edcb80d5ada9a4992c3b7fd86c`.
+See [the full current policy review](V9-TAILNET-REMEDIATION.md).
+
+New/renumbered destinations and approved subnets need reviewed policy updates;
+remove/update the FORGE allowance before IP reassignment. This is not preserved
+future wildcard behavior or all-raw-packet equivalence. Native ICMP/live
+unauthorized-peer rejection are NOT TESTED. **HTTPS9443 remains OFF.** No Serve,
+Funnel, firewall, Gateway, narrator process or shared SSH configuration changed.
+
+Private evidence (relocated): `C:/Admin/Projects/KnowledgeNetwork-Private/` directories
+`tailnet-api-live-002`, `policy-validate-004`, `policy-apply-001`,
+`policy-postapply-001`. Host review pack:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/private-service-v9-001/review/tailnet-remediation-v5`.
+Original/candidate/diffs and failed diagnostic attempts retained privately.
+The successful approved POST proves the API key has write capability despite
+its ReadOnly target name. Replace/revoke it with a strictly read-only OAuth
+access token for continuing audits; no further mutation is authorized. The
+earlier exposed key must be revoked if not already done; root never used it.
+No credential value entered source/Git.
+
+**PASS source preparation; NOT DEPLOYED host control.** Eight exact operations
+are implemented through one fixed identity-checked local pipe: narrator-health,
+narrator-validate, narrator-start, narrator-stop, narrator-credential-ensure,
+narrator-verify, narrator-diagnostics, narrator-reconcile. The limited owner
+runner reuses the existing HTTP/store/manifest/credentials. It never runs the
+writable inference environment as SYSTEM/elevated, adopts an unowned39110
+listener, sends it a bearer or cancels active work on control shutdown. Durable
+UUID history includes lost finished replies; no hold-clear/replay operation.
+Source/artifact pins, private child ACLs, PCM receipts and audit are checked.
+Details: [narrator control](../narrator-control.md).
+
+One elevated host-owner bootstrap remains technically necessary: the accepted
+four-command endpoint cannot write protected code/register the task. Standing
+authorization already supplies permission. Reviewed sources are staged in host
+kit `narrator-control-setup-v1` and `narrator-control-deploy-v1` (139499bytes;
+no model/runtime ZIP duplication). Installer SHA-256:
+`689a32707edb995b2d6f81d83e7e59aa7fe60ecf89384d0d8572bc1dbd5f2761`;
+bundle-manifest SHA-256:
+`96d39745cb4e31bc9121a5836f1b73f1e3718e8cfda74541f898e6ac049b004d`.
+Run the captured-byte/hash-checked single line in FORGE's
+`output/Host-Narrator-Control-Setup.txt` from elevated BLACKHAT-BASE PowerShell.
+It starts only the limited controller task, not narration or a route. Preserve
+any failure; never blindly rerun. Existing rollback/source remain intact; the
+new bootstrap creates checked source/ACL rollback before mutation and refuses
+running/queued-task rollback.
+
+PASS:383 repository tests in107.160s;7 skips (5 preexisting FFmpeg,2 opt-in task
+fixtures). Both isolated FORGE task fixtures separately PASS: registration/
+export/security and actual limited-owner process/token query grants. All created
+tasks/folders removed. Native platform normalization defects were fixed before
+host staging. Pinned CPython3.14.10 passed72 compatibility checks; its temporary
+37-file extraction was removed. Independent security/Ponytail FULL review
+applied. No UI/design gate or unavailable Prompt Sensei usage claimed.
+
+Private-output guards correctly rejected C:/admin's delete-capable untrusted
+ancestor. No unrelated ACL was changed. New API evidence and unchanged-key,
+independently pinned client config use the protected owner-profile project root:
+`%USERPROFILE%/KnowledgeNetworkCollector-Private/host-exec-client-v1/ssh_config`.
+Post-policy actual SSH health PASS, nonadmin/four live capabilities. Old copies
+retained for rollback. Reference/script/declaration/57-artifact manifest small
+pins match; no4.96GB inventory rerun. Local-use/monetized-audio findings remain
+separate from uncleared narrator dependency redistribution.
+
+BLOCKED/NOT TESTED: new host task/pipe/controller acceptance, deliberate handoff
+from existing foreground39110, managed lifecycle, FORGE bearer/route setup and
+REMOTE_NARRATION_PASS. Exact approved brand originals including badge remain
+recovered. Native plan:48 intro +1218 body +234 outro =1500frames/50s; actual
+speech/caption timing awaits remote PCM. Existing synthetic .osp/MP4 preserved;
+no completed branded Short claimed. Installer pipefix-002 remains unchanged/
+undeployed; isolated upgrade and scheduled Assistant/reboot limits unchanged.
+
+## Dedicated host SSH: actual FORGE acceptance PASS
+
+November 15, 2026: owner ran the checked completion launcher. It reported
+PROJECT_SSH_LISTENER_STARTED_PENDING_REMOTE_ACCEPTANCE. Root then connected
+from FORGE with the dedicated private key and pinned BLACKHAT-BASE host key.
+Actual remote `health`, `self-test` and `native-port-9443` returned PASS.
+The reported SID matches the configured dedicated `kncollector_exec` identity;
+the token is nonadmin, and the fixed PowerShell child returned the same SID.
+Native9443 has zero listeners and exclusive IPv4/IPv6 binds succeeded without
+starting a listener. This is a current availability snapshot, not a reservation.
+
+Ten native rejection cases passed: empty shell, unknown shell command, extra
+arguments, path command, PTY, SFTP subsystem, direct forwarding, reverse
+forwarding, unrelated authentication key and an unpinned host alias. Forwarding
+was confirmed with actual SSH channel requests and server refusal. The first
+reverse-forward probe was suppressed by the production client's
+ClearAllForwardings setting and timed out; it is NOT a server test result.
+A corrected test-only override requested forwarding and received refusal.
+Production client configuration was unchanged. The temporary negative-test
+key was removed. Wrong-source rejection from another peer remains NOT TESTED.
+
+Private receipts/logs are in
+`C:/admin/collector-v9/host-exec-client-v1`: remote-health.private.json,
+remote-acceptance.private.json, remote-key-negative.private.json,
+direct_forward_denied.private.log, remote-reverse-negative.private.json,
+post-start-bootstrap-receipt.private.json and post-start-audit.private.jsonl.
+Host redacted audit remains under
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/audit/execution.jsonl`.
+The original rollback-bootstrap.ps1 and account/service configuration remain.
+Do not rerun completed bootstrap launchers. Host bootstrap receipt deliberately
+retains CONFIGURED_PENDING_NATIVE_CONNECTION; the separate client receipts
+establish acceptance without rewriting installation evidence.
+
+Shared Gateway SSH configuration still matches its recorded SHA-256; no
+Gateway/shared-sshd restart or route edit was performed. The complete private
+tailnet policy bytes still match the reviewed digest. HTTPS9443 remains
+BLOCKED: its broad all-peer grant permits unauthorized peers. Native port
+availability and restricted SSH22230 do not satisfy this separate policy gate.
+The owner must narrow the effective overlapping grant before route activation;
+adding a narrow allow while retaining the broad grant is insufficient.
+
+Scope remains four fixed diagnostic operations. This is real remote execution
+of the fixed project PowerShell self-test, not arbitrary PowerShell access or
+completed narrator/service management. No privileged remote handler, owner
+Credential Manager access, live authenticated narrator handler or WAV transfer
+is supplied by this dispatcher. Next development needs concrete reviewed
+handlers and credentials provisioned for their actual execution identity.
+Do not copy the owner's bearer or invoke the writable narrator venv as SYSTEM.
+No new inference, narrator route, installer deployment or media export ran.
+
+An SSH probe's closed output channel produced a health PASS audit followed by
+operation_unverified for the same request. Source records PASS before flushing
+stdout; failed response delivery is the likely cause, not directly recorded.
+That request is not counted as a successful client receipt. The separate
+received health/self-test/port responses are valid. Host disconnect/long timeout,
+restart/reboot, rollback execution, runtime tamper and another-source peer tests
+remain NOT TESTED; reuse the 18 isolated native process tests at their scope.
+
+Cleanup: after verifying all37 installed runtime files, dispatcher hash and
+retained official archive, removed seven explicitly named completed staging
+files (12,690,627bytes) from host-exec-bootstrap-v2/host-exec-complete-v1.
+Compact completion evidence was copied and byte-verified privately first;
+original rollback, keys, installed runtime, receipts, backups, media and model
+files remain. Empty staging directories may remain. Automatic review rejected
+an earlier computed-path cleanup; the successful cleanup used exact literal
+file paths. No source logic changed this turn; reuse328-test regression and8
+bootstrap tests. Ponytail FULL/review plus independent security and dispatcher
+reviews applied. PR20 draft/unmerged; publication PAUSED.
+
+## Native firewall Program path fixed â€” checked networking completion staged
+
+Owner's single-command continuation passed account/config/native SSH preparation
+then `New-NetFirewallRule` rejected its application path. Root reproduced on
+FORGE with disabled temporary rules: forward-slash Program rejected, canonical
+Windows backslash Program accepted. A second disabled probe confirmed exact
+complement-source filter readback. All probes were removed by exact names;
+none was enabled or changed effective traffic. Installer now normalizes only
+the firewall Program value, preserving SSH/SCM/rollback path strings.
+
+Actual private host receipt has BOOTSTRAP_IN_PROGRESS, recorded execution SID
+and block-source ranges; config, authorized_keys, effective SSH state and empty
+audit/receipts directories exist. Source failure occurred before service setup.
+Root retained five hash-verified pre-networking evidence copies under
+`C:/admin/collector-v9/host-exec-client-v1/pre-networking-failure`.
+Do not use pre-account resume again: its prerequisite is no longer satisfied.
+
+Added a narrow `Complete-KnowledgeNetworkHostExec.ps1`, which validates exact
+pre-network root/receipt/config/account SID/nonadmin membership, mutable audit
+ACL separately from immutable code, actual absent service/rules/listener,
+effective firewall policy, all runtime bytes and signatures, key/source binding,
+current native SSH syntax/effective config and shared/rollback evidence. Only
+the pinned bootstrap networking tail then executes; no account/runtime/config
+recreation, ACL rewrite, evidence clearing or Gateway restart. Security review
+caught and corrected the old serialized-JSON comparison and scalar-array type
+looseness in the draft before staging; strict tests cover both.
+
+PASS:8 focused native bootstrap tests; direct Windows firewall-provider format
+and filter tests; production completion data helper against the actual unchanged
+host receipt/config/key formatting; independent source review and parsers.
+Installer SHA-256 `07096d7f2f81bd6d6291a47819f9aab3e27ebdb55c1b16265b570e423877396b`;
+completion SHA-256 `080bbe62410d1e44c0bef146aa4c09e05e35819141fee1c05e5a5b30980d5705`.
+Final repository regression PASS:328tests in72.951s,5 existing skips; private
+log `C:/admin/collector-v9/host-exec-python-3.14.10/network-completion-regression.log`.
+
+Staged one self-contained owner command in host `host-exec-complete-v1`:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-complete-v1/Complete-HostExec.ps1`.
+Launcher SHA-256 `8301178d26459ae109692edc6d673b3a3775b59c546b27d4dcba87cc5ce845cc`.
+Run only this file from elevated host PowerShell. It pins captured completion
+code/arguments; no multi-line paste or prior variables required. Actual host
+completion/remote identity remains NOT TESTED. Remove/disable nothing manually
+if it stops; preserve outcome for reconciliation.
+
+Cleaned the obsolete host-exec-resume-v2 launcher/source/arguments after verifying
+replacement and payload references. Active archive/key/dispatcher, protected
+runtime/account/config, audit/receipts, evidence backups and rollback preserved.
+No host firewall/service action was executed by root, no new speech/render or
+9443 policy/route change. Publication PAUSED; PR20 draft/unmerged. Ponytail FULL
+and independent security review applied; no UI or narrator-setting change.
+
+## Reverse-order paste recovered; obsolete staging cleaned
+
+Owner pasted the multi-line launcher in reverse order, invoking the previous
+installer still present in `$bridgeSource` before loading the new bytes. The
+old serialized-manifest error/line therefore recurred; it is not execution
+evidence for the corrected comparison. Root read actual receipt/state again:
+BOOTSTRAP_IN_PROGRESS, null execution SID, no audit or sshd_config. No state
+clearing, repeat installation, service start or inference was performed.
+
+Staged a self-contained, syntax-checked single-command script:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-resume-v2/Resume-HostExec.ps1`.
+It loads and pins current installer/arguments internally in execution order,
+without relying on prior console variables. Owner runs that file with `&` in
+the elevated host PowerShell session; no multi-line copy is required. Actual
+continuation/remote SSH acceptance remains pending. Corrected source is still
+`1f769a2a71fd19ea344b6a2df89c7ecf457e205c1b83bb1ba889b7924ca45975`.
+
+At owner's explicit cleanup request, removed only obsolete created staging:
+host-exec-bootstrap-v1, host-exec-trust-diagnostic-v1, host-exec-resume-v1,
+superseded v2 fresh installer/arguments, old output launch text files and the
+redundant FORGE extracted test runtime. Nonrecursive native PowerShell deletion
+validated exact project paths, flat expected files and no reparse points.
+Reclaimed24,582,086bytes. Active v2 installer/arguments/single-command launcher,
+referenced host archive/key/dispatcher, installed protected runtime, private
+client key, receipts, evidence backups and rollback files remain. Active payload
+references and hashes were checked after cleanup and pass. No approved media,
+model/reference, original project backups or installed Collector was deleted.
+Private cleanup receipt:
+`C:/admin/collector-v9/host-exec-client-v1/obsolete-staging-cleanup.private.json`.
+Historical handoff paths below may now refer to deliberately removed obsolete
+staging; use the single-command path above. No source logic changed, so no
+whole-suite repeat. Publication PAUSED; PR20 draft/unmerged.
+
+## PowerShell5.1 manifest round-trip corrected â€” host bytes unchanged
+
+Owner's checked resume stopped at runtime-manifest equality before account setup.
+Root reproduced the cause under Windows PowerShell5.1: wrapping decoded JSON in
+`@(... | ConvertFrom-Json)` retains a nested array, whose serialized pipeline
+form differs from the extraction records despite identical fields. This was a
+bootstrap comparison defect, not evidence of changed runtime bytes.
+
+Removed the wrapper and serialized-text comparison. `Assert-RuntimeManifest`
+now checks decoded array/count, exact three fields/types, unique case-sensitive
+names and each hash/size against independently verified official ZIP records.
+No existing manifest is rewritten or accepted merely because decoding succeeds.
+All pre-account receipt/ACL/resource-absence/rollback/publisher gates remain.
+
+PASS:7 focused native bootstrap tests, including the exact file/JSON round-trip
+and rejection of changed hash/size/type, extra/duplicate/missing/wrapped entries.
+Root also ran the corrected production extraction/manifest helpers against the
+actual host files over redirected storage: all37 files and the unchanged actual
+manifest match the pinned official ZIP. This was read-only, not host execution.
+Independent source security review PASS at installer SHA-256
+`1f769a2a71fd19ea344b6a2df89c7ecf457e205c1b83bb1ba889b7924ca45975`.
+Prior326-test full suite remains the baseline; no whole-suite repeat for this
+targeted PowerShell comparison fix. No runtime dispatcher source changed.
+
+New installer/private arguments staged in host `host-exec-resume-v2`, preserving
+prior bundles and all prepared state. Owner next action: paste complete contents
+of `output/Host-Exec-Resume-Manifest-Fix.txt` in the same elevated host PowerShell.
+Launcher SHA-256
+`dd37939a79fd0f38b53e2bc093865672a589f0b2be3709687367660e1c073fb7`.
+Captured bytes remain pinned before evaluation. Do not rerun old launchers,
+delete files or bypass the manifest gate. Actual host continuation/remote SSH
+acceptance remain NOT TESTED; no account/service/firewall action by root,
+no inference/render, publication PAUSED and PR20 draft/unmerged.
+
+## Account-description interruption â€” checked continuation prepared
+
+Owner's v2 bootstrap reached local account creation, then Windows rejected the
+description for exceeding48characters. This was a bootstrap defect, reproduced
+by a new regression test against the installed cmdlet's actual ValidateLength
+metadata. Description is now the full product name plus SSH,34characters.
+
+Actual protected host state read privately: BOOTSTRAP_IN_PROGRESS receipt with
+execution_sid=null, prepared37-file Python3.14.10 runtime, runtime manifest,
+original rollback and shared-config backup; no audit directory or sshd_config.
+Root independently hashed all37 host runtime files against the pinned official
+ZIP; all match. Four partial-state evidence files were hash-verified into
+`C:/admin/collector-v9/host-exec-client-v1/pre-resume-description-failure` and
+remain unchanged on the host. Shared Gateway configuration is unchanged.
+Parameter validation failed before account creation; native account/service/
+firewall absence must still be positively checked on continuation.
+
+Added only a narrow `-ResumePreparedRuntime` path for this exact pre-account
+state. It fails closed on inventory errors or any account/service/firewall/
+listener already present, progressed/extra/mismatched receipt fields or files,
+unsafe ACLs, changed runtime, rollback or shared configuration. Existing runtime
+is reverified read-only against captured official ZIP bytes; no repair, extraction
+overwrites, receipt recreation, state clearing or second identity. Existing
+publisher/import-path/native trust gates run again before continuing. Ordinary
+fresh mode still refuses preexisting roots. No bootstrap was retried by root.
+
+New installer SHA-256:
+`e93be3b374735c1c039d094c1f640ee20926cc5c63142e6fe14c66d39391599f`.
+New source and private resume arguments staged in host `host-exec-resume-v1`,
+referencing preserved v2 archive/key/dispatcher. Owner next action is pasting
+the complete eight-line `output/Host-Exec-Resume-Prepared-Runtime.txt` into the
+same elevated host PowerShell session. Launcher SHA-256:
+`767cfcad7fa86789be6c4f301c8ca6948e0cadb6683fdf24c28b8fadd210031b`.
+It verifies captured installer/argument bytes, then enables only that checked
+continuation. Do not rerun the v1/v2 fresh installers or delete prepared files.
+
+PASS:6 focused native bootstrap tests, including real description metadata,
+15 invalid receipt fields rejected, ordered receipt continuation, valid existing
+runtime verification and corrupted bytes rejected without repair; independent
+source security review and launcher/parser checks. Full regression PASS:326tests
+in58.971s with5 existing skips; private log under
+`C:/admin/collector-v9/host-exec-python-3.14.10/resume-regression.log`.
+Actual native resume/remote SSH acceptance remains
+NOT TESTED. No current service, firewall, ACL or narrator change by root; no
+inference or media render. Ponytail FULL applied, PR20 remains draft/unmerged,
+publication PAUSED, all prior bundles/backups preserved.
+
+## Genuine writable narrator Python identified â€” protected dispatcher runtime ready
+
+Owner returned `BLOCKED_TRUST_PATH_IDENTIFIED` at
+`private-service-v9-001/review/trust-check-731d3bcc94f64147a1bdc0321ee342cb.private.json`.
+Root and security specialist read the full private ACL: canonical venv
+`Scripts/python.exe` grants Authenticated Users Modify, with no denying ACE.
+This is a genuine trust failure, not grounds to weaken the guard. No account,
+service, firewall or existing ACL mutation occurred. Full DACL/owner details
+remain private. The original narrator environment is unchanged.
+
+The bridge now uses its own protected CPython3.14.10 embeddable runtime under
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec/runtime/python` instead of
+executing the writable narrator interpreter. Official archive SHA-256:
+`90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159`,
+matched against https://www.python.org/downloads/release/python-31410/.
+Downloaded12619664bytes/37files; original licenses retained. Both python.exe and
+python314.dll have Valid Python Software Foundation Authenticode signatures.
+Dependency lock updated; no model/voice download or global Python installation.
+
+Updated bootstrap captures/pins ZIP and public-key bytes before parsing, requires
+exact37 bounded flat regular members, refuses traversal/links/case duplicates/
+overwrites, verifies extracted hashes and immutable native ACLs in a new protected
+directory, checks publisher signatures and restrictive._pth, then checks isolated
+version/no-site before use. No original runtime ACL repair. Dispatcher code and
+its four-command scope remain unchanged; this does not fix or promote the
+separate original narrator's local-code trust boundary. Never invoke that
+original environment through a future privileged/SYSTEM handler.
+
+New bootstrap SHA-256:
+`5f825db4a27320745d27cd556a93923444c2ba7a433188a95fae02fa08140940`.
+Staged archive, installer, unchanged dispatcher, dedicated public key and pinned
+private arguments under host `host-exec-bootstrap-v2`, preserving prior bundles.
+Owner next action: paste the complete eight-line contents of
+`C:/Admin/Projects/KnowledgeNetwork/output/Host-Exec-Protected-Runtime-Launch.txt`
+in the same elevated BLACKHAT-BASE PowerShell session. Launcher SHA-256:
+`b15187b27d97c011981c225fa93e244fa423fbbc343e0b4bdb7aed87fc8239f7`.
+It hashes captured installer/argument bytes and evaluates those same reviewed
+bytes, avoiding file re-read races. No secret arguments or policy bypass flag.
+Standing authorization already covers this; technical host execution remains
+unavailable until actual bootstrap acceptance. Do not rerun old bundles.
+
+PASS:18 dispatcher tests under the actual new3.14.10 runtime;4 native bootstrap
+helper tests including malicious ZIP/no-overwrite cases; actual official package
+through the production extraction helper, all37 members and both signatures;
+final324-test repository regression in62.980s with5 existing FFmpeg skips.
+Private logs under `C:/admin/collector-v9/host-exec-python-3.14.10`.
+Independent source security review found no remaining concrete must-fix at the
+new bootstrap digest. Native host extraction/trust/startup and SSH acceptance
+remain NOT TESTED. Gateway configuration/routes, narrator settings/reference/
+model, working FORGE installation and backups preserved; no new inference or
+render. PR20 draft/unmerged; publication PAUSED.
+
+## Host bootstrap stopped at interpreter trust â€” diagnostic pending
+
+Owner ran the staged bootstrap on BLACKHAT-BASE and received the fixed
+`Execution trust chain is writable by a nontrusted principal; no ACL was changed`
+error from `Assert-TrustedPath`. Source flow places this rejection before
+directory/account/service/firewall mutations. Root independently checked that
+the HostExec directory and bootstrap receipt are absent. The exact rejected
+path/ACE is still unknown; no runtime/drive/narrator ACL was modified, no
+guard bypassed and no bootstrap retry or remote connection attempted.
+
+Added structured private exception context while preserving the trust masks
+and fixed console error. Security review also identified a separate omission:
+loader directory roots `base/DLLs` and venv `Scripts` now receive full target
+checks, including create-file rights, before descendant enumeration. This closes
+a gap; it is not assumed to explain the actual host error.
+
+Prepared read-only native diagnostic and staged it with the enriched bootstrap
+source in `D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-trust-diagnostic-v1`.
+Original bootstrap bundle remains unchanged. Diagnostic hashes captured source
+bytes once, then uses that same text for reviewed helper/preflight evaluation;
+it does not execute privileged bootstrap setup. First failure's complete applied
+DACL/SDDL, owner, target/ancestor path and rights are written only to a new
+private JSON in the existing protected narrator spool's review directory. The
+console returns only status/evidence path. No credentials or policy contents.
+
+Owner action: paste the complete six-line contents of
+`C:/admin/projects/KnowledgeNetwork/output/Host-Exec-Trust-Diagnostic-Launch.txt`
+into the same elevated BLACKHAT-BASE PowerShell window, then return only its
+status/evidence path. The launcher pins captured diagnostic bytes before use.
+Launcher SHA-256 `ee0ae0f06ab4e5d53594d95447bb15e1c9c278b193b150d1735873d356a471ae`;
+diagnostic SHA-256 `88bbaadfc79616a75e55d478316c126b0eee739bde0ad826e7f18eed7c363900`;
+updated bootstrap SHA-256 `abb317e75933cfc2b7a4a0f8d9f0203ad00a3e5c6e7989e58662a8b9c7bad6a3`.
+
+PASS:3 focused native FORGE tests, including full ACL/create-only/inherit-only
+denial, private exception context, source-pin mismatch/size bounds and captured
+text stability; PowerShell source/launcher syntax checked. Prior322-test result
+remains historical baseline; no repeated whole-suite or runtime-source change
+for this preflight/diagnostic correction. Ponytail FULL and independent bounded
+security review applied; review caught and corrected a source-reread race.
+Actual blocked host ACL, diagnostic execution, bootstrap and SSH acceptance
+remain BLOCKED/NOT TESTED. Standing authorization remains valid; unavailable
+technical host execution still requires this native diagnostic. Publication
+PAUSED, Gateway/443/8443 and original narrator untouched; no new inference.
+
+## Standing host authorization â€” restricted bridge prepared, bootstrap pending
+
+Owner now explicitly authorizes a separate project execution channel and scoped
+routine host operations. Continued from clean source
+`7566fa2f848fe58fbd19519caadfe3e7b1d8f47b`; no reset/replacement/history rewrite.
+The commit containing this entry records implementation on the existing feature
+branch. PR20 remains draft/unmerged; publication remains PAUSED.
+
+**Existing access investigated:** redirected host files and the existing Gateway
+SSH/maintenance paths. No independently authorized KnowledgeNetwork management
+endpoint was found. Gateway maintenance pins exact entire SSH configuration
+templates and its Gateway-only allowlist, so extending the shared config would
+break it. No Gateway credential was read/reused, no existing config changed and
+no shared service restarted. Shared config remains SHA-256
+`39f452458c454ea6906015862774b3d73e2d71e16852de58c767ae178bd3794d`.
+
+**New implementation, not deployed:** separate `KnowledgeNetworkHostExec`
+Windows OpenSSH service, dedicated nonadmin `kncollector_exec`, separate
+tailnet-address-only TCP22230 listener/config, new FORGE Ed25519 key and strict
+pinned host key. Initial four exact operations: `health`, `self-test` (fixed
+PowerShell identity), `native-port-9443`, `narrator-status` (retained sanitized
+snapshot only; never live authenticated health). No arbitrary shell, caller
+scripts/paths/stdin, PTY, subsystem, forwarding or generic administration API.
+The service is SYSTEM only for SSH logon; dispatcher execution must be the exact
+nonadmin SID with no administrator group membership. No privileged operation
+handler is exposed. Broader authorized narrator/service work is not yet supplied
+by these four initial commands; add only concrete reviewed handlers and tests.
+
+Dispatcher SHA-256:
+`637c92f13126c2ccb5a2eeb888cc4ac48a8a540cf74652f96dc268ce12600bf2`.
+Bootstrap SHA-256:
+`29038f0827bb31f2673ae5c4fb360f900c664ced6ce9b578c75d7cd6e777d547`.
+See [architecture/bootstrap/rollback](../host-execution.md),
+[independent security review](HOST-EXECUTION-SECURITY-REVIEW.md) and root SECURITY.
+The bounded dispatcher owns child processes, limits time/output, caps serialized
+durable redacted audit at16MiB and fails closed on uncertain shutdown/audit fault.
+Bootstrap verifies interpreter/import/ancestor trust without changing existing
+ACLs, rejects unsafe global outer shell, validates actual isolated sshd config,
+requires effective enabled firewall enforcement, and adds only per-project
+FORGE allow plus complementary other-source block. Native start must match
+the dedicated SCM PID/LocalSystem/path and exact private bind. Gateway untouched.
+
+**Private client prepared:** `C:/admin/collector-v9/host-exec-client-v1` holds the
+separate key, actual-address bootstrap input, known_hosts, SSH config and receipts.
+Host public-key fingerprint independently read and pinned:
+`SHA256:2J+57GgzHCHO9QBtxbrOW1gGDs8rdWaoFbQ/xNK6qRU`.
+Native client `ssh -G` checks PASS for batch/key-only, strict host verification,
+exact key, no PTY/agent/forwarding. No private key transferred or put in Git.
+Future command form is OS-native
+`ssh -F C:/admin/collector-v9/host-exec-client-v1/ssh_config knowledgenetwork-host health`;
+it has NOT established a live connection yet.
+
+**One unavoidable owner bootstrap:** no existing authorized privileged execution
+path can create the account/service. Four reviewed files were copied with
+exclusive creation and hash-verified readback into
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/host-exec-bootstrap-v1`.
+Run `Bootstrap-KnowledgeNetworkHostExec.ps1` there once in elevated host Windows
+PowerShell. Wrapper SHA-256
+`e722fd585f97b32942674c48610ee3c5174124e893b9983ffb332b5df7d91d44`.
+It pins bootstrap/dispatcher/public-key bytes and supplies actual private addresses;
+no secret argument or execution-policy bypass. Native preflight may legitimately
+stop on unsafe runtime ACL, shell, firewall or unsupported SSH settings. Preserve
+any partial receipt; do not reinstall under another identity/port to evade it.
+Rollback script and prior shared-config copy are created in protected
+`C:/ProgramData/KnowledgeNetworkCollector/HostExec` before account/network changes;
+rollback validates exact project resource filters, disables the created identity
+and retains files/evidence, never restores unrelated config or deletes backups.
+
+**Validation scope:** specialist18 dispatcher tests PASS, including real isolated
+FORGE Windows fixed PowerShell identity, timeout/cancel/output cap, Job Object
+descendant teardown, command/source/PTY/path denials and bounded audit contention.
+Root2 bootstrap helper tests PASS: real temporary Windows ACL accept/deny and
+inherit-only handling, plus IPv4 complement boundaries. Bootstrap/embedded rollback
+and owner wrapper syntax PASS; dispatcher Python3.11 parse PASS. Independent
+review found/corrected native loader trust, filtered-admin, audit-link, directory
+race, firewall construction/effective-policy and listener-identity gaps. No
+remaining concrete must-fix at the above source digests in the four-command scope.
+Final frozen-source regression PASS:322 tests in100.545s,5 existing explicit
+FFmpeg skips, using `PYTHONPATH=src` and project venv `python -m unittest discover
+-s tests -v`. Private log:
+`C:/admin/collector-v9/host-exec-client-v1/regression-final.log`.
+An earlier319-test run also passed before the final cleanup/coverage additions;
+the322-test run is the authoritative current-source result. These tests do not
+prove deployed remote access.
+
+**Actual host status:** narrator loopback/auth/manifest evidence remains PASS;
+owner bearer stays in that owner's CredMan and is not available to the new SSH
+identity automatically. No bearer extraction/owner impersonation. Saved native
+9443 receipt now reports0 listeners and exclusive IPv4/IPv6 bind PASS, without
+starting a listener; it is a snapshot, not a route authorization. The complete
+tailnet-policy review remains BLOCKED by broad network permission; no policy or
+9443 route changed. All exact branding sources remain available and validated.
+Remote narration, new native video/export, installer isolation and scheduled
+Assistant/reboot acceptance remain incomplete; no new GPU work/render/reboot.
+
+Ponytail5.3.3 FULL and installed review applied; parallel dispatcher/bootstrap/
+security ownership was nonoverlapping and root integrates. No UI changed, so no
+new UI/UX Pro Max/Taste gate claimed. Existing model/reference/settings, protected
+backups, working installed Collector and old staging installer remain intact.
+
+## Private tailnet policy reviewed â€” BLOCKED
+
+Read the complete owner-supplied private HuJSON policy through redirected
+storage, SHA-256 `a143952dfa2a51062e4bf003801b597c47fcc4edcb80d5ada9a4992c3b7fd86c`.
+Parsed comments/trailing commas without printing raw contents or identities.
+Reviewed every top-level section and active rule. The active network permission
+is broad enough to allow other tailnet peers to reach host TCP9443; there are no
+ACL/group/tag-owner definitions narrowing it. SSH access is a separate boundary
+and does not restrict that HTTPS network grant. Adding a narrow FORGE grant
+would not remove the broad permission. No policy snippet or private identifiers
+are included in this report. Official policy syntax reference was consulted.
+
+Result **BLOCKED**: the stated FORGE-only route prerequisite is not satisfied.
+No policy modification, route start, weakening, credential change or inference.
+Existing443/8443 routes and Gateway are untouched. Publication remains PAUSED.
+The retained Serve snapshot has no configured9443, but that is not a native
+port availability test. Root lacks host command execution, so native availability
+is still NOT TESTED independently of policy/Serve.
+
+Prepared private `review/check-native-port.py` for one owner-run native-only
+check: query current Windows9443 listeners with fail-closed errors, then if none
+attempt exclusive IPv4/IPv6 binds and immediately release them without ever
+calling listen. Writes `native-9443.private.json` once; no route/firewall change.
+AST syntax/readback checked on FORGE only, not executed on host. Any native PASS
+is a point-in-time snapshot and does not resolve the policy blocker; recheck
+before any future separately reviewed route mutation.
+
+Policy remediation is outside this read-only review. A future concrete proposal
+must remove/restructure the overlapping broad permission for this destination/
+port while preserving approved access to443/8443 and unrelated services, and
+include positive FORGE/negative other-peer tests. Do not apply changes without
+the owner's scoped authorization and review of the exact proposed policy.
+
+## Current Serve evidence received â€” policy export still missing
+
+Owner returned PASS_READ_ONLY_STATE_CAPTURE; root read the two saved private
+JSON files. Host identity matches BLACKHAT-BASE and exactly one FORGE peer is
+present. Current Serve has TCP443 and8443 entries and no configured9443 entry;
+no route was changed. This does not establish native port availability or
+effective access restrictions. Existing routes must remain intact.
+Serve JSON SHA-256:
+`ad0ba0fe2b1d010bebb99749a2cfed346cb7fc90bdf0cc2ff48a8e4e1c121ec5`;
+tailnet JSON SHA-256:
+`ed016cc7bc37901b58011080bcf987edfac075fa200f84fadc74cf9e23c9bd3c`.
+Actual addresses/peer metadata remain private.
+
+`tailnet-policy.private.hujson` is not present in the protected spool. The
+remaining immediate owner action is saving the current effective policy there
+for review, not another state capture or auth test. Do not rerun completed
+stages or create9443 before that prerequisite passes. No new inference or
+remote transfer occurred; publication remains PAUSED.
+
+## Local authentication PASS â€” route prerequisites next
+
+Owner ran the direct auth check successfully. Root read the actual retained
+`local-auth.private.json`, SHA-256
+`a7209570a221f35909e3af74373e03aff485e2c64e56a9bca22ec7001be08c58`:
+PASS_LOCAL_AUTH_ONLY, missing/wrong bearer401, authenticated health200 with exact
+reviewed provenance, forbidden fields400, inference_submitted=false. No credential
+value was returned or read by root. This supersedes local-auth pending below.
+
+Prepared private `review/capture-tailnet-state.py` in the existing host spool,
+SHA-256 `a25b4f059675a7ccd31eabe1c550b95372a15a20e920c48c089a819b415603be`.
+AST parsed and exclusive write/readback checked, not executed. It captures only
+`tailscale serve status --json` and `tailscale status --json` into new private
+files, refuses overwrite, checks command exits/JSON and prints no addresses.
+Owner executes it locally; no route, credentials or inference are changed.
+
+Still required before9443: actual current Serve/unused-port review and effective
+tailnet access policy including broad/additive grants and intended FORGE identity.
+Owner must provide a private exported policy file for review; peer/state capture
+alone does not establish restricted access. No route command has been run.
+Remote narration remains BLOCKED and publication PAUSED.
+
+## Stage3 paste recovery â€” authentication still NOT TESTED
+
+Owner's pasted Stage3 arrived out of order and PowerShell raised ParserError
+while parsing Python text. No local-auth/listener/Serve/tailnet receipts exist
+in the protected spool, so no authentication result is inferred. Server restart,
+new inference or credential reprovisioning is unnecessary.
+
+Root extracted the same local-auth Python block, parsed it without execution,
+and created only `review/check-local-auth.py` in the existing private spool,
+with exclusive creation and byte readback. SHA-256
+`d147a2614609b6aad50a0e5dc9e223b2e7585b8e73aafb355884214f44d6bfb3`.
+Owner can invoke it directly with the canonical engine Python and kit PYTHONPATH,
+avoiding PowerShell here-string paste. It uses host CredMan internally and sends
+only local health/auth/invalid-schema tests; no valid narration or routing action.
+Actual execution remains owner-side and pending. Publication remains PAUSED.
+
+## Host manifest PASS and loopback listener observed
+
+Owner reports Stage2 credential `SAVED` and a listener at127.0.0.1:39110,
+PID2068. The foreground terminal remaining occupied is consistent with the
+running narrator; do not rerun Stage2. Root read the actual host-private
+`manifest-validation.private.json`: status PASS, script98b75e...f189,
+model revision7936080b41163874f38610f46f438e2c0757f9fd,
+config SHA-256 `976d46c19601b07d17160f8edd1c716e51b85e5610ec163d8b4e49f9271e9bc9`,
+license evidence4f10acc...65e4. This establishes actual manifest validation;
+listener identity/health and authentication remain NOT TESTED until Stage3.
+
+Prepared exact syntax-checked Stage3 copy/paste file:
+`output/Narrator-Stage3-Local-Auth-And-Status.txt`, SHA-256
+`fa21ac2dd719c900ddbc8c3325607aa27033d4a30cde290f0830bb2cb336fb6b`.
+Run in a second BLACKHAT-BASE PowerShell window while the foreground server
+continues: loopback check, hidden in-process CredMan use, missing/wrong bearer
+denial, authenticated health/provenance and forbidden-schema check without
+inference, then read-only Serve/tailnet state capture. No routing change is in
+this stage. Owner should return only completion/status; raw private state can
+be inspected through the same protected spool. Publication remains PAUSED.
+
+## Host spool accepted and reviewed files delivered
+
+Owner returned actual BLACKHAT-BASE Windows PowerShell5.1 Stage1 result:
+`{"status":"PASS","scope":"host_spool_acl_only"}` for
+`D:/projects/knowledgenetwork/collector-narrator-v9-004/private-service-v9-001`.
+This is owner-returned host ACL validation, not listener/auth/manifest acceptance.
+Do not repeat Stage1 or create a second spool.
+
+Root then delivered exactly three new files into that spool's `review` directory
+via authorized redirected storage, with exclusive create/no overwrite and
+readback SHA-256 verification against the private delivery receipt:
+`active-runtime-review.md`, `operational-review.private.json`, and
+`narrator-manifest.LOCAL-USE-CANDIDATE.private.json`. Candidate digest remains
+`42f270ac0232c24c200df0a02401df97b7f1c2796ddeb519ce35eda2a9924d84`.
+No private contents were added to Git; original drafts/assets are unchanged.
+
+Prepared exact syntax-checked Stage2 extraction:
+`C:/admin/projects/KnowledgeNetwork/output/Narrator-Stage2-Validate-And-Start.txt`,
+SHA-256 `b2cc281564675b885a6d6febb9d3efc32ac50f289ccc38a13fad37f31f5c5e31`.
+Owner runs this in the same host PowerShell session: actual manifest validation
+(including required model hashing), ACL recheck, refuse existing dedicated
+credential, hidden-prompt new scoped bearer, free-loopback-port check, foreground
+existing narrator process. No inference or Serve command is in this stage.
+The owner must retain the new secret securely for FORGE and never return its
+value in chat/logs. Actual host validation, credential provisioning, listener and
+local auth remain NOT TESTED until receipts arrive. No root host command was
+executed. Publication remains PAUSED; PR20 remains draft/unmerged.
+
+## Badge follow-up â€” all branding sources available
+
+Owner supplied the original badge in main and reports creating/owning/licensing
+it through Dot. Fetched main to `74224b5cc1b1f5c0ec703957dd6236de5aa02d47`
+without merge/rebase. Binary Git recovery of the PNG yields exactly
+`5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`;
+2,211,740 bytes,1254x1254 RGB, PNG integrity and existing production intro
+validator PASS. Local original:
+`C:/admin/collector-v9/approved-badge-main-74224b5cc1b1/Neon Cosmic Oxieg3n Emblem.png`.
+The three exact videos recovered below remain unchanged. **BLOCKED_ASSET is
+resolved for all required branding sources.** No replacement or changed pin.
+The4s preview is still reference-only; dynamic1.6s intro and complete native
+export await the actual body and verified remote narration. No new render was
+performed merely to repeat old technical evidence.
+
+The remaining immediate action is still owner-side Stage1 protected-spool
+creation described below; host execution is unavailable from this session.
+No host service, credential, route or new inference was run. No completed
+narrated/branded project/export exists yet. PR20 stays draft/unmerged and
+publication PAUSED. This follow-up supersedes the badge blocker in older entries.
+
+## Final integration continuation â€” recovered branding and authorized deployment
+
+November 15: resumed clean `feature/collector-v7-overnight` at
+`89b134a85e094b2b2a584e2c719f6ef2a5a07a00`. Fetched main to
+`0ec0c05cb2fa6976fc87cfcb321c60d1a747c10d` without merge/rebase. The commit
+containing this section records the continuation; `git rev-parse HEAD` gives its
+exact ID. No runtime implementation was restarted or replaced. PR #20 remains
+draft/unmerged, publication PAUSED, and existing backups/worktrees/installers
+and original narrator files are preserved.
+
+**Owner listening approval recorded:** owner reports the narrator sounds perfect
+and approves project use, tied to exact diagnostic WAV SHA-256
+`1083cd235598378fe4c7fc0556dcba1f9d3a9334b48620d522c2e826134dc6b7`.
+This supersedes historical listening-pending statements below. It is an
+owner-reported positive review, not an automated assessment or invented detailed
+observations. The completed diagnostic was not rerun.
+
+**PASS â€” recovered approved videos:** extracted only the three owner-requested
+video members through binary-safe `git archive` into
+`C:/admin/collector-v9/approved-brand-main-0ec0c05cb2fa`.
+All match main's exact `.github/workflows/ci.yml` pins:
+
+| File | SHA-256 |
+| --- | --- |
+| `Powered-By-Plasma-With-Sound-Preview.mp4` | `1eeec90cda8dec320e078e77d5a6c4b6034be6e9dd07e00220ccc601f688e781` |
+| `Powered-By-Outro-Portrait.mp4` | `62496803360e377d81ab54b6970d94fcce3eee125f5d22c2fe08377dcf1b5c9b` |
+| `Powered-By-Outro-Landscape.mp4` | `3720a160cd8acb46c828d448cca740252fb8c6a80eba892f1573dc5b56479ee3` |
+
+All decode completely with FFmpeg `-xerror`: H.264 30fps, AAC stereo 48kHz.
+Preview is 1080x1920/4.0s, portrait outro 1080x1920/7.8s and landscape outro
+1920x1080/7.8s. Both outros pass the existing production validator. Exact bytes
+retain original CTA speech. No old media overwritten or pins changed, and no
+new media tracked on this branch. [Full branding update](V9-BRANDING-CONTINUATION.md).
+
+**BLOCKED_ASSET â€” original badge only:** no PNG badge is in fetched main or the
+examined Git path history; prior exhausted searches were not repeated. Required
+`Neon Cosmic Oxieg3n Emblem.png` must match
+`5da1076e095d61164e4de0a0b58905dea465936b92530f2ec1f8acdfcdd0db54`.
+An owner-provided private path/Library materialization remains necessary. The
+4-second preview stays a reference, never a substitute for the 48-frame/1.6s
+dynamic production intro. The older missing-outros blocker is resolved.
+
+**PASS review / NOT HOST-VALIDATED:** [active-runtime review](V9-ACTIVE-RUNTIME-REVIEW.md)
+separates fixed private no-denoiser use, generated commercial audio and packaged
+dependency redistribution. NVIDIA install/use and retained BSD/LGPL notices
+are reviewed at that bounded scope; redistribution of the narrator environment
+remains uncleared. Successful trace/source support inactive kaldiio/FunASR/
+ModelScope/ZipEnhancer in this path; their installed restrictions remain intact.
+No dependency changed or new license accepted.
+
+A new private 57-artifact local-use manifest candidate binds actual reviewed
+evidence and owner listening. Private delivery directory:
+`C:/admin/collector-v9/local-use-review-v9-001`; manifest SHA-256
+`42f270ac0232c24c200df0a02401df97b7f1c2796ddeb519ce35eda2a9924d84`.
+Supported review fields reflect the scoped evidence, while publication and
+dependency-redistribution approval stay false. Existing drafts are preserved.
+Actual host validator/cache/artifact checks remain mandatory; no validation PASS
+is invented from the candidate's existence.
+
+**BLOCKED execution / deployment:** owner now authorizes the one protected spool,
+truthful validated manifest, dedicated CredMan bearer, existing loopback process
+on 127.0.0.1:39110, local auth tests and private HTTPS9443 only after all stated
+preconditions. Authorization is sufficient; the remaining blocker is absence of
+host command execution in this session. Redirected storage does not grant it.
+[Owner-side deployment and FORGE acceptance](V9-DEPLOYMENT-ACCEPTANCE.md) prepares
+the actual current implementation, not a second server. No listener, credential,
+Serve route, firewall/Gateway change or inference was executed here.
+Actual local authentication, current Serve/9443/effective-tailnet-policy proof,
+HTTPS transport and `REMOTE_NARRATION_PASS` remain **NOT TESTED/BLOCKED**.
+FORGE status still fails before network with `BLOCKED_NARRATOR_CONFIG`.
+
+Next exact owner-side action is the syntax-checked first stage only:
+`C:/admin/projects/KnowledgeNetwork/output/Narrator-Stage1-Create-Private-Spool.txt`,
+SHA-256 `04ffe4ba0655687283c07feb913e433457c928248cb659d34923329515b7e088`.
+Paste its contents once into local BLACKHAT-BASE Windows PowerShell in the
+intended narrator account, then return the printed spool path. It verifies kit
+source pins/free39110, creates `private-service-v9-001` with protected ACL and
+validates it; no inference, bearer, listener or route is created by this stage.
+After that, root can deliver the three reviewed files via redirected storage.
+Root checked all57 manifest references by file existence: only the two newly
+declared review artifacts are absent before materialization;55 existing paths
+are present. This is not a substitute for host validator/hash acceptance.
+Full numbered procedure:
+`output/Narrator-Restricted-Deployment-Owner.txt`, SHA-256
+`3cf6f0b80f780ff5c7c89370b015f282fef8849eb65c82e042823712ef4d9fbf`.
+Independent security review found and corrected a free-port error-handling gap;
+current Serve JSON/9443 checks and all listener queries now fail closed. Actual
+tailnet policy review remains a hard stop before the route command. No further
+permission question is needed for authorized actions; actual host execution and
+prerequisite evidence are what is missing.
+
+**Native video:** preserved prior editable project/export and receipts. No real
+remote receipt exists to attach; the host diagnostic file copy cannot be labeled
+a successful API transfer. The first real receipt enables a fresh unbranded
+local review project; the complete branded project additionally needs the badge.
+For a 50s final target, nominal bookends reserve 9.4s, leaving 40.6s/1218 frames
+at30fps for measured body timing. Use actual audio/bookend durations and retime
+three editable scenes/cues, never append bookends to the old50s body or truncate
+speech to force acceptance. No final narrated/branded `.osp` or MP4 is claimed.
+
+**Installer/operations:** existing staging installer hash still
+`4149bd4c66347429f65a570925bc158cbc36a8b752c36c741d1cfabf4439517a`;
+481 package checks/190 worker tests reused, no rebuild/install. No disposable
+Windows target exists here: Sandbox/Hyper-V disabled, vmms and tested VM tools
+absent. Fixed AppId/path/service prevents safe alternate-directory install.
+[Operational matrix and bounded scheduled/restart checks](V9-OPERATIONAL-ACCEPTANCE.md)
+are prepared, not executed. Working service observed Running/Automatic; no
+scheduled Assistant, restart/reboot or new installer lifecycle PASS is claimed.
+
+Ponytail5.3.3 FULL applied with parallel, nonoverlapping rights/transport/QA
+documents; root owns integration and asset checks. No UI changed, so no new
+UI/UX Pro Max/Taste visual gate is claimed. No source defect justified a new
+implementation or repeating the full model/editor/regression suites. Checks
+new to this continuation are binary recovery/hash comparison, full asset decode,
+existing outro validation, bounded license/manifest review, source parity and
+owner-procedure syntax checks. Independent security review is recorded in the
+deployment report. No private audio, credentials, declaration or generated media
+was added to Git. Nothing was publicly published.
+
+## Owner-run diagnostic received â€” PASS, host smoke only
+
+November 15: owner supplied host run directory
+`D:/Projects/knowledgenetwork/collector-narrator-v9-004/private-smoke-9c04d8494b2945c8ac8d2c4ee6e3727d`.
+This supersedes the execution blocker immediately below. The single authorized
+diagnostic has been performed by the owner; do not rerun it. FORGE inspected
+only this exact directory over the existing redirected drive. No host command,
+listener, credential, network/installer change or additional inference was run.
+
+**PASS:** saved child exit code 0; no Python traceback marker in private stderr.
+New `narration.wav`: 291,884 bytes, 3.04 seconds, 48,000 Hz, mono PCM16,
+145,920 decoded frames. SHA-256:
+`1083cd235598378fe4c7fc0556dcba1f9d3a9334b48620d522c2e826134dc6b7`.
+FORGE independently decoded every PCM frame, recomputed the digest and matched
+the host smoke receipt. This is file inspection/copy, not narrator API transfer.
+
+**PASS device evidence:** canonical stderr reports
+`Running on device: cuda, dtype: bfloat16`; successful exit and decoded output
+support completed CUDA-selected inference. This is not GPU kernel profiling,
+proof of a particular GPU ordinal/model, listening or performance acceptance.
+
+**PASS bindings:** canonical script/reference/CLI/declaration hashes still match
+their recorded pins. Current selected revision ref and all 39 small inventoried
+package files were independently rehashed through redirected storage and match
+the saved inventory at revision
+`7936080b41163874f38610f46f438e2c0757f9fd`. No 4.96 GB model re-inventory.
+The unchanged script retains CFG 2.0, ten steps, no denoiser/optimization,
+local-files-only, compile disabled and original reference conditioning.
+
+**Observed runtime scope:** parsed 2,485 named Python import records. None are
+`kaldiio`, `funasr`, `modelscope`, `voxcpm.zipenhancer` or their submodules.
+The log says `zipenhancer_model_path: None, enable_denoiser: False`; its one
+ZipEnhancer-name occurrence is a settings report, not an import. Together with
+the inspected lazy source branch, this supports those denoising components not
+participating in this successful canonical no-denoiser run. Absence from one
+trace is not a full transitive license audit or permission to enable denoising.
+
+**Private evidence preserved:** five source files were copied into an ACL-protected
+FORGE directory and each copy hash verified:
+`C:/admin/collector-v9/smoke-review-9c04d8494b2945c8ac8d2c4ee6e3727d`.
+Host originals remain unchanged. Private stderr SHA-256:
+`c8e3348f161691bf5cf9a1900750d0af056c2c642ab3a9794f19b103c8249208`;
+host smoke receipt SHA-256:
+`3c8b88157ff217afa920f501e382d928edd48bb3c8b7df8631f4dc62e3ce3283`.
+Raw logs/audio/rights documents remain outside Git. No credential value is
+included in this report. The bounded log credential-pattern check found none;
+this does not replace the previously requested token rotation.
+
+**Remaining commercial questions:** reconcile the observed active modules with
+the prior component/notices inventory for actual local operation, including
+bundled NVIDIA and LGPL components; separately review any runtime redistribution.
+The installed kaldiio restriction is unchanged, but this trace/source evidence
+supports excluding its inactive denoising path from this exact diagnostic's
+runtime scope. No package deletion, broad rights certification or approved
+manifest flag promotion follows automatically. Original voice-design history
+corroborates synthetic provenance but remains distinct from authenticated
+generation receipts. Commercial approval remains **BLOCKED pending final review**.
+
+**Owner listening remains NOT TESTED:** play this exact WAV locally at a
+comfortable level and compare identity with the approved reference/known output.
+Note pronunciation, naturalness, noise, clipping and truncated onset/ending;
+record the above digest with the private result. Automated PCM checks do not
+establish speech intelligibility, voice identity or quality.
+
+**Minimum next steps:** review listening and active-component obligations;
+complete a truthful reviewed manifest; separately approve the loopback host
+listener/scoped bearer, then a dedicated private HTTPS route after read-only
+Serve/port/policy inspection. Authenticate locally before one FORGE request;
+match host/local hashes and provenance. Remote API/transfer remains **NOT TESTED**.
+Exact branding and final editable branded Short remain blocked as documented.
+
+Ponytail FULL/review applied to receipt/source boundaries and unsupported claims.
+PASS: private copy/hash checks, sample decode, receipt equality, ref/package pins
+and bounded import-log parsing. No runtime source changed, so no repeated full
+regression, GPU job or media render. PR #20 stays draft/unmerged; publication
+remains **PAUSED**, with no public audio/video upload.
+
+## One-time diagnostic authorization â€” BLOCKED at host execution
+
+November 15: continued from clean checkpoint
+`eb5cb0e7f3a8132ab6628fa60a0348f3cf898240`. Owner authorized exactly one
+unchanged-script local diagnostic inference and its private output/logs.
+Available host access is redirected-drive file access only; no authorized host
+execution tool/channel exists in this session. No inference was attempted and
+the one authorized invocation remains unconsumed. No host directory, listener,
+credential, route, installer deployment or networking change was made.
+
+PASS: rehashed script, reference, CLI, saved inventory and rights declaration;
+all match the full recorded digests below. Read the canonical script again:
+CFG 2.0, ten steps, no denoiser/optimization, local-files-only, compile disabled,
+same reference conditioning. No expensive model inventory repeated. Effective
+model-ref/package revalidation requires the local host preflight; it is not
+claimed from saved inventory identity alone.
+
+Prepared the [existing first PowerShell block](NARRATOR-NEXT-INTEGRATION.md)
+for owner execution in Windows PowerShell on BLACKHAT-BASE, adding the verified
+rights-declaration pin and durable child exit-code record. Procedure was parsed
+locally without executing it or its embedded Python. Only the first block is
+authorized; later listener/credential/Serve examples remain unapproved.
+Copy-and-paste version on FORGE:
+`C:/admin/projects/KnowledgeNetwork/output/Narrator-One-Time-Diagnostic-eb5cb0e.txt`,
+SHA-256 `34acb427bf1f0a4a1749104a4066bb389a54680641c2f9437fdfdc4186f8c56c`.
+PowerShell and both embedded Python blocks parsed successfully; a self-check
+confirmed exactly one canonical invocation. This is syntax validation only.
+
+BLOCKED / NOT TESTED: actual new WAV path/format/duration/hash, CUDA selection,
+host exit status and FunASR/kaldiio runtime participation. No runtime error exists
+to report because execution was not attempted. Commercial questions remain the
+actual restricted-component participation, applicable transitive local-use
+obligations and any separate redistribution obligations; owner declaration and
+static no-denoiser branch do not resolve them. Existing private draft stays
+fail-closed. No new commercial clearance or listening assertion.
+
+After the one owner-run attempt, retain the printed `private-smoke-<guid>` path,
+`exit-code.private.txt`, stdout/stderr and `smoke.json` if produced. Keep raw logs
+private; do not paste credentials or full logs into GitHub/chat. With the same
+redirected drive available, FORGE can inspect that exact folder and report the
+runtime results without rerunning inference. A failure/uncertain outcome must
+be reconciled before any further authorization or execution.
+
+Listening: play the new WAV locally at a comfortable level, compare identity
+against the approved reference/known output, and note pronunciation, clipping,
+noise, truncation and naturalness. Record the exact WAV hash and review result
+privately. Listening does not establish commercial license compliance.
+
+Minimum next integration steps remain: review actual diagnostic/import evidence
+and voice quality; complete a truthful reviewed manifest; separately authorize
+the loopback listener/scoped bearer and, after route inspection, private HTTPS
+route; then test one short FORGE request with matching host/local WAV digests.
+PR #20 remains draft/unmerged and publication PAUSED. Existing checkpoints,
+backups and original narrator assets are preserved. Ponytail FULL applied;
+documentation-only change, no repeated runtime regression or media render.
+
+## November 15 continuation â€” evidence and staging package
+
+Continued clean `feature/collector-v7-overnight` from exact source checkpoint
+`3353a24efa3473c0e375dfec96cdd4fd757e6158`. The continuation commit is the commit
+containing this section (`git log -1`); packaging uses the exact source checkpoint
+above. PR [#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20) stays draft
+and unmerged. Earlier receipts, worktrees, installers and backups are preserved.
+No runtime source change, service restart/deployment, host inference, host write,
+network change or public upload was performed in this continuation.
+
+**PASS â€” reuse:** installed worker EXE/DLL hashes were read again and match the
+pipe-repair values below. The corrected trust implementation and actual-context
+health evidence are reused; no new pipe diagnosis or 4.96 GB inventory. Current
+`state/operations.json` still hashes to
+`d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
+Publication remains **PAUSED** and production scheduler remains disabled by the
+preserved verified configuration; no new scheduled Assistant result is claimed.
+
+**PASS / BLOCKED â€” rights:** the new private declaration exists and was read
+through the already-authorized redirected host drive. Its actual SHA-256 is
+`bc7d82dac515aadd72c061eebf9088df138f1e9ec746dd9b1287914eb6ede006`.
+Canonical reference and saved original voice-design WAV both match
+`050db3aeca148b98dd2edbcdf77abcb12b7ebc1debb344879e81af6e49b7fe44`.
+Relevant text-controlled design/copy history and installed CLI source corroborate
+synthetic origin without reference-audio arguments. History is not an independent
+execution receipt. Private evidence and an intentionally fail-closed draft
+manifest retain the declaration as `consent_evidence`; no deployment-valid or
+fully reviewed manifest is asserted. See [rights review](V9-RIGHTS-CONTINUATION.md)
+for evidence hashes, limitations and remaining runtime/component review.
+Private draft: `C:/admin/collector-v9/rights-continuation-7d0ce6c8e5594529b3dfe85ea50d22bb/narrator-manifest.DRAFT.private.json`,
+SHA-256 `b6d1e866fb775c747122702b29e38f5a8ceb88d3b6bf280ccecce3902e04f04e`.
+Root independently rehashed the declaration, canonical reference, draft and new
+installer; all matched the specialist receipts. Only sanitized reports enter Git.
+
+Installed source supports the canonical no-denoiser branch avoiding ZipEnhancer;
+actual runtime imports remain **NOT TESTED**. The installed kaldiio restriction
+is unresolved until the real trace and call path are reviewed. No packages were
+removed, edited or replaced, and no stack-wide commercial clearance is claimed.
+
+**PASS â€” staging package:** new unsigned local installer, not deployed:
+`C:/admin/projects/KnowledgeNetwork/output/installer-v9-pipefix-002/The-Knowledge-Network-Collector-0.1.0-v9-pipefix-002-setup.exe`.
+SHA-256 `4149bd4c66347429f65a570925bc158cbc36a8b752c36c741d1cfabf4439517a`.
+Fresh worker identifies source build `0.1.0+3353a24efa3473c0e375dfec96cdd4fd757e6158`;
+190 self-tests PASS and all 481 package manifest records match. Product version
+remains 0.1.0; `v9-pipefix-002` identifies this staging release. Old Round5 package
+is preserved. [Packaging, license, install/rollback limits](V9-PACKAGING-CONTINUATION.md).
+Actual isolated install/upgrade is **NOT TESTED**: this installer uses the fixed
+live AppId/service/Program Files path. Do not run it over the working service as
+a test. Reuse an isolated Windows snapshot for installation acceptance first.
+Keep a consistent private database backup, service/companion settings and current
+patched binaries for rollback; never restore old data merely to roll back code.
+
+**PASS â€” focused and integration checks:** 22 host and 17 client tests using
+synthetic inference, 302 Python regression tests (5 existing FFmpeg skips), and
+190 fresh packaged-worker checks. Regression command:
+`$env:PYTHONPATH='src'; & ./.venv/Scripts/python.exe -m unittest discover -s tests -v`.
+Private log: `C:/admin/collector-v9/v9-continuation-regression.log`.
+Actual FORGE narrator status remains `BLOCKED_NARRATOR_CONFIG`, before network.
+[Transport review and exact next gates](V9-TRANSPORT-CONTINUATION.md).
+
+**BLOCKED â€” complete Short:** no exact approved branding recovered in the new
+bounded host/VM Pictures/Videos check (20 files) or connected Drive name searches.
+Earlier project/backup searches were reused. Existing native project/export
+hashes still match; [branding/native report](V9-BRANDING-CONTINUATION.md) preserves
+their paths and digests. The fixed 50-second unbranded fixture accepts narration
+but does not already assemble branded bookends. A fresh editable assembly must
+retime body/captions and use existing native operations once exact assets and
+real audio exist. Full branded assembly, export, GUI interaction and listening
+remain **NOT TESTED**. No completed narrated/branded Short is claimed.
+
+**Owner actions genuinely required:**
+
+- Approve/run exactly one canonical-script smoke from
+  [the existing procedure](NARRATOR-NEXT-INTEGRATION.md), after reviewing the new
+  rights evidence: new private `private-smoke-<guid>` folder under host kit004,
+  one short original sentence, unchanged narrator settings, private import logs,
+  WAV/exit/CUDA/PCM/hash evidence. This is evaluation evidence for unresolved
+  runtime licensing, not commercial release clearance. No automatic retry.
+  This continuation does not treat its preparation as inference authorization.
+- Separately authorize any loopback listener/credential and dedicated 9443 route
+  only after runtime/voice review and read-only Serve-state verification. No
+  approved host command channel exists here; redirected files are not execution.
+- Materialize the exact badge and portrait outro from Library into an authorized
+  private source path; landscape original remains required for that orientation.
+- Rotate the unrelated Hugging Face access token exposed in a helper tool output
+  during history inspection. Its value was not retained in evidence or Git.
+  Further history extraction was narrowed to relevant credential-screened lines.
+
+The working plain-English Assistant instruction remains the local-only request
+in [Assistant operations](../ASSISTANT-OPERATIONS.md), starting with the actually
+tested installed health command below. The full request must stop at these real
+prerequisites; no fabricated successful end-to-end command is provided. First
+remote acceptance should use one short unsegmented request; the prepared full
+13-segment demo entails 13 serialized canonical script/model invocations.
+
+**Skills/review:** Ponytail 5.3.3 FULL is explicitly active; its installed skill,
+plugin metadata, lifecycle hook configuration and review skill were inspected.
+No new plugin/hook trust or environment setting was needed. Specialists used
+nonoverlapping document paths; only root integrates. Prompt Sensei was not found
+in the installed catalog/local skill search and was not applied. Google Drive
+skill was read for connected exact-asset discovery. No UI changed: UI/UX Pro Max,
+Taste visual/native gates were not rerun or claimed. Final review checks evidence
+claims, private-data exclusion, package identity, unchanged controls and missing
+native tests. Reboot, scheduled Assistant reliability and forced native race
+faults remain later operational acceptance. The demo has **not** been publicly
+uploaded.
+
+## Current continuation from pushed checkpoint6a76f44
+
+November14 continuation on `feature/collector-v7-overnight`; PR
+[#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20) remains draft/unmerged.
+This section supersedes older installed-worker hashes and pipe-status blockers
+below. Historical receipts, installers, backups and passed inspector remain intact.
+
+**PASS â€” installed pipe repair:** exact original medium-client failure was
+OpenProcess/error5 (access denied), before QueryFullProcessImageName. SCM status
+and config queries succeeded. Source `d85ab96`/`d5132eb` now validates the live
+pipe PID against stable running own-process LocalService SCM identity/config
+first, with strict fail-closed SCM errors and unchanged strict console fallback.
+Native medium client now passes, despite process-query denial remaining in place.
+Owner returned Assistant's actual FORGE health response: healthy,
+windows_service, nonce `1587a1afca4a490c9075638f997625e1`, same worker identity,
+companion true, reconciliation hold false, publication paused, scheduler false.
+This is manual actual-context health, not a scheduled connection.
+[Full diagnosis, test matrix, exact response and rollback](PIPE-TRUST-REPAIR.md).
+
+Only three worker files plus their package-manifest entries were patched in
+place; no entire-Collector reinstall. Current installed EXE:
+`C:/Program Files/The Knowledge Network Collector/kn-collector.exe`, SHA-256
+`60516f07332facbbfa484cb5a2b4b430cc42c12128bc6525283e589b812e2754`.
+Current DLL SHA-256:
+`cb1d2debccce27e47c0046bd6c2f60aaa8113600fc207429347f3d8f3545b3d3`.
+Source build: `0.1.0+d5132ebba7fe8ae83b7ce9cb056904f926cabdd7`.
+Fresh published worker: `output/collector-pipefix-001`. Existing Round5 installer
+is preserved with original hash but lacks this fix; do not run it as routine
+repair or claim a new installer was built. Dashboard/editor/runtime unchanged.
+
+Service restart PID14316â†’4188 retained all13 jobs,39 events, metadata/sequence
+rows exactly; integrity_check=ok. Worker ID remains
+`cb6ce3cd482148e7b8b0c8661ec8c6e9`. Consistent pre-patch DB backup hash remains
+`daca19da767c1ce7fd1a3149db358d42e31f0c3745ce42dc76f3f4e21f0adf4b`.
+Private patch originals/verification: `C:/admin/collector-v9/pipe-auth-20261114-01`.
+Native fake pipe rejected at ServiceIdentity with zero transmitted request bytes.
+The triggerless least-privilege test task was removed. No service/process ACL
+expansion or execution-policy changes. Original protected backups untouched.
+
+**PASS â€” PR conflicts/CI:** exactly three V8 add/add documentation conflicts
+resolved by adopting main's V9 supersession notices. No merge/rebase/force-push.
+CI push filter now includes this branch; read-only Python Windows/Linux jobs and
+Windows .NET worker/self-test/WPF compile jobs added using pinned official actions.
+Hosted first Windows failure was synthetic short-TEMP alias mismatch; fixed test
+roots only, preserving production inspector and all assertions. Both hosted
+workflows at67a5cdb passed:
+[push43647910451](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647910451),
+[PR43647914711](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43647914711).
+Pipe-source head d5132eb also passed both hosted workflows:
+[push43648989366](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648989366),
+[PR43648993931](https://github.com/oxieg3n/KnowledgeNetwork/actions/runs/43648993931).
+Actual hosted Python3.12:302 tests per OS, OK with7 Linux/5 Windows explicit
+skips; Windows builds zero warnings/errors and190 worker checks PASS.
+Subsequent evidence-only commits do not change installed/source runtime code.
+[Exact investigation/strategy](PR20-CI-INTEGRATION.md).
+
+**PASS â€” reuse/validation:**302 Python tests with5 explicit FFmpeg skips in
+source-review environment, including an actual Windows8.3 TEMP alias regression;
+190 published worker self-test checks;23 narrator host/contract and17 direct
+client tests (synthetic inference). PowerShell and embedded Python examples in
+the prepared smoke procedure parse; no host commands were executed. Ponytail
+5.3.3 FULL and review skill read/applied from
+`C:/Users/oxieg3n/.codex/plugins/cache/ponytail/ponytail/5.3.3/skills/ponytail/SKILL.md`
+and sibling `ponytail-review/SKILL.md`; runtime explicitly reports FULL active.
+No plugin installation, new hook trust or session restart. Independent
+source/rights/CI specialists
+used nonoverlapping worktrees. No UI changed, so no new UI/UX/Taste gate claimed.
+
+**BLOCKED â€” narrator rights/live acceptance:** inventory remains PASS at
+VoxCPM2 revision7936080b41163874f38610f46f438e2c0757f9fd; not repeated.
+Consent/commercial-use evidence for exact reference still absent. Installed
+kaldiio has evaluation-limited terms; actual involvement in the no-denoiser
+runtime is not established. Preserve environment and resolve actual runtime
+scope rather than deleting dependencies or assuming all-component clearance.
+[Rights and exact-assets review](NARRATOR-RIGHTS-AND-ASSETS.md).
+
+Prepared a new non-overwriting canonical-script smoke with private logs, saved
+inventory/package/ref binding, CUDA device-report check, actual PCM/duration/hash
+validation and import diagnostics. It awaits scoped host authorization and rights
+evidence. No host inference, listener, credential or dedicated Serve route was
+created. [Exact owner commands and separate deployment gates](NARRATOR-NEXT-INTEGRATION.md).
+FORGE status actually returns BLOCKED_NARRATOR_CONFIG. Real cross-machine WAV,
+caption alignment and45â€“55s branded/narrated acceptance remain BLOCKED. The exact
+badge and portrait/landscape outros remain missing; original hash enforcement
+is unchanged. Existing50s synthetic project/render below are preserved, not
+rebuilt or relabeled full acceptance. No listening claim.
+
+Working Assistant health command (actually exercised; owner returned actual
+Assistant-context JSON):
+
+```powershell
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health ([guid]::NewGuid().ToString('N'))
+```
+
+For the full local-only Short use the plain-English acceptance request in
+[Assistant operations](../ASSISTANT-OPERATIONS.md), with current installed hash
+and real provider/companion syntax. No successful full command or output is
+invented while host/rights/exact-assets gates are blocked. Publication remains
+**PAUSED**; no demo or other media was publicly uploaded. operations.json hash
+`d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`
+is unchanged. Gateway, all host routes, original narrator and separate website
+were untouched. Reboot and scheduled Assistant execution remain NOT TESTED.
+
+## Earlier checkpoint evidence (preserved)
+
+Updated November 14, 2026. Publication remains **PAUSED**. No demonstration or
+other media was publicly uploaded. Production workflows/permissions and the
+separate poweredby repository were not changed. Final operations.json SHA-256
+remains `d61551c51fc46bc65b6e3c11b0e6d12e38b13efdef44121a07c8570ee22b799d`.
+
+## Remote review status
+
+GitHub CLI authentication verified as oxieg3n; repository access verified.
+Existing implementation branch pushed without force or history changes:
+[feature/collector-v7-overnight](https://github.com/oxieg3n/KnowledgeNetwork/tree/feature/collector-v7-overnight).
+Draft review PR: [#20](https://github.com/oxieg3n/KnowledgeNetwork/pull/20),
+target main, not merged. Docs-only snapshot branch remains at29f493f untouched.
+Pre-push audit covered247 unpublished historical blobs/2,662,489 bytes, largest
+36,775 bytes: no credential-pattern or private/binary candidates. Two credential
+URL matches were reviewed dummy negative tests on fixture.invalid/127.0.0.1.
+Audit receipt stays private at `C:/admin/collector-v9/pre-push-audit-final.json`.
+No workflow files/permissions changed. This is a bounded audit, not a guarantee
+against every possible secret. No media/model/executable/database was pushed.
+
+## Subsequent inspector repair
+
+Owner-run host inventory now PASS at revision
+`7936080b41163874f38610f46f438e2c0757f9fd`;9 snapshot files/4,960,731,830 bytes
+and39 package files. This supersedes only the earlier inventory blocker below.
+[Repair evidence, kit command, hashes,24+23 focused tests and remaining rights/API gates](INSPECTOR-SHARED-BLOB-REPAIR.md).
+Actual reference consent, runtime parity/GPU/WAV and remote API remain blocked
+or untested. No Collector rebuild or Gateway/network change. Earlier checkpoints,
+backups and results below are historical evidence and remain preserved.
+
+## Outcome and checkpoint
+
+Continued the existing `feature/collector-v7-overnight` branch from original
+checkpoint `8c0e7f0`, retaining the V8 checkpoint `8403136`, all helper worktrees,
+assets and history. Non-destructively fetched origin/main `1db0530` and read its
+AGENTS/V9 master/architecture instructions. V9 supersedes VoiceStudio narration.
+No reset, reclone, new repository, force push or merge into main occurred.
+
+Installed worker source checkpoint: `6f34384f7c77437c74c7a178ce6be0642a75bbbb`.
+Evidence/docs checkpoint: `675fa9736cfc27d67d1fd24e890c26afe36e93d9`.
+The final receipt commit only adds backup references; consult `git log` for its ID. An earlier noninteractive push lacked credentials. This was resolved by the
+owner-configured GitHub CLI; current draft PR is linked above. Review preparation is local, not a claimed GitHub URL.
+
+The service now dispatches narration and four bounded native editor operations
+through an interactive-user companion. Actual inspect/apply/save/reopen and
+synthetic export passed. Direct VoxCPM2 host/client implementation and negative
+security/recovery tests passed locally. **No real V9 host speech was generated.**
+A complete narrated/branded Short remains BLOCKED, not accepted on mock evidence.
+
+## Installer and launch
+
+Existing, installed unsigned staging installer (0.1.0):
+`C:/Admin/Projects/KnowledgeNetwork/output/installer-v9-round5/The-Knowledge-Network-Collector-0.1.0-setup.exe`
+
+SHA-256: `58b73fd62cb3a2997e12b801a88686a6854bfa1421c67cd027b1b0c6dba9da5d`.
+Actual Round5 upgrade exited0 and preserved companion enablement and jobs.
+Self-contained .NET runtime/notices/licenses are packaged. Python source clients,
+OpenShot, models and owner media are not bundled; this is not a standalone full
+studio acceptance. No signing certificate is claimed.
+
+Installed CLI: `C:/Program Files/The Knowledge Network Collector/kn-collector.exe`
+SHA-256: `70ff38e9c81a6b7f2617f94fe6ad262fb734d45e867674429023d57242020a76`.
+Managed DLL: same directory `kn-collector.dll`, SHA-256
+`5b16b7ce9bd14b3ec7f58acf2847f5a973e007db261a091c5d683e6a53f859a5`.
+Dashboard apphost SHA-256:
+`4d38514a5d64e1cfe61b5ffe50a1a033884eda48880968e69d581b780889d667`.
+Dashboard DLL SHA-256:
+`9ea6504a1967707237c38e9a664905decabcf82cd924d92fb983bf39f3cdf19a`.
+Complete installed hashes: `C:/admin/collector-v9/final-package-hashes.json`.
+
+```powershell
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector-dashboard.exe'
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' health ([guid]::NewGuid().ToString('N'))
+& 'C:/Program Files/The Knowledge Network Collector/kn-collector.exe' capabilities
+```
+
+Repair by rerunning this installer elevated as the configured owner, or using
+canonical CLI `install-service`. Explicit `--enable-companion` and
+`--disable-companion` are supported; noflag preserves the setting. Removal
+preserves data. Upgrade now preserves the flag through Inno's remove/reinstall.
+No PowerShell execution policy was bypassed or changed.
+
+## Worker, recovery and backups
+
+Service KnowledgeNetworkCollector: Running/Auto/LocalService. Stable worker ID
+`cb6ce3cd482148e7b8b0c8661ec8c6e9`. Final health reports windows_service, companion
+true, reconciliation hold false, publication_paused true and scheduler false.
+Typed jobs: diagnostic.echo, research.snapshot, narration.generate,
+editor.operation. Editor ops: inspect/apply/save/reopen. Queued export is disabled;
+remote narrator readiness is explicitly false. Health is not a Dot connection.
+
+Actual service restart retained all five sampled V9 job records/results exactly:
+`C:/admin/collector-v9/native-final-restart.json`. Upgrade retained the original
+three V1 jobs/IDs/hashes and worker identity. Schema2 uses consistent verified
+pre-migration backup before changes, durable leases and media outcome-unknown
+holds; no automatic replay of uncertain edits/speech. Read-only jobs can recover.
+
+Final consistent SQLite backup (integrity_check=ok):
+`C:/admin/collector-v9/worker-final-v9.sqlite`, SHA-256
+`daca19da767c1ce7fd1a3149db358d42e31f0c3745ce42dc76f3f4e21f0adf4b`.
+Automatic pre-v2 backup:
+`C:/ProgramData/KnowledgeNetworkCollector/jobs.pre-v2-7f166ba07afc4dc099b17e46cc548f88.sqlite`,
+SHA-256 `8456232e1201345733a877dac4545c8b0ac2ddafa3a4b8ba309fd374c5c554be`.
+V1 cannot read schema2: rollback requires deliberate backup/outcome review, never
+blind restore/replay. Reboot, locked/signed-out session and scheduled Dot access
+remain NOT TESTED. Prior V8 uninstall/reinstall proof is preserved, not rerun V9.
+
+Original verified backup `C:/admin/collector-backups/20261114-073652` untouched.
+Its Git bundle was rechecked: SHA-256
+`c09bd03678201fe4576e746246c7709ba32dbdc2b6b2c7992872f4c9367659cd`.
+This is not a new rehash assertion for every original backup file.
+
+Fresh private backup: `C:/admin/collector-backups/v9-final-20261114-1410`.
+Contains complete-history Git bundle (52refs, verified), source ZIP at675fa97,
+all149 copied evidence/source/package files hash-verified, synthetic project/render,
+consistent database backup and installed installer copy. Manifest SHA-256:
+`322d0312bcc00374de03a69ef974c6050509b98334b9ba7c37ff00eb60357313`.
+Bundle SHA-256: `8eb8f4a30c75c217afaf07016e345084cbe19f310f3dd9b67c08a9477c601365`.
+Source ZIP SHA-256: `ad732c623446ecfa8e6be5922fd5e74696b03806e2dbf4e9d73cd4d7f11d1fb6`.
+Private verification receipt: `C:/admin/collector-v9/final-backup-receipt.json`.
+An initial ACL-construction error affected only this new empty backup directory;
+corrected using explicit SID objects before files were written. Original backup
+and existing project ACLs were not touched.
+
+One real negative fixture exposed OWNER RIGHTS ACL compatibility in Python3.13
+private temp files. Completion was denied and lease expiry correctly held the
+queue. Fixed at the shared ACL validation. Root reconstructed that this specific
+synthetic job had never reached POST (missing provider route, no durable intent)
+and performed a single stopped-service/exclusive-lock, backed-up reconciliation;
+no other rows changed or generic clear/replay endpoint added. Original failure,
+backup and assessment remain private:
+`native-companion-roundtrip.json`, `fixed-negative-job-reconciliation.private.json`
+(assessment SHA `c9cc45ed9860976ced83d8074ba9d1123ddb632cd05b75e236691d17155b5da2`).
+The original child stage was not captured; reconstructed evidence is not called
+a direct original provider observation. Normal production hold reconciliation
+still requires operator evidence and remains a usability limitation.
+
+## V9 narrator: observed facts and remaining gate
+
+Read-only redirected `\\tsclient\D` access matched existing host bytes:
+- canonical narrate.ps1: `98b75e5313d72d7aa65d160b41ebcb8726968bb7044700e2cffb510b5a72f189`
+- reference.wav: `050db3aeca148b98dd2edbcdf77abcb12b7ebc1debb344879e81af6e49b7fe44`
+- voxcpm.exe: `582115086868288000249adebbdfbf2de7db8392534d760fa9675ad9b0217492`
+
+Installed metadata: VoxCPM2.0.3, Python3.11, package Apache-2.0. Preserve fixed
+Oxiegen-Narrator identity and exact script configuration: CFG2.0, ten steps,
+no-denoiser, no-optimize, local-files-only, TORCH_COMPILE_DISABLE=1. Script,
+reference and installed model files were not modified. The old reference is not
+new narration and was not listened to. Model selected checkpoint/revision,
+component license evidence/reference rights and runtime Python parity remain
+BLOCKED. The owner-run old inspector returned a generic failure; cause is unknown.
+
+The restricted loopback host service uses canonical script runner first. Direct
+persistent Python model loading remains gated on verified runtime parity. It has
+authenticated bounded routes, one GPU queue, durable idempotency, exact manifest
+and artifact checks, no arbitrary command/path/voice/model API, process-tree
+cancel/timeout and restart/storage-fault holds. Forge uses HTTPS/certificate and
+private-address pins, scoped CredMan bearer, socket deadline and PCM/hash checks.
+VoiceStudio app/API/PIN are retired and never used as fallback.
+
+No host process, scoped key or dedicated HTTPS route was installed/configured;
+no host screen or general execution channel used. Gateway and existing Tailscale
+routes remain unchanged. Only new project kit files were placed with permission.
+Latest kit is staged/readback-hash verified, **NOT EXECUTED**, at:
+`D:/projects/knowledgenetwork/collector-narrator-v9-004` on BLACKHAT-BASE.
+Owner next command when available:
+
+```powershell
+& 'D:/projects/knowledgenetwork/collector-narrator-v9-004/Inspect-InstalledVoxCPM.cmd'
+```
+
+Local ZIP:
+`C:/Admin/Projects/KnowledgeNetwork/output/The-Knowledge-Network-Collector-Narrator-V9-004.zip`
+SHA-256 `1ca74b22892fd13b138c3b804d5dd03005ef14a5d2dd9201fe47edd07bcec563`.
+It contains no model/voice/key. Inspector reads/hashes installed files and creates
+only a new protected private report. No inference/download/route changes. Older
+kits002/003 and owner's differently spelled project folder remain intact.
+
+Next live gate: inspect actual cache revision; review rights/component evidence;
+run unchanged host narrator smoke, then parity comparison; owner-scoped route
+setup; authenticated Forge status + actual new WAV transfer; import/caption/mix,
+retake/listening and exact final render. Those steps cannot be replaced by mocks.
+
+## Native editor and exact synthetic media
+
+Actual service?user companion?OpenShot jobs:
+inspect `313710c99fdc4aafa75449ebaca234c3`, apply
+`42243403fca64f14af59384e3231ccf3`, save
+`df260a58e18c4eb3b61d63a5da9c7fdd`, reopen
+`9fe17030c3684cde80708c188c2a3334`. Revision56?59. The saved graphic alpha0.9
+was read back with native float32 tolerance. Durable private receipts bind each
+job; no mutation replay. Save exercised heartbeat across a 16-second call.
+
+Project:
+`C:/admin/collector-v9/editor-vault/service-editor-001/service-v9-reviewed-edit.osp`
+SHA-256 `7d108fbe024e27fefe3e1373fc4ede4993b29ce8da3df4100996a2c410fe5e92`.
+Video, same folder: `service-v9-local-review.mp4`
+SHA-256 `f453bd15c060ac590bfe8beb58c93898e3acc249df40c43310fe72978fa77c63`.
+Actual direct native export `897c917c5e2b4b18b6be561695ff67c6`, revision59:
+50.000s, 1080x1920,30fps,1500frames,H264/yuv420p,AAC48k stereo. Full decode0;
+black scan no events; silence scan only faded last0.508s. Six sources and revision
+unchanged. Frames4/21/42s visually inspected: text, lower thirds, animated graphic,
+three scenes and LOCAL REVIEW labels visible. Separate tones/music exist, not
+real speech; no listening assertion. Report `native-editor-export-qc.json`.
+
+Native OpenShot4.1.1/libopenshot1.1.1 remains authoritative, editable multitrack
+`.osp`; WPF operations dashboard is not a replacement timeline. Existing adapter
+covers trim/split/reorder/undo, titles, overlays/keyframes/effects, subtitle/retake
+and mixing. Prior V8 native proofs remain separate historical evidence; manual Qt
+GUI editing, preview/export parity, spoken retake, DPI and Dot remain unverified.
+Older V8 exact project and video hashes were rechecked unchanged before V9 export.
+
+Approved portrait/landscape outro MP4s and exact intro badge bytes are still
+missing. Existing implementations and expected hashes preserved; bounded host
+project-folder search found no candidates. No substitute or recreated approval.
+All new fixtures are unbranded technical reviews, not full production acceptance.
+
+## Tests, skills and review
+
+Final configured-environment regression: **284 tests PASS, zero failures/skips,
+55.991s** (`regression-final-venv.log`). Initial accidental system-Python run
+failed26/errors with7skips from missing dependencies/FFmpeg; retained as
+`regression-final.log`, corrected by using existing project venv and pinned tools,
+not weakening tests. Installed worker **163 checks PASS**. Final dashboard
+**17 checks PASS**,2727ms (`dashboard-smoke-v9-round5/smoke-results.json`). Real
+shown WPF window, in-process UIA/focus/buttons, installed CLI/service/error/recovery;
+96dpi rendered captures at800x600/1040x780. Not OS keystroke or high-DPI proof.
+
+Real Windows checks: scoped credential write/read/delete; private ACL acceptance
+and public/inherited denial; native runner complete/cancel/timeout stopping owned
+children; inspector report ACL and redaction using MOCK inventories; service
+negative narration blocked before POST; queued cancel without attempt; 288170-byte
+valid unicode payload roundtrip;300085-byte invalid frame rejected in90ms after
+shared chunked-pipe fix. Contract server/renderer MOCK tone tests are explicitly
+local/synthetic; no host API/WAV acceptance. Logs/evidence root:
+`C:/admin/collector-v9`; sanitized totals in TEST-RESULTS.json.
+
+Ponytail5.3.3 FULL resolver/review skill actually applied. UI/UX Pro Max2.15.0
+`C:/admin/tools/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md` and Taste2.5.1
+native visual judgment reuse reviewed charcoal/muted-blue tokens; no UI redesign.
+Final dashboard captures were reviewed; web finish gates do not apply to native
+WPF/Qt and are not claimed. No lifecycle trust/session restart performed.
+Independent helpers owned worker/editor/voice changes in separate worktrees;
+root serialized VM installs, service tests and heavy renders. Diff review focused
+on trust boundaries, no duplicate scheduler/provider, cancellation, no-replay,
+revision/hash binding, bounded storage/transport, installer migration and missing
+integration tests. No speculative framework or general remote control was added.
+
+## Assistant test and remaining follow-up
+
+Copy the plain-English request in [Assistant operations](../ASSISTANT-OPERATIONS.md).
+It includes real installed health/provider/companion syntax and requires a fresh
+45-55s editable LOCAL REVIEW-ONLY Short with direct VoxCPM2 narration, captions,
+text/graphics, effect, two video layers, ducked music, and both exact bookends
+inside the duration. Full narrated/branded command has not run successfully;
+missing live API/assets must return BLOCKED, never synthetic acceptance.
+
+Real Assistant/Dot connection and scheduled execution remain NOT TESTED. Host
+execution/setup/model rights, approved bookend bytes, manual GUI/audio review,
+installer signing and reboot recovery remain scoped follow-up. The review PR
+is now created as a draft; GitHub authentication is no longer a blocker. Existing production rights/review/exact-render/duplicate-upload gates
+remain intact; no public upload, workflow permission change or publication.

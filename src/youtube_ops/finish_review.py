@@ -25,7 +25,8 @@ def frames(path):
     data=json.loads(run(['ffprobe','-v','error','-protocol_whitelist','file,pipe','-select_streams','v:0','-show_entries','frame=best_effort_timestamp_time','-of','json',str(path)]))
     return [f['best_effort_timestamp_time'] for f in data['frames']]
 
-def finish(preview, output, expected_hash, *, segments, manifest_hash, manifest_path):
+def finish(preview, output, expected_hash, *, segments, manifest_hash, manifest_path,
+           font_path='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'):
     preview=Path(preview);output=Path(output)
     if preview.is_symlink() or not preview.is_file() or digest(preview)!=expected_hash:
         raise ValueError('Exact regular owner-reviewed preview required')
@@ -61,12 +62,16 @@ def finish(preview, output, expected_hash, *, segments, manifest_hash, manifest_
         masks.append((start,end,rectangle))
     filters=','.join(f"drawbox=x={x}:y={y}:w={w}:h={h}:color=0x0c1420:t=fill:enable='gte(t,{start})*lt(t,{end})'" for start,end,(x,y,w,h) in masks)
     output.parent.mkdir(parents=True,exist_ok=True)
-    font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+    font=Path(font_path).resolve(strict=True).as_posix()
+    if any(c in font for c in "'\n\r"):
+        raise ValueError('Unsupported font path characters')
+    # FFmpeg's filter parser treats a Windows drive colon as an option separator.
+    font=font.replace(':', r'\:')
     for start,end,kind in ranges:
         if kind=='intro': continue
         label='Original text card • AI narration' if kind=='original' else 'Licensed archival excerpt • commentary follows'
         y,px=(1800,22) if kind=='original' else (1740,26)
-        filters+=f",drawtext=fontfile={font}:text='{label}':x=100:y={y}:fontsize={px}:fontcolor=0x9fb3c8:enable='gte(t,{start})*lt(t,{end})'"
+        filters+=f",drawtext=fontfile='{font}':text='{label}':x=100:y={y}:fontsize={px}:fontcolor=0x9fb3c8:enable='gte(t,{start})*lt(t,{end})'"
 
     run(['ffmpeg','-v','error','-protocol_whitelist','file,pipe','-i',str(preview),'-map','0:v:0','-map','0:a:0','-vf',filters,'-c:v','libx264','-preset','fast','-crf','0','-threads','2','-pix_fmt','yuv420p','-fps_mode','passthrough','-c:a','copy','-movflags','+faststart',str(output)])
     if output.stat().st_size>256*1024*1024: raise ValueError('Derivative exceeds recovery size limit')

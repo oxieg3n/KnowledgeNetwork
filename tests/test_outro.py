@@ -1,4 +1,4 @@
-import tempfile
+from tests.fixture_retention import FixtureDirectory
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -24,7 +24,7 @@ class OutroTests(unittest.TestCase):
             with patch('youtube_ops.outro.sha256',return_value=ASSETS['short']['sha256']),patch('youtube_ops.outro.probe',return_value=info),self.assertRaises(ValueError):
                 verify_outro({'template':TEMPLATE},'local','short')
     def test_append_preserves_existing_segments(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with FixtureDirectory() as tmp:
             d=Path(tmp);source=d/'source.mp4';source.write_bytes(b'approved')
             segments=[d/'first.mp4']
             with patch('youtube_ops.outro.verify_outro',return_value={'sha256':'hash'}),patch('youtube_ops.outro.sha256',return_value='hash'),patch('youtube_ops.outro.probe',return_value={'format':{'duration':'4.2'}}):

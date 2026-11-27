@@ -1,5 +1,5 @@
+from tests.fixture_retention import FixtureDirectory
 import hashlib
-import tempfile
 import unittest
 from pathlib import Path
 from datetime import datetime, timezone
@@ -43,7 +43,7 @@ class FakeClient:
 
 class UploadTests(unittest.TestCase):
  def setUp(self):
-  self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
+  self.tmp=FixtureDirectory();self.addCleanup(self.tmp.cleanup)
   self.root=Path(self.tmp.name);self.path=self.root/'reviewed.mp4';self.path.write_bytes(b'fixture media bytes')
   self.digest=hashlib.sha256(self.path.read_bytes()).hexdigest()
   self.state=State(self.root/'state');self.state.data['control']={'publication_paused':False,'production_host_verified':True}

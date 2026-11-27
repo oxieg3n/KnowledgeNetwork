@@ -1,4 +1,4 @@
-import tempfile
+from tests.fixture_retention import FixtureDirectory
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -23,15 +23,15 @@ class IntroValidationTests(unittest.TestCase):
         from youtube_ops.render import render
         spec={'format':'short','scenes':[{'title':'Test','narration':'Test narration.','caption':'Test'}],
               'brand_intro':{'template':TEMPLATE,'title':'Test'}}
-        with tempfile.TemporaryDirectory() as tmp, self.assertRaisesRegex(ValueError,'poweredby_logo'):
+        with FixtureDirectory() as tmp, self.assertRaisesRegex(ValueError,'poweredby_logo'):
             render(spec,Path(tmp)/'output',Path('no-model'),{})
     def test_licensed_validation_keeps_exact_source_scope_separate(self):
         from youtube_ops.render import render
         spec={'format':'short','scenes':[{'title':'Test','narration':'Test narration.','caption':'Test'}],
               'licensed_assets':{'source':{}},
               'brand_intro':{'template':TEMPLATE,'title':'Test'}}
-        with patch('youtube_ops.licensed.verify_local_assets') as verify,              patch('youtube_ops.intro.verify_intro'),              patch('youtube_ops.render.verify_voice',side_effect=ValueError('stop before voice')):
-            with self.assertRaisesRegex(ValueError,'stop before voice'):
+        with patch('youtube_ops.licensed.verify_local_assets') as verify, patch('youtube_ops.intro.verify_intro'):
+            with self.assertRaisesRegex(ValueError,'Legacy Piper body synthesis is disabled'):
                 render(spec,Path('unused'),Path('no-model'),{},
                        local_assets={'source':'local-source','poweredby_logo':'local-badge','unexpected':'extra'})
         verify.assert_called_once_with(spec,{'source':'local-source','unexpected':'extra'})

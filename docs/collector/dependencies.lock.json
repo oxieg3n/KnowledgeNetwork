@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "scope": "Windows staging build; no model weights or owner media bundled",
+  "dotnet_sdk": {
+    "version": "10.0.404",
+    "source": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/10.0/releases.json",
+    "installer_sha256": "f7fdaf56ff976c3450e6e984ddea3f01790b45ecec848bcfa5dc32f62b6aa93a"
+  },
+  "dotnet_runtime": {
+    "version": "10.0.15",
+    "nuget_lock": "../../collector/windows/Collector/packages.lock.json"
+  },
+  "openshot": {
+    "version": "4.1.1",
+    "source": "https://github.com/OpenShot/openshot-qt/releases/tag/v4.1.1",
+    "installer_sha256": "6c18abf951a798b536b07aa88f78d62eb55345903699b429b08322323c049690",
+    "console_sha256": "3637d631e5b01f263c87e7bbc0c9d3dd5b75274f7489bd2f56da8940ce292ca7"
+  },
+  "voicestudio": {
+    "version": "0.5.6",
+    "source": "https://github.com/debpalash/VoiceStudio/tree/3915a62cb482bb43117aaebab57d22745bd1cc21",
+    "installation": "BLACKHAT-BASE existing private HTTPS API; no host installation/configuration changes",
+    "model_license": "BLOCKED: only noncommercial OmniVoice TTS weights reported installed",
+    "legacy_forge_installation": "preserved and unused by V8",
+    "status": "RETIRED: historical evidence only; not an active Collector dependency"
+  },
+  "ffmpeg_qc": {
+    "version": "9.0.2",
+    "source": "https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2",
+    "zip_sha256": "759d0a9831c436a0eb331ad36f236c06cb04aaa0005da46571f0e9d3d9206f6b"
+  },
+  "inno_setup": {
+    "version": "6.7.3",
+    "source": "https://github.com/jrsoftware/issrc/releases/tag/is-6_7_3",
+    "installer_sha256": "9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732",
+    "license_review": "Upstream license permits commercial use; official purchase FAQ says purchase not strictly required. No purchase or policy acceptance performed."
+  },
+  "python_development": {
+    "version": "3.13.17",
+    "tzdata": "2026.2",
+    "numpy": "2.3.5",
+    "pillow_tested": "13.0.0",
+    "note": "No Piper install or new narrator substitution"
+  },
+  "host_exec_python": {
+    "version": "3.14.10",
+    "source": "https://www.python.org/downloads/release/python-31410/",
+    "archive_url": "https://www.python.org/ftp/python/3.14.10/python-3.14.10-embed-amd64.zip",
+    "archive_sha256": "90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159",
+    "scope": "Protected project SSH dispatcher and limited-owner stdlib narrator control/API; canonical VoxCPM2 inference Python, dependencies, model and ACLs unchanged",
+    "license": "PSF and bundled notices retained in the original embeddable archive",
+    "verification": "Official release SHA-256 and valid Python Software Foundation Authenticode signatures on python.exe and python314.dll; 18 dispatcher tests pass on FORGE"
+  },
+  "voxcpm2": {
+    "source": "https://github.com/OpenBMB/VoxCPM",
+    "model_source": "https://huggingface.co/openbmb/VoxCPM2",
+    "upstream_license": "Apache-2.0",
+    "installed_revision": "7936080b41163874f38610f46f438e2c0757f9fd (owner-run read-only inventory PASS)",
+    "narrator": "oxiegen-narrator",
+    "integration": "Canonical owner script wrapper first; direct persistent Python model requires parity proof",
+    "host_assets": "Private and immutable; not bundled",
+    "installed_package_version": "2.0.3 (read host metadata)",
+    "host_python": "3.11.16 (owner-run inventory)",
+    "reference_rights": "BLOCKED: exact reference consent/license evidence not verified",
+    "model_card_sha256": "feb850b390aa5051b81cbdc73b048361273552f003dd386b4da9c39ec9b6f055",
+    "package_license_sha256": "4f10acc209addacfad28293315c74c4cd648f771ee1263a748f1781d1e0265e4"
+  }
+}
