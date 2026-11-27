@@ -2765,8 +2765,8 @@
         "https://www.youtube.com/@Webflow",
         "https://www.youtube.com/playlist?list=UUELSb-IYi_d5rYFOxWeOz5g"
       ],
-      "last_attempt_at": "2026-11-25T22:29:30.522805+00:00",
-      "last_monitored_at": "2026-11-25T22:29:30.522687+00:00",
+      "last_attempt_at": "2026-11-27T18:56:31.311021+00:00",
+      "last_monitored_at": "2026-11-27T18:56:31.310894+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Webflow",
@@ -2906,8 +2906,8 @@
         "https://www.youtube.com/@Framer",
         "https://www.youtube.com/playlist?list=UUW5gUZ7lKGrAbLOkHv2xfbw"
       ],
-      "last_attempt_at": "2026-11-25T22:29:30.955545+00:00",
-      "last_monitored_at": "2026-11-25T22:29:30.955413+00:00",
+      "last_attempt_at": "2026-11-27T18:56:31.883342+00:00",
+      "last_monitored_at": "2026-11-27T18:56:31.883213+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Framer",
@@ -15002,7 +15002,7 @@
       "upload": 0
     },
     "2026-11-27": {
-      "general": 6,
+      "general": 12,
       "search": 0,
       "upload": 0
     }
@@ -15458,7 +15458,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 776,
+  "revision": 785,
   "rights_ledger": {},
   "runs": [
     {
@@ -17266,6 +17266,21 @@
         "new_leads": 1
       },
       "run_id": "45965471297-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-27T18:56:30.516435+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 0
+      },
+      "run_id": "46053100558-1",
       "status": "BLOCKED"
     }
   ],
