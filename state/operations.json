@@ -1112,6 +1112,14 @@
       "url": "https://www.youtube.com/watch?v=OZ5KXB6kHUg",
       "video_id": "OZ5KXB6kHUg"
     },
+    "video:O_C2DgDlC90": {
+      "created_at": "2026-11-28T10:22:47.083667+00:00",
+      "kind": "new_video",
+      "status": "pending",
+      "title": "Absolutely ZONKED out after that meal.",
+      "url": "https://www.youtube.com/watch?v=O_C2DgDlC90",
+      "video_id": "O_C2DgDlC90"
+    },
     "video:OuklilOy5hk": {
       "created_at": "2026-11-12T23:07:36.462965+00:00",
       "kind": "new_video",
@@ -2935,8 +2943,8 @@
         "https://www.youtube.com/@NintendoAmerica",
         "https://www.youtube.com/playlist?list=UUGIY_O-8vW4rfX98KlMkvRg"
       ],
-      "last_attempt_at": "2026-11-26T15:10:35.347688+00:00",
-      "last_monitored_at": "2026-11-26T15:10:35.347605+00:00",
+      "last_attempt_at": "2026-11-28T10:22:47.083789+00:00",
+      "last_monitored_at": "2026-11-28T10:22:47.083716+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Nintendo of America",
@@ -3106,8 +3114,8 @@
         "https://www.youtube.com/@GoogleDevelopers",
         "https://www.youtube.com/playlist?list=UU_x5XG1OV2P6uZZ5FSM9Ttw"
       ],
-      "last_attempt_at": "2026-11-26T15:10:35.997554+00:00",
-      "last_monitored_at": "2026-11-26T15:10:35.997453+00:00",
+      "last_attempt_at": "2026-11-28T10:22:47.611619+00:00",
+      "last_monitored_at": "2026-11-28T10:22:47.611496+00:00",
       "media_reuse_rights": "research only; not a license to download or republish",
       "monitor_method": "youtube_data_api",
       "name": "Google for Developers",
@@ -11536,6 +11544,26 @@
         "url": "https://www.youtube.com/watch?v=OZ5KXB6kHUg",
         "video_id": "OZ5KXB6kHUg"
       },
+      "O_C2DgDlC90": {
+        "api_verification": "verified",
+        "attempts": 0,
+        "categories": [
+          "Gaming"
+        ],
+        "channel_id": "UCGIY_O-8vW4rfX98KlMkvRg",
+        "channel_name": "Nintendo of America",
+        "discovered_at": "2026-11-28T10:22:47.083646+00:00",
+        "id": "O_C2DgDlC90",
+        "live_state": "none",
+        "metadata_source": "youtube_data_api",
+        "primary_sources": [],
+        "published_at": "2026-11-26T23:00:29Z",
+        "rights_path": "original_required",
+        "status": "needs_editorial_review",
+        "title": "Absolutely ZONKED out after that meal.",
+        "url": "https://www.youtube.com/watch?v=O_C2DgDlC90",
+        "video_id": "O_C2DgDlC90"
+      },
       "OuklilOy5hk": {
         "api_verification": "verified",
         "attempts": 0,
@@ -15565,6 +15593,11 @@
       "general": 18,
       "search": 0,
       "upload": 0
+    },
+    "2026-11-28": {
+      "general": 6,
+      "search": 0,
+      "upload": 0
     }
   },
   "render_jobs": {
@@ -16018,7 +16051,7 @@
       "status": "rendered_pending_review"
     }
   },
-  "revision": 796,
+  "revision": 805,
   "rights_ledger": {},
   "runs": [
     {
@@ -17892,6 +17925,21 @@
         "verified_sources": 10
       },
       "run_id": "46095685778-1",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Bounded rotating batch; not all sources checked this run"
+      ],
+      "checked_at": "2026-11-28T10:22:46.332202+00:00",
+      "command": "monitor",
+      "details": {
+        "api_enabled": true,
+        "channels_attempted": 2,
+        "channels_registered": 10,
+        "new_leads": 1
+      },
+      "run_id": "46134887127-1",
       "status": "BLOCKED"
     }
   ],
